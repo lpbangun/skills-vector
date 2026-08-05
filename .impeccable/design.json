@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-04T23:35:40Z",
+  "title": "Design System: Skills Vector",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ledger Ink",
+        "canonical": "#18201c",
+        "tonalRamp": ["oklch(15% 0.014 163.5)", "oklch(26% 0.014 163.5)", "oklch(38% 0.014 163.5)", "oklch(50% 0.014 163.5)", "oklch(62% 0.014 163.5)", "oklch(74% 0.014 163.5)", "oklch(86% 0.014 163.5)", "oklch(95% 0.014 163.5)"]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "#5f6a63",
+        "tonalRamp": ["oklch(15% 0.017 157.8)", "oklch(26% 0.017 157.8)", "oklch(38% 0.017 157.8)", "oklch(50% 0.017 157.8)", "oklch(62% 0.017 157.8)", "oklch(74% 0.017 157.8)", "oklch(86% 0.017 157.8)", "oklch(95% 0.017 157.8)"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "#f4f1e9",
+        "tonalRamp": ["oklch(15% 0.011 89.7)", "oklch(26% 0.011 89.7)", "oklch(38% 0.011 89.7)", "oklch(50% 0.011 89.7)", "oklch(62% 0.011 89.7)", "oklch(74% 0.011 89.7)", "oklch(86% 0.011 89.7)", "oklch(95% 0.011 89.7)"]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Warm Panel",
+        "canonical": "#fffdf8",
+        "tonalRamp": ["oklch(15% 0.007 88.6)", "oklch(26% 0.007 88.6)", "oklch(38% 0.007 88.6)", "oklch(50% 0.007 88.6)", "oklch(62% 0.007 88.6)", "oklch(74% 0.007 88.6)", "oklch(86% 0.007 88.6)", "oklch(95% 0.007 88.6)"]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Ledger Line",
+        "canonical": "#d9d7ce",
+        "tonalRamp": ["oklch(15% 0.012 96.4)", "oklch(26% 0.012 96.4)", "oklch(38% 0.012 96.4)", "oklch(50% 0.012 96.4)", "oklch(62% 0.012 96.4)", "oklch(74% 0.012 96.4)", "oklch(86% 0.012 96.4)", "oklch(95% 0.012 96.4)"]
+      },
+      "green": {
+        "role": "primary",
+        "displayName": "Evidence Green",
+        "canonical": "#1c5a41",
+        "tonalRamp": ["oklch(15% 0.076 162.9)", "oklch(26% 0.076 162.9)", "oklch(38% 0.076 162.9)", "oklch(50% 0.076 162.9)", "oklch(62% 0.076 162.9)", "oklch(74% 0.076 162.9)", "oklch(86% 0.076 162.9)", "oklch(95% 0.076 162.9)"]
+      },
+      "green-soft": {
+        "role": "primary",
+        "displayName": "Soft Evidence Green",
+        "canonical": "#e4f0e7",
+        "tonalRamp": ["oklch(15% 0.017 153.6)", "oklch(26% 0.017 153.6)", "oklch(38% 0.017 153.6)", "oklch(50% 0.017 153.6)", "oklch(62% 0.017 153.6)", "oklch(74% 0.017 153.6)", "oklch(86% 0.017 153.6)", "oklch(95% 0.017 153.6)"]
+      },
+      "mint": {
+        "role": "primary",
+        "displayName": "Approval Mint",
+        "canonical": "#cae8d4",
+        "tonalRamp": ["oklch(15% 0.042 156.3)", "oklch(26% 0.042 156.3)", "oklch(38% 0.042 156.3)", "oklch(50% 0.042 156.3)", "oklch(62% 0.042 156.3)", "oklch(74% 0.042 156.3)", "oklch(86% 0.042 156.3)", "oklch(95% 0.042 156.3)"]
+      },
+      "amber": {
+        "role": "tertiary",
+        "displayName": "Awaiting Amber",
+        "canonical": "#a76512",
+        "tonalRamp": ["oklch(15% 0.122 64.6)", "oklch(26% 0.122 64.6)", "oklch(38% 0.122 64.6)", "oklch(50% 0.122 64.6)", "oklch(62% 0.122 64.6)", "oklch(74% 0.122 64.6)", "oklch(86% 0.122 64.6)", "oklch(95% 0.122 64.6)"]
+      },
+      "amber-soft": {
+        "role": "tertiary",
+        "displayName": "Soft Awaiting Amber",
+        "canonical": "#fff2d9",
+        "tonalRamp": ["oklch(15% 0.036 83.8)", "oklch(26% 0.036 83.8)", "oklch(38% 0.036 83.8)", "oklch(50% 0.036 83.8)", "oklch(62% 0.036 83.8)", "oklch(74% 0.036 83.8)", "oklch(86% 0.036 83.8)", "oklch(95% 0.036 83.8)"]
+      },
+      "red": {
+        "role": "tertiary",
+        "displayName": "Failure Red",
+        "canonical": "#8d382e",
+        "tonalRamp": ["oklch(15% 0.118 29.2)", "oklch(26% 0.118 29.2)", "oklch(38% 0.118 29.2)", "oklch(50% 0.118 29.2)", "oklch(62% 0.118 29.2)", "oklch(74% 0.118 29.2)", "oklch(86% 0.118 29.2)", "oklch(95% 0.118 29.2)"]
+      },
+      "red-soft": {
+        "role": "tertiary",
+        "displayName": "Soft Failure Red",
+        "canonical": "#f8e8e4",
+        "tonalRamp": ["oklch(15% 0.018 34.3)", "oklch(26% 0.018 34.3)", "oklch(38% 0.018 34.3)", "oklch(50% 0.018 34.3)", "oklch(62% 0.018 34.3)", "oklch(74% 0.018 34.3)", "oklch(86% 0.018 34.3)", "oklch(95% 0.018 34.3)"]
+      },
+      "blue": {
+        "role": "secondary",
+        "displayName": "Reason Blue",
+        "canonical": "#335d7e",
+        "tonalRamp": ["oklch(15% 0.072 243.9)", "oklch(26% 0.072 243.9)", "oklch(38% 0.072 243.9)", "oklch(50% 0.072 243.9)", "oklch(62% 0.072 243.9)", "oklch(74% 0.072 243.9)", "oklch(86% 0.072 243.9)", "oklch(95% 0.072 243.9)"]
+      },
+      "blue-soft": {
+        "role": "secondary",
+        "displayName": "Soft Reason Blue",
+        "canonical": "#e8f0f5",
+        "tonalRamp": ["oklch(15% 0.011 234.8)", "oklch(26% 0.011 234.8)", "oklch(38% 0.011 234.8)", "oklch(50% 0.011 234.8)", "oklch(62% 0.011 234.8)", "oklch(74% 0.011 234.8)", "oklch(86% 0.011 234.8)", "oklch(95% 0.011 234.8)"]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "Control White",
+        "canonical": "#ffffff",
+        "tonalRamp": ["oklch(15% 0 89.9)", "oklch(26% 0 89.9)", "oklch(38% 0 89.9)", "oklch(50% 0 89.9)", "oklch(62% 0 89.9)", "oklch(74% 0 89.9)", "oklch(86% 0 89.9)", "oklch(95% 0 89.9)"]
+      }
+    },
+    "typographyMeta": {
+      "display": {"displayName": "Display", "purpose": "The landing statement only."},
+      "headline": {"displayName": "Headline", "purpose": "Primary section and workspace titles."},
+      "title": {"displayName": "Title", "purpose": "Role-card titles and related editorial subheads."},
+      "body": {"displayName": "Body", "purpose": "Explanatory copy, claims, findings, and evidence."},
+      "label": {"displayName": "Control Label", "purpose": "Buttons and compact interaction labels."},
+      "eyebrow": {"displayName": "Eyebrow", "purpose": "Tracked uppercase orientation for scope, phase, and category."}
+    },
+    "shadows": [
+      {"name": "workspace-card-lift", "value": "0 20px 60px rgba(36,44,38,.10)", "purpose": "Permanent depth for the open workspace and temporary lift on role-card hover."},
+      {"name": "selected-node-lift", "value": "0 8px 22px rgba(28,90,65,.11)", "purpose": "Contained depth for the selected workflow node."},
+      {"name": "privacy-signal-glow", "value": "0 3px 10px rgba(94,169,121,.35)", "purpose": "Ambient emphasis around the local/private status dot."}
+    ],
+    "motion": [
+      {"name": "card-state", "value": "200ms ease", "purpose": "Role-card transform, shadow, and border transitions."},
+      {"name": "graph-state", "value": "180ms ease", "purpose": "Workflow-node border, background, and shadow transitions."},
+      {"name": "loading-shimmer", "value": "1.4s infinite", "purpose": "Horizontal shimmer across loading and evidence skeletons."},
+      {"name": "reduced-motion", "value": "0.01ms; 1 iteration", "purpose": "Collapses animation and transition duration when reduced motion is requested."}
+    ],
+    "breakpoints": [
+      {"name": "trace-and-evidence", "value": "1000px"},
+      {"name": "stacked-workspace", "value": "850px"},
+      {"name": "narrow-phone", "value": "520px"}
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main launch or approval action; ink at rest and evidence green on hover.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Launch investigation</button>",
+      "css": ".ds-btn-primary { border: 0; border-radius: 4px; padding: 10px 14px; cursor: pointer; font: 700 13px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; background: var(--ink, #18201c); color: var(--white, #fff); transition: background 200ms ease; } .ds-btn-primary:hover { background: var(--green, #1c5a41); } .ds-btn-primary:focus-visible { outline: 3px solid rgba(28,90,65,.28); outline-offset: 2px; } .ds-btn-primary:active { background: var(--green, #1c5a41); } .ds-btn-primary:disabled { opacity: .48; cursor: not-allowed; }"
+    },
+    {
+      "name": "Text Button",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "A secondary action for inspection, evidence jumps, pagination, and close controls.",
+      "html": "<button class=\"ds-btn-text\" type=\"button\">Inspect latest</button>",
+      "css": ".ds-btn-text { border: 0; border-radius: 4px; padding: 10px 14px; cursor: pointer; font: 700 13px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; background: transparent; color: var(--green, #1c5a41); transition: background 200ms ease; } .ds-btn-text:hover { background: var(--green-soft, #e4f0e7); } .ds-btn-text:focus-visible { outline: 3px solid rgba(28,90,65,.28); outline-offset: 2px; } .ds-btn-text:active { background: var(--green-soft, #e4f0e7); } .ds-btn-text:disabled { opacity: .48; cursor: not-allowed; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "The square, lightly bordered field used by the private approval form.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Reviewer</span><input class=\"ds-input\" placeholder=\"Reviewer name\"></label>",
+      "css": ".ds-field { display: grid; gap: 5px; color: var(--muted, #5f6a63); font: 400 11px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; } .ds-field-label { color: var(--muted, #5f6a63); } .ds-input { border: 1px solid var(--line, #d9d7ce); border-radius: 0; padding: 10px; background: var(--white, #fff); color: var(--ink, #18201c); font: 400 15px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; } .ds-input:focus-visible { outline: 3px solid rgba(28,90,65,.28); outline-offset: 2px; }"
+    },
+    {
+      "name": "Run Tabs",
+      "kind": "nav",
+      "refersTo": "tab-active",
+      "description": "The three-view run navigation with a fine rail and green active underline.",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\" aria-label=\"Run views\"><button class=\"ds-tab ds-tab-active\" role=\"tab\" aria-selected=\"true\">Brief &amp; approval</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Workflow graph</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Evidence explorer</button></div>",
+      "css": ".ds-tabs { display: flex; gap: 6px; overflow-x: auto; border-bottom: 1px solid var(--line, #d9d7ce); } .ds-tab { white-space: nowrap; padding: 12px 16px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--muted, #5f6a63); cursor: pointer; font: 400 15px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; } .ds-tab:hover { color: var(--ink, #18201c); } .ds-tab:focus-visible { outline: 3px solid rgba(28,90,65,.28); outline-offset: 2px; } .ds-tab-active { color: var(--green, #1c5a41); border-bottom-color: var(--green, #1c5a41); font-weight: 750; }"
+    },
+    {
+      "name": "Role Card",
+      "kind": "card",
+      "refersTo": "role-card",
+      "description": "The restrained role-selection card with editorial title, metadata divider, and hover lift.",
+      "html": "<article class=\"ds-role-card\"><span class=\"ds-role-index\">01</span><h3 class=\"ds-role-title\">HR Coordinator</h3><p class=\"ds-role-copy\">Coordinate people operations across the employee lifecycle.</p><div class=\"ds-role-meta\"><span class=\"ds-status-neutral\">Not investigated</span><span>0 runs</span></div><button class=\"ds-card-action\" type=\"button\">Launch investigation</button></article>",
+      "css": ".ds-role-card { width: min(100%, 360px); min-height: 340px; display: flex; flex-direction: column; padding: 26px; border: 1px solid var(--line, #d9d7ce); border-radius: 6px; background: var(--panel, #fffdf8); color: var(--ink, #18201c); font: 400 15px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease; } .ds-role-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(36,44,38,.10); border-color: #b8bdb7; } .ds-role-index { color: #8c958f; font: 400 14px/1.55 Georgia, serif; } .ds-role-title { margin: 38px 0 14px; font: 500 26px/1.1 Georgia, serif; } .ds-role-copy { margin: 0; color: var(--muted, #5f6a63); } .ds-role-meta { margin-top: auto; padding: 24px 0 18px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line, #d9d7ce); color: var(--muted, #5f6a63); font-size: 12px; } .ds-status-neutral { padding: 4px 8px; border-radius: 20px; background: #ebe9e2; color: var(--muted, #5f6a63); text-transform: capitalize; } .ds-card-action { align-self: flex-start; border: 0; border-radius: 4px; padding: 10px 14px; background: var(--ink, #18201c); color: var(--white, #fff); cursor: pointer; font-weight: 700; font-size: 13px; } .ds-card-action:hover { background: var(--green, #1c5a41); } .ds-card-action:focus-visible { outline: 3px solid rgba(28,90,65,.28); outline-offset: 2px; }"
+    },
+    {
+      "name": "Status Chips",
+      "kind": "chip",
+      "refersTo": "status-success",
+      "description": "The implemented success, awaiting, failure, and neutral run-state vocabulary.",
+      "html": "<div class=\"ds-status-set\"><span class=\"ds-status ds-status-success\">Succeeded</span><span class=\"ds-status ds-status-awaiting\">Awaiting approval</span><span class=\"ds-status ds-status-failed\">Failed</span><span class=\"ds-status ds-status-neutral\">Not investigated</span></div>",
+      "css": ".ds-status-set { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font: 400 12px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; } .ds-status { display: inline-block; padding: 4px 8px; border-radius: 20px; text-transform: capitalize; } .ds-status-success { background: var(--mint, #cae8d4); color: var(--green, #1c5a41); } .ds-status-awaiting { background: var(--amber-soft, #fff2d9); color: #70450d; } .ds-status-failed { background: var(--red-soft, #f8e8e4); color: var(--red, #8d382e); } .ds-status-neutral { background: #ebe9e2; color: var(--muted, #5f6a63); }"
+    },
+    {
+      "name": "Workflow Graph Node",
+      "kind": "custom",
+      "refersTo": "graph-node-selected",
+      "description": "A selected logical-stage node with status, stage label, and compact run metrics.",
+      "html": "<button class=\"ds-graph-node ds-graph-node-selected\" type=\"button\" aria-pressed=\"true\"><span class=\"ds-node-status\">Succeeded</span><strong class=\"ds-node-title\">Validate evidence</strong><span class=\"ds-node-metrics\">1 invocation · 12 sources · 84 ms</span></button>",
+      "css": ".ds-graph-node { min-height: 96px; width: min(100%, 220px); display: flex; flex-direction: column; gap: 6px; padding: 12px; border: 1px solid var(--line, #d9d7ce); border-radius: 0; background: var(--white, #fff); color: var(--ink, #18201c); text-align: left; cursor: pointer; font: 400 15px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease; } .ds-graph-node:hover { border-color: #9daa9f; } .ds-graph-node:focus-visible { outline: 3px solid rgba(28,90,65,.28); outline-offset: 2px; } .ds-graph-node-selected { border-color: var(--green, #1c5a41); background: var(--green-soft, #e4f0e7); box-shadow: 0 8px 22px rgba(28,90,65,.11); } .ds-node-status { color: var(--muted, #5f6a63); font-size: 9px; text-transform: uppercase; letter-spacing: .09em; } .ds-node-title { font-size: 13px; line-height: 1.25; } .ds-node-metrics { margin-top: auto; color: var(--muted, #5f6a63); font-size: 10px; }"
+    },
+    {
+      "name": "Evidence Cluster Row",
+      "kind": "nav",
+      "refersTo": "cluster-row-active",
+      "description": "The active claim-family row connecting claims and findings to ranked sources.",
+      "html": "<button class=\"ds-cluster-row ds-cluster-row-active\" type=\"button\" aria-pressed=\"true\"><span class=\"ds-cluster-copy\"><strong>Task shifts</strong><small>4 claims · 9 findings</small></span><span class=\"ds-cluster-count\"><b>18</b> sources</span><i class=\"ds-cluster-state\">Validated</i></button>",
+      "css": ".ds-cluster-row { width: min(100%, 280px); display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; padding: 12px 4px; border: 0; border-top: 1px solid var(--line, #d9d7ce); border-radius: 0; background: transparent; color: var(--ink, #18201c); text-align: left; cursor: pointer; font: 400 15px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; } .ds-cluster-row:hover, .ds-cluster-row-active { padding-left: 10px; padding-right: 10px; background: var(--green-soft, #e4f0e7); } .ds-cluster-row:focus-visible { outline: 3px solid rgba(28,90,65,.28); outline-offset: 2px; } .ds-cluster-copy { display: grid; } .ds-cluster-copy small, .ds-cluster-count { color: var(--muted, #5f6a63); } .ds-cluster-count { text-align: right; } .ds-cluster-count b { color: var(--ink, #18201c); } .ds-cluster-state { grid-column: 1 / -1; color: var(--green, #1c5a41); font-size: 9px; font-style: normal; text-transform: uppercase; letter-spacing: .08em; }"
+    },
+    {
+      "name": "Reason Chips",
+      "kind": "chip",
+      "refersTo": "reason-chip",
+      "description": "Blue-only ranking explanations shown at the top of an evidence source row.",
+      "html": "<div class=\"ds-reason-chips\"><span class=\"ds-reason-chip\">Direct claim match</span><span class=\"ds-reason-chip\">Recent source</span><span class=\"ds-reason-chip\">Lens coverage</span></div>",
+      "css": ".ds-reason-chips { display: flex; justify-content: flex-end; gap: 5px; flex-wrap: wrap; font: 400 10px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; } .ds-reason-chip { padding: 3px 6px; border-radius: 20px; background: var(--blue-soft, #e8f0f5); color: var(--blue, #335d7e); white-space: nowrap; }"
+    },
+    {
+      "name": "Evidence Source Row",
+      "kind": "custom",
+      "description": "A ranked public source with reasons, citation metadata, excerpt, provenance, and connected findings.",
+      "html": "<article class=\"ds-source-row\"><div class=\"ds-source-rank\"><span class=\"ds-source-category\">Workforce research</span><div class=\"ds-source-reasons\"><span>Direct claim match</span><span>Recent source</span></div></div><h4 class=\"ds-source-title\"><a href=\"#\">Source title <span aria-hidden=\"true\">↗</span></a></h4><p class=\"ds-source-byline\">Publisher · 2026-01-15</p><p class=\"ds-source-excerpt\">A bounded excerpt keeps the supporting evidence readable in context.</p><details class=\"ds-source-details\"><summary>Provenance and connected findings</summary><p class=\"ds-source-provenance\">Public-source provenance remains available before the worker payload is expanded.</p><article class=\"ds-source-finding\"><strong>Research lens</strong><p>Structured finding summary connected to this source.</p></article></details></article>",
+      "css": ".ds-source-row { max-width: 760px; padding: 22px 0; border-bottom: 1px solid var(--line, #d9d7ce); color: var(--ink, #18201c); font: 400 15px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; } .ds-source-rank { display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; } .ds-source-category { color: var(--muted, #5f6a63); font-size: 10px; text-transform: uppercase; letter-spacing: .09em; } .ds-source-reasons { display: flex; justify-content: flex-end; gap: 5px; flex-wrap: wrap; } .ds-source-reasons span { padding: 3px 6px; border-radius: 20px; background: var(--blue-soft, #e8f0f5); color: var(--blue, #335d7e); font-size: 10px; white-space: nowrap; } .ds-source-title { margin: 9px 0 2px; font-size: 17px; } .ds-source-title a { color: var(--green, #1c5a41); text-decoration-thickness: 1px; text-underline-offset: 3px; } .ds-source-title a:hover { text-decoration-thickness: 2px; } .ds-source-title a:focus-visible, .ds-source-details summary:focus-visible { outline: 3px solid rgba(28,90,65,.28); outline-offset: 2px; } .ds-source-byline { margin: 0 0 10px; color: var(--muted, #5f6a63); font-size: 11px; } .ds-source-excerpt { max-width: 75ch; } .ds-source-details summary { color: var(--green, #1c5a41); cursor: pointer; font-size: 12px; font-weight: 700; } .ds-source-provenance { max-width: 80ch; color: var(--muted, #5f6a63); font-size: 12px; } .ds-source-finding { margin-top: 12px; padding: 12px; background: #f5f4ef; } .ds-source-finding p { margin: 4px 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Private Evidence Ledger",
+    "overview": "Skills Vector uses a restrained paper, ink, and green world that feels closer to a carefully maintained working record than a generic analytics dashboard. Warm paper surrounds near-white panels; dark ink carries the content; green is reserved for identity, action, selection, and validated evidence.\n\nThe interface is dense only where inspection requires it. Serif headings establish editorial hierarchy, while system sans-serif text, fine borders, compact controls, and progressive disclosure keep the run, claim, finding, and source trail operational. Uncertainty, disagreement, failure, and approval eligibility remain visually explicit rather than being softened into decoration.",
+    "keyCharacteristics": [
+      "Warm paper canvas with restrained bordered panels",
+      "Editorial serif orientation paired with compact sans-serif operation",
+      "Semantic color reserved for evidence relationships and run state",
+      "Progressive disclosure from brief to graph, findings, sources, and raw payloads",
+      "Human approval presented as a visible gate, never an automatic outcome"
+    ],
+    "rules": [
+      {"name": "The Semantic Color Rule", "body": "Green means action, selection, or validated success; amber means awaiting or partial; red means blocked, failed, or disputed; blue is reserved for evidence-ranking reasons.", "section": "colors"},
+      {"name": "The Serif Orientation Rule", "body": "Use Georgia to orient the reader to sections and decisions; use sans-serif for operation, evidence detail, controls, and state.", "section": "typography"},
+      {"name": "The Flat-by-Default Rule", "body": "Keep resting content on bordered, tonal surfaces; add shadow only when a workspace, hover, selection, or privacy signal needs explicit depth.", "section": "elevation"}
+    ],
+    "dos": [
+      "Do keep the warm paper canvas, near-white panels, dark ink, fine borders, and restrained evidence green as the dominant visual world.",
+      "Do preserve semantic state mapping across badges, claims, graph nodes, approval panels, and evidence clusters.",
+      "Do keep uncertainty, disagreement, failures, provenance, and approval eligibility visually explicit.",
+      "Do preserve progressive disclosure from brief to evidence cluster, source, connected finding, and raw payload.",
+      "Do retain horizontal graph scrolling and the mobile cluster select when space is constrained."
+    ],
+    "donts": [
+      "Don't use green, amber, red, or blue as interchangeable decoration; each color has an implemented information role.",
+      "Don't add broad rounding, gradients, or persistent card shadows to resting operational surfaces.",
+      "Don't compress the seven-phase graph until labels or metrics become unreadable.",
+      "Don't hide partial or failed work behind an empty state when inspectable trace data exists.",
+      "Don't present approval as publication, automation, or a completed action before the human gate is satisfied."
+    ]
+  }
+}

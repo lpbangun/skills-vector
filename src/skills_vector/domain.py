@@ -73,6 +73,9 @@ class EvidenceSource:
     published_on: date | None
     retrieved_at: datetime
     geography: str = "US"
+    relevant_excerpt: str = ""
+    provenance: str = ""
+    role_connections: tuple[Role, ...] = ()
 
     def __post_init__(self) -> None:
         if not isinstance(self.category, EvidenceCategory):
@@ -90,6 +93,21 @@ class EvidenceSource:
             raise ValueError("evidence must retain a valid source URL")
         if self.geography != "US":
             raise ValueError("evidence must be applicable to the U.S. pilot")
+
+
+def validate_ingested_evidence(source: EvidenceSource, *, role: Role) -> tuple[str, ...]:
+    """Validate the normalized ingestion boundary used by the application."""
+
+    errors: list[str] = []
+    if source.published_on is None:
+        errors.append(f"{source.source_id}: publication date is required")
+    if not source.relevant_excerpt.strip():
+        errors.append(f"{source.source_id}: relevant excerpt/claim is required")
+    if not source.provenance.strip():
+        errors.append(f"{source.source_id}: source provenance is required")
+    if role not in source.role_connections:
+        errors.append(f"{source.source_id}: missing role connection for {role.value}")
+    return tuple(errors)
 
 
 @dataclass(frozen=True, slots=True)

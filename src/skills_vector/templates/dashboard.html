@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skills Vector · Private occupational intelligence</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+</head>
+<body>
+  <!--
+  THESIS: The run workspace makes the investigation auditable from claim to source; it replaces the flat artifact ledger with an operating graph and progressive evidence trail.
+  OWN-WORLD: Preserve the incumbent paper, ink, green, and restrained bordered-panel language; status and evidence relationships carry the color.
+  STORY: The owner reads the brief first, traces any claim through findings and sources, sees partial or failed work, then makes the private approval decision.
+  FIRST VIEWPORT: The existing role dashboard remains intact; an opened run begins with status, trace totals, and Brief & approval as the selected view.
+  FORM: Fixed-phase DAG workspace with inline detail drawers; incumbent-extension.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+  -->
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Skills Vector home"><span class="brand-mark">SV</span><span>Skills Vector</span></a>
+    <div class="privacy"><span class="privacy-dot"></span> Local & private</div>
+  </header>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">People Operations &amp; Talent · United States</p>
+        <h1>See how work is changing.<br><em>Keep judgment in the loop.</em></h1>
+        <p class="lede">Run a source-bounded investigation, inspect every stage, and decide what earns your approval.</p>
+      </div>
+      <div class="hero-note"><span>3</span><p>deep-monitored<br>roles</p></div>
+    </section>
+
+    <section aria-labelledby="roles-title">
+      <div class="section-heading"><div><p class="eyebrow">Monitor</p><h2 id="roles-title">Choose a role</h2></div><p>Deterministic offline analysis · no credentials</p></div>
+      <div class="role-grid" id="role-grid">
+        {% for role in roles %}
+        <article class="role-card" data-role="{{ role.slug }}">
+          <div class="role-index">0{{ loop.index }}</div>
+          <h3>{{ role.name }}</h3>
+          <p>{{ role.context }}</p>
+          <div class="role-meta"><span class="status {{ role.latest_status or 'new' }}">{{ (role.latest_status or 'not investigated')|replace('_', ' ') }}</span><span class="run-count">{{ role.run_count }} run{% if role.run_count != 1 %}s{% endif %}</span></div>
+          <div class="card-actions">
+            <button class="button primary investigate" data-role="{{ role.slug }}">Launch investigation</button>
+            {% if role.latest_run_id %}<button class="button text inspect" data-run="{{ role.latest_run_id }}">Inspect latest</button>{% endif %}
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="workspace hidden" id="workspace" aria-live="polite">
+      <div class="workspace-head">
+        <h2 id="run-title">Run detail</h2>
+        <button class="close" id="close-workspace" aria-label="Close run detail">×</button>
+      </div>
+      <div id="notice" class="notice hidden"></div>
+      <div id="loading" class="loading hidden" aria-label="Running investigation">
+        <div class="loading-line wide"></div><div class="loading-line"></div><div class="loading-grid"><span></span><span></span><span></span></div>
+        <p>Running parallel research and specialist analysis…</p>
+      </div>
+      <div id="run-content"></div>
+    </section>
+  </main>
+  <footer><p>Private evidence workspace</p><p>Sources remain public; decisions remain yours.</p></footer>
+  <script src="{{ url_for('static', path='/app.js') }}" defer></script>
+</body>
+</html>

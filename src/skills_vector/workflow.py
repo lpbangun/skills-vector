@@ -10,7 +10,7 @@ import operator
 from dataclasses import dataclass
 from typing import Annotated, Any, Callable, TypedDict
 
-from .domain import Claim, EvidenceSource, HumanReview, RoleBrief, RoleBriefRequest
+from .domain import EvidenceSource, HumanReview, RoleBriefRequest
 
 
 NodeHandler = Callable[[dict[str, Any]], dict[str, Any]]
@@ -24,9 +24,10 @@ RESEARCH_NODES = (
 )
 
 ANALYSIS_NODES = (
-    "analyze_change",
-    "analyze_durable_capabilities",
-    "analyze_uncertainty",
+    "analyze_demand",
+    "analyze_tasks_automation",
+    "analyze_skill_shifts",
+    "analyze_role_evolution_durability",
     "skeptic",
 )
 
@@ -36,8 +37,11 @@ HUMAN_GATED_CHANGES = frozenset({"prompt", "policy", "memory", "model_router"})
 class WorkflowState(TypedDict, total=False):
     request: RoleBriefRequest
     evidence: Annotated[list[EvidenceSource], operator.add]
-    claims: Annotated[list[Claim], operator.add]
-    draft: RoleBrief
+    artifacts: Annotated[list[dict[str, Any]], operator.add]
+    analyses: Annotated[list[dict[str, Any]], operator.add]
+    validated_evidence_ids: list[str]
+    forecast: dict[str, Any]
+    brief_payload: dict[str, Any]
     review: HumanReview
     errors: Annotated[list[str], operator.add]
 
@@ -51,9 +55,10 @@ class WorkflowHandlers:
     research_job_posting_signals: NodeHandler
     research_official_policy: NodeHandler
     validate_evidence: NodeHandler
-    analyze_change: NodeHandler
-    analyze_durable_capabilities: NodeHandler
-    analyze_uncertainty: NodeHandler
+    analyze_demand: NodeHandler
+    analyze_tasks_automation: NodeHandler
+    analyze_skill_shifts: NodeHandler
+    analyze_role_evolution_durability: NodeHandler
     skeptic: NodeHandler
     forecast_panel: NodeHandler
     draft_brief: NodeHandler
@@ -101,4 +106,3 @@ def build_graph(handlers: WorkflowHandlers, *, checkpointer: Any = None) -> Any:
     if checkpointer is not None:
         compile_options["checkpointer"] = checkpointer
     return graph.compile(**compile_options)
-
