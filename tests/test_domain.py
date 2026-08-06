@@ -70,6 +70,12 @@ def brief(**overrides: object) -> RoleBrief:
                 evidence_ids=("s1",),
                 uncertainty_note="Timing varies by employer and sector.",
             ),
+            Scenario(
+                horizon=ScenarioHorizon.MEDIUM_TERM,
+                description="A role-level medium-term scenario.",
+                evidence_ids=("s1",),
+                uncertainty_note="Structural shifts remain uncertain beyond one hiring cycle.",
+            ),
         ),
         "sources": (source("s1"),),
     }
@@ -156,6 +162,37 @@ class DomainContractTests(unittest.TestCase):
             )
         with self.assertRaisesRegex(ValueError, "time-bound scenario"):
             brief(scenarios=())
+
+    def test_brief_requires_both_scenario_horizons(self) -> None:
+        with self.assertRaisesRegex(ValueError, "near-term and medium-term"):
+            brief(
+                scenarios=(
+                    Scenario(
+                        horizon=ScenarioHorizon.NEAR_TERM,
+                        description="Only a near-term view.",
+                        evidence_ids=("s1",),
+                        uncertainty_note="Medium-term path is omitted.",
+                    ),
+                )
+            )
+
+    def test_claim_ids_must_be_unique(self) -> None:
+        with self.assertRaisesRegex(ValueError, "claim ids must be unique"):
+            brief(
+                claims=(
+                    claim(claim_id="dup"),
+                    claim(
+                        claim_id="dup",
+                        kind=ClaimKind.DURABLE_CAPABILITY,
+                        statement="A durable capability supported by the evidence.",
+                    ),
+                    claim(
+                        claim_id="c3",
+                        kind=ClaimKind.UNCERTAINTY,
+                        statement="A material uncertainty in the available evidence.",
+                    ),
+                )
+            )
 
     def test_non_private_brief_requires_human_approval(self) -> None:
         with self.assertRaisesRegex(ValueError, "human approval"):

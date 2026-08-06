@@ -180,6 +180,10 @@ def validate_brief(brief: RoleBrief) -> tuple[str, ...]:
     if len(sources_by_id) != len(brief.sources):
         errors.append("evidence source ids must be unique")
 
+    claim_ids = [claim.claim_id for claim in brief.claims]
+    if len(set(claim_ids)) != len(claim_ids):
+        errors.append("claim ids must be unique")
+
     required_claim_kinds = {
         ClaimKind.CHANGE,
         ClaimKind.DURABLE_CAPABILITY,
@@ -194,6 +198,14 @@ def validate_brief(brief: RoleBrief) -> tuple[str, ...]:
         )
     if not brief.scenarios:
         errors.append("role brief requires at least one time-bound scenario")
+    else:
+        present_horizons = {scenario.horizon for scenario in brief.scenarios}
+        missing_horizons = set(ScenarioHorizon) - present_horizons
+        if missing_horizons:
+            errors.append(
+                "role brief requires both near-term and medium-term scenarios; missing: "
+                + ", ".join(sorted(horizon.value for horizon in missing_horizons))
+            )
 
     referenced: list[tuple[str, tuple[str, ...]]] = [
         *((claim.claim_id, claim.evidence_ids) for claim in brief.claims),

@@ -33,3 +33,4 @@ This is a decision loop, not a fixed backlog. Do not rewrite the loop or interna
 | --- | --- | --- | --- |
 | 2026-08-03 | Initial repository and scope audit | Saved project was empty and not a Git repository | A minimal local foundation is appropriate; no user files to overwrite |
 | 2026-08-03 | Domain and workflow contracts | 14 warning-free offline tests, bytecode compilation, dependency check, and forbidden-scope scan | Foundation milestone achieved; stop before provider, persistence, scheduler, or UI work |
+| 2026-08-06 | Brief integrity: both horizons + unique claim ids | 16 offline unittest cases green; `validate_brief` rejects single-horizon drafts and duplicate claim ids | Keep briefs incomplete until near- and medium-term scenarios exist; stay inside domain validation |
