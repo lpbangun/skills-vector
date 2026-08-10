@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skills Vector — Editorial Brutalism · Concept 01</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: '#f3efe6',
+            'paper-deep': '#e8e2d4',
+            ink: '#1c1a17',
+            'ink-soft': '#3a3530',
+            rule: '#c8c0b0',
+            'rule-med': '#8a8274',
+            signal: '#a84828',
+            'signal-deep': '#8a3a20',
+            mute: '#6b655c',
+          },
+          fontFamily: {
+            serif: ['"STIX Two Text"', 'Georgia', 'serif'],
+            sans: ['"IBM Plex Sans"', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+          },
+          boxShadow: {
+            select: '3px 3px 0 0 #1c1a17',
+            gate: '4px 4px 0 0 #1c1a17',
+            action: '2px 2px 0 0 #1c1a17',
+          },
+          fontSize: {
+            body: ['15px', { lineHeight: '1.55' }],
+            label: ['12px', { lineHeight: '1.35', letterSpacing: '0.04em' }],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root {
+      --paper: #f3efe6;
+      --ink: #1c1a17;
+      --signal: #a84828;
+      --rule: #c8c0b0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 15px;
+      background: var(--paper);
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .font-serif { font-family: "STIX Two Text", Georgia, serif; }
+    .font-mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+
+    /* Subtle measurement grid — workspace only */
+    .workspace-grid {
+      background-image:
+        linear-gradient(to right, rgba(28, 26, 23, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(28, 26, 23, 0.045) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    .reg-mark::before,
+    .reg-mark::after {
+      content: '+';
+      position: absolute;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      color: #8a8274;
+      line-height: 1;
+    }
+    .reg-mark::before { top: 6px; left: 6px; }
+    .reg-mark::after { bottom: 6px; right: 6px; }
+
+    .folio {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: #6b655c;
+    }
+
+    .section-rule {
+      border-top: 1px solid #c8c0b0;
+    }
+    .section-rule-med {
+      border-top: 2px solid #1c1a17;
+    }
+    .section-rule-heavy {
+      border: 3px solid #1c1a17;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      line-height: 1.25;
+      padding: 0.35rem 0.55rem;
+      border: 1px solid #8a8274;
+      background: #f3efe6;
+    }
+
+    .status-chip {
+      border-color: #a84828;
+      color: #a84828;
+      font-weight: 500;
+    }
+
+    .dossier {
+      border: 2px solid #1c1a17;
+      background: #f3efe6;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    }
+    .dossier:hover { transform: translate(-1px, -1px); }
+    .dossier.is-open {
+      border-width: 3px;
+      box-shadow: 3px 3px 0 0 #1c1a17;
+      background: #fffdf8;
+    }
+    .dossier:focus-visible {
+      outline: 2px solid #a84828;
+      outline-offset: 3px;
+    }
+
+    .btn {
+      min-height: 44px;
+      min-width: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      border: 2px solid #1c1a17;
+      padding: 0.65rem 1.1rem;
+      transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+    }
+    .btn:focus-visible {
+      outline: 2px solid #a84828;
+      outline-offset: 3px;
+    }
+    .btn-primary {
+      background: #a84828;
+      color: #f3efe6;
+      box-shadow: 2px 2px 0 0 #1c1a17;
+    }
+    .btn-primary:hover { background: #8a3a20; }
+    .btn-ghost {
+      background: transparent;
+      color: #1c1a17;
+    }
+    .btn-ghost:hover { background: #e8e2d4; }
+
+    .field label {
+      display: block;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: #1c1a17;
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-height: 44px;
+      border: 2px solid #1c1a17;
+      background: #fffdf8;
+      padding: 0.55rem 0.75rem;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 15px;
+      color: #1c1a17;
+      border-radius: 0;
+    }
+    .field textarea { min-height: 96px; resize: vertical; }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: 2px solid #a84828;
+      outline-offset: 2px;
+    }
+
+    .stage {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+      border: 1px solid #8a8274;
+      padding: 0.4rem 0.5rem;
+      background: #f3efe6;
+      white-space: nowrap;
+    }
+    .stage.is-done { border-color: #1c1a17; color: #1c1a17; }
+    .stage.is-active {
+      border: 2px solid #a84828;
+      color: #a84828;
+      font-weight: 600;
+      background: #fffdf8;
+    }
+    .stage.is-pending { color: #6b655c; border-style: dashed; }
+
+    .concept-switcher {
+      border-bottom: 1px dashed #8a8274;
+      background: #e8e2d4;
+    }
+
+    .bracket-open::before { content: '['; color: #a84828; margin-right: 0.15em; }
+    .bracket-close::after { content: ']'; color: #a84828; margin-left: 0.15em; }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes rule-draw {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+    .anim-fade { animation: fade-up 480ms ease both; }
+    .anim-fade-delay { animation: fade-up 560ms ease 120ms both; }
+    .anim-rule {
+      transform-origin: left;
+      animation: rule-draw 700ms ease 80ms both;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .anim-fade, .anim-fade-delay, .anim-rule,
+      .dossier, .btn { animation: none !important; transition: none !important; }
+      .dossier:hover { transform: none; }
+    }
+  </style>
+</head>
+<body class="bg-paper text-ink antialiased">
+
+  <!-- Concept switcher: visually separate from product chrome -->
+  <aside class="concept-switcher" aria-label="Design concept switcher">
+    <div class="mx-auto max-w-6xl px-4 py-2.5 flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] font-sans">
+      <span class="font-mono text-mute tracking-wide">Concept 01 / 03 · Editorial Brutalism</span>
+      <nav class="flex flex-wrap gap-x-3 gap-y-1 font-sans" aria-label="Mockup navigation">
+        <a class="underline decoration-rule-med underline-offset-2 hover:text-signal" href="editorial-brutalism.html" aria-current="page">editorial-brutalism.html</a>
+        <a class="underline decoration-rule-med underline-offset-2 hover:text-signal" href="pixel-ops.html">pixel-ops.html</a>
+        <a class="underline decoration-rule-med underline-offset-2 hover:text-signal" href="evidence-atlas.html">evidence-atlas.html</a>
+        <a class="underline decoration-rule-med underline-offset-2 hover:text-signal" href="index.html">index.html</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Product shell -->
+  <div class="min-h-screen">
+
+    <!-- Shorter black hero -->
+    <header class="bg-ink text-paper relative overflow-hidden">
+      <div class="mx-auto max-w-6xl px-4 py-7 md:py-9 anim-fade">
+        <div class="flex flex-wrap items-start justify-between gap-4 mb-6">
+          <div>
+            <p class="font-mono text-label text-[#c8c0b0] mb-2 tracking-widest uppercase">Skills Vector · Research Ledger</p>
+            <h1 class="font-serif text-3xl md:text-4xl font-semibold tracking-tight text-paper leading-tight">
+              Occupational intelligence,<br class="hidden sm:block" /> privately held.
+            </h1>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="chip status-chip bg-ink border-[#a84828] text-[#f3b59a]">LOCAL</span>
+            <span class="chip bg-ink border-[#8a8274] text-[#c8c0b0]">PRIVATE</span>
+            <span class="chip bg-ink border-[#8a8274] text-[#c8c0b0]">No publish path</span>
+          </div>
+        </div>
+
+        <p class="font-sans text-body text-[#c8c0b0] max-w-2xl mb-7">
+          Private local U.S. People Ops &amp; Talent occupational intelligence.
+          Evidence-led role briefs with visible uncertainty and a human approval gate.
+        </p>
+
+        <!-- Elegant metrics -->
+        <div class="grid grid-cols-3 gap-3 md:gap-6 max-w-xl border-t border-[#3a3530] pt-5">
+          <div>
+            <p class="font-serif text-3xl md:text-4xl text-paper tabular-nums leading-none">3</p>
+            <p class="font-mono text-label text-[#8a8274] mt-2 uppercase">Roles</p>
+          </div>
+          <div>
+            <p class="font-serif text-3xl md:text-4xl text-paper tabular-nums leading-none">5</p>
+            <p class="font-mono text-label text-[#8a8274] mt-2 uppercase">Lenses</p>
+          </div>
+          <div>
+            <p class="font-serif text-3xl md:text-4xl text-paper tabular-nums leading-none">11</p>
+            <p class="font-mono text-label text-[#8a8274] mt-2 uppercase">Stages</p>
+          </div>
+        </div>
+      </div>
+      <div class="h-px bg-signal anim-rule" aria-hidden="true"></div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-4 py-8 md:py-10 space-y-10">
+
+      <!-- Masthead / folio -->
+      <div class="flex flex-wrap items-end justify-between gap-3 section-rule-med pt-4">
+        <div>
+          <p class="font-mono text-label text-mute uppercase mb-1">Ledger folio</p>
+          <p class="font-serif text-xl md:text-2xl font-semibold">§&thinsp;01 · Role cartridges</p>
+        </div>
+        <p class="folio">SV–RL–2026.08 · p. 01</p>
+      </div>
+
+      <!-- Role dossiers -->
+      <section aria-labelledby="roles-heading" class="anim-fade-delay">
+        <h2 id="roles-heading" class="sr-only">Monitored roles</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+          <!-- HR Coordinator -->
+          <article class="dossier relative p-4 reg-mark" tabindex="0" aria-label="HR Coordinator dossier">
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <span class="font-mono text-label text-mute">01 / 03</span>
+              <span class="chip status-chip shrink-0">AWAITING APPROVAL</span>
+            </div>
+            <h3 class="font-serif text-xl font-semibold leading-snug mb-1">HR Coordinator</h3>
+            <p class="font-sans text-sm text-ink-soft mb-4">Dossier closed · brief in review queue</p>
+            <dl class="grid grid-cols-2 gap-2 font-mono text-[12px] text-mute">
+              <div>
+                <dt class="uppercase tracking-wide">Runs</dt>
+                <dd class="text-ink font-medium mt-0.5">2</dd>
+              </div>
+              <div class="min-w-0">
+                <dt class="uppercase tracking-wide">Latest</dt>
+                <dd class="text-ink font-medium mt-0.5 truncate" title="run_0a3f8c12">run_0a3f8c12</dd>
+              </div>
+            </dl>
+          </article>
+
+          <!-- Recruiter OPEN -->
+          <article class="dossier is-open relative p-4 reg-mark" tabindex="0" aria-current="true" aria-label="Recruiter dossier, open">
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <span class="font-mono text-label text-signal">02 / 03 · OPEN</span>
+              <span class="chip status-chip shrink-0">AWAITING APPROVAL</span>
+            </div>
+            <h3 class="font-serif text-xl font-semibold leading-snug mb-1">Recruiter</h3>
+            <p class="font-sans text-sm text-ink-soft mb-4">Investigation open below · human gate pending</p>
+            <dl class="grid grid-cols-2 gap-2 font-mono text-[12px] text-mute">
+              <div>
+                <dt class="uppercase tracking-wide">Runs</dt>
+                <dd class="text-ink font-medium mt-0.5">3</dd>
+              </div>
+              <div class="min-w-0">
+                <dt class="uppercase tracking-wide">Latest</dt>
+                <dd class="text-ink font-medium mt-0.5 truncate" title="run_7c21e9a4">run_7c21e9a4</dd>
+              </div>
+            </dl>
+            <p class="mt-4 font-mono text-[12px] text-signal font-medium bracket-open bracket-close">Selected case</p>
+          </article>
+
+          <!-- L&D -->
+          <article class="dossier relative p-4 reg-mark" tabindex="0" aria-label="L&amp;D Specialist dossier">
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <span class="font-mono text-label text-mute">03 / 03</span>
+              <span class="chip shrink-0 text-mute">NOT INVESTIGATED</span>
+            </div>
+            <h3 class="font-serif text-xl font-semibold leading-snug mb-1">L&amp;D Specialist</h3>
+            <p class="font-sans text-sm text-ink-soft mb-4">No active brief · awaiting trigger</p>
+            <dl class="grid grid-cols-2 gap-2 font-mono text-[12px] text-mute">
+              <div>
+                <dt class="uppercase tracking-wide">Runs</dt>
+                <dd class="text-ink font-medium mt-0.5">0</dd>
+              </div>
+              <div class="min-w-0">
+                <dt class="uppercase tracking-wide">Latest</dt>
+                <dd class="text-ink font-medium mt-0.5">—</dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+      </section>
+
+      <!-- Five lenses -->
+      <section aria-labelledby="lenses-heading" class="section-rule pt-6">
+        <div class="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+          <h2 id="lenses-heading" class="font-serif text-lg font-semibold">§&thinsp;02 · Evidence lenses</h2>
+          <p class="folio">5 approved categories</p>
+        </div>
+        <ul class="flex flex-wrap gap-2">
+          <li class="chip">public labor data</li>
+          <li class="chip">research papers</li>
+          <li class="chip">credible reports</li>
+          <li class="chip">job-posting signals</li>
+          <li class="chip">official policy</li>
+        </ul>
+      </section>
+
+      <!-- 11-stage process rail -->
+      <section aria-labelledby="stages-heading" class="section-rule pt-6">
+        <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+          <h2 id="stages-heading" class="font-serif text-lg font-semibold">§&thinsp;03 · Process rail · 11 stages</h2>
+          <p class="folio font-mono text-[12px]">run_7c21e9a4 · 2026-08-10T14:22:07Z</p>
+        </div>
+        <ol class="flex flex-col sm:flex-row sm:flex-wrap gap-2" aria-label="Workflow stages">
+          <li class="stage is-done">01 scope</li>
+          <li class="stage is-done">02 labor data</li>
+          <li class="stage is-done">03 papers</li>
+          <li class="stage is-done">04 reports</li>
+          <li class="stage is-done">05 postings</li>
+          <li class="stage is-done">06 policy</li>
+          <li class="stage is-done">07 validate</li>
+          <li class="stage is-done">08 analyze</li>
+          <li class="stage is-done">09 skeptic</li>
+          <li class="stage is-done">10 forecast</li>
+          <li class="stage is-active">11 human gate</li>
+        </ol>
+      </section>
+
+      <!-- Investigation document -->
+      <section aria-labelledby="invest-heading" class="workspace-grid section-rule-heavy relative p-4 md:p-8 bg-[#fffdf8]">
+        <div class="absolute top-3 left-3 font-mono text-[11px] text-rule-med select-none" aria-hidden="true">+</div>
+        <div class="absolute top-3 right-3 font-mono text-[11px] text-rule-med select-none" aria-hidden="true">+</div>
+        <div class="absolute bottom-3 left-3 font-mono text-[11px] text-rule-med select-none" aria-hidden="true">+</div>
+        <div class="absolute bottom-3 right-3 font-mono text-[11px] text-rule-med select-none" aria-hidden="true">+</div>
+
+        <header class="border-b-2 border-ink pb-5 mb-8">
+          <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+            <p class="font-mono text-label text-signal uppercase tracking-widest">Controlled document · Draft</p>
+            <p class="folio">SV–INV–REC · p. 02–04</p>
+          </div>
+          <h2 id="invest-heading" class="font-serif text-2xl md:text-3xl font-semibold leading-tight mb-2">
+            Investigation: Recruiter
+          </h2>
+          <p class="font-sans text-body text-ink-soft max-w-3xl">
+            Role-level brief for U.S. People Ops &amp; Talent. Geography locked to US.
+            As of <span class="font-mono text-[13px]">2026-08-10</span>. Horizon under review:
+            <span class="font-mono text-[13px]">2026-08 → 2028-08</span>.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="chip">role: recruiter</span>
+            <span class="chip">domain: people_operations_and_talent</span>
+            <span class="chip status-chip">status: awaiting_approval</span>
+          </div>
+        </header>
+
+        <!-- Role context -->
+        <article class="mb-10">
+          <h3 class="font-serif text-xl font-semibold mb-3">Role context</h3>
+          <p class="font-sans text-body text-ink-soft max-w-3xl">
+            The Recruiter brief tracks how sourcing, screening, and candidate communication
+            are shifting under AI-assisted hiring tools while preserving human judgment,
+            compliance posture, and role-level uncertainty. This ledger does not predict
+            individual careers and has no publish path in the local MVP.
+          </p>
+        </article>
+
+        <!-- § What is changing — most prominent -->
+        <article class="mb-10 border-l-4 border-signal pl-4 md:pl-6">
+          <p class="font-mono text-label text-signal uppercase mb-1">Primary finding</p>
+          <h3 class="font-serif text-2xl md:text-[1.75rem] font-semibold mb-3 leading-snug">
+            §&thinsp;A · What is changing
+          </h3>
+          <p class="font-serif text-lg md:text-xl leading-relaxed text-ink max-w-3xl mb-4">
+            AI screening is reshaping the Recruiter’s first-pass workflow: resume triage,
+            knockout questions, and early ranking increasingly sit behind model-assisted
+            tools, while final selection and stakeholder communication remain human-held.
+          </p>
+          <p class="font-sans text-body text-ink-soft max-w-3xl mb-3">
+            High-impact claim. Independent corroboration and disagreement notes are
+            retained on the claim record.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="chip">claim_id: chg_ai_screening</span>
+            <span class="chip">impact: high</span>
+            <span class="chip">ev: src_bls_ooh · src_eeoc_ai · src_talent_ai</span>
+          </div>
+          <p class="mt-3 font-mono text-[12px] text-mute">
+            uncertainty: Adoption depth varies by employer size and ATS maturity; tool
+            capability claims often outpace measured labor-market outcomes.
+          </p>
+        </article>
+
+        <!-- Task shifts -->
+        <article class="mb-8 section-rule pt-6">
+          <h3 class="font-serif text-xl font-semibold mb-3">§&thinsp;B · Task shifts</h3>
+          <ul class="font-sans text-body text-ink-soft space-y-2 max-w-3xl list-none">
+            <li class="flex gap-3"><span class="font-mono text-signal shrink-0">→</span><span>Less manual first-pass resume sorting; more exception handling on flagged candidates.</span></li>
+            <li class="flex gap-3"><span class="font-mono text-signal shrink-0">→</span><span>Increased time on prompt/config review of screening criteria and audit trails.</span></li>
+            <li class="flex gap-3"><span class="font-mono text-signal shrink-0">→</span><span>Candidate communication and hiring-manager alignment remain predominantly human tasks.</span></li>
+          </ul>
+        </article>
+
+        <!-- Skill shifts -->
+        <article class="mb-8 section-rule pt-6">
+          <h3 class="font-serif text-xl font-semibold mb-3">§&thinsp;C · Skill shifts</h3>
+          <ul class="font-sans text-body text-ink-soft space-y-2 max-w-3xl list-none">
+            <li class="flex gap-3"><span class="font-mono text-signal shrink-0">→</span><span>Rising demand for evaluating vendor AI claims against EEO and adverse-impact risk.</span></li>
+            <li class="flex gap-3"><span class="font-mono text-signal shrink-0">→</span><span>Stronger documentation skills for decision rationale when tools assist ranking.</span></li>
+            <li class="flex gap-3"><span class="font-mono text-signal shrink-0">→</span><span>Continuing core skills in sourcing strategy, relationship management, and negotiation.</span></li>
+          </ul>
+        </article>
+
+        <!-- Durable -->
+        <article class="mb-8 section-rule pt-6">
+          <h3 class="font-serif text-xl font-semibold mb-3">§&thinsp;D · Durable capabilities</h3>
+          <p class="font-sans text-body text-ink-soft max-w-3xl mb-3">
+            Judgment under incomplete information, stakeholder trust, offer orchestration,
+            and compliance-aware process design remain durable across the medium-term horizon.
+            Automation may compress volume tasks; it does not absorb accountability.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="chip">claim_id: dur_human_judgment</span>
+            <span class="chip">kind: durable_capability</span>
+          </div>
+        </article>
+
+        <!-- Scenario -->
+        <article class="mb-8 section-rule pt-6">
+          <h3 class="font-serif text-xl font-semibold mb-3">§&thinsp;E · Two-year scenario · 2026-08 → 2028-08</h3>
+          <p class="font-serif text-lg leading-relaxed text-ink max-w-3xl mb-3">
+            By mid-2028, most mid-market U.S. employers in scope are expected to run at least
+            one AI-assisted screening step in the ATS path. Recruiters who can audit tool
+            outputs, explain decisions, and redesign intake criteria retain central role value;
+            purely volume-sorting work continues to compress.
+          </p>
+          <p class="font-mono text-[12px] text-mute mb-3">
+            horizon: 12_to_36_months · uncertainty: Scenario assumes continued vendor adoption
+            without a major regulatory pause; timing of EEO enforcement actions could shift pace.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="chip">scenario: medium_term</span>
+            <span class="chip">ev: src_bls_ooh · src_talent_ai</span>
+          </div>
+        </article>
+
+        <!-- Disagreement -->
+        <article class="mb-8 section-rule pt-6">
+          <h3 class="font-serif text-xl font-semibold mb-3">§&thinsp;F · Disagreement vs BLS framing</h3>
+          <p class="font-sans text-body text-ink-soft max-w-3xl mb-3">
+            BLS Occupational Outlook Handbook framing for HR and recruiting occupations
+            emphasizes steady institutional demand and does not treat AI screening as a
+            primary near-term displacement driver. This brief’s change claim is narrower:
+            task composition inside the Recruiter role is shifting faster than headline
+            employment counts imply. Disagreement is retained on the high-impact claim.
+          </p>
+          <p class="font-mono text-[12px] text-mute">
+            disagreement_note: BLS OOH describes occupational outlook at aggregate level;
+            it does not resolve firm-level AI screening penetration or task reallocation.
+          </p>
+        </article>
+
+        <!-- Sources -->
+        <article class="mb-10 section-rule pt-6">
+          <h3 class="font-serif text-xl font-semibold mb-4">§&thinsp;G · Sources</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[32rem] text-left border-collapse">
+              <thead>
+                <tr class="border-b-2 border-ink font-mono text-[12px] uppercase tracking-wide text-mute">
+                  <th class="py-2 pr-3 font-medium">ID</th>
+                  <th class="py-2 pr-3 font-medium">Lens</th>
+                  <th class="py-2 pr-3 font-medium">Source</th>
+                  <th class="py-2 font-medium">Publisher</th>
+                </tr>
+              </thead>
+              <tbody class="font-sans text-sm">
+                <tr class="border-b border-rule align-top">
+                  <td class="py-3 pr-3 font-mono text-[12px] whitespace-nowrap">src_bls_ooh</td>
+                  <td class="py-3 pr-3 font-mono text-[12px]">public_labor_data</td>
+                  <td class="py-3 pr-3">BLS Occupational Outlook Handbook — HR / recruiting occupations</td>
+                  <td class="py-3">U.S. Bureau of Labor Statistics</td>
+                </tr>
+                <tr class="border-b border-rule align-top">
+                  <td class="py-3 pr-3 font-mono text-[12px] whitespace-nowrap">src_eeoc_ai</td>
+                  <td class="py-3 pr-3 font-mono text-[12px]">official_policy</td>
+                  <td class="py-3 pr-3">EEOC guidance on AI and employment selection procedures</td>
+                  <td class="py-3">U.S. EEOC</td>
+                </tr>
+                <tr class="align-top">
+                  <td class="py-3 pr-3 font-mono text-[12px] whitespace-nowrap">src_talent_ai</td>
+                  <td class="py-3 pr-3 font-mono text-[12px]">credible_report</td>
+                  <td class="py-3 pr-3">Talent acquisition AI adoption report (U.S. mid-market sample)</td>
+                  <td class="py-3">Industry research consortium</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Human approval gate -->
+        <article class="section-rule-heavy shadow-gate bg-paper p-5 md:p-7" aria-labelledby="gate-heading">
+          <div class="flex flex-wrap items-start justify-between gap-3 mb-5">
+            <div>
+              <p class="font-mono text-label text-signal uppercase tracking-widest mb-1">Human gate · Controlled sign-off</p>
+              <h3 id="gate-heading" class="font-serif text-2xl font-semibold">§&thinsp;H · Private approval</h3>
+            </div>
+            <span class="chip status-chip">INTERRUPT BEFORE human_review</span>
+          </div>
+
+          <p class="font-sans text-body text-ink-soft max-w-3xl mb-6">
+            Role briefs remain private drafts unless a human explicitly approves.
+            This local MVP has no publish path. Record the decision below; all fields
+            require persistent labels (placeholders are not substitutes for labels).
+          </p>
+
+          <form class="grid grid-cols-1 md:grid-cols-2 gap-5" action="#" method="post" onsubmit="return false;">
+            <div class="field">
+              <label for="reviewer">Reviewer name</label>
+              <input id="reviewer" name="reviewer" type="text" autocomplete="name" placeholder="Full name" />
+            </div>
+            <div class="field">
+              <label for="reviewed-at">Reviewed at (UTC)</label>
+              <input id="reviewed-at" name="reviewed_at" type="text" class="font-mono" value="2026-08-10T15:00:00Z" readonly />
+            </div>
+            <div class="field md:col-span-2">
+              <label for="decision">Review decision</label>
+              <select id="decision" name="decision">
+                <option value="">Select decision…</option>
+                <option value="approved">approved</option>
+                <option value="changes_requested">changes_requested</option>
+                <option value="rejected">rejected</option>
+              </select>
+            </div>
+            <div class="field md:col-span-2">
+              <label for="note">Reviewer note</label>
+              <textarea id="note" name="note" placeholder="Rationale, required changes, or rejection basis"></textarea>
+            </div>
+            <div class="md:col-span-2 flex flex-wrap gap-3 pt-2">
+              <button type="submit" class="btn btn-primary">Record private decision</button>
+              <button type="button" class="btn btn-ghost">Request changes</button>
+            </div>
+            <p class="md:col-span-2 font-mono text-[12px] text-mute">
+              private: true · is_publication_ready: false · status: LOCAL / PRIVATE
+            </p>
+          </form>
+        </article>
+      </section>
+
+      <!-- Colophon -->
+      <footer class="section-rule pt-6 pb-10 flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p class="font-serif text-lg font-semibold">Skills Vector</p>
+          <p class="font-sans text-sm text-ink-soft mt-1 max-w-md">
+            Private-first occupational intelligence MVP. U.S. People Operations &amp; Talent only.
+          </p>
+        </div>
+        <p class="folio">End of folio · Concept 01 Editorial Brutalism · signal #a84828</p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
