@@ -64,7 +64,7 @@ class WorkflowContractTests(unittest.TestCase):
                 if name.startswith("research_"):
                     return {"evidence": []}
                 if name.startswith("analyze_") or name == "skeptic":
-                    return {"claims": []}
+                    return {"analyses": []}
                 return {}
 
             return run

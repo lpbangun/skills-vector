@@ -1,8 +1,8 @@
-# Lightweight project goal loop
+# Historical project loop
 
 ## Goal
 
-Build the smallest verified foundation that can produce one private, updatable, evidence-led U.S. role brief for the approved People Operations & Talent roles while preserving human judgment and uncertainty.
+This file records the earlier foundation loop. The active finished-product outcome and adaptive loop now live in [`../SPEC.md`](../SPEC.md) and [`../GOAL.md`](../GOAL.md).
 
 ## Adaptive loop
 
@@ -32,4 +32,4 @@ This is a decision loop, not a fixed backlog. Do not rewrite the loop or interna
 | Date | Bounded increment | Evidence | Decision |
 | --- | --- | --- | --- |
 | 2026-08-03 | Initial repository and scope audit | Saved project was empty and not a Git repository | A minimal local foundation is appropriate; no user files to overwrite |
-| 2026-08-03 | Domain and workflow contracts | 14 warning-free offline tests, bytecode compilation, dependency check, and forbidden-scope scan | Foundation milestone achieved; stop before provider, persistence, scheduler, or UI work |
+| 2026-08-03 | Domain and workflow contracts | 14 warning-free offline tests, bytecode compilation, dependency check, and forbidden-scope scan | Foundation only; continue to the runnable persisted UI milestone in the active goal |
