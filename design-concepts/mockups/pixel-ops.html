@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skills Vector · Pixel Ops</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #172033;
+      --ink-soft: #3d4a5c;
+      --muted: #667385;
+      --workspace: #e8eef2;
+      --panel: #fbfcfd;
+      --line: #c4ced8;
+      --line-soft: #d7dee6;
+      --cyan: #2f8fa8;
+      --cyan-soft: #d7eef4;
+      --amber: #b8842a;
+      --amber-soft: #f5ebd4;
+      --rose: #b85a68;
+      --rose-soft: #f4e2e5;
+      --lime: #6a9840;
+      --lime-soft: #e3efd6;
+      --violet: #7468a3;
+      --violet-soft: #ebe7f4;
+      --white: #ffffff;
+      --font-ui: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+      --font-display: "Fraunces", "Times New Roman", serif;
+      --radius: 2px;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --max: 1120px;
+      --focus: 0 0 0 3px var(--cyan-soft), 0 0 0 5px var(--cyan);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-ui);
+      color: var(--ink);
+      background: var(--workspace);
+      line-height: 1.5;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, svg { display: block; }
+    a { color: inherit; }
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: none;
+      color: inherit;
+    }
+    button:focus-visible,
+    a:focus-visible {
+      outline: none;
+      box-shadow: var(--focus);
+    }
+    h1, h2, h3, p { margin: 0; }
+
+    /* ——— Concept switcher (outside product chrome) ——— */
+    .concept-switcher {
+      background: var(--ink);
+      color: #d7dee6;
+      border-bottom: 1px solid #2a3548;
+    }
+    .concept-switcher-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .concept-id {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: #9aa8ba;
+    }
+    .concept-id strong {
+      color: #fff;
+      font-weight: 600;
+    }
+    .concept-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+    .concept-links a {
+      color: #c5d0dc;
+      text-decoration: none;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      border-bottom: 1px solid transparent;
+    }
+    .concept-links a[aria-current="page"] {
+      color: #7fd4e8;
+      border-bottom-color: #7fd4e8;
+    }
+    .concept-links a:hover { color: #fff; }
+
+    /* ——— Product shell ——— */
+    .shell {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px 64px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 0 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      min-height: 44px;
+    }
+    .mosaic {
+      width: 18px;
+      height: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+    .mosaic span { display: block; }
+    .mosaic .c1 { background: var(--cyan); }
+    .mosaic .c2 { background: var(--amber); }
+    .mosaic .c3 { background: var(--violet); }
+    .mosaic .c4 { background: var(--rose); }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .brand-name {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    .brand-mode {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .privacy {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .privacy-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 2px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .privacy-note {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* Pixel motifs: status square + run meter cells */
+    .px {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      flex-shrink: 0;
+      background: currentColor;
+    }
+    .px.outline {
+      background: transparent;
+      border: 1.5px solid currentColor;
+    }
+    .px.lime { color: var(--lime); }
+    .px.cyan { color: var(--cyan); }
+    .px.amber { color: var(--amber); }
+    .px.rose { color: var(--rose); }
+    .px.violet { color: var(--violet); }
+    .px.muted { color: var(--line); }
+
+    /* ——— Hero ——— */
+    .hero {
+      padding: 36px 0 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(240px, 0.85fr);
+      gap: 28px 40px;
+      align-items: end;
+    }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 550;
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      max-width: 14ch;
+      margin-bottom: 14px;
+    }
+    .lede {
+      font-size: 16px;
+      color: var(--ink-soft);
+      max-width: 42ch;
+      line-height: 1.55;
+    }
+
+    .lens-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 14px;
+    }
+    .lens-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .lens-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .lens-tile {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 8px 10px;
+      border: 1px solid var(--line-soft);
+      background: var(--white);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    /* ——— Ops map / territories ——— */
+    .ops-map {
+      margin-top: 8px;
+      padding: 22px 18px 18px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(to right, rgba(23, 32, 51, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(23, 32, 51, 0.045) 1px, transparent 1px),
+        #dfe7ed;
+      background-size: 18px 18px, 18px 18px, auto;
+    }
+    .ops-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px 20px;
+      align-items: end;
+      margin-bottom: 16px;
+      padding: 0 2px;
+    }
+    .ops-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .ops-head h2 {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+    }
+    .ops-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .role-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 100%;
+    }
+    .role-card.is-selected {
+      border-color: var(--cyan);
+      border-width: 2px;
+      background: linear-gradient(180deg, var(--cyan-soft) 0%, var(--white) 42%);
+      /* Compensate so selected card doesn't grow vs 1px siblings */
+      margin: -1px;
+    }
+    .role-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .zone {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .role-card.is-selected .zone {
+      color: var(--cyan);
+      font-weight: 600;
+    }
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      white-space: nowrap;
+    }
+    .status-chip .label-awaiting { color: var(--amber); }
+    .status-chip .label-open { color: var(--cyan); }
+    .status-chip .label-idle { color: var(--muted); }
+    .role-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+    }
+    .role-desc {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.45;
+      flex: 1;
+    }
+    .run-history {
+      border-top: 1px solid var(--line-soft);
+      padding-top: 10px;
+    }
+    .run-history-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .run-meter {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .meter-cells {
+      display: flex;
+      gap: 4px;
+    }
+    .meter-cells .cell {
+      width: 12px;
+      height: 12px;
+      border: 1.5px solid var(--line);
+      background: transparent;
+    }
+    .meter-cells .cell.filled {
+      background: var(--violet);
+      border-color: var(--violet);
+    }
+    .meter-cells .cell.current {
+      background: var(--cyan);
+      border-color: var(--cyan);
+    }
+    .run-id {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 2px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--white);
+      text-decoration: none;
+    }
+    .btn.secondary {
+      background: var(--white);
+      color: var(--ink);
+    }
+    .btn.accent {
+      background: var(--cyan);
+      border-color: var(--cyan);
+      color: var(--white);
+    }
+    .btn:hover { filter: brightness(1.05); }
+
+    /* ——— Investigation ——— */
+    .investigation {
+      margin-top: 36px;
+      scroll-margin-top: 16px;
+    }
+    .inv-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px 24px;
+      align-items: end;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .inv-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .inv-head h2 {
+      font-size: clamp(24px, 3.5vw, 30px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .inv-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      align-items: center;
+      justify-content: flex-end;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .awaiting-approval {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--cyan);
+      font-weight: 500;
+    }
+
+    .pathway {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 14px 16px 12px;
+      margin-bottom: 14px;
+    }
+    .pathway-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .pathway-track {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 0;
+    }
+    .node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      min-width: 64px;
+    }
+    .node-box {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      border: 1.5px solid var(--line);
+      background: var(--white);
+      color: var(--muted);
+    }
+    .node.done .node-box {
+      background: var(--lime-soft);
+      border-color: var(--lime);
+      color: var(--lime);
+    }
+    .node.current .node-box {
+      background: var(--cyan);
+      border-color: var(--cyan);
+      color: var(--white);
+    }
+    .node.gated .node-box {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--rose);
+      width: 40px;
+      height: 40px;
+    }
+    .node-name {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-soft);
+      text-align: center;
+    }
+    .node.gated .node-name { color: var(--rose); font-weight: 600; }
+    .node.current .node-name { color: var(--cyan); font-weight: 600; }
+    .connector {
+      width: 28px;
+      height: 2px;
+      background: var(--line);
+      margin-bottom: 18px;
+      flex-shrink: 0;
+    }
+    .connector.done { background: var(--lime); }
+    .connector.current { background: var(--cyan); }
+    .pathway-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line-soft);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-swatch {
+      width: 10px;
+      height: 10px;
+      border: 1.5px solid var(--line);
+      background: var(--white);
+    }
+    .legend-swatch.done { background: var(--lime-soft); border-color: var(--lime); }
+    .legend-swatch.current { background: var(--cyan); border-color: var(--cyan); }
+    .legend-swatch.gated { background: var(--rose); border-color: var(--rose); }
+
+    .tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 20px;
+    }
+    .tab {
+      min-height: 44px;
+      padding: 0 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .tab[aria-selected="true"] {
+      color: var(--ink);
+      border-bottom-color: var(--cyan);
+      font-weight: 600;
+    }
+
+    .brief-layout {
+      display: grid;
+      grid-template-columns: 200px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    .section-map {
+      position: sticky;
+      top: 12px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 12px 10px;
+    }
+    .section-map-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 6px 10px;
+    }
+    .section-map nav {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .section-map a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 6px 8px;
+      text-decoration: none;
+      font-size: 13px;
+      color: var(--ink-soft);
+      border-radius: var(--radius);
+    }
+    .section-map a:hover { background: var(--workspace); }
+    .section-map a.gate-link {
+      color: var(--rose);
+      font-weight: 600;
+      margin-top: 4px;
+      border-top: 1px solid var(--line-soft);
+      padding-top: 10px;
+    }
+
+    .brief-content {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .sector {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 18px 18px 16px;
+    }
+    .sector-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--violet);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .sector h3 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin-bottom: 10px;
+    }
+    .sector p,
+    .sector li {
+      color: var(--ink-soft);
+      font-size: 14.5px;
+      line-height: 1.55;
+    }
+    .sector ul {
+      margin: 0;
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .sector-meta {
+      margin-top: 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .finding {
+      border-left: 3px solid var(--cyan);
+      padding: 12px 14px;
+      background: var(--white);
+      border-top: 1px solid var(--line-soft);
+      border-right: 1px solid var(--line-soft);
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .finding-primary {
+      padding: 16px 16px 14px;
+    }
+    .finding-primary > p:first-child {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .finding > p:first-child {
+      color: var(--ink);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    #s-scenario .finding {
+      border-left-color: var(--cyan);
+    }
+    #s-changing.sector,
+    #s-scenario.sector {
+      border-color: color-mix(in srgb, var(--ink) 28%, var(--line));
+    }
+    .horizon {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--cyan);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .evidence-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0 0;
+    }
+    .evidence-id {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 2px 8px;
+      background: var(--violet-soft);
+      color: var(--violet);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      border: 1px solid transparent;
+    }
+
+    .callout {
+      margin-top: 12px;
+      padding: 10px 12px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 8px 10px;
+      align-items: start;
+    }
+    .callout.uncertainty {
+      background: var(--amber-soft);
+      border: 1px dashed var(--amber);
+    }
+    .callout.disagreement {
+      background: var(--rose-soft);
+      border: 1px solid color-mix(in srgb, var(--rose) 35%, transparent);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 2px 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--white);
+      width: fit-content;
+    }
+    .badge.amber { background: var(--amber); }
+    .badge.rose { background: var(--rose); }
+    .callout p {
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    .cap-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .cap-chip {
+      font-size: 13px;
+      padding: 8px 10px;
+      border: 1px solid var(--line-soft);
+      background: var(--white);
+      color: var(--ink-soft);
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .source-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .source-item {
+      padding: 12px;
+      border: 1px solid var(--line-soft);
+      background: var(--white);
+      display: grid;
+      gap: 4px;
+    }
+    .source-item strong {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .source-item .pub {
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+    .source-item .ids {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--violet);
+      margin-top: 4px;
+    }
+
+    /* Approval gate — sealed destination, not another tinted card */
+    .approval-gate {
+      margin-top: 6px;
+      border: 2px solid var(--ink);
+      background:
+        linear-gradient(135deg, transparent 0 46%, color-mix(in srgb, var(--rose) 12%, transparent) 46% 54%, transparent 54%),
+        var(--white);
+      padding: 0;
+      overflow: hidden;
+    }
+    .gate-banner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 18px;
+      background: var(--ink);
+      color: var(--white);
+    }
+    .gate-banner-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .seal {
+      width: 36px;
+      height: 36px;
+      border: 2px solid var(--rose);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--rose);
+      background: color-mix(in srgb, var(--ink) 80%, #000);
+    }
+    .gate-title {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .gate-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #9eb0c4;
+      margin-top: 2px;
+    }
+    .gate-state {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: #f0c9cf;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .gate-body {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+    .gate-copy {
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      max-width: 62ch;
+    }
+    .gate-checks {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .gate-check {
+      border: 1px solid var(--line-soft);
+      padding: 10px 12px;
+      font-size: 13px;
+      color: var(--ink-soft);
+      background: var(--panel);
+    }
+    .gate-check span {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .gate-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      padding-top: 4px;
+      border-top: 1px solid var(--line-soft);
+    }
+    .btn.gate-approve {
+      background: var(--rose);
+      border-color: var(--rose);
+      color: var(--white);
+      min-width: 160px;
+    }
+    .gate-persist {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .foot-note {
+      margin-top: 28px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* Motion — sparse */
+    @media (prefers-reduced-motion: no-preference) {
+      .role-card {
+        transition: border-color 180ms ease, background 180ms ease;
+      }
+      .btn {
+        transition: filter 160ms ease, transform 160ms ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+      .section-map a {
+        transition: background 140ms ease;
+      }
+      .node.current .node-box {
+        animation: soft-settle 700ms ease both;
+      }
+      @keyframes soft-settle {
+        from { transform: scale(0.92); opacity: 0.7; }
+        to { transform: scale(1); opacity: 1; }
+      }
+      .approval-gate {
+        animation: gate-arrive 800ms ease both;
+        animation-delay: 120ms;
+      }
+      @keyframes gate-arrive {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .role-grid {
+        grid-template-columns: 1fr;
+      }
+      .brief-layout {
+        grid-template-columns: 1fr;
+      }
+      .section-map {
+        position: static;
+      }
+      .section-map nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .section-map a.gate-link {
+        grid-column: 1 / -1;
+      }
+      .gate-checks {
+        grid-template-columns: 1fr;
+      }
+      .inv-head {
+        grid-template-columns: 1fr;
+      }
+      .inv-meta { justify-content: flex-start; }
+      .ops-meta { text-align: left; }
+    }
+
+    @media (max-width: 560px) {
+      .callout {
+        grid-template-columns: 1fr;
+      }
+      .pathway-track {
+        justify-content: flex-start;
+      }
+      .connector { width: 16px; }
+      .concept-switcher-inner { padding: 8px 16px; }
+      .shell { padding: 0 16px 48px; }
+      .section-map nav { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Concept switcher: separate from product chrome -->
+  <div class="concept-switcher" role="navigation" aria-label="Design concept switcher">
+    <div class="concept-switcher-inner">
+      <div class="concept-id">Concept <strong>02</strong> / 03 · Pixel Ops</div>
+      <div class="concept-links">
+        <a href="editorial-brutalism.html">editorial-brutalism.html</a>
+        <a href="pixel-ops.html" aria-current="page">pixel-ops.html</a>
+        <a href="evidence-atlas.html">evidence-atlas.html</a>
+        <a href="index.html">index.html</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="#territories" aria-label="Skills Vector home">
+        <span class="mosaic" aria-hidden="true">
+          <span class="c1"></span><span class="c2"></span>
+          <span class="c3"></span><span class="c4"></span>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Skills Vector</span>
+          <span class="brand-mode">Pixel Ops</span>
+        </span>
+      </a>
+      <div class="privacy">
+        <span class="privacy-pill">
+          <span class="px lime" aria-hidden="true"></span>
+          <span>Local · Private</span>
+        </span>
+        <span class="privacy-note">No publish path</span>
+      </div>
+    </header>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">People Ops &amp; Talent · United States</p>
+        <h1 id="hero-title">Occupational intelligence, mapped as territory.</h1>
+        <p class="lede">Roles are territories. Lenses are instruments. Investigations advance through checkpoints — sealed only by human approval.</p>
+      </div>
+      <aside class="lens-panel" aria-labelledby="lenses-label">
+        <p class="lens-label" id="lenses-label">Evidence lenses</p>
+        <div class="lens-grid">
+          <div class="lens-tile"><span class="px cyan" aria-hidden="true"></span>Labor data</div>
+          <div class="lens-tile"><span class="px violet" aria-hidden="true"></span>Research</div>
+          <div class="lens-tile"><span class="px amber" aria-hidden="true"></span>Reports</div>
+          <div class="lens-tile"><span class="px lime" aria-hidden="true"></span>Job signals</div>
+          <div class="lens-tile"><span class="px rose" aria-hidden="true"></span>Policy</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="ops-map" id="territories" aria-labelledby="ops-title">
+      <div class="ops-head">
+        <div>
+          <p class="ops-kicker">Ops map · Territories</p>
+          <h2 id="ops-title">Monitored role modules</h2>
+        </div>
+        <p class="ops-meta">Deterministic offline analysis · credential-free corpus</p>
+      </div>
+
+      <div class="role-grid">
+        <!-- HR Coordinator: awaiting, 2 runs -->
+        <article class="role-card" aria-labelledby="role-hr">
+          <div class="role-top">
+            <span class="zone">Zone 01</span>
+            <span class="status-chip">
+              <span class="px amber" aria-hidden="true"></span>
+              <span class="label-awaiting">Awaiting</span>
+            </span>
+          </div>
+          <h3 id="role-hr">HR Coordinator</h3>
+          <p class="role-desc">Coordinates employee records, onboarding, benefits and policy administration, and cross-functional People Operations workflows.</p>
+          <div class="run-history">
+            <p class="run-history-label">Run history</p>
+            <div class="run-meter">
+              <div class="meter-cells" aria-label="2 runs recorded">
+                <span class="cell filled"></span>
+                <span class="cell filled"></span>
+                <span class="cell"></span>
+                <span class="cell"></span>
+              </div>
+              <span class="run-id">2 runs · run_0a3f8c12</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn">Launch investigation</button>
+            <button type="button" class="btn secondary">Inspect latest</button>
+          </div>
+        </article>
+
+        <!-- Recruiter: OPEN, awaiting, 3 runs -->
+        <article class="role-card is-selected" aria-labelledby="role-rec" aria-current="true">
+          <div class="role-top">
+            <span class="zone">Zone 02 · Open</span>
+            <span class="status-chip">
+              <span class="px cyan" aria-hidden="true"></span>
+              <span class="label-open">Open</span>
+              <span aria-hidden="true">·</span>
+              <span class="px amber" aria-hidden="true"></span>
+              <span class="label-awaiting">Awaiting</span>
+            </span>
+          </div>
+          <h3 id="role-rec">Recruiter</h3>
+          <p class="role-desc">Translates workforce needs into sourcing, screening, candidate communication, selection coordination, and equitable hiring decisions.</p>
+          <div class="run-history">
+            <p class="run-history-label">Run history</p>
+            <div class="run-meter">
+              <div class="meter-cells" aria-label="3 runs recorded">
+                <span class="cell filled"></span>
+                <span class="cell filled"></span>
+                <span class="cell current"></span>
+                <span class="cell"></span>
+              </div>
+              <span class="run-id">3 runs · run_7c21e9a4</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a class="btn accent" href="#investigation">Open investigation</a>
+            <button type="button" class="btn secondary">Inspect latest</button>
+          </div>
+        </article>
+
+        <!-- L&D: not investigated -->
+        <article class="role-card" aria-labelledby="role-ld">
+          <div class="role-top">
+            <span class="zone">Zone 03</span>
+            <span class="status-chip">
+              <span class="px muted outline" aria-hidden="true"></span>
+              <span class="label-idle">Not investigated</span>
+            </span>
+          </div>
+          <h3 id="role-ld">Learning &amp; Development Specialist</h3>
+          <p class="role-desc">Diagnoses learning needs and designs, facilitates, and evaluates programs that improve workforce skills and knowledge.</p>
+          <div class="run-history">
+            <p class="run-history-label">Run history</p>
+            <div class="run-meter">
+              <div class="meter-cells" aria-label="0 runs recorded">
+                <span class="cell"></span>
+                <span class="cell"></span>
+                <span class="cell"></span>
+                <span class="cell"></span>
+              </div>
+              <span class="run-id">No runs yet</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn">Launch investigation</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Open investigation: Recruiter -->
+    <section class="investigation" id="investigation" aria-labelledby="inv-title">
+      <div class="inv-head">
+        <div>
+          <p class="inv-kicker">Open investigation</p>
+          <h2 id="inv-title">Recruiter · Role brief</h2>
+        </div>
+        <div class="inv-meta">
+          <span class="awaiting-approval">
+            <span class="px cyan" aria-hidden="true"></span>
+            Awaiting approval
+          </span>
+          <span>run_7c21e9a4</span>
+          <span>2026-08-07T14:22:01Z</span>
+        </div>
+      </div>
+
+      <div class="pathway" aria-label="Checkpoint pathway">
+        <p class="pathway-label">Checkpoint pathway</p>
+        <div class="pathway-track">
+          <div class="node done">
+            <div class="node-box" aria-hidden="true">1</div>
+            <span class="node-name">Lenses</span>
+          </div>
+          <div class="connector done" aria-hidden="true"></div>
+          <div class="node done">
+            <div class="node-box" aria-hidden="true">2</div>
+            <span class="node-name">Validate</span>
+          </div>
+          <div class="connector done" aria-hidden="true"></div>
+          <div class="node done">
+            <div class="node-box" aria-hidden="true">3</div>
+            <span class="node-name">Analyze</span>
+          </div>
+          <div class="connector current" aria-hidden="true"></div>
+          <div class="node current" aria-current="step">
+            <div class="node-box" aria-hidden="true">4</div>
+            <span class="node-name">Draft</span>
+          </div>
+          <div class="connector" aria-hidden="true"></div>
+          <div class="node gated">
+            <div class="node-box" aria-hidden="true">!</div>
+            <span class="node-name">Human gate</span>
+          </div>
+        </div>
+        <div class="pathway-legend">
+          <span class="legend-item"><span class="legend-swatch done" aria-hidden="true"></span>Completed</span>
+          <span class="legend-item"><span class="legend-swatch current" aria-hidden="true"></span>Current</span>
+          <span class="legend-item"><span class="legend-swatch" aria-hidden="true"></span>Upcoming</span>
+          <span class="legend-item"><span class="legend-swatch gated" aria-hidden="true"></span>Gated</span>
+        </div>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Investigation views">
+        <button type="button" class="tab" role="tab" aria-selected="true">Role brief</button>
+        <button type="button" class="tab" role="tab" aria-selected="false">Workflow stages (11)</button>
+      </div>
+
+      <div class="brief-layout">
+        <aside class="section-map" aria-label="Section map">
+          <p class="section-map-label">Section map</p>
+          <nav>
+            <a href="#s-context"><span class="px muted outline" aria-hidden="true"></span>Role context</a>
+            <a href="#s-changing"><span class="px muted outline" aria-hidden="true"></span>What is changing</a>
+            <a href="#s-tasks"><span class="px muted outline" aria-hidden="true"></span>Task shifts</a>
+            <a href="#s-skills"><span class="px muted outline" aria-hidden="true"></span>Skill shifts</a>
+            <a href="#s-durable"><span class="px muted outline" aria-hidden="true"></span>Durable capabilities</a>
+            <a href="#s-scenario"><span class="px muted outline" aria-hidden="true"></span>Two-year scenario</a>
+            <a href="#s-disagreement"><span class="px muted outline" aria-hidden="true"></span>Disagreement</a>
+            <a href="#s-sources"><span class="px muted outline" aria-hidden="true"></span>Sources</a>
+            <a class="gate-link" href="#s-approval"><span class="px rose" aria-hidden="true"></span>Approval gate</a>
+          </nav>
+        </aside>
+
+        <div class="brief-content">
+          <article class="sector" id="s-context">
+            <p class="sector-label">01 · Context</p>
+            <h3>Role context</h3>
+            <p>Translates workforce needs into sourcing, screening, candidate communication, selection coordination, and equitable hiring decisions for U.S. People Operations &amp; Talent employers.</p>
+            <p class="sector-meta">United States · As of 2026-08-07 · Private draft</p>
+          </article>
+
+          <article class="sector" id="s-changing">
+            <p class="sector-label">02 · Primary finding</p>
+            <h3>What is changing</h3>
+            <div class="finding finding-primary">
+              <p>Recruiting tools increasingly assist sourcing, drafting, and screening workflows, raising the value of evidence-based selection, candidate trust, and bias/accessibility governance.</p>
+              <div class="evidence-row" aria-label="Evidence identifiers">
+                <span class="evidence-id">bls-human-resources-specialists-2025</span>
+                <span class="evidence-id">shrm-state-workplace-2024</span>
+                <span class="evidence-id">atlanta-fed-ai-job-postings-2024</span>
+              </div>
+              <div class="callout uncertainty">
+                <span class="badge amber">Uncertainty</span>
+                <p>The evidence supports a role-level direction, not a universal employer outcome or individual prediction.</p>
+              </div>
+              <div class="callout disagreement">
+                <span class="badge rose">Disagreement</span>
+                <p>Positive BLS demand projections do not support a simple role-elimination narrative.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="sector" id="s-tasks">
+            <p class="sector-label">03 · Task shifts</p>
+            <h3>Task shifts</h3>
+            <ul>
+              <li>Use assistants to draft and adapt outreach and job content while verifying accuracy, accessibility, and role relevance.</li>
+              <li>Spend more effort on structured intake, candidate relationship judgment, selection quality, and audit-ready oversight of screening tools.</li>
+            </ul>
+            <div class="evidence-row">
+              <span class="evidence-id">nber-generative-ai-at-work-2023</span>
+              <span class="evidence-id">shrm-state-workplace-2024</span>
+            </div>
+            <div class="callout uncertainty">
+              <span class="badge amber">Uncertainty</span>
+              <p>Direct causal research is cross-occupation and may not transfer fully to this role.</p>
+            </div>
+          </article>
+
+          <article class="sector" id="s-skills">
+            <p class="sector-label">04 · Skill shifts</p>
+            <h3>Skill shifts</h3>
+            <ul>
+              <li>Build data literacy for funnel quality and adverse-impact signals rather than optimizing activity volume alone.</li>
+              <li>Develop human-AI workflow design, stakeholder influence, and ethical/regulatory reasoning for selection decisions.</li>
+            </ul>
+            <div class="evidence-row">
+              <span class="evidence-id">atlanta-fed-ai-job-postings-2024</span>
+              <span class="evidence-id">dol-inclusive-ai-hiring-2024</span>
+            </div>
+            <div class="callout uncertainty">
+              <span class="badge amber">Uncertainty</span>
+              <p>Job-posting signals are selected vacancies and do not measure every employer.</p>
+            </div>
+          </article>
+
+          <article class="sector" id="s-durable">
+            <p class="sector-label">05 · Durable capabilities</p>
+            <h3>Durable capabilities</h3>
+            <div class="cap-list">
+              <span class="cap-chip">Judgment under uncertainty</span>
+              <span class="cap-chip">Systems thinking</span>
+              <span class="cap-chip">Data literacy</span>
+              <span class="cap-chip">Stakeholder influence</span>
+              <span class="cap-chip">Ethical and regulatory reasoning</span>
+              <span class="cap-chip">Change facilitation</span>
+              <span class="cap-chip">Human-AI workflow design</span>
+            </div>
+            <div class="callout uncertainty">
+              <span class="badge amber">Uncertainty</span>
+              <p>Capability importance is an evidence-led interpretation, not a measured rank ordering.</p>
+            </div>
+          </article>
+
+          <article class="sector" id="s-scenario">
+            <p class="sector-label">06 · Scenario</p>
+            <h3>Two-year scenario</h3>
+            <p class="horizon">Horizon · 2026-08 → 2028-08</p>
+            <div class="finding">
+              <p>By 2028-08-07, a typical U.S. Recruiter operates an assisted hiring workflow but remains accountable for job requirements, candidate communication, selection evidence, accessibility, and escalation.</p>
+              <div class="evidence-row">
+                <span class="evidence-id">bls-human-resources-specialists-2025</span>
+                <span class="evidence-id">nber-generative-ai-at-work-2023</span>
+                <span class="evidence-id">dol-ai-worker-principles-2024</span>
+              </div>
+              <div class="callout uncertainty">
+                <span class="badge amber">Uncertainty</span>
+                <p>Direction is more defensible than adoption speed; outcomes vary by employer, sector, workflow controls, and tool quality.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="sector" id="s-disagreement">
+            <p class="sector-label">07 · Counter-evidence</p>
+            <h3>Disagreement</h3>
+            <div class="finding">
+              <p>BLS projects continued employment growth for the underlying occupation, countering claims of imminent wholesale displacement.</p>
+              <div class="callout disagreement">
+                <span class="badge rose">Disagreement</span>
+                <p>Growth can coexist with substantial task redesign.</p>
+              </div>
+            </div>
+            <div class="finding" style="margin-top:10px">
+              <p>The field evidence reports heterogeneous gains and studies customer support rather than People Operations roles.</p>
+              <div class="callout disagreement">
+                <span class="badge rose">Disagreement</span>
+                <p>The result supports augmentation potential, not a role-specific effect size.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="sector" id="s-sources">
+            <p class="sector-label">08 · Provenance</p>
+            <h3>Sources</h3>
+            <div class="source-list">
+              <div class="source-item">
+                <strong>Human Resources Specialists — Occupational Outlook Handbook</strong>
+                <span class="pub">U.S. Bureau of Labor Statistics · Public labor data · 2025-08-28</span>
+                <span class="ids">bls-human-resources-specialists-2025</span>
+              </div>
+              <div class="source-item">
+                <strong>Generative AI at Work</strong>
+                <span class="pub">National Bureau of Economic Research · Research paper · 2023-04-01</span>
+                <span class="ids">nber-generative-ai-at-work-2023</span>
+              </div>
+              <div class="source-item">
+                <strong>2023–2024 State of the Workplace Report</strong>
+                <span class="pub">Society for Human Resource Management · Credible report · 2024-01-01</span>
+                <span class="ids">shrm-state-workplace-2024</span>
+              </div>
+              <div class="source-item">
+                <strong>Recent Trends in the Demand for AI Skills</strong>
+                <span class="pub">Federal Reserve Bank of Atlanta · Job-posting signal · 2024-10-15</span>
+                <span class="ids">atlanta-fed-ai-job-postings-2024</span>
+              </div>
+              <div class="source-item">
+                <strong>AI &amp; Inclusive Hiring Framework announcement</strong>
+                <span class="pub">U.S. Department of Labor · Official policy · 2024-09-24</span>
+                <span class="ids">dol-inclusive-ai-hiring-2024</span>
+              </div>
+              <div class="source-item">
+                <strong>Principles for worker well-being in AI adoption</strong>
+                <span class="pub">U.S. Department of Labor · Official policy · 2024-05-16</span>
+                <span class="ids">dol-ai-worker-principles-2024</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="approval-gate" id="s-approval" aria-labelledby="gate-heading">
+            <div class="gate-banner">
+              <div class="gate-banner-left">
+                <div class="seal" aria-hidden="true">!</div>
+                <div>
+                  <div class="gate-title" id="gate-heading">Approval gate</div>
+                  <div class="gate-sub">Final destination · human seal required</div>
+                </div>
+              </div>
+              <div class="gate-state">
+                <span class="px rose" aria-hidden="true"></span>
+                Awaiting approval
+              </div>
+            </div>
+            <div class="gate-body">
+              <p class="gate-copy">This Recruiter brief remains a private draft. Required claims are validated and sourced. Only an explicit owner decision can seal approval — no automatic publish path exists.</p>
+              <div class="gate-checks">
+                <div class="gate-check">
+                  <span>Claims</span>
+                  Required sections validated
+                </div>
+                <div class="gate-check">
+                  <span>Evidence</span>
+                  Sources retained with provenance
+                </div>
+                <div class="gate-check">
+                  <span>Uncertainty</span>
+                  Visible on every material claim
+                </div>
+              </div>
+              <div class="gate-actions">
+                <button type="button" class="btn gate-approve">Approve private draft</button>
+                <button type="button" class="btn secondary">Request changes</button>
+                <span class="gate-persist">Label persists: Awaiting approval · Local · Private</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot-note">
+      <span>Skills Vector · Pixel Ops mockup</span>
+      <span>US · People Operations &amp; Talent · 3 monitored roles</span>
+    </footer>
+  </div>
+</body>
+</html>
