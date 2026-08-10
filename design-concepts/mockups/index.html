@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skills Vector · Design concepts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --mineral: #f4f6f8;
+      --paper: #fafbfc;
+      --navy: #0f1c2e;
+      --graphite: #4a5560;
+      --rule: #1a2d45;
+      --rule-soft: #c5d0d9;
+      --cyan: #0e8a8a;
+      --font-serif: "STIX Two Text", "Times New Roman", Times, serif;
+      --font-sans: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-mono: "IBM Plex Mono", "Courier New", Courier, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--navy);
+      background:
+        radial-gradient(circle at 1px 1px, rgba(26, 45, 69, 0.08) 1px, transparent 0),
+        var(--mineral);
+      background-size: 22px 22px;
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      line-height: 1.55;
+      font-variant-numeric: tabular-nums;
+    }
+    a { color: var(--cyan); }
+    a:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 2px;
+    }
+    .wrap {
+      max-width: 44rem;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3.5rem;
+    }
+    .kicker {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin: 0 0 0.75rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 4vw, 2.35rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 0.75rem;
+    }
+    .lede {
+      margin: 0 0 2rem;
+      color: var(--graphite);
+      max-width: 38rem;
+    }
+    ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.85rem;
+    }
+    li {
+      border: 1px solid var(--rule);
+      background: var(--paper);
+    }
+    a.concept {
+      display: grid;
+      gap: 0.35rem;
+      padding: 1.1rem 1.15rem;
+      text-decoration: none;
+      color: inherit;
+      min-height: 44px;
+    }
+    a.concept:hover { background: #eef4f6; }
+    .num {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--graphite);
+    }
+    .title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .thesis {
+      margin: 0;
+      color: var(--graphite);
+      font-size: 0.9rem;
+    }
+    .file {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--cyan);
+    }
+    footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule-soft);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--graphite);
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <p class="kicker">Skills Vector · Design concepts</p>
+    <h1>Three directions for the private research workspace</h1>
+    <p class="lede">Static mockups only. Same product truth: three roles, five evidence lenses, open Recruiter investigation, uncertainty, disagreement, sources, LOCAL/PRIVATE, explicit human approval. Do not treat these as the production UI.</p>
+
+    <ol>
+      <li>
+        <a class="concept" href="editorial-brutalism.html">
+          <span class="num">01 / 03 · Editorial Brutalism</span>
+          <span class="title">Editorial Brutalism</span>
+          <p class="thesis">Research ledger / technical standards manual — dense typographic authority, precise rules, institutional calm.</p>
+          <span class="file">editorial-brutalism.html</span>
+        </a>
+      </li>
+      <li>
+        <a class="concept" href="pixel-ops.html">
+          <span class="num">02 / 03 · Pixel Ops</span>
+          <span class="title">Pixel Ops</span>
+          <p class="thesis">Territories, lenses, checkpoints — playful map language that stays credible for occupational research.</p>
+          <span class="file">pixel-ops.html</span>
+        </a>
+      </li>
+      <li>
+        <a class="concept" href="evidence-atlas.html">
+          <span class="num">03 / 03 · Evidence Atlas</span>
+          <span class="title">Evidence Atlas</span>
+          <p class="thesis">Research observatory with meaningful visualizations — living map of how work is changing; presence/absence evidence, not SaaS charts.</p>
+          <span class="file">evidence-atlas.html</span>
+        </a>
+      </li>
+    </ol>
+
+    <footer>
+      Hub for design review · Concept 03 delivered on this branch · sibling concepts linked by filename
+    </footer>
+  </main>
+</body>
+</html>
