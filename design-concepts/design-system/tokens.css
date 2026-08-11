@@ -1,0 +1,65 @@
+/**
+ * Skills Vector design tokens
+ * Source of truth companion to /DESIGN.md
+ * Locked world: Evidence Atlas · Control ("The Evidence Desk")
+ */
+
+:root {
+  /* Surfaces */
+  --mineral: #f2f5f7;
+  --mineral-deep: #e4ebf0;
+  --pale: #c9d5df;
+  --paper: #fafbfc;
+  --white: #ffffff;
+
+  /* Ink */
+  --navy: #0c1828;
+  --navy-mid: #163049;
+  --graphite: #3f4a55;
+  --graphite-soft: #5c6772;
+  --rule: #163049;
+  --rule-soft: #bcc8d4;
+
+  /* Semantic — evidence states (Anti–White-Coat: no teal, no amber-yellow) */
+  --present: #1a4f8c;
+  --present-bright: #3d78bc;
+  --present-soft: #d6e4f2;
+  --present-ink: #123a6a;
+  --uncertain: #8a5c48;
+  --uncertain-soft: #efe6e0;
+  --disagree: #8e2f45;
+  --disagree-soft: #f0d9df;
+  --analysis: #5c4a78;
+  --analysis-soft: #ebe6f2;
+  --violet: var(--analysis);
+  --violet-soft: var(--analysis-soft);
+
+  --focus: #1a4f8c;
+
+  /* Type */
+  --font-serif: "STIX Two Text", "Times New Roman", Times, serif;
+  --font-sans: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier New", Courier, monospace;
+
+  /* Space */
+  --space-xs: 0.35rem;
+  --space-sm: 0.6rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.25rem;
+  --space-2xl: 3.5rem;
+
+  /* Layout */
+  --max: 1120px;
+  --rail: 12rem;
+  --radius: 0px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 120ms;
+  --duration: 180ms;
+  --duration-viz: 200ms;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--present) 35%, var(--white));
+  color: var(--navy);
+}

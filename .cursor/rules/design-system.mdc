@@ -1,0 +1,32 @@
+---
+description: Enforce Skills Vector DESIGN.md (Evidence Atlas Control) on all UI work
+alwaysApply: true
+---
+
+# Skills Vector design system
+
+Locked visual world: **Evidence Atlas · Control** ("The Evidence Desk").
+
+## Source of truth
+
+- Read and follow `DESIGN.md` before any UI, mockup, or frontend change.
+- Tokens live in `design-concepts/design-system/tokens.css`.
+- Shared primitives live in `design-concepts/design-system/components.css`.
+- Canonical product surface: `design-concepts/app.html`.
+
+## Required
+
+- Use semantic colors: `--present` (cobalt), `--uncertain` (clay), `--disagree` (wine). Never teal/cyan scrub greens or amber/yellow clinical warning pairs.
+- Square corners (`border-radius: 0` unless DESIGN.md is explicitly revised).
+- No thick colored left/right side-tab accents on cards, callouts, or claim lists — use top hairline (≤2px), full border, or wash.
+- Type: STIX Two Text (findings/display), IBM Plex Sans (UI), IBM Plex Mono (data only).
+- Evidence viz stay honest: presence / absence / disagreement — no fabricated coverage percentages.
+- Honor `prefers-reduced-motion`. Theme focus and `::selection` from present cobalt.
+
+## Do not
+
+- Do not revive Pixel Ops, Signal, Editorial Brutalism, or other archived explorations as product UI (`design-concepts/archive/` is historical only).
+- Do not invent a second palette or rounded consumer-app chrome without an explicit redesign decision that updates DESIGN.md.
+- Do not build UI that ignores DESIGN.md tokens.
+
+When adding screens, match Control density, mineral wash atmosphere, instrument rail patterns, and callout/matrix language from `design-concepts/app.html`.

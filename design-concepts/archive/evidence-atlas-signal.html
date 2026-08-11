@@ -1,0 +1,2691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skills Vector · Evidence Atlas · Signal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --mineral: #eef1f8;
+      --mineral-deep: #dde3f0;
+      --pale: #b8c3d9;
+      --paper: #f8f9fc;
+      --navy: #0a1424;
+      --navy-mid: #1a2b44;
+      --graphite: #3a4658;
+      --graphite-soft: #5b677a;
+      --rule: #1a2b44;
+      --rule-soft: #c5cddd;
+      /* Semantic: present = vivid cobalt (kept as --cyan* for class compatibility) */
+      --cyan: #2f5bff;
+      --cyan-bright: #5b82ff;
+      --cyan-soft: #d9e4ff;
+      --cyan-ink: #1a3eb8;
+      /* Semantic: uncertainty = sienna/coral (kept as --amber*) */
+      --amber: #d4583b;
+      --amber-soft: #fce6df;
+      /* Semantic: disagreement = vivid wine / magenta-rose */
+      --rose: #c2185b;
+      --rose-soft: #f9dce8;
+      --violet: #6b4fcf;
+      --violet-soft: #ebe4ff;
+      --white: #ffffff;
+      --focus: #2f5bff;
+      --radius: 13px;
+      --radius-sm: 10px;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --font-serif: "Literata", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+      --font-sans: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+      --font-mono: "IBM Plex Mono", "Courier New", Courier, monospace;
+      --space-xs: 0.35rem;
+      --space-sm: 0.6rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.25rem;
+      --space-2xl: 3.5rem;
+      --max: 1140px;
+      --rail: 12.5rem;
+    }
+
+    ::selection {
+      background: color-mix(in srgb, var(--cyan) 28%, var(--white));
+      color: var(--navy);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 100%;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--navy);
+      background-color: var(--mineral);
+      background-image:
+        radial-gradient(ellipse 85% 60% at 8% -10%, color-mix(in srgb, var(--cyan-soft) 70%, transparent), transparent 60%),
+        radial-gradient(ellipse 55% 45% at 96% 4%, color-mix(in srgb, var(--rose-soft) 55%, transparent), transparent 55%),
+        radial-gradient(ellipse 65% 50% at 70% 100%, color-mix(in srgb, var(--violet-soft) 45%, transparent), transparent 55%),
+        linear-gradient(180deg, var(--paper) 0%, var(--mineral) 42%, var(--mineral-deep) 100%);
+      background-attachment: fixed;
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      line-height: 1.55;
+      font-variant-numeric: tabular-nums;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--cyan-ink); }
+    a:hover { color: var(--navy); }
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .skip {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--navy);
+      color: var(--white);
+      padding: 0.75rem 1rem;
+      z-index: 100;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+    }
+    .skip:focus { left: 0.75rem; top: 0.75rem; }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* —— Concept switcher —— */
+    .switcher {
+      border-bottom: 1px solid color-mix(in srgb, var(--navy) 85%, var(--cyan));
+      background:
+        linear-gradient(90deg, var(--navy) 0%, color-mix(in srgb, var(--navy) 88%, var(--cyan-ink)) 100%);
+      color: var(--mineral);
+    }
+    .switcher-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0.55rem 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem 1.1rem;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.05em;
+    }
+    .switcher strong {
+      font-weight: 600;
+      color: var(--white);
+    }
+    .switcher nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+    .switcher a {
+      color: var(--pale);
+      text-decoration: none;
+      min-height: 40px;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      transition: background-color 180ms var(--ease-out), color 180ms var(--ease-out);
+    }
+    .switcher a[aria-current="page"] {
+      color: var(--navy);
+      background: var(--cyan-bright);
+      font-weight: 600;
+    }
+    .switcher a:hover { color: var(--white); background: color-mix(in srgb, var(--white) 12%, transparent); }
+    .switcher a[aria-current="page"]:hover { color: var(--navy); background: var(--cyan-bright); }
+
+    /* —— Top bar —— */
+    .topbar {
+      border-bottom: 1px solid var(--rule-soft);
+      background: color-mix(in srgb, var(--paper) 88%, transparent);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+    .topbar-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0.7rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+      color: var(--navy);
+      min-height: 44px;
+    }
+    .brand-mark {
+      width: 1.35rem;
+      height: 1.35rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 2px;
+      flex-shrink: 0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .brand-mark span { display: block; }
+    .brand-mark span:nth-child(1) { background: var(--navy); }
+    .brand-mark span:nth-child(2) { background: var(--cyan); }
+    .brand-mark span:nth-child(3) { background: var(--violet); }
+    .brand-mark span:nth-child(4) { background: var(--rose); }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+    }
+    .brand-name {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.98rem;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cyan-ink);
+    }
+    .privacy {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-height: 40px;
+      padding: 0.35rem 0.7rem;
+      border: 1px solid var(--rule-soft);
+      border-radius: 999px;
+      background: var(--white);
+    }
+    .privacy .box {
+      width: 0.65rem;
+      height: 0.65rem;
+      border-radius: 3px;
+      border: 1.5px solid var(--cyan);
+      background: color-mix(in srgb, var(--cyan-soft) 70%, var(--white));
+      display: inline-block;
+    }
+
+    main { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem 4rem; }
+
+    /* —— Hero —— */
+    .hero {
+      padding: 2.5rem 0 2rem;
+      border-bottom: 1px solid var(--rule-soft);
+      position: relative;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1.2rem;
+      width: 2.25rem;
+      height: 3px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+    }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cyan-ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin: 0 0 0.95rem;
+    }
+    .eyebrow .diamond {
+      width: 0.5rem;
+      height: 0.5rem;
+      background: var(--cyan);
+      border-radius: 2px;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .eyebrow.secondary {
+      margin-top: -0.35rem;
+      color: var(--graphite-soft);
+    }
+    .eyebrow.secondary .diamond { background: var(--violet); }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: clamp(2.05rem, 4.8vw, 3.15rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin: 0 0 0.9rem;
+      max-width: 16ch;
+      color: var(--navy);
+    }
+    .hero-lede {
+      margin: 0;
+      max-width: 40rem;
+      color: var(--graphite);
+      font-size: 1.05rem;
+      line-height: 1.55;
+      font-family: var(--font-sans);
+      font-weight: 500;
+    }
+    .meta-row {
+      margin-top: 1.35rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--graphite-soft);
+      letter-spacing: 0.02em;
+    }
+    .meta-row span { white-space: nowrap; }
+
+    /* —— Section chrome —— */
+    .section {
+      padding: 2rem 0 0.5rem;
+    }
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 0.75rem 1.5rem;
+      margin-bottom: 1.15rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--rule-soft);
+    }
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--graphite-soft);
+      margin: 0 0 0.35rem;
+    }
+    .section-head h2 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+      margin: 0;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+    }
+    .section-note {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--graphite-soft);
+      margin: 0;
+      max-width: 22rem;
+      text-align: right;
+    }
+
+    /* —— Role comparison —— */
+    .compare {
+      border: 1px solid var(--rule-soft);
+      background: var(--paper);
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 28px color-mix(in srgb, var(--navy) 6%, transparent);
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .compare-table th,
+    .compare-table td {
+      border: 1px solid var(--rule-soft);
+      padding: 0.75rem 0.85rem;
+      vertical-align: top;
+      text-align: left;
+    }
+    .compare-table thead th {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy-mid);
+      font-weight: 400;
+      padding: 0.9rem 0.85rem;
+    }
+    .compare-table thead th.is-open {
+      background: var(--cyan-bright);
+      color: var(--navy);
+      border-color: var(--cyan);
+    }
+    .role-id {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .role-name {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .row-label {
+      width: 8.5rem;
+      background: var(--mineral-deep);
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--graphite);
+      white-space: nowrap;
+    }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .swatch {
+      width: 0.65rem;
+      height: 0.65rem;
+      flex-shrink: 0;
+      border: 1px solid currentColor;
+      display: inline-block;
+    }
+    .swatch.fill { background: currentColor; }
+    .swatch.slash {
+      background:
+        linear-gradient(135deg, transparent 46%, currentColor 46%, currentColor 54%, transparent 54%);
+      background-color: var(--white);
+      border-color: var(--graphite-soft);
+      color: var(--graphite-soft);
+    }
+    .st-await { color: var(--amber); }
+    .st-open { color: var(--cyan-ink); }
+    .st-idle { color: var(--graphite-soft); }
+    .st-gate { color: var(--rose); }
+    .mono {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .mono.accent { color: var(--cyan-ink); }
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.55rem 0.9rem;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1.5px solid var(--navy);
+      background: var(--navy);
+      color: var(--white);
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+      border-radius: var(--radius-sm);
+      transition: background-color 180ms var(--ease-out), color 180ms var(--ease-out), transform 180ms var(--ease-out);
+    }
+    .btn:hover { background: var(--navy-mid); color: var(--white); }
+    .btn.secondary {
+      background: var(--white);
+      color: var(--navy);
+    }
+    .btn.secondary:hover { background: var(--mineral-deep); }
+    .btn.cyan {
+      background: var(--cyan);
+      border-color: var(--cyan-ink);
+      color: var(--navy);
+    }
+    .btn.cyan:hover { background: var(--cyan-ink); color: var(--white); }
+    .btn.cyan-soft {
+      background: var(--cyan-soft);
+      border-color: var(--cyan);
+      color: var(--cyan-ink);
+    }
+    .btn.cyan-soft:hover { background: color-mix(in srgb, var(--cyan-soft) 70%, var(--cyan)); }
+    .btn.rose {
+      background: var(--rose);
+      border-color: color-mix(in srgb, var(--rose) 70%, var(--navy));
+      color: var(--white);
+    }
+    .btn.rose:hover { background: color-mix(in srgb, var(--rose) 75%, var(--navy)); }
+    .btn.ghost {
+      background: transparent;
+      border-color: var(--rule-soft);
+      color: var(--graphite);
+    }
+
+    /* Mobile role stacks */
+    .compare-mobile { display: none; }
+    @media (max-width: 820px) {
+      .compare-desktop { display: none; }
+      .compare-mobile { display: block; }
+      .section-note { text-align: left; max-width: none; }
+      .role-stack {
+        border: 1px solid var(--rule-soft);
+        background: var(--paper);
+        margin-bottom: 0.85rem;
+        border-radius: var(--radius);
+        overflow: hidden;
+      }
+      .role-stack-head {
+        padding: 0.85rem 1rem;
+        background: var(--navy);
+        color: var(--white);
+      }
+      .role-stack-head.is-open {
+        background: var(--cyan-bright);
+        color: var(--navy);
+      }
+      .role-stack dl {
+        margin: 0;
+        display: grid;
+      }
+      .role-stack dt,
+      .role-stack dd {
+        margin: 0;
+        padding: 0.7rem 1rem;
+        border-top: 1px solid var(--rule-soft);
+      }
+      .role-stack dt {
+        font-family: var(--font-mono);
+        font-size: 0.6875rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--graphite);
+        background: var(--mineral-deep);
+        padding-bottom: 0.25rem;
+      }
+      .role-stack dd {
+        padding-top: 0.25rem;
+        font-size: 0.875rem;
+      }
+      .role-stack .actions { padding: 0.75rem 1rem 1rem; }
+    }
+
+    /* —— Legend —— */
+    .legend {
+      margin: 1.5rem 0 0;
+      padding: 0.75rem 0;
+      border-top: 1px solid var(--rule-soft);
+      border-bottom: 1px solid var(--rule-soft);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem 1.35rem;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite);
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .legend-item .swatch.fill.cyan { background: var(--cyan); border-color: var(--cyan); color: var(--cyan); }
+    .legend-item .swatch.fill.amber { background: var(--amber); border-color: var(--amber); color: var(--amber); }
+    .legend-item .swatch.fill.rose { background: var(--rose); border-color: var(--rose); color: var(--rose); }
+
+    /* —— Investigation frame —— */
+    .investigation {
+      margin-top: 2rem;
+      border: 1px solid var(--rule-soft);
+      background: var(--paper);
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 14px 36px color-mix(in srgb, var(--navy) 8%, transparent);
+    }
+    .inv-head {
+      padding: 1.2rem 1.35rem 1.05rem;
+      border-bottom: 1px solid var(--rule-soft);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem 1.5rem;
+      align-items: flex-start;
+      background:
+        linear-gradient(180deg, color-mix(in srgb, var(--cyan-soft) 35%, var(--paper)) 0%, var(--paper) 100%);
+    }
+    .inv-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cyan-ink);
+      margin: 0 0 0.4rem;
+    }
+    .inv-head h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.45rem, 3vw, 1.95rem);
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+    }
+    .inv-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.35rem;
+      text-align: right;
+    }
+    @media (max-width: 640px) {
+      .inv-meta { align-items: flex-start; text-align: left; }
+    }
+
+    /* —— Viz chrome —— */
+    .viz {
+      padding: 1.35rem 1.35rem 1.5rem;
+      border-bottom: 1px solid var(--rule-soft);
+      background:
+        linear-gradient(180deg, color-mix(in srgb, var(--mineral) 55%, var(--paper)) 0%, var(--paper) 100%);
+    }
+    .viz-label {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--graphite-soft);
+      margin: 0 0 0.2rem;
+    }
+    .viz-title-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem 1rem;
+      align-items: baseline;
+      margin-bottom: 1.15rem;
+    }
+    .viz-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--navy);
+    }
+    .viz-aside {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--graphite-soft);
+      margin: 0;
+    }
+    .viz-key {
+      margin-top: 0.95rem;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--graphite-soft);
+      letter-spacing: 0.02em;
+    }
+    .brief-section.viz-panel {
+      background:
+        linear-gradient(180deg, color-mix(in srgb, var(--cyan-soft) 22%, var(--paper)) 0%, var(--paper) 38%);
+    }
+    .brief-section.viz-panel > .viz-title {
+      margin: 0 0 0.65rem;
+    }
+    /* Compact presence summary above Viz 01 */
+    .viz-summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.55rem;
+      margin: 0 0 1rem;
+    }
+    @media (max-width: 560px) {
+      .viz-summary { grid-template-columns: 1fr; }
+    }
+    .viz-stat {
+      border: 1px solid var(--rule-soft);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      padding: 0.7rem 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      transition: transform 200ms var(--ease-out), border-color 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+    }
+    .viz-stat:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px color-mix(in srgb, var(--navy) 10%, transparent);
+    }
+    .viz-stat.present { border-color: color-mix(in srgb, var(--cyan) 45%, var(--rule-soft)); background: color-mix(in srgb, var(--cyan-soft) 55%, var(--white)); }
+    .viz-stat.absent { border-color: var(--rule-soft); }
+    .viz-stat.disagree { border-color: color-mix(in srgb, var(--rose) 45%, var(--rule-soft)); background: color-mix(in srgb, var(--rose-soft) 60%, var(--white)); }
+    .viz-stat-value {
+      font-family: var(--font-mono);
+      font-size: 1.55rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--navy);
+    }
+    .viz-stat.present .viz-stat-value { color: var(--cyan-ink); }
+    .viz-stat.disagree .viz-stat-value { color: var(--rose); }
+    .viz-stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--graphite-soft);
+    }
+
+    /* Viz 02 — provenance rail */
+    .prov-groups {
+      display: grid;
+      gap: 0.85rem;
+    }
+    .prov-group {
+      border: 1px solid var(--rule-soft);
+      background: var(--mineral);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .prov-group-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--graphite);
+      padding: 0.45rem 0.65rem;
+      border-bottom: 1px solid var(--rule-soft);
+      background: var(--mineral-deep);
+    }
+    .prov-group.is-research .prov-group-label {
+      color: var(--cyan-ink);
+      background: color-mix(in srgb, var(--cyan-soft) 70%, var(--mineral-deep));
+    }
+    .prov-group.is-gate .prov-group-label {
+      color: var(--rose);
+      background: color-mix(in srgb, var(--rose-soft) 80%, var(--mineral-deep));
+    }
+    .prov-group.is-analysis .prov-group-label {
+      color: var(--violet);
+      background: color-mix(in srgb, var(--violet-soft) 75%, var(--mineral-deep));
+    }
+    .prov-stages {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      padding: 0.65rem;
+    }
+    .stage {
+      border: 1.5px solid var(--cyan);
+      background: color-mix(in srgb, var(--cyan-soft) 55%, var(--white));
+      padding: 0.55rem 0.65rem;
+      min-width: 7rem;
+      flex: 1 1 7rem;
+      max-width: 10rem;
+      cursor: default;
+      position: relative;
+      border-radius: 9px;
+      transition:
+        transform 200ms var(--ease-out),
+        background-color 200ms var(--ease-out),
+        border-color 200ms var(--ease-out),
+        box-shadow 200ms var(--ease-out);
+    }
+    .stage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 -2px 0 var(--cyan);
+      opacity: 0.55;
+    }
+    .stage.gate {
+      border-color: var(--rose);
+      background: var(--rose-soft);
+    }
+    .stage.gate::after {
+      box-shadow: inset 0 -2px 0 var(--rose);
+      opacity: 0.7;
+    }
+    .stage.analysis {
+      border-color: var(--violet);
+      background: color-mix(in srgb, var(--violet-soft) 55%, var(--white));
+    }
+    .stage.analysis::after {
+      box-shadow: inset 0 -2px 0 var(--violet);
+    }
+    .stage-num {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--graphite-soft);
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+    .stage-name {
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      line-height: 1.25;
+      color: var(--navy);
+    }
+    .stage.gate .stage-name { color: var(--rose); }
+    .stage.analysis .stage-name { color: color-mix(in srgb, var(--violet) 85%, var(--navy)); }
+
+    /* Investigation body layout */
+    .inv-body {
+      display: grid;
+      grid-template-columns: var(--rail) 1fr;
+      gap: 0;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .inv-body { grid-template-columns: 1fr; }
+    }
+    .rail {
+      border-right: 1px solid var(--rule-soft);
+      background:
+        linear-gradient(180deg, color-mix(in srgb, var(--navy) 6%, var(--mineral)) 0%, var(--mineral) 32%, var(--mineral-deep) 100%);
+      padding: 1rem 0.7rem 1.5rem;
+      position: sticky;
+      top: 3.4rem;
+      max-height: calc(100vh - 3.4rem);
+      overflow: auto;
+    }
+    @media (max-width: 860px) {
+      .rail {
+        position: static;
+        max-height: none;
+        border-right: 0;
+        border-bottom: 1px solid var(--rule-soft);
+        padding: 0.85rem 1rem;
+        background: var(--mineral);
+      }
+    }
+    .rail-instrument {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin: 0 0 0.85rem;
+      padding: 0.5rem 0.55rem;
+      border: 1px solid var(--rule-soft);
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      box-shadow: 0 1px 0 color-mix(in srgb, var(--navy) 4%, transparent);
+    }
+    .rail-title {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--graphite);
+      margin: 0;
+    }
+    .rail-dial {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+    .rail-dial-dot {
+      width: 0.45rem;
+      height: 0.45rem;
+      background: var(--rose);
+      flex-shrink: 0;
+    }
+    .rail nav ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    @media (max-width: 860px) {
+      .rail nav ol {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 0.35rem;
+        padding-bottom: 0.25rem;
+        -webkit-overflow-scrolling: touch;
+      }
+      .rail-instrument { margin-bottom: 0.65rem; }
+    }
+    .rail a {
+      display: grid;
+      grid-template-columns: 1.6rem 1fr;
+      align-items: baseline;
+      gap: 0.35rem;
+      text-decoration: none;
+      color: var(--graphite);
+      font-size: 0.8125rem;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      padding: 0.55rem 0.55rem;
+      min-height: 44px;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      background: transparent;
+      transition:
+        color 180ms var(--ease-out),
+        background-color 180ms var(--ease-out),
+        border-color 180ms var(--ease-out),
+        box-shadow 180ms var(--ease-out);
+    }
+    @media (max-width: 860px) {
+      .rail a {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        white-space: nowrap;
+        padding: 0.5rem 0.55rem;
+        background: var(--white);
+        border: 1px solid var(--rule-soft);
+        min-width: max-content;
+      }
+    }
+    .rail a:hover,
+    .rail a:focus-visible {
+      color: var(--navy);
+      background: var(--paper);
+      border-color: var(--rule-soft);
+    }
+    .rail a[aria-current="true"],
+    .rail a.is-active {
+      color: var(--navy);
+      background: var(--cyan-soft);
+      border-color: color-mix(in srgb, var(--cyan) 50%, var(--rule-soft));
+      font-weight: 600;
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cyan) 25%, transparent);
+    }
+    .rail a[aria-current="true"] .rail-num,
+    .rail a.is-active .rail-num {
+      color: var(--cyan-ink);
+    }
+    @media (max-width: 860px) {
+      .rail a[aria-current="true"],
+      .rail a.is-active {
+        background: var(--cyan-soft);
+        border-color: var(--cyan);
+      }
+    }
+    .rail-num {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--graphite-soft);
+      min-width: 1.4rem;
+    }
+    .rail-foot {
+      margin-top: 1.25rem;
+      padding: 0.65rem 0.45rem 0;
+      border-top: 1px solid var(--rule-soft);
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--violet);
+      line-height: 1.45;
+    }
+    @media (max-width: 860px) {
+      .rail-foot { display: none; }
+    }
+
+    .brief {
+      padding: 0 0 1.5rem;
+      min-width: 0;
+    }
+    .brief-section {
+      padding: 1.25rem 1.25rem 1.35rem;
+      border-bottom: 1px solid var(--rule-soft);
+      scroll-margin-top: 0.75rem;
+    }
+    .brief-section:last-child { border-bottom: 0; }
+    .brief-section h3 {
+      font-family: var(--font-serif);
+      font-size: 1.12rem;
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+      letter-spacing: -0.01em;
+    }
+    .sec-num {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--graphite-soft);
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: 500;
+    }
+    .brief-section p {
+      margin: 0 0 0.75rem;
+      color: var(--navy-mid);
+      max-width: 48rem;
+    }
+    .brief-section p:last-child { margin-bottom: 0; }
+    .finding {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--navy-mid);
+      margin: 0 0 0.85rem;
+      max-width: 42rem;
+    }
+    .callout {
+      border: 1px solid var(--rule-soft);
+      padding: 0.8rem 0.95rem;
+      background: var(--mineral);
+      margin: 0.85rem 0 0;
+      max-width: 44rem;
+      position: relative;
+      border-radius: var(--radius-sm);
+    }
+    .callout.uncertainty {
+      border-color: color-mix(in srgb, var(--amber) 42%, var(--rule-soft));
+      background: var(--amber-soft);
+    }
+    .callout.disagreement {
+      border-color: color-mix(in srgb, var(--rose) 42%, var(--rule-soft));
+      background: var(--rose-soft);
+    }
+    .callout.provenance {
+      border-color: color-mix(in srgb, var(--violet) 42%, var(--rule-soft));
+      background: var(--violet-soft);
+    }
+    .callout-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .callout.uncertainty .callout-label { color: var(--amber); }
+    .callout.disagreement .callout-label { color: var(--rose); }
+    .callout.provenance .callout-label { color: var(--violet); }
+    .callout p { margin: 0; font-size: 0.875rem; color: var(--navy-mid); }
+    .claim-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.75rem;
+    }
+    .claim-list li {
+      border: 1px solid var(--rule-soft);
+      padding: 0.8rem 0.9rem;
+      background: var(--white);
+      position: relative;
+      border-radius: var(--radius-sm);
+    }
+    .claim-meta {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--violet);
+      letter-spacing: 0.04em;
+      margin-top: 0.45rem;
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.75rem 0 0;
+    }
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.35rem 0.55rem;
+      border: 1px solid var(--rule-soft);
+      background: var(--mineral);
+      color: var(--navy);
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      border-radius: 8px;
+    }
+    .tag.durable { border-color: var(--navy); background: var(--white); }
+
+    /* Viz 01 — coverage matrix */
+    .matrix-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--rule-soft);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 10px 26px color-mix(in srgb, var(--navy) 7%, transparent);
+    }
+    .matrix-wrap .matrix { border-radius: var(--radius); }
+    .matrix {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.8125rem;
+      min-width: 36rem;
+    }
+    .matrix th,
+    .matrix td {
+      border: 1px solid var(--rule-soft);
+      padding: 0.75rem 0.55rem;
+      text-align: center;
+      vertical-align: middle;
+    }
+    .matrix thead th {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--mineral-deep);
+      color: var(--graphite);
+      font-weight: 500;
+    }
+    .matrix tbody th {
+      text-align: left;
+      font-weight: 500;
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      color: var(--navy);
+      background: var(--white);
+      max-width: 14rem;
+    }
+    .matrix .cell {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      position: relative;
+      cursor: default;
+      transition:
+        transform 200ms var(--ease-out),
+        box-shadow 200ms var(--ease-out),
+        background-color 200ms var(--ease-out),
+        color 200ms var(--ease-out),
+        z-index 0s;
+      transform-origin: center;
+    }
+    .cell-present {
+      background:
+        linear-gradient(155deg, var(--cyan-soft) 0%, color-mix(in srgb, var(--cyan) 38%, var(--white)) 100%);
+      color: var(--cyan-ink);
+      box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--cyan) 55%, transparent);
+      font-weight: 600;
+    }
+    .cell-absent {
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          var(--white),
+          var(--white) 5px,
+          color-mix(in srgb, var(--graphite-soft) 14%, var(--white)) 5px,
+          color-mix(in srgb, var(--graphite-soft) 14%, var(--white)) 7px
+        );
+      color: var(--graphite-soft);
+    }
+    .cell-disagree {
+      background:
+        linear-gradient(155deg, var(--rose-soft) 0%, color-mix(in srgb, var(--rose) 32%, var(--white)) 100%);
+      color: var(--rose);
+      box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--rose) 55%, transparent);
+      font-weight: 600;
+    }
+    .matrix-mark {
+      display: inline-block;
+      width: 0.65rem;
+      height: 0.65rem;
+      margin-right: 0.35rem;
+      vertical-align: -1px;
+      border: 1.5px solid currentColor;
+    }
+    .cell-present .matrix-mark { background: currentColor; }
+    .cell-absent .matrix-mark {
+      background:
+        linear-gradient(135deg, transparent 46%, currentColor 46%, currentColor 54%, transparent 54%);
+    }
+    .cell-disagree .matrix-mark {
+      background: currentColor;
+      clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+      border: 0;
+      width: 0.6rem;
+      height: 0.6rem;
+    }
+    .cell-tip {
+      display: none;
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 0.35rem);
+      transform: translateX(-50%);
+      white-space: nowrap;
+      padding: 0.25rem 0.45rem;
+      background: var(--navy);
+      color: var(--mineral);
+      font-size: 0.625rem;
+      letter-spacing: 0.06em;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    /* Present-lens count bars (honest matrix tallies) */
+    .support-bars {
+      margin: 1.25rem 0 0;
+      padding: 1.05rem 1.1rem 1.15rem;
+      border: 1px solid color-mix(in srgb, var(--cyan) 35%, var(--rule-soft));
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, var(--white) 0%, color-mix(in srgb, var(--cyan-soft) 40%, var(--paper)) 100%);
+      box-shadow: 0 8px 22px color-mix(in srgb, var(--cyan-ink) 8%, transparent);
+    }
+    .support-bars-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.4rem 1rem;
+      align-items: baseline;
+      margin-bottom: 0.85rem;
+    }
+    .support-bars-title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: -0.015em;
+    }
+    .support-bars-aside {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--graphite-soft);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .bar-chart {
+      display: grid;
+      gap: 0.55rem;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: minmax(9rem, 13rem) 1fr auto;
+      gap: 0.55rem 0.75rem;
+      align-items: center;
+    }
+    @media (max-width: 640px) {
+      .bar-row {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+      }
+    }
+    .bar-label {
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .bar-track {
+      height: 1.65rem;
+      background: color-mix(in srgb, var(--mineral-deep) 70%, var(--white));
+      border: 1px solid var(--rule-soft);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      width: calc(var(--count) / 5 * 100%);
+      background:
+        linear-gradient(90deg, var(--cyan-ink) 0%, var(--cyan) 55%, var(--cyan-bright) 100%);
+      box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--navy) 25%, transparent);
+      border-radius: 7px;
+      transform-origin: left center;
+      transition:
+        transform 220ms var(--ease-out),
+        filter 220ms var(--ease-out),
+        width 220ms var(--ease-out);
+    }
+    .bar-fill.has-disagree {
+      background:
+        linear-gradient(90deg, var(--rose) 0%, color-mix(in srgb, var(--rose) 70%, var(--violet)) 100%);
+    }
+    .bar-row:hover .bar-fill {
+      transform: scaleY(1.18);
+      filter: saturate(1.15);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .bar-row:hover .bar-fill {
+        transform: none;
+        filter: none;
+      }
+    }
+    .bar-count {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--cyan-ink);
+      min-width: 4.5rem;
+      text-align: right;
+    }
+    .bar-count .disagree-note {
+      color: var(--rose);
+      display: block;
+      font-size: 0.625rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* Mobile matrix: stacked claim rows */
+    .matrix-mobile { display: none; }
+    @media (max-width: 720px) {
+      .matrix-desktop { display: none; }
+      .matrix-mobile { display: grid; gap: 0.75rem; }
+      .m-claim {
+        border: 1px solid var(--rule-soft);
+        background: var(--white);
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+      }
+      .m-claim-title {
+        font-family: var(--font-serif);
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 0.75rem 0.85rem;
+        border-bottom: 1px solid var(--rule-soft);
+        margin: 0;
+        line-height: 1.3;
+      }
+      .m-lens {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.5rem;
+        align-items: center;
+        padding: 0.65rem 0.85rem;
+        border-top: 1px solid var(--rule-soft);
+        min-height: 44px;
+      }
+      .m-lens:first-of-type { border-top: 0; }
+      .m-lens-name {
+        font-family: var(--font-sans);
+        font-size: 0.875rem;
+        color: var(--navy);
+      }
+      .m-lens-state {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 0.35rem 0.5rem;
+        border: 1px solid currentColor;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        min-height: 44px;
+        transition: transform 200ms var(--ease-out), background-color 200ms var(--ease-out);
+      }
+      .m-lens-state.present { color: var(--cyan-ink); background: var(--cyan-soft); }
+      .m-lens-state.absent {
+        color: var(--graphite-soft);
+        background:
+          repeating-linear-gradient(
+            -45deg,
+            var(--mineral),
+            var(--mineral) 4px,
+            color-mix(in srgb, var(--graphite-soft) 10%, var(--mineral)) 4px,
+            color-mix(in srgb, var(--graphite-soft) 10%, var(--mineral)) 5px
+          );
+      }
+      .m-lens-state.disagree { color: var(--rose); background: var(--rose-soft); }
+    }
+
+    /* Viz 03 — task→skill→durable map */
+    .flow-map {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 0.5rem;
+      align-items: stretch;
+    }
+    @media (max-width: 780px) {
+      .flow-map {
+        grid-template-columns: 1fr;
+      }
+      .flow-arrow { transform: rotate(90deg); justify-self: center; padding: 0.15rem 0; }
+    }
+    .flow-col {
+      border: 1px solid var(--rule-soft);
+      background: var(--white);
+      min-width: 0;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      box-shadow: 0 6px 16px color-mix(in srgb, var(--navy) 5%, transparent);
+    }
+    .flow-col.tasks { border-color: color-mix(in srgb, var(--cyan) 55%, var(--rule)); }
+    .flow-col.skills { border-color: color-mix(in srgb, var(--navy) 70%, var(--rule)); }
+    .flow-col.durable { border-color: color-mix(in srgb, var(--violet) 50%, var(--rule)); }
+    .flow-col-head {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.5rem 0.65rem;
+      border-bottom: 1px solid var(--rule-soft);
+      background: var(--mineral-deep);
+      color: var(--graphite);
+    }
+    .flow-col.tasks .flow-col-head {
+      background: color-mix(in srgb, var(--cyan-soft) 65%, var(--mineral-deep));
+      color: var(--cyan-ink);
+    }
+    .flow-col.skills .flow-col-head {
+      background: color-mix(in srgb, var(--navy) 8%, var(--mineral-deep));
+      color: var(--navy);
+    }
+    .flow-col.durable .flow-col-head {
+      background: color-mix(in srgb, var(--violet-soft) 70%, var(--mineral-deep));
+      color: var(--violet);
+    }
+    .flow-col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0.55rem;
+      display: grid;
+      gap: 0.4rem;
+    }
+    .flow-col li {
+      font-size: 0.8125rem;
+      line-height: 1.35;
+      padding: 0.65rem 0.65rem 0.65rem 1.4rem;
+      border: 1px solid var(--rule-soft);
+      background: var(--mineral);
+      position: relative;
+      border-radius: 8px;
+      transition:
+        transform 200ms var(--ease-out),
+        background-color 200ms var(--ease-out),
+        border-color 200ms var(--ease-out),
+        box-shadow 200ms var(--ease-out);
+    }
+    .flow-col li::before {
+      content: "";
+      position: absolute;
+      left: 0.5rem;
+      top: 0.85rem;
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 2px;
+      background: var(--cyan);
+    }
+    .flow-col.skills li::before { background: var(--navy); border-radius: 1px; }
+    .flow-col.durable li::before {
+      background: transparent;
+      border: 1.5px solid var(--violet);
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 50%;
+    }
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--cyan-ink);
+      letter-spacing: 0.05em;
+    }
+
+    /* Viz 04 — scenario horizon */
+    .horizon {
+      border: 1px solid color-mix(in srgb, var(--amber) 30%, var(--rule-soft));
+      background:
+        linear-gradient(180deg, var(--white) 0%, color-mix(in srgb, var(--amber-soft) 55%, var(--mineral)) 100%);
+      padding: 1.15rem;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 20px color-mix(in srgb, var(--amber) 10%, transparent);
+    }
+    .horizon-track {
+      position: relative;
+      height: 5rem;
+      border-bottom: 2px solid var(--navy);
+      margin: 0.5rem 0 0.35rem;
+    }
+    .horizon-band {
+      position: absolute;
+      top: 1.15rem;
+      left: 8%;
+      right: 8%;
+      height: 2.35rem;
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          var(--amber-soft),
+          var(--amber-soft) 6px,
+          color-mix(in srgb, var(--amber) 35%, transparent) 6px,
+          color-mix(in srgb, var(--amber) 35%, transparent) 12px
+        );
+      border: 2px dashed var(--amber);
+      border-radius: 8px;
+      transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
+    }
+    .horizon:hover .horizon-band {
+      opacity: 1;
+      transform: scaleY(1.06);
+    }
+    .horizon-now,
+    .horizon-end {
+      position: absolute;
+      top: 0.35rem;
+      bottom: 0;
+      width: 1.5px;
+      background: var(--navy);
+    }
+    .horizon-now { left: 8%; }
+    .horizon-end { right: 8%; background: var(--cyan); }
+    .horizon-marker {
+      position: absolute;
+      top: 0.15rem;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.04em;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+    .horizon-marker.now { left: 8%; transform: translateX(-10%); }
+    .horizon-marker.end { right: 8%; transform: translateX(10%); text-align: right; color: var(--cyan-ink); }
+    .horizon-marker.mid {
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--amber);
+      top: -0.05rem;
+    }
+    .horizon-assumptions {
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+    @media (min-width: 700px) {
+      .horizon-assumptions { grid-template-columns: 1fr 1fr; }
+    }
+    .assumption {
+      border: 1px solid var(--rule-soft);
+      background: var(--white);
+      padding: 0.75rem 0.85rem;
+      border-radius: var(--radius-sm);
+      transition: border-color 200ms var(--ease-out), background-color 200ms var(--ease-out), transform 200ms var(--ease-out);
+    }
+    .assumption:hover {
+      transform: translateY(-1px);
+      border-color: color-mix(in srgb, var(--cyan) 40%, var(--rule-soft));
+      background: color-mix(in srgb, var(--cyan-soft) 25%, var(--white));
+    }
+    .assumption h4 {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0 0 0.35rem;
+      color: var(--graphite);
+      font-weight: 500;
+    }
+    .assumption.uncertain h4 { color: var(--amber); }
+    .assumption.uncertain:hover {
+      border-color: color-mix(in srgb, var(--amber) 50%, var(--rule-soft));
+      background: var(--amber-soft);
+    }
+    .assumption p {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--navy-mid);
+    }
+
+    /* Viz 05 — source ledger */
+    .ledger {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8125rem;
+    }
+    .ledger th,
+    .ledger td {
+      border: 1px solid var(--rule-soft);
+      padding: 0.65rem 0.7rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    .ledger tbody tr {
+      transition: background-color 180ms var(--ease-out);
+    }
+    .ledger tbody tr:hover {
+      background: color-mix(in srgb, var(--violet-soft) 45%, var(--white));
+    }
+    .ledger thead th {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--mineral-deep);
+      color: var(--graphite);
+      font-weight: 500;
+    }
+    .src-id {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--violet);
+      word-break: break-all;
+    }
+    .src-cat {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--graphite);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .src-title {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: 0.95rem;
+      line-height: 1.3;
+      margin: 0 0 0.25rem;
+    }
+    .src-pub {
+      font-size: 0.8125rem;
+      color: var(--graphite);
+    }
+    .claim-links {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: var(--navy-mid);
+    }
+    .claim-links a { color: var(--cyan-ink); }
+    .ledger-mobile { display: none; }
+    @media (max-width: 720px) {
+      .ledger-desktop { display: none; }
+      .ledger-mobile { display: grid; gap: 0.75rem; }
+      .ledger-card {
+        border: 1px solid var(--rule-soft);
+        background: var(--white);
+        padding: 0.85rem;
+        border-radius: var(--radius-sm);
+        transition: border-color 180ms var(--ease-out), background-color 180ms var(--ease-out);
+      }
+      .ledger-card:hover {
+        border-color: color-mix(in srgb, var(--violet) 45%, var(--rule));
+        background: color-mix(in srgb, var(--violet-soft) 35%, var(--white));
+      }
+      .ledger-card .src-id { margin-bottom: 0.45rem; display: block; }
+    }
+
+    /* Approval */
+    .approval {
+      background: color-mix(in srgb, var(--rose-soft) 45%, var(--mineral));
+      border: 1.5px solid var(--rose);
+      padding: 1.25rem;
+      margin-top: 0.5rem;
+      border-radius: var(--radius);
+    }
+    .approval h4 {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      margin: 0 0 0.35rem;
+      font-weight: 600;
+    }
+    .approval-intro {
+      margin: 0 0 1rem;
+      font-size: 0.875rem;
+      color: var(--navy-mid);
+      max-width: 40rem;
+    }
+    .form-grid {
+      display: grid;
+      gap: 0.85rem;
+    }
+    @media (min-width: 640px) {
+      .form-grid.two { grid-template-columns: 1fr 1fr; }
+    }
+    .field label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--graphite);
+      margin-bottom: 0.35rem;
+    }
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      min-height: 44px;
+      border: 1.5px solid var(--rule-soft);
+      background: var(--white);
+      color: var(--navy);
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      padding: 0.55rem 0.7rem;
+      border-radius: var(--radius-sm);
+    }
+    .field textarea {
+      min-height: 5.5rem;
+      resize: vertical;
+      line-height: 1.45;
+    }
+    .check {
+      display: flex;
+      gap: 0.65rem;
+      align-items: flex-start;
+      font-size: 0.875rem;
+      color: var(--navy-mid);
+      min-height: 44px;
+    }
+    .check input {
+      width: 1.15rem;
+      height: 1.15rem;
+      margin-top: 0.15rem;
+      flex-shrink: 0;
+      accent-color: var(--rose);
+    }
+    .consequence {
+      margin: 0.85rem 0 1rem;
+      padding: 0.75rem 0.85rem;
+      border: 1px dashed var(--rose);
+      background: var(--rose-soft);
+      font-size: 0.875rem;
+      color: var(--navy);
+      border-radius: var(--radius-sm);
+    }
+    .consequence strong {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--rose);
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+    .approval-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+    .approval-actions .btn { width: auto; min-width: 10rem; }
+
+    footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 2.5rem;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--graphite-soft);
+    }
+    footer a { color: var(--graphite); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+    footer a:hover { color: var(--navy); }
+
+    @keyframes fade-rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero h1 { animation: fade-rise 520ms var(--ease-out) both; }
+      .compare,
+      .investigation { animation: fade-rise 640ms var(--ease-out) both; animation-delay: 80ms; }
+      .viz,
+      .support-bars {
+        animation: fade-rise 560ms var(--ease-out) both;
+        animation-delay: 120ms;
+      }
+      .stage:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 6px 16px color-mix(in srgb, var(--navy) 12%, transparent);
+        z-index: 1;
+      }
+      .stage.gate:hover {
+        box-shadow: 0 6px 16px color-mix(in srgb, var(--rose) 18%, transparent);
+      }
+      .matrix .cell:hover {
+        transform: scale(1.1);
+        z-index: 2;
+        box-shadow: 0 6px 18px color-mix(in srgb, var(--navy) 16%, transparent);
+      }
+      .matrix .cell:hover .cell-tip { display: block; }
+      .cell-present:hover {
+        background: color-mix(in srgb, var(--cyan) 48%, var(--white));
+        color: var(--cyan-ink);
+      }
+      .cell-absent:hover {
+        background: color-mix(in srgb, var(--graphite-soft) 18%, var(--white));
+        color: var(--navy-mid);
+      }
+      .cell-disagree:hover {
+        background: color-mix(in srgb, var(--rose) 40%, var(--white));
+        color: color-mix(in srgb, var(--rose) 90%, var(--navy));
+      }
+      .flow-col li:hover {
+        transform: translateX(2px);
+        background: var(--paper);
+        border-color: color-mix(in srgb, var(--cyan) 35%, var(--rule-soft));
+      }
+      .m-lens-state:hover { transform: scale(1.04); }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="switcher" role="navigation" aria-label="Design concept switcher">
+    <div class="switcher-inner">
+      <strong>Atlas finalists 02 / 02 · Evidence Atlas · Signal</strong>
+      <nav>
+        <a href="evidence-atlas-control.html">Control</a>
+        <a href="evidence-atlas-signal.html" aria-current="page">Signal</a>
+        <a href="index.html">Index</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="Skills Vector Evidence Atlas home">
+        <span class="brand-mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Skills Vector</span>
+          <span class="brand-sub">Evidence Atlas · Signal</span>
+        </span>
+      </a>
+      <p class="privacy"><span class="box" aria-hidden="true"></span> Local · Private · No publish path</p>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="hero">
+      <p class="eyebrow"><span class="diamond" aria-hidden="true"></span> Atlas branch · Signal</p>
+      <p class="eyebrow secondary"><span class="diamond" aria-hidden="true"></span> People Ops &amp; Talent · United States · Research observatory</p>
+      <h1>A living map of how work is changing.</h1>
+      <p class="hero-lede">Three roles under observation. Five approved evidence lenses. Investigations move through a provenance rail — closed only by explicit human sign-off.</p>
+      <div class="meta-row" aria-label="Atlas reference metadata">
+        <span>COORD · 38.9°N / 77.0°W (reference)</span>
+        <span>LENSES · 5 approved</span>
+        <span>STAGES · 11</span>
+        <span>MODE · deterministic · offline</span>
+      </div>
+    </header>
+
+    <section class="section" aria-labelledby="roles-title">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Map · Role observatory</p>
+          <h2 id="roles-title">Roles under observation</h2>
+        </div>
+        <p class="section-note">Deterministic offline analysis · credential-free corpus. Comparison reads across status, history, coverage, and next action — not three oversized cards.</p>
+      </div>
+
+      <div class="compare compare-desktop" role="region" aria-label="Role comparison table">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th scope="col"><span class="visually-hidden">Attribute</span></th>
+              <th scope="col">
+                <span class="role-id">R01</span>
+                <span class="role-name">HR Coordinator</span>
+              </th>
+              <th scope="col" class="is-open">
+                <span class="role-id">R02 · Open</span>
+                <span class="role-name">Recruiter</span>
+              </th>
+              <th scope="col">
+                <span class="role-id">R03</span>
+                <span class="role-name">L&amp;D Specialist</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" class="row-label">Status</th>
+              <td><span class="status st-await"><span class="swatch fill" aria-hidden="true"></span> Awaiting</span></td>
+              <td><span class="status st-open"><span class="swatch fill" aria-hidden="true"></span> Open · awaiting approval</span></td>
+              <td><span class="status st-idle"><span class="swatch slash" aria-hidden="true"></span> Not investigated</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="row-label">Run history</th>
+              <td><span class="mono">1 run · run_3f91b2c0</span></td>
+              <td><span class="mono accent">2 runs · run_7c21e9a4</span></td>
+              <td><span class="mono">0 runs</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="row-label">Latest investigation</th>
+              <td><span class="mono">Draft retained · 2026-08-03T18:11:44Z</span></td>
+              <td><span class="mono">Paused at human gate · 2026-08-07T14:22:01Z</span></td>
+              <td><span class="mono">—</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="row-label">Evidence coverage</th>
+              <td>All 5 lenses present · uncertainty retained</td>
+              <td>All 5 lenses · disagreement retained on demand narrative</td>
+              <td>Corpus ready · not yet run</td>
+            </tr>
+            <tr>
+              <th scope="row" class="row-label">Next action</th>
+              <td>
+                <div class="actions">
+                  <a class="btn" href="#roles-title">Launch investigation</a>
+                  <a class="btn secondary" href="#roles-title">Inspect latest</a>
+                </div>
+              </td>
+              <td>
+                <div class="actions">
+                  <a class="btn cyan" href="#sec-approval">Continue at gate</a>
+                  <a class="btn cyan-soft" href="#investigation">Launch new run</a>
+                </div>
+              </td>
+              <td>
+                <div class="actions">
+                  <a class="btn" href="#roles-title">Launch investigation</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="compare-mobile" aria-label="Role comparison (mobile)">
+        <article class="role-stack">
+          <header class="role-stack-head">
+            <span class="role-id">R01</span>
+            <span class="role-name">HR Coordinator</span>
+          </header>
+          <dl>
+            <dt>Status</dt>
+            <dd><span class="status st-await"><span class="swatch fill" aria-hidden="true"></span> Awaiting</span></dd>
+            <dt>Run history</dt>
+            <dd><span class="mono">1 run · run_3f91b2c0</span></dd>
+            <dt>Latest investigation</dt>
+            <dd><span class="mono">Draft retained · 2026-08-03T18:11:44Z</span></dd>
+            <dt>Evidence coverage</dt>
+            <dd>All 5 lenses present · uncertainty retained</dd>
+          </dl>
+          <div class="actions">
+            <a class="btn" href="#roles-title">Launch investigation</a>
+            <a class="btn secondary" href="#roles-title">Inspect latest</a>
+          </div>
+        </article>
+        <article class="role-stack">
+          <header class="role-stack-head is-open">
+            <span class="role-id">R02 · Open</span>
+            <span class="role-name">Recruiter</span>
+          </header>
+          <dl>
+            <dt>Status</dt>
+            <dd><span class="status st-open"><span class="swatch fill" aria-hidden="true"></span> Open · awaiting approval</span></dd>
+            <dt>Run history</dt>
+            <dd><span class="mono accent">2 runs · run_7c21e9a4</span></dd>
+            <dt>Latest investigation</dt>
+            <dd><span class="mono">Paused at human gate · 2026-08-07T14:22:01Z</span></dd>
+            <dt>Evidence coverage</dt>
+            <dd>All 5 lenses · disagreement retained on demand narrative</dd>
+          </dl>
+          <div class="actions">
+            <a class="btn cyan" href="#sec-approval">Continue at gate</a>
+            <a class="btn cyan-soft" href="#investigation">Launch new run</a>
+          </div>
+        </article>
+        <article class="role-stack">
+          <header class="role-stack-head">
+            <span class="role-id">R03</span>
+            <span class="role-name">L&amp;D Specialist</span>
+          </header>
+          <dl>
+            <dt>Status</dt>
+            <dd><span class="status st-idle"><span class="swatch slash" aria-hidden="true"></span> Not investigated</span></dd>
+            <dt>Run history</dt>
+            <dd><span class="mono">0 runs</span></dd>
+            <dt>Latest investigation</dt>
+            <dd><span class="mono">—</span></dd>
+            <dt>Evidence coverage</dt>
+            <dd>Corpus ready · not yet run</dd>
+          </dl>
+          <div class="actions">
+            <a class="btn" href="#roles-title">Launch investigation</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="legend" role="list" aria-label="Map key">
+        <span class="legend-item" role="listitem"><span class="swatch fill cyan" aria-hidden="true"></span> Active research</span>
+        <span class="legend-item" role="listitem"><span class="swatch fill amber" aria-hidden="true"></span> Uncertainty / awaiting</span>
+        <span class="legend-item" role="listitem"><span class="swatch fill rose" aria-hidden="true"></span> Disagreement / human gate</span>
+        <span class="legend-item" role="listitem"><span class="swatch slash" aria-hidden="true"></span> Idle / not run</span>
+      </div>
+    </section>
+
+    <article class="investigation" id="investigation" aria-labelledby="inv-title">
+      <header class="inv-head">
+        <div>
+          <p class="inv-kicker">Open investigation · Provenance active</p>
+          <h2 id="inv-title">Recruiter · Role brief</h2>
+        </div>
+        <div class="inv-meta">
+          <span class="status st-gate"><span class="swatch fill" aria-hidden="true"></span> Awaiting approval</span>
+          <span class="mono">run_7c21e9a4 · 2026-08-07T14:22:01Z</span>
+          <span class="mono">PRIVATE DRAFT · LOCAL ONLY</span>
+        </div>
+      </header>
+
+      <!-- Visualization 02 near top of open brief (provenance) -->
+      <section class="viz" aria-labelledby="viz02-title">
+        <p class="viz-label">Visualization 02 · Workflow provenance</p>
+        <div class="viz-title-row">
+          <h3 class="viz-title" id="viz02-title">Eleven stages · five groups</h3>
+          <p class="viz-aside">Presence of completion · not duration</p>
+        </div>
+        <div class="prov-groups">
+          <div class="prov-group is-research">
+            <div class="prov-group-label">Research · parallel lenses</div>
+            <div class="prov-stages">
+              <div class="stage" title="Completed · labor data lens"><span class="stage-num">01</span><span class="stage-name">Labor data</span></div>
+              <div class="stage" title="Completed · papers lens"><span class="stage-num">02</span><span class="stage-name">Papers</span></div>
+              <div class="stage" title="Completed · reports lens"><span class="stage-num">03</span><span class="stage-name">Reports</span></div>
+              <div class="stage" title="Completed · job signals lens"><span class="stage-num">04</span><span class="stage-name">Job signals</span></div>
+              <div class="stage" title="Completed · policy lens"><span class="stage-num">05</span><span class="stage-name">Policy</span></div>
+            </div>
+          </div>
+          <div class="prov-group">
+            <div class="prov-group-label">Validation</div>
+            <div class="prov-stages">
+              <div class="stage" title="Completed · evidence validation"><span class="stage-num">06</span><span class="stage-name">Validate evidence</span></div>
+            </div>
+          </div>
+          <div class="prov-group is-analysis">
+            <div class="prov-group-label">Analysis</div>
+            <div class="prov-stages">
+              <div class="stage analysis" title="Completed · demand and tasks"><span class="stage-num">07</span><span class="stage-name">Demand &amp; tasks</span></div>
+              <div class="stage analysis" title="Completed · skills and durability"><span class="stage-num">08</span><span class="stage-name">Skills &amp; durability</span></div>
+              <div class="stage analysis" title="Completed · skeptic pass"><span class="stage-num">09</span><span class="stage-name">Skeptic</span></div>
+            </div>
+          </div>
+          <div class="prov-group">
+            <div class="prov-group-label">Drafting</div>
+            <div class="prov-stages">
+              <div class="stage" title="Completed · forecast and draft"><span class="stage-num">10</span><span class="stage-name">Forecast &amp; draft</span></div>
+            </div>
+          </div>
+          <div class="prov-group is-gate">
+            <div class="prov-group-label">Human gate</div>
+            <div class="prov-stages">
+              <div class="stage gate" title="Paused · awaiting human sign-off"><span class="stage-num">11</span><span class="stage-name">Human review · paused</span></div>
+            </div>
+          </div>
+        </div>
+        <p class="viz-key">Map key: cobalt = research complete · violet = analysis · wine = human gate (not yet signed)</p>
+      </section>
+
+      <div class="inv-body">
+        <aside class="rail" aria-label="Brief contents and provenance">
+          <div class="rail-instrument">
+            <p class="rail-title">Contents · Provenance</p>
+            <span class="rail-dial" aria-label="Gate status"><span class="rail-dial-dot" aria-hidden="true"></span> Gate open</span>
+          </div>
+          <nav>
+            <ol>
+              <li><a href="#sec-context"><span class="rail-num">01</span> Role context</a></li>
+              <li><a href="#sec-change"><span class="rail-num">02</span> Primary change</a></li>
+              <li><a href="#sec-coverage"><span class="rail-num">03</span> Lens coverage</a></li>
+              <li><a href="#sec-tasks"><span class="rail-num">04</span> Task shifts</a></li>
+              <li><a href="#sec-skills"><span class="rail-num">05</span> Skill shifts</a></li>
+              <li><a href="#sec-flow"><span class="rail-num">06</span> Change map</a></li>
+              <li><a href="#sec-durable"><span class="rail-num">07</span> Durable</a></li>
+              <li><a href="#sec-scenario"><span class="rail-num">08</span> Scenario</a></li>
+              <li><a href="#sec-disagree"><span class="rail-num">09</span> Disagreement</a></li>
+              <li><a href="#sec-sources"><span class="rail-num">10</span> Sources</a></li>
+              <li><a href="#sec-approval"><span class="rail-num">11</span> Approval</a></li>
+            </ol>
+          </nav>
+          <p class="rail-foot">Instrument rail tracks brief sections. Violet marks evidence IDs. Sienna = uncertainty. Wine = disagreement or gate.</p>
+        </aside>
+
+        <div class="brief">
+          <section class="brief-section" id="sec-context" aria-labelledby="h-context">
+            <span class="sec-num">Section 01</span>
+            <h3 id="h-context">Role context</h3>
+            <p class="finding">A U.S. Recruiter translates workforce needs into sourcing, screening, candidate communication, selection coordination, and equitable hiring decisions.</p>
+            <p>This investigation is bounded to People Operations &amp; Talent, United States geography, and the approved evidence corpus. It describes role-level change — never an individual career prediction.</p>
+            <p class="mono" style="color: var(--graphite-soft); margin-top: 0.85rem;">United States · As of 2026-08-07 · Private draft</p>
+          </section>
+
+          <section class="brief-section" id="sec-change" aria-labelledby="h-change">
+            <span class="sec-num">Section 02</span>
+            <h3 id="h-change">Primary change</h3>
+            <p class="finding">Recruiting tools increasingly assist sourcing, drafting, and screening workflows, raising the value of evidence-based selection, candidate trust, and bias / accessibility governance.</p>
+            <div class="callout uncertainty">
+              <span class="callout-label">Uncertainty</span>
+              <p>The evidence supports a role-level direction, not a universal employer outcome or individual prediction.</p>
+            </div>
+            <div class="callout disagreement">
+              <span class="callout-label">Disagreement retained</span>
+              <p>Positive BLS demand projections do not support a simple role-elimination narrative.</p>
+            </div>
+            <p class="claim-meta">CLAIM · change · supported by bls-human-resources-specialists-2025 · shrm-state-workplace-2024 · atlanta-fed-ai-job-postings-2024</p>
+          </section>
+
+          <section class="brief-section viz-panel" id="sec-coverage" aria-labelledby="h-coverage">
+            <span class="sec-num">Section 03 · Visualization 01</span>
+            <p class="viz-label">Visualization 01 · Presence / absence matrix</p>
+            <h3 class="viz-title" id="h-coverage">Evidence-lens coverage matrix</h3>
+            <p>Five approved lenses against major claims. Cells record presence, absence, or disagreement only — no fabricated coverage percentages.</p>
+
+            <div class="viz-summary" role="group" aria-label="Matrix presence counts">
+              <div class="viz-stat present">
+                <span class="viz-stat-value">17</span>
+                <span class="viz-stat-label">Present cells</span>
+              </div>
+              <div class="viz-stat absent">
+                <span class="viz-stat-value">11</span>
+                <span class="viz-stat-label">Absent cells</span>
+              </div>
+              <div class="viz-stat disagree">
+                <span class="viz-stat-value">2</span>
+                <span class="viz-stat-label">Disagree cells</span>
+              </div>
+            </div>
+
+            <div class="matrix-wrap matrix-desktop" role="region" aria-label="Coverage matrix table">
+              <table class="matrix">
+                <thead>
+                  <tr>
+                    <th scope="col">Major claim</th>
+                    <th scope="col">Labor (BLS)</th>
+                    <th scope="col">Papers</th>
+                    <th scope="col">Reports</th>
+                    <th scope="col">Job signals</th>
+                    <th scope="col">Policy</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Assisted sourcing / screening is rising</th>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Labor</span></td>
+                    <td class="cell cell-absent"><span class="matrix-mark" aria-hidden="true"></span>Absent<span class="cell-tip">Absent in Papers</span></td>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Reports</span></td>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Job signals</span></td>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Policy</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Task shift toward structured oversight</th>
+                    <td class="cell cell-absent"><span class="matrix-mark" aria-hidden="true"></span>Absent<span class="cell-tip">Absent in Labor</span></td>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Papers</span></td>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Reports</span></td>
+                    <td class="cell cell-absent"><span class="matrix-mark" aria-hidden="true"></span>Absent<span class="cell-tip">Absent in Job signals</span></td>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Policy</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Skill shift toward funnel / adverse-impact literacy</th>
+                    <td class="cell cell-absent"><span class="matrix-mark" aria-hidden="true"></span>Absent<span class="cell-tip">Absent in Labor</span></td>
+                    <td class="cell cell-absent"><span class="matrix-mark" aria-hidden="true"></span>Absent<span class="cell-tip">Absent in Papers</span></td>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Reports</span></td>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Job signals</span></td>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Policy</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Ethical / regulatory reasoning stays durable</th>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Labor</span></td>
+                    <td class="cell cell-absent"><span class="matrix-mark" aria-hidden="true"></span>Absent<span class="cell-tip">Absent in Papers</span></td>
+                    <td class="cell cell-absent"><span class="matrix-mark" aria-hidden="true"></span>Absent<span class="cell-tip">Absent in Reports</span></td>
+                    <td class="cell cell-absent"><span class="matrix-mark" aria-hidden="true"></span>Absent<span class="cell-tip">Absent in Job signals</span></td>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Policy</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Two-year assisted hiring scenario</th>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Labor</span></td>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Papers</span></td>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Reports</span></td>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Job signals</span></td>
+                    <td class="cell cell-present"><span class="matrix-mark" aria-hidden="true"></span>Present<span class="cell-tip">Present in Policy</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Wholesale displacement narrative</th>
+                    <td class="cell cell-disagree"><span class="matrix-mark" aria-hidden="true"></span>Disagree<span class="cell-tip">Disagree · Labor</span></td>
+                    <td class="cell cell-disagree"><span class="matrix-mark" aria-hidden="true"></span>Disagree<span class="cell-tip">Disagree · Papers</span></td>
+                    <td class="cell cell-absent"><span class="matrix-mark" aria-hidden="true"></span>Absent<span class="cell-tip">Absent in Reports</span></td>
+                    <td class="cell cell-absent"><span class="matrix-mark" aria-hidden="true"></span>Absent<span class="cell-tip">Absent in Job signals</span></td>
+                    <td class="cell cell-absent"><span class="matrix-mark" aria-hidden="true"></span>Absent<span class="cell-tip">Absent in Policy</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="matrix-mobile" aria-label="Coverage matrix as stacked claim rows">
+              <article class="m-claim">
+                <h4 class="m-claim-title">Assisted sourcing / screening is rising</h4>
+                <div class="m-lens"><span class="m-lens-name">Labor (BLS)</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+                <div class="m-lens"><span class="m-lens-name">Papers</span><span class="m-lens-state absent"><span class="swatch slash" aria-hidden="true"></span> Absent</span></div>
+                <div class="m-lens"><span class="m-lens-name">Reports</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+                <div class="m-lens"><span class="m-lens-name">Job signals</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+                <div class="m-lens"><span class="m-lens-name">Policy</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+              </article>
+              <article class="m-claim">
+                <h4 class="m-claim-title">Task shift toward structured oversight</h4>
+                <div class="m-lens"><span class="m-lens-name">Labor (BLS)</span><span class="m-lens-state absent"><span class="swatch slash" aria-hidden="true"></span> Absent</span></div>
+                <div class="m-lens"><span class="m-lens-name">Papers</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+                <div class="m-lens"><span class="m-lens-name">Reports</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+                <div class="m-lens"><span class="m-lens-name">Job signals</span><span class="m-lens-state absent"><span class="swatch slash" aria-hidden="true"></span> Absent</span></div>
+                <div class="m-lens"><span class="m-lens-name">Policy</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+              </article>
+              <article class="m-claim">
+                <h4 class="m-claim-title">Skill shift toward funnel / adverse-impact literacy</h4>
+                <div class="m-lens"><span class="m-lens-name">Labor (BLS)</span><span class="m-lens-state absent"><span class="swatch slash" aria-hidden="true"></span> Absent</span></div>
+                <div class="m-lens"><span class="m-lens-name">Papers</span><span class="m-lens-state absent"><span class="swatch slash" aria-hidden="true"></span> Absent</span></div>
+                <div class="m-lens"><span class="m-lens-name">Reports</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+                <div class="m-lens"><span class="m-lens-name">Job signals</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+                <div class="m-lens"><span class="m-lens-name">Policy</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+              </article>
+              <article class="m-claim">
+                <h4 class="m-claim-title">Ethical / regulatory reasoning stays durable</h4>
+                <div class="m-lens"><span class="m-lens-name">Labor (BLS)</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+                <div class="m-lens"><span class="m-lens-name">Papers</span><span class="m-lens-state absent"><span class="swatch slash" aria-hidden="true"></span> Absent</span></div>
+                <div class="m-lens"><span class="m-lens-name">Reports</span><span class="m-lens-state absent"><span class="swatch slash" aria-hidden="true"></span> Absent</span></div>
+                <div class="m-lens"><span class="m-lens-name">Job signals</span><span class="m-lens-state absent"><span class="swatch slash" aria-hidden="true"></span> Absent</span></div>
+                <div class="m-lens"><span class="m-lens-name">Policy</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+              </article>
+              <article class="m-claim">
+                <h4 class="m-claim-title">Two-year assisted hiring scenario</h4>
+                <div class="m-lens"><span class="m-lens-name">Labor (BLS)</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+                <div class="m-lens"><span class="m-lens-name">Papers</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+                <div class="m-lens"><span class="m-lens-name">Reports</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+                <div class="m-lens"><span class="m-lens-name">Job signals</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+                <div class="m-lens"><span class="m-lens-name">Policy</span><span class="m-lens-state present"><span class="swatch fill" aria-hidden="true"></span> Present</span></div>
+              </article>
+              <article class="m-claim">
+                <h4 class="m-claim-title">Wholesale displacement narrative</h4>
+                <div class="m-lens"><span class="m-lens-name">Labor (BLS)</span><span class="m-lens-state disagree"><span class="swatch fill" aria-hidden="true"></span> Disagreement</span></div>
+                <div class="m-lens"><span class="m-lens-name">Papers</span><span class="m-lens-state disagree"><span class="swatch fill" aria-hidden="true"></span> Disagreement</span></div>
+                <div class="m-lens"><span class="m-lens-name">Reports</span><span class="m-lens-state absent"><span class="swatch slash" aria-hidden="true"></span> Absent</span></div>
+                <div class="m-lens"><span class="m-lens-name">Job signals</span><span class="m-lens-state absent"><span class="swatch slash" aria-hidden="true"></span> Absent</span></div>
+                <div class="m-lens"><span class="m-lens-name">Policy</span><span class="m-lens-state absent"><span class="swatch slash" aria-hidden="true"></span> Absent</span></div>
+              </article>
+            </div>
+            <div class="support-bars" aria-labelledby="support-bars-title">
+              <div class="support-bars-head">
+                <h4 class="support-bars-title" id="support-bars-title">Present lenses per claim</h4>
+                <p class="support-bars-aside">Illustrative mockup tallies · from matrix above · max 5</p>
+              </div>
+              <div class="bar-chart" role="img" aria-label="Bar chart of present lens counts per major claim">
+                <div class="bar-row">
+                  <span class="bar-label">Assisted sourcing / screening</span>
+                  <div class="bar-track"><div class="bar-fill" style="--count: 4"></div></div>
+                  <span class="bar-count">4 present</span>
+                </div>
+                <div class="bar-row">
+                  <span class="bar-label">Task shift · oversight</span>
+                  <div class="bar-track"><div class="bar-fill" style="--count: 3"></div></div>
+                  <span class="bar-count">3 present</span>
+                </div>
+                <div class="bar-row">
+                  <span class="bar-label">Skill shift · funnel literacy</span>
+                  <div class="bar-track"><div class="bar-fill" style="--count: 3"></div></div>
+                  <span class="bar-count">3 present</span>
+                </div>
+                <div class="bar-row">
+                  <span class="bar-label">Ethical / regulatory durable</span>
+                  <div class="bar-track"><div class="bar-fill" style="--count: 2"></div></div>
+                  <span class="bar-count">2 present</span>
+                </div>
+                <div class="bar-row">
+                  <span class="bar-label">Two-year assisted hiring</span>
+                  <div class="bar-track"><div class="bar-fill" style="--count: 5"></div></div>
+                  <span class="bar-count">5 present</span>
+                </div>
+                <div class="bar-row">
+                  <span class="bar-label">Wholesale displacement</span>
+                  <div class="bar-track" aria-label="0 present lenses, 2 disagree">
+                    <div class="bar-fill" style="--count: 0"></div>
+                  </div>
+                  <span class="bar-count">0 present<span class="disagree-note">2 disagree</span></span>
+                </div>
+              </div>
+            </div>
+            <p class="viz-key">Lens publishers in corpus: BLS OOH · NBER · SHRM · Atlanta Fed (Lightcast postings) · DOL inclusive-hiring / worker-AI principles. EEOC enforcement context is adjacent landscape, not a loaded corpus row in this run.</p>
+          </section>
+
+          <section class="brief-section" id="sec-tasks" aria-labelledby="h-tasks">
+            <span class="sec-num">Section 04</span>
+            <h3 id="h-tasks">Task shifts</h3>
+            <ul class="claim-list">
+              <li>
+                <p style="margin:0;">Use assistants to draft and adapt outreach and job content while verifying accuracy, accessibility, and role relevance.</p>
+                <p class="claim-meta">EVIDENCE · nber-generative-ai-at-work-2023 · shrm-state-workplace-2024</p>
+                <div class="callout uncertainty" style="margin-top:0.65rem;">
+                  <span class="callout-label">Uncertainty</span>
+                  <p>Direct causal research is cross-occupation and may not transfer fully to recruiting.</p>
+                </div>
+              </li>
+              <li>
+                <p style="margin:0;">Spend more effort on structured intake, candidate relationship judgment, selection quality, and audit-ready oversight of screening tools.</p>
+                <p class="claim-meta">EVIDENCE · nber-generative-ai-at-work-2023 · shrm-state-workplace-2024 · dol-inclusive-ai-hiring-2024</p>
+              </li>
+            </ul>
+          </section>
+
+          <section class="brief-section" id="sec-skills" aria-labelledby="h-skills">
+            <span class="sec-num">Section 05</span>
+            <h3 id="h-skills">Skill shifts</h3>
+            <ul class="claim-list">
+              <li>
+                <p style="margin:0;">Build data literacy for funnel quality and adverse-impact signals rather than optimizing activity volume alone.</p>
+                <p class="claim-meta">EVIDENCE · atlanta-fed-ai-job-postings-2024 · dol-inclusive-ai-hiring-2024</p>
+                <div class="callout uncertainty" style="margin-top:0.65rem;">
+                  <span class="callout-label">Uncertainty</span>
+                  <p>Job-posting signals are selected vacancies and do not measure every employer.</p>
+                </div>
+              </li>
+              <li>
+                <p style="margin:0;">Develop human-AI workflow design, stakeholder influence, and ethical / regulatory reasoning for selection decisions.</p>
+                <p class="claim-meta">EVIDENCE · atlanta-fed-ai-job-postings-2024 · dol-ai-worker-principles-2024</p>
+              </li>
+            </ul>
+          </section>
+
+          <section class="brief-section viz-panel" id="sec-flow" aria-labelledby="h-flow">
+            <span class="sec-num">Section 06 · Visualization 03</span>
+            <h3 id="h-flow">Task → skill → durable change map</h3>
+            <p>One diagrammatic reading of how task redesign implies skill demand and which capabilities remain durable. Links are interpretive, not scored ranks.</p>
+            <div class="flow-map" role="img" aria-label="Flow from task shifts through skill shifts to durable capabilities">
+              <div class="flow-col tasks">
+                <div class="flow-col-head">Task shifts</div>
+                <ul>
+                  <li>Assisted outreach &amp; job content with human verification</li>
+                  <li>Structured intake &amp; selection oversight</li>
+                  <li>Audit-ready screening governance</li>
+                </ul>
+              </div>
+              <div class="flow-arrow" aria-hidden="true">→</div>
+              <div class="flow-col skills">
+                <div class="flow-col-head">Skill shifts</div>
+                <ul>
+                  <li>Funnel &amp; adverse-impact literacy</li>
+                  <li>Human-AI workflow design</li>
+                  <li>Stakeholder influence in hiring</li>
+                </ul>
+              </div>
+              <div class="flow-arrow" aria-hidden="true">→</div>
+              <div class="flow-col durable">
+                <div class="flow-col-head">Durable capabilities</div>
+                <ul>
+                  <li>Judgment under uncertainty</li>
+                  <li>Ethical &amp; regulatory reasoning</li>
+                  <li>Systems thinking</li>
+                  <li>Change facilitation</li>
+                </ul>
+              </div>
+            </div>
+            <p class="viz-key">Geometric markers: filled cobalt = tasks · filled navy = skills · outlined violet = durable. No percentages.</p>
+          </section>
+
+          <section class="brief-section" id="sec-durable" aria-labelledby="h-durable">
+            <span class="sec-num">Section 07</span>
+            <h3 id="h-durable">Durable capabilities</h3>
+            <p>Capabilities that remain valuable as assisted workflows expand. Importance is an evidence-led interpretation, not a measured rank ordering.</p>
+            <div class="tag-row" role="list">
+              <span class="tag durable" role="listitem">Judgment under uncertainty</span>
+              <span class="tag durable" role="listitem">Systems thinking</span>
+              <span class="tag durable" role="listitem">Data literacy</span>
+              <span class="tag durable" role="listitem">Stakeholder influence</span>
+              <span class="tag durable" role="listitem">Ethical &amp; regulatory reasoning</span>
+              <span class="tag durable" role="listitem">Change facilitation</span>
+              <span class="tag durable" role="listitem">Human-AI workflow design</span>
+            </div>
+            <div class="callout provenance" style="margin-top:1rem;">
+              <span class="callout-label">Provenance note</span>
+              <p>Ethical / regulatory and stakeholder items lean on policy + labor sources; others lean on research + reports.</p>
+            </div>
+          </section>
+
+          <section class="brief-section viz-panel" id="sec-scenario" aria-labelledby="h-scenario">
+            <span class="sec-num">Section 08 · Visualization 04</span>
+            <h3 id="h-scenario">Two-year scenario horizon</h3>
+            <p class="finding">By 2028-08-07, a typical U.S. Recruiter operates an assisted hiring workflow but remains accountable for job requirements, candidate communication, selection evidence, accessibility, and escalation.</p>
+            <div class="horizon" aria-label="Bounded two-year scenario horizon">
+              <div class="horizon-track">
+                <span class="horizon-marker now">2026-08-07 · as of</span>
+                <span class="horizon-marker mid">Uncertainty band · adoption speed unknown</span>
+                <span class="horizon-marker end">2028-08-07 · horizon</span>
+                <div class="horizon-now" aria-hidden="true"></div>
+                <div class="horizon-band" aria-hidden="true"></div>
+                <div class="horizon-end" aria-hidden="true"></div>
+              </div>
+              <div class="horizon-assumptions">
+                <div class="assumption">
+                  <h4>Bounded assumption</h4>
+                  <p>Direction (assisted workflows + human accountability) is more defensible than any single adoption speed.</p>
+                </div>
+                <div class="assumption uncertain">
+                  <h4>Uncertainty</h4>
+                  <p>Outcomes vary by employer, sector, workflow controls, and tool quality. This is a scenario, not a prediction.</p>
+                </div>
+                <div class="assumption">
+                  <h4>Not shown</h4>
+                  <p>No predictive line chart, confidence intervals with invented precision, or individual career forecasts.</p>
+                </div>
+                <div class="assumption">
+                  <h4>Evidence base</h4>
+                  <p>All five lenses contribute; skeptic panel keeps transfer limits visible.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="brief-section" id="sec-disagree" aria-labelledby="h-disagree">
+            <span class="sec-num">Section 09</span>
+            <h3 id="h-disagree">Disagreement &amp; counter-evidence</h3>
+            <ul class="claim-list">
+              <li>
+                <p style="margin:0;">BLS projects continued employment growth for Human Resources Specialists, countering claims of imminent wholesale displacement.</p>
+                <p class="claim-meta">EVIDENCE · bls-human-resources-specialists-2025</p>
+                <div class="callout disagreement" style="margin-top:0.65rem;">
+                  <span class="callout-label">Disagreement</span>
+                  <p>Growth can coexist with substantial task redesign. Occupational projections do not isolate the effect of AI.</p>
+                </div>
+              </li>
+              <li>
+                <p style="margin:0;">The NBER field evidence reports heterogeneous gains and studies customer support rather than People Operations roles.</p>
+                <p class="claim-meta">EVIDENCE · nber-generative-ai-at-work-2023</p>
+                <div class="callout disagreement" style="margin-top:0.65rem;">
+                  <span class="callout-label">Disagreement</span>
+                  <p>The result supports augmentation potential, not a role-specific effect size for recruiting.</p>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <section class="brief-section viz-panel" id="sec-sources" aria-labelledby="h-sources">
+            <span class="sec-num">Section 10 · Visualization 05</span>
+            <h3 id="h-sources">Source ledger</h3>
+            <p>Each source links to the claims it supports. Categories stay inside the approved five lenses.</p>
+
+            <div class="ledger-desktop" role="region" aria-label="Source ledger table">
+              <table class="ledger">
+                <thead>
+                  <tr>
+                    <th scope="col">Source ID</th>
+                    <th scope="col">Record</th>
+                    <th scope="col">Supports</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="src-id">bls-human-resources-specialists-2025</span></td>
+                    <td>
+                      <span class="src-cat">Public labor data · 2025-08-28</span>
+                      <p class="src-title">Human Resources Specialists — OOH</p>
+                      <p class="src-pub">U.S. Bureau of Labor Statistics</p>
+                    </td>
+                    <td class="claim-links">
+                      <a href="#sec-change">Primary change</a><br>
+                      <a href="#sec-durable">Durable (ethical / stakeholder)</a><br>
+                      <a href="#sec-scenario">Scenario</a><br>
+                      <a href="#sec-disagree">Counter: growth vs displacement</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="src-id">nber-generative-ai-at-work-2023</span></td>
+                    <td>
+                      <span class="src-cat">Research paper · 2023-04-01</span>
+                      <p class="src-title">Generative AI at Work</p>
+                      <p class="src-pub">National Bureau of Economic Research</p>
+                    </td>
+                    <td class="claim-links">
+                      <a href="#sec-tasks">Task shifts</a><br>
+                      <a href="#sec-scenario">Scenario</a><br>
+                      <a href="#sec-disagree">Counter: transfer limits</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="src-id">shrm-state-workplace-2024</span></td>
+                    <td>
+                      <span class="src-cat">Credible report · 2024-01-01</span>
+                      <p class="src-title">2023–2024 State of the Workplace</p>
+                      <p class="src-pub">Society for Human Resource Management</p>
+                    </td>
+                    <td class="claim-links">
+                      <a href="#sec-change">Primary change</a><br>
+                      <a href="#sec-tasks">Task shifts</a><br>
+                      <a href="#sec-scenario">Scenario</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="src-id">atlanta-fed-ai-job-postings-2024</span></td>
+                    <td>
+                      <span class="src-cat">Job posting signal · 2024-10-15</span>
+                      <p class="src-title">Recent Trends in the Demand for AI Skills</p>
+                      <p class="src-pub">Federal Reserve Bank of Atlanta</p>
+                    </td>
+                    <td class="claim-links">
+                      <a href="#sec-change">Primary change</a><br>
+                      <a href="#sec-skills">Skill shifts</a><br>
+                      <a href="#sec-scenario">Scenario</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="src-id">dol-inclusive-ai-hiring-2024</span></td>
+                    <td>
+                      <span class="src-cat">Official policy · 2024-09-24</span>
+                      <p class="src-title">AI &amp; Inclusive Hiring Framework</p>
+                      <p class="src-pub">U.S. Department of Labor</p>
+                    </td>
+                    <td class="claim-links">
+                      <a href="#sec-change">Primary change</a><br>
+                      <a href="#sec-tasks">Task shifts (oversight)</a><br>
+                      <a href="#sec-skills">Skill shifts</a><br>
+                      <a href="#sec-durable">Durable (ethical / regulatory)</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="src-id">dol-ai-worker-principles-2024</span></td>
+                    <td>
+                      <span class="src-cat">Official policy · 2024-05-16</span>
+                      <p class="src-title">Principles for worker well-being in AI adoption</p>
+                      <p class="src-pub">U.S. Department of Labor</p>
+                    </td>
+                    <td class="claim-links">
+                      <a href="#sec-skills">Skill shifts</a><br>
+                      <a href="#sec-durable">Durable capabilities</a><br>
+                      <a href="#sec-scenario">Scenario</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="ledger-mobile" aria-label="Source ledger cards">
+              <article class="ledger-card">
+                <span class="src-id">bls-human-resources-specialists-2025</span>
+                <span class="src-cat">Public labor data · 2025-08-28</span>
+                <p class="src-title">Human Resources Specialists — OOH</p>
+                <p class="src-pub">U.S. Bureau of Labor Statistics</p>
+                <p class="claim-links" style="margin-top:0.55rem;"><a href="#sec-change">Primary change</a> · <a href="#sec-disagree">Counter: growth</a> · <a href="#sec-scenario">Scenario</a></p>
+              </article>
+              <article class="ledger-card">
+                <span class="src-id">nber-generative-ai-at-work-2023</span>
+                <span class="src-cat">Research paper · 2023-04-01</span>
+                <p class="src-title">Generative AI at Work</p>
+                <p class="src-pub">National Bureau of Economic Research</p>
+                <p class="claim-links" style="margin-top:0.55rem;"><a href="#sec-tasks">Task shifts</a> · <a href="#sec-disagree">Transfer limits</a></p>
+              </article>
+              <article class="ledger-card">
+                <span class="src-id">shrm-state-workplace-2024</span>
+                <span class="src-cat">Credible report · 2024-01-01</span>
+                <p class="src-title">2023–2024 State of the Workplace</p>
+                <p class="src-pub">SHRM</p>
+                <p class="claim-links" style="margin-top:0.55rem;"><a href="#sec-change">Primary change</a> · <a href="#sec-tasks">Task shifts</a></p>
+              </article>
+              <article class="ledger-card">
+                <span class="src-id">atlanta-fed-ai-job-postings-2024</span>
+                <span class="src-cat">Job posting signal · 2024-10-15</span>
+                <p class="src-title">Recent Trends in the Demand for AI Skills</p>
+                <p class="src-pub">Federal Reserve Bank of Atlanta</p>
+                <p class="claim-links" style="margin-top:0.55rem;"><a href="#sec-change">Primary change</a> · <a href="#sec-skills">Skill shifts</a></p>
+              </article>
+              <article class="ledger-card">
+                <span class="src-id">dol-inclusive-ai-hiring-2024</span>
+                <span class="src-cat">Official policy · 2024-09-24</span>
+                <p class="src-title">AI &amp; Inclusive Hiring Framework</p>
+                <p class="src-pub">U.S. Department of Labor</p>
+                <p class="claim-links" style="margin-top:0.55rem;"><a href="#sec-tasks">Oversight tasks</a> · <a href="#sec-skills">Skill shifts</a></p>
+              </article>
+              <article class="ledger-card">
+                <span class="src-id">dol-ai-worker-principles-2024</span>
+                <span class="src-cat">Official policy · 2024-05-16</span>
+                <p class="src-title">Principles for worker well-being in AI adoption</p>
+                <p class="src-pub">U.S. Department of Labor</p>
+                <p class="claim-links" style="margin-top:0.55rem;"><a href="#sec-skills">Skill shifts</a> · <a href="#sec-durable">Durable</a></p>
+              </article>
+            </div>
+          </section>
+
+          <section class="brief-section" id="sec-approval" aria-labelledby="h-approval">
+            <span class="sec-num">Section 11 · Human gate</span>
+            <h3 id="h-approval">Research sign-off</h3>
+            <p>Approval is a formal research decision. It keeps the brief private and local. It does not publish, schedule, or trigger external side effects.</p>
+
+            <div class="approval">
+              <h4>Sign-off required to close run_7c21e9a4</h4>
+              <p class="approval-intro">Reviewer identity is required. Notes are optional. Reminder stays on this device. Consequence language is explicit so the gate cannot be mistaken for automation.</p>
+
+              <form class="form-grid" action="#" method="get" onsubmit="return false;">
+                <div class="form-grid two">
+                  <div class="field">
+                    <label for="reviewer">Reviewer</label>
+                    <input id="reviewer" name="reviewer" type="text" autocomplete="name" placeholder="Name or handle" required>
+                  </div>
+                  <div class="field">
+                    <label for="decision">Decision</label>
+                    <select id="decision" name="decision">
+                      <option value="approved">Approve private brief</option>
+                      <option value="changes_requested">Request changes</option>
+                      <option value="rejected">Reject draft</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="note">Optional note</label>
+                  <textarea id="note" name="note" placeholder="Scope caveats, follow-ups, or disagreement to retain…"></textarea>
+                </div>
+                <label class="check">
+                  <input type="checkbox" name="private_reminder" checked>
+                  <span>Private reminder: keep this draft local. Sources remain public; the decision and note stay on this machine.</span>
+                </label>
+                <div class="consequence">
+                  <strong>Explicit consequence</strong>
+                  Approving marks the run complete and retains a private, auditable brief. It does not publish externally, enable a scheduler, call paid APIs, or change prompts, policy, memory, or routing.
+                </div>
+                <div class="approval-actions">
+                  <button type="submit" class="btn rose">Record sign-off</button>
+                  <button type="button" class="btn ghost">Keep paused at gate</button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <p>Skills Vector · Evidence Atlas · Signal · design mockup only</p>
+    <p>
+      <a href="index.html">Index</a>
+      ·
+      <a href="evidence-atlas-control.html">Control</a>
+      ·
+      <a href="evidence-atlas-signal.html">Signal</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var links = document.querySelectorAll('.rail a[href^="#"]');
+      var sections = [];
+      links.forEach(function (link) {
+        var id = link.getAttribute('href').slice(1);
+        var el = document.getElementById(id);
+        if (el) sections.push({ link: link, el: el });
+      });
+      function setActive() {
+        var active = sections[0] && sections[0].link;
+        var y = window.scrollY + 96;
+        sections.forEach(function (item) {
+          if (item.el.offsetTop <= y) active = item.link;
+        });
+        links.forEach(function (link) {
+          link.classList.toggle('is-active', link === active);
+          if (link === active) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
+        });
+      }
+      if (sections.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        window.addEventListener('scroll', setActive, { passive: true });
+        setActive();
+      } else if (sections.length) {
+        setActive();
+      }
+    })();
+  </script>
+</body>
+</html>

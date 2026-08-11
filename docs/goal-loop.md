@@ -17,6 +17,7 @@ This is a decision loop, not a fixed backlog. Do not rewrite the loop or interna
 
 ## Guardrails and stop conditions
 
+- UI and visual work follow the locked Evidence Atlas Control system in `DESIGN.md` (tokens under `design-concepts/design-system/`). Do not revive archived explorations as product UI.
 - Approved scope: U.S. only; People Operations & Talent; HR Coordinator, Recruiter, and Learning & Development Specialist.
 - Approved evidence: public labor data, research papers, credible reports, selected job-posting signals, and official policy sources. Model benchmark news is not a labor-market leading indicator.
 - Every claim must retain sources. High-impact claims need independent corroboration or visible disagreement.

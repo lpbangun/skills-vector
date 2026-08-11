@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skills Vector — Design system</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../design-system/tokens.css" />
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      color: var(--navy);
+      background:
+        radial-gradient(ellipse 80% 55% at 12% -8%, color-mix(in srgb, var(--present-soft) 55%, transparent), transparent 58%),
+        radial-gradient(ellipse 70% 50% at 92% 8%, color-mix(in srgb, var(--navy) 7%, transparent), transparent 55%),
+        linear-gradient(180deg, var(--paper) 0%, var(--mineral) 40%, var(--mineral-deep) 100%);
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+    .kicker {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--graphite-soft);
+      margin: 0 0 0.65rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.85rem, 4vw, 2.4rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 0.75rem;
+    }
+    .lede {
+      margin: 0 0 1.75rem;
+      color: var(--navy-mid);
+      line-height: 1.55;
+      max-width: 48ch;
+    }
+    .card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--paper);
+      border: 1px solid var(--rule-soft);
+      border-top: 2px solid var(--present);
+      padding: 1.25rem 1.35rem;
+      margin-bottom: 1rem;
+      transition: background-color 180ms var(--ease-out), border-color 180ms var(--ease-out);
+    }
+    .card:hover,
+    .card:focus-visible {
+      background: color-mix(in srgb, var(--present-soft) 45%, var(--paper));
+      border-color: color-mix(in srgb, var(--present) 40%, var(--rule-soft));
+      outline: none;
+    }
+    .card strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    .card p { margin: 0; color: var(--navy-mid); font-size: 0.9375rem; line-height: 1.5; }
+    .card .path {
+      display: block;
+      margin-top: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--graphite-soft);
+    }
+    .swatches { display: flex; gap: 0.4rem; margin: 1.5rem 0 0.5rem; }
+    .swatches span { width: 1.1rem; height: 1.1rem; border: 1px solid var(--rule-soft); }
+    .meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--graphite-soft);
+      line-height: 1.5;
+    }
+    .meta a { color: var(--present-ink); }
+    ul.links {
+      list-style: none;
+      margin: 1.5rem 0 0;
+      padding: 0;
+      display: grid;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+    ul.links a { color: var(--graphite); }
+    ul.links a:hover { color: var(--present-ink); }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="kicker">Design system locked</p>
+    <h1>The Evidence Desk</h1>
+    <p class="lede">Skills Vector ships the Evidence Atlas Control world. All future UI follows <code>DESIGN.md</code> and the shared tokens.</p>
+
+    <a class="card" href="../app.html">
+      <strong>Open the app surface</strong>
+      <p>Canonical product mockup — roles, investigation, evidence viz, human approval gate.</p>
+      <span class="path">design-concepts/app.html</span>
+    </a>
+
+    <div class="swatches" aria-label="Semantic palette">
+      <span style="background:#1a4f8c" title="Present"></span>
+      <span style="background:#8a5c48" title="Uncertain"></span>
+      <span style="background:#8e2f45" title="Disagree"></span>
+      <span style="background:#0c1828" title="Navy"></span>
+      <span style="background:#f2f5f7; border-color:#bcc8d4" title="Mineral"></span>
+    </div>
+    <p class="meta">Present cobalt · Clay uncertainty · Wine disagreement · Ink navy · Mineral canvas</p>
+
+    <ul class="links">
+      <li><a href="../../DESIGN.md">DESIGN.md</a> — system of record</li>
+      <li><a href="../design-system/tokens.css">tokens.css</a> — CSS custom properties</li>
+      <li><a href="evidence-atlas-control.html">Control reference</a> — locked branch copy</li>
+      <li><a href="../archive/">Archive</a> — Signal, Pixel Ops, parent Atlas (not product)</li>
+    </ul>
+  </main>
+</body>
+</html>

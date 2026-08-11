@@ -1,0 +1,144 @@
+/**
+ * Skills Vector shared component primitives
+ * Follow /DESIGN.md — Control locked. No side-tab accents. Square corners.
+ */
+
+.sv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.55rem 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1.5px solid var(--navy);
+  border-radius: var(--radius);
+  background: var(--navy);
+  color: var(--white);
+  cursor: pointer;
+  text-align: center;
+  transition:
+    background-color var(--duration-fast) ease,
+    color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
+}
+
+.sv-btn:hover { background: var(--navy-mid); color: var(--white); }
+.sv-btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.sv-btn--secondary {
+  background: var(--white);
+  color: var(--navy);
+}
+.sv-btn--secondary:hover { background: var(--mineral-deep); }
+
+.sv-btn--present {
+  background: var(--present);
+  border-color: var(--present-ink);
+  color: var(--white);
+}
+.sv-btn--present:hover { background: var(--present-ink); color: var(--white); }
+
+.sv-btn--present-soft {
+  background: var(--present-soft);
+  border-color: var(--present);
+  color: var(--present-ink);
+}
+.sv-btn--present-soft:hover {
+  background: color-mix(in srgb, var(--present-soft) 70%, var(--present));
+}
+
+.sv-btn--disagree {
+  background: var(--disagree);
+  border-color: color-mix(in srgb, var(--disagree) 70%, var(--navy));
+  color: var(--white);
+}
+.sv-btn--disagree:hover {
+  background: color-mix(in srgb, var(--disagree) 75%, var(--navy));
+}
+
+.sv-btn--ghost {
+  background: transparent;
+  border-color: var(--rule-soft);
+  color: var(--graphite);
+}
+
+.sv-callout {
+  border: 1px solid var(--rule-soft);
+  border-top: 2px solid var(--graphite-soft);
+  border-radius: var(--radius);
+  padding: 0.75rem 0.9rem;
+  background: var(--mineral);
+  max-width: 44rem;
+}
+
+.sv-callout__label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--graphite-soft);
+}
+
+.sv-callout--uncertainty {
+  border-color: color-mix(in srgb, var(--uncertain) 45%, var(--rule-soft));
+  border-top-color: var(--uncertain);
+  background: var(--uncertain-soft);
+}
+.sv-callout--uncertainty .sv-callout__label { color: var(--uncertain); }
+
+.sv-callout--disagreement {
+  border-color: color-mix(in srgb, var(--disagree) 45%, var(--rule-soft));
+  border-top-color: var(--disagree);
+  background: var(--disagree-soft);
+}
+.sv-callout--disagreement .sv-callout__label { color: var(--disagree); }
+
+.sv-callout--provenance {
+  border-color: color-mix(in srgb, var(--analysis) 45%, var(--rule-soft));
+  border-top-color: var(--analysis);
+  background: var(--analysis-soft);
+}
+.sv-callout--provenance .sv-callout__label { color: var(--analysis); }
+
+.sv-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--graphite-soft);
+}
+
+.sv-finding {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--navy);
+  max-width: 44rem;
+}
+
+.sv-swatch {
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  border: 1px solid currentColor;
+  vertical-align: -1px;
+  margin-right: 0.3rem;
+}
+.sv-swatch--fill { background: currentColor; }
+.sv-swatch--slash {
+  background:
+    linear-gradient(135deg, transparent 46%, currentColor 46%, currentColor 54%, transparent 54%);
+  background-color: var(--white);
+  border-color: var(--graphite-soft);
+  color: var(--graphite-soft);
+}
