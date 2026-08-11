@@ -1,7 +1,7 @@
-"""Controlled LangGraph topology for the Skills Vector MVP.
+"""Controlled adaptive LangGraph topology for private role investigations.
 
-Handlers are injected by the application boundary. This module owns sequencing and
-the human gate; it does not grant tools, select providers, or modify its own policy.
+Handlers remain injected by the application boundary. This module owns sequencing
+and the human gate; it never selects providers or grants tools.
 """
 
 from __future__ import annotations
@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from typing import Annotated, Any, Callable, TypedDict
 
 from .domain import Claim, EvidenceSource, HumanReview, RoleBrief, RoleBriefRequest
+from .planning import InvestigationPlan
 
 
 NodeHandler = Callable[[dict[str, Any]], dict[str, Any]]
@@ -30,11 +31,13 @@ ANALYSIS_NODES = (
     "skeptic",
 )
 
-HUMAN_GATED_CHANGES = frozenset({"prompt", "policy", "memory", "model_router"})
+HUMAN_GATED_CHANGES = frozenset({"prompt", "policy", "memory", "model_router", "code"})
 
 
 class WorkflowState(TypedDict, total=False):
+    run_id: str
     request: RoleBriefRequest
+    plan: InvestigationPlan
     evidence: Annotated[list[EvidenceSource], operator.add]
     claims: Annotated[list[Claim], operator.add]
     draft: RoleBrief
@@ -45,27 +48,22 @@ class WorkflowState(TypedDict, total=False):
 @dataclass(frozen=True, slots=True)
 class WorkflowHandlers:
     scope_request: NodeHandler
-    research_public_labor_data: NodeHandler
-    research_papers: NodeHandler
-    research_credible_reports: NodeHandler
-    research_job_posting_signals: NodeHandler
-    research_official_policy: NodeHandler
+    plan_investigation: NodeHandler
+    research: NodeHandler
     validate_evidence: NodeHandler
-    analyze_change: NodeHandler
-    analyze_durable_capabilities: NodeHandler
-    analyze_uncertainty: NodeHandler
-    skeptic: NodeHandler
+    analyze: NodeHandler
     forecast_panel: NodeHandler
     draft_brief: NodeHandler
     human_review: NodeHandler
 
 
-WORKFLOW_EDGES: tuple[tuple[str | tuple[str, ...], str], ...] = (
+WORKFLOW_EDGES: tuple[tuple[str, str], ...] = (
     ("START", "scope_request"),
-    ("scope_request", RESEARCH_NODES),
-    (RESEARCH_NODES, "validate_evidence"),
-    ("validate_evidence", ANALYSIS_NODES),
-    (ANALYSIS_NODES, "forecast_panel"),
+    ("scope_request", "plan_investigation"),
+    ("plan_investigation", "research"),
+    ("research", "validate_evidence"),
+    ("validate_evidence", "analyze"),
+    ("analyze", "forecast_panel"),
     ("forecast_panel", "draft_brief"),
     ("draft_brief", "human_review"),
     ("human_review", "END"),
@@ -73,26 +71,29 @@ WORKFLOW_EDGES: tuple[tuple[str | tuple[str, ...], str], ...] = (
 
 
 def build_graph(handlers: WorkflowHandlers, *, checkpointer: Any = None) -> Any:
-    """Compile the controlled graph, pausing before the human-review node.
-
-    No default handlers exist deliberately: the graph caller must explicitly bind
-    every narrow capability and its allowed tools.
-    """
+    """Compile the adaptive graph, pausing before the human-review node."""
 
     from langgraph.graph import END, START, StateGraph
 
     graph = StateGraph(WorkflowState)
-    for name in ("scope_request", *RESEARCH_NODES, "validate_evidence", *ANALYSIS_NODES,
-                 "forecast_panel", "draft_brief", "human_review"):
+    for name in (
+        "scope_request",
+        "plan_investigation",
+        "research",
+        "validate_evidence",
+        "analyze",
+        "forecast_panel",
+        "draft_brief",
+        "human_review",
+    ):
         graph.add_node(name, getattr(handlers, name))
 
     graph.add_edge(START, "scope_request")
-    for node in RESEARCH_NODES:
-        graph.add_edge("scope_request", node)
-    graph.add_edge(list(RESEARCH_NODES), "validate_evidence")
-    for node in ANALYSIS_NODES:
-        graph.add_edge("validate_evidence", node)
-    graph.add_edge(list(ANALYSIS_NODES), "forecast_panel")
+    graph.add_edge("scope_request", "plan_investigation")
+    graph.add_edge("plan_investigation", "research")
+    graph.add_edge("research", "validate_evidence")
+    graph.add_edge("validate_evidence", "analyze")
+    graph.add_edge("analyze", "forecast_panel")
     graph.add_edge("forecast_panel", "draft_brief")
     graph.add_edge("draft_brief", "human_review")
     graph.add_edge("human_review", END)

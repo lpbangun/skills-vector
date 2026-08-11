@@ -6,7 +6,7 @@ Skills Vector is a private-first occupational intelligence MVP for the U.S. Peop
 - Recruiter
 - Learning & Development Specialist
 
-The initial foundation encodes the evidence, scope, uncertainty, and human-review rules for one updatable role brief. It also defines the controlled LangGraph workflow boundary without configuring model providers, credentials, schedulers, storage, deployment, or a public UI.
+The operating loop persists run events, artifacts, and an evidence backlog; plans a bounded subset of approved research lenses; drafts a private role brief; and pauses before human review. Research and analysis use an injected agent-runtime adapter. Offline work defaults to the deterministic stub; Composer 2.5 through the optional Cursor Python SDK is selected only when the SDK and `CURSOR_API_KEY` are already available.
 
 ## Design system
 
@@ -32,7 +32,22 @@ uv pip install --python .venv/bin/python -e .
 .venv/bin/python -m compileall -q src tests
 ```
 
-LangGraph is a runtime dependency, but the contract tests are offline and do not make model or network calls. The graph factory accepts narrow, injected handlers so later tool access stays controlled by the workflow.
+LangGraph is a runtime dependency, but the default test and local paths are offline and make no model or network calls. The graph factory accepts narrow, injected handlers, and `AgentRuntime` owns provider selection. Weekly scout ingestion only queues evidence candidates; it cannot write claims or mutate brief privacy.
+
+## Private Recruiter loop
+
+```python
+from datetime import date
+from skills_vector.operating_loop import run_recruiter_investigation
+from skills_vector.persistence import InvestigationStore
+
+with InvestigationStore("investigations.sqlite") as store:
+    result = run_recruiter_investigation(store, as_of=date.today())
+    assert result.paused_before == "human_review"
+    assert result.draft.private
+```
+
+Inspect `result.events` and `result.artifacts` for the ordered per-node trail. Reusing the same SQLite store lets later runs skip incorporated fingerprints. No scheduler or publication path is included.
 
 ## Current boundary
 
