@@ -172,33 +172,50 @@ class CursorComposerRuntime:
 
     @staticmethod
     def _decode(raw: str) -> AgentResult:
-        data = json.loads(raw)
+        try:
+            data = json.loads(raw)
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"Composer returned invalid JSON: {exc}") from exc
         evidence = tuple(
-            EvidenceSource(
-                source_id=item["source_id"],
-                category=EvidenceCategory(item["category"]),
-                title=item["title"],
-                publisher=item["publisher"],
-                url=item["url"],
-                published_on=date.fromisoformat(item["published_on"]) if item.get("published_on") else None,
-                retrieved_at=datetime.fromisoformat(item["retrieved_at"]),
-                geography=item.get("geography", "US"),
-            )
+            CursorComposerRuntime._decode_evidence(item)
             for item in data.get("evidence", ())
         )
         claims = tuple(
-            Claim(
-                claim_id=item["claim_id"],
-                kind=ClaimKind(item["kind"]),
-                statement=item["statement"],
-                evidence_ids=tuple(item["evidence_ids"]),
-                impact=ClaimImpact(item.get("impact", ClaimImpact.ROUTINE.value)),
-                uncertainty_note=item["uncertainty_note"],
-                disagreement_note=item.get("disagreement_note", ""),
-            )
+            CursorComposerRuntime._decode_claim(item)
             for item in data.get("claims", ())
         )
         return AgentResult(evidence, claims, data.get("text", ""), data.get("metadata", {}))
+
+    @staticmethod
+    def _decode_evidence(item: dict[str, Any]) -> EvidenceSource:
+        missing = [k for k in ("source_id", "category", "title", "publisher", "url", "retrieved_at") if k not in item]
+        if missing:
+            raise ValueError(f"Composer evidence item missing required fields: {', '.join(missing)}")
+        return EvidenceSource(
+            source_id=item["source_id"],
+            category=EvidenceCategory(item["category"]),
+            title=item["title"],
+            publisher=item["publisher"],
+            url=item["url"],
+            published_on=date.fromisoformat(item["published_on"]) if item.get("published_on") else None,
+            retrieved_at=datetime.fromisoformat(item["retrieved_at"]),
+            geography=item.get("geography", "US"),
+        )
+
+    @staticmethod
+    def _decode_claim(item: dict[str, Any]) -> Claim:
+        missing = [k for k in ("claim_id", "kind", "statement", "evidence_ids", "uncertainty_note") if k not in item]
+        if missing:
+            raise ValueError(f"Composer claim item missing required fields: {', '.join(missing)}")
+        return Claim(
+            claim_id=item["claim_id"],
+            kind=ClaimKind(item["kind"]),
+            statement=item["statement"],
+            evidence_ids=tuple(item["evidence_ids"]),
+            impact=ClaimImpact(item.get("impact", ClaimImpact.ROUTINE.value)),
+            uncertainty_note=item["uncertainty_note"],
+            disagreement_note=item.get("disagreement_note", ""),
+        )
 
 
 def select_runtime(

@@ -18,7 +18,6 @@ from .workflow import ANALYSIS_NODES, WorkflowHandlers, build_graph
 @dataclass(frozen=True, slots=True)
 class ScoutCandidate:
     source: EvidenceSource
-    content_hash: str
 
 
 @dataclass(frozen=True, slots=True)
@@ -48,7 +47,7 @@ class WeeklyDeltaScout:
             if source.geography != request.geography:
                 raise ValueError("scout candidate is outside the request geography")
             item, created = self.store.enqueue_candidate(
-                request.role, source.category, source, candidate.content_hash
+                request.role, source.category, source, _content_hash(source)
             )
             if created:
                 inserted.append(item.candidate_id)
@@ -124,30 +123,32 @@ class InvestigationHandlers:
             for item in candidate_items:
                 self.store.transition_backlog(item.candidate_id, BacklogState.RESEARCHING)
             self._event(state, step.node, "started", details={"depth": step.depth.value, "candidate_ids": step.candidate_ids})
-            result = self.runtime.run(
-                AgentRequest(
-                    state["run_id"], step.node, request, step.depth.value, step.candidate_ids,
-                    candidate_sources=tuple(item.source for item in candidate_items),
+            try:
+                result = self.runtime.run(
+                    AgentRequest(
+                        state["run_id"], step.node, request, step.depth.value, step.candidate_ids,
+                        candidate_sources=tuple(item.source for item in candidate_items),
+                    )
                 )
-            )
-            accepted: list[EvidenceSource] = []
-            for source in result.evidence:
-                if source.category is not step.lens:
-                    raise ValueError(f"{step.node} returned evidence for another lens")
-                item, _created = self.store.enqueue_candidate(
-                    request.role, source.category, source, _content_hash(source)
-                )
-                if item.state is BacklogState.REJECTED:
-                    continue
-                if item.state is BacklogState.QUEUED:
-                    item = self.store.transition_backlog(item.candidate_id, BacklogState.RESEARCHING)
-                if item.state is BacklogState.RESEARCHING:
-                    self.store.transition_backlog(item.candidate_id, BacklogState.INCORPORATED)
-                accepted.append(source)
-            for item in candidate_items:
-                current = self.store.backlog_item(item.candidate_id)
-                if current.state is BacklogState.RESEARCHING:
-                    self.store.transition_backlog(item.candidate_id, BacklogState.QUEUED)
+                accepted: list[EvidenceSource] = []
+                for source in result.evidence:
+                    if source.category is not step.lens:
+                        raise ValueError(f"{step.node} returned evidence for another lens")
+                    item, _created = self.store.enqueue_candidate(
+                        request.role, source.category, source, _content_hash(source)
+                    )
+                    if item.state is BacklogState.REJECTED:
+                        continue
+                    if item.state is BacklogState.QUEUED:
+                        item = self.store.transition_backlog(item.candidate_id, BacklogState.RESEARCHING)
+                    if item.state is BacklogState.RESEARCHING:
+                        self.store.transition_backlog(item.candidate_id, BacklogState.INCORPORATED)
+                    accepted.append(source)
+            finally:
+                for item in candidate_items:
+                    current = self.store.backlog_item(item.candidate_id)
+                    if current.state is BacklogState.RESEARCHING:
+                        self.store.transition_backlog(item.candidate_id, BacklogState.QUEUED)
             gathered.extend(accepted)
             artifact_ids: list[str] = []
             if accepted:
@@ -297,7 +298,7 @@ def _content_hash(source: EvidenceSource) -> str:
     value = "\x1f".join(
         (
             source.url,
-            source.publisher,
+            source.publisher.casefold(),
             source.published_on.isoformat() if source.published_on else "",
             source.title,
         )

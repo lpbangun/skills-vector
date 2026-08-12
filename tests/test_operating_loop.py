@@ -121,7 +121,7 @@ class OperatingLoopTests(unittest.TestCase):
         source = self.source("weekly-delta", EvidenceCategory.CREDIBLE_REPORT)
         request = RoleBriefRequest(Role.RECRUITER, self.as_of)
 
-        candidate_ids = WeeklyDeltaScout(self.store).enqueue(request, (ScoutCandidate(source, "delta-hash"),))
+        candidate_ids = WeeklyDeltaScout(self.store).enqueue(request, (ScoutCandidate(source),))
         plan = AdaptivePlanner().plan(request, self.store.list_backlog(Role.RECRUITER), has_prior_brief=True)
 
         self.assertEqual(len(candidate_ids), 1)
@@ -165,7 +165,7 @@ class OperatingLoopTests(unittest.TestCase):
     def test_rejected_fingerprint_cannot_reenter_draft(self) -> None:
         rejected = self.source("rejected", EvidenceCategory.PUBLIC_LABOR_DATA)
         content_value = "\x1f".join(
-            (rejected.url, rejected.publisher, rejected.published_on.isoformat(), rejected.title)
+            (rejected.url, rejected.publisher.casefold(), rejected.published_on.isoformat(), rejected.title)
         )
         item, _ = self.store.enqueue_candidate(
             Role.RECRUITER,
@@ -189,6 +189,44 @@ class OperatingLoopTests(unittest.TestCase):
 
         self.assertNotIn(rejected.source_id, {source.source_id for source in result.draft.sources})
         self.assertEqual(self.store.backlog_item(item.candidate_id).state, BacklogState.REJECTED)
+
+    def test_scout_candidate_is_incorporated_without_duplicate_on_research(self) -> None:
+        runtime = DeterministicStubRuntime()
+        run_recruiter_investigation(self.store, as_of=self.as_of, runtime=runtime)
+        source = self.source("weekly-delta", EvidenceCategory.CREDIBLE_REPORT)
+        request = RoleBriefRequest(Role.RECRUITER, self.as_of)
+        candidate_ids = WeeklyDeltaScout(self.store).enqueue(request, (ScoutCandidate(source),))
+        self.assertEqual(len(candidate_ids), 1)
+
+        result = run_recruiter_investigation(self.store, as_of=self.as_of, runtime=runtime)
+
+        item = self.store.backlog_item(candidate_ids[0])
+        self.assertEqual(item.state, BacklogState.INCORPORATED)
+        credible_items = [
+            i for i in self.store.list_backlog(Role.RECRUITER) if i.lens is EvidenceCategory.CREDIBLE_REPORT
+        ]
+        self.assertEqual(len(credible_items), 1)
+        self.assertIn(source.source_id, {s.source_id for s in result.draft.sources})
+
+    def test_research_reverts_researching_items_on_runtime_failure(self) -> None:
+        runtime = DeterministicStubRuntime()
+        run_recruiter_investigation(self.store, as_of=self.as_of, runtime=runtime)
+        source = self.source("weekly-delta", EvidenceCategory.CREDIBLE_REPORT)
+        request = RoleBriefRequest(Role.RECRUITER, self.as_of)
+        candidate_ids = WeeklyDeltaScout(self.store).enqueue(request, (ScoutCandidate(source),))
+
+        def fail_on_research(req):
+            if req.node == "research_credible_reports":
+                raise RuntimeError("simulated agent failure")
+            return runtime.run(req)
+
+        with self.assertRaisesRegex(RuntimeError, "simulated agent failure"):
+            run_recruiter_investigation(
+                self.store, as_of=self.as_of, runtime=CallableRuntime(fail_on_research)
+            )
+
+        item = self.store.backlog_item(candidate_ids[0])
+        self.assertEqual(item.state, BacklogState.QUEUED)
 
     def test_runtime_selection_is_offline_by_default_and_omp_is_swappable(self) -> None:
         with patch.dict("os.environ", {}, clear=True), patch("importlib.util.find_spec", return_value=None):
