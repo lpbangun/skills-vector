@@ -16,6 +16,7 @@ from .domain import (
     ScenarioHorizon,
     validate_brief,
 )
+from .operating_loop import run_investigation, run_recruiter_investigation
 
 __all__ = [
     "APPROVED_ROLES",
@@ -32,5 +33,6 @@ __all__ = [
     "Scenario",
     "ScenarioHorizon",
     "validate_brief",
+    "run_investigation",
+    "run_recruiter_investigation",
 ]
-

@@ -1601,6 +1601,72 @@
     }
     .approval-actions .btn { width: auto; min-width: 10rem; }
 
+    .api-panel {
+      border: 1px solid var(--rule);
+      border-top: 2px solid var(--present);
+      background: color-mix(in srgb, var(--present-soft) 24%, var(--paper));
+      padding: 1rem;
+      margin: 0 0 1.25rem;
+    }
+    .api-panel[aria-busy="true"] { opacity: 0.72; }
+    .api-panel-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      margin-bottom: 0.8rem;
+    }
+    .api-panel h3 { font-family: var(--font-serif); font-size: 1.2rem; margin: 0; }
+    .api-message { color: var(--navy-mid); margin: 0; overflow-wrap: anywhere; }
+    .api-message[data-state="error"] { color: var(--disagree); }
+    .api-message[data-state="success"] { color: var(--present-ink); }
+    .api-results {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(15rem, 0.65fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .api-results[hidden] { display: none; }
+    .api-results h4 {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0 0 0.45rem;
+      color: var(--graphite);
+    }
+    .api-results ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.45rem; }
+    .api-results li { border-top: 1px solid var(--rule-soft); padding-top: 0.45rem; overflow-wrap: anywhere; }
+    .run-launcher {
+      display: grid;
+      grid-template-columns: minmax(12rem, 1fr) minmax(10rem, 0.65fr) auto;
+      gap: 0.75rem;
+      align-items: end;
+      border: 1px solid var(--rule);
+      border-top: 2px solid var(--present);
+      background: var(--paper);
+      padding: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .run-launcher .field { min-width: 0; }
+    .run-options { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0.6rem 1.25rem; }
+    .run-options .check { margin: 0; }
+    .form-feedback {
+      min-height: 1.4rem;
+      margin: 0.75rem 0 0;
+      font-size: 0.9375rem;
+      color: var(--graphite);
+      overflow-wrap: anywhere;
+    }
+    .form-feedback[data-state="error"] { color: var(--disagree); }
+    .form-feedback[data-state="success"] { color: var(--present-ink); }
+    button[disabled], .btn[aria-disabled="true"] { cursor: wait; opacity: 0.58; }
+    @media (max-width: 720px) {
+      .run-launcher, .api-results { grid-template-columns: 1fr; }
+      .run-launcher .btn { width: 100%; }
+    }
+
     footer {
       max-width: var(--max);
       margin: 0 auto;
@@ -1692,7 +1758,7 @@
         <span>COORD · 38.9°N / 77.0°W (reference)</span>
         <span>LENSES · 5 approved</span>
         <span>STAGES · 11</span>
-        <span>MODE · deterministic · offline</span>
+        <span id="runtime-mode">MODE · connecting</span>
       </div>
     </header>
 
@@ -1704,6 +1770,27 @@
         </div>
         <p class="section-note">Deterministic offline analysis · credential-free corpus. Comparison reads across status, history, coverage, and next action — not three oversized cards.</p>
       </div>
+
+      <form class="run-launcher" id="run-launcher">
+        <div class="field">
+          <label for="run-role">Role</label>
+          <select id="run-role" name="role">
+            <option value="hr_coordinator">HR Coordinator</option>
+            <option value="recruiter" selected>Recruiter</option>
+            <option value="learning_and_development_specialist">L&amp;D Specialist</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="run-as-of">Evidence as of</label>
+          <input id="run-as-of" name="as_of" type="date" required>
+        </div>
+        <button class="btn present" id="launch-run" type="submit">Launch private investigation</button>
+        <div class="run-options">
+          <label class="check"><input type="checkbox" name="full_refresh"> <span>Refresh every approved lens</span></label>
+          <label class="check"><input type="checkbox" name="open_disagreements"> <span>Run skeptic pass</span></label>
+        </div>
+      </form>
+      <p class="form-feedback" id="launch-feedback" role="status" aria-live="polite">Choose a role and launch a private run. No data leaves this application unless the server runtime is explicitly configured for Composer.</p>
 
       <div class="compare compare-desktop" role="region" aria-label="Role comparison table">
         <table class="compare-table">
@@ -1753,19 +1840,19 @@
               <th scope="row" class="row-label">Next action</th>
               <td>
                 <div class="actions">
-                  <a class="btn" href="#roles-title">Launch investigation</a>
-                  <a class="btn secondary" href="#roles-title">Inspect latest</a>
+                  <a class="btn" href="#run-launcher" data-run-action="launch" data-role="hr_coordinator">Launch investigation</a>
+                  <a class="btn secondary" href="#investigation" data-run-action="inspect" data-role="hr_coordinator">Inspect latest</a>
                 </div>
               </td>
               <td>
                 <div class="actions">
-                  <a class="btn present" href="#sec-approval">Continue at gate</a>
-                  <a class="btn present-soft" href="#investigation">Launch new run</a>
+                  <a class="btn present" href="#sec-approval" data-run-action="inspect" data-role="recruiter" data-review-target="true">Continue at gate</a>
+                  <a class="btn present-soft" href="#run-launcher" data-run-action="launch" data-role="recruiter">Launch new run</a>
                 </div>
               </td>
               <td>
                 <div class="actions">
-                  <a class="btn" href="#roles-title">Launch investigation</a>
+                  <a class="btn" href="#run-launcher" data-run-action="launch" data-role="learning_and_development_specialist">Launch investigation</a>
                 </div>
               </td>
             </tr>
@@ -1790,8 +1877,8 @@
             <dd>All 5 lenses present · uncertainty retained</dd>
           </dl>
           <div class="actions">
-            <a class="btn" href="#roles-title">Launch investigation</a>
-            <a class="btn secondary" href="#roles-title">Inspect latest</a>
+            <a class="btn" href="#run-launcher" data-run-action="launch" data-role="hr_coordinator">Launch investigation</a>
+            <a class="btn secondary" href="#investigation" data-run-action="inspect" data-role="hr_coordinator">Inspect latest</a>
           </div>
         </article>
         <article class="role-stack">
@@ -1810,8 +1897,8 @@
             <dd>All 5 lenses · disagreement retained on demand narrative</dd>
           </dl>
           <div class="actions">
-            <a class="btn present" href="#sec-approval">Continue at gate</a>
-            <a class="btn present-soft" href="#investigation">Launch new run</a>
+            <a class="btn present" href="#sec-approval" data-run-action="inspect" data-role="recruiter" data-review-target="true">Continue at gate</a>
+            <a class="btn present-soft" href="#run-launcher" data-run-action="launch" data-role="recruiter">Launch new run</a>
           </div>
         </article>
         <article class="role-stack">
@@ -1830,7 +1917,7 @@
             <dd>Corpus ready · not yet run</dd>
           </dl>
           <div class="actions">
-            <a class="btn" href="#roles-title">Launch investigation</a>
+            <a class="btn" href="#run-launcher" data-run-action="launch" data-role="learning_and_development_specialist">Launch investigation</a>
           </div>
         </article>
       </div>
@@ -1846,15 +1933,35 @@
     <article class="investigation" id="investigation" aria-labelledby="inv-title">
       <header class="inv-head">
         <div>
-          <p class="inv-kicker">Open investigation · Provenance active</p>
+          <p class="inv-kicker" id="run-kicker">Reference investigation · launch or inspect a run for live data</p>
           <h2 id="inv-title">Recruiter · Role brief</h2>
         </div>
         <div class="inv-meta">
-          <span class="status st-gate"><span class="swatch fill" aria-hidden="true"></span> Awaiting approval</span>
-          <span class="mono">run_7c21e9a4 · 2026-08-07T14:22:01Z</span>
+          <span class="status st-gate" id="run-status"><span class="swatch fill" aria-hidden="true"></span> Reference only</span>
+          <span class="mono" id="run-meta">No live run loaded</span>
           <span class="mono">PRIVATE DRAFT · LOCAL ONLY</span>
         </div>
       </header>
+
+      <section class="api-panel" id="api-panel" aria-labelledby="api-panel-title" aria-busy="false">
+        <div class="api-panel-head">
+          <h3 id="api-panel-title">Live investigation connection</h3>
+          <span class="mono" id="api-run-id">API · waiting</span>
+        </div>
+        <p class="api-message" id="api-message" role="status" aria-live="polite">The atlas below is the locked Recruiter reference. Launch or inspect a run to load persisted backend evidence here.</p>
+        <div class="api-results" id="api-results" hidden>
+          <div>
+            <h4>Private summary</h4>
+            <p class="api-message" id="api-summary"></p>
+            <h4 style="margin-top:0.9rem;">Claims</h4>
+            <ul id="api-claims"></ul>
+          </div>
+          <div>
+            <h4>Run evidence</h4>
+            <ul id="api-sources"></ul>
+          </div>
+        </div>
+      </section>
 
       <!-- Visualization 02 near top of open brief (provenance) -->
       <section class="viz" aria-labelledby="viz02-title">
@@ -2416,10 +2523,10 @@
             <p>Approval is a formal research decision. It keeps the brief private and local. It does not publish, schedule, or trigger external side effects.</p>
 
             <div class="approval">
-              <h4>Sign-off required to close run_7c21e9a4</h4>
+              <h4 id="review-title">Load a live run to record sign-off</h4>
               <p class="approval-intro">Reviewer identity is required. Notes are optional. Reminder stays on this device. Consequence language is explicit so the gate cannot be mistaken for automation.</p>
 
-              <form class="form-grid" action="#" method="get" onsubmit="return false;">
+              <form class="form-grid" id="review-form">
                 <div class="form-grid two">
                   <div class="field">
                     <label for="reviewer">Reviewer</label>
@@ -2439,7 +2546,7 @@
                   <textarea id="note" name="note" placeholder="Scope caveats, follow-ups, or disagreement to retain…"></textarea>
                 </div>
                 <label class="check">
-                  <input type="checkbox" name="private_reminder" checked>
+                  <input type="checkbox" name="private_reminder" checked required>
                   <span>Private reminder: keep this draft local. Sources remain public; the decision and note stay on this machine.</span>
                 </label>
                 <div class="consequence">
@@ -2447,9 +2554,10 @@
                   Approving marks the run complete and retains a private, auditable brief. It does not publish externally, enable a scheduler, call paid APIs, or change prompts, policy, memory, or routing.
                 </div>
                 <div class="approval-actions">
-                  <button type="submit" class="btn disagree">Record sign-off</button>
-                  <button type="button" class="btn ghost">Keep paused at gate</button>
+                  <button type="submit" class="btn disagree" id="record-review" disabled>Record sign-off</button>
+                  <button type="button" class="btn ghost" id="keep-paused">Keep paused at gate</button>
                 </div>
+                <p class="form-feedback" id="review-feedback" role="status" aria-live="polite">A persisted run awaiting human review is required.</p>
               </form>
             </div>
           </section>
@@ -2464,6 +2572,184 @@
 
   <script>
     (function () {
+      var currentRunId = null;
+      var roleNames = {
+        hr_coordinator: 'HR Coordinator',
+        recruiter: 'Recruiter',
+        learning_and_development_specialist: 'L&D Specialist'
+      };
+      var launcher = document.getElementById('run-launcher');
+      var roleField = document.getElementById('run-role');
+      var asOfField = document.getElementById('run-as-of');
+      var launchButton = document.getElementById('launch-run');
+      var launchFeedback = document.getElementById('launch-feedback');
+      var reviewForm = document.getElementById('review-form');
+      var reviewButton = document.getElementById('record-review');
+      var reviewFeedback = document.getElementById('review-feedback');
+      var apiPanel = document.getElementById('api-panel');
+
+      asOfField.value = new Date().toISOString().slice(0, 10);
+
+      function setFeedback(element, message, state) {
+        element.textContent = message;
+        element.dataset.state = state || '';
+      }
+
+      async function requestJson(url, options) {
+        var response = await fetch(url, options);
+        var payload = await response.json().catch(function () { return {}; });
+        if (!response.ok) {
+          var detail = payload.detail;
+          if (Array.isArray(detail)) detail = detail.map(function (item) { return item.msg; }).join('; ');
+          throw new Error(detail || ('Request failed with status ' + response.status));
+        }
+        return payload;
+      }
+
+      function statusLabel(value) {
+        return (value || 'awaiting_human_review').replace(/_/g, ' ');
+      }
+
+      function setRunStatus(value) {
+        var element = document.getElementById('run-status');
+        element.replaceChildren();
+        var swatch = document.createElement('span');
+        swatch.className = 'swatch fill';
+        swatch.setAttribute('aria-hidden', 'true');
+        element.append(swatch, document.createTextNode(' ' + statusLabel(value)));
+      }
+
+      function replaceList(element, items) {
+        element.replaceChildren();
+        items.forEach(function (item) { element.appendChild(item); });
+      }
+
+      function renderRun(result, events) {
+        var brief = result.draft || result.brief || result;
+        var request = brief.request;
+        var roleName = roleNames[request.role] || request.role;
+        var runStatus = result.status || 'awaiting_human_review';
+        currentRunId = result.run_id || currentRunId;
+        document.getElementById('inv-title').textContent = roleName + ' · Role brief';
+        document.getElementById('run-kicker').textContent = 'Live investigation · persisted provenance';
+        setRunStatus(runStatus);
+        document.getElementById('run-meta').textContent = currentRunId + ' · as of ' + request.as_of;
+        document.getElementById('api-run-id').textContent = currentRunId;
+        document.getElementById('api-summary').textContent = brief.summary;
+        replaceList(document.getElementById('api-claims'), brief.claims.map(function (claim) {
+          var item = document.createElement('li');
+          item.textContent = claim.statement + ' — ' + claim.uncertainty_note;
+          return item;
+        }));
+        replaceList(document.getElementById('api-sources'), brief.sources.map(function (source) {
+          var item = document.createElement('li');
+          var link = document.createElement('a');
+          link.href = source.url;
+          link.target = '_blank';
+          link.rel = 'noreferrer';
+          link.textContent = source.title;
+          item.append(link, document.createTextNode(' · ' + source.publisher));
+          return item;
+        }));
+        document.getElementById('api-results').hidden = false;
+        document.getElementById('review-title').textContent = 'Sign-off required to close ' + currentRunId;
+        reviewButton.disabled = runStatus !== 'awaiting_human_review';
+        var eventCount = events ? events.length : (result.events ? result.events.length : 0);
+        setFeedback(document.getElementById('api-message'), eventCount + ' provenance events loaded. The detailed atlas remains the locked visual reference; this panel contains the persisted run payload.', 'success');
+        setFeedback(reviewFeedback, reviewButton.disabled ? 'This run is already closed with status: ' + statusLabel(runStatus) + '.' : 'Reviewer identity is required. The decision remains private and local.', '');
+      }
+
+      launcher.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        launchButton.disabled = true;
+        apiPanel.setAttribute('aria-busy', 'true');
+        setFeedback(launchFeedback, 'Running the bounded investigation…', '');
+        var data = new FormData(launcher);
+        try {
+          var result = await requestJson('/api/v1/investigations', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              role: data.get('role'),
+              as_of: data.get('as_of'),
+              full_refresh: data.has('full_refresh'),
+              open_disagreements: data.has('open_disagreements')
+            })
+          });
+          renderRun(result);
+          setFeedback(launchFeedback, 'Private run created and paused at the human gate.', 'success');
+          document.getElementById('investigation').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } catch (error) {
+          setFeedback(launchFeedback, error.message + ' Check the API configuration and try again.', 'error');
+        } finally {
+          launchButton.disabled = false;
+          apiPanel.setAttribute('aria-busy', 'false');
+        }
+      });
+
+      document.querySelectorAll('[data-run-action]').forEach(function (control) {
+        control.addEventListener('click', async function (event) {
+          event.preventDefault();
+          var role = control.dataset.role;
+          roleField.value = role;
+          if (control.dataset.runAction === 'launch') {
+            launcher.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+          }
+          setFeedback(launchFeedback, 'Loading the latest ' + roleNames[role] + ' run…', '');
+          try {
+            var runs = await requestJson('/api/v1/investigations?role=' + encodeURIComponent(role) + '&limit=1');
+            if (!runs.length) throw new Error('No persisted run exists for this role.');
+            currentRunId = runs[0].run_id;
+            var pair = await Promise.all([
+              requestJson('/api/v1/investigations/' + currentRunId + '/brief'),
+              requestJson('/api/v1/investigations/' + currentRunId + '/events')
+            ]);
+            renderRun({ run_id: currentRunId, brief: pair[0], status: runs[0].status }, pair[1]);
+            var target = control.dataset.reviewTarget ? 'sec-approval' : 'investigation';
+            document.getElementById(target).scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } catch (error) {
+            setFeedback(launchFeedback, error.message + ' Launch a new investigation to continue.', 'error');
+            launcher.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+      });
+
+      reviewForm.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        if (!currentRunId) return;
+        var data = new FormData(reviewForm);
+        reviewButton.disabled = true;
+        setFeedback(reviewFeedback, 'Recording the private decision…', '');
+        try {
+          var review = await requestJson('/api/v1/investigations/' + currentRunId + '/review', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              reviewer: data.get('reviewer'),
+              decision: data.get('decision'),
+              note: data.get('note') || ''
+            })
+          });
+          setRunStatus(review.decision);
+          setFeedback(reviewFeedback, 'Decision recorded at ' + new Date(review.reviewed_at).toLocaleString() + '. The brief remains private.', 'success');
+        } catch (error) {
+          setFeedback(reviewFeedback, error.message + ' Your entries were preserved; review them and try again.', 'error');
+          reviewButton.disabled = false;
+        }
+      });
+
+      document.getElementById('keep-paused').addEventListener('click', function () {
+        setFeedback(reviewFeedback, 'Run remains paused. No review was recorded.', '');
+      });
+
+      requestJson('/health').then(function (health) {
+        document.getElementById('runtime-mode').textContent = 'MODE · ' + health.runtime + ' · ' + health.environment;
+      }).catch(function () {
+        document.getElementById('runtime-mode').textContent = 'MODE · API unavailable';
+        setFeedback(launchFeedback, 'The API is unavailable. Start it with “skills-vector api” and retry.', 'error');
+      });
+
       var links = document.querySelectorAll('.rail a[href^="#"]');
       var sections = [];
       links.forEach(function (link) {
