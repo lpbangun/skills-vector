@@ -13,6 +13,7 @@ from skills_vector.operating_loop import (
     ScoutCandidate,
     WeeklyDeltaScout,
     run_recruiter_investigation,
+    run_investigation,
 )
 from skills_vector.persistence import BacklogState, InvestigationStore
 from skills_vector.planning import AdaptivePlanner, InvestigationPlan, ResearchDepth
@@ -71,6 +72,17 @@ class OperatingLoopTests(unittest.TestCase):
         called_nodes = {call.node for call in runtime.calls}
         self.assertTrue({step.node for step in result.plan.research}.issubset(called_nodes))
         self.assertTrue(set(result.plan.analysis_nodes).issubset(called_nodes))
+
+    def test_generic_runner_supports_every_approved_role(self) -> None:
+        for role in Role:
+            result = run_investigation(
+                self.store,
+                role=role,
+                as_of=self.as_of,
+                runtime=DeterministicStubRuntime(),
+            )
+            self.assertEqual(result.draft.request.role, role)
+            self.assertEqual(result.paused_before, "human_review")
 
     def test_second_run_reuses_backlog_without_identical_deep_retrieval(self) -> None:
         runtime = DeterministicStubRuntime()

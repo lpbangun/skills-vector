@@ -12,7 +12,20 @@ from pathlib import Path
 from typing import Any, Iterable
 from uuid import uuid4
 
-from .domain import EvidenceCategory, EvidenceSource, Role
+from .domain import (
+    Claim,
+    ClaimImpact,
+    ClaimKind,
+    EvidenceCategory,
+    EvidenceSource,
+    HumanReview,
+    ReviewDecision,
+    Role,
+    RoleBrief,
+    RoleBriefRequest,
+    Scenario,
+    ScenarioHorizon,
+)
 
 
 class BacklogState(StrEnum):
@@ -159,6 +172,11 @@ class InvestigationStore:
                 fingerprint_published_on TEXT, content_hash TEXT NOT NULL,
                 state TEXT NOT NULL, first_seen_at TEXT NOT NULL, updated_at TEXT NOT NULL,
                 UNIQUE(role, fingerprint_digest)
+            );
+            CREATE TABLE IF NOT EXISTS reviews (
+                run_id TEXT PRIMARY KEY REFERENCES runs(run_id),
+                decision TEXT NOT NULL, reviewer TEXT NOT NULL,
+                note TEXT NOT NULL, reviewed_at TEXT NOT NULL
             );
             """
         )
@@ -324,3 +342,144 @@ class InvestigationStore:
         if row is None:
             raise KeyError(run_id)
         return RunRecord(row["run_id"], Role(row["role"]), row["status"], datetime.fromisoformat(row["created_at"]))
+
+    def list_runs(self, *, role: Role | None = None, limit: int = 50) -> tuple[RunRecord, ...]:
+        if not 1 <= limit <= 200:
+            raise ValueError("run list limit must be between 1 and 200")
+        sql = "SELECT * FROM runs"
+        parameters: list[Any] = []
+        if role is not None:
+            sql += " WHERE role = ?"
+            parameters.append(role.value)
+        sql += " ORDER BY created_at DESC LIMIT ?"
+        parameters.append(limit)
+        rows = self._db.execute(sql, parameters).fetchall()
+        return tuple(
+            RunRecord(row["run_id"], Role(row["role"]), row["status"], datetime.fromisoformat(row["created_at"]))
+            for row in rows
+        )
+
+    def review(self, run_id: str) -> HumanReview | None:
+        row = self._db.execute("SELECT * FROM reviews WHERE run_id = ?", (run_id,)).fetchone()
+        if row is None:
+            return None
+        return HumanReview(
+            ReviewDecision(row["decision"]),
+            row["reviewer"],
+            datetime.fromisoformat(row["reviewed_at"]),
+            row["note"],
+        )
+
+    def role_brief(self, run_id: str) -> RoleBrief:
+        row = self._db.execute(
+            "SELECT payload FROM artifacts WHERE run_id = ? AND kind = 'role_brief' "
+            "ORDER BY created_at DESC, rowid DESC LIMIT 1",
+            (run_id,),
+        ).fetchone()
+        if row is None:
+            raise KeyError(f"role brief for run {run_id}")
+        return _brief_from_payload(json.loads(row["payload"]), review=self.review(run_id))
+
+    def record_review(self, run_id: str, review: HumanReview) -> HumanReview:
+        try:
+            self._db.execute("BEGIN IMMEDIATE")
+            record = self.run_record(run_id)
+            existing = self.review(run_id)
+            if existing is not None:
+                if (
+                    existing.decision is review.decision
+                    and existing.reviewer == review.reviewer
+                    and existing.note == review.note
+                ):
+                    self._db.rollback()
+                    return existing
+                raise ValueError("run has already been reviewed")
+            if record.status != "awaiting_human_review":
+                raise ValueError(f"run is not awaiting human review: {record.status}")
+            self.role_brief(run_id)
+            status = {
+                ReviewDecision.APPROVED: "approved",
+                ReviewDecision.CHANGES_REQUESTED: "changes_requested",
+                ReviewDecision.REJECTED: "rejected",
+            }[review.decision]
+            artifact_id = uuid4().hex
+            now = datetime.now(UTC)
+            self._db.execute(
+                "INSERT INTO artifacts VALUES (?, ?, ?, ?, ?, ?)",
+                (
+                    artifact_id,
+                    run_id,
+                    "human_review",
+                    "human_review",
+                    json.dumps(_jsonable(review), sort_keys=True),
+                    now.isoformat(),
+                ),
+            )
+            self._db.execute(
+                "INSERT INTO reviews VALUES (?, ?, ?, ?, ?)",
+                (run_id, review.decision.value, review.reviewer, review.note, review.reviewed_at.isoformat()),
+            )
+            self._db.execute("UPDATE runs SET status = ? WHERE run_id = ?", (status, run_id))
+            row = self._db.execute(
+                "SELECT COALESCE(MAX(sequence), 0) + 1 AS next_sequence FROM events WHERE run_id = ?",
+                (run_id,),
+            ).fetchone()
+            self._db.execute(
+                "INSERT INTO events VALUES (?, ?, ?, ?, ?, ?, ?)",
+                (
+                    run_id,
+                    int(row["next_sequence"]),
+                    "human_review",
+                    "completed",
+                    json.dumps((artifact_id,)),
+                    json.dumps({"decision": review.decision.value, "private": True}, sort_keys=True),
+                    now.isoformat(),
+                ),
+            )
+            self._db.commit()
+            return review
+        except Exception:
+            self._db.rollback()
+            raise
+
+
+def _brief_from_payload(raw: dict[str, Any], *, review: HumanReview | None = None) -> RoleBrief:
+    request_raw = raw["request"]
+    request = RoleBriefRequest(
+        Role(request_raw["role"]),
+        date.fromisoformat(request_raw["as_of"]),
+        request_raw.get("geography", "US"),
+        request_raw.get("domain", "people_operations_and_talent"),
+    )
+    sources = tuple(_source_from_json(json.dumps(item)) for item in raw["sources"])
+    claims = tuple(
+        Claim(
+            claim_id=item["claim_id"],
+            kind=ClaimKind(item["kind"]),
+            statement=item["statement"],
+            evidence_ids=tuple(item["evidence_ids"]),
+            impact=ClaimImpact(item.get("impact", ClaimImpact.ROUTINE.value)),
+            uncertainty_note=item.get("uncertainty_note", ""),
+            disagreement_note=item.get("disagreement_note", ""),
+        )
+        for item in raw["claims"]
+    )
+    scenarios = tuple(
+        Scenario(
+            ScenarioHorizon(item["horizon"]),
+            item["description"],
+            tuple(item["evidence_ids"]),
+            item["uncertainty_note"],
+        )
+        for item in raw["scenarios"]
+    )
+    return RoleBrief(
+        request=request,
+        summary=raw["summary"],
+        claims=claims,
+        scenarios=scenarios,
+        sources=sources,
+        review=review,
+        private=bool(raw.get("private", True)),
+        generated_at=datetime.fromisoformat(raw["generated_at"]),
+    )

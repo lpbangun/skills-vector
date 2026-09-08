@@ -27,7 +27,7 @@ Python 3.11 or newer is required.
 
 ```bash
 uv venv .venv
-uv pip install --python .venv/bin/python -e .
+uv pip install --python .venv/bin/python -e '.[test]'
 .venv/bin/python -m unittest discover -s tests -v
 .venv/bin/python -m compileall -q src tests
 ```
@@ -48,6 +48,33 @@ with InvestigationStore("investigations.sqlite") as store:
 ```
 
 Inspect `result.events` and `result.artifacts` for the ordered per-node trail. Reusing the same SQLite store lets later runs skip incorporated fingerprints. No scheduler or publication path is included.
+
+## Local application
+
+The FastAPI application serves the JSON API and Evidence Atlas UI from the same origin:
+
+```bash
+cp .env.example .env
+set -a && source .env && set +a
+.venv/bin/skills-vector api
+```
+
+Open `http://127.0.0.1:8000`; interactive API documentation is at `/docs`. The default `SKILLS_VECTOR_RUNTIME=stub` is deterministic and offline. To require the live Cursor adapter, set `SKILLS_VECTOR_RUNTIME=composer`, install the Cursor Python SDK, and provide `CURSOR_API_KEY` to the server process. The credential is never sent to the browser. Production configuration must select an explicit runtime and cannot use `auto`.
+
+The API supports all three approved roles and persists runs, events, artifacts, private briefs, and human-review decisions:
+
+- `POST /api/v1/investigations`
+- `GET /api/v1/investigations` and `GET /api/v1/investigations/{run_id}`
+- `GET /api/v1/investigations/{run_id}/events`
+- `GET /api/v1/investigations/{run_id}/brief`
+- `POST /api/v1/investigations/{run_id}/review`
+- `GET /api/v1/roles` and `GET /health`
+
+For a one-off private run without the web server:
+
+```bash
+.venv/bin/skills-vector run recruiter --as-of 2026-08-14
+```
 
 ## Current boundary
 

@@ -251,18 +251,19 @@ class InvestigationHandlers:
         self.store.append_event(state["run_id"], node, status, artifact_ids=artifact_ids, details=details)
 
 
-def run_recruiter_investigation(
+def run_investigation(
     store: InvestigationStore,
     *,
+    role: Role,
     as_of: date,
     runtime: AgentRuntime | None = None,
     planner: AdaptivePlanner | None = None,
     open_disagreements: bool = False,
     full_refresh: bool = False,
 ) -> InvestigationRunResult:
-    """Run the private Recruiter path until the mandatory human-review interrupt."""
+    """Run an approved private role investigation until the human-review gate."""
 
-    request = RoleBriefRequest(Role.RECRUITER, as_of)
+    request = RoleBriefRequest(role, as_of)
     record = store.start_run(request.role)
     selected_runtime = runtime or select_runtime()
     handlers = InvestigationHandlers(
@@ -291,6 +292,28 @@ def run_recruiter_investigation(
         paused_before,
         store.events(record.run_id),
         store.artifacts(record.run_id),
+    )
+
+
+def run_recruiter_investigation(
+    store: InvestigationStore,
+    *,
+    as_of: date,
+    runtime: AgentRuntime | None = None,
+    planner: AdaptivePlanner | None = None,
+    open_disagreements: bool = False,
+    full_refresh: bool = False,
+) -> InvestigationRunResult:
+    """Backward-compatible convenience wrapper for the Recruiter path."""
+
+    return run_investigation(
+        store,
+        role=Role.RECRUITER,
+        as_of=as_of,
+        runtime=runtime,
+        planner=planner,
+        open_disagreements=open_disagreements,
+        full_refresh=full_refresh,
     )
 
 
