@@ -1,0 +1,50 @@
+{
+  "kind": "offline_fixture",
+  "simulated_kind": "onet",
+  "weight": "occupational_baseline",
+  "occupation_id": "occ_product_manager",
+  "title": "O*NET 15-1299.09 Information Technology Project Managers",
+  "publisher": "National Center for O*NET Development",
+  "rights": "U.S. government work. O*NET content is in the public domain. Attribution retained.",
+  "retrieved_note": "Pilot mapping from O*NET 15-1299.09 plus startup product context. Labeled offline fixture; not live retrieval.",
+  "excerpts": [
+    {
+      "locator": "overview",
+      "text": "Plan, initiate, and manage information technology (IT) projects. Lead and guide the work of technical staff. Serve as liaison between business and technical aspects of projects. Plan project stages and assess business implications for each stage. Monitor progress to assure deadlines, standards, and cost targets are met."
+    },
+    {
+      "locator": "task.manage",
+      "text": "Manage project execution to ensure adherence to budget, schedule, and scope."
+    },
+    {
+      "locator": "task.liaison",
+      "text": "Confer with project personnel to identify and resolve problems."
+    }
+  ],
+  "labeled_tasks": [
+    {
+      "statement": "Manage project execution to ensure adherence to budget, schedule, and scope.",
+      "output": "A sequenced roadmap and explicit scope cuts",
+      "success_criteria": "Stakeholders can see what is in, out, and at risk this cycle.",
+      "frequency": "recurring",
+      "criticality": "core",
+      "skill_names": ["roadmap", "scope management"],
+      "passage_locator": "task.manage"
+    },
+    {
+      "statement": "Confer with project personnel to identify and resolve problems.",
+      "output": "Resolved delivery blockers with named owners",
+      "success_criteria": "Blockers are visible and either resolved or explicitly accepted.",
+      "frequency": "recurring",
+      "criticality": "core",
+      "skill_names": ["facilitation", "customer"],
+      "passage_locator": "task.liaison"
+    }
+  ],
+  "labeled_skills": [
+    {"name": "roadmap", "description": "Sequence product work against capacity and risk."},
+    {"name": "scope management", "description": "Keep delivery inside budget, schedule, and agreed scope."},
+    {"name": "facilitation", "description": "Surface and resolve delivery problems with the people doing the work."},
+    {"name": "customer", "description": "Keep user problems visible while trading off scope."}
+  ]
+}
