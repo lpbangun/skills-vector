@@ -16,9 +16,25 @@ Public beta still targets **30 reviewed occupations** (about ten per family). Th
 
 **Implemented (local, reversible):** occupational model; SQLite catalog; content-hashed retrieval; collect → extract → reconcile → challenge → review → atomic release/rollback; DeepInfra budget ledger (US$10 cap) **before** live calls; labeled offline fixtures; Jobsss-shaped assessment outcomes; static export layout for a later Sites plugin.
 
-**Not implemented / not claimed:** practitioner-reviewed rubrics, two successful *scheduled* hosted update cycles, Sites deployment, live DeepInfra spend, 30-occupation launch, always-on API (see unmerged PR #6), or any hosted runner.
+**Not implemented / not claimed:** practitioner-reviewed rubrics, two successful *scheduled* hosted update cycles, production Sites, live DeepInfra spend, 30-occupation launch, always-on API (see unmerged PR #6), or any hosted runner.
 
 The earlier People Operations investigation loop (`skills_vector.domain`, `operating_loop`) remains in-tree as the previous experiment. It still defaults to deterministic stubs. Production occupational research **never** silently substitutes those stubs or fixtures.
+
+## Preview on Vercel (do not merge first)
+
+A PR preview is enough to look at the desk. **Do not merge to `main` just to deploy.** Keep production on `main` until this catalog is reviewed.
+
+1. In Vercel, import `lpbangun/skills-vector`.
+2. Framework: Other. Build command and output directory come from `vercel.json`.
+3. Leave Production Branch as `main`. This feature branch / PR gets a **Preview** URL automatically.
+4. The preview is a **fixture-backed** static snapshot (`preview/release/PREVIEW.md`). Browsing it does not call models.
+
+Regenerate the snapshot after catalog changes:
+
+```bash
+python3 scripts/build_preview.py
+bash scripts/assemble_vercel.sh   # optional local check of .vercel-out/
+```
 
 ## Local run
 
@@ -43,7 +59,7 @@ Omit `--fixtures` only when you intend to fetch live O*NET pages. If retrieval f
 
 ## Design system
 
-UI work follows **Evidence Atlas · Control** in [`DESIGN.md`](DESIGN.md). This slice does not add product screens.
+UI work follows **Evidence Atlas · Control** in [`DESIGN.md`](DESIGN.md). The Vercel preview is a static read surface over committed JSON; research still runs locally.
 
 ## Docs
 

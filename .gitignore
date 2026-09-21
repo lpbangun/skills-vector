@@ -8,5 +8,7 @@ build/
 .env
 data/
 *.sqlite
+.vercel-out
+.vercel
 
 
