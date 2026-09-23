@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools==80.9.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -9,6 +9,11 @@ description = "Evidence-based occupational skills reference for U.S. startup rol
 requires-python = ">=3.11"
 dependencies = [
   "langgraph>=1.0,<2",
+]
+
+[dependency-groups]
+dev = [
+  "playwright==1.55.0",
 ]
 
 [project.scripts]
@@ -22,4 +27,3 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 skills_vector = ["fixtures/*.json", "fixtures/*.md"]
-

@@ -10,5 +10,9 @@ data/
 *.sqlite
 .vercel-out
 .vercel
-
+.poc-lane.json
+.poc-env/
+.pi/
+playwright-report/
+test-results/
 
