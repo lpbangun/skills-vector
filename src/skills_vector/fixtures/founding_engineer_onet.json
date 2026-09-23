@@ -1,0 +1,67 @@
+{
+  "kind": "offline_fixture",
+  "simulated_kind": "onet",
+  "weight": "occupational_baseline",
+  "occupation_id": "occ_founding_engineer",
+  "title": "O*NET 15-1252.00 Software Developers",
+  "publisher": "National Center for O*NET Development",
+  "rights": "U.S. government work. O*NET content is in the public domain. Attribution retained.",
+  "retrieved_note": "Excerpts captured 2026-09-20 from O*NET OnLine summary 15-1252.00. This file is a labeled offline fixture for local research; it is not live retrieval.",
+  "excerpts": [
+    {
+      "locator": "overview",
+      "text": "Research, design, and develop computer and network software or specialized utility programs. Analyze user needs and develop software solutions, applying principles and techniques of computer science, engineering, and mathematical analysis. Update software or enhance existing software capabilities."
+    },
+    {
+      "locator": "task.analyze_needs",
+      "text": "Analyze user needs and software requirements to determine feasibility of design within time and cost constraints."
+    },
+    {
+      "locator": "task.testing",
+      "text": "Develop or direct software system testing or validation procedures, programming, or documentation."
+    },
+    {
+      "locator": "task.modify",
+      "text": "Modify existing software to correct errors, adapt it to new hardware, or upgrade interfaces and improve performance."
+    },
+    {
+      "locator": "activity.computers",
+      "text": "Working with Computers — Using computers and computer systems (including hardware and software) to program, write software, set up functions, enter data, or process information."
+    }
+  ],
+  "labeled_tasks": [
+    {
+      "statement": "Analyze user needs and software requirements to determine feasibility of design within time and cost constraints.",
+      "output": "Feasibility judgment and scoped design options",
+      "success_criteria": "A decision is documented with time, cost, and constraint tradeoffs.",
+      "frequency": "recurring",
+      "criticality": "core",
+      "skill_names": ["software design", "python"],
+      "passage_locator": "task.analyze_needs"
+    },
+    {
+      "statement": "Develop or direct software system testing or validation procedures, programming, or documentation.",
+      "output": "Tests, validation notes, or documented procedures",
+      "success_criteria": "Failures are caught before they reach customers, or residual risk is explicit.",
+      "frequency": "recurring",
+      "criticality": "core",
+      "skill_names": ["software testing"],
+      "passage_locator": "task.testing"
+    },
+    {
+      "statement": "Modify existing software to correct errors, adapt it to new hardware, or upgrade interfaces and improve performance.",
+      "output": "Shipped code change",
+      "success_criteria": "The defect or constraint is resolved without silent regressions.",
+      "frequency": "recurring",
+      "criticality": "core",
+      "skill_names": ["python", "debugging"],
+      "passage_locator": "task.modify"
+    }
+  ],
+  "labeled_skills": [
+    {"name": "python", "description": "Write and review production Python in a small startup team."},
+    {"name": "software design", "description": "Turn ambiguous product needs into feasible software designs."},
+    {"name": "software testing", "description": "Validate software behavior with tests and explicit residual risk."},
+    {"name": "debugging", "description": "Diagnose and correct defects in existing systems."}
+  ]
+}

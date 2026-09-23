@@ -1,0 +1,17 @@
+{
+  "kind": "offline_fixture",
+  "simulated_kind": "job_advertisement",
+  "weight": "stated_demand",
+  "occupation_id": "occ_founding_engineer",
+  "title": "Founding engineer posting (stated demand only)",
+  "publisher": "Fixture Board",
+  "rights": "offline fixture; not an employer-controlled source",
+  "excerpts": [
+    {
+      "locator": "ad.body",
+      "text": "We want a founding engineer who writes Python, owns production SQL, and uses AI coding tools daily. CONTRADICTION: this posting is not evidence that any current employee performs these tasks."
+    }
+  ],
+  "labeled_tasks": [],
+  "labeled_skills": []
+}

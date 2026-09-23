@@ -6,4 +6,9 @@ dist/
 build/
 *.egg-info/
 .env
+data/
+*.sqlite
+.vercel-out
+.vercel
+
 

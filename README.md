@@ -1,54 +1,81 @@
 # Skills Vector
 
-Skills Vector is a private-first occupational intelligence MVP for the U.S. People Operations & Talent domain. The first monitored roles are deliberately fixed to:
+Evidence-based occupational skills reference and local assessment contract for **U.S. startup workers**, especially people adopting AI.
 
-- HR Coordinator
-- Recruiter
-- Learning & Development Specialist
+Initial market: U.S. startups. Three families — engineering/AI, product/design, go-to-market/operations. This repository’s first vertical slice covers three contrasting pilots:
 
-The operating loop persists run events, artifacts, and an evidence backlog; plans a bounded subset of approved research lenses; drafts a private role brief; and pauses before human review. Research and analysis use an injected agent-runtime adapter. Offline work defaults to the deterministic stub; Composer 2.5 through the optional Cursor Python SDK is selected only when the SDK and `CURSOR_API_KEY` are already available.
+| Occupation ID | Family | O*NET baseline |
+| --- | --- | --- |
+| `occ_founding_engineer` | engineering/AI | 15-1252.00 Software Developers |
+| `occ_product_manager` | product/design | 15-1299.09 IT Project Managers |
+| `occ_growth_operator` | go-to-market/operations | 13-1161.00 Market Research Analysts |
 
-## Design system
+Public beta still targets **30 reviewed occupations** (about ten per family). That gate is **not** met by this slice. Individuals are the first audience. [Jobsss](docs/jobsss.md) retains private profiles.
 
-UI work follows **Evidence Atlas · Control** ("The Evidence Desk"), locked in [`DESIGN.md`](DESIGN.md).
+## What is implemented vs not
 
-| Asset | Role |
-| --- | --- |
-| [`DESIGN.md`](DESIGN.md) | System of record for agents and humans |
-| [`design-concepts/design-system/tokens.css`](design-concepts/design-system/tokens.css) | CSS custom properties |
-| [`design-concepts/design-system/components.css`](design-concepts/design-system/components.css) | Shared primitives (buttons, callouts) |
-| [`design-concepts/app.html`](design-concepts/app.html) | Canonical product surface |
+**Implemented (local, reversible):** occupational model; SQLite catalog; content-hashed retrieval; collect → extract → reconcile → challenge → review → atomic release/rollback; DeepInfra budget ledger (US$10 cap) **before** live calls; labeled offline fixtures; Jobsss-shaped assessment outcomes; static export layout for a later Sites plugin.
 
-Future screens must use these tokens and rules (no teal/amber clinical palette, no side-tab accents). Explorations live under `design-concepts/archive/` and are not product UI.
+**Not implemented / not claimed:** practitioner-reviewed rubrics, two successful *scheduled* hosted update cycles, production Sites, live DeepInfra spend, 30-occupation launch, always-on API (see unmerged PR #6), or any hosted runner.
 
-## Local verification
+The earlier People Operations investigation loop (`skills_vector.domain`, `operating_loop`) remains in-tree as the previous experiment. It still defaults to deterministic stubs. Production occupational research **never** silently substitutes those stubs or fixtures.
 
-Python 3.11 or newer is required.
+## Preview on Vercel (do not merge first)
+
+A PR preview is enough to look at the desk. **Do not merge to `main` just to deploy.** Keep production on `main` until this catalog is reviewed.
+
+1. In Vercel, import `lpbangun/skills-vector`.
+2. Framework: Other. Build command and output directory come from `vercel.json`.
+3. Leave Production Branch as `main`. This feature branch / PR gets a **Preview** URL automatically.
+4. The preview is a **fixture-backed** static snapshot (`preview/release/PREVIEW.md`). Browsing it does not call models.
+
+Regenerate the snapshot after catalog changes:
+
+```bash
+python3 scripts/build_preview.py
+bash scripts/assemble_vercel.sh   # optional local check of .vercel-out/
+```
+
+## Local run
+
+Python 3.11+. Copy `.env.example` locally if you later enable DeepInfra; do not commit keys.
 
 ```bash
 uv venv .venv
 uv pip install --python .venv/bin/python -e .
 .venv/bin/python -m unittest discover -s tests -v
 .venv/bin/python -m compileall -q src tests
+
+.venv/bin/python -m skills_vector research occ_founding_engineer --fixtures
+.venv/bin/python -m skills_vector review <run_id> approved --reviewer "your-name" --note "provisional offline pilot"
+.venv/bin/python -m skills_vector research occ_product_manager --fixtures
+.venv/bin/python -m skills_vector research occ_growth_operator --fixtures
+.venv/bin/python -m skills_vector release
+.venv/bin/python -m skills_vector budget
+.venv/bin/python -m skills_vector schedule-notes
 ```
 
-LangGraph is a runtime dependency, but the default test and local paths are offline and make no model or network calls. The graph factory accepts narrow, injected handlers, and `AgentRuntime` owns provider selection. Weekly scout ingestion only queues evidence candidates; it cannot write claims or mutate brief privacy.
+Omit `--fixtures` only when you intend to fetch live O*NET pages. If retrieval fails, prior evidence stays; fixtures are **not** used as a fallback.
 
-## Private Recruiter loop
+Live end-to-end (real models, real spend against the US$10 cap):
 
-```python
-from datetime import date
-from skills_vector.operating_loop import run_recruiter_investigation
-from skills_vector.persistence import InvestigationStore
-
-with InvestigationStore("investigations.sqlite") as store:
-    result = run_recruiter_investigation(store, as_of=date.today())
-    assert result.paused_before == "human_review"
-    assert result.draft.private
+```bash
+export DEEPINFRA_API_KEY="..."   # never commit; or add it in Cursor Dashboard → Cloud Agents → Secrets
+.venv/bin/python -m skills_vector research occ_founding_engineer --live
+.venv/bin/python -m skills_vector review <run_id> approved --reviewer "your-name" --note "live pilot"
+.venv/bin/python -m skills_vector release
+python3 scripts/build_preview.py   # refresh the Vercel snapshot from the new release
 ```
 
-Inspect `result.events` and `result.artifacts` for the ordered per-node trail. Reusing the same SQLite store lets later runs skip incorporated fingerprints. No scheduler or publication path is included.
+`--live` refuses to run without the key and refuses `--fixtures` alongside it. Add `--escalate-hard` only for difficult reconciliation (uses `zai-org/GLM-5.3`, costs more). No key belongs on Vercel: the preview is static and never calls models.
 
-## Current boundary
+## Design system
 
-This repository does not predict an individual's career, publish briefs, operate a job board, call paid APIs, or autonomously change prompts, policy, memory, routing, or code. Those remain outside the current milestone. See [the project goal loop](docs/goal-loop.md) for the adaptive work/stop policy.
+UI work follows **Evidence Atlas · Control** in [`DESIGN.md`](DESIGN.md). The Vercel preview is a static read surface over committed JSON; research still runs locally.
+
+## Docs
+
+- [Architecture](docs/architecture.md)
+- [Models and budget](docs/models.md)
+- [Jobsss boundary](docs/jobsss.md)
+- [Goal loop](docs/goal-loop.md)

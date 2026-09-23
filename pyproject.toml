@@ -4,16 +4,22 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "skills-vector"
-version = "0.1.0"
-description = "Private-first occupational intelligence workflow foundation"
+version = "0.2.0"
+description = "Evidence-based occupational skills reference for U.S. startup roles"
 requires-python = ">=3.11"
 dependencies = [
   "langgraph>=1.0,<2",
 ]
+
+[project.scripts]
+skills-vector = "skills_vector.cli:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+skills_vector = ["fixtures/*.json", "fixtures/*.md"]
 

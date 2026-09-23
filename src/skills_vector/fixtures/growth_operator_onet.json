@@ -1,0 +1,49 @@
+{
+  "kind": "offline_fixture",
+  "simulated_kind": "onet",
+  "weight": "occupational_baseline",
+  "occupation_id": "occ_growth_operator",
+  "title": "O*NET 13-1161.00 Market Research Analysts and Marketing Specialists",
+  "publisher": "National Center for O*NET Development",
+  "rights": "U.S. government work. O*NET content is in the public domain. Attribution retained.",
+  "retrieved_note": "Pilot mapping from O*NET 13-1161.00 plus startup growth context. Labeled offline fixture; not live retrieval.",
+  "excerpts": [
+    {
+      "locator": "overview",
+      "text": "Research market conditions in local, regional, or national areas, or gather information to determine potential sales of a product or service, or create a marketing campaign. May gather information on competitors, prices, sales, and methods of marketing and distribution."
+    },
+    {
+      "locator": "task.collect",
+      "text": "Collect and analyze data on customer demographics, preferences, needs, and buying habits to identify potential markets and factors affecting product demand."
+    },
+    {
+      "locator": "task.measure",
+      "text": "Measure the effectiveness of marketing, advertising, and communications programs and strategies."
+    }
+  ],
+  "labeled_tasks": [
+    {
+      "statement": "Collect and analyze data on customer demographics, preferences, needs, and buying habits to identify potential markets and factors affecting product demand.",
+      "output": "A demand readout with named segments and uncertainties",
+      "success_criteria": "Recommendations cite the data used and what remains unknown.",
+      "frequency": "recurring",
+      "criticality": "core",
+      "skill_names": ["sql", "experiment"],
+      "passage_locator": "task.collect"
+    },
+    {
+      "statement": "Measure the effectiveness of marketing, advertising, and communications programs and strategies.",
+      "output": "Experiment or campaign measurement with a decision",
+      "success_criteria": "A ship, iterate, or stop decision is recorded with the metric used.",
+      "frequency": "recurring",
+      "criticality": "core",
+      "skill_names": ["experiment", "analytics"],
+      "passage_locator": "task.measure"
+    }
+  ],
+  "labeled_skills": [
+    {"name": "sql", "description": "Query product and funnel data without treating missing fields as facts."},
+    {"name": "experiment", "description": "Design and read growth experiments with explicit success criteria."},
+    {"name": "analytics", "description": "Measure campaign or loop effectiveness and record the decision."}
+  ]
+}
