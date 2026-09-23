@@ -57,6 +57,18 @@ uv pip install --python .venv/bin/python -e .
 
 Omit `--fixtures` only when you intend to fetch live O*NET pages. If retrieval fails, prior evidence stays; fixtures are **not** used as a fallback.
 
+Live end-to-end (real models, real spend against the US$10 cap):
+
+```bash
+export DEEPINFRA_API_KEY="..."   # never commit; or add it in Cursor Dashboard → Cloud Agents → Secrets
+.venv/bin/python -m skills_vector research occ_founding_engineer --live
+.venv/bin/python -m skills_vector review <run_id> approved --reviewer "your-name" --note "live pilot"
+.venv/bin/python -m skills_vector release
+python3 scripts/build_preview.py   # refresh the Vercel snapshot from the new release
+```
+
+`--live` refuses to run without the key and refuses `--fixtures` alongside it. Add `--escalate-hard` only for difficult reconciliation (uses `zai-org/GLM-5.3`, costs more). No key belongs on Vercel: the preview is static and never calls models.
+
 ## Design system
 
 UI work follows **Evidence Atlas · Control** in [`DESIGN.md`](DESIGN.md). The Vercel preview is a static read surface over committed JSON; research still runs locally.

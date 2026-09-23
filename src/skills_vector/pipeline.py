@@ -170,6 +170,14 @@ class ResearchPipeline:
             run_id = run.run_id
             self._seed_occupation(occupation_id)
 
+        # Interpreters that reserve budget per run (e.g. DeepInfra) are constructed
+        # before the run exists; bind the real run id so ledger entries line up.
+        if hasattr(self.interpreter, "run_id"):
+            try:
+                self.interpreter.run_id = run_id  # type: ignore[attr-defined]
+            except AttributeError:
+                pass
+
         start_index = PHASE_ORDER.index(run.phase)
         if resume_run_id and run.status is RunStatus.CHANGES_REQUESTED:
             start_index = PHASE_ORDER.index(RunPhase.CHALLENGE)
