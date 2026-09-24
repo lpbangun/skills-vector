@@ -1,0 +1,2118 @@
+{
+  "acceptance": {
+    "commands_run": [
+      {
+        "command": "/home/logani/projects/skills-vector-worktrees/poc-a/.poc-env/venv/bin/python3 -m skills_vector structured-job-analysis --mode offline --output-dir outputs/structured-job-analysis-round1",
+        "exit_code": 0,
+        "receipt_path": "run-receipt.json"
+      }
+    ]
+  },
+  "coverage_audit": {
+    "context_addition_units": [
+      "task-context-scaled-organization-design",
+      "task-context-coordinator-operations",
+      "task-context-defense-access",
+      "task-context-benefit-administration"
+    ],
+    "dev_postings_scanned": 7,
+    "dev_unique_employers": 4,
+    "duty_area_coverage": [
+      {
+        "anchor_source_id": "onet_hr_specialist",
+        "area": "task-policy-guidance",
+        "represented": true
+      },
+      {
+        "anchor_source_id": "onet_hr_specialist",
+        "area": "task-employee-relations",
+        "represented": true
+      },
+      {
+        "anchor_source_id": "onet_hr_specialist",
+        "area": "task-employee-records",
+        "represented": true
+      },
+      {
+        "anchor_source_id": "onet_hr_specialist",
+        "area": "task-manager-guidance",
+        "represented": true
+      },
+      {
+        "anchor_source_id": "onet_hr_specialist",
+        "area": "task-new-hire-orientation",
+        "represented": true
+      },
+      {
+        "anchor_source_id": "onet_hr_specialist",
+        "area": "task-people-data-reporting",
+        "represented": true
+      }
+    ],
+    "excluded_role_scan": {
+      "director_or_executive_titles_in_dev": [],
+      "literal_people_operations_titles_in_dev": [],
+      "method": "literal scan of admitted posting title metadata and the authored work-unit statements for director/executive and recruiting-only markers",
+      "note": "The broad O*NET profile contains recruiting tasks, but none is included as an HR Generalist core work unit.",
+      "recruiting_only_work_units": []
+    },
+    "unmapped_claim": "No one-to-one comprehensive duty mapping is claimed; phrase screen reports wording hits only and its miss cases are not treated as proof of absence."
+  },
+  "demand_layer": {
+    "claims_allowed": false,
+    "coverage_by_unit": [
+      {
+        "dev_employer_denominator": 4,
+        "dev_posting_denominator": 7,
+        "match_basis": "case-folded exact phrase hit in normalized admitted posting extract; first matching phrase per posting",
+        "matched_dev_postings": 4,
+        "matched_employers": 3,
+        "matches": [
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Business Partner › extract phrase screen",
+            "matched_term": "hr policy guidance",
+            "quote": "hr policy guidance",
+            "source_id": "p-andurilindustries-4835624007"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Business Partner › extract phrase screen",
+            "matched_term": "hr policy guidance",
+            "quote": "hr policy guidance",
+            "source_id": "p-andurilindustries-4836444007"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting HR Business Partner › extract phrase screen",
+            "matched_term": "hr policies",
+            "quote": "hr policies",
+            "source_id": "p-coinbase-7997879"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Solutions Coordinator (NYC) › extract phrase screen",
+            "matched_term": "company policies",
+            "quote": "ensure compliance with company policies and procedures, local, state, and regional regulations.",
+            "source_id": "p-datadog-7728298"
+          }
+        ],
+        "unit_id": "task-policy-guidance"
+      },
+      {
+        "dev_employer_denominator": 4,
+        "dev_posting_denominator": 7,
+        "match_basis": "case-folded exact phrase hit in normalized admitted posting extract; first matching phrase per posting",
+        "matched_dev_postings": 4,
+        "matched_employers": 2,
+        "matches": [
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Business Partner › extract phrase screen",
+            "matched_term": "employee relations",
+            "quote": "employee relations",
+            "source_id": "p-andurilindustries-4835624007"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Business Partner › extract phrase screen",
+            "matched_term": "employee relations",
+            "quote": "employee relations",
+            "source_id": "p-andurilindustries-4836444007"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting Associate People Business Partner › extract phrase screen",
+            "matched_term": "employee relations",
+            "quote": "manage the 360 feedback process, drive the annual review cycle with managers, partner on performance management, and lead employee relations investigations.",
+            "source_id": "p-andurilindustries-4855853007"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting HR Business Partner › extract phrase screen",
+            "matched_term": "employee relations",
+            "quote": "employee relations",
+            "source_id": "p-coinbase-7997879"
+          }
+        ],
+        "unit_id": "task-employee-relations"
+      },
+      {
+        "dev_employer_denominator": 4,
+        "dev_posting_denominator": 7,
+        "match_basis": "case-folded exact phrase hit in normalized admitted posting extract; first matching phrase per posting",
+        "matched_dev_postings": 1,
+        "matched_employers": 1,
+        "matches": [
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Solutions Coordinator (NYC) › extract phrase screen",
+            "matched_term": "employee changes",
+            "quote": "own all aspects of maintaining employee changes and data throughout the full employee life cycle including employee changes in the system, organizational updates, job change letters, and audits.",
+            "source_id": "p-datadog-7728298"
+          }
+        ],
+        "unit_id": "task-employee-records"
+      },
+      {
+        "dev_employer_denominator": 4,
+        "dev_posting_denominator": 7,
+        "match_basis": "case-folded exact phrase hit in normalized admitted posting extract; first matching phrase per posting",
+        "matched_dev_postings": 6,
+        "matched_employers": 3,
+        "matches": [
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Business Partner › extract phrase screen",
+            "matched_term": "coach",
+            "quote": "coach",
+            "source_id": "p-andurilindustries-4835624007"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Business Partner › extract phrase screen",
+            "matched_term": "coach",
+            "quote": "coach",
+            "source_id": "p-andurilindustries-4836444007"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting Associate People Business Partner › extract phrase screen",
+            "matched_term": "coach",
+            "quote": "coach",
+            "source_id": "p-andurilindustries-4855853007"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting HR Business Partner › extract phrase screen",
+            "matched_term": "coach",
+            "quote": "coach",
+            "source_id": "p-coinbase-7997879"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Partner, Technology › extract phrase screen",
+            "matched_term": "coach",
+            "quote": "coach",
+            "source_id": "p-stripe-7466921"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Partner › extract phrase screen",
+            "matched_term": "coach",
+            "quote": "coach",
+            "source_id": "p-stripe-7704660"
+          }
+        ],
+        "unit_id": "task-manager-guidance"
+      },
+      {
+        "dev_employer_denominator": 4,
+        "dev_posting_denominator": 7,
+        "match_basis": "case-folded exact phrase hit in normalized admitted posting extract; first matching phrase per posting",
+        "matched_dev_postings": 1,
+        "matched_employers": 1,
+        "matches": [
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Solutions Coordinator (NYC) › extract phrase screen",
+            "matched_term": "onboarding",
+            "quote": "own the administrative execution of new hire onboarding and offboarding.",
+            "source_id": "p-datadog-7728298"
+          }
+        ],
+        "unit_id": "task-new-hire-orientation"
+      },
+      {
+        "dev_employer_denominator": 4,
+        "dev_posting_denominator": 7,
+        "match_basis": "case-folded exact phrase hit in normalized admitted posting extract; first matching phrase per posting",
+        "matched_dev_postings": 3,
+        "matched_employers": 2,
+        "matches": [
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Business Partner › extract phrase screen",
+            "matched_term": "people metrics",
+            "quote": "people metrics",
+            "source_id": "p-andurilindustries-4835624007"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Business Partner › extract phrase screen",
+            "matched_term": "people metrics",
+            "quote": "people metrics",
+            "source_id": "p-andurilindustries-4836444007"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting HR Business Partner › extract phrase screen",
+            "matched_term": "people data",
+            "quote": "people data",
+            "source_id": "p-coinbase-7997879"
+          }
+        ],
+        "unit_id": "task-people-data-reporting"
+      },
+      {
+        "dev_employer_denominator": 4,
+        "dev_posting_denominator": 7,
+        "match_basis": "case-folded exact phrase hit in normalized admitted posting extract; first matching phrase per posting",
+        "matched_dev_postings": 5,
+        "matched_employers": 3,
+        "matches": [
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Business Partner › extract phrase screen",
+            "matched_term": "workforce planning",
+            "quote": "workforce planning",
+            "source_id": "p-andurilindustries-4835624007"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Business Partner › extract phrase screen",
+            "matched_term": "workforce planning",
+            "quote": "workforce planning",
+            "source_id": "p-andurilindustries-4836444007"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting HR Business Partner › extract phrase screen",
+            "matched_term": "org design",
+            "quote": "you'll own the full hrbp lifecycle for your client groups, from org design and performance management to employee development and retention, using data and sound judgment to directly influence how coinbase scales.",
+            "source_id": "p-coinbase-7997879"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Partner, Technology › extract phrase screen",
+            "matched_term": "org design",
+            "quote": "org design",
+            "source_id": "p-stripe-7466921"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Partner › extract phrase screen",
+            "matched_term": "org design",
+            "quote": "org design",
+            "source_id": "p-stripe-7704660"
+          }
+        ],
+        "unit_id": "task-context-scaled-organization-design"
+      },
+      {
+        "dev_employer_denominator": 4,
+        "dev_posting_denominator": 7,
+        "match_basis": "case-folded exact phrase hit in normalized admitted posting extract; first matching phrase per posting",
+        "matched_dev_postings": 1,
+        "matched_employers": 1,
+        "matches": [
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Solutions Coordinator (NYC) › extract phrase screen",
+            "matched_term": "new hire onboarding",
+            "quote": "own the administrative execution of new hire onboarding and offboarding.",
+            "source_id": "p-datadog-7728298"
+          }
+        ],
+        "unit_id": "task-context-coordinator-operations"
+      },
+      {
+        "dev_employer_denominator": 4,
+        "dev_posting_denominator": 7,
+        "match_basis": "case-folded exact phrase hit in normalized admitted posting extract; first matching phrase per posting",
+        "matched_dev_postings": 3,
+        "matched_employers": 1,
+        "matches": [
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Business Partner › extract phrase screen",
+            "matched_term": "u.s. person status is required",
+            "quote": "u.s. person status is required",
+            "source_id": "p-andurilindustries-4835624007"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting People Business Partner › extract phrase screen",
+            "matched_term": "u.s. person status is required",
+            "quote": "u.s. person status is required",
+            "source_id": "p-andurilindustries-4836444007"
+          },
+          {
+            "evidence_role": "counts_only_phrase_screen",
+            "locator": "Employer posting Associate People Business Partner › extract phrase screen",
+            "matched_term": "must be a u.s. person",
+            "quote": "must be a u.s. person due to required access to u.",
+            "source_id": "p-andurilindustries-4855853007"
+          }
+        ],
+        "unit_id": "task-context-defense-access"
+      }
+    ],
+    "denominators": {
+      "admitted_member_postings_before_exact_dedup": 15,
+      "admitted_postings": 14,
+      "board_total_openings": 5129,
+      "current_status_under_policy": "INSUFFICIENT for prevalence claims (admitted unique items < 20); counts-only demand layer required.",
+      "dedup_families": 14,
+      "dev_employers": 4,
+      "dev_unique_postings": 7,
+      "employers_scanned": 23,
+      "heldout_unique_postings": 7,
+      "matched_by_title_filter": 43,
+      "min_denominator_policy": "No prevalence or 'advertised demand' percentage may be reported below employers>=5 AND admitted postings>=20; below that threshold the demand layer must state that advertised-demand evidence is insufficient and report counts only."
+    },
+    "geography": "US-only after reviewer adjudication; one multi-location posting also lists Toronto.",
+    "period": "One retrieval window on 2026-09-23; posting publication dates span 2025-08-22 through 2026-06-12; no trend claim.",
+    "statements": [
+      "Counts only: 23 employer boards were scanned (5,129 board-total openings); 43 postings matched the title filter; 15 member postings were admitted and one exact-content duplicate was collapsed, leaving 14 unique postings overall (7 dev, 7 held out).",
+      "The dev slice contains 7 unique postings across 4 employers; phrase-screen counts below describe this small dev sample only.",
+      "Prevalence and advertised-demand percentage claims are disallowed: the frozen policy requires employers>=5 and admitted unique postings>=20; corpus status is INSUFFICIENT (14 overall).",
+      "Posting counts are not occupational importance, proficiency, hires, or hiring probability. The sample is a one-time, nonrepresentative convenience sample of employers with public Greenhouse feeds; no trend claim is supported."
+    ]
+  },
+  "guide": {
+    "format": "markdown",
+    "html_path": "guide.html",
+    "path": "guide.md"
+  },
+  "limitations": [
+    "Convenience sample of US employers with public Greenhouse feeds; not a random or representative sample of US employers or job ads (see coverage.nonrepresentativeness).",
+    "Current open postings measure advertised demand only; they are not hires, proficiency, occupational importance, or hiring probability.",
+    "Small numbers: demand_denominators.current_status_under_policy is INSUFFICIENT; counts-only demand statements.",
+    "Greenhouse-served employers skew technology/startup; several sectors rest on a single employer.",
+    "Feed fields (title/location/first_published/updated_at) are taken as published; first_published may be null.",
+    "Held-out sealing is permissions + protocol, not cryptography: a lane re-fetching public feeds could bypass sealing. Out-of-corpus retrieval is a protocol violation audited via provenance checks; residual re-identifiability from public board aggregates cannot be fully eliminated.",
+    "One duplicate-family member lost its raw detail JSON to the superseded id collision; identical-content evidence is retained via its family twin and its metadata in the sealed split-policy input (held-out/raw/split-policy-input.json).",
+    "No practitioner labels or gold judgments exist anywhere in this corpus; model agreement is not practitioner validation.",
+    "Duplicate detection is exact-content only; near-duplicates may remain.",
+    "Single retrieval snapshot supports no temporal trend claim.",
+    "O*NET 13-1071.00 is a Human Resources Specialists profile, not a complete HR Generalist/People Operations corpus; selected recruiting-heavy material was excluded from the common core.",
+    "The O*NET task_ratings source is a dictionary page, not HR-specific task rating records. No numeric proficiency, task importance, job-relatedness, or validated competency threshold is claimed.",
+    "Task-to-competency links and competency wording are desk-research inferences anchored to quoted O*NET/OPM text, not practitioner review or an empirical validation study.",
+    "Phrase-screen coverage is a deterministic wording-hit proxy over seven dev extracts. It can miss paraphrases and can count a phrase without proving a complete duty; no prevalence claim follows.",
+    "People Operations is a responsibility-based functional variant only; the literal title is absent from the seven dev titles and title interchangeability is not established."
+  ],
+  "method": "structured-job-analysis",
+  "method_notes": {
+    "approach": "Structured Job Analysis with O*NET/OPM task–competency anchoring and DACUM-informed desk research.",
+    "dacum_informed": true,
+    "description": "DACUM informs the duty/task decomposition structure only. This is desk research, not a DACUM study or practitioner-validated analysis; no practitioners participated.",
+    "method_evidence": [
+      {
+        "evidence_role": "rating-provenance-boundary",
+        "locator": "O*NET 31.0 task_ratings data dictionary › description",
+        "quote": "This table contains ratings which describe the importance, relevance, and frequency of occupation-specific tasks and duties performed in a job.",
+        "source_id": "onet_task_ratings_dictionary"
+      },
+      {
+        "evidence_role": "method-anchor",
+        "locator": "OPM Job Analysis › definition of job analysis",
+        "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+        "source_id": "opm_job_analysis"
+      },
+      {
+        "evidence_role": "method-boundary",
+        "locator": "DACUM International Training Center › process description",
+        "quote": "a panel of expert workers and a skilled facilitator working together to precisely identify the duties and tasks performed in a job",
+        "source_id": "dacum_method"
+      }
+    ],
+    "practitioner_validated": false,
+    "rating_provenance": "The admitted O*NET task_ratings source is a data dictionary, not downloaded HR-specific task-rating records. No numeric proficiency or rating is inferred. O*NET profile importance values, where displayed, are not proficiency.",
+    "task_competency_links": "Each directional task→competency link has a separate analyst rationale and quoted task/competency/method anchors. Links are desk-research inferences, not O*NET task-rating relationships or validated job-relatedness findings."
+  },
+  "negative_findings": [
+    "No People Operations string appears as an exact title in the seven dev posting metadata rows; responsibility-based functional overlap only.",
+    "No HR-specific task-rating data records or validated numeric proficiency scale were admitted; no numeric proficiency or rating is emitted.",
+    "Recruiting-only scope is not elevated into the HR Generalist common core despite recruiting content in the broad O*NET specialist profile.",
+    "Counts-only: the frozen 14-item overall corpus is below the employers>=5 AND unique postings>=20 threshold; no percentage/prevalence claim is allowed.",
+    "The visible dev slice is seven unique postings across four employers; this does not establish sector representativeness or role-wide task prevalence."
+  ],
+  "provenance": [
+    {
+      "attribution": "O*NET OnLine / U.S. Department of Labor, Employment and Training Administration",
+      "retrieved_at": "2026-09-23T21:10:21.643003Z",
+      "rights_note": "Reuse and licensing terms were not independently researched for this snapshot. Retain O*NET attribution and consult the publisher's current terms before redistribution or downstream reuse.",
+      "sha256": "557c16e409c4620911705d2e024cc0f199d61d98b7ef3df8d7fce2b311f91315",
+      "source_id": "onet_hr_specialist",
+      "source_kind": "primary_occupation_profile",
+      "url": "https://www.onetonline.org/link/details/13-1071.00"
+    },
+    {
+      "attribution": "O*NET Resource Center / National Center for O*NET Development",
+      "retrieved_at": "2026-09-23T21:10:56.173529Z",
+      "rights_note": "Reuse and licensing terms were not independently researched for this snapshot. Retain O*NET Resource Center attribution and consult the publisher's current terms before redistribution or downstream reuse.",
+      "sha256": "2a97860399bd066a473a2d318584eddbc93848c779101b95b411bdcec7a54fbb",
+      "source_id": "onet_task_ratings_dictionary",
+      "source_kind": "primary_task_rating_data_dictionary",
+      "url": "https://www.onetcenter.org/dictionary/31.0/mssql/task_ratings.html"
+    },
+    {
+      "attribution": "U.S. Office of Personnel Management",
+      "retrieved_at": "2026-09-23T21:10:22.650244Z",
+      "rights_note": "Reuse and licensing terms were not independently researched for this snapshot. Retain OPM attribution and consult applicable U.S. government and page-specific terms before redistribution or downstream reuse.",
+      "sha256": "7ba76c11b54afaa04c55cbe7d36434356a22f860242aa1b69d356339046e0c33",
+      "source_id": "opm_job_analysis",
+      "source_kind": "primary_job_analysis_methodology",
+      "url": "https://www.opm.gov/policy-data-oversight/assessment-and-selection/job-analysis/"
+    },
+    {
+      "attribution": "European Commission, European Skills, Competences, Qualifications and Occupations (ESCO)",
+      "retrieved_at": "2026-09-23T21:10:23.230135Z",
+      "rights_note": "Reuse and licensing terms were not independently researched for this snapshot. Retain ESCO and European Commission attribution and consult current ESCO reuse terms before redistribution or downstream reuse.",
+      "sha256": "832d2e09eb67b6376d13e17e343f5742ca3b61193b8d79c8c2119599cc20d2a0",
+      "source_id": "esco_essential_optional",
+      "source_kind": "primary_taxonomy_definition",
+      "url": "https://esco.ec.europa.eu/en/about-esco/escopedia/escopedia/essential"
+    },
+    {
+      "attribution": "European Commission, European Skills, Competences, Qualifications and Occupations (ESCO)",
+      "retrieved_at": "2026-09-23T21:10:23.395933Z",
+      "rights_note": "Reuse and licensing terms were not independently researched for this snapshot. Retain ESCO and European Commission attribution and consult current ESCO reuse terms before redistribution or downstream reuse.",
+      "sha256": "9419a1c0929e5216f4f69b217d0ef3ee99340901a128c1590679ed05fec27589",
+      "source_id": "esco_use_api",
+      "source_kind": "primary_taxonomy_use_and_api_description",
+      "url": "https://esco.ec.europa.eu/en/use-esco"
+    },
+    {
+      "attribution": "DACUM International Training Center, The Ohio State University Center on Education and Training for Employment",
+      "retrieved_at": "2026-09-23T21:10:24.098591Z",
+      "rights_note": "Reuse and licensing terms were not independently researched for this snapshot. Retain Ohio State/CETE/DACUM attribution and consult the publisher's current terms before redistribution or downstream reuse.",
+      "sha256": "3c342d43ca187c764beb4cabc532efc4536e8a415c08cc0cfdc8a28f6e7b0827",
+      "source_id": "dacum_method",
+      "source_kind": "primary_job_analysis_method",
+      "url": "https://dacum.osu.edu/"
+    },
+    {
+      "attribution": "Anduril Industries (job posting)",
+      "retrieved_at": "2026-09-23T22:36:14Z",
+      "rights_note": "Employer-authored content retrieved unauthenticated from each employer's own public job feed (Greenhouse boards API), retained with attribution and source URLs for internal research/evaluation. NOT a rights determination: no full-text redistribution without per-employer terms review; publication beyond this evidence root is limited to short attributed excerpts plus links. Check each employer's and Greenhouse's current terms and robots policy before any reuse.",
+      "role_class": "common_core",
+      "sha256": "14b33a0de3ca429250165ba4a70efa4096a1ee88505836b38d8890ae1ab2d81b",
+      "source_id": "p-andurilindustries-4835624007",
+      "source_kind": "employer_public_job_feed",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/4835624007?gh_jid=4835624007"
+    },
+    {
+      "attribution": "Anduril Industries (job posting)",
+      "retrieved_at": "2026-09-23T22:36:14Z",
+      "rights_note": "Employer-authored content retrieved unauthenticated from each employer's own public job feed (Greenhouse boards API), retained with attribution and source URLs for internal research/evaluation. NOT a rights determination: no full-text redistribution without per-employer terms review; publication beyond this evidence root is limited to short attributed excerpts plus links. Check each employer's and Greenhouse's current terms and robots policy before any reuse.",
+      "role_class": "common_core",
+      "sha256": "6858cf4929ba5cad3d429d8f39d57b191b252f3d64fdb5bdcd76130915b6a63a",
+      "source_id": "p-andurilindustries-4836444007",
+      "source_kind": "employer_public_job_feed",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/4836444007?gh_jid=4836444007"
+    },
+    {
+      "attribution": "Anduril Industries (job posting)",
+      "retrieved_at": "2026-09-23T22:36:14Z",
+      "rights_note": "Employer-authored content retrieved unauthenticated from each employer's own public job feed (Greenhouse boards API), retained with attribution and source URLs for internal research/evaluation. NOT a rights determination: no full-text redistribution without per-employer terms review; publication beyond this evidence root is limited to short attributed excerpts plus links. Check each employer's and Greenhouse's current terms and robots policy before any reuse.",
+      "role_class": "common_core",
+      "sha256": "eec279cbdc517a3465c7db20ff710fe477158b85eb4b0ac5ad0295fa8737b1aa",
+      "source_id": "p-andurilindustries-4855853007",
+      "source_kind": "employer_public_job_feed",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/4855853007?gh_jid=4855853007"
+    },
+    {
+      "attribution": "Coinbase (job posting)",
+      "retrieved_at": "2026-09-23T22:36:14Z",
+      "rights_note": "Employer-authored content retrieved unauthenticated from each employer's own public job feed (Greenhouse boards API), retained with attribution and source URLs for internal research/evaluation. NOT a rights determination: no full-text redistribution without per-employer terms review; publication beyond this evidence root is limited to short attributed excerpts plus links. Check each employer's and Greenhouse's current terms and robots policy before any reuse.",
+      "role_class": "common_core",
+      "sha256": "be4946df2d8c6b755bd2ee76fb978e5eba6afbe19ef881abf12771be914a24e0",
+      "source_id": "p-coinbase-7997879",
+      "source_kind": "employer_public_job_feed",
+      "url": "https://www.coinbase.com/careers/positions/7997879?gh_jid=7997879"
+    },
+    {
+      "attribution": "Datadog (job posting)",
+      "retrieved_at": "2026-09-23T22:36:14Z",
+      "rights_note": "Employer-authored content retrieved unauthenticated from each employer's own public job feed (Greenhouse boards API), retained with attribution and source URLs for internal research/evaluation. NOT a rights determination: no full-text redistribution without per-employer terms review; publication beyond this evidence root is limited to short attributed excerpts plus links. Check each employer's and Greenhouse's current terms and robots policy before any reuse.",
+      "role_class": "context_addition",
+      "sha256": "cec7a82b5f5eeea3e9d04a42f3b92775ba2d8f024ed17a5599b8a05e2b324234",
+      "source_id": "p-datadog-7728298",
+      "source_kind": "employer_public_job_feed",
+      "url": "https://careers.datadoghq.com/detail/7728298/?gh_jid=7728298"
+    },
+    {
+      "attribution": "Stripe (job posting)",
+      "retrieved_at": "2026-09-23T22:36:14Z",
+      "rights_note": "Employer-authored content retrieved unauthenticated from each employer's own public job feed (Greenhouse boards API), retained with attribution and source URLs for internal research/evaluation. NOT a rights determination: no full-text redistribution without per-employer terms review; publication beyond this evidence root is limited to short attributed excerpts plus links. Check each employer's and Greenhouse's current terms and robots policy before any reuse.",
+      "role_class": "common_core",
+      "sha256": "50ffd06d31a63ddb01beff654f965e7f712a05aa5b1a9522f1c6e85e695bb777",
+      "source_id": "p-stripe-7466921",
+      "source_kind": "employer_public_job_feed",
+      "url": "https://stripe.com/jobs/search?gh_jid=7466921"
+    },
+    {
+      "attribution": "Stripe (job posting)",
+      "retrieved_at": "2026-09-23T22:36:14Z",
+      "rights_note": "Employer-authored content retrieved unauthenticated from each employer's own public job feed (Greenhouse boards API), retained with attribution and source URLs for internal research/evaluation. NOT a rights determination: no full-text redistribution without per-employer terms review; publication beyond this evidence root is limited to short attributed excerpts plus links. Check each employer's and Greenhouse's current terms and robots policy before any reuse.",
+      "role_class": "common_core",
+      "sha256": "ce4fafafd3942c0b87796e9fdfdf0a30c5a3034138ad19ed4288cf88a5e94437",
+      "source_id": "p-stripe-7704660",
+      "source_kind": "employer_public_job_feed",
+      "url": "https://stripe.com/jobs/search?gh_jid=7704660"
+    }
+  ],
+  "role": {
+    "canonical_title": "HR Generalist (individual contributor)",
+    "definition": "A cross-industry HR individual contributor who interprets policy, supports employee relations and records, guides managers, helps with lifecycle programs, and reports employment-related data; local role design varies.",
+    "definition_evidence": [
+      {
+        "evidence_role": "role_definition_support",
+        "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+        "quote": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+        "source_id": "onet_hr_specialist"
+      },
+      {
+        "evidence_role": "role_definition_support",
+        "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+        "quote": "Address employee relations issues, such as harassment allegations, work complaints, or other employee concerns.",
+        "source_id": "onet_hr_specialist"
+      },
+      {
+        "evidence_role": "role_definition_support",
+        "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+        "quote": "Prepare or maintain employment records related to events, such as hiring, termination, leaves, transfers, or promotions, using human resources management system software.",
+        "source_id": "onet_hr_specialist"
+      },
+      {
+        "evidence_role": "role_definition_support",
+        "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+        "quote": "Analyze employment-related data and prepare required reports.",
+        "source_id": "onet_hr_specialist"
+      }
+    ],
+    "exclusions": [
+      "HR directors and executive HR leadership are outside scope.",
+      "Recruiting-only jobs and recruiting-only duties are not represented as the HR Generalist common core.",
+      "People-manager-only, intern/campus, and non-US roles are excluded by the frozen admission protocol."
+    ],
+    "scope": {
+      "geography": "United States (adjudicated US locations; one multi-location posting also lists Toronto)",
+      "industries": [
+        "Cross-industry intended scope; the dev sample covers aerospace/defense, financial services/fintech, and software/technology only.",
+        "The sample is uneven and Greenhouse-skewed; sectors and employer sizes are not representative."
+      ],
+      "seniority": "Individual-contributor focus. Observed ads skew toward experienced/senior HRBP work; one coordinator-level posting is labeled a context addition. No general experience threshold is inferred."
+    },
+    "title_variant_validation": {
+      "evidence": [
+        {
+          "evidence_role": "labeled_context_addition",
+          "locator": "Employer posting Associate People Business Partner › responsibilities",
+          "purpose": "responsibility_based_title_validation",
+          "quote": "support managers and employees throughout the entire employment lifecycle, offering guidance, coaching, and conflict resolution.",
+          "source_id": "p-andurilindustries-4855853007"
+        },
+        {
+          "evidence_role": "labeled_context_addition",
+          "locator": "Employer posting People Solutions Coordinator (NYC) › responsibilities",
+          "purpose": "responsibility_based_title_validation",
+          "quote": "own all aspects of maintaining employee changes and data throughout the full employee life cycle including employee changes in the system, organizational updates, job change letters, and audits.",
+          "source_id": "p-datadog-7728298"
+        },
+        {
+          "evidence_role": "labeled_context_addition",
+          "locator": "Employer posting HR Business Partner › responsibilities",
+          "purpose": "responsibility_based_title_validation",
+          "quote": "as an hr business partner on the people team, you'll partner with one or more functional leadership teams to translate business strategy into people and org strategy.",
+          "source_id": "p-coinbase-7997879"
+        }
+      ],
+      "literal_title_posting_ids": [],
+      "negative_title_scan": "No literal People Operations title occurs in the seven admitted dev posting titles; responsibility-based functional overlap only.",
+      "status": "responsibility-based functional variant; the exact title string is absent from the 7 dev posting titles",
+      "supporting_related_title_evidence": [
+        {
+          "evidence_role": "source_occupation_title",
+          "locator": "O*NET OnLine 13-1071.00 › Sample of reported job titles",
+          "quote": "HR Generalist (Human Resources Generalist)",
+          "source_id": "onet_hr_specialist"
+        },
+        {
+          "evidence_role": "source_occupation_title",
+          "locator": "O*NET OnLine 13-1071.00 › occupation title",
+          "quote": "Human Resources Specialists",
+          "source_id": "onet_hr_specialist"
+        },
+        {
+          "evidence_role": "labeled_context_addition",
+          "locator": "Employer posting HR Business Partner › role overview",
+          "purpose": "responsibility_based_title_validation",
+          "quote": "as an hr business partner on the people team, you'll partner with one or more functional leadership teams to translate business strategy into people and org strategy.",
+          "source_id": "p-coinbase-7997879"
+        },
+        {
+          "evidence_role": "labeled_context_addition",
+          "locator": "Employer posting People Partner, Technology › role overview",
+          "purpose": "responsibility_based_title_validation",
+          "quote": "stripe is looking for a people partner (hrbp) to drive that effort across our technology organization.",
+          "source_id": "p-stripe-7466921"
+        }
+      ],
+      "validation": "Several HR Business Partner/People Partner descriptions include employee lifecycle, manager support, employee relations, people strategy, or employee-data responsibilities that overlap this guide's HR/people work. The observed responsibilities support this cautious functional variant; they do not establish cross-employer title equivalence or demand for the literal title.",
+      "variant": "People Operations"
+    },
+    "title_variants": [
+      "Human Resources Generalist",
+      "Human Resources Specialists (O*NET 13-1071.00 source occupation)",
+      "HR Business Partner / People Partner (responsibility-based adjacent title variants)",
+      "People Operations (responsibility-based functional variant; exact title not observed in the dev sample)"
+    ]
+  },
+  "run": {
+    "candidate_revision": "dc859d10717a1e13fb44ec7b357733b62aeeb08a",
+    "config_hash": "25fb63b5108892de3b719e58b7998d68d31f08a6d48756c79d57d3389a5e3af4",
+    "corpus_snapshot_ids": [
+      "luna-max-hr-generalist-starter-2026-09-23",
+      "shared-reviewer-hr-ic-postings-v2-2026-09-23"
+    ],
+    "finished_at": "2026-09-24T00:06:14Z",
+    "mode": "offline",
+    "model": "deterministic-structured-job-analysis.v1",
+    "provider": "local",
+    "resource_caps": {
+      "live_execution": "one post-freeze final execution; not used in this round-one local build",
+      "max_inference_cost_usd": 0.5,
+      "max_retrieval_requests": 0
+    },
+    "resource_ledger": {
+      "inference_cost_usd_estimate": 0.0,
+      "inference_requests": 0,
+      "retrieval_requests": 0,
+      "wall_clock_minutes": 4.9e-05
+    },
+    "round": 1,
+    "run_id": "sja-a-r1-73dd5161552c7b84",
+    "started_at": "2026-09-24T00:06:14Z"
+  },
+  "schema_version": "skills-vector.poc-output.v1",
+  "unlinked_or_ambiguous": [
+    {
+      "item": "Role-specific proficiency levels for each competency or task",
+      "reason": "The admitted O*NET 31.0 source is only a task-rating data dictionary; no HR-specific rating records or proficiency standard are present. No levels are invented."
+    },
+    {
+      "item": "Whether every employer uses the literal title People Operations interchangeably with HR Generalist",
+      "reason": "No literal People Operations title appears among the seven dev posting titles; only responsibility overlap in selected People Partner/HRBP descriptions is evidenced."
+    },
+    {
+      "item": "Union, public-sector, part-time entry-level, legacy-employer, and broad non-technology contexts",
+      "reason": "These contexts are absent or sparse in the admitted dev sample and cannot be resolved from this evidence set."
+    }
+  ],
+  "work_units": [
+    {
+      "demand": {
+        "employers_denominator": 4,
+        "geography": "US postings as adjudicated in the frozen manifest; one multi-location posting also lists Toronto",
+        "matched_dev_posting_ids": [
+          "p-andurilindustries-4835624007",
+          "p-andurilindustries-4836444007",
+          "p-coinbase-7997879",
+          "p-datadog-7728298"
+        ],
+        "notes": "Counts-only phrase-screen coverage among unique dev postings; exact phrase match is not semantic task adjudication, prevalence, hiring probability, actual hires, occupational importance, or proficiency.",
+        "period": "single employer-feed snapshot retrieved 2026-09-23; not a comparable time series",
+        "posting_count": 4,
+        "postings_denominator": 7
+      },
+      "evidence": [
+        {
+          "evidence_role": "onet_task_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+          "quote": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+          "source_id": "onet_hr_specialist"
+        }
+      ],
+      "kind": "task",
+      "method_fields": {
+        "classification": "common_core",
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Tasks › Core"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; the task statement does not establish a proficiency threshold."
+        },
+        "task_competency_links": [
+          {
+            "competency_unit_id": "competency-hr-knowledge",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Knowledge › Personnel and Human Resources",
+                "quote": "Knowledge of principles and procedures for personnel recruitment, selection, training, compensation and benefits, labor relations and negotiation, and personnel information systems.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "The task is explicitly about interpreting HR policy; personnel and human-resources knowledge supports accurate explanation.",
+            "justification_provenance": "desk-research inference; not an O*NET task-rating link or practitioner validation"
+          },
+          {
+            "competency_unit_id": "competency-law-policy",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Knowledge › Law and Government",
+                "quote": "Knowledge of laws, legal codes, court procedures, precedents, government regulations, executive orders, agency rules",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "The task explicitly covers laws, standards, and regulations; law-and-policy literacy supports accurate interpretation.",
+            "justification_provenance": "desk-research inference; not an O*NET task-rating link or practitioner validation"
+          },
+          {
+            "competency_unit_id": "competency-written-communication",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Abilities › Written Expression",
+                "quote": "The ability to communicate information and ideas in writing so others will understand.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "The task requires explaining rules to others; written expression supports clear, usable guidance.",
+            "justification_provenance": "desk-research inference; not an O*NET task-rating link or practitioner validation"
+          }
+        ]
+      },
+      "statement": "Interpret HR policies, procedures, laws, and regulations and explain how they apply to employees and managers.",
+      "uncertainty": {
+        "level": "medium",
+        "notes": "O*NET occupation-profile task adapted to an HR Generalist desk guide; not all employers assign the same task scope."
+      },
+      "unit_id": "task-policy-guidance"
+    },
+    {
+      "demand": {
+        "employers_denominator": 4,
+        "geography": "US postings as adjudicated in the frozen manifest; one multi-location posting also lists Toronto",
+        "matched_dev_posting_ids": [
+          "p-andurilindustries-4835624007",
+          "p-andurilindustries-4836444007",
+          "p-andurilindustries-4855853007",
+          "p-coinbase-7997879"
+        ],
+        "notes": "Counts-only phrase-screen coverage among unique dev postings; exact phrase match is not semantic task adjudication, prevalence, hiring probability, actual hires, occupational importance, or proficiency.",
+        "period": "single employer-feed snapshot retrieved 2026-09-23; not a comparable time series",
+        "posting_count": 4,
+        "postings_denominator": 7
+      },
+      "evidence": [
+        {
+          "evidence_role": "onet_task_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+          "quote": "Address employee relations issues, such as harassment allegations, work complaints, or other employee concerns.",
+          "source_id": "onet_hr_specialist"
+        }
+      ],
+      "kind": "task",
+      "method_fields": {
+        "classification": "common_core",
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Tasks › Core"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; the task statement does not establish a proficiency threshold."
+        },
+        "task_competency_links": [
+          {
+            "competency_unit_id": "competency-active-listening",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Address employee relations issues, such as harassment allegations, work complaints, or other employee concerns.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Skills › Active Listening",
+                "quote": "Giving full attention to what other people are saying, taking time to understand the points being made",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "Intake and resolution require understanding what employees report; this is an analyst inference from the task and listening definition.",
+            "justification_provenance": "desk-research inference; not an O*NET task-rating link or practitioner validation"
+          },
+          {
+            "competency_unit_id": "competency-social-perceptiveness",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Address employee relations issues, such as harassment allegations, work complaints, or other employee concerns.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Transferable Skills › Social Perceptiveness",
+                "quote": "Being aware of others' reactions and understanding why they react as they do.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "Handling employee concerns benefits from interpreting others' reactions; the pairing is desk-research judgment, not a task rating.",
+            "justification_provenance": "desk-research inference; not an O*NET task-rating link or practitioner validation"
+          },
+          {
+            "competency_unit_id": "competency-judgment",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Address employee relations issues, such as harassment allegations, work complaints, or other employee concerns.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Transferable Skills › Judgment and Decision Making",
+                "quote": "Considering the relative costs and benefits of potential actions to choose the most appropriate one.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "Employee-relations issues may require choosing among actions; this directional link is a desk-research inference, not validated assessment evidence.",
+            "justification_provenance": "desk-research inference; not an O*NET task-rating link or practitioner validation"
+          }
+        ]
+      },
+      "statement": "Address employee-relations concerns, including complaints, harassment allegations, and other employee issues.",
+      "uncertainty": {
+        "level": "medium",
+        "notes": "O*NET occupation-profile task adapted to an HR Generalist desk guide; not all employers assign the same task scope."
+      },
+      "unit_id": "task-employee-relations"
+    },
+    {
+      "demand": {
+        "employers_denominator": 4,
+        "geography": "US postings as adjudicated in the frozen manifest; one multi-location posting also lists Toronto",
+        "matched_dev_posting_ids": [
+          "p-datadog-7728298"
+        ],
+        "notes": "Counts-only phrase-screen coverage among unique dev postings; exact phrase match is not semantic task adjudication, prevalence, hiring probability, actual hires, occupational importance, or proficiency.",
+        "period": "single employer-feed snapshot retrieved 2026-09-23; not a comparable time series",
+        "posting_count": 1,
+        "postings_denominator": 7
+      },
+      "evidence": [
+        {
+          "evidence_role": "onet_task_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+          "quote": "Prepare or maintain employment records related to events, such as hiring, termination, leaves, transfers, or promotions, using human resources management system software.",
+          "source_id": "onet_hr_specialist"
+        }
+      ],
+      "kind": "task",
+      "method_fields": {
+        "classification": "common_core",
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Tasks › Core"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; the task statement does not establish a proficiency threshold."
+        },
+        "task_competency_links": [
+          {
+            "competency_unit_id": "competency-administrative-records",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Prepare or maintain employment records related to events, such as hiring, termination, leaves, transfers, or promotions, using human resources management system software.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Knowledge › Administrative",
+                "quote": "Knowledge of administrative and office procedures and systems such as word processing, managing files and records",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "The task names records and HR-management software; administrative systems knowledge supports accurate record handling.",
+            "justification_provenance": "desk-research inference; not an O*NET task-rating link or practitioner validation"
+          },
+          {
+            "competency_unit_id": "competency-hr-knowledge",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Prepare or maintain employment records related to events, such as hiring, termination, leaves, transfers, or promotions, using human resources management system software.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Knowledge › Personnel and Human Resources",
+                "quote": "Knowledge of principles and procedures for personnel recruitment, selection, training, compensation and benefits, labor relations and negotiation, and personnel information systems.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "The records concern personnel lifecycle events; HR knowledge supports correct handling of personnel information.",
+            "justification_provenance": "desk-research inference; not an O*NET task-rating link or practitioner validation"
+          }
+        ]
+      },
+      "statement": "Prepare and maintain accurate employee records across hiring, termination, leave, transfer, and promotion events using HR systems.",
+      "uncertainty": {
+        "level": "medium",
+        "notes": "O*NET occupation-profile task adapted to an HR Generalist desk guide; not all employers assign the same task scope."
+      },
+      "unit_id": "task-employee-records"
+    },
+    {
+      "demand": {
+        "employers_denominator": 4,
+        "geography": "US postings as adjudicated in the frozen manifest; one multi-location posting also lists Toronto",
+        "matched_dev_posting_ids": [
+          "p-andurilindustries-4835624007",
+          "p-andurilindustries-4836444007",
+          "p-andurilindustries-4855853007",
+          "p-coinbase-7997879",
+          "p-stripe-7466921",
+          "p-stripe-7704660"
+        ],
+        "notes": "Counts-only phrase-screen coverage among unique dev postings; exact phrase match is not semantic task adjudication, prevalence, hiring probability, actual hires, occupational importance, or proficiency.",
+        "period": "single employer-feed snapshot retrieved 2026-09-23; not a comparable time series",
+        "posting_count": 6,
+        "postings_denominator": 7
+      },
+      "evidence": [
+        {
+          "evidence_role": "onet_task_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+          "quote": "performance appraisals, counseling techniques, or documentation of performance issues.",
+          "source_id": "onet_hr_specialist"
+        }
+      ],
+      "kind": "task",
+      "method_fields": {
+        "classification": "common_core",
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Tasks › Core"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; the task statement does not establish a proficiency threshold."
+        },
+        "task_competency_links": [
+          {
+            "competency_unit_id": "competency-instructing",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "performance appraisals, counseling techniques, or documentation of performance issues.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Transferable Skills › Instructing",
+                "quote": "Teaching others how to do something.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "The task expressly includes information or training; instructing is therefore a directionally relevant desk-research link.",
+            "justification_provenance": "desk-research inference; not an O*NET task-rating link or practitioner validation"
+          },
+          {
+            "competency_unit_id": "competency-hr-knowledge",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "performance appraisals, counseling techniques, or documentation of performance issues.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Knowledge › Personnel and Human Resources",
+                "quote": "Knowledge of principles and procedures for personnel recruitment, selection, training, compensation and benefits, labor relations and negotiation, and personnel information systems.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "The task concerns HR practices and performance processes; HR knowledge supports accurate manager guidance.",
+            "justification_provenance": "desk-research inference; not an O*NET task-rating link or practitioner validation"
+          },
+          {
+            "competency_unit_id": "competency-written-communication",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "performance appraisals, counseling techniques, or documentation of performance issues.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Abilities › Written Expression",
+                "quote": "The ability to communicate information and ideas in writing so others will understand.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "The task includes documenting performance issues; clear written expression supports usable records and guidance.",
+            "justification_provenance": "desk-research inference; not an O*NET task-rating link or practitioner validation"
+          }
+        ]
+      },
+      "statement": "Provide managers with information or training about performance processes, counseling practices, and documentation of performance issues.",
+      "uncertainty": {
+        "level": "medium",
+        "notes": "O*NET occupation-profile task adapted to an HR Generalist desk guide; not all employers assign the same task scope."
+      },
+      "unit_id": "task-manager-guidance"
+    },
+    {
+      "demand": {
+        "employers_denominator": 4,
+        "geography": "US postings as adjudicated in the frozen manifest; one multi-location posting also lists Toronto",
+        "matched_dev_posting_ids": [
+          "p-datadog-7728298"
+        ],
+        "notes": "Counts-only phrase-screen coverage among unique dev postings; exact phrase match is not semantic task adjudication, prevalence, hiring probability, actual hires, occupational importance, or proficiency.",
+        "period": "single employer-feed snapshot retrieved 2026-09-23; not a comparable time series",
+        "posting_count": 1,
+        "postings_denominator": 7
+      },
+      "evidence": [
+        {
+          "evidence_role": "onet_task_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+          "quote": "Schedule or conduct new employee orientations.",
+          "source_id": "onet_hr_specialist"
+        }
+      ],
+      "kind": "task",
+      "method_fields": {
+        "classification": "common_core",
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Tasks › Core"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; the task statement does not establish a proficiency threshold."
+        },
+        "task_competency_links": [
+          {
+            "competency_unit_id": "competency-instructing",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Schedule or conduct new employee orientations.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Transferable Skills › Instructing",
+                "quote": "Teaching others how to do something.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "Orientation conveys work information to new employees; the competency link is a desk-research inference from the task wording.",
+            "justification_provenance": "desk-research inference; not an O*NET task-rating link or practitioner validation"
+          },
+          {
+            "competency_unit_id": "competency-active-listening",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Schedule or conduct new employee orientations.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Skills › Active Listening",
+                "quote": "Giving full attention to what other people are saying, taking time to understand the points being made",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "Orientation also involves responding to questions; this is a cautious task-design inference, not a measured proficiency requirement.",
+            "justification_provenance": "desk-research inference; not an O*NET task-rating link or practitioner validation"
+          }
+        ]
+      },
+      "statement": "Schedule or conduct new-employee orientation as one part of the broader employee lifecycle.",
+      "uncertainty": {
+        "level": "medium",
+        "notes": "O*NET occupation-profile task adapted to an HR Generalist desk guide; not all employers assign the same task scope."
+      },
+      "unit_id": "task-new-hire-orientation"
+    },
+    {
+      "demand": {
+        "employers_denominator": 4,
+        "geography": "US postings as adjudicated in the frozen manifest; one multi-location posting also lists Toronto",
+        "matched_dev_posting_ids": [
+          "p-andurilindustries-4835624007",
+          "p-andurilindustries-4836444007",
+          "p-coinbase-7997879"
+        ],
+        "notes": "Counts-only phrase-screen coverage among unique dev postings; exact phrase match is not semantic task adjudication, prevalence, hiring probability, actual hires, occupational importance, or proficiency.",
+        "period": "single employer-feed snapshot retrieved 2026-09-23; not a comparable time series",
+        "posting_count": 3,
+        "postings_denominator": 7
+      },
+      "evidence": [
+        {
+          "evidence_role": "onet_task_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+          "quote": "Analyze employment-related data and prepare required reports.",
+          "source_id": "onet_hr_specialist"
+        }
+      ],
+      "kind": "task",
+      "method_fields": {
+        "classification": "common_core",
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Tasks › Core"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; the task statement does not establish a proficiency threshold."
+        },
+        "task_competency_links": [
+          {
+            "competency_unit_id": "competency-critical-thinking",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Analyze employment-related data and prepare required reports.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Skills › Critical Thinking",
+                "quote": "Using logic and reasoning to identify the strengths and weaknesses of alternative solutions, conclusions, or approaches to problems.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "Analyzing employment data maps directionally to reasoning through information; the link is authored desk research, not an observed rating.",
+            "justification_provenance": "desk-research inference; not an O*NET task-rating link or practitioner validation"
+          },
+          {
+            "competency_unit_id": "competency-judgment",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Analyze employment-related data and prepare required reports.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Transferable Skills › Judgment and Decision Making",
+                "quote": "Considering the relative costs and benefits of potential actions to choose the most appropriate one.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "Reports may inform decisions, but the task alone does not prove a specific analytical depth; this remains a medium-confidence inference.",
+            "justification_provenance": "desk-research inference; not an O*NET task-rating link or practitioner validation"
+          }
+        ]
+      },
+      "statement": "Analyze employment-related data and prepare required reports; the source does not establish a particular analytics tool or proficiency level.",
+      "uncertainty": {
+        "level": "medium",
+        "notes": "O*NET occupation-profile task adapted to an HR Generalist desk guide; not all employers assign the same task scope."
+      },
+      "unit_id": "task-people-data-reporting"
+    },
+    {
+      "demand": {
+        "employers_denominator": 0,
+        "geography": "not assessed for competency units",
+        "matched_dev_posting_ids": [],
+        "notes": "No posting coverage count is assigned to this competency or O*NET-supplemental context item; no absence is inferred.",
+        "period": "not assessed for competency units",
+        "posting_count": 0,
+        "postings_denominator": 0
+      },
+      "evidence": [
+        {
+          "evidence_role": "onet_competency_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Knowledge › Personnel and Human Resources",
+          "quote": "Knowledge of principles and procedures for personnel recruitment, selection, training, compensation and benefits, labor relations and negotiation, and personnel information systems.",
+          "source_id": "onet_hr_specialist"
+        }
+      ],
+      "kind": "competency",
+      "method_fields": {
+        "classification": "common_core",
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Knowledge › Personnel and Human Resources"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; no validated proficiency scale or role-specific task-rating records were in the admitted source set."
+        },
+        "task_competency_links": []
+      },
+      "statement": "Personnel and human-resources knowledge covering HR procedures, training, compensation and benefits, labor relations, and personnel information systems.",
+      "uncertainty": {
+        "level": "medium",
+        "notes": "O*NET profile competency construct; role-specific proficiency, level, and assessment threshold were not established."
+      },
+      "unit_id": "competency-hr-knowledge"
+    },
+    {
+      "demand": {
+        "employers_denominator": 0,
+        "geography": "not assessed for competency units",
+        "matched_dev_posting_ids": [],
+        "notes": "No posting coverage count is assigned to this competency or O*NET-supplemental context item; no absence is inferred.",
+        "period": "not assessed for competency units",
+        "posting_count": 0,
+        "postings_denominator": 0
+      },
+      "evidence": [
+        {
+          "evidence_role": "onet_competency_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Knowledge › Law and Government",
+          "quote": "Knowledge of laws, legal codes, court procedures, precedents, government regulations, executive orders, agency rules",
+          "source_id": "onet_hr_specialist"
+        }
+      ],
+      "kind": "competency",
+      "method_fields": {
+        "classification": "common_core",
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Knowledge › Law and Government"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; no validated proficiency scale or role-specific task-rating records were in the admitted source set."
+        },
+        "task_competency_links": []
+      },
+      "statement": "Working knowledge of applicable laws, government regulations, and agency or organizational rules relevant to assigned HR work.",
+      "uncertainty": {
+        "level": "medium",
+        "notes": "O*NET profile competency construct; role-specific proficiency, level, and assessment threshold were not established."
+      },
+      "unit_id": "competency-law-policy"
+    },
+    {
+      "demand": {
+        "employers_denominator": 0,
+        "geography": "not assessed for competency units",
+        "matched_dev_posting_ids": [],
+        "notes": "No posting coverage count is assigned to this competency or O*NET-supplemental context item; no absence is inferred.",
+        "period": "not assessed for competency units",
+        "posting_count": 0,
+        "postings_denominator": 0
+      },
+      "evidence": [
+        {
+          "evidence_role": "onet_competency_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Skills › Active Listening",
+          "quote": "Giving full attention to what other people are saying, taking time to understand the points being made",
+          "source_id": "onet_hr_specialist"
+        }
+      ],
+      "kind": "competency",
+      "method_fields": {
+        "classification": "common_core",
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Skills › Active Listening"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; no validated proficiency scale or role-specific task-rating records were in the admitted source set."
+        },
+        "task_competency_links": []
+      },
+      "statement": "Attend to employee and manager accounts, clarify meaning, and understand the points being made before responding.",
+      "uncertainty": {
+        "level": "medium",
+        "notes": "O*NET profile competency construct; role-specific proficiency, level, and assessment threshold were not established."
+      },
+      "unit_id": "competency-active-listening"
+    },
+    {
+      "demand": {
+        "employers_denominator": 0,
+        "geography": "not assessed for competency units",
+        "matched_dev_posting_ids": [],
+        "notes": "No posting coverage count is assigned to this competency or O*NET-supplemental context item; no absence is inferred.",
+        "period": "not assessed for competency units",
+        "posting_count": 0,
+        "postings_denominator": 0
+      },
+      "evidence": [
+        {
+          "evidence_role": "onet_competency_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Transferable Skills › Social Perceptiveness",
+          "quote": "Being aware of others' reactions and understanding why they react as they do.",
+          "source_id": "onet_hr_specialist"
+        }
+      ],
+      "kind": "competency",
+      "method_fields": {
+        "classification": "common_core",
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Transferable Skills › Social Perceptiveness"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; no validated proficiency scale or role-specific task-rating records were in the admitted source set."
+        },
+        "task_competency_links": []
+      },
+      "statement": "Notice and interpret others' reactions during employee support and manager consultation.",
+      "uncertainty": {
+        "level": "medium",
+        "notes": "O*NET profile competency construct; role-specific proficiency, level, and assessment threshold were not established."
+      },
+      "unit_id": "competency-social-perceptiveness"
+    },
+    {
+      "demand": {
+        "employers_denominator": 0,
+        "geography": "not assessed for competency units",
+        "matched_dev_posting_ids": [],
+        "notes": "No posting coverage count is assigned to this competency or O*NET-supplemental context item; no absence is inferred.",
+        "period": "not assessed for competency units",
+        "posting_count": 0,
+        "postings_denominator": 0
+      },
+      "evidence": [
+        {
+          "evidence_role": "onet_competency_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Transferable Skills › Judgment and Decision Making",
+          "quote": "Considering the relative costs and benefits of potential actions to choose the most appropriate one.",
+          "source_id": "onet_hr_specialist"
+        }
+      ],
+      "kind": "competency",
+      "method_fields": {
+        "classification": "common_core",
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Transferable Skills › Judgment and Decision Making"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; no validated proficiency scale or role-specific task-rating records were in the admitted source set."
+        },
+        "task_competency_links": []
+      },
+      "statement": "Consider the relative costs and benefits of potential actions when selecting a proportionate next step.",
+      "uncertainty": {
+        "level": "medium",
+        "notes": "O*NET profile competency construct; role-specific proficiency, level, and assessment threshold were not established."
+      },
+      "unit_id": "competency-judgment"
+    },
+    {
+      "demand": {
+        "employers_denominator": 0,
+        "geography": "not assessed for competency units",
+        "matched_dev_posting_ids": [],
+        "notes": "No posting coverage count is assigned to this competency or O*NET-supplemental context item; no absence is inferred.",
+        "period": "not assessed for competency units",
+        "posting_count": 0,
+        "postings_denominator": 0
+      },
+      "evidence": [
+        {
+          "evidence_role": "onet_competency_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Knowledge › Administrative",
+          "quote": "Knowledge of administrative and office procedures and systems such as word processing, managing files and records",
+          "source_id": "onet_hr_specialist"
+        }
+      ],
+      "kind": "competency",
+      "method_fields": {
+        "classification": "common_core",
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Knowledge › Administrative"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; no validated proficiency scale or role-specific task-rating records were in the admitted source set."
+        },
+        "task_competency_links": []
+      },
+      "statement": "Use administrative procedures and information systems to maintain files and records accurately.",
+      "uncertainty": {
+        "level": "medium",
+        "notes": "O*NET profile competency construct; role-specific proficiency, level, and assessment threshold were not established."
+      },
+      "unit_id": "competency-administrative-records"
+    },
+    {
+      "demand": {
+        "employers_denominator": 0,
+        "geography": "not assessed for competency units",
+        "matched_dev_posting_ids": [],
+        "notes": "No posting coverage count is assigned to this competency or O*NET-supplemental context item; no absence is inferred.",
+        "period": "not assessed for competency units",
+        "posting_count": 0,
+        "postings_denominator": 0
+      },
+      "evidence": [
+        {
+          "evidence_role": "onet_competency_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Transferable Skills › Instructing",
+          "quote": "Teaching others how to do something.",
+          "source_id": "onet_hr_specialist"
+        }
+      ],
+      "kind": "competency",
+      "method_fields": {
+        "classification": "common_core",
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Transferable Skills › Instructing"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; no validated proficiency scale or role-specific task-rating records were in the admitted source set."
+        },
+        "task_competency_links": []
+      },
+      "statement": "Explain processes and teach others how to carry them out; no formal instructional certification is inferred.",
+      "uncertainty": {
+        "level": "medium",
+        "notes": "O*NET profile competency construct; role-specific proficiency, level, and assessment threshold were not established."
+      },
+      "unit_id": "competency-instructing"
+    },
+    {
+      "demand": {
+        "employers_denominator": 0,
+        "geography": "not assessed for competency units",
+        "matched_dev_posting_ids": [],
+        "notes": "No posting coverage count is assigned to this competency or O*NET-supplemental context item; no absence is inferred.",
+        "period": "not assessed for competency units",
+        "posting_count": 0,
+        "postings_denominator": 0
+      },
+      "evidence": [
+        {
+          "evidence_role": "onet_competency_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Abilities › Written Expression",
+          "quote": "The ability to communicate information and ideas in writing so others will understand.",
+          "source_id": "onet_hr_specialist"
+        }
+      ],
+      "kind": "competency",
+      "method_fields": {
+        "classification": "common_core",
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Abilities › Written Expression"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; no validated proficiency scale or role-specific task-rating records were in the admitted source set."
+        },
+        "task_competency_links": []
+      },
+      "statement": "Communicate information and ideas in writing so intended readers can understand them.",
+      "uncertainty": {
+        "level": "medium",
+        "notes": "O*NET profile competency construct; role-specific proficiency, level, and assessment threshold were not established."
+      },
+      "unit_id": "competency-written-communication"
+    },
+    {
+      "demand": {
+        "employers_denominator": 0,
+        "geography": "not assessed for competency units",
+        "matched_dev_posting_ids": [],
+        "notes": "No posting coverage count is assigned to this competency or O*NET-supplemental context item; no absence is inferred.",
+        "period": "not assessed for competency units",
+        "posting_count": 0,
+        "postings_denominator": 0
+      },
+      "evidence": [
+        {
+          "evidence_role": "onet_competency_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Skills › Critical Thinking",
+          "quote": "Using logic and reasoning to identify the strengths and weaknesses of alternative solutions, conclusions, or approaches to problems.",
+          "source_id": "onet_hr_specialist"
+        }
+      ],
+      "kind": "competency",
+      "method_fields": {
+        "classification": "common_core",
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Skills › Critical Thinking"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; no validated proficiency scale or role-specific task-rating records were in the admitted source set."
+        },
+        "task_competency_links": []
+      },
+      "statement": "Use logic and reasoning to examine the strengths and weaknesses of alternative solutions or conclusions.",
+      "uncertainty": {
+        "level": "medium",
+        "notes": "O*NET profile competency construct; role-specific proficiency, level, and assessment threshold were not established."
+      },
+      "unit_id": "competency-critical-thinking"
+    },
+    {
+      "classification": "context_addition",
+      "demand": {
+        "employers_denominator": 4,
+        "geography": "US postings as adjudicated in the frozen manifest; one multi-location posting also lists Toronto",
+        "matched_dev_posting_ids": [
+          "p-andurilindustries-4835624007",
+          "p-andurilindustries-4836444007",
+          "p-coinbase-7997879",
+          "p-stripe-7466921",
+          "p-stripe-7704660"
+        ],
+        "notes": "Counts-only phrase-screen coverage among unique dev postings; exact phrase match is not semantic task adjudication, prevalence, hiring probability, actual hires, occupational importance, or proficiency.",
+        "period": "single employer-feed snapshot retrieved 2026-09-23; not a comparable time series",
+        "posting_count": 5,
+        "postings_denominator": 7
+      },
+      "evidence": [
+        {
+          "evidence_role": "occupational_backbone_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+          "quote": "Confer with management to develop or implement personnel policies or procedures.",
+          "source_id": "onet_hr_specialist"
+        },
+        {
+          "context_label": "context_addition",
+          "evidence_role": "labeled_context_addition",
+          "locator": "Employer posting HR Business Partner › responsibilities (phrase screen)",
+          "quote": "you'll own the full hrbp lifecycle for your client groups, from org design and performance management to employee development and retention, using data and sound judgment to directly influence how coinbase scales.",
+          "source_id": "p-coinbase-7997879"
+        },
+        {
+          "context_label": "context_addition",
+          "evidence_role": "labeled_context_addition",
+          "locator": "Employer posting People Partner, Technology › responsibilities (phrase screen)",
+          "quote": "org design",
+          "source_id": "p-stripe-7466921"
+        },
+        {
+          "context_label": "context_addition",
+          "evidence_role": "labeled_context_addition",
+          "locator": "Employer posting People Partner › responsibilities (phrase screen)",
+          "quote": "org design",
+          "source_id": "p-stripe-7704660"
+        }
+      ],
+      "kind": "task",
+      "method_fields": {
+        "context_adaptation": true,
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Tasks › Core"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; context observations do not establish a validated level."
+        },
+        "task_competency_links": [
+          {
+            "competency_unit_id": "competency-hr-knowledge",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Confer with management to develop or implement personnel policies or procedures.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Knowledge › Personnel and Human Resources",
+                "quote": "Knowledge of principles and procedures for personnel recruitment, selection, training, compensation and benefits, labor relations and negotiation, and personnel information systems.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "Management policy work directionally requires personnel and HR knowledge; the organization-design extension remains context-specific.",
+            "justification_provenance": "desk-research inference; this context addition is not a measured or validated task requirement"
+          }
+        ]
+      },
+      "statement": "In some scaled HR-business-partner roles, job ads add organization design, workforce planning, and people-strategy work; treat these as context adaptations, not universal HR Generalist duties.",
+      "uncertainty": {
+        "level": "medium",
+        "notes": "Employer-specific illustration; not a universal role requirement."
+      },
+      "unit_id": "task-context-scaled-organization-design"
+    },
+    {
+      "classification": "context_addition",
+      "demand": {
+        "employers_denominator": 4,
+        "geography": "US postings as adjudicated in the frozen manifest; one multi-location posting also lists Toronto",
+        "matched_dev_posting_ids": [
+          "p-datadog-7728298"
+        ],
+        "notes": "Counts-only phrase-screen coverage among unique dev postings; exact phrase match is not semantic task adjudication, prevalence, hiring probability, actual hires, occupational importance, or proficiency.",
+        "period": "single employer-feed snapshot retrieved 2026-09-23; not a comparable time series",
+        "posting_count": 1,
+        "postings_denominator": 7
+      },
+      "evidence": [
+        {
+          "evidence_role": "occupational_backbone_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+          "quote": "Prepare or maintain employment records related to events, such as hiring, termination, leaves, transfers, or promotions, using human resources management system software.",
+          "source_id": "onet_hr_specialist"
+        },
+        {
+          "context_label": "context_addition",
+          "evidence_role": "labeled_context_addition",
+          "locator": "Employer posting People Solutions Coordinator (NYC) › responsibilities (phrase screen)",
+          "quote": "own the administrative execution of new hire onboarding and offboarding.",
+          "source_id": "p-datadog-7728298"
+        }
+      ],
+      "kind": "task",
+      "method_fields": {
+        "context_adaptation": true,
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Tasks › Core"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; context observations do not establish a validated level."
+        },
+        "task_competency_links": [
+          {
+            "competency_unit_id": "competency-administrative-records",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Prepare or maintain employment records related to events, such as hiring, termination, leaves, transfers, or promotions, using human resources management system software.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Knowledge › Administrative",
+                "quote": "Knowledge of administrative and office procedures and systems such as word processing, managing files and records",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "Employee-data administration is directionally supported by the O*NET records task and administrative-systems knowledge anchor; the coordinator context is not universal.",
+            "justification_provenance": "desk-research inference; this context addition is not a measured or validated task requirement"
+          }
+        ]
+      },
+      "statement": "One coordinator-level People Solutions posting adds service-center triage, onboarding/offboarding administration, employee-data maintenance, and document audits; this is an entry-level operational context addition, not a seniority baseline.",
+      "uncertainty": {
+        "level": "high",
+        "notes": "Employer-specific illustration; not a universal role requirement."
+      },
+      "unit_id": "task-context-coordinator-operations"
+    },
+    {
+      "classification": "context_addition",
+      "demand": {
+        "employers_denominator": 4,
+        "geography": "US postings as adjudicated in the frozen manifest; one multi-location posting also lists Toronto",
+        "matched_dev_posting_ids": [
+          "p-andurilindustries-4835624007",
+          "p-andurilindustries-4836444007",
+          "p-andurilindustries-4855853007"
+        ],
+        "notes": "Counts-only phrase-screen coverage among unique dev postings; exact phrase match is not semantic task adjudication, prevalence, hiring probability, actual hires, occupational importance, or proficiency.",
+        "period": "single employer-feed snapshot retrieved 2026-09-23; not a comparable time series",
+        "posting_count": 3,
+        "postings_denominator": 7
+      },
+      "evidence": [
+        {
+          "evidence_role": "occupational_backbone_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+          "quote": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+          "source_id": "onet_hr_specialist"
+        },
+        {
+          "context_label": "context_addition",
+          "evidence_role": "labeled_context_addition",
+          "locator": "Employer posting People Business Partner › responsibilities (phrase screen)",
+          "quote": "u.s. person status is required",
+          "source_id": "p-andurilindustries-4835624007"
+        },
+        {
+          "context_label": "context_addition",
+          "evidence_role": "labeled_context_addition",
+          "locator": "Employer posting People Business Partner › responsibilities (phrase screen)",
+          "quote": "u.s. person status is required",
+          "source_id": "p-andurilindustries-4836444007"
+        },
+        {
+          "context_label": "context_addition",
+          "evidence_role": "labeled_context_addition",
+          "locator": "Employer posting Associate People Business Partner › responsibilities (phrase screen)",
+          "quote": "must be a u.s. person due to required access to u.",
+          "source_id": "p-andurilindustries-4855853007"
+        }
+      ],
+      "kind": "task",
+      "method_fields": {
+        "context_adaptation": true,
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Tasks › Core"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; context observations do not establish a validated level."
+        },
+        "task_competency_links": [
+          {
+            "competency_unit_id": "competency-law-policy",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Knowledge › Law and Government",
+                "quote": "Knowledge of laws, legal codes, court procedures, precedents, government regulations, executive orders, agency rules",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "The O*NET policy task and law-and-government knowledge anchor support the HR-policy portion; U.S.-person status remains an employer-specific posting context, not a general competency requirement.",
+            "justification_provenance": "desk-research inference; this context addition is not a measured or validated task requirement"
+          }
+        ]
+      },
+      "statement": "A defense-sector posting requires U.S.-person status for access to export-controlled information; this is employer- and work-context-specific, not a general HR qualification.",
+      "uncertainty": {
+        "level": "high",
+        "notes": "Employer-specific illustration; not a universal role requirement."
+      },
+      "unit_id": "task-context-defense-access"
+    },
+    {
+      "classification": "context_addition",
+      "demand": {
+        "employers_denominator": 0,
+        "geography": "not assessed for competency units",
+        "matched_dev_posting_ids": [],
+        "notes": "No posting coverage count is assigned to this competency or O*NET-supplemental context item; no absence is inferred.",
+        "period": "not assessed for competency units",
+        "posting_count": 0,
+        "postings_denominator": 0
+      },
+      "evidence": [
+        {
+          "evidence_role": "occupational_backbone_anchor",
+          "locator": "O*NET OnLine 13-1071.00 › Tasks › Supplemental",
+          "quote": "Administer employee benefit plans.",
+          "source_id": "onet_hr_specialist"
+        }
+      ],
+      "kind": "task",
+      "method_fields": {
+        "context_adaptation": true,
+        "dacum_informed": true,
+        "method_fields_marker": "structured-job-analysis.v1",
+        "onet_anchor_ids": [
+          "onet_hr_specialist"
+        ],
+        "onet_anchor_locators": [
+          "O*NET OnLine 13-1071.00 › Tasks › Supplemental"
+        ],
+        "practitioner_validated": false,
+        "proficiency": {
+          "source": "desk-research",
+          "statement": "No numeric proficiency assigned; context observations do not establish a validated level."
+        },
+        "task_competency_links": [
+          {
+            "competency_unit_id": "competency-hr-knowledge",
+            "direction": "task-to-required-competency",
+            "evidence": [
+              {
+                "evidence_role": "task_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Supplemental",
+                "quote": "Administer employee benefit plans.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "competency_anchor",
+                "locator": "O*NET OnLine 13-1071.00 › Knowledge › Personnel and Human Resources",
+                "quote": "Knowledge of principles and procedures for personnel recruitment, selection, training, compensation and benefits, labor relations and negotiation, and personnel information systems.",
+                "source_id": "onet_hr_specialist"
+              },
+              {
+                "evidence_role": "method_anchor",
+                "locator": "OPM Job Analysis › definition of job analysis",
+                "quote": "the competencies required to perform those tasks, and the connection between the tasks and competencies.",
+                "source_id": "opm_job_analysis"
+              }
+            ],
+            "justification": "O*NET classifies benefit-plan administration as supplemental; general HR knowledge is a desk-research link, with local role scope unresolved.",
+            "justification_provenance": "desk-research inference; this context addition is not a measured or validated task requirement"
+          }
+        ]
+      },
+      "statement": "O*NET lists employee benefit-plan administration as a supplemental task; retain it as role-specific context unless local job analysis confirms it is in scope.",
+      "uncertainty": {
+        "level": "high",
+        "notes": "Employer-specific illustration; not a universal role requirement."
+      },
+      "unit_id": "task-context-benefit-administration"
+    }
+  ]
+}

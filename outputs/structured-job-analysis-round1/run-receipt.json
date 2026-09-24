@@ -1,0 +1,24 @@
+{
+  "base_manifest_sha256": "81df7df71c2e22a896e23765d3ad877d6084b2f9c4c63b4f6be2093cf3091317",
+  "candidate_revision": "dc859d10717a1e13fb44ec7b357733b62aeeb08a",
+  "commands_run": [
+    {
+      "command": "/home/logani/projects/skills-vector-worktrees/poc-a/.poc-env/venv/bin/python3 -m skills_vector structured-job-analysis --mode offline --output-dir outputs/structured-job-analysis-round1",
+      "exit_code": 0,
+      "receipt_path": "run-receipt.json"
+    }
+  ],
+  "corpus_snapshot_ids": [
+    "luna-max-hr-generalist-starter-2026-09-23",
+    "shared-reviewer-hr-ic-postings-v2-2026-09-23"
+  ],
+  "credential_handling": "DEEPINFRA_API_KEY read from environment only in live-final mode; value excluded from prompt, output, logs, and receipt.",
+  "inference_cost_usd_estimate": 0.0,
+  "manifest_sha256": "bcb3d5e5aff1dd915b549b9397135e1d102e08b5ceb4cbe750633ee3a8baeb5e",
+  "mode": "offline",
+  "provider_calls": 0,
+  "retrieval_requests": 0,
+  "run_id": "sja-a-r1-73dd5161552c7b84",
+  "schema_version": "skills-vector.structured-analysis-run-receipt.v1",
+  "status": "passed_local_build"
+}
