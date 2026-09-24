@@ -2,7 +2,7 @@
   "acceptance": {
     "commands_run": [
       {
-        "command": "/home/logani/projects/skills-vector-worktrees/poc-a/.poc-env/venv/bin/python3 -m skills_vector structured-job-analysis --mode offline --output-dir outputs/structured-job-analysis-round1",
+        "command": "/home/logani/projects/skills-vector-worktrees/poc-a/.poc-env/venv/bin/python3 -m skills_vector structured-job-analysis --mode offline --benchmark-dir /home/logani/oprun-evidence/skills-vector-poc-prep-74b159c/shared-benchmark --base-corpus-dir /home/logani/oprun-evidence/skills-vector-poc-prep-74b159c/corpus --output-dir outputs/structured-job-analysis-round1",
         "exit_code": 0,
         "receipt_path": "run-receipt.json"
       }
@@ -662,13 +662,13 @@
     ]
   },
   "run": {
-    "candidate_revision": "dc859d10717a1e13fb44ec7b357733b62aeeb08a",
+    "candidate_revision": "240f61bc63071e815405c26af0702000a2edf61b",
     "config_hash": "25fb63b5108892de3b719e58b7998d68d31f08a6d48756c79d57d3389a5e3af4",
     "corpus_snapshot_ids": [
       "luna-max-hr-generalist-starter-2026-09-23",
       "shared-reviewer-hr-ic-postings-v2-2026-09-23"
     ],
-    "finished_at": "2026-09-24T00:06:14Z",
+    "finished_at": "2026-09-24T00:21:13Z",
     "mode": "offline",
     "model": "deterministic-structured-job-analysis.v1",
     "provider": "local",
@@ -681,11 +681,11 @@
       "inference_cost_usd_estimate": 0.0,
       "inference_requests": 0,
       "retrieval_requests": 0,
-      "wall_clock_minutes": 4.9e-05
+      "wall_clock_minutes": 3e-05
     },
     "round": 1,
-    "run_id": "sja-a-r1-73dd5161552c7b84",
-    "started_at": "2026-09-24T00:06:14Z"
+    "run_id": "sja-a-r1-fbcc1c736caecd6d",
+    "started_at": "2026-09-24T00:21:13Z"
   },
   "schema_version": "skills-vector.poc-output.v1",
   "unlinked_or_ambiguous": [
