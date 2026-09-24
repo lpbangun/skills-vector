@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import shlex
+import sys
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -83,11 +85,55 @@ def build_parser() -> argparse.ArgumentParser:
 
     sub.add_parser("budget", help="show monthly inference remaining")
     sub.add_parser("schedule-notes", help="print local scheduling constraints")
+
+    structured = sub.add_parser(
+        "structured-job-analysis",
+        help="build POC A HR Generalist guide and machine release from the frozen dev corpus",
+    )
+    structured.add_argument("--mode", choices=("offline", "live-final"), default="offline")
+    structured.add_argument("--benchmark-dir", type=Path)
+    structured.add_argument("--base-corpus-dir", type=Path)
+    structured.add_argument("--output-dir", type=Path)
+    structured.add_argument("--resource-config", type=Path, help="parent-approved live resource/sampling JSON; live-final only")
+    structured.add_argument("--freeze-sha", help="full candidate SHA frozen by the parent; live-final only")
+    structured.add_argument("--confirm-final-run", action="store_true", help="explicitly authorize the one guarded final request")
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+    if args.command == "structured-job-analysis":
+        from .structured_job_analysis import (
+            DEFAULT_BASE_CORPUS_DIR,
+            DEFAULT_BENCHMARK_DIR,
+            DEFAULT_OUTPUT_DIR,
+            StructuredAnalysisError,
+            run_pipeline,
+        )
+
+        actual_argv = argv if argv is not None else sys.argv[1:]
+        command = shlex.join([sys.executable, "-m", "skills_vector", *actual_argv])
+        try:
+            receipt = run_pipeline(
+                benchmark_dir=args.benchmark_dir or DEFAULT_BENCHMARK_DIR,
+                base_corpus_dir=args.base_corpus_dir or DEFAULT_BASE_CORPUS_DIR,
+                output_dir=args.output_dir or DEFAULT_OUTPUT_DIR,
+                mode=args.mode,
+                resource_config_path=args.resource_config,
+                freeze_sha=args.freeze_sha,
+                confirm_final_run=args.confirm_final_run,
+                command=command,
+            )
+        except StructuredAnalysisError as exc:
+            print(json.dumps({"error": str(exc)}, ensure_ascii=False))
+            return 2
+        print(json.dumps({
+            "status": receipt["status"],
+            "run_id": receipt["run_id"],
+            "output_dir": str((args.output_dir or DEFAULT_OUTPUT_DIR).resolve()),
+        }, ensure_ascii=False))
+        return 0
+
     settings = Settings.from_env()
     settings.database_path.parent.mkdir(parents=True, exist_ok=True)
     with CatalogStore(settings.database_path, monthly_cap_usd=settings.monthly_budget_usd) as store:

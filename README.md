@@ -79,3 +79,4 @@ UI work follows **Evidence Atlas · Control** in [`DESIGN.md`](DESIGN.md). The V
 - [Models and budget](docs/models.md)
 - [Jobsss boundary](docs/jobsss.md)
 - [Goal loop](docs/goal-loop.md)
+- [Round 1 POC A — Structured Job Analysis](docs/structured-job-analysis-poc.md)
