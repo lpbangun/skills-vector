@@ -1013,8 +1013,8 @@ def render_markdown(release: dict[str, Any]) -> str:
     lines = [
         "# HR Generalist / People Operations — structured job analysis",
         "",
-        "**Round 1 · POC A · US individual-contributor scope**  ",
-        f"Candidate `{release['run']['candidate_revision']}` · run `{release['run']['run_id']}`  ",
+        "**Round 1 · POC A · US individual-contributor scope**",
+        f"Candidate `{release['run']['candidate_revision']}` · run `{release['run']['run_id']}`",
         f"Evidence snapshots: {', '.join(release['run']['corpus_snapshot_ids'])}",
         "",
         "> **Evidence boundary.** This is DACUM-informed desk research, not a DACUM study and not a practitioner-validated analysis. O*NET/OPM anchor the task–competency backbone; employer postings are kept in separate counts-only demand observations or clearly labeled context additions.",
@@ -1216,7 +1216,7 @@ def render_html(markdown: str, release: dict[str, Any]) -> str:
 *{{box-sizing:border-box}}body{{margin:0;background:linear-gradient(140deg,var(--paper),var(--mineral));color:var(--ink);font:16px/1.6 \"IBM Plex Sans\",Arial,sans-serif}}
 main{{max-width:1000px;margin:auto;padding:2rem 1.25rem 4rem}}header{{border-top:2px solid var(--present);border-bottom:1px solid var(--rule);padding:1.25rem 0;margin-bottom:1.5rem}}
 h1,h2,h3{{font-family:\"STIX Two Text\",Georgia,serif;line-height:1.2}}h1{{font-size:clamp(2rem,4vw,3rem);margin:.2rem 0}}h2{{margin-top:2.4rem;border-bottom:1px solid var(--rule);padding-bottom:.4rem}}
-.meta{{font: .75rem/1.4 \"IBM Plex Mono\",monospace;color:var(--muted);overflow-wrap:anywhere}}a{{color:var(--present)}}code{{font-family:\"IBM Plex Mono\",monospace;font-size:.88em}}blockquote,.warning{{background:#efe6e0;border:1px solid #cbb9ae;padding:.9rem;margin:1rem 0}}blockquote{{color:#163049}}.table-wrap{{overflow-x:auto}}table{{border-collapse:collapse;width:100%;background:white}}th,td{{border:1px solid var(--rule);padding:.55rem;text-align:left;vertical-align:top}}th{{background:var(--mineral)}}
+.meta{{font: .75rem/1.4 \"IBM Plex Mono\",monospace;color:var(--muted);overflow-wrap:anywhere}}a{{color:var(--present)}}code{{font-family:\"IBM Plex Mono\",monospace;font-size:.88em;overflow-wrap:anywhere}}li{{overflow-wrap:anywhere}}blockquote,.warning{{background:#efe6e0;border:1px solid #cbb9ae;padding:.9rem;margin:1rem 0}}blockquote{{color:#163049}}.table-wrap{{overflow-x:auto}}table{{border-collapse:collapse;width:100%;background:white}}th,td{{border:1px solid var(--rule);padding:.55rem;text-align:left;vertical-align:top}}th{{background:var(--mineral)}}
 @media(max-width:640px){{main{{padding:1rem}}.meta{{font-size:.68rem}}}}
 </style>
 </head>

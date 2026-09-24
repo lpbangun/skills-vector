@@ -18,6 +18,7 @@ from skills_vector.structured_job_analysis import (
     build_release,
     load_frozen_corpus,
     preflight_request_batch,
+    render_markdown,
     run_pipeline,
     validate_citations,
     validate_resource_config,
@@ -101,6 +102,11 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             if unit["kind"] == "competency":
                 self.assertEqual(unit["demand"]["postings_denominator"], 0)
                 self.assertIn("No posting coverage", unit["demand"]["notes"])
+
+    def test_rendered_markdown_has_no_trailing_whitespace(self) -> None:
+        markdown = render_markdown(build_release(self.corpus, "c" * 40))
+        trailing_lines = [number for number, line in enumerate(markdown.splitlines(), 1) if line.rstrip() != line]
+        self.assertEqual(trailing_lines, [])
 
     def test_offline_pipeline_writes_machine_markdown_html_and_receipt_without_provider(self) -> None:
         revision = "c" * 40
