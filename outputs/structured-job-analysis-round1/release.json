@@ -662,13 +662,13 @@
     ]
   },
   "run": {
-    "candidate_revision": "240f61bc63071e815405c26af0702000a2edf61b",
+    "candidate_revision": "98100de5d903c326b88ef1a3ff568c37c389a4fb",
     "config_hash": "25fb63b5108892de3b719e58b7998d68d31f08a6d48756c79d57d3389a5e3af4",
     "corpus_snapshot_ids": [
       "luna-max-hr-generalist-starter-2026-09-23",
       "shared-reviewer-hr-ic-postings-v2-2026-09-23"
     ],
-    "finished_at": "2026-09-24T00:21:13Z",
+    "finished_at": "2026-09-24T00:31:41Z",
     "mode": "offline",
     "model": "deterministic-structured-job-analysis.v1",
     "provider": "local",
@@ -681,11 +681,11 @@
       "inference_cost_usd_estimate": 0.0,
       "inference_requests": 0,
       "retrieval_requests": 0,
-      "wall_clock_minutes": 3e-05
+      "wall_clock_minutes": 2.7e-05
     },
     "round": 1,
-    "run_id": "sja-a-r1-fbcc1c736caecd6d",
-    "started_at": "2026-09-24T00:21:13Z"
+    "run_id": "sja-a-r1-a82e3317e2a27a06",
+    "started_at": "2026-09-24T00:31:41Z"
   },
   "schema_version": "skills-vector.poc-output.v1",
   "unlinked_or_ambiguous": [

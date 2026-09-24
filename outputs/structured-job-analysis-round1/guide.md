@@ -1,7 +1,7 @@
 # HR Generalist / People Operations — structured job analysis
 
-**Round 1 · POC A · US individual-contributor scope**  
-Candidate `240f61bc63071e815405c26af0702000a2edf61b` · run `sja-a-r1-fbcc1c736caecd6d`  
+**Round 1 · POC A · US individual-contributor scope**
+Candidate `98100de5d903c326b88ef1a3ff568c37c389a4fb` · run `sja-a-r1-a82e3317e2a27a06`
 Evidence snapshots: luna-max-hr-generalist-starter-2026-09-23, shared-reviewer-hr-ic-postings-v2-2026-09-23
 
 > **Evidence boundary.** This is DACUM-informed desk research, not a DACUM study and not a practitioner-validated analysis. O*NET/OPM anchor the task–competency backbone; employer postings are kept in separate counts-only demand observations or clearly labeled context additions.

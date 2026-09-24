@@ -1,6 +1,6 @@
 {
   "base_manifest_sha256": "81df7df71c2e22a896e23765d3ad877d6084b2f9c4c63b4f6be2093cf3091317",
-  "candidate_revision": "240f61bc63071e815405c26af0702000a2edf61b",
+  "candidate_revision": "98100de5d903c326b88ef1a3ff568c37c389a4fb",
   "commands_run": [
     {
       "command": "/home/logani/projects/skills-vector-worktrees/poc-a/.poc-env/venv/bin/python3 -m skills_vector structured-job-analysis --mode offline --benchmark-dir /home/logani/oprun-evidence/skills-vector-poc-prep-74b159c/shared-benchmark --base-corpus-dir /home/logani/oprun-evidence/skills-vector-poc-prep-74b159c/corpus --output-dir outputs/structured-job-analysis-round1",
@@ -18,7 +18,7 @@
   "mode": "offline",
   "provider_calls": 0,
   "retrieval_requests": 0,
-  "run_id": "sja-a-r1-fbcc1c736caecd6d",
+  "run_id": "sja-a-r1-a82e3317e2a27a06",
   "schema_version": "skills-vector.structured-analysis-run-receipt.v1",
   "status": "passed_local_build"
 }
