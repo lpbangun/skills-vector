@@ -1,4 +1,4 @@
-"""Round-one HR Generalist Structured Job Analysis over the frozen public dev corpus.
+"""Round-two HR Generalist Structured Job Analysis over the frozen public dev corpus.
 
 The occupational backbone is an authored, O*NET/OPM-anchored desk analysis. Posting
 text is used only for counts-only demand observations and explicitly labeled context
@@ -30,8 +30,24 @@ DEFAULT_BENCHMARK_DIR = Path(
     "/home/logani/oprun-evidence/skills-vector-poc-prep-74b159c/shared-benchmark"
 )
 DEFAULT_BASE_CORPUS_DIR = DEFAULT_BENCHMARK_DIR.parent / "corpus"
-DEFAULT_OUTPUT_DIR = REPO_ROOT / "outputs/structured-job-analysis-round1"
+DEFAULT_OUTPUT_DIR = REPO_ROOT / "outputs/structured-job-analysis-round2"
 DEFAULT_LIVE_LOCK = REPO_ROOT / ".poc-env/state/structured-job-analysis-final-live.json"
+APPROVED_RESOURCE_CONFIG_PATH = Path(
+    "/home/logani/oprun-evidence/skills-vector-poc-prep-74b159c/comparison-resource-config-v1.json"
+)
+APPROVED_RESOURCE_CONFIG_SHA256 = "ba47486acab4f647be2d8be72598e044715b6bb04c61aafc43cddc2f5abf494e"
+MATCHED_EVIDENCE_POLICY = "frozen-corpus-only"
+MATCHED_RESOURCE_CONFIG = {
+    "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+    "provider": "deepinfra",
+    "sampling": {"temperature": 0.0, "top_p": 1.0, "max_tokens": 2048},
+    "caps": {
+        "max_inference_requests": 8,
+        "max_inference_cost_usd": 0.5,
+        "max_retrieval_requests": 0,
+        "max_wall_minutes": 30,
+    },
+}
 
 EXPECTED_BENCHMARK_MANIFEST_SHA256 = "bcb3d5e5aff1dd915b549b9397135e1d102e08b5ceb4cbe750633ee3a8baeb5e"
 EXPECTED_DEV_SPLIT_SHA256 = "ad3a28e495a47c47ee2fc967796e8c9f2d87b6c62c94a819b2a9dcefc605d67f"
@@ -59,6 +75,18 @@ class StructuredAnalysisError(RuntimeError):
 
 def _json_bytes(value: Any) -> bytes:
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+
+
+def _read_approved_resource_config(path: Path = APPROVED_RESOURCE_CONFIG_PATH) -> tuple[dict[str, Any], str]:
+    raw = _verify_readonly_file(path, APPROVED_RESOURCE_CONFIG_SHA256)
+    try:
+        config = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise StructuredAnalysisError("approved matched resource config is not valid JSON") from exc
+    if not isinstance(config, dict) or config != MATCHED_RESOURCE_CONFIG:
+        raise StructuredAnalysisError("resource config does not equal the parent-approved matched configuration")
+    validate_resource_config(config)
+    return config, _sha256(raw)
 
 
 def _sha256(data: bytes) -> str:
@@ -420,6 +448,111 @@ COVERAGE_RULES: dict[str, tuple[str, ...]] = {
     "task-context-defense-access": ("u.s. person status is required", "must be a u.s. person"),
 }
 
+READER_ACTIONS_BY_UNIT: dict[str, dict[str, str]] = {
+    "task-policy-guidance": {
+        "ic_hr_practitioner": "Check the local policy source and escalation path before advising an employee or manager.",
+        "job_seeker": "Prepare an example of explaining a policy and recognizing when to escalate; do not present this as a proficiency threshold.",
+        "hiring_manager": "Define which policies this role interprets and its escalation boundary in a local job analysis before using the duty in hiring.",
+    },
+    "task-employee-relations": {
+        "ic_hr_practitioner": "Check local intake, documentation, confidentiality, and referral procedures before handling a concern.",
+        "job_seeker": "Reflect on a relevant listening or documentation example without sharing confidential case details or implying a required level.",
+        "hiring_manager": "Confirm case-handling boundaries, support, and referral routes with appropriate internal reviewers before using this duty in selection.",
+    },
+    "task-employee-records": {
+        "ic_hr_practitioner": "Confirm approved systems, access, correction, and retention procedures before changing employee records.",
+        "job_seeker": "Prepare a non-confidential example of careful records or HR-system work; no particular tool is established here.",
+        "hiring_manager": "Specify the records and systems actually in scope locally, rather than assuming a particular tool or proficiency level.",
+    },
+    "task-manager-guidance": {
+        "ic_hr_practitioner": "Check current internal guidance and documentation practices before advising a manager on a performance process.",
+        "job_seeker": "Choose an example of explaining a process or supporting a manager, and separate your own role from decision authority.",
+        "hiring_manager": "Clarify the role's advisory versus decision-making responsibilities before treating this as a selection criterion.",
+    },
+    "task-new-hire-orientation": {
+        "ic_hr_practitioner": "Compare orientation content with the current onboarding plan and identify who owns updates or follow-up.",
+        "job_seeker": "Prepare an example of helping someone understand a process; this source does not set a training credential or threshold.",
+        "hiring_manager": "Check whether this role schedules, delivers, or supports orientation in your organization before adding it to the job description.",
+    },
+    "task-people-data-reporting": {
+        "ic_hr_practitioner": "Verify the measure definition, data source, access rules, and reporting purpose before sharing a figure.",
+        "job_seeker": "Use a non-sensitive example of checking data and communicating a finding; no analytics tool or level is specified.",
+        "hiring_manager": "Name the actual reports and locally required methods only after confirming them through job analysis.",
+    },
+    "task-context-scaled-organization-design": {
+        "ic_hr_practitioner": "Check whether organization-design work belongs to this local role; the posting examples are context-specific.",
+        "job_seeker": "Treat this as an optional context-specific example, not a universal HR Generalist requirement.",
+        "hiring_manager": "Include this only if local responsibilities support it; do not generalize from the small posting sample.",
+    },
+    "task-context-coordinator-operations": {
+        "ic_hr_practitioner": "Check local service-center, onboarding, and data-ownership boundaries; this is one coordinator-level example.",
+        "job_seeker": "Treat these coordinator duties as one context example, not an entry-level standard for all HR roles.",
+        "hiring_manager": "Confirm role level and local operational ownership before using this context addition in a job description.",
+    },
+    "task-context-defense-access": {
+        "ic_hr_practitioner": "Verify any access-related conditions against the specific position and approved internal guidance; do not generalize them.",
+        "job_seeker": "Read access conditions in the specific posting; this example is not a general HR qualification.",
+        "hiring_manager": "Use only position-specific, reviewed requirements; this single-sector context is not a general HR qualification.",
+    },
+    "task-context-benefit-administration": {
+        "ic_hr_practitioner": "Check the local division of benefit-plan work and relevant specialist or vendor handoffs.",
+        "job_seeker": "Treat benefit administration as a possible local duty, not a universal requirement or proficiency rating.",
+        "hiring_manager": "Verify benefit-plan responsibilities in your local job analysis before including this supplemental task.",
+    },
+    "competency-hr-knowledge": {
+        "ic_hr_practitioner": "Use this as a topic checklist and consult current, organization-approved sources for assigned work.",
+        "job_seeker": "Select a concrete learning or work example to discuss; this desk guide does not assign a knowledge level.",
+        "hiring_manager": "Translate locally relevant HR topics into observable, job-related expectations through a separate job analysis.",
+    },
+    "competency-law-policy": {
+        "ic_hr_practitioner": "Identify the applicable internal and authoritative sources for your assignment rather than relying on this summary as advice.",
+        "job_seeker": "Prepare an example of finding or following an applicable rule; no legal expertise threshold is claimed.",
+        "hiring_manager": "Define the specific local knowledge needs with qualified reviewers; do not infer a legal qualification from this construct.",
+    },
+    "competency-active-listening": {
+        "ic_hr_practitioner": "Use a local conversation or intake checklist and reflect on whether you clarified the employee's account.",
+        "job_seeker": "Prepare an example of clarifying what someone meant, without treating it as a scored assessment.",
+        "hiring_manager": "If relevant locally, define job-related listening behaviors and assess them with a separately designed process.",
+    },
+    "competency-social-perceptiveness": {
+        "ic_hr_practitioner": "Check your interpretation with the person or the appropriate process rather than assuming intent from reactions.",
+        "job_seeker": "Use as a reflection prompt about noticing context, not as a claim that this guide assessed you.",
+        "hiring_manager": "Avoid subjective inference; if relevant, define observable behaviors in a job analysis before evaluating candidates.",
+    },
+    "competency-judgment": {
+        "ic_hr_practitioner": "Review available options and consult the appropriate escalation path for consequential decisions.",
+        "job_seeker": "Prepare an example that explains options and trade-offs; this guide does not set an independent proficiency bar.",
+        "hiring_manager": "Define decision authority and job-related examples locally before using judgment as a hiring criterion.",
+    },
+    "competency-administrative-records": {
+        "ic_hr_practitioner": "Check the approved procedures and system controls used for the records you maintain.",
+        "job_seeker": "Choose a non-confidential example of organized records work; no specific system is required by this guide.",
+        "hiring_manager": "Identify the records and systems actually used locally rather than importing a generic tool requirement.",
+    },
+    "competency-instructing": {
+        "ic_hr_practitioner": "Use approved process materials and confirm whether the learner can follow the relevant steps.",
+        "job_seeker": "Prepare an example of making a process understandable; no credential or training proficiency is inferred.",
+        "hiring_manager": "Confirm whether instruction is part of the local role and what observable work it entails.",
+    },
+    "competency-written-communication": {
+        "ic_hr_practitioner": "Review a work product for audience, accuracy, confidentiality, and the intended next step.",
+        "job_seeker": "Prepare a non-confidential writing example and explain its audience and purpose; no score is implied.",
+        "hiring_manager": "Specify the writing tasks and audience locally before setting any job-related assessment.",
+    },
+    "competency-critical-thinking": {
+        "ic_hr_practitioner": "Record the evidence and alternatives considered, and escalate decisions outside your authority.",
+        "job_seeker": "Prepare an example of comparing options and explaining your reasoning without claiming a validated rating.",
+        "hiring_manager": "Translate this broad construct into role-specific work examples before using it in selection.",
+    },
+}
+
+
+def _reader_actions(unit_id: str) -> dict[str, str]:
+    try:
+        return dict(READER_ACTIONS_BY_UNIT[unit_id])
+    except KeyError as exc:
+        raise StructuredAnalysisError(f"missing audience-specific next actions for {unit_id}") from exc
+
 
 def _git_revision(root: Path = REPO_ROOT) -> str:
     try:
@@ -495,6 +628,7 @@ def _context_records(corpus: FrozenCorpus) -> tuple[dict[str, Any], ...]:
             "unit_id": item["unit_id"],
             "statement": item["statement"],
             "kind": "task",
+            "reader_actions": _reader_actions(item["unit_id"]),
             "classification": item["context_label"],
             "evidence": evidence,
             "uncertainty": {"level": item["uncertainty"], "notes": "Employer-specific illustration; not a universal role requirement."},
@@ -571,6 +705,7 @@ def _build_work_units(corpus: FrozenCorpus) -> list[dict[str, Any]]:
             "unit_id": task["unit_id"],
             "kind": "task",
             "statement": task["statement"],
+            "reader_actions": _reader_actions(task["unit_id"]),
             "evidence": [task_quote],
             "demand": {},
             "uncertainty": {
@@ -604,6 +739,7 @@ def _build_work_units(corpus: FrozenCorpus) -> list[dict[str, Any]]:
             "unit_id": competency["unit_id"],
             "kind": "competency",
             "statement": competency["statement"],
+            "reader_actions": _reader_actions(competency["unit_id"]),
             "evidence": [citation],
             "demand": {},
             "uncertainty": {
@@ -653,6 +789,7 @@ def _coverage_for_unit(corpus: FrozenCorpus, unit_id: str, phrases: tuple[str, .
         "matched_employers": len(employers),
         "match_basis": "case-folded exact phrase hit in normalized admitted posting extract; first matching phrase per posting",
         "matches": matches,
+        "reader_actions": _reader_actions(unit_id),
     }
 
 
@@ -707,6 +844,11 @@ def _fill_demand(corpus: FrozenCorpus, units: list[dict[str, Any]]) -> dict[str,
             "current_status_under_policy": dd["current_status_under_policy"],
         },
         "claims_allowed": False,
+        "reader_actions": {
+            "ic_hr_practitioner": "Use the counts only to locate wording in this dev sample; check actual local responsibilities and do not infer occupational importance or proficiency.",
+            "job_seeker": "Use posting excerpts as examples for questions about a specific role, not as a prevalence estimate or a checklist of required qualifications.",
+            "hiring_manager": "Use the local job analysis—not these small-sample counts—to define role scope, job-related criteria, and any selection process.",
+        },
         "statements": [
             "Counts only: 23 employer boards were scanned (5,129 board-total openings); 43 postings matched the title filter; 15 member postings were admitted and one exact-content duplicate was collapsed, leaving 14 unique postings overall (7 dev, 7 held out).",
             "The dev slice contains 7 unique postings across 4 employers; phrase-screen counts below describe this small dev sample only.",
@@ -837,28 +979,34 @@ def build_release(corpus: FrozenCorpus, candidate_revision: str, *, mode: str = 
         "HR Business Partner / People Partner (responsibility-based adjacent title variants)",
         "People Operations (responsibility-based functional variant; exact title not observed in the dev sample)",
     ]
-    config = {
-        "mode": mode,
-        "model": "deterministic-structured-job-analysis.v1" if mode == "offline" else PINNED_MODEL_ID,
-        "provider": "local" if mode == "offline" else "deepinfra",
-        "evidence_policy": "frozen-v1-starter-plus-v2-dev-only",
-        "snapshot_ids": SNAPSHOT_IDS,
-        "quote_verifier": "exact-substring-v1",
-        "coverage_rules": COVERAGE_RULES,
-    }
-    config_hash = _sha256(_json_bytes(config))
+    execution_model = "deterministic-structured-job-analysis.v1" if mode == "offline" else PINNED_MODEL_ID
+    execution_provider = "local" if mode == "offline" else "deepinfra"
+    config_hash = APPROVED_RESOURCE_CONFIG_SHA256
     now = datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00", "Z")
     release: dict[str, Any] = {
         "schema_version": "skills-vector.poc-output.v1",
         "method": "structured-job-analysis",
         "run": {
-            "run_id": f"sja-a-r1-{_sha256(_json_bytes([candidate_revision, corpus.benchmark_manifest_sha256, mode]))[:16]}",
-            "round": 1,
+            "run_id": f"sja-a-r2-{_sha256(_json_bytes([candidate_revision, corpus.benchmark_manifest_sha256, mode]))[:16]}",
+            "round": 2,
             "candidate_revision": candidate_revision,
             "corpus_snapshot_ids": list(SNAPSHOT_IDS),
-            "model": config["model"],
-            "provider": config["provider"],
+            "model": execution_model,
+            "provider": execution_provider,
             "config_hash": config_hash,
+            "resource_config_scope": "parent-approved shared A/B live-run configuration; offline execution remains local and deterministic",
+            "planned_resource_config": {
+                "model": MATCHED_RESOURCE_CONFIG["model"],
+                "provider": MATCHED_RESOURCE_CONFIG["provider"],
+                "sampling": dict(MATCHED_RESOURCE_CONFIG["sampling"]),
+                "caps": dict(MATCHED_RESOURCE_CONFIG["caps"]),
+                "evidence_policy": MATCHED_EVIDENCE_POLICY,
+            },
+            "execution_label": (
+                "offline deterministic generator; zero model inference and zero provider calls"
+                if mode == "offline"
+                else "single guarded live model review; suggestions are not validation"
+            ),
             "started_at": now,
             "finished_at": now,
             "resource_ledger": {
@@ -868,11 +1016,7 @@ def build_release(corpus: FrozenCorpus, candidate_revision: str, *, mode: str = 
                 "wall_clock_minutes": round((time.monotonic() - started) / 60, 6),
             },
             "mode": mode,
-            "resource_caps": {
-                "max_inference_cost_usd": MAX_FINAL_SPEND_USD,
-                "max_retrieval_requests": 0,
-                "live_execution": "one post-freeze final execution; not used in this round-one local build",
-            },
+            "resource_caps": dict(MATCHED_RESOURCE_CONFIG["caps"]),
         },
         "role": {
             "canonical_title": "HR Generalist (individual contributor)",
@@ -892,7 +1036,19 @@ def build_release(corpus: FrozenCorpus, candidate_revision: str, *, mode: str = 
             ],
             "definition": "A cross-industry HR individual contributor who interprets policy, supports employee relations and records, guides managers, helps with lifecycle programs, and reports employment-related data; local role design varies.",
             "definition_evidence": role_definition_evidence,
-            "title_variant_validation": title_validation,
+            "reader_actions": {
+                "ic_hr_practitioner": "Compare this scope with your organization's role boundaries and document local responsibilities or referrals.",
+                "job_seeker": "Use the definition to compare a specific posting with your experience; it is a desk-research summary, not a universal qualification list.",
+                "hiring_manager": "Confirm local work, decision authority, and exclusions through a separate job analysis before using this role summary.",
+            },
+            "title_variant_validation": {
+                **title_validation,
+                "reader_actions": {
+                    "ic_hr_practitioner": "Check title equivalence against actual responsibilities in your organization rather than relying on labels alone.",
+                    "job_seeker": "Read each employer's responsibilities; similar titles or functions do not establish identical scope.",
+                    "hiring_manager": "Validate the title against local responsibilities; these cited examples do not establish market-wide title equivalence.",
+                },
+            },
         },
         "guide": {"path": "guide.md", "format": "markdown", "html_path": "guide.html"},
         "work_units": units,
@@ -1008,12 +1164,25 @@ def validate_citations(release: dict[str, Any], corpus: FrozenCorpus) -> None:
         raise StructuredAnalysisError("demand claims must be blocked under the frozen INSUFFICIENT policy")
 
 
+def _reader_action_lines(actions: dict[str, str]) -> list[str]:
+    labels = {
+        "ic_hr_practitioner": "IC HR practitioner",
+        "job_seeker": "Job seeker",
+        "hiring_manager": "Hiring manager",
+    }
+    return [
+        "**Next steps (practical prompts, not proficiency ratings):**",
+        *(f"- **{labels[audience]}:** {actions[audience]}" for audience in labels),
+        "",
+    ]
+
+
 def render_markdown(release: dict[str, Any]) -> str:
     role = release["role"]
     lines = [
         "# HR Generalist / People Operations — structured job analysis",
         "",
-        "**Round 1 · POC A · US individual-contributor scope**",
+        "**Round 2 · POC A · US individual-contributor scope**",
         f"Candidate `{release['run']['candidate_revision']}` · run `{release['run']['run_id']}`",
         f"Evidence snapshots: {', '.join(release['run']['corpus_snapshot_ids'])}",
         "",
@@ -1023,6 +1192,7 @@ def render_markdown(release: dict[str, Any]) -> str:
         "",
         role["definition"],
         "",
+        *_reader_action_lines(role["reader_actions"]),
         f"- **Geography:** {role['scope']['geography']}",
         f"- **Industries:** {' '.join(role['scope']['industries'])}",
         f"- **Seniority:** {role['scope']['seniority']}",
@@ -1040,6 +1210,8 @@ def render_markdown(release: dict[str, Any]) -> str:
         "Accepted working labels: " + "; ".join(role["title_variants"]) + ".",
         "",
         role["title_variant_validation"]["validation"],
+        "",
+        *_reader_action_lines(role["title_variant_validation"]["reader_actions"]),
         f"**Exact-title negative finding:** {role['title_variant_validation']['negative_title_scan']}",
         "",
         "**Supporting title/responsibility excerpts:**",
@@ -1060,6 +1232,7 @@ def render_markdown(release: dict[str, Any]) -> str:
             "",
             f"**Uncertainty:** {unit['uncertainty']['level']} — {unit['uncertainty']['notes']}",
             "",
+            *_reader_action_lines(unit["reader_actions"]),
         ])
         links = unit["method_fields"]["task_competency_links"]
         if links:
@@ -1078,12 +1251,14 @@ def render_markdown(release: dict[str, Any]) -> str:
             continue
         ev = unit["evidence"][0]
         lines.append(f"- **{unit['unit_id']}** — {unit['statement']} “{ev['quote']}” (`{ev['source_id']}`, {ev['locator']}). No level is assigned.")
+        lines.extend(_reader_action_lines(unit["reader_actions"]))
     lines.extend(["", "## Context adaptations — do not generalize", ""])
     for unit in release["work_units"]:
         if unit["method_fields"].get("context_adaptation") is not True:
             continue
         lines.append(f"### {unit['statement']}")
         lines.append("")
+        lines.extend(_reader_action_lines(unit["reader_actions"]))
         for ev in unit["evidence"]:
             lines.append(f"- “{ev['quote']}” — `{ev['source_id']}`, {ev['locator']} (context addition).")
         for link in unit["method_fields"]["task_competency_links"]:
@@ -1102,14 +1277,19 @@ def render_markdown(release: dict[str, Any]) -> str:
         "",
         "Phrase-screen counts below use only the seven public dev items (four employers). A literal phrase hit is a reproducible coverage proxy, not semantic adjudication or prevalence; a miss does not show the duty is absent. The held-out content is not included.",
         "",
-        "| Work-unit phrase screen | Dev posting matches / 7 | Evidence excerpts |",
-        "|---|---:|---|",
+        *_reader_action_lines(demand["reader_actions"]),
+        "| Work-unit phrase screen | Dev posting matches / 7 | Evidence excerpts | Audience-specific next steps |",
+        "|---|---:|---|---|",
     ])
     for row in demand["coverage_by_unit"]:
         excerpts = "<br>".join(
             f"{item['source_id']}: “{item['quote']}”" for item in row["matches"]
         ) or "No configured phrase hit; absence is not inferred."
-        lines.append(f"| `{row['unit_id']}` | {row['matched_dev_postings']} / {row['dev_posting_denominator']} | {excerpts} |")
+        action_cell = "<br>".join(
+            f"{audience.replace('_', ' ')}: {action}"
+            for audience, action in row["reader_actions"].items()
+        )
+        lines.append(f"| `{row['unit_id']}` | {row['matched_dev_postings']} / {row['dev_posting_denominator']} | {excerpts} | {action_cell} |")
     lines.extend([
         "",
         "### Coverage and limits",
@@ -1220,7 +1400,7 @@ h1,h2,h3{{font-family:\"STIX Two Text\",Georgia,serif;line-height:1.2}}h1{{font-
 @media(max-width:640px){{main{{padding:1rem}}.meta{{font-size:.68rem}}}}
 </style>
 </head>
-<body><main><header><p class=\"meta\">ROUND 1 · POC A · LOCAL EVIDENCE GUIDE</p><h1>{html.escape(title)}</h1>
+<body><main><header><p class=\"meta\">ROUND 2 · POC A · LOCAL EVIDENCE GUIDE</p><h1>{html.escape(title)}</h1>
 <p class=\"meta\">Candidate {candidate} · run {run_id}</p></header>
 <p class=\"warning\"><strong>Evidence boundary.</strong> DACUM-informed desk research only. No practitioner validation; posting counts are not prevalence or occupational importance.</p>
 <article>{body}</article></main></body></html>
@@ -1365,6 +1545,7 @@ def _write_json(path: Path, value: Any) -> None:
 
 
 def _write_release_files(output_dir: Path, release: dict[str, Any]) -> None:
+    matched_config, config_hash = _read_approved_resource_config()
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / "release.json").write_text(
         json.dumps(release, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8"
@@ -1372,13 +1553,22 @@ def _write_release_files(output_dir: Path, release: dict[str, Any]) -> None:
     markdown = render_markdown(release)
     (output_dir / "guide.md").write_text(markdown, encoding="utf-8")
     (output_dir / "guide.html").write_text(render_html(markdown, release), encoding="utf-8")
+    ledger = release["run"]["resource_ledger"]
     manifest = {
-        "model": release["run"]["model"],
-        "provider": release["run"]["provider"],
-        "sampling": {"temperature": 0.0, "top_p": 1.0, "max_tokens": 0} if release["run"]["mode"] == "offline" else release["run"].get("sampling", {}),
-        "caps": release["run"]["resource_caps"],
+        "model": matched_config["model"],
+        "provider": matched_config["provider"],
+        "sampling": matched_config["sampling"],
+        "caps": matched_config["caps"],
         "corpus_snapshot_ids": release["run"]["corpus_snapshot_ids"],
-        "evidence_policy": "frozen-corpus-only; no retrieval",
+        "evidence_policy": MATCHED_EVIDENCE_POLICY,
+        "config_hash": config_hash,
+        "execution": {
+            "mode": release["run"]["mode"],
+            "model": release["run"]["model"],
+            "provider": release["run"]["provider"],
+            "inference_requests": ledger["inference_requests"],
+            "inference_cost_usd_estimate": ledger["inference_cost_usd_estimate"],
+        },
     }
     _write_json(output_dir / "run-manifest.json", manifest)
 
@@ -1517,6 +1707,14 @@ def _update_lock(lock_path: Path, update: dict[str, Any]) -> None:
     _write_json(lock_path, current)
 
 
+def _set_pipeline_timing(release: dict[str, Any], pipeline_started: float) -> None:
+    release["run"]["finished_at"] = datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00", "Z")
+    release["run"]["resource_ledger"]["wall_clock_minutes"] = round(
+        max(0.0, time.monotonic() - pipeline_started) / 60,
+        6,
+    )
+
+
 def run_pipeline(
     *,
     benchmark_dir: Path = DEFAULT_BENCHMARK_DIR,
@@ -1533,6 +1731,8 @@ def run_pipeline(
     _provider_call: Callable[[dict[str, Any], str], dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Build local artifacts; live-final adds exactly one guarded model review request."""
+    pipeline_started = time.monotonic()
+    pipeline_started_at = datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00", "Z")
     if mode not in {"offline", "live-final"}:
         raise StructuredAnalysisError("mode must be offline or live-final")
     revision = candidate_revision or _git_revision()
@@ -1546,17 +1746,18 @@ def run_pipeline(
             api_key = os.environ.get("DEEPINFRA_API_KEY", "").strip()
         if not api_key:
             raise StructuredAnalysisError("DEEPINFRA_API_KEY is required; credential value is never printed or recorded")
-        resource_config = _read_json(resource_config_path)
-        validate_resource_config(resource_config)
+        resource_config, resource_config_hash = _read_approved_resource_config(resource_config_path)
         if (_live_lock_path or DEFAULT_LIVE_LOCK).exists():
             raise StructuredAnalysisError("the one final live execution was already started; no second execution is permitted")
     else:
         if resource_config_path is not None or freeze_sha is not None or confirm_final_run:
             raise StructuredAnalysisError("live-only flags cannot be used in offline mode")
         resource_config = None
+        resource_config_hash = APPROVED_RESOURCE_CONFIG_SHA256
 
     corpus = load_frozen_corpus(benchmark_dir, base_corpus_dir)
     release = build_release(corpus, revision, mode=mode)
+    release["run"]["started_at"] = pipeline_started_at
     effective_command = command or f"python -m skills_vector structured-job-analysis --mode {mode}"
     release["acceptance"]["commands_run"][0]["command"] = effective_command
     output_dir = output_dir.resolve()
@@ -1578,6 +1779,8 @@ def run_pipeline(
 
     if mode == "offline":
         _write_release_files(output_dir, release)
+        _set_pipeline_timing(release, pipeline_started)
+        _write_json(output_dir / "release.json", release)
         _write_json(output_dir / "run-receipt.json", receipt)
         return receipt
 
@@ -1616,7 +1819,7 @@ def run_pipeline(
     release["run"]["model"] = PINNED_MODEL_ID
     release["run"]["provider"] = "deepinfra"
     release["run"]["sampling"] = resource_config["sampling"]
-    release["run"]["config_hash"] = _sha256(_json_bytes(resource_config))
+    release["run"]["config_hash"] = resource_config_hash
     release["run"]["resource_caps"] = resource_config["caps"]
     release["run"]["resource_ledger"]["inference_requests"] = 1
     release["run"]["resource_ledger"]["inference_cost_usd_estimate"] = total_estimate
@@ -1691,11 +1894,7 @@ def run_pipeline(
             _update_lock(lock_path, {"status": "completed_usage_unreported", "provider_usage_status": usage["status"], "finished_at": datetime.now(UTC).isoformat(timespec="seconds")})
         receipt["cost_reservation"] = reservation
         release["run"]["resource_ledger"]["inference_cost_usd_reservation_status"] = reservation["status"]
-        release["run"]["finished_at"] = datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00", "Z")
-        release["run"]["resource_ledger"]["wall_clock_minutes"] = round(
-            max(0.0, (datetime.now(UTC) - datetime.fromisoformat(release["run"]["started_at"].replace("Z", "+00:00"))).total_seconds()) / 60,
-            6,
-        )
+        _set_pipeline_timing(release, pipeline_started)
     except BaseException as exc:
         receipt["provider_calls"] = 1
         receipt["status"] = "failed_after_one_shot_consumed"
@@ -1707,7 +1906,7 @@ def run_pipeline(
         receipt["cost_reservation"] = reservation
         release["run"]["resource_ledger"]["inference_cost_usd_estimate"] = total_estimate
         release["run"]["resource_ledger"]["inference_cost_usd_reservation_status"] = reservation["status"]
-        release["run"]["finished_at"] = datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00", "Z")
+        _set_pipeline_timing(release, pipeline_started)
         _write_release_files(output_dir, release)
         _update_lock(lock_path, {
             "status": "failed_consumed_no_retry",

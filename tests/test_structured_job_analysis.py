@@ -2,13 +2,18 @@ from __future__ import annotations
 
 import json
 import tempfile
+import time
 import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
 
 from skills_vector.structured_job_analysis import (
+    APPROVED_RESOURCE_CONFIG_PATH,
+    APPROVED_RESOURCE_CONFIG_SHA256,
     DEFAULT_BASE_CORPUS_DIR,
     DEFAULT_BENCHMARK_DIR,
+    MATCHED_EVIDENCE_POLICY,
+    MATCHED_RESOURCE_CONFIG,
     EXPECTED_BENCHMARK_MANIFEST_SHA256,
     MAX_FINAL_SPEND_USD,
     PINNED_MODEL_ID,
@@ -25,17 +30,13 @@ from skills_vector.structured_job_analysis import (
 )
 
 
-RESOURCE_CONFIG = {
-    "model": PINNED_MODEL_ID,
-    "provider": "deepinfra",
-    "sampling": {"temperature": 0.0, "top_p": 1.0, "max_tokens": 2048},
-    "caps": {
-        "max_inference_requests": 2,
-        "max_inference_cost_usd": MAX_FINAL_SPEND_USD,
-        "max_retrieval_requests": 0,
-        "max_wall_minutes": 15,
-    },
-}
+RESOURCE_CONFIG = MATCHED_RESOURCE_CONFIG
+
+
+def write_approved_resource_config(path: Path) -> Path:
+    path.write_bytes(APPROVED_RESOURCE_CONFIG_PATH.read_bytes())
+    path.chmod(0o444)
+    return path
 
 
 class StructuredJobAnalysisTests(unittest.TestCase):
@@ -48,7 +49,7 @@ class StructuredJobAnalysisTests(unittest.TestCase):
         validate_citations(release, self.corpus)
         self.assertEqual(release["schema_version"], "skills-vector.poc-output.v1")
         self.assertEqual(release["run"]["corpus_snapshot_ids"], list(SNAPSHOT_IDS))
-        self.assertEqual(release["run"]["round"], 1)
+        self.assertEqual(release["run"]["round"], 2)
         self.assertEqual(release["demand_layer"]["claims_allowed"], False)
         self.assertEqual(release["demand_layer"]["denominators"]["employers_scanned"], 23)
         self.assertEqual(release["demand_layer"]["denominators"]["board_total_openings"], 5129)
@@ -65,6 +66,8 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             self.assertFalse(unit["method_fields"]["practitioner_validated"])
             self.assertEqual(unit["method_fields"]["proficiency"]["source"], "desk-research")
             self.assertNotIn("level", unit["method_fields"]["proficiency"])
+            self.assertEqual(set(unit["reader_actions"]), {"ic_hr_practitioner", "job_seeker", "hiring_manager"})
+            self.assertTrue(all(action.strip() for action in unit["reader_actions"].values()))
         core_tasks = [u for u in units if u["kind"] == "task" and u["method_fields"].get("classification") == "common_core"]
         context_tasks = [u for u in units if u["kind"] == "task" and u["method_fields"].get("context_adaptation")]
         competencies = [u for u in units if u["kind"] == "competency"]
@@ -108,6 +111,34 @@ class StructuredJobAnalysisTests(unittest.TestCase):
         trailing_lines = [number for number, line in enumerate(markdown.splitlines(), 1) if line.rstrip() != line]
         self.assertEqual(trailing_lines, [])
 
+    def test_audience_actions_are_adjacent_to_machine_claims_and_reconcile_to_the_guide(self) -> None:
+        release = build_release(self.corpus, "b" * 40)
+        guide = render_markdown(release)
+        audiences = ("ic_hr_practitioner", "job_seeker", "hiring_manager")
+        for unit in release["work_units"]:
+            claim_position = guide.find(unit["statement"])
+            self.assertGreaterEqual(claim_position, 0, unit["unit_id"])
+            for audience in audiences:
+                action = unit["reader_actions"][audience]
+                self.assertIn(action, guide)
+                self.assertGreater(guide.find(action), claim_position)
+                self.assertLess(guide.find(action), claim_position + 1800)
+        for actions in (
+            release["role"]["reader_actions"],
+            release["role"]["title_variant_validation"]["reader_actions"],
+            release["demand_layer"]["reader_actions"],
+        ):
+            self.assertEqual(set(actions), set(audiences))
+            for action in actions.values():
+                self.assertIn(action, guide)
+        units = {unit["unit_id"]: unit for unit in release["work_units"]}
+        for row in release["demand_layer"]["coverage_by_unit"]:
+            self.assertEqual(row["reader_actions"], units[row["unit_id"]]["reader_actions"])
+            for action in row["reader_actions"].values():
+                self.assertIn(action, guide)
+        self.assertIn("practical prompts, not proficiency ratings", guide)
+        self.assertTrue(all(unit["method_fields"]["practitioner_validated"] is False for unit in release["work_units"]))
+
     def test_offline_pipeline_writes_machine_markdown_html_and_receipt_without_provider(self) -> None:
         revision = "c" * 40
         with tempfile.TemporaryDirectory() as tmp:
@@ -120,9 +151,29 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             guide_path = output / "guide.md"
             html_path = output / "guide.html"
             receipt_path = output / "run-receipt.json"
-            self.assertTrue(all(path.is_file() for path in (release_path, guide_path, html_path, receipt_path)))
+            manifest_path = output / "run-manifest.json"
+            self.assertTrue(all(path.is_file() for path in (release_path, guide_path, html_path, receipt_path, manifest_path)))
             release = json.loads(release_path.read_text())
+            manifest = json.loads(manifest_path.read_text())
+            self.assertEqual(release["run"]["mode"], "offline")
+            self.assertEqual(release["run"]["model"], "deterministic-structured-job-analysis.v1")
+            self.assertEqual(release["run"]["provider"], "local")
+            self.assertEqual(release["run"]["execution_label"], "offline deterministic generator; zero model inference and zero provider calls")
             self.assertEqual(release["run"]["resource_ledger"]["inference_requests"], 0)
+            self.assertEqual(release["run"]["resource_ledger"]["inference_cost_usd_estimate"], 0.0)
+            self.assertEqual(release["run"]["config_hash"], APPROVED_RESOURCE_CONFIG_SHA256)
+            self.assertEqual(manifest["config_hash"], APPROVED_RESOURCE_CONFIG_SHA256)
+            self.assertEqual(manifest["evidence_policy"], MATCHED_EVIDENCE_POLICY)
+            for field in ("model", "provider", "sampling", "caps", "corpus_snapshot_ids", "evidence_policy"):
+                if field == "evidence_policy":
+                    self.assertEqual(manifest[field], MATCHED_EVIDENCE_POLICY)
+                elif field == "corpus_snapshot_ids":
+                    self.assertEqual(manifest[field], list(SNAPSHOT_IDS))
+                else:
+                    self.assertEqual(manifest[field], RESOURCE_CONFIG[field])
+            self.assertEqual(manifest["execution"]["model"], "deterministic-structured-job-analysis.v1")
+            self.assertEqual(manifest["execution"]["provider"], "local")
+            self.assertEqual(manifest["execution"]["inference_requests"], 0)
             self.assertIn("DACUM-informed desk research", guide_path.read_text())
             html_doc = html_path.read_text()
             self.assertIn("<html lang=\"en\">", html_doc)
@@ -130,6 +181,22 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             receipt = json.loads(receipt_path.read_text())
             self.assertEqual(receipt["commands_run"][0]["exit_code"], 0)
             self.assertEqual(receipt["manifest_sha256"], EXPECTED_BENCHMARK_MANIFEST_SHA256)
+
+    def test_offline_wall_clock_includes_full_pipeline_not_only_release_assembly(self) -> None:
+        original_loader = load_frozen_corpus
+
+        def delayed_load(*args, **kwargs):
+            time.sleep(0.15)
+            return original_loader(*args, **kwargs)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "out"
+            with patch("skills_vector.structured_job_analysis.load_frozen_corpus", side_effect=delayed_load):
+                run_pipeline(output_dir=output, mode="offline", candidate_revision="d" * 40)
+            release = json.loads((output / "release.json").read_text())
+            wall_minutes = release["run"]["resource_ledger"]["wall_clock_minutes"]
+            self.assertGreaterEqual(wall_minutes * 60, 0.10)
+            self.assertEqual(release["run"]["mode"], "offline")
 
     def test_live_resource_pin_and_hard_half_dollar_ceiling(self) -> None:
         validate_resource_config(RESOURCE_CONFIG)
@@ -183,11 +250,64 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             provider.assert_not_called()
             self.assertFalse(output.exists())
 
+    def test_live_mode_rejects_any_resource_config_hash_change_before_provider_or_lock(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config_path = root / "altered-resource.json"
+            altered = APPROVED_RESOURCE_CONFIG_PATH.read_bytes().replace(b'"max_wall_minutes": 30', b'"max_wall_minutes": 29')
+            config_path.write_bytes(altered)
+            config_path.chmod(0o444)
+            output = root / "output"
+            lock = root / "one-shot.json"
+            provider = Mock(side_effect=AssertionError("altered config must not call provider"))
+            with self.assertRaisesRegex(StructuredAnalysisError, "hash mismatch"):
+                run_pipeline(
+                    mode="live-final",
+                    resource_config_path=config_path,
+                    freeze_sha="e" * 40,
+                    confirm_final_run=True,
+                    candidate_revision="e" * 40,
+                    output_dir=output,
+                    api_key="mock-key",
+                    _live_lock_path=lock,
+                    _provider_call=provider,
+                )
+            provider.assert_not_called()
+            self.assertFalse(lock.exists())
+            self.assertFalse(output.exists())
+
+    def test_live_cost_guard_blocks_mock_provider_before_one_shot_lock(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config_path = write_approved_resource_config(root / "resource.json")
+            output = root / "output"
+            lock = root / "one-shot.json"
+            provider = Mock(side_effect=AssertionError("over-cap run must not call provider"))
+            with patch("skills_vector.structured_job_analysis.estimate_request_cost", return_value=MAX_FINAL_SPEND_USD + 0.01):
+                with self.assertRaisesRegex(StructuredAnalysisError, "whole-run preflight"):
+                    run_pipeline(
+                        mode="live-final",
+                        resource_config_path=config_path,
+                        freeze_sha="f" * 40,
+                        confirm_final_run=True,
+                        candidate_revision="f" * 40,
+                        output_dir=output,
+                        api_key="mock-key",
+                        _live_lock_path=lock,
+                        _provider_call=provider,
+                    )
+            provider.assert_not_called()
+            self.assertFalse(lock.exists())
+            receipt = json.loads((output / "run-receipt.json").read_text())
+            self.assertEqual(receipt["status"], "blocked_by_preflight_no_provider_call")
+            self.assertEqual(receipt["provider_calls"], 0)
+            self.assertEqual(receipt["commands_run"][0]["exit_code"], 2)
+            self.assertFalse((output / "release.json").exists())
+
     def test_mocked_live_final_path_is_single_shot_redacts_credentials_and_never_validates(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            config_path = root / "resource.json"
-            config_path.write_text(json.dumps(RESOURCE_CONFIG))
+            config_path = write_approved_resource_config(root / "resource.json")
             lock_path = root / "one-shot.json"
             output = root / "output"
             calls: list[dict[str, object]] = []
@@ -224,10 +344,28 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             self.assertEqual(calls[0]["key"], "unit-test-secret-never-write")
             self.assertEqual(receipt["provider_calls"], 1)
             self.assertEqual(receipt["status"], "passed_one_live_review")
+            self.assertEqual(receipt["config_hash"], APPROVED_RESOURCE_CONFIG_SHA256)
             self.assertFalse(receipt["preflight"]["automatic_retry"])
             self.assertLessEqual(receipt["preflight"]["whole_run_estimate_usd"], MAX_FINAL_SPEND_USD)
             serialized = "\n".join(path.read_text() for path in output.iterdir() if path.is_file())
             self.assertNotIn("unit-test-secret-never-write", serialized)
+            release = json.loads((output / "release.json").read_text())
+            self.assertEqual(release["run"]["config_hash"], APPROVED_RESOURCE_CONFIG_SHA256)
+            self.assertEqual(release["run"]["model"], PINNED_MODEL_ID)
+            self.assertEqual(release["run"]["provider"], "deepinfra")
+            self.assertEqual(release["run"]["sampling"], RESOURCE_CONFIG["sampling"])
+            self.assertEqual(release["run"]["resource_caps"], RESOURCE_CONFIG["caps"])
+            manifest = json.loads((output / "run-manifest.json").read_text())
+            self.assertEqual(manifest["config_hash"], APPROVED_RESOURCE_CONFIG_SHA256)
+            for field in ("model", "provider", "sampling", "caps", "corpus_snapshot_ids", "evidence_policy"):
+                self.assertEqual(manifest[field], {
+                    "model": RESOURCE_CONFIG["model"],
+                    "provider": RESOURCE_CONFIG["provider"],
+                    "sampling": RESOURCE_CONFIG["sampling"],
+                    "caps": RESOURCE_CONFIG["caps"],
+                    "corpus_snapshot_ids": list(SNAPSHOT_IDS),
+                    "evidence_policy": MATCHED_EVIDENCE_POLICY,
+                }[field])
             review = json.loads((output / "live-model-review-untrusted.json").read_text())
             self.assertEqual(review["status"], "untrusted_model_review_not_validation")
             self.assertIn("not practitioner validation", review["notice"])
@@ -239,8 +377,7 @@ class StructuredJobAnalysisTests(unittest.TestCase):
     def test_missing_provider_usage_consumes_reserved_upper_bound_without_inventing_actuals(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            config_path = root / "resource.json"
-            config_path.write_text(json.dumps(RESOURCE_CONFIG))
+            config_path = write_approved_resource_config(root / "resource.json")
             lock = root / "one-shot.json"
             output = root / "output"
             citation = {
@@ -290,8 +427,7 @@ class StructuredJobAnalysisTests(unittest.TestCase):
     def test_provider_secret_echo_is_discarded_and_receipt_is_redacted(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            config_path = root / "resource.json"
-            config_path.write_text(json.dumps(RESOURCE_CONFIG))
+            config_path = write_approved_resource_config(root / "resource.json")
             secret = "mock-provider-secret-never-persist"
             output = root / "output"
             lock = root / "one-shot.json"
