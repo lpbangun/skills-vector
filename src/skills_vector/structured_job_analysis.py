@@ -1312,14 +1312,29 @@ def _request_body(release: dict[str, Any], config: dict[str, Any]) -> dict[str, 
     }
 
 
+def estimate_request_token_ceilings(body: dict[str, Any]) -> dict[str, int | float]:
+    """Return conservative input/output token ceilings and their priced upper bound."""
+    # Count the same JSON serialization sent to DeepInfra. Two input tokens per
+    # UTF-8 byte is intentionally conservative; max_tokens bounds the response.
+    input_bytes = len(json.dumps(body, ensure_ascii=False).encode("utf-8"))
+    input_tokens = input_bytes * 2
+    output_tokens = body["max_tokens"]
+    cost_upper_bound = estimate_cost_usd(
+        PINNED_MODELS["extract"],
+        input_tokens=input_tokens,
+        output_tokens=output_tokens,
+    )
+    return {
+        "input_bytes": input_bytes,
+        "input_tokens_upper_bound": input_tokens,
+        "output_tokens_upper_bound": output_tokens,
+        "cost_upper_bound_usd": cost_upper_bound,
+    }
+
+
 def estimate_request_cost(body: dict[str, Any]) -> float:
     """Conservative byte-count input estimate plus the configured output-token ceiling."""
-    input_bytes = len(_json_bytes(body))
-    # Two input tokens per UTF-8 byte is intentionally conservative for this short
-    # one-request prompt; the budget cap still includes every planned request.
-    input_tokens = input_bytes * 2
-    price = PINNED_MODELS["extract"]
-    return estimate_cost_usd(price, input_tokens=input_tokens, output_tokens=body["max_tokens"])
+    return float(estimate_request_token_ceilings(body)["cost_upper_bound_usd"])
 
 
 def preflight_request_batch(requests: list[dict[str, Any]], config: dict[str, Any]) -> tuple[list[float], float]:
@@ -1413,6 +1428,35 @@ def _call_provider_once(body: dict[str, Any], api_key: str, opener: Callable[...
     return payload
 
 
+def _reported_usage(payload: dict[str, Any]) -> dict[str, Any]:
+    raw = payload.get("usage")
+    if raw is None:
+        return {"status": "missing", "input_tokens": None, "output_tokens": None}
+    if not isinstance(raw, dict):
+        return {"status": "invalid", "input_tokens": None, "output_tokens": None}
+    values: dict[str, int | None] = {}
+    invalid_value = False
+    for field, key in (("input_tokens", "prompt_tokens"), ("output_tokens", "completion_tokens")):
+        value = raw.get(key)
+        if value is None:
+            values[field] = None
+        elif isinstance(value, int) and not isinstance(value, bool) and value >= 0:
+            values[field] = value
+        else:
+            values[field] = None
+            invalid_value = True
+    known = [value for value in values.values() if value is not None]
+    if len(known) == 2:
+        status = "reported"
+    elif known:
+        status = "partial"
+    elif invalid_value:
+        status = "invalid"
+    else:
+        status = "missing"
+    return {"status": status, **values}
+
+
 def validate_live_review(payload: dict[str, Any], release: dict[str, Any], corpus: FrozenCorpus) -> dict[str, Any]:
     choices = payload.get("choices") or []
     if not choices:
@@ -1453,17 +1497,13 @@ def validate_live_review(payload: dict[str, Any], release: dict[str, Any], corpu
             "reason": review["reason"],
             "evidence": citations,
         })
-    usage = payload.get("usage") or {}
     return {
         "status": "untrusted_model_review_not_validation",
         "model": PINNED_MODEL_ID,
         "provider": "deepinfra",
         "review_count": len(normalized_reviews),
         "reviews": normalized_reviews,
-        "usage": {
-            "input_tokens": int(usage.get("prompt_tokens") or 0),
-            "output_tokens": int(usage.get("completion_tokens") or 0),
-        },
+        "usage": _reported_usage(payload),
         "notice": "Suggestions are not practitioner validation and are excluded from the occupational backbone and guide.",
     }
 
@@ -1551,15 +1591,28 @@ def run_pipeline(
         receipt["commands_run"][0]["exit_code"] = 2
         _write_json(output_dir / "run-receipt.json", receipt)
         raise
+    token_ceilings = [estimate_request_token_ceilings(request) for request in [body]]
+    reservation = {
+        "status": "reserved_before_provider_call",
+        "basis": "whole-run conservative input-token ceilings plus configured output-token ceilings",
+        "planned_request_count": len(token_ceilings),
+        "request_token_ceilings": token_ceilings,
+        "reserved_cost_upper_bound_usd": total_estimate,
+        "approved_cap_usd": min(float(resource_config["caps"]["max_inference_cost_usd"]), MAX_FINAL_SPEND_USD),
+        "unused_reservation_released_for_reuse": False,
+    }
     receipt["preflight"] = {
-        "planned_request_count": 1,
+        "planned_request_count": len(token_ceilings),
         "per_request_estimates_usd": request_costs,
         "whole_run_estimate_usd": total_estimate,
+        "whole_run_estimate_upper_bound_usd": total_estimate,
+        "request_token_ceilings": token_ceilings,
         "hard_ceiling_usd": MAX_FINAL_SPEND_USD,
         "model": PINNED_MODEL_ID,
         "automatic_retry": False,
         "escalation_or_fallback": False,
     }
+    receipt["cost_reservation"] = reservation
     release["run"]["model"] = PINNED_MODEL_ID
     release["run"]["provider"] = "deepinfra"
     release["run"]["sampling"] = resource_config["sampling"]
@@ -1567,6 +1620,9 @@ def run_pipeline(
     release["run"]["resource_caps"] = resource_config["caps"]
     release["run"]["resource_ledger"]["inference_requests"] = 1
     release["run"]["resource_ledger"]["inference_cost_usd_estimate"] = total_estimate
+    release["run"]["resource_ledger"]["inference_cost_usd_upper_bound"] = total_estimate
+    release["run"]["resource_ledger"]["provider_usage"] = {"status": "pending", "input_tokens": None, "output_tokens": None}
+    release["run"]["resource_ledger"]["provider_usage_cost_estimate_usd"] = None
     receipt["config_hash"] = release["run"]["config_hash"]
     receipt["planned_request_count"] = 1
     receipt["inference_cost_usd_estimate"] = total_estimate
@@ -1582,7 +1638,8 @@ def run_pipeline(
         "corpus_manifest_sha256": corpus.benchmark_manifest_sha256,
         "started_at": datetime.now(UTC).isoformat(timespec="seconds"),
         "provider_request_count": 1,
-        "estimated_cost_usd": total_estimate,
+        "reserved_cost_upper_bound_usd": total_estimate,
+        "reservation_status": "reserved_before_provider_call",
         "provider": "deepinfra",
         "model": PINNED_MODEL_ID,
         "credential_value_recorded": False,
@@ -1605,33 +1662,51 @@ def run_pipeline(
         _reject_secret_echo(provider_payload, api_key)
         review = validate_live_review(provider_payload, release, corpus)
         usage = review["usage"]
-        actual = estimate_cost_usd(
-            PINNED_MODELS["extract"],
-            input_tokens=usage["input_tokens"] or len(_json_bytes(body)) * 2,
-            output_tokens=usage["output_tokens"] or body["max_tokens"],
-        )
-        if actual > min(float(resource_config["caps"]["max_inference_cost_usd"]), MAX_FINAL_SPEND_USD):
-            raise StructuredAnalysisError("provider-reported usage exceeded the preflight spend cap")
         receipt["provider_calls"] = 1
-        receipt["inference_cost_usd_estimate"] = actual
         receipt["provider_usage"] = usage
+        receipt["provider_usage_cost_estimate_usd"] = None
         receipt["provider_review_status"] = review["status"]
-        release["run"]["resource_ledger"]["inference_cost_usd_estimate"] = actual
+        release["run"]["resource_ledger"]["provider_usage"] = usage
+        # Preserve the bounded response separately from the resource reservation.
+        _write_json(output_dir / "live-model-review-untrusted.json", review)
+        if usage["status"] == "reported":
+            reported_cost_estimate = estimate_cost_usd(
+                PINNED_MODELS["extract"],
+                input_tokens=usage["input_tokens"],
+                output_tokens=usage["output_tokens"],
+            )
+            receipt["provider_usage_cost_estimate_usd"] = reported_cost_estimate
+            release["run"]["resource_ledger"]["provider_usage_cost_estimate_usd"] = reported_cost_estimate
+            if reported_cost_estimate > min(float(resource_config["caps"]["max_inference_cost_usd"]), MAX_FINAL_SPEND_USD):
+                raise StructuredAnalysisError("provider-reported usage exceeded the approved whole-run spend cap")
+            if reported_cost_estimate > total_estimate:
+                raise StructuredAnalysisError("provider-reported usage exceeded the reserved whole-run cost ceiling")
+            receipt["status"] = "passed_one_live_review"
+            reservation["status"] = "settled_from_provider_reported_usage"
+            _update_lock(lock_path, {"status": "completed", "provider_usage_status": usage["status"], "finished_at": datetime.now(UTC).isoformat(timespec="seconds")})
+        else:
+            receipt["status"] = "completed_review_usage_unreported" if usage["status"] == "missing" else "completed_review_usage_incomplete"
+            receipt["usage_note"] = "provider review response preserved; no complete token count or usage-based cost inferred; conservative upper-bound reservation remains consumed"
+            reservation["status"] = "consumed_usage_unreported"
+            _update_lock(lock_path, {"status": "completed_usage_unreported", "provider_usage_status": usage["status"], "finished_at": datetime.now(UTC).isoformat(timespec="seconds")})
+        receipt["cost_reservation"] = reservation
+        release["run"]["resource_ledger"]["inference_cost_usd_reservation_status"] = reservation["status"]
         release["run"]["finished_at"] = datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00", "Z")
         release["run"]["resource_ledger"]["wall_clock_minutes"] = round(
             max(0.0, (datetime.now(UTC) - datetime.fromisoformat(release["run"]["started_at"].replace("Z", "+00:00"))).total_seconds()) / 60,
             6,
         )
-        _write_json(output_dir / "live-model-review-untrusted.json", review)
-        receipt["status"] = "passed_one_live_review"
-        _update_lock(lock_path, {"status": "completed", "finished_at": datetime.now(UTC).isoformat(timespec="seconds")})
     except BaseException as exc:
         receipt["provider_calls"] = 1
         receipt["status"] = "failed_after_one_shot_consumed"
         receipt["failure"] = _sanitized_failure(exc, api_key)
         receipt["commands_run"][0]["exit_code"] = 2
         release["acceptance"]["commands_run"][0]["exit_code"] = 2
+        if reservation["status"] == "reserved_before_provider_call":
+            reservation["status"] = "consumed_after_provider_failure"
+        receipt["cost_reservation"] = reservation
         release["run"]["resource_ledger"]["inference_cost_usd_estimate"] = total_estimate
+        release["run"]["resource_ledger"]["inference_cost_usd_reservation_status"] = reservation["status"]
         release["run"]["finished_at"] = datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00", "Z")
         _write_release_files(output_dir, release)
         _update_lock(lock_path, {

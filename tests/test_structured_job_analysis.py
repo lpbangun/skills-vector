@@ -230,6 +230,57 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             with self.assertRaisesRegex(StructuredAnalysisError, "already started"):
                 _acquire_final_lock(lock_path, {"status": "started"})
 
+    def test_missing_provider_usage_consumes_reserved_upper_bound_without_inventing_actuals(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config_path = root / "resource.json"
+            config_path.write_text(json.dumps(RESOURCE_CONFIG))
+            lock = root / "one-shot.json"
+            output = root / "output"
+            citation = {
+                "source_id": "onet_hr_specialist",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+            }
+            observed_before_call: dict[str, object] = {}
+
+            def fake_provider(_body: dict[str, object], _key: str) -> dict[str, object]:
+                prior = json.loads((output / "run-receipt.json").read_text())
+                observed_before_call.update(prior)
+                return {"choices": [{"message": {"content": json.dumps({"reviews": [{
+                    "unit_id": "task-policy-guidance",
+                    "stance": "unclear",
+                    "reason": "Mocked response with no provider usage metadata.",
+                    "evidence": [citation],
+                }]})}}]}
+
+            receipt = run_pipeline(
+                mode="live-final",
+                resource_config_path=config_path,
+                freeze_sha="a" * 40,
+                confirm_final_run=True,
+                candidate_revision="a" * 40,
+                output_dir=output,
+                api_key="unit-test-no-usage-secret",
+                _live_lock_path=lock,
+                _provider_call=fake_provider,
+            )
+            upper_bound = receipt["preflight"]["whole_run_estimate_upper_bound_usd"]
+            self.assertEqual(observed_before_call["cost_reservation"]["status"], "reserved_before_provider_call")
+            self.assertEqual(receipt["status"], "completed_review_usage_unreported")
+            self.assertEqual(receipt["provider_usage"], {"status": "missing", "input_tokens": None, "output_tokens": None})
+            self.assertIsNone(receipt["provider_usage_cost_estimate_usd"])
+            self.assertEqual(receipt["inference_cost_usd_estimate"], upper_bound)
+            self.assertEqual(receipt["cost_reservation"]["status"], "consumed_usage_unreported")
+            review = json.loads((output / "live-model-review-untrusted.json").read_text())
+            self.assertEqual(review["usage"]["status"], "missing")
+            release = json.loads((output / "release.json").read_text())
+            ledger = release["run"]["resource_ledger"]
+            self.assertEqual(ledger["inference_cost_usd_estimate"], upper_bound)
+            self.assertEqual(ledger["provider_usage"]["input_tokens"], None)
+            self.assertIsNone(ledger["provider_usage_cost_estimate_usd"])
+            self.assertEqual(json.loads(lock.read_text())["status"], "completed_usage_unreported")
+
     def test_provider_secret_echo_is_discarded_and_receipt_is_redacted(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
