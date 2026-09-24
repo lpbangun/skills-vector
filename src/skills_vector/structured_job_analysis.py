@@ -1,4 +1,4 @@
-"""Round-two HR Generalist Structured Job Analysis over the frozen public dev corpus.
+"""Round-three HR Generalist Structured Job Analysis over the frozen public dev corpus.
 
 The occupational backbone is an authored, O*NET/OPM-anchored desk analysis. Posting
 text is used only for counts-only demand observations and explicitly labeled context
@@ -30,17 +30,21 @@ DEFAULT_BENCHMARK_DIR = Path(
     "/home/logani/oprun-evidence/skills-vector-poc-prep-74b159c/shared-benchmark"
 )
 DEFAULT_BASE_CORPUS_DIR = DEFAULT_BENCHMARK_DIR.parent / "corpus"
-DEFAULT_OUTPUT_DIR = REPO_ROOT / "outputs/structured-job-analysis-round2"
+DEFAULT_OUTPUT_DIR = REPO_ROOT / "outputs/structured-job-analysis-round3"
 DEFAULT_LIVE_LOCK = REPO_ROOT / ".poc-env/state/structured-job-analysis-final-live.json"
 APPROVED_RESOURCE_CONFIG_PATH = Path(
-    "/home/logani/oprun-evidence/skills-vector-poc-prep-74b159c/comparison-resource-config-v1.json"
+    "/home/logani/oprun-evidence/skills-vector-poc-prep-74b159c/comparison-resource-config-v2.json"
 )
-APPROVED_RESOURCE_CONFIG_SHA256 = "ba47486acab4f647be2d8be72598e044715b6bb04c61aafc43cddc2f5abf494e"
+APPROVED_RESOURCE_CONFIG_SHA256 = "684c37fc2ba5b94fcc65bb6f00274349cfe05832a066569594921ab891230847"
 MATCHED_EVIDENCE_POLICY = "frozen-corpus-only"
+MAX_PLANNED_PROVIDER_REQUESTS = 1
+MAX_SERIALIZED_REQUEST_BYTES = 48 * 1024
+MAX_INPUT_TOKENS_UPPER_BOUND = MAX_SERIALIZED_REQUEST_BYTES * 2
+MAX_OUTPUT_TOKENS = 2048
 MATCHED_RESOURCE_CONFIG = {
     "model": "deepseek-ai/DeepSeek-V4.1-Flash",
     "provider": "deepinfra",
-    "sampling": {"temperature": 0.0, "top_p": 1.0, "max_tokens": 2048},
+    "sampling": {"temperature": 0.0, "top_p": 1.0, "max_tokens": 2048, "reasoning_effort": "none"},
     "caps": {
         "max_inference_requests": 8,
         "max_inference_cost_usd": 0.5,
@@ -987,8 +991,8 @@ def build_release(corpus: FrozenCorpus, candidate_revision: str, *, mode: str = 
         "schema_version": "skills-vector.poc-output.v1",
         "method": "structured-job-analysis",
         "run": {
-            "run_id": f"sja-a-r2-{_sha256(_json_bytes([candidate_revision, corpus.benchmark_manifest_sha256, mode]))[:16]}",
-            "round": 2,
+            "run_id": f"sja-a-r3-{_sha256(_json_bytes([candidate_revision, corpus.benchmark_manifest_sha256, mode]))[:16]}",
+            "round": 3,
             "candidate_revision": candidate_revision,
             "corpus_snapshot_ids": list(SNAPSHOT_IDS),
             "model": execution_model,
@@ -1445,8 +1449,10 @@ def validate_resource_config(config: dict[str, Any]) -> None:
         raise StructuredAnalysisError("sampling.temperature must be between 0 and 2")
     if not math.isfinite(top_p) or not 0 < top_p <= 1:
         raise StructuredAnalysisError("sampling.top_p must be in (0, 1]")
-    if isinstance(max_tokens, bool) or not isinstance(max_tokens, int) or not 1 <= max_tokens <= 8192:
-        raise StructuredAnalysisError("sampling.max_tokens must be an integer in [1, 8192]")
+    if sampling.get("reasoning_effort") != "none":
+        raise StructuredAnalysisError('sampling.reasoning_effort must be exactly "none"')
+    if isinstance(max_tokens, bool) or not isinstance(max_tokens, int) or max_tokens != MAX_OUTPUT_TOKENS:
+        raise StructuredAnalysisError(f"sampling.max_tokens must be exactly {MAX_OUTPUT_TOKENS}")
     if isinstance(max_requests, bool) or not isinstance(max_requests, int) or max_requests < 1:
         raise StructuredAnalysisError("caps.max_inference_requests must be a positive integer")
     if not math.isfinite(max_cost) or not 0 < max_cost <= MAX_FINAL_SPEND_USD:
@@ -1488,46 +1494,77 @@ def _request_body(release: dict[str, Any], config: dict[str, Any]) -> dict[str, 
         "temperature": sampling["temperature"],
         "top_p": sampling["top_p"],
         "max_tokens": sampling["max_tokens"],
+        "reasoning_effort": sampling["reasoning_effort"],
         "response_format": {"type": "json_object"},
     }
 
 
-def estimate_request_token_ceilings(body: dict[str, Any]) -> dict[str, int | float]:
-    """Return conservative input/output token ceilings and their priced upper bound."""
-    # Count the same JSON serialization sent to DeepInfra. Two input tokens per
-    # UTF-8 byte is intentionally conservative; max_tokens bounds the response.
-    input_bytes = len(json.dumps(body, ensure_ascii=False).encode("utf-8"))
+def _serialized_request_bytes(body: dict[str, Any]) -> bytes:
+    """Serialize exactly as the DeepInfra HTTP request body is serialized."""
+    return json.dumps(body, ensure_ascii=False).encode("utf-8")
+
+
+def estimate_request_token_ceilings(body: dict[str, Any]) -> dict[str, Any]:
+    """Return fail-closed input/output/reasoning ceilings and their priced upper bound."""
+    if body.get("model") != PINNED_MODEL_ID:
+        raise StructuredAnalysisError("provider request model differs from the pinned model")
+    if body.get("reasoning_effort") != "none":
+        raise StructuredAnalysisError('provider request reasoning_effort must be exactly "none"')
+    output_tokens = body.get("max_tokens")
+    if (
+        isinstance(output_tokens, bool)
+        or not isinstance(output_tokens, int)
+        or output_tokens != MAX_OUTPUT_TOKENS
+    ):
+        raise StructuredAnalysisError(f"provider request max_tokens must be exactly {MAX_OUTPUT_TOKENS}")
+    serialized = _serialized_request_bytes(body)
+    input_bytes = len(serialized)
+    if input_bytes > MAX_SERIALIZED_REQUEST_BYTES:
+        raise StructuredAnalysisError(
+            f"serialized provider request is {input_bytes} bytes; ceiling is {MAX_SERIALIZED_REQUEST_BYTES}"
+        )
+    # Two input tokens per UTF-8 request byte is intentionally conservative.
     input_tokens = input_bytes * 2
-    output_tokens = body["max_tokens"]
+    if input_tokens > MAX_INPUT_TOKENS_UPPER_BOUND:
+        raise StructuredAnalysisError(
+            f"request input-token upper bound {input_tokens} exceeds {MAX_INPUT_TOKENS_UPPER_BOUND}"
+        )
+    # DeepInfra documents max_tokens as the generated-token ceiling. Reasoning is
+    # billable output, so it shares this ceiling rather than receiving an additive
+    # allowance; reasoning_effort=none is sent explicitly as an additional control.
     cost_upper_bound = estimate_cost_usd(
         PINNED_MODELS["extract"],
         input_tokens=input_tokens,
         output_tokens=output_tokens,
     )
     return {
+        "request_sha256": _sha256(serialized),
         "input_bytes": input_bytes,
         "input_tokens_upper_bound": input_tokens,
-        "output_tokens_upper_bound": output_tokens,
+        "output_tokens_upper_bound_including_reasoning": output_tokens,
+        "reasoning_effort": "none",
+        "reasoning_tokens_additional_allowance": 0,
+        "total_input_plus_output_including_reasoning_tokens_upper_bound": input_tokens + output_tokens,
+        "reasoning_accounting": "any generated/billable reasoning is included in max_tokens output ceiling; no separate allowance",
         "cost_upper_bound_usd": cost_upper_bound,
     }
 
 
 def estimate_request_cost(body: dict[str, Any]) -> float:
-    """Conservative byte-count input estimate plus the configured output-token ceiling."""
+    """Conservative serialized-input bound plus max_tokens including reasoning."""
     return float(estimate_request_token_ceilings(body)["cost_upper_bound_usd"])
 
 
 def preflight_request_batch(requests: list[dict[str, Any]], config: dict[str, Any]) -> tuple[list[float], float]:
-    """Preflight all planned requests before any provider call; retries are forbidden."""
+    """Preflight the one planned request before any provider call; retries are forbidden."""
     validate_resource_config(config)
     caps = config["caps"]
-    if not requests:
-        raise StructuredAnalysisError("live final mode has no planned provider request")
+    if len(requests) != MAX_PLANNED_PROVIDER_REQUESTS:
+        raise StructuredAnalysisError(
+            f"live final mode requires exactly {MAX_PLANNED_PROVIDER_REQUESTS} planned provider request"
+        )
     if len(requests) > caps["max_inference_requests"]:
         raise StructuredAnalysisError("planned request batch exceeds the approved inference-request cap")
-    # Estimate the entire planned batch before sending its first request. The current
-    # final pipeline uses one request; this summation also safely handles a reviewed
-    # multi-request plan without making any provider call until all costs fit.
     costs = [estimate_request_cost(request) for request in requests]
     total = sum(costs)
     if total > min(float(caps["max_inference_cost_usd"]), MAX_FINAL_SPEND_USD):
@@ -1605,7 +1642,7 @@ def _sanitized_failure(exc: BaseException, api_key: str) -> str:
 def _call_provider_once(body: dict[str, Any], api_key: str, opener: Callable[..., Any] | None = None) -> dict[str, Any]:
     request = urllib.request.Request(
         LIVE_ENDPOINT,
-        data=json.dumps(body, ensure_ascii=False).encode("utf-8"),
+        data=_serialized_request_bytes(body),
         headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
         method="POST",
     )
@@ -1621,9 +1658,9 @@ def _call_provider_once(body: dict[str, Any], api_key: str, opener: Callable[...
 def _reported_usage(payload: dict[str, Any]) -> dict[str, Any]:
     raw = payload.get("usage")
     if raw is None:
-        return {"status": "missing", "input_tokens": None, "output_tokens": None}
+        return {"status": "missing", "input_tokens": None, "output_tokens": None, "reasoning_tokens": None}
     if not isinstance(raw, dict):
-        return {"status": "invalid", "input_tokens": None, "output_tokens": None}
+        return {"status": "invalid", "input_tokens": None, "output_tokens": None, "reasoning_tokens": None}
     values: dict[str, int | None] = {}
     invalid_value = False
     for field, key in (("input_tokens", "prompt_tokens"), ("output_tokens", "completion_tokens")):
@@ -1635,6 +1672,14 @@ def _reported_usage(payload: dict[str, Any]) -> dict[str, Any]:
         else:
             values[field] = None
             invalid_value = True
+    details = raw.get("completion_tokens_details")
+    if details is not None and not isinstance(details, dict):
+        raise StructuredAnalysisError("provider usage has malformed completion token details")
+    reasoning_tokens = details.get("reasoning_tokens") if isinstance(details, dict) else raw.get("reasoning_tokens")
+    if reasoning_tokens is not None and (
+        not isinstance(reasoning_tokens, int) or isinstance(reasoning_tokens, bool) or reasoning_tokens < 0
+    ):
+        raise StructuredAnalysisError("provider-reported reasoning token count is invalid")
     known = [value for value in values.values() if value is not None]
     if len(known) == 2:
         status = "reported"
@@ -1644,7 +1689,34 @@ def _reported_usage(payload: dict[str, Any]) -> dict[str, Any]:
         status = "invalid"
     else:
         status = "missing"
-    return {"status": status, **values}
+    return {"status": status, **values, "reasoning_tokens": reasoning_tokens}
+
+
+def _validate_reported_usage_within_ceilings(
+    payload: dict[str, Any], usage: dict[str, Any], ceilings: dict[str, Any]
+) -> None:
+    input_tokens = usage["input_tokens"]
+    output_tokens = usage["output_tokens"]
+    if input_tokens is not None and input_tokens > ceilings["input_tokens_upper_bound"]:
+        raise StructuredAnalysisError("provider-reported input usage exceeded the reserved input-token ceiling")
+    output_ceiling = ceilings["output_tokens_upper_bound_including_reasoning"]
+    if output_tokens is not None and output_tokens > output_ceiling:
+        raise StructuredAnalysisError("provider-reported output usage exceeded max_tokens including reasoning")
+    reasoning_tokens = usage["reasoning_tokens"]
+    if reasoning_tokens is not None:
+        if reasoning_tokens > output_ceiling:
+            raise StructuredAnalysisError("provider-reported reasoning usage exceeded max_tokens output ceiling")
+        if output_tokens is not None and reasoning_tokens > output_tokens:
+            raise StructuredAnalysisError("provider reasoning usage exceeds aggregate completion-token usage")
+
+    raw = payload.get("usage")
+    if isinstance(raw, dict) and "total_tokens" in raw:
+        total_tokens = raw["total_tokens"]
+        total_ceiling = ceilings["total_input_plus_output_including_reasoning_tokens_upper_bound"]
+        if isinstance(total_tokens, bool) or not isinstance(total_tokens, int) or total_tokens < 0:
+            raise StructuredAnalysisError("provider-reported total token usage is invalid")
+        if total_tokens > total_ceiling:
+            raise StructuredAnalysisError("provider-reported total usage exceeded input-plus-output ceiling")
 
 
 def validate_live_review(payload: dict[str, Any], release: dict[str, Any], corpus: FrozenCorpus) -> dict[str, Any]:
@@ -1797,7 +1869,11 @@ def run_pipeline(
     token_ceilings = [estimate_request_token_ceilings(request) for request in [body]]
     reservation = {
         "status": "reserved_before_provider_call",
-        "basis": "whole-run conservative input-token ceilings plus configured output-token ceilings",
+        "basis": (
+            "whole-run two-input-tokens-per-serialized-byte ceiling plus max_tokens=2048 output ceiling; "
+            "reasoning_effort=none is requested and any billable reasoning remains included in max_tokens "
+            "with no separate/additive allowance"
+        ),
         "planned_request_count": len(token_ceilings),
         "request_token_ceilings": token_ceilings,
         "reserved_cost_upper_bound_usd": total_estimate,
@@ -1812,6 +1888,8 @@ def run_pipeline(
         "request_token_ceilings": token_ceilings,
         "hard_ceiling_usd": MAX_FINAL_SPEND_USD,
         "model": PINNED_MODEL_ID,
+        "reasoning_effort": "none",
+        "reasoning_accounting": "all billable reasoning is included in the max_tokens=2048 output ceiling",
         "automatic_retry": False,
         "escalation_or_fallback": False,
     }
@@ -1840,7 +1918,8 @@ def run_pipeline(
         "run_id": release["run"]["run_id"],
         "corpus_manifest_sha256": corpus.benchmark_manifest_sha256,
         "started_at": datetime.now(UTC).isoformat(timespec="seconds"),
-        "provider_request_count": 1,
+        "provider_request_count": MAX_PLANNED_PROVIDER_REQUESTS,
+        "request_sha256": token_ceilings[0]["request_sha256"],
         "reserved_cost_upper_bound_usd": total_estimate,
         "reservation_status": "reserved_before_provider_call",
         "provider": "deepinfra",
@@ -1870,6 +1949,7 @@ def run_pipeline(
         receipt["provider_usage_cost_estimate_usd"] = None
         receipt["provider_review_status"] = review["status"]
         release["run"]["resource_ledger"]["provider_usage"] = usage
+        _validate_reported_usage_within_ceilings(provider_payload, usage, token_ceilings[0])
         # Preserve the bounded response separately from the resource reservation.
         _write_json(output_dir / "live-model-review-untrusted.json", review)
         if usage["status"] == "reported":

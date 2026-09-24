@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import tempfile
 import time
@@ -16,11 +17,16 @@ from skills_vector.structured_job_analysis import (
     MATCHED_RESOURCE_CONFIG,
     EXPECTED_BENCHMARK_MANIFEST_SHA256,
     MAX_FINAL_SPEND_USD,
+    MAX_INPUT_TOKENS_UPPER_BOUND,
+    MAX_OUTPUT_TOKENS,
+    MAX_PLANNED_PROVIDER_REQUESTS,
+    MAX_SERIALIZED_REQUEST_BYTES,
     PINNED_MODEL_ID,
     SNAPSHOT_IDS,
     StructuredAnalysisError,
     _acquire_final_lock,
     build_release,
+    estimate_request_token_ceilings,
     load_frozen_corpus,
     preflight_request_batch,
     render_markdown,
@@ -49,7 +55,7 @@ class StructuredJobAnalysisTests(unittest.TestCase):
         validate_citations(release, self.corpus)
         self.assertEqual(release["schema_version"], "skills-vector.poc-output.v1")
         self.assertEqual(release["run"]["corpus_snapshot_ids"], list(SNAPSHOT_IDS))
-        self.assertEqual(release["run"]["round"], 2)
+        self.assertEqual(release["run"]["round"], 3)
         self.assertEqual(release["demand_layer"]["claims_allowed"], False)
         self.assertEqual(release["demand_layer"]["denominators"]["employers_scanned"], 23)
         self.assertEqual(release["demand_layer"]["denominators"]["board_total_openings"], 5129)
@@ -163,6 +169,7 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             self.assertEqual(release["run"]["resource_ledger"]["inference_cost_usd_estimate"], 0.0)
             self.assertEqual(release["run"]["config_hash"], APPROVED_RESOURCE_CONFIG_SHA256)
             self.assertEqual(manifest["config_hash"], APPROVED_RESOURCE_CONFIG_SHA256)
+            self.assertEqual(release["run"]["round"], 3)
             self.assertEqual(manifest["evidence_policy"], MATCHED_EVIDENCE_POLICY)
             for field in ("model", "provider", "sampling", "caps", "corpus_snapshot_ids", "evidence_policy"):
                 if field == "evidence_policy":
@@ -216,21 +223,48 @@ class StructuredJobAnalysisTests(unittest.TestCase):
         credential_config["api_key"] = "never-store-this"
         with self.assertRaisesRegex(StructuredAnalysisError, "credential fields"):
             validate_resource_config(credential_config)
+        reasoning_enabled = json.loads(json.dumps(RESOURCE_CONFIG))
+        reasoning_enabled["sampling"]["reasoning_effort"] = "high"
+        with self.assertRaisesRegex(StructuredAnalysisError, 'reasoning_effort must be exactly "none"'):
+            validate_resource_config(reasoning_enabled)
 
-    def test_preflight_sums_all_planned_requests_before_any_provider_call(self) -> None:
-        request = {"model": PINNED_MODEL_ID, "messages": [{"role": "user", "content": "bounded test"}], "max_tokens": 2048}
-        per_request, total = preflight_request_batch([request, request], RESOURCE_CONFIG)
-        self.assertEqual(len(per_request), 2)
+    def test_preflight_enforces_exact_request_reasoning_input_and_output_ceilings(self) -> None:
+        request = {
+            "model": PINNED_MODEL_ID,
+            "messages": [{"role": "user", "content": "bounded test"}],
+            "max_tokens": MAX_OUTPUT_TOKENS,
+            "reasoning_effort": "none",
+        }
+        per_request, total = preflight_request_batch([request], RESOURCE_CONFIG)
+        self.assertEqual(len(per_request), MAX_PLANNED_PROVIDER_REQUESTS)
         self.assertAlmostEqual(total, sum(per_request))
         self.assertLessEqual(total, RESOURCE_CONFIG["caps"]["max_inference_cost_usd"])
-        too_many = json.loads(json.dumps(RESOURCE_CONFIG))
-        too_many["caps"]["max_inference_requests"] = 1
-        with self.assertRaisesRegex(StructuredAnalysisError, "request cap"):
-            preflight_request_batch([request, request], too_many)
+        ceilings = estimate_request_token_ceilings(request)
+        self.assertEqual(ceilings["reasoning_effort"], "none")
+        self.assertEqual(ceilings["reasoning_tokens_additional_allowance"], 0)
+        self.assertEqual(ceilings["output_tokens_upper_bound_including_reasoning"], MAX_OUTPUT_TOKENS)
+        self.assertEqual(
+            ceilings["total_input_plus_output_including_reasoning_tokens_upper_bound"],
+            ceilings["input_tokens_upper_bound"] + MAX_OUTPUT_TOKENS,
+        )
+        self.assertLessEqual(ceilings["input_bytes"], MAX_SERIALIZED_REQUEST_BYTES)
+        self.assertLessEqual(ceilings["input_tokens_upper_bound"], MAX_INPUT_TOKENS_UPPER_BOUND)
+        self.assertEqual(len(ceilings["request_sha256"]), 64)
+
+        with self.assertRaisesRegex(StructuredAnalysisError, "exactly 1 planned provider request"):
+            preflight_request_batch([request, request], RESOURCE_CONFIG)
+        with self.assertRaisesRegex(StructuredAnalysisError, 'reasoning_effort must be exactly "none"'):
+            estimate_request_token_ceilings({**request, "reasoning_effort": "high"})
+        with self.assertRaisesRegex(StructuredAnalysisError, "max_tokens must be exactly 2048"):
+            estimate_request_token_ceilings({**request, "max_tokens": 2049})
+        oversized = {**request, "messages": [{"role": "user", "content": "x" * MAX_SERIALIZED_REQUEST_BYTES}]}
+        with self.assertRaisesRegex(StructuredAnalysisError, "serialized provider request"):
+            estimate_request_token_ceilings(oversized)
+
         too_expensive = json.loads(json.dumps(RESOURCE_CONFIG))
         too_expensive["caps"]["max_inference_cost_usd"] = 0.000001
         with self.assertRaisesRegex(StructuredAnalysisError, "whole-run preflight"):
-            preflight_request_batch([request, request], too_expensive)
+            preflight_request_batch([request], too_expensive)
 
     def test_final_live_mode_requires_freeze_confirmation_config_and_key_before_call(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -341,7 +375,20 @@ class StructuredJobAnalysisTests(unittest.TestCase):
                 _provider_call=fake_provider,
             )
             self.assertEqual(len(calls), 1)
+            self.assertEqual(calls[0]["body"]["reasoning_effort"], "none")
+            self.assertEqual(calls[0]["body"]["max_tokens"], MAX_OUTPUT_TOKENS)
             self.assertEqual(calls[0]["key"], "unit-test-secret-never-write")
+            preflight = receipt["preflight"]
+            ceilings = preflight["request_token_ceilings"][0]
+            self.assertEqual(
+                ceilings["request_sha256"],
+                hashlib.sha256(json.dumps(calls[0]["body"], ensure_ascii=False).encode("utf-8")).hexdigest(),
+            )
+            self.assertLessEqual(ceilings["input_bytes"], MAX_SERIALIZED_REQUEST_BYTES)
+            self.assertLessEqual(ceilings["input_tokens_upper_bound"], MAX_INPUT_TOKENS_UPPER_BOUND)
+            self.assertEqual(json.loads(lock_path.read_text())["request_sha256"], ceilings["request_sha256"])
+            self.assertEqual(preflight["reasoning_effort"], "none")
+            self.assertIn("included in the max_tokens=2048 output ceiling", preflight["reasoning_accounting"])
             self.assertEqual(receipt["provider_calls"], 1)
             self.assertEqual(receipt["status"], "passed_one_live_review")
             self.assertEqual(receipt["config_hash"], APPROVED_RESOURCE_CONFIG_SHA256)
@@ -373,6 +420,65 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             self.assertEqual(lock["status"], "completed")
             with self.assertRaisesRegex(StructuredAnalysisError, "already started"):
                 _acquire_final_lock(lock_path, {"status": "started"})
+
+    def test_provider_output_over_limit_consumes_one_shot_without_retry(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config_path = write_approved_resource_config(root / "resource.json")
+            lock = root / "one-shot.json"
+            output = root / "output"
+            citation = {
+                "source_id": "onet_hr_specialist",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+            }
+            payload = {
+                "choices": [{"message": {"content": json.dumps({"reviews": [{
+                    "unit_id": "task-policy-guidance",
+                    "stance": "unclear",
+                    "reason": "Mocked output usage exceeds the bounded completion budget.",
+                    "evidence": [citation],
+                }]})}}],
+                "usage": {"prompt_tokens": 100, "completion_tokens": MAX_OUTPUT_TOKENS + 1},
+            }
+            calls: list[dict[str, object]] = []
+
+            def fake_provider(body: dict[str, object], _key: str) -> dict[str, object]:
+                calls.append(body)
+                return payload
+
+            with self.assertRaisesRegex(StructuredAnalysisError, "output usage exceeded max_tokens including reasoning"):
+                run_pipeline(
+                    mode="live-final",
+                    resource_config_path=config_path,
+                    freeze_sha="b" * 40,
+                    confirm_final_run=True,
+                    candidate_revision="b" * 40,
+                    output_dir=output,
+                    api_key="unit-test-over-limit-secret",
+                    _live_lock_path=lock,
+                    _provider_call=fake_provider,
+                )
+            self.assertEqual(len(calls), 1)
+            receipt = json.loads((output / "run-receipt.json").read_text())
+            self.assertEqual(receipt["status"], "failed_after_one_shot_consumed")
+            self.assertEqual(receipt["provider_usage"]["output_tokens"], MAX_OUTPUT_TOKENS + 1)
+            self.assertIsNone(receipt["provider_usage_cost_estimate_usd"])
+            self.assertEqual(receipt["cost_reservation"]["status"], "consumed_after_provider_failure")
+            self.assertEqual(json.loads(lock.read_text())["status"], "failed_consumed_no_retry")
+            with self.assertRaisesRegex(StructuredAnalysisError, "already started"):
+                run_pipeline(
+                    mode="live-final",
+                    resource_config_path=config_path,
+                    freeze_sha="b" * 40,
+                    confirm_final_run=True,
+                    candidate_revision="b" * 40,
+                    output_dir=output,
+                    api_key="unit-test-over-limit-secret",
+                    _live_lock_path=lock,
+                    _provider_call=fake_provider,
+                )
+            self.assertEqual(len(calls), 1)
 
     def test_missing_provider_usage_consumes_reserved_upper_bound_without_inventing_actuals(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -411,7 +517,9 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             upper_bound = receipt["preflight"]["whole_run_estimate_upper_bound_usd"]
             self.assertEqual(observed_before_call["cost_reservation"]["status"], "reserved_before_provider_call")
             self.assertEqual(receipt["status"], "completed_review_usage_unreported")
-            self.assertEqual(receipt["provider_usage"], {"status": "missing", "input_tokens": None, "output_tokens": None})
+            self.assertEqual(receipt["provider_usage"], {
+                "status": "missing", "input_tokens": None, "output_tokens": None, "reasoning_tokens": None,
+            })
             self.assertIsNone(receipt["provider_usage_cost_estimate_usd"])
             self.assertEqual(receipt["inference_cost_usd_estimate"], upper_bound)
             self.assertEqual(receipt["cost_reservation"]["status"], "consumed_usage_unreported")
