@@ -8,6 +8,7 @@ validation.
 
 from __future__ import annotations
 
+import base64
 import hashlib
 import html
 import json
@@ -41,6 +42,7 @@ MAX_PLANNED_PROVIDER_REQUESTS = 1
 MAX_SERIALIZED_REQUEST_BYTES = 48 * 1024
 MAX_INPUT_TOKENS_UPPER_BOUND = MAX_SERIALIZED_REQUEST_BYTES * 2
 MAX_OUTPUT_TOKENS = 2048
+MAX_PROVIDER_RESPONSE_BYTES = 128 * 1024
 MATCHED_RESOURCE_CONFIG = {
     "model": "deepseek-ai/DeepSeek-V4.1-Flash",
     "provider": "deepinfra",
@@ -65,7 +67,8 @@ MAX_FINAL_SPEND_USD = 0.50
 LIVE_ENDPOINT = "https://api.deepinfra.com/v1/openai/chat/completions"
 LIVE_SYSTEM_PROMPT = (
     "You are an untrusted evidence-review assistant for a desk-research job analysis. "
-    "Review only the supplied, cited work units and evidence. Do not add sources, duties, "
+    "Review only the supplied work units and their evidence_ref_ids in the evidence_catalog; "
+    "cite the exact catalog source_id, locator, and quote. Do not add sources, duties, "
     "competencies, proficiency levels, or practitioner claims. Return one JSON object: "
     "{\"reviews\":[{\"unit_id\":string,\"stance\":\"supported\"|\"challenge\"|\"unclear\","
     "\"reason\":string,\"evidence\":[{\"source_id\":string,\"locator\":string,"
@@ -75,6 +78,21 @@ LIVE_SYSTEM_PROMPT = (
 
 class StructuredAnalysisError(RuntimeError):
     """A fail-closed corpus, citation, resource, or run-once error."""
+
+
+@dataclass(frozen=True, slots=True)
+class ProviderResponse:
+    """Bounded response capture kept separate from semantic review validation."""
+
+    payload: Any
+    raw_body: bytes
+    body_bytes_observed: int
+    body_sha256: str
+    truncated: bool
+    capture_source: str
+    body_digest_scope: str
+    parse_error: str | None = None
+    http_status: int | None = None
 
 
 def _json_bytes(value: Any) -> bytes:
@@ -327,6 +345,41 @@ TASKS: tuple[dict[str, Any], ...] = (
             "competency-judgment": "Reports may inform decisions, but the task alone does not prove a specific analytical depth; this remains a medium-confidence inference.",
         },
     },
+    {
+        "unit_id": "task-eeo-policy-compliance",
+        "statement": "Maintain working knowledge of applicable equal-employment and affirmative-action rules relevant to assigned HR work; this is not legal advice.",
+        "quote": "Maintain current knowledge of Equal Employment Opportunity (EEO) and affirmative action guidelines and laws, such as the Americans with Disabilities Act (ADA).",
+        "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+        "competencies": ["competency-hr-knowledge", "competency-law-policy", "competency-written-communication"],
+        "links": {
+            "competency-hr-knowledge": "The task expressly names EEO and affirmative-action rules; HR knowledge supports locating the relevant assigned guidance.",
+            "competency-law-policy": "The task explicitly names guidelines and laws; the relationship is a direct desk-research link, not a legal qualification threshold.",
+            "competency-written-communication": "Communicating applicable guidance is a cautious task-design link; the source does not set a writing standard.",
+        },
+    },
+    {
+        "unit_id": "task-hr-document-maintenance",
+        "statement": "Maintain and update assigned HR documents, such as handbooks, organization charts, and performance forms, using approved local controls.",
+        "quote": "Maintain and update human resources documents, such as organizational charts, employee handbooks or directories, or performance evaluation forms.",
+        "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+        "competencies": ["competency-administrative-records", "competency-written-communication", "competency-hr-knowledge"],
+        "links": {
+            "competency-administrative-records": "The task names maintaining and updating HR documents; file and record procedures are a direct directional link.",
+            "competency-written-communication": "The task names written HR documents; clear writing is relevant, but no local standard or level is established.",
+            "competency-hr-knowledge": "The documents concern HR policies and processes; this is a broad desk-research link, not an empirical task rating.",
+        },
+    },
+    {
+        "unit_id": "task-employee-exit-process",
+        "statement": "When assigned, support employee exits through an exit interview and required termination records; local ownership varies.",
+        "quote": "Conduct exit interviews and ensure that necessary employment termination paperwork is completed.",
+        "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+        "competencies": ["competency-administrative-records", "competency-active-listening"],
+        "links": {
+            "competency-administrative-records": "The task expressly names termination paperwork; accurate records handling is a direct directional link.",
+            "competency-active-listening": "An exit interview involves hearing an employee account; this cautious link is not a measured proficiency requirement.",
+        },
+    },
 )
 
 COMPETENCIES: tuple[dict[str, Any], ...] = (
@@ -444,6 +497,9 @@ COVERAGE_RULES: dict[str, tuple[str, ...]] = {
     "task-policy-guidance": ("hr policy guidance", "hr policies", "company policies"),
     "task-employee-relations": ("employee relations", "employee issues", "employee concerns"),
     "task-employee-records": ("employee records", "employee changes", "employment records", "employee lifecycle"),
+    "task-eeo-policy-compliance": ("eeo", "equal employment opportunity", "affirmative action", "employment law"),
+    "task-hr-document-maintenance": ("employee handbook", "internal documentation", "employee records", "hr policies"),
+    "task-employee-exit-process": ("offboarding", "employee exits", "termination paperwork", "employee lifecycle"),
     "task-manager-guidance": ("coach", "counsel", "advise", "performance management"),
     "task-new-hire-orientation": ("onboarding", "new employee orientations", "new hire onboarding"),
     "task-people-data-reporting": ("people metrics", "people data", "people insights", "employment-related data"),
@@ -482,6 +538,21 @@ READER_ACTIONS_BY_UNIT: dict[str, dict[str, str]] = {
         "ic_hr_practitioner": "Verify the measure definition, data source, access rules, and reporting purpose before sharing a figure.",
         "job_seeker": "Use a non-sensitive example of checking data and communicating a finding; no analytics tool or level is specified.",
         "hiring_manager": "Name the actual reports and locally required methods only after confirming them through job analysis.",
+    },
+    "task-eeo-policy-compliance": {
+        "ic_hr_practitioner": "Use current, organization-approved guidance and the right escalation route; this guide is not legal advice.",
+        "job_seeker": "Prepare a non-confidential example of locating and applying an approved rule, and explain when you would seek review.",
+        "hiring_manager": "Define assigned compliance responsibilities and legal-review boundaries with qualified local reviewers before selection use.",
+    },
+    "task-hr-document-maintenance": {
+        "ic_hr_practitioner": "Check document ownership, version control, access, retention, and approval steps before changing HR materials.",
+        "job_seeker": "Describe a non-confidential example of maintaining accurate documents and following review controls.",
+        "hiring_manager": "Identify which HR documents this role owns and the local approval controls before adding the duty to a role profile.",
+    },
+    "task-employee-exit-process": {
+        "ic_hr_practitioner": "Follow local exit, confidentiality, referral, and records procedures; confirm who owns each step.",
+        "job_seeker": "Use a hypothetical or anonymized example to describe careful handoffs and documentation without sharing case details.",
+        "hiring_manager": "Confirm local responsibility for exit conversations and separation records; do not infer ownership from title alone.",
     },
     "task-context-scaled-organization-design": {
         "ic_hr_practitioner": "Check whether organization-design work belongs to this local role; the posting examples are context-specific.",
@@ -635,6 +706,15 @@ def _context_records(corpus: FrozenCorpus) -> tuple[dict[str, Any], ...]:
             "reader_actions": _reader_actions(item["unit_id"]),
             "classification": item["context_label"],
             "evidence": evidence,
+            "coverage_decision": {
+                "status": "UNRESOLVED" if item["unit_id"] == "task-context-benefit-administration" else "INCLUDED",
+                "rationale": (
+                    "O*NET labels benefit-plan administration Supplemental and no admitted evidence establishes local HR Generalist ownership; it is shown only as an unresolved scope question."
+                    if item["unit_id"] == "task-context-benefit-administration"
+                    else "Included only as a labeled context example: the O*NET task is an occupational anchor and the quoted employer posting shows this local variation; neither posting frequency nor a single employer defines the common core."
+                ),
+                "evidence": evidence,
+            },
             "uncertainty": {"level": item["uncertainty"], "notes": "Employer-specific illustration; not a universal role requirement."},
             "method_fields": {
                 "method_fields_marker": "structured-job-analysis.v1",
@@ -711,6 +791,11 @@ def _build_work_units(corpus: FrozenCorpus) -> list[dict[str, Any]]:
             "statement": task["statement"],
             "reader_actions": _reader_actions(task["unit_id"]),
             "evidence": [task_quote],
+            "coverage_decision": {
+                "status": "INCLUDED",
+                "rationale": "The admitted O*NET Human Resources Specialists profile lists this exact duty under Tasks › Core; it is retained as an occupational anchor, not as a posting-frequency or validated importance claim.",
+                "evidence": [task_quote],
+            },
             "demand": {},
             "uncertainty": {
                 "level": "medium",
@@ -745,6 +830,11 @@ def _build_work_units(corpus: FrozenCorpus) -> list[dict[str, Any]]:
             "statement": competency["statement"],
             "reader_actions": _reader_actions(competency["unit_id"]),
             "evidence": [citation],
+            "coverage_decision": {
+                "status": "INCLUDED",
+                "rationale": "The admitted O*NET occupation profile directly names this competency construct; its link to any specific task remains a separately labeled desk-research inference, not a measured task rating.",
+                "evidence": [citation],
+            },
             "demand": {},
             "uncertainty": {
                 "level": "medium",
@@ -903,12 +993,400 @@ def _context_evidence(corpus: FrozenCorpus, posting_id: str, phrase: str) -> dic
     )
 
 
+def _priority_evidence(corpus: FrozenCorpus, source_id: str, locator: str, quote: str) -> dict[str, Any]:
+    return _source_citation(
+        corpus,
+        source_id,
+        locator,
+        quote,
+        evidence_role="labeled_context_addition" if source_id.startswith("p-") else "occupational_anchor",
+    )
+
+
+def _build_skill_priorities(corpus: FrozenCorpus) -> list[dict[str, Any]]:
+    """Build an authored learning order from direct occupational anchors, never posting counts."""
+    occupational_locator = "O*NET OnLine 13-1071.00 › Tasks › Core"
+    priorities = [
+        {
+            "rank": 1,
+            "skill_id": "priority-policy-and-compliance-scope",
+            "skill": "Interpret policy and compliance boundaries",
+            "related_work_unit_ids": ["task-policy-guidance", "task-eeo-policy-compliance", "competency-law-policy"],
+            "priority_rationale": "Placed first because the occupation profile directly lists policy/law interpretation and EEO-rule knowledge as core work; practitioners need this boundary before applying the other HR processes. This is an authored learning order, not a measured importance rank.",
+            "evidence": [
+                _priority_evidence(corpus, "onet_hr_specialist", occupational_locator, "Interpret and explain human resources policies, procedures, laws, standards, or regulations."),
+                _priority_evidence(corpus, "onet_hr_specialist", occupational_locator, "Maintain current knowledge of Equal Employment Opportunity (EEO) and affirmative action guidelines and laws, such as the Americans with Disabilities Act (ADA)."),
+                _priority_evidence(corpus, "onet_hr_specialist", "O*NET OnLine 13-1071.00 › Knowledge › Law and Government", "Knowledge of laws, legal codes, court procedures, precedents, government regulations, executive orders, agency rules"),
+            ],
+            "practice_and_demonstration": {
+                "ic_hr_practitioner": "Use an organization-approved source for a policy question, document the applicable rule and your role boundary, and identify the escalation route; do not use this guide as legal advice.",
+                "job_seeker": "Prepare an anonymized example that names the authoritative rule you consulted, how you explained it, and when you sought review.",
+                "hiring_manager": "Use a hypothetical policy scenario to check whether a candidate can find approved guidance, separate facts from interpretation, and describe a safe handoff; have qualified reviewers define any assessment.",
+            },
+            "context_variation": {
+                "statement": "An Anduril People Business Partner posting explicitly includes HR-policy interpretation and separately states a U.S.-person condition in a defense-sector context. That access condition is position-specific; this small sample does not establish how compliance ownership varies by industry, employer size, or team shape.",
+                "evidence": [
+                    _priority_evidence(corpus, "p-andurilindustries-4835624007", "Employer posting People Business Partner › responsibilities", "provides hr policy guidance and interpretation"),
+                    _priority_evidence(corpus, "p-andurilindustries-4835624007", "Employer posting People Business Partner › position-specific access condition", "u.s. person status is required"),
+                ],
+                "variation_limit": "One defense employer is not evidence of a general HR qualification or an industry-wide difference.",
+            },
+            "evidence_strength": {
+                "label": "moderate: direct occupational wording, narrow source base",
+                "occupational_anchor_source_count": 1,
+                "occupational_anchor_source_ids": ["onet_hr_specialist"],
+                "directness": "Direct O*NET core-task and knowledge descriptions; no HR-Generalist-specific task ratings or practitioner validation.",
+            },
+        },
+        {
+            "rank": 2,
+            "skill_id": "priority-employee-relations-judgment",
+            "skill": "Listen carefully and use judgment in employee-relations work",
+            "related_work_unit_ids": ["task-employee-relations", "competency-active-listening", "competency-social-perceptiveness", "competency-judgment"],
+            "priority_rationale": "The O*NET core task explicitly covers harassment allegations, complaints, and employee concerns. It follows policy scope in this learning order because the source names sensitive cases where careful intake and an appropriate next step matter; no relative-importance score is claimed.",
+            "evidence": [
+                _priority_evidence(corpus, "onet_hr_specialist", occupational_locator, "Address employee relations issues, such as harassment allegations, work complaints, or other employee concerns."),
+                _priority_evidence(corpus, "onet_hr_specialist", "O*NET OnLine 13-1071.00 › Skills › Active Listening", "Giving full attention to what other people are saying, taking time to understand the points being made"),
+                _priority_evidence(corpus, "onet_hr_specialist", "O*NET OnLine 13-1071.00 › Transferable Skills › Judgment and Decision Making", "Considering the relative costs and benefits of potential actions to choose the most appropriate one."),
+            ],
+            "practice_and_demonstration": {
+                "ic_hr_practitioner": "Rehearse a local intake process with a fictional scenario: clarify what happened, record only necessary facts, check confidentiality boundaries, and identify a referral or escalation step.",
+                "job_seeker": "Use a hypothetical or anonymized example to explain how you listened, checked assumptions, protected confidentiality, and knew when to escalate; do not disclose case details.",
+                "hiring_manager": "If this work belongs in the role, define observable listening and escalation behaviors and use a consistent, job-related scenario reviewed by appropriate partners.",
+            },
+            "context_variation": {
+                "statement": "Anduril People Business Partner postings describe employee-relations investigations and resolution. The examples are concentrated in one employer and do not show how case ownership varies across industries, employer sizes, or HR team structures.",
+                "evidence": [
+                    _priority_evidence(corpus, "p-andurilindustries-4835624007", "Employer posting People Business Partner › responsibilities", "manages and resolves complex employee relations issues"),
+                    _priority_evidence(corpus, "p-andurilindustries-4855853007", "Employer posting Associate People Business Partner › responsibilities", "lead employee relations investigations"),
+                ],
+                "variation_limit": "The development sample is too small and employer-concentrated to support a comparative context claim.",
+            },
+            "evidence_strength": {
+                "label": "moderate: direct task and skill wording, narrow source base",
+                "occupational_anchor_source_count": 1,
+                "occupational_anchor_source_ids": ["onet_hr_specialist"],
+                "directness": "The task and named listening/judgment constructs are directly worded; linking the constructs to a local proficiency standard remains unvalidated.",
+            },
+        },
+        {
+            "rank": 3,
+            "skill_id": "priority-records-and-document-control",
+            "skill": "Maintain accurate people records and HR documents",
+            "related_work_unit_ids": ["task-employee-records", "task-hr-document-maintenance", "task-employee-exit-process", "competency-administrative-records"],
+            "priority_rationale": "O*NET directly names employee lifecycle records and HR document maintenance. This cross-cutting process skill follows employee-facing work in the learning order because it supports auditable transitions and records; no software or proficiency level is inferred.",
+            "evidence": [
+                _priority_evidence(corpus, "onet_hr_specialist", occupational_locator, "Prepare or maintain employment records related to events, such as hiring, termination, leaves, transfers, or promotions, using human resources management system software."),
+                _priority_evidence(corpus, "onet_hr_specialist", occupational_locator, "Maintain and update human resources documents, such as organizational charts, employee handbooks or directories, or performance evaluation forms."),
+                _priority_evidence(corpus, "onet_hr_specialist", "O*NET OnLine 13-1071.00 › Knowledge › Administrative", "Knowledge of administrative and office procedures and systems such as word processing, managing files and records"),
+            ],
+            "practice_and_demonstration": {
+                "ic_hr_practitioner": "Walk through an approved document update: verify the source of truth, access permissions, version and approval controls, then check the resulting record without exposing employee data.",
+                "job_seeker": "Describe a non-confidential example of maintaining records, following version or privacy controls, and catching an error; name only tools the specific employer actually requires.",
+                "hiring_manager": "Identify the records, documents, system access, retention rules, and decision authority local work requires before setting a selection exercise.",
+            },
+            "context_variation": {
+                "statement": "One Datadog coordinator posting describes onboarding/offboarding administration, employee-data changes, document maintenance, and audits. This illustrates an operational role context; it does not establish that these duties belong to every HR Generalist or vary predictably by employer size.",
+                "evidence": [
+                    _priority_evidence(corpus, "p-datadog-7728298", "Employer posting People Solutions Coordinator › responsibilities", "own the administrative execution of new hire onboarding and offboarding"),
+                    _priority_evidence(corpus, "p-datadog-7728298", "Employer posting People Solutions Coordinator › responsibilities", "organize and maintain internal documentation"),
+                ],
+                "variation_limit": "One coordinator-level posting is a context example, not a general entry-level or team-design standard.",
+            },
+            "evidence_strength": {
+                "label": "moderate: direct task wording, narrow source base",
+                "occupational_anchor_source_count": 1,
+                "occupational_anchor_source_ids": ["onet_hr_specialist"],
+                "directness": "O*NET directly names records and document tasks; the one posting example is secondary context, not a prevalence estimate.",
+            },
+        },
+        {
+            "rank": 4,
+            "skill_id": "priority-manager-guidance",
+            "skill": "Explain HR processes clearly to managers",
+            "related_work_unit_ids": ["task-manager-guidance", "competency-instructing", "competency-written-communication"],
+            "priority_rationale": "The O*NET core profile directly includes providing managers information or training about performance, counseling, and documentation. This follows core policy, case, and record practice as a communication application; posting counts are not used to rank it.",
+            "evidence": [
+                _priority_evidence(corpus, "onet_hr_specialist", occupational_locator, "Provide management with information or training related to interviewing, performance appraisals, counseling techniques, or documentation of performance issues."),
+                _priority_evidence(corpus, "onet_hr_specialist", "O*NET OnLine 13-1071.00 › Transferable Skills › Instructing", "Teaching others how to do something."),
+                _priority_evidence(corpus, "onet_hr_specialist", "O*NET OnLine 13-1071.00 › Abilities › Written Expression", "The ability to communicate information and ideas in writing so others will understand."),
+            ],
+            "practice_and_demonstration": {
+                "ic_hr_practitioner": "Turn an approved process into a short manager briefing: state the next step, documentation needed, boundary of your authority, and escalation route; ask the manager to explain it back.",
+                "job_seeker": "Prepare a non-confidential example of making a process understandable, tailoring it to the audience, and clarifying what decision remained with the manager.",
+                "hiring_manager": "If manager enablement is assigned locally, ask for a short explanation of a job-relevant process and evaluate accuracy, clarity, and escalation boundaries consistently.",
+            },
+            "context_variation": {
+                "statement": "The dev ads show different audiences: a People Business Partner posting describes advice to managers, while a Stripe People Partner role emphasizes senior-leader partnership. They illustrate role-specific team relationships, not a reliable employer-size or industry pattern.",
+                "evidence": [
+                    _priority_evidence(corpus, "p-andurilindustries-4835624007", "Employer posting People Business Partner › responsibilities", "coach and advise for best practices within the team"),
+                    _priority_evidence(corpus, "p-stripe-7466921", "Employer posting People Partner, Technology › responsibilities", "advise and coach leaders and managers on org design and strategy"),
+                ],
+                "variation_limit": "The seven-posting dev set cannot establish a representative team-shape or seniority distribution.",
+            },
+            "evidence_strength": {
+                "label": "moderate: direct task and skill wording, narrow source base",
+                "occupational_anchor_source_count": 1,
+                "occupational_anchor_source_ids": ["onet_hr_specialist"],
+                "directness": "The manager-training task and communication constructs are directly named; role-specific assessment criteria are not validated.",
+            },
+        },
+        {
+            "rank": 5,
+            "skill_id": "priority-people-data-reasoning",
+            "skill": "Check people data and explain what it can support",
+            "related_work_unit_ids": ["task-people-data-reporting", "competency-critical-thinking", "competency-judgment"],
+            "priority_rationale": "The O*NET core task explicitly names employment-data analysis and required reports. It is placed after core policy, employee-facing, record, and manager-guidance work as a separate analytic application; no tool, analytic depth, or prevalence is claimed.",
+            "evidence": [
+                _priority_evidence(corpus, "onet_hr_specialist", occupational_locator, "Analyze employment-related data and prepare required reports."),
+                _priority_evidence(corpus, "onet_hr_specialist", "O*NET OnLine 13-1071.00 › Skills › Critical Thinking", "Using logic and reasoning to identify the strengths and weaknesses of alternative solutions, conclusions, or approaches to problems."),
+                _priority_evidence(corpus, "onet_hr_specialist", "O*NET OnLine 13-1071.00 › Transferable Skills › Judgment and Decision Making", "Considering the relative costs and benefits of potential actions to choose the most appropriate one."),
+            ],
+            "practice_and_demonstration": {
+                "ic_hr_practitioner": "Use a non-sensitive reporting example to verify the measure definition, denominator, time window, access rules, and limitations before sharing a finding.",
+                "job_seeker": "Explain a non-sensitive example of checking a data definition, comparing options, and communicating a finding with its limits; do not claim a tool is universally required.",
+                "hiring_manager": "Name the actual local reports and access boundaries, then use a consistent work sample only if local job analysis supports it.",
+            },
+            "context_variation": {
+                "statement": "A Coinbase HR Business Partner posting describes trend analysis and actionable leadership recommendations. This is one data-use example; the sample does not establish a universal analytics tool, reporting depth, or employer-size pattern.",
+                "evidence": [
+                    _priority_evidence(corpus, "p-coinbase-7997879", "Employer posting HR Business Partner › responsibilities", "drive data-informed people insights by analyzing trends and translating them into actionable recommendations for leadership"),
+                ],
+                "variation_limit": "One employer posting cannot establish a context-wide skill demand or technical requirement.",
+            },
+            "evidence_strength": {
+                "label": "moderate: direct task and skill wording, narrow source base",
+                "occupational_anchor_source_count": 1,
+                "occupational_anchor_source_ids": ["onet_hr_specialist"],
+                "directness": "Direct task/skill wording supports the construct; no task-rating record or tool-specific standard is in the admitted sources.",
+            },
+        },
+    ]
+    return priorities
+
+
+def _decision_record(
+    status: str,
+    item: str,
+    rationale: str,
+    evidence: list[dict[str, Any]],
+    *,
+    work_unit_id: str | None = None,
+) -> dict[str, Any]:
+    if status not in {"INCLUDED", "EXCLUDED", "UNRESOLVED"} or not evidence:
+        raise StructuredAnalysisError("every extraction decision needs a valid status and source evidence")
+    record = {"status": status, "item": item, "rationale": rationale, "evidence": evidence}
+    if work_unit_id:
+        record["work_unit_id"] = work_unit_id
+    return record
+
+
+def _build_extraction_transparency(corpus: FrozenCorpus, units: list[dict[str, Any]]) -> dict[str, Any]:
+    """Retain evidence-backed inclusion, exclusion, and unresolved decisions by admitted source."""
+    provenance = {row["source_id"]: row for row in _provenance(corpus)}
+    admitted_sources: list[dict[str, Any]] = []
+    posting_decision_terms = {
+        "p-andurilindustries-4835624007": "provides hr policy guidance and interpretation",
+        "p-andurilindustries-4836444007": "provides hr policy guidance and interpretation",
+        "p-andurilindustries-4855853007": "support managers and employees throughout the entire employment lifecycle",
+        "p-coinbase-7997879": "drive data-informed people insights by analyzing trends",
+        "p-datadog-7728298": "own the administrative execution of new hire onboarding and offboarding",
+        "p-stripe-7466921": "advise and coach leaders and managers on org design and strategy",
+        "p-stripe-7704660": "advise and coach leaders and managers on org design and strategy",
+    }
+
+    for source_id, source in corpus.sources.items():
+        meta = provenance[source_id]
+        decisions: list[dict[str, Any]] = []
+        if source_id == "onet_hr_specialist":
+            for unit in units:
+                source_evidence = [
+                    citation for citation in unit["coverage_decision"]["evidence"]
+                    if citation["source_id"] == source_id
+                ]
+                if not source_evidence:
+                    continue
+                decisions.append(_decision_record(
+                    unit["coverage_decision"]["status"],
+                    f"{unit['kind']} {unit['unit_id']}: {unit['statement']}",
+                    unit["coverage_decision"]["rationale"],
+                    source_evidence,
+                    work_unit_id=unit["unit_id"],
+                ))
+            decisions.extend([
+                _decision_record(
+                    "EXCLUDED",
+                    "Recruiting-only job scope from the HR Generalist common core",
+                    "O*NET reports recruiter titles and recruiting activity in its broader Human Resources Specialists profile; recruiting-only roles remain out of this guide's stated HR Generalist IC scope. This excludes a role-scope category, not every hiring task an HR Generalist might perform.",
+                    [
+                        _source_citation(corpus, source_id, "O*NET OnLine 13-1071.00 › Sample of reported job titles", "Corporate Recruiter", evidence_role="extraction_decision_evidence"),
+                        _source_citation(corpus, source_id, "O*NET OnLine 13-1071.00 › Tasks › Core", "Perform searches for qualified job candidates, using sources such as computer databases, networking, Internet recruiting resources, media advertisements, job fairs, recruiting firms, or employee referrals.", evidence_role="extraction_decision_evidence"),
+                    ],
+                ),
+                _decision_record(
+                    "UNRESOLVED",
+                    "Whether hiring administration or applicant-selection work belongs in a particular HR Generalist role",
+                    "The profile labels hiring paperwork and applicant selection as core to the broader occupation, but the admitted evidence does not establish local HR-Generalist ownership; the guide therefore does not silently promote it into its common core.",
+                    [
+                        _source_citation(corpus, source_id, "O*NET OnLine 13-1071.00 › Tasks › Core", "Hire employees and process hiring-related paperwork.", evidence_role="extraction_decision_evidence"),
+                        _source_citation(corpus, source_id, "O*NET OnLine 13-1071.00 › Tasks › Core", "Select qualified job applicants or refer them to managers, making hiring recommendations when appropriate.", evidence_role="extraction_decision_evidence"),
+                    ],
+                ),
+                _decision_record(
+                    "UNRESOLVED",
+                    "Employee benefit-plan administration as a local HR Generalist duty",
+                    "O*NET labels this task Supplemental rather than Core; local ownership is not established, so it remains visible as unresolved context rather than a universal duty.",
+                    [_source_citation(corpus, source_id, "O*NET OnLine 13-1071.00 › Tasks › Supplemental", "Administer employee benefit plans.", evidence_role="extraction_decision_evidence")],
+                ),
+            ])
+        elif source_id == "onet_task_ratings_dictionary":
+            decisions.append(_decision_record(
+                "UNRESOLVED",
+                "Relative task importance, task frequency, and numeric proficiency rankings for this HR Generalist guide",
+                "The admitted source is the O*NET task-ratings data dictionary, not HR-specific task-rating records; its field description cannot supply role-specific ratings by itself.",
+                [_source_citation(corpus, source_id, "O*NET 31.0 task_ratings data dictionary › description", "This table contains ratings which describe the importance, relevance, and frequency of occupation-specific tasks and duties performed in a job.", evidence_role="extraction_decision_evidence")],
+            ))
+        elif source_id == "opm_job_analysis":
+            decisions.append(_decision_record(
+                "INCLUDED",
+                "Method anchor for documenting task–competency relationships",
+                "Used as general job-analysis methodology only: OPM explicitly describes examining tasks, required competencies, and their connection. It does not supply HR Generalist-specific duties.",
+                [_source_citation(corpus, source_id, "OPM Job Analysis › definition of job analysis", "the tasks performed in a job, the competencies required to perform those tasks, and the connection between the tasks and competencies.", evidence_role="method_anchor")],
+            ))
+            decisions.append(_decision_record(
+                "EXCLUDED",
+                "OPM page as an HR-specific duty source",
+                "The quoted passage defines a general method rather than naming a Human Resources Specialist duty; no HR task is inferred from it.",
+                [_source_citation(corpus, source_id, "OPM Job Analysis › use of job analysis data", "Job analysis is the foundation for all assessment and selection decisions.", evidence_role="extraction_decision_evidence")],
+            ))
+        elif source_id == "esco_essential_optional":
+            decisions.append(_decision_record(
+                "UNRESOLVED",
+                "Whether any particular skill is universally essential for a U.S. HR Generalist",
+                "ESCO defines essential and optional skills within occupational profiles, but the admitted page is not a U.S. HR-Generalist-specific profile; no ESCO essentiality label is transferred to this guide.",
+                [_source_citation(corpus, source_id, "ESCO ESCOpedia › Essential", "ESCO distinguishes essential and optional knowledge, skills and competences in occupational profiles.", evidence_role="extraction_decision_evidence")],
+            ))
+        elif source_id == "esco_use_api":
+            decisions.append(_decision_record(
+                "EXCLUDED",
+                "ESCO API or taxonomy-access details as job duties or competency evidence",
+                "This source describes ways to access the ESCO classification, not an HR Generalist work profile or observed job task.",
+                [_source_citation(corpus, source_id, "ESCO Use ESCO › access methods", "Access ESCO classification through two types of Application Program Interface (API):", evidence_role="extraction_decision_evidence")],
+            ))
+        elif source_id == "dacum_method":
+            decisions.append(_decision_record(
+                "INCLUDED",
+                "DACUM-informed task and duty decomposition as a method boundary",
+                "The source describes expert-worker task analysis; its structure informs desk research only, and this project did not run a DACUM panel.",
+                [_source_citation(corpus, source_id, "DACUM International Training Center › process description", "a panel of expert workers and a skilled facilitator working together to precisely identify the duties and tasks performed in a job", evidence_role="method_anchor")],
+            ))
+            decisions.append(_decision_record(
+                "EXCLUDED",
+                "Claim that this guide is a completed or practitioner-validated DACUM study",
+                "The cited method requires an expert-worker panel and facilitator; no such panel participated in this desk analysis.",
+                [_source_citation(corpus, source_id, "DACUM International Training Center › process description", "a panel of expert workers and a skilled facilitator working together to precisely identify the duties and tasks performed in a job", evidence_role="extraction_decision_evidence")],
+            ))
+        elif source_id in posting_decision_terms:
+            term = posting_decision_terms[source_id]
+            if term not in corpus.source_texts[source_id]:
+                raise StructuredAnalysisError(f"transparency quote not present in admitted source {source_id}")
+            quote = term
+            evidence = [_source_citation(
+                corpus,
+                source_id,
+                f"Employer posting {source['title']} › responsibilities (source-use decision)",
+                quote,
+                evidence_role="labeled_context_addition",
+            )]
+            decisions.extend([
+                _decision_record(
+                    "INCLUDED",
+                    "Employer-specific evidence as a counts-only observation or explicitly labeled context example",
+                    "The quoted employer posting names its own role responsibility; it is retained as local context or a phrase-screen observation, not as the occupational backbone or a frequency-based priority.",
+                    evidence,
+                ),
+                _decision_record(
+                    "EXCLUDED",
+                    "Generalizing this employer's quoted responsibility to all HR Generalist roles",
+                    "A source-specific posting describes one employer's role; its wording is excluded from universal duty claims and is not pasted as a posting wall into the guide.",
+                    evidence,
+                ),
+            ])
+        else:
+            raise StructuredAnalysisError(f"admitted source has no extraction-transparency decision: {source_id}")
+
+        if not decisions or any(not decision["evidence"] or not decision["rationale"].strip() for decision in decisions):
+            raise StructuredAnalysisError(f"admitted source decisions are not traceable: {source_id}")
+        admitted_sources.append({
+            "source_id": source_id,
+            "source_kind": meta["source_kind"],
+            "attribution": meta["attribution"],
+            "source_url": meta["url"],
+            "retrieved_at": meta["retrieved_at"],
+            "extract_sha256": meta["sha256"],
+            "role_class": source.get("role_class"),
+            "decisions": decisions,
+        })
+
+    all_decisions = [decision for source in admitted_sources for decision in source["decisions"]]
+    return {
+        "schema_version": "structured-job-analysis.extraction-transparency.v1",
+        "policy": "Every admitted source receives source-evidence-backed inclusion, exclusion, or unresolved decisions; job-posting observations never become occupational anchors solely through frequency.",
+        "admitted_source_count": len(admitted_sources),
+        "decision_counts": {
+            status.lower(): sum(decision["status"] == status for decision in all_decisions)
+            for status in ("INCLUDED", "EXCLUDED", "UNRESOLVED")
+        },
+        "admitted_sources": admitted_sources,
+    }
+
+
+def render_evidence_transparency(release: dict[str, Any]) -> str:
+    transparency = release["extraction_transparency"]
+    lines = [
+        "# Source-by-source evidence and extraction decisions",
+        "",
+        "**Status:** This is the secondary evidence view for the deterministic HR Generalist desk analysis. It records source-specific decisions; it is not practitioner validation.",
+        "",
+        transparency["policy"],
+        "",
+        f"Admitted sources: {transparency['admitted_source_count']}. Decisions: {transparency['decision_counts']['included']} INCLUDED, {transparency['decision_counts']['excluded']} EXCLUDED, {transparency['decision_counts']['unresolved']} UNRESOLVED.",
+        "",
+    ]
+    for source in transparency["admitted_sources"]:
+        lines.extend([
+            f"## `{source['source_id']}` — {source['attribution']}",
+            "",
+            f"Source type: `{source['source_kind']}`. Extract SHA-256: `{source['extract_sha256']}`. Retrieved {source['retrieved_at']}.",
+            "",
+        ])
+        for decision in source["decisions"]:
+            lines.extend([
+                f"### {decision['status']}: {decision['item']}",
+                "",
+                decision["rationale"],
+                "",
+            ])
+            for evidence in decision["evidence"]:
+                lines.append(f"- Evidence: “{evidence['quote']}” — `{evidence['source_id']}`, {evidence['locator']}.")
+            lines.append("")
+    lines.extend([
+        "## Limits",
+        "",
+        "O*NET provides a broad Human Resources Specialists profile, not a role-specific HR Generalist validation. Posting evidence remains employer-specific; counts are descriptive phrase screens only. Benefit-plan administration and local ownership of hiring work remain unresolved. No held-out content or unadmitted source was used.",
+        "",
+    ])
+    return "\n".join(lines)
+
+
 def build_release(corpus: FrozenCorpus, candidate_revision: str, *, mode: str = "offline") -> dict[str, Any]:
     if not re.fullmatch(r"[0-9a-f]{7,40}", candidate_revision):
         raise StructuredAnalysisError("candidate_revision must be a git SHA")
     started = time.monotonic()
     units = _build_work_units(corpus)
     demand = _fill_demand(corpus, units)
+    skill_priorities = _build_skill_priorities(corpus)
+    extraction_transparency = _build_extraction_transparency(corpus, units)
     variant_evidence = [
         _context_evidence(corpus, "p-andurilindustries-4855853007", "support managers and employees throughout the entire employment lifecycle"),
         _context_evidence(corpus, "p-datadog-7728298", "own all aspects of maintaining employee changes and data throughout the full employee life cycle"),
@@ -923,6 +1401,9 @@ def build_release(corpus: FrozenCorpus, candidate_revision: str, *, mode: str = 
         _source_citation(corpus, "onet_hr_specialist", "O*NET OnLine 13-1071.00 › Tasks › Core", "Address employee relations issues, such as harassment allegations, work complaints, or other employee concerns.", evidence_role="role_definition_support"),
         _source_citation(corpus, "onet_hr_specialist", "O*NET OnLine 13-1071.00 › Tasks › Core", "Prepare or maintain employment records related to events, such as hiring, termination, leaves, transfers, or promotions, using human resources management system software.", evidence_role="role_definition_support"),
         _source_citation(corpus, "onet_hr_specialist", "O*NET OnLine 13-1071.00 › Tasks › Core", "Analyze employment-related data and prepare required reports.", evidence_role="role_definition_support"),
+        _source_citation(corpus, "onet_hr_specialist", "O*NET OnLine 13-1071.00 › Tasks › Core", "Maintain current knowledge of Equal Employment Opportunity (EEO) and affirmative action guidelines and laws, such as the Americans with Disabilities Act (ADA).", evidence_role="role_definition_support"),
+        _source_citation(corpus, "onet_hr_specialist", "O*NET OnLine 13-1071.00 › Tasks › Core", "Maintain and update human resources documents, such as organizational charts, employee handbooks or directories, or performance evaluation forms.", evidence_role="role_definition_support"),
+        _source_citation(corpus, "onet_hr_specialist", "O*NET OnLine 13-1071.00 › Tasks › Core", "Conduct exit interviews and ensure that necessary employment termination paperwork is completed.", evidence_role="role_definition_support"),
     ]
     supporting_title_evidence = [
         _source_citation(corpus, "onet_hr_specialist", "O*NET OnLine 13-1071.00 › Sample of reported job titles", "HR Generalist (Human Resources Generalist)", evidence_role="source_occupation_title"),
@@ -991,8 +1472,9 @@ def build_release(corpus: FrozenCorpus, candidate_revision: str, *, mode: str = 
         "schema_version": "skills-vector.poc-output.v1",
         "method": "structured-job-analysis",
         "run": {
-            "run_id": f"sja-a-r3-{_sha256(_json_bytes([candidate_revision, corpus.benchmark_manifest_sha256, mode]))[:16]}",
-            "round": 3,
+            "run_id": f"sja-a-corrective-r1-{_sha256(_json_bytes([candidate_revision, corpus.benchmark_manifest_sha256, mode]))[:16]}",
+            "round": 1,
+            "corrective_round": 1,
             "candidate_revision": candidate_revision,
             "corpus_snapshot_ids": list(SNAPSHOT_IDS),
             "model": execution_model,
@@ -1009,13 +1491,22 @@ def build_release(corpus: FrozenCorpus, candidate_revision: str, *, mode: str = 
             "execution_label": (
                 "offline deterministic generator; zero model inference and zero provider calls"
                 if mode == "offline"
-                else "single guarded live model review; suggestions are not validation"
+                else "offline-generated guide awaiting one guarded live model review; review suggestions are not validation"
             ),
+            "publication_status": "offline_guide" if mode == "offline" else "offline_guide_pending_model_review",
+            "model_review_status": "not_requested" if mode == "offline" else "pending",
+            "model_review_accepted": False,
             "started_at": now,
             "finished_at": now,
             "resource_ledger": {
                 "inference_requests": 0,
                 "inference_cost_usd_estimate": 0.0,
+                "inference_cost_usd_upper_bound": 0.0,
+                "inference_cost_basis": "No provider inference was requested; zero inference calls and zero inference cost for this offline build.",
+                "measured_provider_cost_usd": None,
+                "provider_usage": {"status": "not_applicable", "input_tokens": None, "output_tokens": None, "reasoning_tokens": None},
+                "provider_usage_cost_estimate_usd": None,
+                "inference_cost_usd_reservation_status": "not_applicable",
                 "retrieval_requests": 0,
                 "wall_clock_minutes": round((time.monotonic() - started) / 60, 6),
             },
@@ -1038,7 +1529,7 @@ def build_release(corpus: FrozenCorpus, candidate_revision: str, *, mode: str = 
                 "Recruiting-only jobs and recruiting-only duties are not represented as the HR Generalist common core.",
                 "People-manager-only, intern/campus, and non-US roles are excluded by the frozen admission protocol.",
             ],
-            "definition": "A cross-industry HR individual contributor who interprets policy, supports employee relations and records, guides managers, helps with lifecycle programs, and reports employment-related data; local role design varies.",
+            "definition": "A cross-industry HR individual contributor who interprets policy, supports employee relations, maintains people records and HR documents, guides managers, supports employee transitions, and reports employment-related data; local ownership varies.",
             "definition_evidence": role_definition_evidence,
             "reader_actions": {
                 "ic_hr_practitioner": "Compare this scope with your organization's role boundaries and document local responsibilities or referrals.",
@@ -1054,8 +1545,10 @@ def build_release(corpus: FrozenCorpus, candidate_revision: str, *, mode: str = 
                 },
             },
         },
-        "guide": {"path": "guide.md", "format": "markdown", "html_path": "guide.html"},
+        "guide": {"path": "guide.md", "format": "markdown", "html_path": "guide.html", "secondary_evidence_path": "evidence-transparency.md"},
         "work_units": units,
+        "skill_priorities": skill_priorities,
+        "extraction_transparency": extraction_transparency,
         "demand_layer": demand,
         "provenance": _provenance(corpus),
         "unlinked_or_ambiguous": [
@@ -1091,9 +1584,24 @@ def build_release(corpus: FrozenCorpus, candidate_revision: str, *, mode: str = 
             "dev_postings_scanned": len(corpus.postings),
             "dev_unique_employers": len({posting["employer"] for posting in corpus.postings}),
             "duty_area_coverage": [
-                {"area": unit["unit_id"], "represented": True, "anchor_source_id": unit["method_fields"]["onet_anchor_ids"][0]}
+                {
+                    "area": unit["unit_id"],
+                    "represented": True,
+                    "decision": unit["coverage_decision"]["status"],
+                    "rationale": unit["coverage_decision"]["rationale"],
+                    "evidence": unit["coverage_decision"]["evidence"],
+                    "anchor_source_id": unit["method_fields"]["onet_anchor_ids"][0],
+                }
                 for unit in units if unit["kind"] == "task" and unit["method_fields"].get("classification") == "common_core"
             ],
+            "duty_dispositions": [
+                decision
+                for source in extraction_transparency["admitted_sources"]
+                if source["source_id"] == "onet_hr_specialist"
+                for decision in source["decisions"]
+                if decision["status"] != "INCLUDED"
+            ],
+            "decision_traceability": "Every included work unit carries an evidence-backed decision; excluded and unresolved O*NET-sourced role-scope decisions retain exact source quotes in duty_dispositions and extraction_transparency.",
             "context_addition_units": [
                 unit["unit_id"] for unit in units
                 if unit["kind"] == "task" and unit["method_fields"].get("context_adaptation") is True
@@ -1144,6 +1652,15 @@ def validate_citations(release: dict[str, Any], corpus: FrozenCorpus) -> None:
 
     visit(release)
     for unit in release["work_units"]:
+        decision = unit.get("coverage_decision")
+        if (
+            not isinstance(decision, dict)
+            or decision.get("status") not in {"INCLUDED", "EXCLUDED", "UNRESOLVED"}
+            or not isinstance(decision.get("rationale"), str)
+            or not decision["rationale"].strip()
+            or not decision.get("evidence")
+        ):
+            raise StructuredAnalysisError(f"missing evidence-backed coverage decision on {unit['unit_id']}")
         method = unit["method_fields"]
         if method.get("method_fields_marker") != "structured-job-analysis.v1":
             raise StructuredAnalysisError(f"unexpected method marker on {unit['unit_id']}")
@@ -1167,6 +1684,39 @@ def validate_citations(release: dict[str, Any], corpus: FrozenCorpus) -> None:
     if release["demand_layer"]["claims_allowed"] is not False:
         raise StructuredAnalysisError("demand claims must be blocked under the frozen INSUFFICIENT policy")
 
+    priorities = release.get("skill_priorities")
+    if not isinstance(priorities, list) or not priorities or [row.get("rank") for row in priorities] != list(range(1, len(priorities) + 1)):
+        raise StructuredAnalysisError("skill priorities must use stable, contiguous authored ranks")
+    for priority in priorities:
+        strength = priority.get("evidence_strength", {})
+        anchor_ids = strength.get("occupational_anchor_source_ids")
+        if (
+            not priority.get("priority_rationale", "").strip()
+            or not priority.get("context_variation", {}).get("variation_limit", "").strip()
+            or not priority.get("context_variation", {}).get("evidence")
+            or not priority.get("practice_and_demonstration")
+            or strength.get("occupational_anchor_source_count") != len(anchor_ids or [])
+            or not anchor_ids
+        ):
+            raise StructuredAnalysisError(f"skill-priority rationale or evidence is incomplete: {priority.get('skill_id')}")
+        if not set(priority["related_work_unit_ids"]) <= ids:
+            raise StructuredAnalysisError(f"skill-priority references an unknown work unit: {priority.get('skill_id')}")
+
+    transparency = release.get("extraction_transparency", {})
+    source_rows = transparency.get("admitted_sources", [])
+    source_ids = {row.get("source_id") for row in source_rows}
+    if len(source_rows) != len(corpus.sources) or source_ids != known:
+        raise StructuredAnalysisError("extraction transparency must account for every admitted source exactly once")
+    for source in source_rows:
+        for decision in source.get("decisions", []):
+            if (
+                decision.get("status") not in {"INCLUDED", "EXCLUDED", "UNRESOLVED"}
+                or not decision.get("rationale", "").strip()
+                or not decision.get("evidence")
+                or any(item.get("source_id") != source["source_id"] for item in decision["evidence"])
+            ):
+                raise StructuredAnalysisError(f"untraceable extraction decision for source {source.get('source_id')}")
+
 
 def _reader_action_lines(actions: dict[str, str]) -> list[str]:
     labels = {
@@ -1183,15 +1733,33 @@ def _reader_action_lines(actions: dict[str, str]) -> list[str]:
 
 def render_markdown(release: dict[str, Any]) -> str:
     role = release["role"]
+    publication_notices = {
+        "offline_guide": "> **Publication status: offline guide.** This is a deterministic offline build; no model review was requested.",
+        "offline_guide_pending_model_review": "> **Publication status: offline guide.** A live model review is pending; this guide is not a model-reviewed release.",
+        "offline_guide_after_failed_live_review": "> **Publication status: offline guide after failed live attempt.** No provider response was received; this guide is not model-reviewed.",
+        "offline_guide_after_rejected_review": "> **Publication status: offline guide after rejected review.** The deterministic guide is retained for reference; the rejected model response is not published as a review.",
+        "model_reviewed_release": "> **Publication status: model-reviewed release.** The offline guide was reviewed under the strict contract; model suggestions remain untrusted and are not practitioner validation.",
+    }
+    publication_notice = publication_notices.get(
+        release["run"].get("publication_status"),
+        "> **Publication status: unverified.** This release has no recognized accepted model-review marker.",
+    )
     lines = [
         "# HR Generalist / People Operations — structured job analysis",
         "",
-        "**Round 2 · POC A · US individual-contributor scope**",
+        "**Corrective round 1 · POC A · US individual-contributor scope**",
         f"Candidate `{release['run']['candidate_revision']}` · run `{release['run']['run_id']}`",
         f"Evidence snapshots: {', '.join(release['run']['corpus_snapshot_ids'])}",
         "",
+        publication_notice,
+        "",
         "> **Evidence boundary.** This is DACUM-informed desk research, not a DACUM study and not a practitioner-validated analysis. O*NET/OPM anchor the task–competency backbone; employer postings are kept in separate counts-only demand observations or clearly labeled context additions.",
         "",
+        "## How to use this guide",
+        "",
+        "Start with the skill practice sequence below, then compare the task statements with local responsibilities. The ordering is an evidence-based learning sequence, not a posting-frequency, importance, or proficiency ranking.",
+        "",
+        *_reader_action_lines(role["reader_actions"]),
         "## Role and scope",
         "",
         role["definition"],
@@ -1224,7 +1792,35 @@ def render_markdown(release: dict[str, Any]) -> str:
         lines.append(f"- “{evidence['quote']}” — `{evidence['source_id']}`, {evidence['locator']}.")
     for evidence in role["title_variant_validation"]["evidence"]:
         lines.append(f"- “{evidence['quote']}” — `{evidence['source_id']}`, {evidence['locator']} (responsibility-based People Operations variant).")
-    lines.extend(["", "## Task–competency backbone", ""])
+    lines.extend(["", "## Prioritized skill practice", ""])
+    for priority in release["skill_priorities"]:
+        lines.extend([
+            f"### {priority['rank']}. {priority['skill']}",
+            "",
+            priority["priority_rationale"],
+            "",
+        ])
+        for evidence in priority["evidence"]:
+            lines.append(f"- Occupational anchor: “{evidence['quote']}” — `{evidence['source_id']}`, {evidence['locator']}.")
+        strength = priority["evidence_strength"]
+        lines.extend([
+            "",
+            f"**Evidence strength:** {strength['label']}. {strength['directness']} Occupational anchor sources: {strength['occupational_anchor_source_count']} ({', '.join(strength['occupational_anchor_source_ids'])}).",
+            "",
+            f"**Context variation:** {priority['context_variation']['statement']}",
+        ])
+        for evidence in priority["context_variation"]["evidence"]:
+            lines.append(f"- Context example: “{evidence['quote']}” — `{evidence['source_id']}`, {evidence['locator']}.")
+        lines.extend([
+            f"**Context limit:** {priority['context_variation']['variation_limit']}",
+            "",
+            "**Practice or demonstrate:**",
+            f"- **IC HR practitioner:** {priority['practice_and_demonstration']['ic_hr_practitioner']}",
+            f"- **Job seeker:** {priority['practice_and_demonstration']['job_seeker']}",
+            f"- **Hiring manager:** {priority['practice_and_demonstration']['hiring_manager']}",
+            "",
+        ])
+    lines.extend(["## Task–competency backbone", ""])
     for unit in release["work_units"]:
         if unit["method_fields"].get("classification") != "common_core":
             continue
@@ -1318,7 +1914,17 @@ def render_markdown(release: dict[str, Any]) -> str:
     lines.extend(["", "## Provenance", "", "The machine release contains the full source URLs, retrieval timestamps, extract hashes, attribution, and rights notes. Short excerpts above retain source ids and locators.", ""])
     for source in release["provenance"]:
         lines.append(f"- `{source['source_id']}` — [{source['attribution']}]({source['url']}); retrieved {source['retrieved_at']}; extract SHA-256 `{source['sha256']}`. {source['rights_note']}")
-    lines.extend(["", "## Machine release", "", "Read `release.json` for stable unit ids, exact citations, uncertainty labels, separate posting counts, and the run/resource ledger.", ""])
+    lines.extend([
+        "",
+        "## Source-by-source evidence decisions",
+        "",
+        "The secondary human-readable view records admitted-source decisions, exact evidence, exclusions, and unresolved scope questions: [open evidence-transparency.md](evidence-transparency.md).",
+        "",
+        "## Machine release",
+        "",
+        "Read `release.json` for stable unit ids, exact citations, uncertainty labels, prioritized skills, source decisions, separate posting counts, publication status, and the run/resource ledger.",
+        "",
+    ])
     return "\n".join(lines)
 
 
@@ -1327,6 +1933,7 @@ def _inline_html(text: str) -> str:
     safe = re.sub(r"`([^`]+)`", r"<code>\1</code>", safe)
     safe = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", safe)
     safe = re.sub(r"\[([^\]]+)\]\((https?://[^)]+)\)", r'<a href="\2">\1</a>', safe)
+    safe = re.sub(r"\[([^\]]+)\]\(([A-Za-z0-9_.-]+\.md)\)", r'<a href="\2">\1</a>', safe)
     return safe
 
 
@@ -1404,7 +2011,7 @@ h1,h2,h3{{font-family:\"STIX Two Text\",Georgia,serif;line-height:1.2}}h1{{font-
 @media(max-width:640px){{main{{padding:1rem}}.meta{{font-size:.68rem}}}}
 </style>
 </head>
-<body><main><header><p class=\"meta\">ROUND 2 · POC A · LOCAL EVIDENCE GUIDE</p><h1>{html.escape(title)}</h1>
+<body><main><header><p class=\"meta\">CORRECTIVE ROUND 1 · POC A · LOCAL EVIDENCE GUIDE</p><h1>{html.escape(title)}</h1>
 <p class=\"meta\">Candidate {candidate} · run {run_id}</p></header>
 <p class=\"warning\"><strong>Evidence boundary.</strong> DACUM-informed desk research only. No practitioner validation; posting counts are not prevalence or occupational importance.</p>
 <article>{body}</article></main></body></html>
@@ -1420,11 +2027,6 @@ def _reject_credential_fields(value: Any) -> None:
     elif isinstance(value, list):
         for item in value:
             _reject_credential_fields(item)
-
-
-def _reject_secret_echo(payload: dict[str, Any], api_key: str) -> None:
-    if api_key and api_key in json.dumps(payload, ensure_ascii=False):
-        raise StructuredAnalysisError("provider response contained credential material; response discarded")
 
 
 def validate_resource_config(config: dict[str, Any]) -> None:
@@ -1464,22 +2066,46 @@ def validate_resource_config(config: dict[str, Any]) -> None:
 
 
 def _request_body(release: dict[str, Any], config: dict[str, Any]) -> dict[str, Any]:
+    evidence_catalog: list[dict[str, str]] = []
+    reference_ids: dict[tuple[str, str, str], int] = {}
+
+    def reference_id(citation: dict[str, Any]) -> int:
+        key = (citation["source_id"], citation["locator"], citation["quote"])
+        if key not in reference_ids:
+            reference_ids[key] = len(evidence_catalog)
+            evidence_catalog.append({
+                "source_id": key[0],
+                "locator": key[1],
+                "quote": key[2],
+            })
+        return reference_ids[key]
+
+    work_units = []
+    for unit in release["work_units"]:
+        links = []
+        for link in unit["method_fields"]["task_competency_links"]:
+            links.append({
+                "competency_unit_id": link["competency_unit_id"],
+                "direction": link["direction"],
+                "justification": link["justification"],
+                "evidence_ref_ids": [reference_id(item) for item in link["evidence"]],
+            })
+        work_units.append({
+            "unit_id": unit["unit_id"],
+            "kind": unit["kind"],
+            "statement": unit["statement"],
+            "evidence_ref_ids": [reference_id(item) for item in unit["evidence"]],
+            "task_competency_links": links,
+            "uncertainty": unit["uncertainty"],
+        })
+
     evidence = {
         "run_id": release["run"]["run_id"],
         "method": release["method"],
-        "work_units": [
-            {
-                "unit_id": unit["unit_id"],
-                "kind": unit["kind"],
-                "statement": unit["statement"],
-                "evidence": unit["evidence"],
-                "task_competency_links": unit["method_fields"]["task_competency_links"],
-                "uncertainty": unit["uncertainty"],
-            }
-            for unit in release["work_units"]
-        ],
+        "work_units": work_units,
+        "evidence_catalog": evidence_catalog,
         "limits": [
-            "Only inspect the supplied citations; no web retrieval or extra source allowed.",
+            "Only inspect citations in each work unit's evidence_ref_ids and its links' evidence_ref_ids; no web retrieval or extra source allowed.",
             "Do not propose practitioner validation, proficiency numbers, prevalence, or newly sourced work claims.",
             "Return review suggestions only; the local pipeline will not incorporate them into the role guide or work-unit claims.",
         ],
@@ -1590,6 +2216,7 @@ def _write_release_files(output_dir: Path, release: dict[str, Any]) -> None:
     markdown = render_markdown(release)
     (output_dir / "guide.md").write_text(markdown, encoding="utf-8")
     (output_dir / "guide.html").write_text(render_html(markdown, release), encoding="utf-8")
+    (output_dir / "evidence-transparency.md").write_text(render_evidence_transparency(release), encoding="utf-8")
     ledger = release["run"]["resource_ledger"]
     manifest = {
         "model": matched_config["model"],
@@ -1605,6 +2232,10 @@ def _write_release_files(output_dir: Path, release: dict[str, Any]) -> None:
             "provider": release["run"]["provider"],
             "inference_requests": ledger["inference_requests"],
             "inference_cost_usd_estimate": ledger["inference_cost_usd_estimate"],
+            "inference_cost_usd_upper_bound": ledger.get("inference_cost_usd_upper_bound"),
+            "publication_status": release["run"]["publication_status"],
+            "model_review_status": release["run"]["model_review_status"],
+            "model_review_accepted": release["run"]["model_review_accepted"],
         },
     }
     _write_json(output_dir / "run-manifest.json", manifest)
@@ -1639,7 +2270,177 @@ def _sanitized_failure(exc: BaseException, api_key: str) -> str:
     return text[:300]
 
 
-def _call_provider_once(body: dict[str, Any], api_key: str, opener: Callable[..., Any] | None = None) -> dict[str, Any]:
+def _response_from_bytes(
+    raw_body: bytes,
+    *,
+    capture_source: str,
+    body_digest_scope: str,
+    http_status: int | None = None,
+    digest_bytes: bytes | None = None,
+    body_bytes_observed: int | None = None,
+) -> ProviderResponse:
+    truncated = len(raw_body) > MAX_PROVIDER_RESPONSE_BYTES
+    retained = raw_body[:MAX_PROVIDER_RESPONSE_BYTES]
+    observed = body_bytes_observed if body_bytes_observed is not None else len(raw_body)
+    digest_input = digest_bytes if digest_bytes is not None else raw_body
+    body_sha256 = _sha256(digest_input)
+    parse_error: str | None = None
+    payload: Any = None
+    if truncated:
+        parse_error = f"provider response exceeded the {MAX_PROVIDER_RESPONSE_BYTES}-byte retention limit"
+    else:
+        try:
+            payload = json.loads(retained.decode("utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            parse_error = f"provider response JSON could not be parsed ({type(exc).__name__})"
+        if parse_error is None and not isinstance(payload, dict):
+            parse_error = "provider response JSON root was not an object"
+    return ProviderResponse(
+        payload=payload,
+        raw_body=retained,
+        body_bytes_observed=observed,
+        body_sha256=body_sha256,
+        truncated=truncated,
+        capture_source=capture_source,
+        body_digest_scope=body_digest_scope,
+        parse_error=parse_error,
+        http_status=http_status,
+    )
+
+
+def _provider_response_from_adapter(value: Any) -> ProviderResponse:
+    if isinstance(value, ProviderResponse):
+        return value
+    try:
+        raw_body = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    except (TypeError, ValueError):
+        raw_body = repr(value).encode("utf-8", errors="replace")
+    captured = _response_from_bytes(
+        raw_body,
+        capture_source="adapter_object_json_serialization",
+        body_digest_scope="complete_adapter_serialization",
+    )
+    # A permissioned mock adapter already supplied the parsed object; retain that
+    # exact object rather than round-tripping it through the diagnostic encoding.
+    if not captured.truncated and isinstance(value, dict):
+        return ProviderResponse(
+            payload=value,
+            raw_body=captured.raw_body,
+            body_bytes_observed=captured.body_bytes_observed,
+            body_sha256=captured.body_sha256,
+            truncated=False,
+            capture_source=captured.capture_source,
+            body_digest_scope=captured.body_digest_scope,
+        )
+    return captured
+
+
+def _read_provider_body(response: Any, *, http_status: int | None = None) -> ProviderResponse:
+    raw_body = response.read(MAX_PROVIDER_RESPONSE_BYTES + 1)
+    return _response_from_bytes(
+        raw_body,
+        capture_source="http_response_bytes",
+        body_digest_scope="complete_response" if len(raw_body) <= MAX_PROVIDER_RESPONSE_BYTES else "observed_prefix_only",
+        http_status=http_status,
+        digest_bytes=raw_body,
+        body_bytes_observed=len(raw_body),
+    )
+
+
+def _provider_response_record(
+    response: ProviderResponse | None,
+    api_key: str,
+    *,
+    failure_note: str | None = None,
+) -> dict[str, Any]:
+    if response is None:
+        return {
+            "schema_version": "skills-vector.provider-response-evidence.v1",
+            "response_available": False,
+            "capture_source": "unavailable",
+            "retention_status": "unavailable_before_response",
+            "body_bytes_observed": 0,
+            "captured_bytes": 0,
+            "body_complete": False,
+            "raw_body_encoding": "base64",
+            "raw_body_base64": "",
+            "body_sha256": None,
+            "body_digest_scope": None,
+            "provider_usage": {
+                "status": "unavailable",
+                "input_tokens": None,
+                "output_tokens": None,
+                "reasoning_tokens": None,
+                "total_tokens": None,
+            },
+            "usage_note": "No provider response body was received; provider usage is unavailable.",
+            "failure_note": failure_note or "Provider call failed before a response body was received.",
+            "credential_echo_detected": False,
+            "http_status": None,
+        }
+
+    raw_body = response.raw_body
+    secret = api_key.encode("utf-8") if api_key else b""
+    credential_echo = bool(secret and secret in raw_body)
+    safe_body = raw_body.replace(secret, b"[REDACTED]") if credential_echo else raw_body
+    usage = _reported_usage(response.payload)
+    return {
+        "schema_version": "skills-vector.provider-response-evidence.v1",
+        "response_available": True,
+        "capture_source": response.capture_source,
+        "retention_status": (
+            "bounded_truncated_with_credential_redaction" if response.truncated and credential_echo
+            else "bounded_truncated" if response.truncated
+            else "credential_echo_redacted" if credential_echo
+            else "retained"
+        ),
+        "body_bytes_observed": response.body_bytes_observed,
+        "captured_bytes": len(safe_body),
+        "body_complete": not response.truncated,
+        "raw_body_encoding": "base64",
+        "raw_body_base64": base64.b64encode(safe_body).decode("ascii"),
+        "body_sha256": response.body_sha256,
+        "retained_body_sha256": _sha256(safe_body),
+        "body_digest_scope": response.body_digest_scope,
+        "provider_usage": usage,
+        "usage_note": (
+            "Provider response contained usage metadata; normalized values preserve all valid reported token counts."
+            if usage["status"] in {"reported", "partial", "invalid"}
+            else "Provider response did not report token usage; no measured usage or usage-based cost is inferred."
+        ),
+        "parse_error": response.parse_error,
+        "credential_echo_detected": credential_echo,
+        "credential_echo_handling": "Echoed credential bytes are redacted from retained content; the pre-redaction body digest is retained for integrity diagnostics." if credential_echo else "No exact credential echo was detected in captured response bytes.",
+        "http_status": response.http_status,
+    }
+
+
+def _write_provider_response_evidence(
+    output_dir: Path,
+    response: ProviderResponse | None,
+    api_key: str,
+    *,
+    failure_note: str | None = None,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    record = _provider_response_record(response, api_key, failure_note=failure_note)
+    path = output_dir / "provider-response.json"
+    _write_json(path, record)
+    metadata = {
+        "path": path.name,
+        "artifact_sha256": _sha256(path.read_bytes()),
+        "response_available": record["response_available"],
+        "retention_status": record["retention_status"],
+        "body_sha256": record["body_sha256"],
+        "body_digest_scope": record["body_digest_scope"],
+        "body_bytes_observed": record["body_bytes_observed"],
+        "captured_bytes": record["captured_bytes"],
+        "provider_usage": record["provider_usage"],
+        "credential_echo_detected": record["credential_echo_detected"],
+    }
+    return record, metadata
+
+
+def _call_provider_once(body: dict[str, Any], api_key: str, opener: Callable[..., Any] | None = None) -> ProviderResponse:
     request = urllib.request.Request(
         LIVE_ENDPOINT,
         data=_serialized_request_bytes(body),
@@ -1647,23 +2448,32 @@ def _call_provider_once(body: dict[str, Any], api_key: str, opener: Callable[...
         method="POST",
     )
     open_request = opener or urllib.request.urlopen
-    # No loop, retry, model escalation, or fixture fallback.
-    with open_request(request, timeout=90) as response:
-        payload = json.loads(response.read().decode("utf-8"))
-    if not isinstance(payload, dict):
-        raise StructuredAnalysisError("provider response was not a JSON object")
-    return payload
+    # No loop, retry, model escalation, or fixture fallback. The body read is capped.
+    try:
+        response = open_request(request, timeout=90)
+    except urllib.error.HTTPError as error:
+        return _read_provider_body(error, http_status=error.code)
+    with response:
+        return _read_provider_body(response, http_status=getattr(response, "status", None))
 
 
-def _reported_usage(payload: dict[str, Any]) -> dict[str, Any]:
-    raw = payload.get("usage")
-    if raw is None:
-        return {"status": "missing", "input_tokens": None, "output_tokens": None, "reasoning_tokens": None}
+def _reported_usage(payload: Any) -> dict[str, Any]:
+    empty = {
+        "status": "missing",
+        "input_tokens": None,
+        "output_tokens": None,
+        "reasoning_tokens": None,
+        "total_tokens": None,
+    }
+    if not isinstance(payload, dict) or "usage" not in payload or payload["usage"] is None:
+        return empty
+    raw = payload["usage"]
     if not isinstance(raw, dict):
-        return {"status": "invalid", "input_tokens": None, "output_tokens": None, "reasoning_tokens": None}
-    values: dict[str, int | None] = {}
+        return {**empty, "status": "invalid"}
+
     invalid_value = False
-    for field, key in (("input_tokens", "prompt_tokens"), ("output_tokens", "completion_tokens")):
+    values: dict[str, int | None] = {}
+    for field, key in (("input_tokens", "prompt_tokens"), ("output_tokens", "completion_tokens"), ("total_tokens", "total_tokens")):
         value = raw.get(key)
         if value is None:
             values[field] = None
@@ -1672,24 +2482,29 @@ def _reported_usage(payload: dict[str, Any]) -> dict[str, Any]:
         else:
             values[field] = None
             invalid_value = True
+
     details = raw.get("completion_tokens_details")
     if details is not None and not isinstance(details, dict):
-        raise StructuredAnalysisError("provider usage has malformed completion token details")
+        invalid_value = True
+        details = None
     reasoning_tokens = details.get("reasoning_tokens") if isinstance(details, dict) else raw.get("reasoning_tokens")
     if reasoning_tokens is not None and (
         not isinstance(reasoning_tokens, int) or isinstance(reasoning_tokens, bool) or reasoning_tokens < 0
     ):
-        raise StructuredAnalysisError("provider-reported reasoning token count is invalid")
-    known = [value for value in values.values() if value is not None]
-    if len(known) == 2:
-        status = "reported"
-    elif known:
-        status = "partial"
-    elif invalid_value:
+        reasoning_tokens = None
+        invalid_value = True
+    values["reasoning_tokens"] = reasoning_tokens
+
+    known_input_output = [values["input_tokens"], values["output_tokens"]]
+    if invalid_value:
         status = "invalid"
+    elif all(value is not None for value in known_input_output):
+        status = "reported"
+    elif any(value is not None for value in known_input_output):
+        status = "partial"
     else:
         status = "missing"
-    return {"status": status, **values, "reasoning_tokens": reasoning_tokens}
+    return {"status": status, **values}
 
 
 def _validate_reported_usage_within_ceilings(
@@ -1719,44 +2534,100 @@ def _validate_reported_usage_within_ceilings(
             raise StructuredAnalysisError("provider-reported total usage exceeded input-plus-output ceiling")
 
 
-def validate_live_review(payload: dict[str, Any], release: dict[str, Any], corpus: FrozenCorpus) -> dict[str, Any]:
-    choices = payload.get("choices") or []
-    if not choices:
-        raise StructuredAnalysisError("provider response did not contain a completion")
-    content = choices[0].get("message", {}).get("content")
+def _unique_json_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    value: dict[str, Any] = {}
+    for key, item in pairs:
+        if key in value:
+            raise ValueError(f"duplicate JSON key: {key}")
+        value[key] = item
+    return value
+
+
+def _parse_review_content(content: str) -> Any:
+    text = content.strip()
+    if text.startswith("```") or text.endswith("```"):
+        match = re.fullmatch(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n```", text, re.IGNORECASE | re.DOTALL)
+        if match is None:
+            raise StructuredAnalysisError("model review code fence is malformed")
+        text = match.group(1).strip()
     try:
-        parsed = json.loads(content)
-    except (TypeError, json.JSONDecodeError) as exc:
+        return json.loads(text, object_pairs_hook=_unique_json_object)
+    except (TypeError, json.JSONDecodeError, ValueError) as exc:
         raise StructuredAnalysisError("single provider response was not valid review JSON") from exc
-    allowed_units = {unit["unit_id"] for unit in release["work_units"]}
-    reviews = parsed.get("reviews") if isinstance(parsed, dict) else None
+
+
+def validate_live_review(payload: dict[str, Any], release: dict[str, Any], corpus: FrozenCorpus) -> dict[str, Any]:
+    choices = payload.get("choices")
+    if not isinstance(choices, list) or len(choices) != 1 or not isinstance(choices[0], dict):
+        raise StructuredAnalysisError("provider response must contain exactly one completion choice")
+    message = choices[0].get("message")
+    if not isinstance(message, dict) or not isinstance(message.get("content"), str):
+        raise StructuredAnalysisError("provider completion must contain string message content")
+    parsed = _parse_review_content(message["content"])
+    if not isinstance(parsed, dict) or set(parsed) != {"reviews"}:
+        raise StructuredAnalysisError("model review must be an object containing only the reviews field")
+
+    allowed_citations_by_unit: dict[str, set[tuple[str, str, str]]] = {}
+    for unit in release["work_units"]:
+        unit_id = unit["unit_id"]
+        references = list(unit["evidence"])
+        for link in unit["method_fields"]["task_competency_links"]:
+            references.extend(link["evidence"])
+        allowed_citations_by_unit[unit_id] = {
+            (reference["source_id"], reference["locator"], reference["quote"])
+            for reference in references
+        }
+
+    reviews = parsed["reviews"]
     if not isinstance(reviews, list) or not reviews:
         raise StructuredAnalysisError("single provider response omitted a non-empty reviews array")
     normalized_reviews: list[dict[str, Any]] = []
+    seen_units: set[str] = set()
     for index, review in enumerate(reviews):
-        if not isinstance(review, dict) or review.get("unit_id") not in allowed_units:
+        if not isinstance(review, dict) or set(review) != {"unit_id", "stance", "reason", "evidence"}:
+            raise StructuredAnalysisError(f"model review has an unexpected shape at index {index}")
+        unit_id = review["unit_id"]
+        if not isinstance(unit_id, str) or unit_id not in allowed_citations_by_unit:
             raise StructuredAnalysisError(f"unresolved model review unit at index {index}")
-        if review.get("stance") not in {"supported", "challenge", "unclear"}:
+        if unit_id in seen_units:
+            raise StructuredAnalysisError(f"duplicate model review unit at index {index}")
+        seen_units.add(unit_id)
+        stance = review["stance"]
+        if not isinstance(stance, str) or stance not in {"supported", "challenge", "unclear"}:
             raise StructuredAnalysisError(f"invalid model review stance at index {index}")
-        if not isinstance(review.get("reason"), str) or not review["reason"].strip():
-            raise StructuredAnalysisError(f"empty model review rationale at index {index}")
-        evidence = review.get("evidence")
+        reason = review["reason"]
+        if not isinstance(reason, str) or not reason.strip() or len(reason) > 1500:
+            raise StructuredAnalysisError(f"empty or overlong model review rationale at index {index}")
+        evidence = review["evidence"]
         if not isinstance(evidence, list) or not evidence:
             raise StructuredAnalysisError(f"missing model review citations at index {index}")
         citations: list[dict[str, str]] = []
+        seen_citations: set[tuple[str, str, str]] = set()
         for citation in evidence:
-            if not isinstance(citation, dict):
+            if not isinstance(citation, dict) or set(citation) != {"source_id", "locator", "quote"}:
                 raise StructuredAnalysisError(f"malformed model review citation at index {index}")
-            source_id = citation.get("source_id")
-            locator = citation.get("locator")
-            quote = citation.get("quote")
-            if not isinstance(source_id, str) or source_id not in corpus.source_texts or not isinstance(locator, str) or not locator.strip() or not isinstance(quote, str) or quote not in corpus.source_texts[source_id]:
+            source_id, locator, quote = citation["source_id"], citation["locator"], citation["quote"]
+            if (
+                not isinstance(source_id, str)
+                or source_id not in corpus.source_texts
+                or not isinstance(locator, str)
+                or not locator.strip()
+                or not isinstance(quote, str)
+                or not quote
+                or quote not in corpus.source_texts[source_id]
+            ):
                 raise StructuredAnalysisError(f"model review citation does not resolve at index {index}")
+            reference = (source_id, locator, quote)
+            if reference not in allowed_citations_by_unit[unit_id]:
+                raise StructuredAnalysisError(f"model review citation was not supplied for unit {unit_id}")
+            if reference in seen_citations:
+                raise StructuredAnalysisError(f"duplicate model review citation at index {index}")
+            seen_citations.add(reference)
             citations.append({"source_id": source_id, "locator": locator, "quote": quote})
         normalized_reviews.append({
-            "unit_id": review["unit_id"],
-            "stance": review["stance"],
-            "reason": review["reason"],
+            "unit_id": unit_id,
+            "stance": stance,
+            "reason": reason,
             "evidence": citations,
         })
     return {
@@ -1843,6 +2714,9 @@ def run_pipeline(
         "base_manifest_sha256": corpus.base_manifest_sha256,
         "provider_calls": 0,
         "inference_cost_usd_estimate": 0.0,
+        "inference_cost_usd_upper_bound": 0.0,
+        "measured_provider_cost_usd": None,
+        "provider_usage": {"status": "not_applicable", "input_tokens": None, "output_tokens": None, "reasoning_tokens": None, "total_tokens": None},
         "retrieval_requests": 0,
         "commands_run": [{"command": effective_command, "exit_code": 0, "receipt_path": "run-receipt.json"}],
         "status": "passed_local_build" if mode == "offline" else "preflight_pending",
@@ -1883,7 +2757,7 @@ def run_pipeline(
     receipt["preflight"] = {
         "planned_request_count": len(token_ceilings),
         "per_request_estimates_usd": request_costs,
-        "whole_run_estimate_usd": total_estimate,
+        "whole_run_cost_upper_bound_usd": total_estimate,
         "whole_run_estimate_upper_bound_usd": total_estimate,
         "request_token_ceilings": token_ceilings,
         "hard_ceiling_usd": MAX_FINAL_SPEND_USD,
@@ -1900,13 +2774,19 @@ def run_pipeline(
     release["run"]["config_hash"] = resource_config_hash
     release["run"]["resource_caps"] = resource_config["caps"]
     release["run"]["resource_ledger"]["inference_requests"] = 1
-    release["run"]["resource_ledger"]["inference_cost_usd_estimate"] = total_estimate
+    release["run"]["resource_ledger"]["inference_cost_usd_estimate"] = None
     release["run"]["resource_ledger"]["inference_cost_usd_upper_bound"] = total_estimate
-    release["run"]["resource_ledger"]["provider_usage"] = {"status": "pending", "input_tokens": None, "output_tokens": None}
+    release["run"]["resource_ledger"]["inference_cost_basis"] = "Reserved conservative upper bound from serialized-byte input ceiling and max_tokens output ceiling; not measured or usage-settled cost."
+    release["run"]["resource_ledger"]["measured_provider_cost_usd"] = None
+    release["run"]["resource_ledger"]["provider_usage"] = {"status": "pending", "input_tokens": None, "output_tokens": None, "reasoning_tokens": None, "total_tokens": None}
     release["run"]["resource_ledger"]["provider_usage_cost_estimate_usd"] = None
     receipt["config_hash"] = release["run"]["config_hash"]
     receipt["planned_request_count"] = 1
-    receipt["inference_cost_usd_estimate"] = total_estimate
+    receipt["inference_cost_usd_estimate"] = None
+    receipt["inference_cost_usd_upper_bound"] = total_estimate
+    receipt["reserved_cost_upper_bound_usd"] = total_estimate
+    receipt["measured_provider_cost_usd"] = None
+    receipt["provider_usage"] = {"status": "pending", "input_tokens": None, "output_tokens": None, "reasoning_tokens": None, "total_tokens": None}
     receipt["provider"] = "deepinfra"
     receipt["model"] = PINNED_MODEL_ID
     receipt["status"] = "started_one_shot_no_retry"
@@ -1939,19 +2819,26 @@ def run_pipeline(
     # consumes the sole attempt rather than opening a retry path.
     _write_release_files(output_dir, release)
     _write_json(output_dir / "run-receipt.json", receipt)
+    provider_response: ProviderResponse | None = None
+    response_record: dict[str, Any] | None = None
+    response_metadata: dict[str, Any] | None = None
+    usage: dict[str, Any] = {"status": "unavailable", "input_tokens": None, "output_tokens": None, "reasoning_tokens": None, "total_tokens": None}
+    accepted_review_path = output_dir / "live-model-review-untrusted.json"
     try:
-        provider_payload = (_provider_call or _call_provider_once)(body, api_key)
-        _reject_secret_echo(provider_payload, api_key)
-        review = validate_live_review(provider_payload, release, corpus)
-        usage = review["usage"]
+        adapter_result = (_provider_call or _call_provider_once)(body, api_key)
+        provider_response = _provider_response_from_adapter(adapter_result)
         receipt["provider_calls"] = 1
+        response_record, response_metadata = _write_provider_response_evidence(output_dir, provider_response, api_key)
+        usage = response_record["provider_usage"]
         receipt["provider_usage"] = usage
         receipt["provider_usage_cost_estimate_usd"] = None
-        receipt["provider_review_status"] = review["status"]
+        receipt["measured_provider_cost_usd"] = None
+        receipt["provider_response"] = response_metadata
+        receipt["provider_response_validation"] = "not_started"
+        release["run"]["provider_response_evidence"] = response_metadata
         release["run"]["resource_ledger"]["provider_usage"] = usage
-        _validate_reported_usage_within_ceilings(provider_payload, usage, token_ceilings[0])
-        # Preserve the bounded response separately from the resource reservation.
-        _write_json(output_dir / "live-model-review-untrusted.json", review)
+        _write_json(output_dir / "run-receipt.json", receipt)
+
         if usage["status"] == "reported":
             reported_cost_estimate = estimate_cost_usd(
                 PINNED_MODELS["extract"],
@@ -1959,42 +2846,89 @@ def run_pipeline(
                 output_tokens=usage["output_tokens"],
             )
             receipt["provider_usage_cost_estimate_usd"] = reported_cost_estimate
+            receipt["inference_cost_usd_estimate"] = reported_cost_estimate
             release["run"]["resource_ledger"]["provider_usage_cost_estimate_usd"] = reported_cost_estimate
+            release["run"]["resource_ledger"]["inference_cost_usd_estimate"] = reported_cost_estimate
+            release["run"]["resource_ledger"]["inference_cost_basis"] = "Cost estimate calculated from provider-reported prompt/completion tokens using the pinned public price; not an invoice or measured provider charge."
+
+        if response_record["credential_echo_detected"]:
+            raise StructuredAnalysisError("provider response echoed credential material; sanitized raw response retained")
+        if provider_response.http_status is not None and not 200 <= provider_response.http_status < 300:
+            raise StructuredAnalysisError(f"provider returned HTTP {provider_response.http_status}")
+        if provider_response.parse_error is not None or not isinstance(provider_response.payload, dict):
+            raise StructuredAnalysisError(provider_response.parse_error or "provider response was not a JSON object")
+
+        _validate_reported_usage_within_ceilings(provider_response.payload, usage, token_ceilings[0])
+        if usage["status"] == "reported":
             if reported_cost_estimate > min(float(resource_config["caps"]["max_inference_cost_usd"]), MAX_FINAL_SPEND_USD):
-                raise StructuredAnalysisError("provider-reported usage exceeded the approved whole-run spend cap")
+                raise StructuredAnalysisError("provider-reported usage-based cost estimate exceeded the approved whole-run spend cap")
             if reported_cost_estimate > total_estimate:
-                raise StructuredAnalysisError("provider-reported usage exceeded the reserved whole-run cost ceiling")
+                raise StructuredAnalysisError("provider-reported usage-based cost estimate exceeded the reserved upper bound")
+
+        receipt["provider_response_validation"] = "raw_response_and_usage_retained_before_semantic_validation"
+        review = validate_live_review(provider_response.payload, release, corpus)
+        review["provider_response_evidence"] = response_metadata
+        review["semantic_validation"] = "accepted_strict_shape_citations_and_references"
+        _write_json(accepted_review_path, review)
+
+        release["run"]["model_review_status"] = "accepted"
+        release["run"]["model_review_accepted"] = True
+        release["run"]["publication_status"] = "model_reviewed_release"
+        release["run"]["execution_label"] = "deterministic offline guide plus one accepted strict model review; suggestions remain untrusted and do not change guide claims"
+        receipt["provider_review_status"] = "accepted_strict_semantics"
+        if usage["status"] == "reported":
             receipt["status"] = "passed_one_live_review"
-            reservation["status"] = "settled_from_provider_reported_usage"
+            reservation["status"] = "reconciled_from_provider_reported_usage_estimate"
             _update_lock(lock_path, {"status": "completed", "provider_usage_status": usage["status"], "finished_at": datetime.now(UTC).isoformat(timespec="seconds")})
         else:
-            receipt["status"] = "completed_review_usage_unreported" if usage["status"] == "missing" else "completed_review_usage_incomplete"
-            receipt["usage_note"] = "provider review response preserved; no complete token count or usage-based cost inferred; conservative upper-bound reservation remains consumed"
+            receipt["status"] = "passed_one_live_review_usage_unreported" if usage["status"] == "missing" else "passed_one_live_review_usage_incomplete"
+            receipt["usage_note"] = "Strict model review accepted; response retained, but complete provider usage is unavailable, so no usage-based cost estimate is inferred and the conservative reservation remains consumed."
             reservation["status"] = "consumed_usage_unreported"
             _update_lock(lock_path, {"status": "completed_usage_unreported", "provider_usage_status": usage["status"], "finished_at": datetime.now(UTC).isoformat(timespec="seconds")})
         receipt["cost_reservation"] = reservation
         release["run"]["resource_ledger"]["inference_cost_usd_reservation_status"] = reservation["status"]
+        receipt["provider_response_validation"] = "accepted_strict_semantics"
         _set_pipeline_timing(release, pipeline_started)
     except BaseException as exc:
+        sanitized_failure = _sanitized_failure(exc, api_key)
+        if response_record is None:
+            response_record, response_metadata = _write_provider_response_evidence(
+                output_dir,
+                None,
+                api_key,
+                failure_note="Provider call failed before a response body was received; no raw response or usage was available.",
+            )
+            usage = response_record["provider_usage"]
+            receipt["provider_usage"] = usage
+            receipt["provider_response"] = response_metadata
+            release["run"]["provider_response_evidence"] = response_metadata
+            release["run"]["resource_ledger"]["provider_usage"] = usage
         receipt["provider_calls"] = 1
         receipt["status"] = "failed_after_one_shot_consumed"
-        receipt["failure"] = _sanitized_failure(exc, api_key)
+        receipt["failure"] = sanitized_failure
+        receipt["provider_review_status"] = "unavailable" if not response_record["response_available"] else "rejected"
+        receipt["provider_response_validation"] = "unavailable_before_response" if not response_record["response_available"] else "rejected"
         receipt["commands_run"][0]["exit_code"] = 2
         release["acceptance"]["commands_run"][0]["exit_code"] = 2
-        if reservation["status"] == "reserved_before_provider_call":
-            reservation["status"] = "consumed_after_provider_failure"
+        release["run"]["model_review_status"] = "unavailable_before_response" if not response_record["response_available"] else "rejected"
+        release["run"]["model_review_accepted"] = False
+        release["run"]["publication_status"] = "offline_guide_after_failed_live_review" if not response_record["response_available"] else "offline_guide_after_rejected_review"
+        release["run"]["execution_label"] = "deterministic offline guide retained; live model review failed or was rejected and is not published as reviewed"
+        reservation["status"] = "consumed_after_provider_failure"
         receipt["cost_reservation"] = reservation
-        release["run"]["resource_ledger"]["inference_cost_usd_estimate"] = total_estimate
         release["run"]["resource_ledger"]["inference_cost_usd_reservation_status"] = reservation["status"]
         _set_pipeline_timing(release, pipeline_started)
+        accepted_review_path.unlink(missing_ok=True)
         _write_release_files(output_dir, release)
         _update_lock(lock_path, {
             "status": "failed_consumed_no_retry",
             "finished_at": datetime.now(UTC).isoformat(timespec="seconds"),
-            "failure": receipt["failure"],
+            "failure": sanitized_failure,
+            "provider_usage_status": usage["status"],
+            "provider_response_available": bool(response_record["response_available"]),
         })
         _write_json(output_dir / "run-receipt.json", receipt)
-        raise StructuredAnalysisError(receipt["failure"]) from None
+        raise StructuredAnalysisError(sanitized_failure) from None
 
     _write_release_files(output_dir, release)
     receipt["commands_run"] = [{"command": effective_command, "exit_code": 0, "receipt_path": "run-receipt.json"}]
