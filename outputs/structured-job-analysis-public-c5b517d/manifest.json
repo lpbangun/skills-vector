@@ -1,0 +1,47 @@
+{
+  "manifest_schema_version": "skills-vector.structured-analysis-public-export-manifest.v1",
+  "public_export_id": "sja-a-public-c5b517d-v1",
+  "public_release_schema_version": "skills-vector.structured-job-analysis-public.v1",
+  "public_artifact_sha256": {
+    "guide.md": "2aac4c86fa0d22e91ad7f938c18324a68f4f9bf37d3208c5e6771bb8fc136923",
+    "guide.html": "1bfb2adab0712a6ef69fa49098971776778a19c7e0c57ece3b726b1a1d33e45d",
+    "evidence-transparency.md": "b52ef0953ffababeee754941fd025f125b35699952abbe7e29a332669e917cf7",
+    "release.json": "54982ed3127c1bff4a234782f0d739b130a99c8eb7b6434699d38a79202954ad"
+  },
+  "original_run_binding": {
+    "candidate_revision": "c5b517d4b53088f91335e0901e26a7810629b718",
+    "run_id": "sja-a-live-r1-4e5e02b2ca3824e3",
+    "original_release_schema_version": "skills-vector.poc-output.v1",
+    "corpus_snapshot_ids": [
+      "luna-max-hr-generalist-starter-2026-09-23",
+      "shared-reviewer-hr-ic-postings-v2-2026-09-23"
+    ],
+    "original_output_directory": "outputs/structured-job-analysis-review-repair-c5b517d",
+    "original_artifact_sha256": {
+      "evidence-transparency.md": "751c0975b6f5fd40ba7f4c20037b5937b089d0e1561e8e13b0128bdea3b6e846",
+      "guide.html": "74299a8e7542b8e8c130c2d2fa86e62ba1dc732bbe8e36313ef6a5d1342ae988",
+      "live-model-review-untrusted.json": "8ab1279dc904003868b108052c99b887b311ab6ff624be9d53919f31bcb2343a",
+      "provider-response.json": "d3118ed4c6dfc23b2de4e7af948fa24907e108765b59907a68f325541e73e413",
+      "guide.md": "9da815ecae2740596a0adc21d2e4124f66d109111eb305a84e70493c40e7a06d",
+      "release.json": "eb8545df75e12f31ab8eac5e73c1230fadea3295db9d832b7d76e82c2a6e0d47",
+      "run-manifest.json": "3321b4d5dcee7869fa0ea9f7c5238a9a3fdc8daaba6e17be9cc5155db1fe6360",
+      "run-receipt.json": "a97a6355274c1201d453d763820ee4d8de55b9187cd1b6ac43944f0a83024e96"
+    }
+  },
+  "source_selection": {
+    "starter_snapshot_id": "luna-max-hr-generalist-starter-2026-09-23",
+    "dev_snapshot_id": "shared-reviewer-hr-ic-postings-v2-2026-09-23",
+    "starter_sources": 6,
+    "admitted_dev_posting_sources": 7,
+    "held_out_content_opened_or_used": false,
+    "posting_records_used": "dev records only; citation metadata and digest values only"
+  },
+  "omission_inventory_path": "evidence-transparency.md#omission-inventory",
+  "review_status": {
+    "original_review_status": "accepted",
+    "original_review_accepted": true,
+    "public_export_reviewed": false,
+    "practitioner_validated": false
+  },
+  "manifest_note": "This file hashes the four public artifacts listed above; it intentionally does not hash itself."
+}

@@ -1,0 +1,439 @@
+{
+  "schema_version": "skills-vector.structured-job-analysis-public.v1",
+  "release_id": "sja-a-public-c5b517d-v1",
+  "publication_status": "public_export_not_reviewed",
+  "public_guide": "guide.md",
+  "public_html": "guide.html",
+  "secondary_evidence_view": "evidence-transparency.md",
+  "manifest": "manifest.json",
+  "original_run": {
+    "candidate_revision": "c5b517d4b53088f91335e0901e26a7810629b718",
+    "run_id": "sja-a-live-r1-4e5e02b2ca3824e3",
+    "original_schema_version": "skills-vector.poc-output.v1",
+    "original_publication_status": "model_reviewed_release",
+    "original_model_review_status": "accepted",
+    "original_model_review_accepted": true,
+    "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+    "corpus_snapshot_ids": [
+      "luna-max-hr-generalist-starter-2026-09-23",
+      "shared-reviewer-hr-ic-postings-v2-2026-09-23"
+    ],
+    "note": "Review applied to the original candidate output only; this public export was not reviewed.",
+    "review_record_sha256": "8ab1279dc904003868b108052c99b887b311ab6ff624be9d53919f31bcb2343a"
+  },
+  "role_scope": {
+    "label": "HR Generalist / People Operations",
+    "geography": "United States",
+    "level": "individual contributor",
+    "title_boundary": "Project label only; no claim that title strings are interchangeable or that market-wide equivalence is established.",
+    "role_definition": "A desk-research practice guide for US individual-contributor HR Generalist work; it is not a universal job description or qualification standard.",
+    "scope_evidence_source_ids": [
+      "onet_hr_specialist"
+    ]
+  },
+  "method_status": {
+    "kind": "authored desk research",
+    "dacum_panel_conducted": false,
+    "practitioner_validated": false,
+    "export_independently_reviewed": false,
+    "priority_order": "authored learning sequence; not a measured importance, demand, or proficiency ranking",
+    "occupational_evidence_source_count": 1,
+    "occupational_evidence_source_ids": [
+      "onet_hr_specialist"
+    ],
+    "numeric_proficiency_or_demand_claims": false
+  },
+  "practice_sequence": [
+    {
+      "rank": 1,
+      "title": "Interpret policy and compliance boundaries",
+      "rationale": "Placed first because the occupational profile includes policy and rule-related work; the original author put this boundary before the other HR practice topics. This is a learning-order rationale, not a measured importance rank.",
+      "evidence_source_ids": [
+        "onet_hr_specialist"
+      ],
+      "evidence_locators": [
+        "O*NET OnLine 13-1071.00 › Tasks › Core",
+        "O*NET OnLine 13-1071.00 › Knowledge › Law and Government"
+      ],
+      "evidence_strength": "moderate; one occupational profile, no HR-Generalist-specific task-rating records, and no practitioner validation",
+      "practice_prompts": {
+        "hiring_manager": "Use a hypothetical policy scenario to check whether a candidate can find approved guidance, separate facts from interpretation, and describe a safe handoff; have qualified reviewers define any assessment.",
+        "ic_hr_practitioner": "Use an organization-approved source for a policy question, document the applicable rule and your role boundary, and identify the escalation route; do not use this guide as legal advice.",
+        "job_seeker": "Prepare an anonymized example that names the authoritative rule you consulted, how you explained it, and when you sought review."
+      }
+    },
+    {
+      "rank": 2,
+      "title": "Listen carefully and use judgment in employee-relations work",
+      "rationale": "The occupational profile includes employee-relations work. The original author placed this after policy scope because sensitive employee situations call for careful intake and an appropriate next step; no relative-importance score is claimed.",
+      "evidence_source_ids": [
+        "onet_hr_specialist"
+      ],
+      "evidence_locators": [
+        "O*NET OnLine 13-1071.00 › Tasks › Core",
+        "O*NET OnLine 13-1071.00 › Skills › Active Listening",
+        "O*NET OnLine 13-1071.00 › Transferable Skills › Judgment and Decision Making"
+      ],
+      "evidence_strength": "moderate; one occupational profile, no HR-Generalist-specific task-rating records, and no practitioner validation",
+      "practice_prompts": {
+        "hiring_manager": "If this work belongs in the role, define observable listening and escalation behaviors and use a consistent, job-related scenario reviewed by appropriate partners.",
+        "ic_hr_practitioner": "Rehearse a local intake process with a fictional scenario: clarify what happened, record only necessary facts, check confidentiality boundaries, and identify a referral or escalation step.",
+        "job_seeker": "Use a hypothetical or anonymized example to explain how you listened, checked assumptions, protected confidentiality, and knew when to escalate; do not disclose case details."
+      }
+    },
+    {
+      "rank": 3,
+      "title": "Maintain accurate people records and HR documents",
+      "rationale": "The occupational profile includes employee-record and HR-document work. The original author placed this cross-cutting topic after employee-facing practice because it supports controlled transitions and reliable records; no software or proficiency level is inferred.",
+      "evidence_source_ids": [
+        "onet_hr_specialist"
+      ],
+      "evidence_locators": [
+        "O*NET OnLine 13-1071.00 › Tasks › Core",
+        "O*NET OnLine 13-1071.00 › Knowledge › Administrative"
+      ],
+      "evidence_strength": "moderate; one occupational profile, no HR-Generalist-specific task-rating records, and no practitioner validation",
+      "practice_prompts": {
+        "hiring_manager": "Identify the records, documents, system access, retention rules, and decision authority local work requires before setting a selection exercise.",
+        "ic_hr_practitioner": "Walk through an approved document update: verify the source of truth, access permissions, version and approval controls, then check the resulting record without exposing employee data.",
+        "job_seeker": "Describe a non-confidential example of maintaining records, following version or privacy controls, and catching an error; name only tools the specific employer actually requires."
+      }
+    },
+    {
+      "rank": 4,
+      "title": "Explain HR processes clearly to managers",
+      "rationale": "The occupational profile includes manager-facing information or training. The original author placed this after policy, employee-relations, and records practice as a communication application; posting counts were not used to rank it.",
+      "evidence_source_ids": [
+        "onet_hr_specialist"
+      ],
+      "evidence_locators": [
+        "O*NET OnLine 13-1071.00 › Tasks › Core",
+        "O*NET OnLine 13-1071.00 › Transferable Skills › Instructing",
+        "O*NET OnLine 13-1071.00 › Abilities › Written Expression"
+      ],
+      "evidence_strength": "moderate; one occupational profile, no HR-Generalist-specific task-rating records, and no practitioner validation",
+      "practice_prompts": {
+        "hiring_manager": "If manager enablement is assigned locally, ask for a short explanation of a job-relevant process and evaluate accuracy, clarity, and escalation boundaries consistently.",
+        "ic_hr_practitioner": "Turn an approved process into a short manager briefing: state the next step, documentation needed, boundary of your authority, and escalation route; ask the manager to explain it back.",
+        "job_seeker": "Prepare a non-confidential example of making a process understandable, tailoring it to the audience, and clarifying what decision remained with the manager."
+      }
+    },
+    {
+      "rank": 5,
+      "title": "Check people data and explain what it can support",
+      "rationale": "The occupational profile includes employment-data and reporting work. The original author placed this after policy, employee-facing, records, and manager-guidance practice as a separate analytic application; no tool, analytic depth, or prevalence is claimed.",
+      "evidence_source_ids": [
+        "onet_hr_specialist"
+      ],
+      "evidence_locators": [
+        "O*NET OnLine 13-1071.00 › Tasks › Core",
+        "O*NET OnLine 13-1071.00 › Skills › Critical Thinking",
+        "O*NET OnLine 13-1071.00 › Transferable Skills › Judgment and Decision Making"
+      ],
+      "evidence_strength": "moderate; one occupational profile, no HR-Generalist-specific task-rating records, and no practitioner validation",
+      "practice_prompts": {
+        "hiring_manager": "Name the actual local reports and access boundaries, then use a consistent work sample only if local job analysis supports it.",
+        "ic_hr_practitioner": "Use a non-sensitive reporting example to verify the measure definition, denominator, time window, access rules, and limitations before sharing a finding.",
+        "job_seeker": "Explain a non-sensitive example of checking a data definition, comparing options, and communicating a finding with its limits; do not claim a tool is universally required."
+      }
+    }
+  ],
+  "rights_summary": {
+    "public_visibility_is_permission": false,
+    "attribution_is_permission": false,
+    "unresolved_source_expression_reused": false,
+    "employer_posting_text_or_derived_findings_reused": false,
+    "onet_cc_by_scope": "Captured notices are specific to the O*NET occupation-profile and task-rating-dictionary pages; no site-wide, mark/logo, linked-page, third-party, or unrelated-content permission is inferred.",
+    "esco_cc_by_scope": "No page-specific ESCO CC BY permission was established from the admitted capture. Linked/open-data wording is not treated as a license; no ESCO content is reused.",
+    "opm_and_dacum": "Reuse terms remain unresolved in the admitted notes; source wording and assets are omitted.",
+    "employer_postings": "Per-employer and feed reuse terms remain unresolved; public posting access and attribution are not permission."
+  },
+  "source_register": [
+    {
+      "source_id": "onet_hr_specialist",
+      "source_kind": "primary_occupation_profile",
+      "attribution": "O*NET OnLine / U.S. Department of Labor, Employment and Training Administration",
+      "url": "https://www.onetonline.org/link/details/13-1071.00",
+      "snapshot_id": "luna-max-hr-generalist-starter-2026-09-23",
+      "retrieved_at": "2026-09-23T21:10:21.643003Z",
+      "raw_sha256": "993e29246399583a87d80678311057adfbaaee85b5d30ab7508e8fba9e0ae059",
+      "extract_sha256": "557c16e409c4620911705d2e024cc0f199d61d98b7ef3df8d7fce2b311f91315",
+      "rights_assessment": {
+        "status": "page_specific_cc_by_4.0_notice_observed",
+        "license_name": "Creative Commons Attribution 4.0 International",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "basis": "The captured profile page includes a CC BY 4.0 notice for the identified profile page. This is not treated as a site-wide grant and does not cover trademarks, logos, linked/dynamic pages, third-party material, or other O*NET assets.",
+        "publication_use": "Used as the sole occupational content anchor for the authored practice sequence; attribution and link are provided, with no verbatim wording or visual asset copied."
+      }
+    },
+    {
+      "source_id": "onet_task_ratings_dictionary",
+      "source_kind": "primary_task_rating_data_dictionary",
+      "attribution": "O*NET Resource Center / National Center for O*NET Development",
+      "url": "https://www.onetcenter.org/dictionary/31.0/mssql/task_ratings.html",
+      "snapshot_id": "luna-max-hr-generalist-starter-2026-09-23",
+      "retrieved_at": "2026-09-23T21:10:56.173529Z",
+      "raw_sha256": "c3e534c07e433378c6484a275f4b4b0be37c372a4f26eda107129e275aa5d6d6",
+      "extract_sha256": "2a97860399bd066a473a2d318584eddbc93848c779101b95b411bdcec7a54fbb",
+      "rights_assessment": {
+        "status": "page_specific_cc_by_4.0_notice_observed",
+        "license_name": "Creative Commons Attribution 4.0 International",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "basis": "The captured task-ratings dictionary page includes a CC BY 4.0 notice for that identified page; it is not a license for unrelated O*NET content.",
+        "publication_use": "Citation metadata only; no dictionary prose, rating values, or visual asset reused."
+      }
+    },
+    {
+      "source_id": "opm_job_analysis",
+      "source_kind": "primary_job_analysis_methodology",
+      "attribution": "U.S. Office of Personnel Management",
+      "url": "https://www.opm.gov/policy-data-oversight/assessment-and-selection/job-analysis/",
+      "snapshot_id": "luna-max-hr-generalist-starter-2026-09-23",
+      "retrieved_at": "2026-09-23T21:10:22.650244Z",
+      "raw_sha256": "7efca891a043270b4de851164488231c818a2f4523c9d26b752dd3cee6b26143",
+      "extract_sha256": "7ba76c11b54afaa04c55cbe7d36434356a22f860242aa1b69d356339046e0c33",
+      "rights_assessment": {
+        "status": "unresolved_source_text_rights; no source expression reused",
+        "basis": "The admitted source note says terms were not independently checked. U.S. government attribution/public access alone is not treated as a page-wide permission grant.",
+        "publication_use": "Method/provenance link only; no page wording or assets reproduced."
+      }
+    },
+    {
+      "source_id": "esco_essential_optional",
+      "source_kind": "primary_taxonomy_definition",
+      "attribution": "European Commission, European Skills, Competences, Qualifications and Occupations (ESCO)",
+      "url": "https://esco.ec.europa.eu/en/about-esco/escopedia/escopedia/essential",
+      "snapshot_id": "luna-max-hr-generalist-starter-2026-09-23",
+      "retrieved_at": "2026-09-23T21:10:23.230135Z",
+      "raw_sha256": "b5062d4384a056e9055923c689aa77caf36af809d63addd557230c185aadf48e",
+      "extract_sha256": "832d2e09eb67b6376d13e17e343f5742ca3b61193b8d79c8c2119599cc20d2a0",
+      "rights_assessment": {
+        "status": "unresolved_license_scope; no source content reused",
+        "basis": "The admitted note says reuse terms were not independently checked. The captured source does not establish a page-specific CC BY grant; statements about linked/open data are not treated as an applicable copyright license.",
+        "publication_use": "Citation metadata only; no ESCO prose, taxonomy, or assets reused."
+      }
+    },
+    {
+      "source_id": "esco_use_api",
+      "source_kind": "primary_taxonomy_use_and_api_description",
+      "attribution": "European Commission, European Skills, Competences, Qualifications and Occupations (ESCO)",
+      "url": "https://esco.ec.europa.eu/en/use-esco",
+      "snapshot_id": "luna-max-hr-generalist-starter-2026-09-23",
+      "retrieved_at": "2026-09-23T21:10:23.395933Z",
+      "raw_sha256": "1a31080f8dfc50d3d036bb288226874a9154b296007d2bbd2d2764a2993a630a",
+      "extract_sha256": "9419a1c0929e5216f4f69b217d0ef3ee99340901a128c1590679ed05fec27589",
+      "rights_assessment": {
+        "status": "unresolved_license_scope; no source content reused",
+        "basis": "The admitted note says reuse terms were not independently checked. The captured source does not establish a page-specific CC BY grant; statements about linked/open data are not treated as an applicable copyright license.",
+        "publication_use": "Citation metadata only; no ESCO prose, API response, taxonomy, or assets reused."
+      }
+    },
+    {
+      "source_id": "dacum_method",
+      "source_kind": "primary_job_analysis_method",
+      "attribution": "DACUM International Training Center, The Ohio State University Center on Education and Training for Employment",
+      "url": "https://dacum.osu.edu/",
+      "snapshot_id": "luna-max-hr-generalist-starter-2026-09-23",
+      "retrieved_at": "2026-09-23T21:10:24.098591Z",
+      "raw_sha256": "98fbd8495178ed2983568a7f167e685854f18d146d957d1e247b1d26dd9c9405",
+      "extract_sha256": "3c342d43ca187c764beb4cabc532efc4536e8a415c08cc0cfdc8a28f6e7b0827",
+      "rights_assessment": {
+        "status": "unresolved_source_text_rights; no source expression reused",
+        "basis": "The admitted note says terms were not independently checked, and the captured page carries an Ohio State copyright notice.",
+        "publication_use": "Citation metadata only; the statement that this project did not conduct a DACUM panel is a fact about this project, not copied source expression."
+      }
+    },
+    {
+      "source_id": "p-andurilindustries-4835624007",
+      "source_kind": "employer_public_job_feed",
+      "attribution": "Anduril Industries (job posting)",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/4835624007?gh_jid=4835624007",
+      "snapshot_id": "shared-reviewer-hr-ic-postings-v2-2026-09-23",
+      "retrieved_at": "2026-09-23T22:36:14Z",
+      "raw_sha256": "eb5a013d547f39b3dde651c3e7d22712e4d440ea8a3e4e1b4488bf4868db3031",
+      "extract_sha256": "14b33a0de3ca429250165ba4a70efa4096a1ee88505836b38d8890ae1ab2d81b",
+      "rights_assessment": {
+        "status": "unresolved_employer_and_feed_terms; no posting content reused",
+        "basis": "The admitted posting-rights note explicitly is not a rights determination and requires per-employer/current feed terms review. Public visibility and attribution are not treated as permission.",
+        "publication_use": "Citation metadata and digests only; no posting text, title, requirement, duty wording, near paraphrase, count, or posting-derived claim reused."
+      }
+    },
+    {
+      "source_id": "p-andurilindustries-4836444007",
+      "source_kind": "employer_public_job_feed",
+      "attribution": "Anduril Industries (job posting)",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/4836444007?gh_jid=4836444007",
+      "snapshot_id": "shared-reviewer-hr-ic-postings-v2-2026-09-23",
+      "retrieved_at": "2026-09-23T22:36:14Z",
+      "raw_sha256": "f1134b9ac1856eaf21304c9a94390ae699f238a849cb0b4fea34e93d7e8c1acf",
+      "extract_sha256": "6858cf4929ba5cad3d429d8f39d57b191b252f3d64fdb5bdcd76130915b6a63a",
+      "rights_assessment": {
+        "status": "unresolved_employer_and_feed_terms; no posting content reused",
+        "basis": "The admitted posting-rights note explicitly is not a rights determination and requires per-employer/current feed terms review. Public visibility and attribution are not treated as permission.",
+        "publication_use": "Citation metadata and digests only; no posting text, title, requirement, duty wording, near paraphrase, count, or posting-derived claim reused."
+      }
+    },
+    {
+      "source_id": "p-andurilindustries-4855853007",
+      "source_kind": "employer_public_job_feed",
+      "attribution": "Anduril Industries (job posting)",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/4855853007?gh_jid=4855853007",
+      "snapshot_id": "shared-reviewer-hr-ic-postings-v2-2026-09-23",
+      "retrieved_at": "2026-09-23T22:36:14Z",
+      "raw_sha256": "4d56e044fde56dc24da0f27795ecb0f3e64a5ab8c610f189deecce1ea910881c",
+      "extract_sha256": "eec279cbdc517a3465c7db20ff710fe477158b85eb4b0ac5ad0295fa8737b1aa",
+      "rights_assessment": {
+        "status": "unresolved_employer_and_feed_terms; no posting content reused",
+        "basis": "The admitted posting-rights note explicitly is not a rights determination and requires per-employer/current feed terms review. Public visibility and attribution are not treated as permission.",
+        "publication_use": "Citation metadata and digests only; no posting text, title, requirement, duty wording, near paraphrase, count, or posting-derived claim reused."
+      }
+    },
+    {
+      "source_id": "p-coinbase-7997879",
+      "source_kind": "employer_public_job_feed",
+      "attribution": "Coinbase (job posting)",
+      "url": "https://www.coinbase.com/careers/positions/7997879?gh_jid=7997879",
+      "snapshot_id": "shared-reviewer-hr-ic-postings-v2-2026-09-23",
+      "retrieved_at": "2026-09-23T22:36:14Z",
+      "raw_sha256": "c06ac79b375bdd9cfedb762f15a1dd4f6da1e7c765aadf414d202d402090bccc",
+      "extract_sha256": "be4946df2d8c6b755bd2ee76fb978e5eba6afbe19ef881abf12771be914a24e0",
+      "rights_assessment": {
+        "status": "unresolved_employer_and_feed_terms; no posting content reused",
+        "basis": "The admitted posting-rights note explicitly is not a rights determination and requires per-employer/current feed terms review. Public visibility and attribution are not treated as permission.",
+        "publication_use": "Citation metadata and digests only; no posting text, title, requirement, duty wording, near paraphrase, count, or posting-derived claim reused."
+      }
+    },
+    {
+      "source_id": "p-datadog-7728298",
+      "source_kind": "employer_public_job_feed",
+      "attribution": "Datadog (job posting)",
+      "url": "https://careers.datadoghq.com/detail/7728298/?gh_jid=7728298",
+      "snapshot_id": "shared-reviewer-hr-ic-postings-v2-2026-09-23",
+      "retrieved_at": "2026-09-23T22:36:14Z",
+      "raw_sha256": "4640ff2e6a4c09b9fcfdf9aabe1639f30c9d83f16951e28b370b6858401a020b",
+      "extract_sha256": "cec7a82b5f5eeea3e9d04a42f3b92775ba2d8f024ed17a5599b8a05e2b324234",
+      "rights_assessment": {
+        "status": "unresolved_employer_and_feed_terms; no posting content reused",
+        "basis": "The admitted posting-rights note explicitly is not a rights determination and requires per-employer/current feed terms review. Public visibility and attribution are not treated as permission.",
+        "publication_use": "Citation metadata and digests only; no posting text, title, requirement, duty wording, near paraphrase, count, or posting-derived claim reused."
+      }
+    },
+    {
+      "source_id": "p-stripe-7466921",
+      "source_kind": "employer_public_job_feed",
+      "attribution": "Stripe (job posting)",
+      "url": "https://stripe.com/jobs/search?gh_jid=7466921",
+      "snapshot_id": "shared-reviewer-hr-ic-postings-v2-2026-09-23",
+      "retrieved_at": "2026-09-23T22:36:14Z",
+      "raw_sha256": "597e3351314c4a6500c3b8e3b406eadb027627e9de90bd5a4a0150af620d2286",
+      "extract_sha256": "50ffd06d31a63ddb01beff654f965e7f712a05aa5b1a9522f1c6e85e695bb777",
+      "rights_assessment": {
+        "status": "unresolved_employer_and_feed_terms; no posting content reused",
+        "basis": "The admitted posting-rights note explicitly is not a rights determination and requires per-employer/current feed terms review. Public visibility and attribution are not treated as permission.",
+        "publication_use": "Citation metadata and digests only; no posting text, title, requirement, duty wording, near paraphrase, count, or posting-derived claim reused."
+      }
+    },
+    {
+      "source_id": "p-stripe-7704660",
+      "source_kind": "employer_public_job_feed",
+      "attribution": "Stripe (job posting)",
+      "url": "https://stripe.com/jobs/search?gh_jid=7704660",
+      "snapshot_id": "shared-reviewer-hr-ic-postings-v2-2026-09-23",
+      "retrieved_at": "2026-09-23T22:36:14Z",
+      "raw_sha256": "7019f2a84ed328625fca62420608d9acd020cbc8db55316d1cc75cd090cbdfaf",
+      "extract_sha256": "ce4fafafd3942c0b87796e9fdfdf0a30c5a3034138ad19ed4288cf88a5e94437",
+      "rights_assessment": {
+        "status": "unresolved_employer_and_feed_terms; no posting content reused",
+        "basis": "The admitted posting-rights note explicitly is not a rights determination and requires per-employer/current feed terms review. Public visibility and attribution are not treated as permission.",
+        "publication_use": "Citation metadata and digests only; no posting text, title, requirement, duty wording, near paraphrase, count, or posting-derived claim reused."
+      }
+    }
+  ],
+  "omission_inventory": [
+    {
+      "id": "quoted-source-material",
+      "source_ids": [
+        "onet_hr_specialist",
+        "onet_task_ratings_dictionary",
+        "opm_job_analysis",
+        "esco_essential_optional",
+        "esco_use_api",
+        "dacum_method",
+        "p-andurilindustries-4835624007",
+        "p-andurilindustries-4836444007",
+        "p-andurilindustries-4855853007",
+        "p-coinbase-7997879",
+        "p-datadog-7728298",
+        "p-stripe-7466921",
+        "p-stripe-7704660"
+      ],
+      "description": "All direct source excerpts and embedded source wording in the original guide, evidence view, and original machine release.",
+      "reason": "The public guide does not need source passages; terms for several sources remain unverified. O*NET page-specific CC BY notices were not treated as permission for anything outside their stated page scope."
+    },
+    {
+      "id": "employer-posting-content",
+      "source_ids": [
+        "p-andurilindustries-4835624007",
+        "p-andurilindustries-4836444007",
+        "p-andurilindustries-4855853007",
+        "p-coinbase-7997879",
+        "p-datadog-7728298",
+        "p-stripe-7466921",
+        "p-stripe-7704660"
+      ],
+      "description": "All seven posting titles and body content, duty/responsibility wording, job-specific conditions, requirements, and other excerpts.",
+      "reason": "Per-employer/feed publication rights were not established. No close paraphrase or employer-specific summary substitutes for the omitted text."
+    },
+    {
+      "id": "posting-derived-results",
+      "source_ids": [
+        "p-andurilindustries-4835624007",
+        "p-andurilindustries-4836444007",
+        "p-andurilindustries-4855853007",
+        "p-coinbase-7997879",
+        "p-datadog-7728298",
+        "p-stripe-7466921",
+        "p-stripe-7704660"
+      ],
+      "description": "Posting-based phrase hits, counts, demand statements, context examples, title-variant findings, and exact-title findings.",
+      "reason": "No posting content or permission-based result is needed for the retained occupational practice sequence."
+    },
+    {
+      "id": "original-work-unit-and-link-graph",
+      "source_ids": [
+        "onet_hr_specialist",
+        "onet_task_ratings_dictionary",
+        "opm_job_analysis",
+        "esco_essential_optional",
+        "esco_use_api",
+        "dacum_method"
+      ],
+      "description": "The original 22 work units, full task–competency graph, quoted-evidence inventory, and detailed source decision text.",
+      "reason": "These include source excerpts and separately labeled analyst links not required for this narrow public guide."
+    },
+    {
+      "id": "unverified-methodology-and-taxonomy-expression",
+      "source_ids": [
+        "opm_job_analysis",
+        "esco_essential_optional",
+        "esco_use_api",
+        "dacum_method"
+      ],
+      "description": "Any OPM, ESCO, or DACUM source wording, taxonomy text, data, images, logos, or other source assets.",
+      "reason": "The admitted records do not establish public reuse rights for those materials; citation metadata is retained without copying source expression."
+    }
+  ],
+  "limitations": [
+    "One O*NET occupational profile anchors the retained sequence; it does not establish a complete HR-Generalist role analysis.",
+    "The admitted task-rating source is a dictionary, not HR-specific task-rating records; no numeric rating or proficiency is emitted.",
+    "The export makes no employer-demand, prevalence, trend, or universal experience-threshold claim.",
+    "No practitioner validation is claimed; the model review of the original is not validation and did not cover this export.",
+    "The seven employer-posting records are retained only as citation metadata, not public evidence claims."
+  ],
+  "public_artifacts": {
+    "guide.md": "Human guide; authored learning sequence and practice prompts.",
+    "guide.html": "Self-contained static browser companion; no remote assets or scripts.",
+    "evidence-transparency.md": "Source-specific rights decisions, links, provenance, and omission inventory.",
+    "manifest.json": "Hash binding for this export and the original run."
+  }
+}
