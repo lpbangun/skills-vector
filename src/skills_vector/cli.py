@@ -97,6 +97,11 @@ def build_parser() -> argparse.ArgumentParser:
     structured.add_argument("--resource-config", type=Path, help="parent-approved live resource/sampling JSON; live-final only")
     structured.add_argument("--freeze-sha", help="full candidate SHA frozen by the parent; live-final only")
     structured.add_argument("--confirm-final-run", action="store_true", help="explicitly authorize the one guarded final request")
+    structured.add_argument(
+        "--corrective-round-2",
+        action="store_true",
+        help="select the dedicated corrective round-2 one-shot lock; live-final only",
+    )
     return parser
 
 
@@ -122,6 +127,7 @@ def main(argv: list[str] | None = None) -> int:
                 resource_config_path=args.resource_config,
                 freeze_sha=args.freeze_sha,
                 confirm_final_run=args.confirm_final_run,
+                corrective_round_2=args.corrective_round_2,
                 command=command,
             )
         except StructuredAnalysisError as exc:

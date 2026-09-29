@@ -33,6 +33,7 @@ DEFAULT_BENCHMARK_DIR = Path(
 DEFAULT_BASE_CORPUS_DIR = DEFAULT_BENCHMARK_DIR.parent / "corpus"
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "outputs/structured-job-analysis-round3"
 DEFAULT_LIVE_LOCK = REPO_ROOT / ".poc-env/state/structured-job-analysis-final-live.json"
+CORRECTIVE_R2_LIVE_LOCK = REPO_ROOT / ".poc-env/state/structured-job-analysis-corrective-round-2-live.json"
 APPROVED_RESOURCE_CONFIG_PATH = Path(
     "/home/logani/oprun-evidence/skills-vector-poc-prep-74b159c/comparison-resource-config-v2.json"
 )
@@ -2667,6 +2668,7 @@ def run_pipeline(
     resource_config_path: Path | None = None,
     freeze_sha: str | None = None,
     confirm_final_run: bool = False,
+    corrective_round_2: bool = False,
     candidate_revision: str | None = None,
     command: str | None = None,
     api_key: str | None = None,
@@ -2679,6 +2681,7 @@ def run_pipeline(
     if mode not in {"offline", "live-final"}:
         raise StructuredAnalysisError("mode must be offline or live-final")
     revision = candidate_revision or _git_revision()
+    live_lock_path = _live_lock_path or (CORRECTIVE_R2_LIVE_LOCK if corrective_round_2 else DEFAULT_LIVE_LOCK)
     if mode == "live-final":
         _verify_freeze(revision, freeze_sha)
         if not confirm_final_run:
@@ -2690,10 +2693,10 @@ def run_pipeline(
         if not api_key:
             raise StructuredAnalysisError("DEEPINFRA_API_KEY is required; credential value is never printed or recorded")
         resource_config, resource_config_hash = _read_approved_resource_config(resource_config_path)
-        if (_live_lock_path or DEFAULT_LIVE_LOCK).exists():
+        if live_lock_path.exists():
             raise StructuredAnalysisError("the one final live execution was already started; no second execution is permitted")
     else:
-        if resource_config_path is not None or freeze_sha is not None or confirm_final_run:
+        if resource_config_path is not None or freeze_sha is not None or confirm_final_run or corrective_round_2:
             raise StructuredAnalysisError("live-only flags cannot be used in offline mode")
         resource_config = None
         resource_config_hash = APPROVED_RESOURCE_CONFIG_SHA256
@@ -2791,7 +2794,7 @@ def run_pipeline(
     receipt["model"] = PINNED_MODEL_ID
     receipt["status"] = "started_one_shot_no_retry"
 
-    lock_path = _live_lock_path or DEFAULT_LIVE_LOCK
+    lock_path = live_lock_path
     lock_metadata = {
         "status": "started",
         "candidate_revision": revision,

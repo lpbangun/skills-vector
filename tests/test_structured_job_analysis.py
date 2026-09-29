@@ -2,15 +2,18 @@ from __future__ import annotations
 
 import base64
 import hashlib
+import io
 import json
 import subprocess
 import sys
 import tempfile
 import time
 import unittest
+from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 from unittest.mock import Mock, patch
 
+from skills_vector.cli import build_parser, main
 from skills_vector.structured_job_analysis import (
     APPROVED_RESOURCE_CONFIG_PATH,
     APPROVED_RESOURCE_CONFIG_SHA256,
@@ -403,6 +406,148 @@ class StructuredJobAnalysisTests(unittest.TestCase):
                     _provider_call=provider,
                 )
             provider.assert_not_called()
+            self.assertFalse(output.exists())
+
+    def test_cli_routes_corrective_selector_and_does_not_offer_lock_path_override(self) -> None:
+        parsed = build_parser().parse_args([
+            "structured-job-analysis", "--mode", "offline", "--corrective-round-2",
+        ])
+        self.assertTrue(parsed.corrective_round_2)
+        for argv in (
+            ["structured-job-analysis", "--mode", "live-final", "--live-lock-path", "/tmp/arbitrary-lock.json"],
+            ["structured-job-analysis", "--mode", "live-final", "--corrective-round-2=/tmp/arbitrary-lock.json"],
+        ):
+            with redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+                build_parser().parse_args(argv)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "offline-output"
+            runner = Mock(return_value={"status": "passed_local_build", "run_id": "mock-run"})
+            with patch("skills_vector.structured_job_analysis.run_pipeline", runner), redirect_stdout(io.StringIO()):
+                result = main([
+                    "structured-job-analysis", "--mode", "offline", "--corrective-round-2",
+                    "--output-dir", str(output),
+                ])
+            self.assertEqual(result, 0)
+            self.assertTrue(runner.call_args.kwargs["corrective_round_2"])
+
+    def test_corrective_selection_keeps_freeze_confirmation_config_and_key_preflights(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            lock = root / "corrective-r2.json"
+            config_path = write_approved_resource_config(root / "resource.json")
+            cases = (
+                ("freeze-sha", {"confirm_final_run": True, "resource_config_path": config_path, "api_key": "mock-key"}),
+                ("explicit --confirm-final-run", {"freeze_sha": "c" * 40, "resource_config_path": config_path, "api_key": "mock-key"}),
+                ("parent-approved --resource-config", {"freeze_sha": "c" * 40, "confirm_final_run": True, "api_key": "mock-key"}),
+                ("DEEPINFRA_API_KEY is required", {"freeze_sha": "c" * 40, "confirm_final_run": True, "resource_config_path": config_path, "api_key": ""}),
+            )
+            provider = Mock(side_effect=AssertionError("failed corrective preflight must not call provider"))
+            with patch("skills_vector.structured_job_analysis.CORRECTIVE_R2_LIVE_LOCK", lock):
+                for index, (message, options) in enumerate(cases):
+                    with self.subTest(preflight=message), self.assertRaisesRegex(StructuredAnalysisError, message):
+                        run_pipeline(
+                            mode="live-final",
+                            corrective_round_2=True,
+                            candidate_revision="c" * 40,
+                            output_dir=root / f"preflight-{index}",
+                            _provider_call=provider,
+                            **options,
+                        )
+                    self.assertFalse(lock.exists())
+            provider.assert_not_called()
+
+    def test_original_default_lock_still_blocks_and_remains_unchanged(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            original_lock = root / "original-consumed.json"
+            original_bytes = b'{"status":"failed_consumed_no_retry","run_id":"original"}\n'
+            original_lock.write_bytes(original_bytes)
+            corrective_lock = root / "corrective-r2.json"
+            config_path = write_approved_resource_config(root / "resource.json")
+            provider = Mock(side_effect=AssertionError("consumed original lock must block before provider"))
+            with patch("skills_vector.structured_job_analysis.DEFAULT_LIVE_LOCK", original_lock), patch(
+                "skills_vector.structured_job_analysis.CORRECTIVE_R2_LIVE_LOCK", corrective_lock
+            ):
+                with self.assertRaisesRegex(StructuredAnalysisError, "already started"):
+                    run_pipeline(
+                        mode="live-final",
+                        resource_config_path=config_path,
+                        freeze_sha="c" * 40,
+                        confirm_final_run=True,
+                        candidate_revision="c" * 40,
+                        output_dir=root / "original-output",
+                        api_key="mock-key-not-a-credential",
+                        _provider_call=provider,
+                    )
+            provider.assert_not_called()
+            self.assertEqual(original_lock.read_bytes(), original_bytes)
+            self.assertFalse(corrective_lock.exists())
+            self.assertFalse((root / "original-output").exists())
+
+    def test_corrective_round_2_uses_only_its_fixed_lock_and_blocks_second_attempt(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            original_lock = root / "original-consumed.json"
+            original_bytes = b'{"status":"failed_consumed_no_retry","run_id":"original"}\n'
+            original_lock.write_bytes(original_bytes)
+            corrective_lock = root / "corrective-r2.json"
+            config_path = write_approved_resource_config(root / "resource.json")
+            citation = {
+                "source_id": "onet_hr_specialist",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+            }
+            provider = Mock(return_value=mock_review_payload(
+                citation,
+                usage={"prompt_tokens": 100, "completion_tokens": 40, "total_tokens": 140},
+            ))
+            with patch("skills_vector.structured_job_analysis.DEFAULT_LIVE_LOCK", original_lock), patch(
+                "skills_vector.structured_job_analysis.CORRECTIVE_R2_LIVE_LOCK", corrective_lock
+            ):
+                receipt = run_pipeline(
+                    mode="live-final",
+                    resource_config_path=config_path,
+                    freeze_sha="e" * 40,
+                    confirm_final_run=True,
+                    corrective_round_2=True,
+                    candidate_revision="e" * 40,
+                    output_dir=root / "corrective-output",
+                    api_key="mock-key-not-a-credential",
+                    _provider_call=provider,
+                )
+                self.assertEqual(receipt["status"], "passed_one_live_review")
+                self.assertTrue(corrective_lock.is_file())
+                self.assertEqual(json.loads(corrective_lock.read_text())["status"], "completed")
+                self.assertEqual(original_lock.read_bytes(), original_bytes)
+                with self.assertRaisesRegex(StructuredAnalysisError, "already started"):
+                    run_pipeline(
+                        mode="live-final",
+                        resource_config_path=config_path,
+                        freeze_sha="e" * 40,
+                        confirm_final_run=True,
+                        corrective_round_2=True,
+                        candidate_revision="e" * 40,
+                        output_dir=root / "corrective-retry-output",
+                        api_key="mock-key-not-a-credential",
+                        _provider_call=provider,
+                    )
+            provider.assert_called_once()
+            self.assertEqual(original_lock.read_bytes(), original_bytes)
+            self.assertEqual(json.loads(corrective_lock.read_text())["status"], "completed")
+            self.assertFalse((root / "corrective-retry-output").exists())
+
+    def test_corrective_selector_is_rejected_in_offline_mode(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "offline-output"
+            stdout = io.StringIO()
+            with redirect_stdout(stdout):
+                result = main([
+                    "structured-job-analysis", "--mode", "offline", "--corrective-round-2",
+                    "--output-dir", str(output),
+                ])
+            self.assertEqual(result, 2)
+            self.assertIn("live-only flags cannot be used in offline mode", stdout.getvalue())
             self.assertFalse(output.exists())
 
     def test_live_mode_rejects_any_resource_config_hash_change_before_provider_or_lock(self) -> None:
