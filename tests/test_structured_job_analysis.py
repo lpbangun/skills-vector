@@ -28,9 +28,15 @@ from skills_vector.structured_job_analysis import (
     MAX_PLANNED_PROVIDER_REQUESTS,
     MAX_SERIALIZED_REQUEST_BYTES,
     PINNED_MODEL_ID,
+    REVIEW_REPAIR_RESOURCE_CONFIG,
+    REVIEW_REPAIR_RESOURCE_CONFIG_PATH,
+    REVIEW_REPAIR_RESOURCE_CONFIG_SHA256,
+    LIVE_SYSTEM_PROMPT,
     SNAPSHOT_IDS,
     StructuredAnalysisError,
     _acquire_final_lock,
+    _live_run_lock_path,
+    _read_approved_resource_config,
     _request_body,
     _serialized_request_bytes,
     build_release,
@@ -54,16 +60,30 @@ def write_approved_resource_config(path: Path) -> Path:
     return path
 
 
-def mock_review_payload(citation: dict[str, str], *, fenced: bool = False, usage: dict[str, object] | None = None) -> dict[str, object]:
-    content = json.dumps({"reviews": [{
+def mock_review_payload(
+    citation: dict[str, str],
+    *,
+    release: dict | None = None,
+    fenced: bool = False,
+    usage: dict[str, object] | None = None,
+) -> dict[str, object]:
+    reviews = [{
         "unit_id": "task-policy-guidance",
         "stance": "unclear",
         "reason": "Permissioned mechanics fixture; not a product review.",
         "evidence": [citation],
-    }]})
+    }]
+    if release is not None:
+        reviews = [{
+            "unit_id": unit["unit_id"],
+            "stance": "unclear",
+            "reason": "Permissioned mechanics fixture; not a product review.",
+            "evidence": [{key: unit["evidence"][0][key] for key in ("source_id", "locator", "quote")}],
+        } for unit in release["work_units"]]
+    content = json.dumps({"reviews": reviews})
     if fenced:
         content = f"```json\n{content}\n```"
-    payload: dict[str, object] = {"choices": [{"message": {"content": content}}]}
+    payload: dict[str, object] = {"choices": [{"message": {"content": content}, "finish_reason": "stop"}]}
     if usage is not None:
         payload["usage"] = usage
     return payload
@@ -300,6 +320,33 @@ class StructuredJobAnalysisTests(unittest.TestCase):
         with self.assertRaisesRegex(StructuredAnalysisError, 'reasoning_effort must be exactly "none"'):
             validate_resource_config(reasoning_enabled)
 
+    def test_review_repair_config_is_pinned_and_reserves_adequate_conservative_output_budget(self) -> None:
+        repair_config, repair_hash = _read_approved_resource_config(REVIEW_REPAIR_RESOURCE_CONFIG_PATH)
+        self.assertEqual(repair_config, REVIEW_REPAIR_RESOURCE_CONFIG)
+        self.assertEqual(repair_hash, REVIEW_REPAIR_RESOURCE_CONFIG_SHA256)
+        self.assertEqual(RESOURCE_CONFIG["sampling"]["max_tokens"], 2048)
+        self.assertEqual(repair_config["sampling"]["max_tokens"], MAX_OUTPUT_TOKENS)
+        self.assertIn("every supplied work unit exactly once", LIVE_SYSTEM_PROMPT)
+        self.assertIn("at most 20 words", LIVE_SYSTEM_PROMPT)
+        self.assertIn("smallest set of exact citations", LIVE_SYSTEM_PROMPT)
+
+        release = build_release(self.corpus, "c" * 40)
+        matched_request = _request_body(release, RESOURCE_CONFIG)
+        repair_request = _request_body(release, repair_config)
+        matched_ceilings = estimate_request_token_ceilings(matched_request)
+        repair_ceilings = estimate_request_token_ceilings(repair_request)
+        self.assertEqual(repair_request["max_tokens"], 8192)
+        self.assertEqual(repair_ceilings["output_tokens_upper_bound_including_reasoning"], 8192)
+        self.assertEqual(
+            repair_ceilings["total_input_plus_output_including_reasoning_tokens_upper_bound"],
+            repair_ceilings["input_tokens_upper_bound"] + 8192,
+        )
+        self.assertGreater(repair_ceilings["cost_upper_bound_usd"], matched_ceilings["cost_upper_bound_usd"])
+        _, total = preflight_request_batch([repair_request], repair_config)
+        self.assertAlmostEqual(total, repair_ceilings["cost_upper_bound_usd"])
+        self.assertLessEqual(total, repair_config["caps"]["max_inference_cost_usd"])
+        self.assertLessEqual(total, MAX_FINAL_SPEND_USD)
+
     def test_live_request_deduplicates_citations_without_dropping_any_review_reference(self) -> None:
         release = build_release(self.corpus, "e" * 40)
         body = _request_body(release, RESOURCE_CONFIG)
@@ -352,11 +399,22 @@ class StructuredJobAnalysisTests(unittest.TestCase):
         self.assertLessEqual(ceilings["input_bytes"], MAX_SERIALIZED_REQUEST_BYTES)
         self.assertEqual(ceilings["reasoning_effort"], "none")
 
+    def test_live_review_validation_rejects_omitted_supplied_work_units(self) -> None:
+        release = build_release(self.corpus, "b" * 40)
+        unit = release["work_units"][0]
+        citation = {key: unit["evidence"][0][key] for key in ("source_id", "locator", "quote")}
+        payload = mock_review_payload(citation)
+        with self.assertRaisesRegex(
+            StructuredAnalysisError,
+            "exactly one review for every supplied work unit",
+        ):
+            validate_live_review(payload, release, self.corpus)
+
     def test_preflight_enforces_exact_request_reasoning_input_and_output_ceilings(self) -> None:
         request = {
             "model": PINNED_MODEL_ID,
             "messages": [{"role": "user", "content": "bounded test"}],
-            "max_tokens": MAX_OUTPUT_TOKENS,
+            "max_tokens": RESOURCE_CONFIG["sampling"]["max_tokens"],
             "reasoning_effort": "none",
         }
         per_request, total = preflight_request_batch([request], RESOURCE_CONFIG)
@@ -366,10 +424,13 @@ class StructuredJobAnalysisTests(unittest.TestCase):
         ceilings = estimate_request_token_ceilings(request)
         self.assertEqual(ceilings["reasoning_effort"], "none")
         self.assertEqual(ceilings["reasoning_tokens_additional_allowance"], 0)
-        self.assertEqual(ceilings["output_tokens_upper_bound_including_reasoning"], MAX_OUTPUT_TOKENS)
+        self.assertEqual(
+            ceilings["output_tokens_upper_bound_including_reasoning"],
+            RESOURCE_CONFIG["sampling"]["max_tokens"],
+        )
         self.assertEqual(
             ceilings["total_input_plus_output_including_reasoning_tokens_upper_bound"],
-            ceilings["input_tokens_upper_bound"] + MAX_OUTPUT_TOKENS,
+            ceilings["input_tokens_upper_bound"] + RESOURCE_CONFIG["sampling"]["max_tokens"],
         )
         self.assertLessEqual(ceilings["input_bytes"], MAX_SERIALIZED_REQUEST_BYTES)
         self.assertLessEqual(ceilings["input_tokens_upper_bound"], MAX_INPUT_TOKENS_UPPER_BOUND)
@@ -379,7 +440,7 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             preflight_request_batch([request, request], RESOURCE_CONFIG)
         with self.assertRaisesRegex(StructuredAnalysisError, 'reasoning_effort must be exactly "none"'):
             estimate_request_token_ceilings({**request, "reasoning_effort": "high"})
-        with self.assertRaisesRegex(StructuredAnalysisError, "max_tokens must be exactly 2048"):
+        with self.assertRaisesRegex(StructuredAnalysisError, "pinned resource configuration"):
             estimate_request_token_ceilings({**request, "max_tokens": 2049})
         oversized = {**request, "messages": [{"role": "user", "content": "x" * MAX_SERIALIZED_REQUEST_BYTES}]}
         with self.assertRaisesRegex(StructuredAnalysisError, "serialized provider request"):
@@ -500,6 +561,7 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             }
             provider = Mock(return_value=mock_review_payload(
                 citation,
+                release=build_release(self.corpus, "e" * 40),
                 usage={"prompt_tokens": 100, "completion_tokens": 40, "total_tokens": 140},
             ))
             with patch("skills_vector.structured_job_analysis.DEFAULT_LIVE_LOCK", original_lock), patch(
@@ -576,6 +638,77 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             self.assertFalse(lock.exists())
             self.assertFalse(output.exists())
 
+    def test_repair_config_live_run_uses_candidate_config_identity_and_records_a_only_scope(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            output = root / "output"
+            candidate = "c" * 40
+            citation = {
+                "source_id": "onet_hr_specialist",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+            }
+            provider = Mock(return_value=mock_review_payload(
+                citation,
+                release=build_release(self.corpus, candidate),
+                usage={"prompt_tokens": 120, "completion_tokens": 40, "total_tokens": 160},
+            ))
+            with patch("skills_vector.structured_job_analysis.REPO_ROOT", root / "repo"):
+                identity_path = _live_run_lock_path(
+                    REVIEW_REPAIR_RESOURCE_CONFIG_SHA256,
+                    candidate,
+                    corrective_round_2=False,
+                )
+                receipt = run_pipeline(
+                    mode="live-final",
+                    resource_config_path=REVIEW_REPAIR_RESOURCE_CONFIG_PATH,
+                    freeze_sha=candidate,
+                    confirm_final_run=True,
+                    candidate_revision=candidate,
+                    output_dir=output,
+                    api_key="repair-config-test-key",
+                    _provider_call=provider,
+                )
+                self.assertTrue(identity_path.is_file())
+                lock_record = json.loads(identity_path.read_text())
+                self.assertEqual(lock_record["status"], "completed")
+                self.assertEqual(lock_record["candidate_revision"], candidate)
+                self.assertEqual(lock_record["resource_config_hash"], REVIEW_REPAIR_RESOURCE_CONFIG_SHA256)
+                self.assertNotEqual(
+                    identity_path,
+                    _live_run_lock_path(
+                        REVIEW_REPAIR_RESOURCE_CONFIG_SHA256,
+                        "d" * 40,
+                        corrective_round_2=False,
+                    ),
+                )
+                self.assertEqual(receipt["config_hash"], REVIEW_REPAIR_RESOURCE_CONFIG_SHA256)
+                self.assertEqual(receipt["preflight"]["request_token_ceilings"][0]["output_tokens_upper_bound_including_reasoning"], 8192)
+                self.assertIn("max_tokens=8192", receipt["cost_reservation"]["basis"])
+                release = json.loads((output / "release.json").read_text())
+                self.assertEqual(release["run"]["sampling"]["max_tokens"], 8192)
+                self.assertEqual(release["run"]["config_hash"], REVIEW_REPAIR_RESOURCE_CONFIG_SHA256)
+                self.assertIn("not the matched historical A/B comparison", release["run"]["resource_config_scope"])
+                manifest = json.loads((output / "run-manifest.json").read_text())
+                self.assertEqual(manifest["config_hash"], REVIEW_REPAIR_RESOURCE_CONFIG_SHA256)
+                self.assertEqual(manifest["sampling"]["max_tokens"], 8192)
+                self.assertIn("not the matched historical A/B comparison", manifest["resource_config_scope"])
+                provider.assert_called_once()
+
+                with self.assertRaisesRegex(StructuredAnalysisError, "already started"):
+                    run_pipeline(
+                        mode="live-final",
+                        resource_config_path=REVIEW_REPAIR_RESOURCE_CONFIG_PATH,
+                        freeze_sha=candidate,
+                        confirm_final_run=True,
+                        candidate_revision=candidate,
+                        output_dir=root / "second-output",
+                        api_key="repair-config-test-key",
+                        _provider_call=provider,
+                    )
+                provider.assert_called_once()
+                self.assertFalse((root / "second-output").exists())
+
     def test_live_cost_guard_blocks_mock_provider_before_one_shot_lock(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -619,15 +752,11 @@ class StructuredJobAnalysisTests(unittest.TestCase):
 
             def fake_provider(body: dict[str, object], key: str) -> dict[str, object]:
                 calls.append({"body": body, "key": key})
-                return {
-                    "choices": [{"message": {"content": json.dumps({"reviews": [{
-                        "unit_id": "task-policy-guidance",
-                        "stance": "unclear",
-                        "reason": "This mock review is a mechanics check only.",
-                        "evidence": [citation],
-                    }]})}}],
-                    "usage": {"prompt_tokens": 100, "completion_tokens": 40, "total_tokens": 140},
-                }
+                return mock_review_payload(
+                    citation,
+                    release=build_release(self.corpus, "e" * 40),
+                    usage={"prompt_tokens": 100, "completion_tokens": 40, "total_tokens": 140},
+                )
 
             receipt = run_pipeline(
                 mode="live-final",
@@ -642,7 +771,7 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             )
             self.assertEqual(len(calls), 1)
             self.assertEqual(calls[0]["body"]["reasoning_effort"], "none")
-            self.assertEqual(calls[0]["body"]["max_tokens"], MAX_OUTPUT_TOKENS)
+            self.assertEqual(calls[0]["body"]["max_tokens"], RESOURCE_CONFIG["sampling"]["max_tokens"])
             self.assertEqual(calls[0]["key"], "unit-test-secret-never-write")
             preflight = receipt["preflight"]
             ceilings = preflight["request_token_ceilings"][0]
@@ -654,7 +783,10 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             self.assertLessEqual(ceilings["input_tokens_upper_bound"], MAX_INPUT_TOKENS_UPPER_BOUND)
             self.assertEqual(json.loads(lock_path.read_text())["request_sha256"], ceilings["request_sha256"])
             self.assertEqual(preflight["reasoning_effort"], "none")
-            self.assertIn("included in the max_tokens=2048 output ceiling", preflight["reasoning_accounting"])
+            self.assertIn(
+                f"included in the max_tokens={RESOURCE_CONFIG['sampling']['max_tokens']} output ceiling",
+                preflight["reasoning_accounting"],
+            )
             self.assertEqual(receipt["provider_calls"], 1)
             self.assertEqual(receipt["status"], "passed_one_live_review")
             self.assertEqual(receipt["provider_response_validation"], "accepted_strict_semantics")
@@ -711,6 +843,7 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             }
             payload = mock_review_payload(
                 citation,
+                release=build_release(self.corpus, "9" * 40),
                 fenced=True,
                 usage={"prompt_tokens": 110, "completion_tokens": 36, "total_tokens": 146},
             )
@@ -737,7 +870,7 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             config_path = write_approved_resource_config(root / "resource.json")
             output = root / "output"
             lock = root / "one-shot.json"
-            malformed = {"choices": [{"message": {"content": "```json\n{\"reviews\":[}\n```"}}]}
+            malformed = {"choices": [{"message": {"content": "```json\n{\"reviews\":[}\n```"}, "finish_reason": "stop"}]}
             with self.assertRaisesRegex(StructuredAnalysisError, "not valid review JSON"):
                 run_pipeline(
                     mode="live-final",
@@ -759,6 +892,55 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             self.assertGreater(receipt["inference_cost_usd_upper_bound"], 0)
             self.assertTrue(evidence["response_available"])
             self.assertIn("```json", raw_body["choices"][0]["message"]["content"])
+            self.assertEqual(release["run"]["publication_status"], "offline_guide_after_rejected_review")
+            self.assertFalse(release["run"]["model_review_accepted"])
+            self.assertFalse((output / "live-model-review-untrusted.json").exists())
+            self.assertEqual(json.loads(lock.read_text())["status"], "failed_consumed_no_retry")
+
+    def test_length_terminated_completion_is_retained_and_rejected_even_if_review_json_parses(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config_path = write_approved_resource_config(root / "resource.json")
+            output = root / "output"
+            lock = root / "one-shot.json"
+            citation = {
+                "source_id": "onet_hr_specialist",
+                "locator": "O*NET OnLine 13-1071.00 › Tasks › Core",
+                "quote": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+            }
+            truncated = mock_review_payload(
+                citation,
+                usage={"prompt_tokens": 5744, "completion_tokens": 2048, "total_tokens": 7792},
+            )
+            truncated["choices"][0]["finish_reason"] = "length"
+            provider = Mock(return_value=truncated)
+            with self.assertRaisesRegex(StructuredAnalysisError, "did not finish normally"):
+                run_pipeline(
+                    mode="live-final",
+                    resource_config_path=config_path,
+                    freeze_sha="8" * 40,
+                    confirm_final_run=True,
+                    candidate_revision="8" * 40,
+                    output_dir=output,
+                    api_key="truncated-review-test-key",
+                    _live_lock_path=lock,
+                    _provider_call=provider,
+                )
+
+            receipt = json.loads((output / "run-receipt.json").read_text())
+            evidence = json.loads((output / "provider-response.json").read_text())
+            raw_payload = json.loads(base64.b64decode(evidence["raw_body_base64"]))
+            release = json.loads((output / "release.json").read_text())
+            self.assertEqual(provider.call_count, 1)
+            self.assertEqual(raw_payload["choices"][0]["finish_reason"], "length")
+            self.assertTrue(evidence["response_available"])
+            self.assertEqual(evidence["retention_status"], "retained")
+            self.assertEqual(receipt["provider_usage"]["status"], "reported")
+            self.assertEqual(receipt["provider_usage"]["output_tokens"], 2048)
+            self.assertIsNotNone(receipt["provider_usage_cost_estimate_usd"])
+            self.assertIsNone(receipt["measured_provider_cost_usd"])
+            self.assertEqual(receipt["status"], "failed_after_one_shot_consumed")
+            self.assertEqual(receipt["provider_response_validation"], "rejected")
             self.assertEqual(release["run"]["publication_status"], "offline_guide_after_rejected_review")
             self.assertFalse(release["run"]["model_review_accepted"])
             self.assertFalse((output / "live-model-review-untrusted.json").exists())
@@ -932,12 +1114,10 @@ class StructuredJobAnalysisTests(unittest.TestCase):
             def fake_provider(_body: dict[str, object], _key: str) -> dict[str, object]:
                 prior = json.loads((output / "run-receipt.json").read_text())
                 observed_before_call.update(prior)
-                return {"choices": [{"message": {"content": json.dumps({"reviews": [{
-                    "unit_id": "task-policy-guidance",
-                    "stance": "unclear",
-                    "reason": "Mocked response with no provider usage metadata.",
-                    "evidence": [citation],
-                }]})}}]}
+                return mock_review_payload(
+                    citation,
+                    release=build_release(self.corpus, "a" * 40),
+                )
 
             receipt = run_pipeline(
                 mode="live-final",

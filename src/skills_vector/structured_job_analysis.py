@@ -42,7 +42,7 @@ MATCHED_EVIDENCE_POLICY = "frozen-corpus-only"
 MAX_PLANNED_PROVIDER_REQUESTS = 1
 MAX_SERIALIZED_REQUEST_BYTES = 48 * 1024
 MAX_INPUT_TOKENS_UPPER_BOUND = MAX_SERIALIZED_REQUEST_BYTES * 2
-MAX_OUTPUT_TOKENS = 2048
+MAX_OUTPUT_TOKENS = 8192
 MAX_PROVIDER_RESPONSE_BYTES = 128 * 1024
 MATCHED_RESOURCE_CONFIG = {
     "model": "deepseek-ai/DeepSeek-V4.1-Flash",
@@ -55,6 +55,24 @@ MATCHED_RESOURCE_CONFIG = {
         "max_wall_minutes": 30,
     },
 }
+REVIEW_REPAIR_RESOURCE_CONFIG_PATH = REPO_ROOT / "config/structured-job-analysis-review-repair-v1.json"
+REVIEW_REPAIR_RESOURCE_CONFIG_SHA256 = "58059d2eca73556c9ee2627f4183f7b852093324eeaaf2f851268a15ea4a35d5"
+REVIEW_REPAIR_RESOURCE_CONFIG = {
+    "resource_config_version": "structured-job-analysis-review-sizing-repair.v1",
+    "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+    "provider": "deepinfra",
+    "sampling": {"temperature": 0.0, "top_p": 1.0, "max_tokens": MAX_OUTPUT_TOKENS, "reasoning_effort": "none"},
+    "caps": {
+        "max_inference_requests": 8,
+        "max_inference_cost_usd": 0.5,
+        "max_retrieval_requests": 0,
+        "max_wall_minutes": 30,
+    },
+}
+SUPPORTED_OUTPUT_TOKEN_CEILINGS = frozenset({
+    MATCHED_RESOURCE_CONFIG["sampling"]["max_tokens"],
+    REVIEW_REPAIR_RESOURCE_CONFIG["sampling"]["max_tokens"],
+})
 
 EXPECTED_BENCHMARK_MANIFEST_SHA256 = "bcb3d5e5aff1dd915b549b9397135e1d102e08b5ceb4cbe750633ee3a8baeb5e"
 EXPECTED_DEV_SPLIT_SHA256 = "ad3a28e495a47c47ee2fc967796e8c9f2d87b6c62c94a819b2a9dcefc605d67f"
@@ -68,12 +86,13 @@ MAX_FINAL_SPEND_USD = 0.50
 LIVE_ENDPOINT = "https://api.deepinfra.com/v1/openai/chat/completions"
 LIVE_SYSTEM_PROMPT = (
     "You are an untrusted evidence-review assistant for a desk-research job analysis. "
-    "Review only the supplied work units and their evidence_ref_ids in the evidence_catalog; "
-    "cite the exact catalog source_id, locator, and quote. Do not add sources, duties, "
-    "competencies, proficiency levels, or practitioner claims. Return one JSON object: "
-    "{\"reviews\":[{\"unit_id\":string,\"stance\":\"supported\"|\"challenge\"|\"unclear\","
+    "Review every supplied work unit exactly once, using only its supplied evidence_ref_ids and linked evidence_ref_ids. "
+    "Cite exact catalog source_id, locator, and quote; add no sources, duties, competencies, proficiency levels, "
+    "prevalence claims, or practitioner validation. "
+    "For each review, give a concise reason of at most 20 words and the smallest set of exact citations needed, normally one. "
+    "Return one JSON object: {\"reviews\":[{\"unit_id\":string,\"stance\":\"supported\"|\"challenge\"|\"unclear\","
     "\"reason\":string,\"evidence\":[{\"source_id\":string,\"locator\":string,"
-    "\"quote\":string}]}]}. A review is a model suggestion, not validation."
+    "\"quote\":string}]}]}. Do not omit or add unit ids. A review is a model suggestion, not validation."
 )
 
 
@@ -101,15 +120,28 @@ def _json_bytes(value: Any) -> bytes:
 
 
 def _read_approved_resource_config(path: Path = APPROVED_RESOURCE_CONFIG_PATH) -> tuple[dict[str, Any], str]:
-    raw = _verify_readonly_file(path, APPROVED_RESOURCE_CONFIG_SHA256)
+    try:
+        raw = path.read_bytes()
+    except OSError as exc:
+        raise StructuredAnalysisError(f"approved resource config unavailable: {path}") from exc
+    config_hash = _sha256(raw)
+    approved_configs = {
+        APPROVED_RESOURCE_CONFIG_SHA256: MATCHED_RESOURCE_CONFIG,
+        REVIEW_REPAIR_RESOURCE_CONFIG_SHA256: REVIEW_REPAIR_RESOURCE_CONFIG,
+    }
+    expected = approved_configs.get(config_hash)
+    if expected is None:
+        raise StructuredAnalysisError("approved resource config hash mismatch")
+    if config_hash == APPROVED_RESOURCE_CONFIG_SHA256:
+        _verify_readonly_file(path, APPROVED_RESOURCE_CONFIG_SHA256)
     try:
         config = json.loads(raw)
     except json.JSONDecodeError as exc:
-        raise StructuredAnalysisError("approved matched resource config is not valid JSON") from exc
-    if not isinstance(config, dict) or config != MATCHED_RESOURCE_CONFIG:
-        raise StructuredAnalysisError("resource config does not equal the parent-approved matched configuration")
+        raise StructuredAnalysisError("approved resource config is not valid JSON") from exc
+    if not isinstance(config, dict) or config != expected:
+        raise StructuredAnalysisError("resource config does not equal its pinned configuration")
     validate_resource_config(config)
-    return config, _sha256(raw)
+    return config, config_hash
 
 
 def _sha256(data: bytes) -> str:
@@ -2054,8 +2086,11 @@ def validate_resource_config(config: dict[str, Any]) -> None:
         raise StructuredAnalysisError("sampling.top_p must be in (0, 1]")
     if sampling.get("reasoning_effort") != "none":
         raise StructuredAnalysisError('sampling.reasoning_effort must be exactly "none"')
-    if isinstance(max_tokens, bool) or not isinstance(max_tokens, int) or max_tokens != MAX_OUTPUT_TOKENS:
-        raise StructuredAnalysisError(f"sampling.max_tokens must be exactly {MAX_OUTPUT_TOKENS}")
+    if isinstance(max_tokens, bool) or not isinstance(max_tokens, int) or max_tokens not in SUPPORTED_OUTPUT_TOKEN_CEILINGS:
+        raise StructuredAnalysisError(
+            "sampling.max_tokens must match a pinned resource configuration: "
+            + ", ".join(str(value) for value in sorted(SUPPORTED_OUTPUT_TOKEN_CEILINGS))
+        )
     if isinstance(max_requests, bool) or not isinstance(max_requests, int) or max_requests < 1:
         raise StructuredAnalysisError("caps.max_inference_requests must be a positive integer")
     if not math.isfinite(max_cost) or not 0 < max_cost <= MAX_FINAL_SPEND_USD:
@@ -2141,9 +2176,12 @@ def estimate_request_token_ceilings(body: dict[str, Any]) -> dict[str, Any]:
     if (
         isinstance(output_tokens, bool)
         or not isinstance(output_tokens, int)
-        or output_tokens != MAX_OUTPUT_TOKENS
+        or output_tokens not in SUPPORTED_OUTPUT_TOKEN_CEILINGS
     ):
-        raise StructuredAnalysisError(f"provider request max_tokens must be exactly {MAX_OUTPUT_TOKENS}")
+        raise StructuredAnalysisError(
+            "provider request max_tokens must match a pinned resource configuration: "
+            + ", ".join(str(value) for value in sorted(SUPPORTED_OUTPUT_TOKEN_CEILINGS))
+        )
     serialized = _serialized_request_bytes(body)
     input_bytes = len(serialized)
     if input_bytes > MAX_SERIALIZED_REQUEST_BYTES:
@@ -2192,6 +2230,8 @@ def preflight_request_batch(requests: list[dict[str, Any]], config: dict[str, An
         )
     if len(requests) > caps["max_inference_requests"]:
         raise StructuredAnalysisError("planned request batch exceeds the approved inference-request cap")
+    if any(request.get("max_tokens") != config["sampling"]["max_tokens"] for request in requests):
+        raise StructuredAnalysisError("provider request max_tokens differs from the pinned resource configuration")
     costs = [estimate_request_cost(request) for request in requests]
     total = sum(costs)
     if total > min(float(caps["max_inference_cost_usd"]), MAX_FINAL_SPEND_USD):
@@ -2208,8 +2248,19 @@ def _write_json(path: Path, value: Any) -> None:
     temp.replace(path)
 
 
-def _write_release_files(output_dir: Path, release: dict[str, Any]) -> None:
-    matched_config, config_hash = _read_approved_resource_config()
+def _write_release_files(
+    output_dir: Path,
+    release: dict[str, Any],
+    *,
+    resource_config: dict[str, Any] | None = None,
+    resource_config_hash: str | None = None,
+) -> None:
+    if resource_config is None:
+        resource_config, config_hash = _read_approved_resource_config()
+    else:
+        config_hash = resource_config_hash
+        if config_hash != release["run"]["config_hash"]:
+            raise StructuredAnalysisError("release resource config hash does not match the pinned run config")
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / "release.json").write_text(
         json.dumps(release, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8"
@@ -2220,13 +2271,14 @@ def _write_release_files(output_dir: Path, release: dict[str, Any]) -> None:
     (output_dir / "evidence-transparency.md").write_text(render_evidence_transparency(release), encoding="utf-8")
     ledger = release["run"]["resource_ledger"]
     manifest = {
-        "model": matched_config["model"],
-        "provider": matched_config["provider"],
-        "sampling": matched_config["sampling"],
-        "caps": matched_config["caps"],
+        "model": resource_config["model"],
+        "provider": resource_config["provider"],
+        "sampling": resource_config["sampling"],
+        "caps": resource_config["caps"],
         "corpus_snapshot_ids": release["run"]["corpus_snapshot_ids"],
         "evidence_policy": MATCHED_EVIDENCE_POLICY,
         "config_hash": config_hash,
+        "resource_config_scope": release["run"]["resource_config_scope"],
         "execution": {
             "mode": release["run"]["mode"],
             "model": release["run"]["model"],
@@ -2240,6 +2292,25 @@ def _write_release_files(output_dir: Path, release: dict[str, Any]) -> None:
         },
     }
     _write_json(output_dir / "run-manifest.json", manifest)
+
+
+def _live_run_lock_path(
+    resource_config_hash: str,
+    candidate_revision: str,
+    *,
+    corrective_round_2: bool,
+) -> Path:
+    if resource_config_hash == APPROVED_RESOURCE_CONFIG_SHA256:
+        return CORRECTIVE_R2_LIVE_LOCK if corrective_round_2 else DEFAULT_LIVE_LOCK
+    if resource_config_hash != REVIEW_REPAIR_RESOURCE_CONFIG_SHA256:
+        raise StructuredAnalysisError("no one-shot identity is defined for this resource config")
+    if corrective_round_2:
+        raise StructuredAnalysisError(
+            "--corrective-round-2 is reserved for its consumed matched-config identity; "
+            "the review repair uses its pinned config-and-candidate identity"
+        )
+    identity_hash = _sha256(_json_bytes([resource_config_hash, candidate_revision]))
+    return REPO_ROOT / ".poc-env/state" / f"structured-job-analysis-live-{identity_hash[:24]}.json"
 
 
 def _verify_freeze(revision: str, frozen_sha: str | None) -> None:
@@ -2564,6 +2635,9 @@ def validate_live_review(payload: dict[str, Any], release: dict[str, Any], corpu
     message = choices[0].get("message")
     if not isinstance(message, dict) or not isinstance(message.get("content"), str):
         raise StructuredAnalysisError("provider completion must contain string message content")
+    finish_reason = choices[0].get("finish_reason")
+    if finish_reason is not None and finish_reason != "stop":
+        raise StructuredAnalysisError("provider completion did not finish normally")
     parsed = _parse_review_content(message["content"])
     if not isinstance(parsed, dict) or set(parsed) != {"reviews"}:
         raise StructuredAnalysisError("model review must be an object containing only the reviews field")
@@ -2631,6 +2705,8 @@ def validate_live_review(payload: dict[str, Any], release: dict[str, Any], corpu
             "reason": reason,
             "evidence": citations,
         })
+    if seen_units != set(allowed_citations_by_unit):
+        raise StructuredAnalysisError("model review must contain exactly one review for every supplied work unit")
     return {
         "status": "untrusted_model_review_not_validation",
         "model": PINNED_MODEL_ID,
@@ -2681,7 +2757,7 @@ def run_pipeline(
     if mode not in {"offline", "live-final"}:
         raise StructuredAnalysisError("mode must be offline or live-final")
     revision = candidate_revision or _git_revision()
-    live_lock_path = _live_lock_path or (CORRECTIVE_R2_LIVE_LOCK if corrective_round_2 else DEFAULT_LIVE_LOCK)
+    live_lock_path = _live_lock_path
     if mode == "live-final":
         _verify_freeze(revision, freeze_sha)
         if not confirm_final_run:
@@ -2693,6 +2769,12 @@ def run_pipeline(
         if not api_key:
             raise StructuredAnalysisError("DEEPINFRA_API_KEY is required; credential value is never printed or recorded")
         resource_config, resource_config_hash = _read_approved_resource_config(resource_config_path)
+        if live_lock_path is None:
+            live_lock_path = _live_run_lock_path(
+                resource_config_hash,
+                revision,
+                corrective_round_2=corrective_round_2,
+            )
         if live_lock_path.exists():
             raise StructuredAnalysisError("the one final live execution was already started; no second execution is permitted")
     else:
@@ -2703,6 +2785,23 @@ def run_pipeline(
 
     corpus = load_frozen_corpus(benchmark_dir, base_corpus_dir)
     release = build_release(corpus, revision, mode=mode)
+    if mode == "live-final":
+        assert resource_config is not None
+        release["run"]["run_id"] = f"sja-a-live-r1-{_sha256(_json_bytes([revision, corpus.benchmark_manifest_sha256, resource_config_hash]))[:16]}"
+        is_repair_config = resource_config_hash == REVIEW_REPAIR_RESOURCE_CONFIG_SHA256
+        release["run"]["resource_config_scope"] = (
+            "POC A review-sizing repair v1; not the matched historical A/B comparison configuration"
+            if is_repair_config
+            else "parent-approved shared A/B live-run configuration"
+        )
+        release["run"]["planned_resource_config"] = {
+            "model": resource_config["model"],
+            "provider": resource_config["provider"],
+            "sampling": dict(resource_config["sampling"]),
+            "caps": dict(resource_config["caps"]),
+            "evidence_policy": MATCHED_EVIDENCE_POLICY,
+        }
+        release["run"]["config_hash"] = resource_config_hash
     release["run"]["started_at"] = pipeline_started_at
     effective_command = command or f"python -m skills_vector structured-job-analysis --mode {mode}"
     release["acceptance"]["commands_run"][0]["command"] = effective_command
@@ -2733,7 +2832,7 @@ def run_pipeline(
         _write_json(output_dir / "run-receipt.json", receipt)
         return receipt
 
-    assert resource_config is not None and api_key is not None
+    assert resource_config is not None and api_key is not None and live_lock_path is not None
     body = _request_body(release, resource_config)
     try:
         request_costs, total_estimate = preflight_request_batch([body], resource_config)
@@ -2747,7 +2846,8 @@ def run_pipeline(
     reservation = {
         "status": "reserved_before_provider_call",
         "basis": (
-            "whole-run two-input-tokens-per-serialized-byte ceiling plus max_tokens=2048 output ceiling; "
+            "whole-run two-input-tokens-per-serialized-byte ceiling plus "
+            f"max_tokens={resource_config['sampling']['max_tokens']} output ceiling; "
             "reasoning_effort=none is requested and any billable reasoning remains included in max_tokens "
             "with no separate/additive allowance"
         ),
@@ -2766,7 +2866,9 @@ def run_pipeline(
         "hard_ceiling_usd": MAX_FINAL_SPEND_USD,
         "model": PINNED_MODEL_ID,
         "reasoning_effort": "none",
-        "reasoning_accounting": "all billable reasoning is included in the max_tokens=2048 output ceiling",
+        "reasoning_accounting": (
+            f"all billable reasoning is included in the max_tokens={resource_config['sampling']['max_tokens']} output ceiling"
+        ),
         "automatic_retry": False,
         "escalation_or_fallback": False,
     }
@@ -2807,6 +2909,7 @@ def run_pipeline(
         "reservation_status": "reserved_before_provider_call",
         "provider": "deepinfra",
         "model": PINNED_MODEL_ID,
+        "resource_config_hash": resource_config_hash,
         "credential_value_recorded": False,
     }
     try:
@@ -2820,7 +2923,12 @@ def run_pipeline(
 
     # The lock is durable before any provider action. A crash or provider error
     # consumes the sole attempt rather than opening a retry path.
-    _write_release_files(output_dir, release)
+    _write_release_files(
+        output_dir,
+        release,
+        resource_config=resource_config,
+        resource_config_hash=resource_config_hash,
+    )
     _write_json(output_dir / "run-receipt.json", receipt)
     provider_response: ProviderResponse | None = None
     response_record: dict[str, Any] | None = None
@@ -2922,7 +3030,12 @@ def run_pipeline(
         release["run"]["resource_ledger"]["inference_cost_usd_reservation_status"] = reservation["status"]
         _set_pipeline_timing(release, pipeline_started)
         accepted_review_path.unlink(missing_ok=True)
-        _write_release_files(output_dir, release)
+        _write_release_files(
+            output_dir,
+            release,
+            resource_config=resource_config,
+            resource_config_hash=resource_config_hash,
+        )
         _update_lock(lock_path, {
             "status": "failed_consumed_no_retry",
             "finished_at": datetime.now(UTC).isoformat(timespec="seconds"),
@@ -2933,7 +3046,12 @@ def run_pipeline(
         _write_json(output_dir / "run-receipt.json", receipt)
         raise StructuredAnalysisError(sanitized_failure) from None
 
-    _write_release_files(output_dir, release)
+    _write_release_files(
+        output_dir,
+        release,
+        resource_config=resource_config,
+        resource_config_hash=resource_config_hash,
+    )
     receipt["commands_run"] = [{"command": effective_command, "exit_code": 0, "receipt_path": "run-receipt.json"}]
     _write_json(output_dir / "run-receipt.json", receipt)
     return receipt
