@@ -1,0 +1,12 @@
+# source src_ef0e8a41a4de1756b584
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_2d7e006bbc80ded82b95
+# url https://boards-api.greenhouse.io/v1/boards/datadog/jobs/1497543
+# publisher Datadog
+# retrieved_at 2026-09-30T23:51:30Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 3e7bb5bc31308c306897d925abcd17ff44e1cca2152044d1cf5607739555f86d raw_bytes 10724
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=5c6babed855e8fa3877a96ae employer=Datadog title=Commercial Account Executive - Boston location=Boston, Massachusetts, USA variant= url=https://careers.datadoghq.com/detail/1497543/?gh_jid=1497543
+Manage the full sales cycle, including technical demonstrations and negotiation

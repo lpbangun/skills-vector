@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_8e0f9b3c3234b3afcaf8",
+  "release_id": "rel_20260930_11872e02dacc",
+  "occupation_slug": "growth-manager",
+  "claim_type": "advertised_demand",
+  "statement": "retail media consultative selling: consultative solution-selling into retail media accounts — recorded in 3 of 26 admitted Growth Manager postings (variant scope sales-account-executive) from 1 of 8 employers in the 2026-09-30 US sample.",
+  "quote": "A consultative sales approach with a track record of growing accounts through education and solution-selling",
+  "variant": "sales-account-executive",
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_05ca29ef70aad8f2f99e",
+      "url": "https://boards-api.greenhouse.io/v1/boards/instacart/jobs?content=true",
+      "publisher": "Instacart",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:25:01Z",
+      "sha256": "51b44c654cf5c3aaa4e286911ff946365775ae9f99adfeb48a12451239858854",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:43:47Z",
+  "published_at": "2026-09-30T23:48:04Z",
+  "citation_path": "/release/citations/clm_8e0f9b3c3234b3afcaf8.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "18e6fb38e882322e2cc995cef22d68656eb6efba4b9b71e28d4b85f10ec599b2"
+}

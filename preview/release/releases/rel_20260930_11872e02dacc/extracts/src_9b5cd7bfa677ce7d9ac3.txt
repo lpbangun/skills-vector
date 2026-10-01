@@ -1,0 +1,12 @@
+# source src_9b5cd7bfa677ce7d9ac3
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_16c9794cae5faf367e83
+# url https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8788674002
+# publisher SpaceX
+# retrieved_at 2026-09-30T23:15:22Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682 raw_bytes 8419
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=8c8a03fb3aaa8a0a26eb04dc employer=SpaceX title=HR Generalist location=Redmond, WA variant= url=https://boards.greenhouse.io/spacex/jobs/8788674002?gh_jid=8788674002
+Partner with HRBPs and coordinators to identify department needs, recommend changes, and implement improvements

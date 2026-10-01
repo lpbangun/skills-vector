@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_09329c49cbe088a037a2",
+  "release_id": "rel_20261001_bd52f9df83a6",
+  "occupation_slug": "account-executive",
+  "claim_type": "foundation",
+  "statement": "The O*NET wholesale and manufacturing sales representative occupation frames the core work as selling goods to businesses or groups of individuals, with substantial product knowledge required.",
+  "quote": "Sell goods for wholesalers or manufacturers to businesses or groups of individuals.",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_808826b942f6e7f788e9",
+      "url": "https://www.onetonline.org/link/summary/41-4012.00",
+      "publisher": "O*NET OnLine (U.S. Department of Labor)",
+      "source_type": "foundation",
+      "retrieval_kind": "",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:51:01Z",
+      "sha256": "a5f24efc7712665bbe0ec2c0a49ee16963dc180fb38c8c08345deb1a6a007ed9",
+      "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:58:53Z",
+  "published_at": "2026-10-01T00:04:44Z",
+  "citation_path": "/release/citations/clm_09329c49cbe088a037a2.json",
+  "attribution": "agent-authored synthesis over retrieved official foundation text",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "aaea327c28f3e8c28c337ef2b7403123369f6e806d52bebd13ac57695c291826"
+}

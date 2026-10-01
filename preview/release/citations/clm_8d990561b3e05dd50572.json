@@ -1,0 +1,97 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_8d990561b3e05dd50572",
+  "release_id": "rel_20261001_bd52f9df83a6",
+  "occupation_slug": "account-executive",
+  "claim_type": "advertised_demand",
+  "statement": "Full-cycle deal ownership: end-to-end sales cycle from prospecting to close — recorded in 6 of 19 admitted Account Executive postings (no variant split for this role) from 4 of 7 employers in the 2026-09-30 US sample.",
+  "quote": "Manage the full sales cycle, including technical demonstrations and negotiation",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_0094a0707188c6ed301f",
+      "url": "https://boards-api.greenhouse.io/v1/boards/twilio/jobs?content=true",
+      "publisher": "Twilio",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:51:11Z",
+      "sha256": "63a82dca4d5e23cafe7a57b981109f48d9967f10c7c18df16773a46af7b85ad0",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_629d40f8b2f5b459bd52",
+      "url": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs/1694375",
+      "publisher": "Datadog",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_2d7e006bbc80ded82b95",
+      "retrieved_at": "2026-09-30T23:51:29Z",
+      "sha256": "8808842dfc88b7d1998638908f5b3400dfe32d17820de0d555af1bb188903fe5",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_6b64af6cb7bf8eca43f0",
+      "url": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/6587328",
+      "publisher": "MongoDB",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_e8f50ad37e6e48abc3c6",
+      "retrieved_at": "2026-09-30T23:51:30Z",
+      "sha256": "1ef99b2041f7e5f5f5565ef0a82acdee60ff7fb112d613434e2ad961919423c0",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_ef0e8a41a4de1756b584",
+      "url": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs/1497543",
+      "publisher": "Datadog",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_2d7e006bbc80ded82b95",
+      "retrieved_at": "2026-09-30T23:51:30Z",
+      "sha256": "3e7bb5bc31308c306897d925abcd17ff44e1cca2152044d1cf5607739555f86d",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_136ddd79dba216fda94e",
+      "url": "https://boards-api.greenhouse.io/v1/boards/verkada/jobs/4248001007",
+      "publisher": "Verkada",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_73cf3754f3c9cc627a4e",
+      "retrieved_at": "2026-09-30T23:51:33Z",
+      "sha256": "b5492d1d286d4907648b8bcd6ac6b7e4a968caba9db7182e3c5a55793d2bb6e4",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_9644131c03ba227f3569",
+      "url": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs/7858788",
+      "publisher": "Datadog",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_2d7e006bbc80ded82b95",
+      "retrieved_at": "2026-09-30T23:51:33Z",
+      "sha256": "2dd92b4bf9c615b0d526078bfb7923e92f769c0e3b34dd2d066cb6946fdfd451",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:58:53Z",
+  "published_at": "2026-10-01T00:04:44Z",
+  "citation_path": "/release/citations/clm_8d990561b3e05dd50572.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "a074eee21b905128d9cad24e263bed003db38c2c62ddf9a0edf60b01103f523d"
+}

@@ -1,0 +1,15 @@
+# source src_79d1a054c685dee86878
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true
+# publisher Figma
+# retrieved_at 2026-09-30T23:25:00Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 17f412f45c48bd184eb293c5df521ff2cd5609f96875b597ae709c115b9609fb raw_bytes 1844614
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=5100869e45f2160aa6a8ba00 employer=Figma title=Product Manager, AI Growth location=San Francisco, CA • New York, NY • United States variant=product-growth url=https://boards.greenhouse.io/figma/jobs/5989185004?gh_jid=5989185004
+Use data and insights to build a portfolio of experiments and new features that drive users to discover the transformative impact of Figma’s AI features and products
+# posting id=17fdcc6950b4d97d92b73ade employer=Figma title=Account Executive, Mid-Market location=San Francisco, CA • New York, NY • United States variant=sales-account-executive url=https://boards.greenhouse.io/figma/jobs/5422236004?gh_jid=5422236004
+Maintaining and growing a targeted book of existing Mid-Market (500-5000 FTEs) customers
+# posting id=f64cb9de7b4fe2e4794bd6ab employer=Figma title=Account Executive, Federal - Civilian location=Washington, DC variant=sales-account-executive url=https://boards.greenhouse.io/figma/jobs/6143113004?gh_jid=6143113004
+Own and execute a territory strategy across a portfolio of strategic Federal Civilian agencies

@@ -1,0 +1,12 @@
+# source src_9644131c03ba227f3569
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_2d7e006bbc80ded82b95
+# url https://boards-api.greenhouse.io/v1/boards/datadog/jobs/7858788
+# publisher Datadog
+# retrieved_at 2026-09-30T23:51:33Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 2dd92b4bf9c615b0d526078bfb7923e92f769c0e3b34dd2d066cb6946fdfd451 raw_bytes 11221
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=f41f45efbf3b0c85bdf8b005 employer=Datadog title=Commercial Account Executive - LATAM (Portuguese Speaking) - Denver location=Denver, Colorado, USA variant= url=https://careers.datadoghq.com/detail/7858788/?gh_jid=7858788
+Manage the full sales cycle, including technical demonstrations and negotiation

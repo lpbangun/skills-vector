@@ -3,15 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Skills Vector · preview</title>
+  <title>Skills Vector · Agent market reference</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230c1828'/%3E%3Crect x='3' y='3' width='4' height='4' fill='%23f2f5f7'/%3E%3Crect x='9' y='9' width='4' height='4' fill='%231a4f8c'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="design-system/tokens.css">
   <link rel="stylesheet" href="design-system/components.css">
   <style>
+    /* Product surface — Evidence Atlas · Control tokens; see /DESIGN.md */
+
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    html { scroll-behavior: smooth; font-size: 100%; }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after {
@@ -20,6 +25,7 @@
         transition-duration: 0.01ms !important;
       }
     }
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -27,133 +33,964 @@
       background-color: var(--mineral);
       background-image:
         radial-gradient(ellipse 80% 55% at 12% -8%, color-mix(in srgb, var(--present-soft) 55%, transparent), transparent 58%),
-        linear-gradient(180deg, var(--paper) 0%, var(--mineral) 42%, var(--mineral-deep) 100%);
+        radial-gradient(ellipse 70% 50% at 92% 8%, color-mix(in srgb, var(--navy) 7%, transparent), transparent 55%),
+        radial-gradient(ellipse 60% 40% at 70% 95%, color-mix(in srgb, var(--present) 6%, transparent), transparent 50%),
+        linear-gradient(180deg, var(--paper) 0%, var(--mineral) 38%, var(--mineral-deep) 100%);
+      background-attachment: fixed;
       font-family: var(--font-sans);
       font-size: 0.9375rem;
       line-height: 1.55;
+      font-variant-numeric: tabular-nums;
+      -webkit-font-smoothing: antialiased;
     }
+
     a { color: var(--present-ink); }
-    a:focus-visible, button:focus-visible {
+    a:hover { color: var(--navy); }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible {
       outline: 2px solid var(--focus);
       outline-offset: 2px;
     }
+
     .skip {
-      position: absolute;
-      left: -9999px;
-      top: 0;
-      background: var(--navy);
-      color: var(--white);
-      padding: 0.75rem 1rem;
-      z-index: 10;
+      position: absolute; left: -9999px; top: 0;
+      background: var(--navy); color: var(--white);
+      padding: 0.75rem 1rem; z-index: 100; font-size: 0.875rem;
     }
     .skip:focus { left: 0.75rem; top: 0.75rem; }
-    header {
-      border-bottom: 1px solid var(--rule);
-      background: color-mix(in srgb, var(--paper) 88%, transparent);
-      padding: var(--space-md) var(--space-lg);
+
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
     }
-    .kicker {
-      font-family: var(--font-mono);
-      font-size: 0.6875rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--graphite);
-      margin: 0 0 var(--space-xs);
+
+    .topbar {
+      border-bottom: 1px solid var(--rule-soft);
+      background: color-mix(in srgb, var(--paper) 92%, transparent);
+      backdrop-filter: blur(6px);
     }
-    h1 {
-      font-family: var(--font-serif);
-      font-size: clamp(1.45rem, 3vw, 1.95rem);
-      font-weight: 600;
-      letter-spacing: -0.015em;
-      margin: 0 0 var(--space-sm);
+    .topbar-inner {
+      max-width: var(--max); margin: 0 auto; padding: 0.85rem 1.25rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     }
-    header p { margin: 0; max-width: 44rem; color: var(--graphite); }
-    .actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-md); }
-    main { padding: var(--space-lg); display: grid; gap: var(--space-lg); }
-    .grid {
-      display: grid;
-      gap: var(--space-md);
-      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    .brand { display: inline-flex; align-items: center; gap: 0.7rem; text-decoration: none; color: var(--navy); min-height: 44px; }
+    .brand-mark { width: 1.35rem; height: 1.35rem; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; flex-shrink: 0; }
+    .brand-mark span { display: block; background: var(--navy); }
+    .brand-mark span:nth-child(4) { background: var(--present); }
+    .brand-text { display: flex; flex-direction: column; gap: 0.05rem; }
+    .brand-name { font-weight: 600; font-size: 0.95rem; line-height: 1.1; letter-spacing: -0.01em; }
+    .brand-sub { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--graphite-soft); }
+    .privacy {
+      font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--graphite); display: inline-flex; align-items: center; gap: 0.45rem; min-height: 44px;
     }
-    article {
-      background: var(--paper);
-      border: 1px solid var(--rule-soft);
-      border-top: 2px solid var(--present);
-      padding: var(--space-md);
+    .privacy .box { width: 0.7rem; height: 0.7rem; border: 1.5px solid var(--navy); display: inline-block; }
+
+    main { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem 4rem; }
+
+    .hero { padding: 2.25rem 0 1.75rem; border-bottom: 1px solid var(--rule); position: relative; }
+    .hero::before { content: ""; position: absolute; left: 0; top: 1.1rem; width: 1.5rem; height: 1px; background: var(--present); }
+    .eyebrow {
+      font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--present-ink); display: inline-flex; align-items: center; gap: 0.45rem; margin: 0 0 0.85rem;
     }
-    article h2 {
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      margin: 0 0 var(--space-xs);
+    .eyebrow .diamond { width: 0.45rem; height: 0.45rem; background: var(--present); transform: rotate(45deg); flex-shrink: 0; }
+    .hero h1 {
+      font-family: var(--font-serif); font-weight: 600; font-size: clamp(1.85rem, 4.2vw, 2.85rem);
+      line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 0.85rem; max-width: 22ch; color: var(--navy);
     }
-    .meta {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--graphite);
+    .hero-lede { margin: 0; max-width: 44rem; color: var(--graphite); font-size: 1rem; }
+    .meta-row {
+      margin-top: 1.35rem; display: flex; flex-wrap: wrap; gap: 0.65rem 1.5rem;
+      font-family: var(--font-mono); font-size: 0.75rem; color: var(--graphite-soft);
     }
-    ul { margin: var(--space-sm) 0 0; padding-left: 1.1rem; }
-    footer {
-      padding: var(--space-md) var(--space-lg) var(--space-xl);
-      color: var(--graphite);
-      font-size: 0.875rem;
+
+    .section { padding: 2rem 0 0.5rem; }
+    .section-head {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end;
+      gap: 0.75rem 1.5rem; margin-bottom: 1.15rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--rule-soft);
     }
-    .error { border-top-color: var(--disagree); }
+    .section-kicker { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--graphite-soft); margin: 0 0 0.35rem; }
+    .section-head h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(1.35rem, 2.5vw, 1.75rem); margin: 0; letter-spacing: -0.015em; line-height: 1.2; }
+    .section-note { font-family: var(--font-mono); font-size: 0.75rem; color: var(--graphite-soft); margin: 0; max-width: 24rem; text-align: right; }
+    @media (max-width: 820px) { .section-note { text-align: left; max-width: none; } }
+
+    .compare { border: 1px solid var(--rule); background: var(--paper); overflow-x: auto; }
+    .compare table { min-width: 40rem; }
+    @media (max-width: 560px) { .compare table { min-width: 34rem; } }
+    table { border-collapse: collapse; width: 100%; font-size: 0.875rem; }
+    th, td { border: 1px solid var(--rule-soft); padding: 0.75rem 0.85rem; vertical-align: top; text-align: left; }
+    thead th { background: var(--navy); color: var(--white); border-color: var(--navy-mid); font-weight: 400; }
+    thead th.is-open { background: var(--present); color: var(--navy); border-color: var(--present-ink); }
+    tbody th { background: var(--mineral-deep); }
+    .row-label { width: 9rem; font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--graphite); }
+    .role-id { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; display: block; margin-bottom: 0.25rem; }
+    .role-name { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600; line-height: 1.2; }
+    .unit { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--graphite); white-space: nowrap; }
+
+    .status { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.03em; text-transform: uppercase; }
+    .swatch { width: 0.65rem; height: 0.65rem; flex-shrink: 0; border: 1px solid currentColor; display: inline-block; }
+    .swatch.fill { background: currentColor; }
+    .swatch.slash { background: linear-gradient(135deg, transparent 46%, currentColor 46%, currentColor 54%, transparent 54%); background-color: var(--white); border-color: var(--graphite-soft); color: var(--graphite-soft); }
+    .st-present { color: var(--present-ink); }
+    .st-uncertain { color: var(--uncertain); }
+    .st-disagree { color: var(--disagree); }
+    .st-idle { color: var(--graphite-soft); }
+    .mono { font-family: var(--font-mono); font-size: 0.75rem; font-variant-numeric: tabular-nums; }
+    .mono.accent { color: var(--present-ink); }
+
+    .actions { display: flex; flex-direction: column; gap: 0.45rem; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0.55rem 0.9rem;
+      font-family: var(--font-sans); font-size: 0.875rem; font-weight: 500; text-decoration: none;
+      border: 1.5px solid var(--navy); background: var(--navy); color: var(--white); cursor: pointer; text-align: center;
+      transition: background-color 120ms ease, color 120ms ease;
+    }
+    .btn:hover { background: var(--navy-mid); color: var(--white); }
+    .btn.secondary { background: var(--white); color: var(--navy); }
+    .btn.secondary:hover { background: var(--mineral-deep); }
+    .btn.present { background: var(--present); border-color: var(--present-ink); color: var(--white); }
+    .btn.present:hover { background: var(--present-ink); }
+    .btn.present-soft { background: var(--present-soft); border-color: var(--present); color: var(--present-ink); }
+    .btn.present-soft:hover { background: color-mix(in srgb, var(--present-soft) 70%, var(--present)); }
+    .btn.ghost { background: transparent; border-color: var(--rule-soft); color: var(--graphite); }
+    .btn.small { min-height: 36px; padding: 0.35rem 0.6rem; font-size: 0.8125rem; }
+
+    .legend {
+      margin: 1.25rem 0 0; padding: 0.7rem 0; border-top: 1px solid var(--rule-soft); border-bottom: 1px solid var(--rule-soft);
+      display: flex; flex-wrap: wrap; gap: 0.65rem 1.35rem; font-family: var(--font-mono); font-size: 0.6875rem;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--graphite);
+    }
+    .legend-item { display: inline-flex; align-items: center; gap: 0.4rem; }
+
+    .query-form {
+      display: grid; grid-template-columns: 1fr 12rem auto; gap: 0.75rem; align-items: end;
+      border: 1px solid var(--rule); background: var(--paper); padding: 1rem;
+    }
+    @media (max-width: 820px) { .query-form { grid-template-columns: 1fr; } }
+    .field { display: flex; flex-direction: column; gap: 0.35rem; }
+    .field label { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--graphite); }
+    .field input, .field select {
+      font-family: var(--font-sans); font-size: 0.9375rem; padding: 0.6rem 0.65rem; min-height: 44px;
+      border: 1.5px solid var(--rule-soft); background: var(--white); color: var(--navy); border-radius: 0;
+    }
+
+    .investigation { margin-top: 2rem; border: 1px solid var(--rule); background: var(--paper); position: relative; }
+    .investigation::before, .investigation::after { content: ""; position: absolute; width: 0.55rem; height: 0.55rem; border: 1.5px solid var(--navy); pointer-events: none; }
+    .investigation::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+    .investigation::after { top: -1px; right: -1px; border-left: 0; border-bottom: 0; }
+
+    .inv-head { padding: 1.15rem 1.25rem 1rem; border-bottom: 1px solid var(--rule); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem 1.5rem; align-items: flex-start; }
+    .inv-kicker { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--present-ink); margin: 0 0 0.4rem; }
+    .inv-head h2 { font-family: var(--font-serif); font-size: clamp(1.45rem, 3vw, 1.95rem); font-weight: 600; margin: 0; letter-spacing: -0.015em; line-height: 1.15; }
+    .inv-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 0.35rem; text-align: right; }
+    @media (max-width: 640px) { .inv-meta { align-items: flex-start; text-align: left; } }
+
+    .inv-body { display: grid; grid-template-columns: var(--rail) 1fr; gap: 0; align-items: start; }
+    @media (max-width: 860px) { .inv-body { grid-template-columns: 1fr; } }
+
+    .rail { border-right: 1px solid var(--rule-soft); background: linear-gradient(180deg, color-mix(in srgb, var(--navy) 4%, var(--mineral)) 0%, var(--mineral) 28%, var(--mineral-deep) 100%); padding: 1rem 0.65rem 1.5rem; position: sticky; top: 0; max-height: 100vh; overflow: auto; }
+    @media (max-width: 860px) { .rail { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--rule-soft); padding: 0.85rem 1rem; background: var(--mineral); } }
+    .rail-instrument { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin: 0 0 0.85rem; padding: 0.45rem 0.5rem; border: 1px solid var(--rule-soft); background: var(--paper); }
+    .rail-title { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--graphite); margin: 0; }
+    .rail nav ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.2rem; }
+    @media (max-width: 860px) { .rail nav ol { flex-direction: row; flex-wrap: nowrap; overflow-x: auto; gap: 0.35rem; padding-bottom: 0.25rem; } }
+    .rail a { display: grid; grid-template-columns: 1.6rem 1fr; align-items: baseline; gap: 0.35rem; text-decoration: none; color: var(--graphite); font-size: 0.8125rem; padding: 0.5rem 0.45rem; min-height: 44px; border: 1px solid transparent; }
+    @media (max-width: 860px) { .rail a { display: flex; flex-direction: column; align-items: flex-start; white-space: nowrap; padding: 0.5rem 0.55rem; background: var(--white); border: 1px solid var(--rule-soft); min-width: max-content; } }
+    .rail a:hover, .rail a:focus-visible { color: var(--navy); background: var(--paper); border-color: var(--rule-soft); }
+    .rail a.is-active { color: var(--present-ink); background: var(--present-soft); border-color: color-mix(in srgb, var(--present) 55%, var(--rule-soft)); font-weight: 500; }
+    .rail-num { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--graphite-soft); }
+    .rail-foot { margin-top: 1.25rem; padding: 0.65rem 0.45rem 0; border-top: 1px solid var(--rule-soft); font-family: var(--font-mono); font-size: 0.6875rem; color: var(--violet); line-height: 1.45; }
+    @media (max-width: 860px) { .rail-foot { display: none; } }
+
+    .brief { padding: 0 0 1.5rem; min-width: 0; }
+    .brief-section { padding: 1.25rem 1.25rem 1.35rem; border-bottom: 1px solid var(--rule-soft); scroll-margin-top: 0.75rem; }
+    .brief-section:last-child { border-bottom: 0; }
+    .brief-section h3 { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 600; margin: 0 0 0.75rem; letter-spacing: -0.01em; }
+    .sec-num { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--graphite-soft); display: block; margin-bottom: 0.3rem; font-weight: 500; }
+    .finding { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 500; line-height: 1.45; color: var(--navy); margin: 0 0 0.65rem; max-width: 46rem; }
+    .brief-section p { margin: 0 0 0.75rem; color: var(--navy-mid); max-width: 48rem; }
+    .brief-section p:last-child { margin-bottom: 0; }
+
+    .callout { border: 1px solid var(--rule-soft); border-top: 2px solid var(--graphite-soft); padding: 0.75rem 0.9rem; background: var(--mineral); margin: 0.85rem 0 0; max-width: 46rem; }
+    .callout.uncertainty { border-color: color-mix(in srgb, var(--uncertain) 45%, var(--rule-soft)); border-top-color: var(--uncertain); background: var(--uncertain-soft); }
+    .callout.disagreement { border-color: color-mix(in srgb, var(--disagree) 45%, var(--rule-soft)); border-top-color: var(--disagree); background: var(--disagree-soft); }
+    .callout.provenance { border-color: color-mix(in srgb, var(--violet) 45%, var(--rule-soft)); border-top-color: var(--violet); background: var(--violet-soft); }
+    .callout.present { border-color: color-mix(in srgb, var(--present) 45%, var(--rule-soft)); border-top-color: var(--present); background: color-mix(in srgb, var(--present-soft) 55%, var(--white)); }
+    .callout-label { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; color: var(--graphite); }
+    .callout.uncertainty .callout-label { color: var(--uncertain); }
+    .callout.disagreement .callout-label { color: var(--disagree); }
+    .callout.provenance .callout-label { color: var(--violet); }
+    .callout.present .callout-label { color: var(--present-ink); }
+    .callout p { margin: 0; font-size: 0.875rem; color: var(--navy-mid); }
+
+    .claim-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.75rem; }
+    .claim-list li { border: 1px solid var(--rule-soft); border-top: 2px solid var(--present); padding: 0.75rem 0.85rem; background: color-mix(in srgb, var(--present-soft) 28%, var(--white)); }
+    .claim-meta { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--violet); letter-spacing: 0.04em; margin-top: 0.45rem; display: flex; flex-wrap: wrap; gap: 0.4rem 0.9rem; align-items: center; }
+    .claim-list, .ledger, .process-list { grid-template-columns: minmax(0, 1fr); }
+    .claim-list > li, .ledger > li, .process-item { min-width: 0; overflow-wrap: anywhere; }
+    .source-links { display: flex; flex-wrap: wrap; gap: 0.3rem 0.8rem; align-items: baseline; }
+    .quote { border: 1px solid var(--rule-soft); background: var(--white); padding: 0.6rem 0.7rem; margin: 0.6rem 0 0; font-family: var(--font-serif); font-size: 0.95rem; color: var(--navy); }
+    .quote::before { content: "“"; color: var(--graphite-soft); }
+    .quote::after { content: "”"; color: var(--graphite-soft); }
+    .quote-src { display: block; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--graphite-soft); margin-top: 0.3rem; }
+
+    .matrix-wrap { overflow-x: auto; margin-top: 0.75rem; }
+    .matrix { min-width: 30rem; }
+    .matrix thead th { background: var(--mineral-deep); color: var(--graphite); font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; text-align: center; }
+    .matrix td { text-align: center; }
+    .cell-present { background: var(--present-soft); }
+    .cell-absent { background: linear-gradient(135deg, transparent 46%, var(--rule-soft) 46%, var(--rule-soft) 54%, transparent 54%); background-color: var(--white); }
+    .cell-disagree { background: var(--disagree-soft); }
+
+    .process-list { list-style: none; margin: 0.75rem 0 0; padding: 0; display: grid; gap: 0.5rem; }
+    .process-item { border: 1px solid var(--rule-soft); border-top: 2px solid var(--present); background: var(--white); padding: 0.7rem 0.8rem; }
+    .process-item.is-idle { border-top-color: var(--rule-soft); background: var(--mineral); }
+    .process-head { display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; align-items: baseline; }
+    .process-rank { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--present-ink); }
+    .process-title { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 600; margin: 0; }
+    .process-body { margin: 0.35rem 0 0; color: var(--navy-mid); font-size: 0.875rem; max-width: 48rem; }
+    .process-meta { margin-top: 0.45rem; display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--graphite); }
+
+    .prov-groups { display: grid; gap: 0.85rem; margin-top: 0.75rem; }
+    .prov-group { border: 1px solid var(--rule-soft); background: var(--mineral); }
+    .prov-group-label { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--graphite); padding: 0.45rem 0.65rem; border-bottom: 1px solid var(--rule-soft); background: var(--mineral-deep); }
+    .prov-group.is-research .prov-group-label { color: var(--present-ink); background: color-mix(in srgb, var(--present-soft) 70%, var(--mineral-deep)); }
+    .prov-group.is-analysis .prov-group-label { color: var(--violet); background: color-mix(in srgb, var(--violet-soft) 75%, var(--mineral-deep)); }
+    .prov-group.is-gate .prov-group-label { color: var(--disagree); background: color-mix(in srgb, var(--disagree-soft) 80%, var(--mineral-deep)); }
+    .prov-stages { display: flex; flex-wrap: wrap; gap: 0.45rem; padding: 0.65rem; }
+    .stage { border: 1.5px solid var(--present); background: color-mix(in srgb, var(--present-soft) 45%, var(--white)); padding: 0.45rem 0.55rem; min-width: 6.5rem; flex: 1 1 6.5rem; max-width: 10.5rem; position: relative; }
+    .stage::after { content: ""; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 -2px 0 var(--present); opacity: 0.55; }
+    .stage.is-idle { border-color: var(--rule-soft); background: var(--mineral); }
+    .stage.is-idle::after { box-shadow: inset 0 -2px 0 var(--rule-soft); opacity: 0.5; }
+    .stage.analysis { border-color: var(--violet); background: color-mix(in srgb, var(--violet-soft) 55%, var(--white)); }
+    .stage.analysis::after { box-shadow: inset 0 -2px 0 var(--violet); }
+    .stage-num { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--graphite-soft); display: block; margin-bottom: 0.15rem; }
+    .stage-name { font-size: 0.8125rem; font-weight: 500; line-height: 1.25; color: var(--navy); }
+
+    .ledger { list-style: none; margin: 0.75rem 0 0; padding: 0; display: grid; gap: 0.6rem; }
+    .ledger li { border: 1px solid var(--rule-soft); background: var(--white); padding: 0.65rem 0.75rem; }
+    .ledger .src-id { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--violet); display: block; }
+    .ledger .src-title { font-family: var(--font-serif); font-size: 1rem; font-weight: 600; margin: 0.2rem 0 0.15rem; }
+    .ledger .src-meta { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--graphite-soft); display: flex; flex-wrap: wrap; gap: 0.3rem 0.8rem; }
+
+    .tabs { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.5rem 0 0.9rem; }
+    .tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; background: var(--white); border: 1.5px solid var(--rule-soft); color: var(--graphite); padding: 0.45rem 0.6rem; min-height: 40px; cursor: pointer; }
+    .tab[aria-pressed="true"] { background: var(--present-soft); border-color: var(--present); color: var(--present-ink); }
+    .table-scroll { overflow-x: auto; }
+    .data-table { font-size: 0.8125rem; min-width: 34rem; }
+    .data-table thead th { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; }
+    .extract-text { font-family: var(--font-mono); font-size: 0.75rem; white-space: pre-wrap; word-break: break-word; background: var(--mineral); border: 1px solid var(--rule-soft); padding: 0.6rem; max-height: 18rem; overflow: auto; margin-top: 0.5rem; }
+
+    .handoff { border: 1px solid var(--uncertain); border-top: 2px solid var(--uncertain); background: var(--uncertain-soft); padding: 0.85rem 1rem; margin-top: 1rem; }
+    .handoff h4 { font-family: var(--font-serif); margin: 0 0 0.4rem; font-size: 1.05rem; }
+    .handoff .mono { display: block; margin-top: 0.4rem; }
+
+    footer { max-width: var(--max); margin: 0 auto; padding: 1.5rem 1.25rem 3rem; border-top: 1px solid var(--rule-soft); font-family: var(--font-mono); font-size: 0.6875rem; color: var(--graphite-soft); }
   </style>
 </head>
 <body>
-  <a class="skip" href="#occupations">Skip to occupations</a>
-  <header>
-    <p class="kicker">Evidence Atlas · Control · PR preview</p>
-    <h1>Occupational skills desk</h1>
-    <p>
-      Static preview of the three-role pilot. This page only reads JSON already in the release
-      folder. It does not call models, and it is not production.
-    </p>
-    <div class="sv-callout sv-callout--uncertainty" style="margin-top: 1rem;">
-      <span class="sv-callout__label">Provisional fixture snapshot</span>
-      Offline O*NET excerpts and labeled fixtures. Rubrics are unreviewed. Do not treat this as the 30-role launch gate.
-    </div>
-    <div class="actions">
-      <a class="sv-btn sv-btn--secondary" href="desk.html">Open Evidence Desk mockup</a>
-      <a class="sv-btn sv-btn--ghost" href="release/manifest.json">Release manifest</a>
-      <a class="sv-btn sv-btn--ghost" href="release/AGENT.md">Agent guide</a>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#/" aria-label="Skills Vector home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+        <span class="brand-text">
+          <span class="brand-name">Skills Vector</span>
+          <span class="brand-sub">Agent market reference</span>
+        </span>
+      </a>
+      <p class="privacy"><span class="box" aria-hidden="true"></span> Public · Cited · No inference on browse</p>
     </div>
   </header>
-  <main>
-    <section id="occupations" aria-labelledby="occ-heading">
-      <h2 id="occ-heading" class="kicker">Pilot occupations</h2>
-      <div class="grid" id="cards"></div>
+
+  <main id="main" tabindex="-1">
+    <header class="hero">
+      <p class="eyebrow"><span class="diamond" aria-hidden="true"></span> Occupational research · United States · Agent-run releases</p>
+      <h1>Agent market reference</h1>
+      <p class="hero-lede">
+        Three roles under observation — HR Generalist, Growth Manager (product-growth, growth-marketing,
+        sales-account-executive kept distinct) and Account Executive. Every claim is an agent-authored synthesis
+        over admitted public evidence with a byte-verified quote. Foundations, advertised demand and learning
+        priorities stay separate; counts describe the retrieved sample, never the market.
+      </p>
+      <div class="meta-row" id="release-meta"><span>loading release…</span></div>
+    </header>
+
+    <section class="section" id="browse" data-stage="browse" aria-labelledby="roles-title">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Map · Role observatory</p>
+          <h2 id="roles-title">Roles in the current release</h2>
+        </div>
+        <p class="section-note">Deduplicated posting and employer counts are sample-scoped; open a role to inspect extracts, admissions, exclusions and lineage.</p>
+      </div>
+      <div class="compare" id="role-table-wrap" role="region" aria-label="Role comparison table">
+        <p class="mono" style="padding: 1rem;">loading roles…</p>
+      </div>
+      <div class="legend" role="list" aria-label="Map key">
+        <span class="legend-item" role="listitem"><span class="swatch fill st-present" aria-hidden="true"></span> Evidence published</span>
+        <span class="legend-item" role="listitem"><span class="swatch slash" aria-hidden="true"></span> Not yet researched</span>
+        <span class="legend-item" role="listitem"><span class="swatch fill st-disagree" aria-hidden="true"></span> Disagreement / dropped claim</span>
+      </div>
     </section>
+
+    <section class="section" id="query" data-stage="query" aria-labelledby="query-title">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Query · Cross-role</p>
+          <h2 id="query-title">Ask the evidence</h2>
+        </div>
+        <p class="section-note">Answers select stored, quote-verified claims. Unsupported or thin questions return an honest status and a bounded local research handoff.</p>
+      </div>
+      <form class="query-form" id="query-form" role="search">
+        <div class="field">
+          <label for="query-input">Question</label>
+          <input id="query-input" name="q" type="search" autocomplete="off" placeholder="e.g. onboarding, lifecycle email, quota pipeline" required>
+        </div>
+        <div class="field">
+          <label for="query-role">Role</label>
+          <select id="query-role" name="occupation">
+            <option value="">Cross-role</option>
+          </select>
+        </div>
+        <button id="query-submit" class="btn present" type="submit">Ask the evidence</button>
+      </form>
+      <div id="answer-region" data-stage="finding" aria-live="polite" role="region" aria-label="Cited answer"></div>
+    </section>
+
+    <article class="investigation" id="role-view" hidden aria-labelledby="role-title"></article>
+
+    <article class="investigation" id="claim-view" hidden aria-labelledby="claim-title"></article>
   </main>
-  <footer>Skills Vector preview · browsing this site does not trigger inference.</footer>
+
+  <footer>
+    <p>Skills Vector · Evidence Atlas · Control · releases are immutable and versioned; citations resolve at /release/citations/&lt;claim_id&gt;.json. Browsing and querying never run inference.</p>
+  </footer>
+
   <script>
-    const cards = document.getElementById("cards");
-    Promise.all([
-      fetch("release/occupations.json").then((r) => r.json()),
-      fetch("release/tasks.json").then((r) => r.json()),
-      fetch("release/coverage.json").then((r) => r.json()),
-    ]).then(([occupations, tasks, coverage]) => {
-      const note = document.createElement("p");
-      note.className = "meta";
-      note.textContent = `${coverage.occupations} occupations · families ${coverage.families_represented.join(", ")} · fixture-backed runs present`;
-      document.getElementById("occ-heading").after(note);
-      for (const occ of occupations) {
-        const related = tasks.filter((task) => task.occupation_id === occ.occupation_id);
-        const article = document.createElement("article");
-        article.innerHTML = `
-          <p class="kicker">${occ.family.replaceAll("_", " ")}</p>
-          <h2>${occ.title}</h2>
-          <p class="meta">${occ.occupation_id} · O*NET ${occ.onet_code || "unmapped"} · ${occ.state}</p>
-          <ul>${related.slice(0, 4).map((task) => `<li>${task.statement}</li>`).join("")}</ul>
-        `;
-        cards.append(article);
+    "use strict";
+
+    const state = { release: null, occupations: [], roleData: null, roleSlug: null, section: "extracts" };
+
+    function el(tag, props, ...children) {
+      const node = document.createElement(tag);
+      Object.entries(props || {}).forEach(([key, value]) => {
+        if (value === undefined || value === null) return;
+        if (key === "class") node.className = value;
+        else if (key === "text") node.textContent = value;
+        else if (key === "dataset") Object.assign(node.dataset, value);
+        else if (key.startsWith("on") && typeof value === "function") node.addEventListener(key.slice(2), value);
+        else if (key === "href" || key === "src" || key === "id" || key === "type" || key === "name" || key === "role" || key === "loading") node.setAttribute(key, value);
+        else node.setAttribute(key, value);
+      });
+      children.flat().forEach((child) => {
+        if (child === null || child === undefined || child === false) return;
+        node.append(child instanceof Node ? child : document.createTextNode(String(child)));
+      });
+      return node;
+    }
+
+    function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+
+    function callout(kind, label, text) {
+      const body = el("div", { class: `callout ${kind}` }, el("span", { class: "callout-label", text: label }), el("p", { text }));
+      return body;
+    }
+
+    function sourceLink(href, text, opts = {}) {
+      const attrs = Object.assign({ href, dataset: { stage: "source" } }, opts);
+      if (!String(href).startsWith("#")) {
+        attrs.target = "_blank";
+        attrs.rel = "noopener noreferrer";
       }
-    }).catch(() => {
-      const article = document.createElement("article");
-      article.className = "error";
-      article.innerHTML = "<h2>Release files missing</h2><p>Run <code>python3 scripts/build_preview.py</code> before assembling the Vercel output.</p>";
-      cards.append(article);
+      return el("a", attrs, text);
+    }
+
+    async function api(path, params) {
+      const url = new URL(path, window.location.origin);
+      Object.entries(params || {}).forEach(([key, value]) => {
+        if (value !== undefined && value !== null && value !== "") url.searchParams.set(key, value);
+      });
+      try {
+        const response = await fetch(url.toString(), { headers: { accept: "application/json" } });
+        const payload = await response.json();
+        return payload;
+      } catch (error) {
+        return { status: "api_unavailable", detail: "The read API did not answer: " + error };
+      }
+    }
+
+
+    function fmt(value) {
+      if (value === null || value === undefined || value === "") return "—";
+      return String(value);
+    }
+
+    function statCell(value) {
+      return el("span", { class: "mono", text: fmt(value) });
+    }
+
+    function swatch(state_) {
+      const cls = state_ === "present" ? "fill st-present" : state_ === "disagree" ? "fill st-disagree" : state_ === "uncertain" ? "fill st-uncertain" : "slash";
+      return el("span", { class: `swatch ${cls}`, "aria-hidden": "true" });
+    }
+
+    function renderReleaseMeta(release) {
+      const node = document.getElementById("release-meta");
+      clear(node);
+      if (!release || release.status !== "ok") {
+        node.append(el("span", { text: "No validated release is published yet." }));
+        return;
+      }
+      node.append(
+        el("span", { text: "release " + release.release_id }),
+        el("span", { text: "published " + (release.published_at || release.generated_at) }),
+        el("span", { text: "generated by " + (release.agent_attribution || "agent runtime").split(".")[0] }),
+        el("a", { href: "/api/schema", text: "API schema" }),
+        el("a", { href: "/api/agent-guide", text: "Agent guide" })
+      );
+    }
+
+    function renderRoleTable(occupations) {
+      const wrap = document.getElementById("role-table-wrap");
+      clear(wrap);
+      if (!occupations.length) {
+        wrap.append(el("p", { class: "mono", style: "padding: 1rem;", text: "No occupation slices are published yet. Run a bounded research pass and publish a release." }));
+        return;
+      }
+      const head = el("tr", {},
+        el("th", { scope: "col" }, el("span", { class: "visually-hidden", text: "Attribute" })),
+        ...occupations.map((occ) => el("th", { scope: "col" },
+          el("span", { class: "role-id", text: occ.slug }),
+          el("span", { class: "role-name", text: occ.label })))
+      );
+      const rows = [
+        ["Scope", (occ) => el("span", { class: "mono", text: (occ.role_scope && occ.role_scope.geography ? "US · " : "") + ((occ.role_scope && occ.role_scope.seniority) || "unbounded") })],
+        ["Sampled", (occ) => el("span", { class: "mono", text: `${fmt(occ.stats.postings_dedup)} admitted · ${fmt(occ.stats.employers_dedup)} employers · of ${fmt(occ.stats.sampled)} sampled` })],
+        ["Claims", (occ) => el("span", { class: "status st-present" }, swatch(occ.counts.claims ? "present" : "idle"), `${occ.counts.claims} total · ${occ.counts.foundation_claims} foundation · ${occ.counts.demand_claims} demand`)],
+        ["Learning", (occ) => el("span", { class: "mono", text: `${occ.counts.learning_priorities} ordered priorities` })],
+        ["Variants", (occ) => el("span", { class: "mono", text: occ.growth_variants && occ.growth_variants.length ? occ.growth_variants.join(" · ") : "—" })],
+        ["Open", (occ) => el("div", { class: "actions" },
+          el("a", { class: "btn present-soft small", href: `#/role/${occ.slug}`, dataset: { stage: "inspect" }, text: "Open role page" }))],
+      ];
+      const tbody = el("tbody", {});
+      rows.forEach(([label, cell]) => {
+        tbody.append(el("tr", {},
+          el("th", { scope: "row", class: "row-label", text: label }),
+          ...occupations.map((occ) => el("td", {}, cell(occ)))));
+      });
+      wrap.append(el("table", { class: "compare-table", id: "role-list" }, el("thead", {}, head), tbody));
+    }
+
+    function showOverview() {
+      document.getElementById("role-view").hidden = true;
+      document.getElementById("claim-view").hidden = true;
+      renderRoleTable(state.occupations);
+    }
+
+    async function loadOccupations() {
+      const occupations = await api("/api/occupations", { release: state.release && state.release.release_id || undefined });
+      if (occupations.status !== "ok") {
+        renderReleaseMeta({ status: "no_release" });
+        renderRoleTable([]);
+        return;
+      }
+      state.occupations = occupations.occupations || [];
+      renderRoleTable(state.occupations);
+      const select = document.getElementById("query-role");
+      const current = select.value;
+      clear(select);
+      select.append(el("option", { value: "", text: "Cross-role" }));
+      state.occupations.forEach((occ) => select.append(el("option", { value: occ.slug, text: occ.label })));
+      select.value = current && state.occupations.some((occ) => occ.slug === current) ? current : "";
+    }
+
+    function renderStages(stats, data, mappingCount) {
+      const lineage = (data.lineage || []).find((row) => row.occupation_slug === data.occupation.slug);
+      const recorded = lineage && lineage.stages || {};
+      const steps = [
+        ["01", "Discovery · boards", recorded.discovery && recorded.discovery.boards_targeted],
+        ["02", "Retrieval · requests", lineage && lineage.retrievals],
+        ["03", "Extraction · candidates", recorded.candidate_selection && recorded.candidate_selection.prefilter_candidates],
+        ["04", "Admission · postings", stats.postings_dedup],
+        ["05", "Mapping · rows", mappingCount],
+        ["06", "Reconciliation · claims", (data.claims || []).length],
+        ["07", "Challenge · findings", recorded.challenge && recorded.challenge.disagreements],
+      ];
+      return el("div", { class: "prov-groups" },
+        el("div", { class: "prov-group is-research" },
+          el("div", { class: "prov-group-label", text: "Research · bounded, serialized" }),
+          el("div", { class: "prov-stages" }, ...steps.slice(0, 4).map(([num, name, count]) => stage(num, name, count, Number.isInteger(count) && count > 0, false)))),
+        el("div", { class: "prov-group is-analysis" },
+          el("div", { class: "prov-group-label", text: "Analysis · agent passes" }),
+          el("div", { class: "prov-stages" }, ...steps.slice(4, 7).map(([num, name, count]) => stage(num, name, count, Number.isInteger(count) && count > 0, true)))),
+        el("div", { class: "prov-group is-gate" },
+          el("div", { class: "prov-group-label", text: "Validated release" }),
+          el("div", { class: "prov-stages" }, stage("08", "Published release", 1, true, false)))
+      );
+    }
+
+    function stage(num, name, count, on, analysis) {
+      return el("div", { class: `stage ${analysis ? "analysis" : ""} ${on ? "" : "is-idle"}` },
+        el("span", { class: "stage-num", text: num }),
+        el("span", { class: "stage-name", text: name }),
+        el("span", { class: "mono", style: "display:block; margin-top:0.25rem;", text: Number.isInteger(count) ? String(count) : "not recorded" }));
+    }
+
+    function claimCard(claim) {
+      const sourceLinks = (claim.source_ids || []).map((sid) => el("a", { href: `/release/citations/${claim.claim_id}.json`, text: sid, class: "mono" }));
+      const card = el("li", { dataset: { stage: "finding" } },
+        el("p", { class: "finding", text: claim.statement }),
+        claim.quote ? el("p", { class: "quote", text: claim.quote }) : null,
+        el("p", { class: "claim-meta" },
+          el("a", { href: `#/claim/${claim.claim_id}`, dataset: { stage: "inspect" }, text: "claim detail" }),
+          el("span", { text: claim.claim_type || "" }),
+          claim.variant ? el("span", { text: "variant " + claim.variant }) : null,
+          el("span", { text: "confidence " + (claim.confidence || "bounded") }),
+          claim.evidence && claim.evidence.postings_matched !== undefined ? el("span", { text: `${claim.evidence.postings_matched} of ${claim.evidence.postings_considered} admitted postings` }) : null
+        ),
+        el("p", { class: "mono source-links", style: "margin:0.35rem 0 0;" }, "sources: ", ...sourceLinks)
+      );
+      return card;
+    }
+
+    function sortClaims(claims) {
+      return (claims || []).slice().sort((a, b) => String(a.claim_id).localeCompare(String(b.claim_id)));
+    }
+
+    async function showRole(slug, section) {
+      document.getElementById("claim-view").hidden = true;
+      const view = document.getElementById("role-view");
+      view.hidden = false;
+      state.roleSlug = slug;
+      state.section = section || "extracts";
+      clear(view);
+      view.append(el("p", { class: "mono", style: "padding:1.25rem;", text: "loading role…" }));
+      const data = await api("/api/occupation", { slug });
+      clear(view);
+      if (data.status !== "ok") {
+        view.append(el("div", { class: "brief" }, callout("uncertainty", "Role unavailable", data.detail || `No stored evidence for ${slug}.`)));
+        return;
+      }
+      state.roleData = data;
+      const occ = data.occupation;
+      const stats = occ.stats || {};
+      const mappings = await api("/api/evidence", { section: "mappings", occupation: slug, release: data.release_id, limit: 1, no_text: true });
+      const mappingCount = mappings.status === "ok" ? mappings.count : undefined;
+      const sources = [...((data.foundations && data.foundations.sources) || []), ...((data.demand && data.demand.sources) || [])];
+      const uniqSources = [];
+      const seen = new Set();
+      sources.forEach((source) => { if (!seen.has(source.id)) { seen.add(source.id); uniqSources.push(source); } });
+
+      view.append(
+        el("header", { class: "inv-head" },
+          el("div", {},
+            el("p", { class: "inv-kicker", text: "Open investigation · " + (occ.family || "role") }),
+            el("h2", { id: "role-title", text: occ.label + " · role brief" })
+          ),
+          el("div", { class: "inv-meta" },
+            el("span", { class: "status st-present" }, swatch("present"), "Release " + data.release_id),
+            el("span", { class: "mono", text: "sampled " + fmt(occ.sampled_at) }),
+            el("span", { class: "mono", text: fmt(stats.postings_dedup) + " admitted postings · " + fmt(stats.employers_dedup) + " employers" })
+          )
+        ),
+        el("section", { class: "brief-section", "aria-label": "Provenance stages" },
+          el("span", { class: "sec-num", text: "Viz 01 · Provenance" }),
+          el("h3", { text: "Bounded pipeline lineage" }),
+          renderStages(stats, data, mappingCount),
+          el("p", { class: "mono", style: "margin-top:0.75rem; color: var(--graphite-soft);", text: "Stage-specific counts come from this release's lineage and evidence; they are not coverage or completion percentages. Missing counts are labeled not recorded." })
+        )
+      );
+
+      const brief = el("div", { class: "brief" });
+      const rail = el("aside", { class: "rail", "aria-label": "Brief contents" },
+        el("div", { class: "rail-instrument" },
+          el("p", { class: "rail-title", text: "Contents" }),
+          el("span", { class: "mono", text: slug })
+        ),
+        el("nav", {}, el("ol", {},
+          el("li", {}, el("a", { href: "#sec-foundations", class: "is-active" }, el("span", { class: "rail-num", text: "01" }), "Foundations")),
+          el("li", {}, el("a", { href: "#sec-demand" }, el("span", { class: "rail-num", text: "02" }), "Advertised demand")),
+          el("li", {}, el("a", { href: "#sec-learning" }, el("span", { class: "rail-num", text: "03" }), "Learning priorities")),
+          el("li", {}, el("a", { href: "#sec-inspect", dataset: { stage: "inspect" } }, el("span", { class: "rail-num", text: "04" }), "Evidence inspector")),
+          el("li", {}, el("a", { href: "#sec-sources" }, el("span", { class: "rail-num", text: "05" }), "Sources")),
+          el("li", {}, el("a", { href: "#sec-lineage" }, el("span", { class: "rail-num", text: "06" }), "Run lineage"))
+        )),
+        el("p", { class: "rail-foot", text: "Counts describe the retrieved sample only. Posting frequency is not importance, proficiency, hires or employability." })
+      );
+      rail.addEventListener("click", (event) => {
+        const link = event.target.closest("a[href^='#sec-']");
+        if (!link) return;
+        const target = document.getElementById(link.hash.slice(1));
+        if (!target) return;
+        event.preventDefault();
+        rail.querySelectorAll("a").forEach((anchor) => {
+          anchor.classList.toggle("is-active", anchor === link);
+          if (anchor === link) anchor.setAttribute("aria-current", "location");
+          else anchor.removeAttribute("aria-current");
+        });
+        target.setAttribute("tabindex", "-1");
+        target.focus({ preventScroll: true });
+        target.scrollIntoView({ block: "start" });
+      });
+
+      // 01 foundations
+      const foundationClaims = sortClaims((data.foundations && data.foundations.claims) || []);
+      brief.append(el("section", { class: "brief-section", id: "sec-foundations", "aria-labelledby": "h-foundations" },
+        el("span", { class: "sec-num", text: "Section 01 · Occupational foundations" }),
+        el("h3", { id: "h-foundations", text: "Official foundation" }),
+        el("p", { class: "mono", text: "Official occupational sources only (O*NET OnLine, BLS OOH). Distinct from advertised demand." }),
+        el("ul", { class: "claim-list" }, ...foundationClaims.map(claimCard)),
+        foundationClaims.length ? null : callout("uncertainty", "No foundation claims", "This role slice has no foundation claims that survived quote verification.")
+      ));
+
+      // 02 demand
+      const demand = data.demand || {};
+      const variantRows = Object.entries(demand.variant_counts || {});
+      const matrix = el("div", { class: "matrix-wrap" },
+        el("table", { class: "matrix" },
+          el("thead", {}, el("tr", {}, el("th", { scope: "col", text: "Variant" }), el("th", { scope: "col", text: "Admitted postings" }), el("th", { scope: "col", text: "Employers" }))),
+          el("tbody", {}, ...variantRows.map(([variant, counts]) => el("tr", {},
+            el("th", { scope: "row", class: "cell-present", text: variant }),
+            el("td", { class: "cell-present" }, el("span", { class: "mono", text: fmt(counts.postings) })),
+            el("td", { class: "cell-present" }, el("span", { class: "mono", text: fmt(counts.employers) }))
+          )))
+        )
+      );
+      const employerList = el("ul", { class: "ledger" }, ...((demand.employers || []).slice(0, 20).map((row) => el("li", {},
+        el("span", { class: "src-title", text: row.employer }),
+        el("span", { class: "src-meta" }, el("span", { text: row.postings + " admitted postings" }))
+      ))));
+      const sampleTable = el("div", { class: "table-scroll" },
+        el("table", { class: "data-table" },
+          el("thead", {}, el("tr", {},
+            el("th", { scope: "col", text: "Employer" }), el("th", { scope: "col", text: "Title" }),
+            el("th", { scope: "col", text: "Location" }), el("th", { scope: "col", text: "Variant" }),
+            el("th", { scope: "col", text: "Skills seen" }), el("th", { scope: "col", text: "Posting" }))),
+          el("tbody", {}, ...((demand.sample_postings || []).map((posting) => el("tr", {},
+            el("td", { text: posting.employer }),
+            el("td", { text: posting.title }),
+            el("td", { text: posting.location || "—" }),
+            el("td", { text: posting.variant || "—" }),
+            el("td", { text: (posting.skills || []).join(", ") || "—" }),
+            el("td", {}, sourceLink(posting.url, "original posting"))
+          ))))
+        )
+      );
+      brief.append(el("section", { class: "brief-section", id: "sec-demand", "aria-labelledby": "h-demand" },
+        el("span", { class: "sec-num", text: "Section 02 · Advertised demand" }),
+        el("h3", { id: "h-demand", text: "What the sampled postings advertise" }),
+        callout("uncertain", "Sample scope", `${occ.role_scope.geography || "geography unbounded"} · ${occ.role_scope.seniority || "seniority unbounded"}. ${occ.sampling_note || ""} Denominators: ${fmt(stats.total_seen)} retrieved → ${fmt(stats.sampled)} sampled → ${fmt(stats.postings_dedup)} admitted (${fmt(stats.employers_dedup)} employers); ${fmt(stats.excluded_total)} exclusions recorded.`),
+        el("h4", { class: "mono", style: "margin:1rem 0 0; text-transform:uppercase; letter-spacing:0.08em;", text: "Variant split" }),
+        matrix,
+        el("ul", { class: "claim-list" }, ...sortClaims((demand.claims || [])).map(claimCard)),
+        el("h4", { class: "mono", style: "margin:1.25rem 0 0; text-transform:uppercase; letter-spacing:0.08em;", text: "Employers in sample" }),
+        employerList,
+        el("h4", { class: "mono", style: "margin:1.25rem 0 0; text-transform:uppercase; letter-spacing:0.08em;", text: "Sampled postings" }),
+        sampleTable
+      ));
+
+      // 03 learning
+      const learning = data.learning_priorities || [];
+      brief.append(el("section", { class: "brief-section", id: "sec-learning", "aria-labelledby": "h-learning" },
+        el("span", { class: "sec-num", text: "Section 03 · Learning priorities" }),
+        el("h3", { id: "h-learning", text: "What to learn next — evidence-linked, ordered" }),
+        el("p", { class: "mono", text: "Priorities are analyst recommendations derived from the evidence, not measured importance or proficiency." }),
+        learning.length ? el("ol", { class: "process-list" }, ...learning.map((item) => el("li", { class: "process-item", dataset: { stage: "finding" } },
+          el("div", { class: "process-head" },
+            el("span", { class: "process-rank", text: "Priority " + (item.priority || "—") }),
+            el("h4", { class: "process-title", text: item.label })
+          ),
+          el("p", { class: "process-body", text: item.rationale }),
+          el("p", { class: "process-body", text: "Learning outcome: " + item.learning_outcome }),
+          el("div", { class: "process-meta" },
+            el("span", { text: "confidence " + (item.confidence || "bounded") }),
+            el("span", { text: "basis " + (item.basis || "advertised_demand") }),
+            el("span", { text: "uncertainty: " + (item.uncertainty || "not stated") })
+          ),
+          el("p", { class: "mono", style: "margin:0.45rem 0 0;" }, "cited claims: ",
+            ...(item.citation_urls || []).map((url, index) => el("a", { href: url, text: (item.evidence_claim_ids || [])[index] || "claim", class: "mono" })))
+        ))) : callout("uncertainty", "No learning priorities", "No learning priorities survived evidence linking for this role slice.")
+      ));
+
+      // 04 inspector
+      const inspector = el("section", { class: "brief-section", id: "sec-inspect", dataset: { stage: "inspect" }, "aria-labelledby": "h-inspect" },
+        el("span", { class: "sec-num", text: "Section 04 · Evidence inspector" }),
+        el("h3", { id: "h-inspect", text: "All publishable supporting data" }),
+        el("div", { class: "tabs", id: "inspector-tabs" }),
+        el("div", { id: "inspector-body" })
+      );
+      brief.append(inspector);
+
+      // 05 sources
+      brief.append(el("section", { class: "brief-section", id: "sec-sources", "aria-labelledby": "h-sources" },
+        el("span", { class: "sec-num", text: "Section 05 · Sources" }),
+        el("h3", { id: "h-sources", text: "Source ledger" }),
+        el("ul", { class: "ledger" }, ...uniqSources.map((source) => el("li", {},
+          el("span", { class: "src-id", text: source.id }),
+          el("span", { class: "src-meta" },
+            el("span", { text: source.source_type || "" }),
+            el("span", { text: "retrieved " + (source.retrieved_at || "—") }),
+            el("span", { text: source.rights || "" })
+          ),
+          el("p", { class: "src-title" }, sourceLink(source.url, source.publisher || source.url)),
+          el("span", { class: "src-meta" }, el("span", { text: "sha256 " + (source.sha256 || "").slice(0, 16) + "…" }))
+        )))
+      ));
+
+      // 06 lineage
+      const lineage = data.lineage || [];
+      brief.append(el("section", { class: "brief-section", id: "sec-lineage", "aria-labelledby": "h-lineage" },
+        el("span", { class: "sec-num", text: "Section 06 · Run lineage" }),
+        el("h3", { id: "h-lineage", text: "Research receipts (row per bounded run)" }),
+        lineage.length ? el("ul", { class: "ledger" }, ...lineage.map((row) => el("li", {},
+          el("span", { class: "src-id", text: row.run_id + " · " + (row.occupation_slug || "") }),
+          el("p", { class: "src-meta" },
+            el("span", { text: `${row.provider || "—"}/${row.model || "—"} thinking ${row.thinking || "—"}` }),
+            el("span", { text: "fallback " + String(row.model_fallback) }),
+            el("span", { text: `${row.retrievals || 0} retrievals · ${row.model_calls || 0} model calls` }),
+            el("span", { text: `${row.postings_admitted || 0} admitted of ${row.postings_seen || 0} seen` }),
+            el("span", { text: "finished " + (row.finished_at || "—") })
+          ),
+          el("p", { class: "mono", style: "margin:0.35rem 0 0;", text: JSON.stringify(row.stages || {}) })
+        ))) : callout("uncertainty", "No lineage records", "This slice has no published run lineage.")
+      ));
+
+      view.append(el("div", { class: "inv-body" }, rail, brief));
+      renderInspector(slug, state.section);
+    }
+
+    const SECTIONS = ["extracts", "admissions", "exclusions", "mappings", "disagreements", "lineage"];
+
+    function renderInspector(slug, section) {
+      const tabs = document.getElementById("inspector-tabs");
+      clear(tabs);
+      SECTIONS.forEach((name) => {
+        tabs.append(el("button", {
+          type: "button",
+          class: "tab",
+          "aria-pressed": name === section ? "true" : "false",
+          dataset: { stage: "inspect" },
+          onclick: () => { state.section = name; renderInspector(slug, name); },
+        }, name));
+      });
+      const body = document.getElementById("inspector-body");
+      clear(body);
+      body.append(el("p", { class: "mono", text: "loading " + section + "…" }));
+      api("/api/evidence", { section, occupation: slug, release: state.roleData.release_id, limit: 40 }).then((payload) => {
+        clear(body);
+        if (payload.status !== "ok") {
+          body.append(callout("uncertainty", "Inspector unavailable", payload.detail || "no rows"));
+          return;
+        }
+        const rows = payload.rows || [];
+        body.append(el("p", { class: "mono", text: `Showing ${rows.length} of ${payload.count} role row(s) · release ${payload.release_id}` }));
+        const file = section === "admissions" ? "postings" : section === "extracts" ? "sources" : section;
+        const bundle = `/release/releases/${payload.release_id}/`;
+        const exports = el("div", { class: "actions" },
+          el("a", { class: "btn ghost small", href: bundle + file + ".json", text: section === "extracts" ? "Complete source registry (JSON)" : "Complete release " + section + " (JSON)" }),
+          el("a", { class: "btn ghost small", href: bundle + "manifest.json", text: "Release file hashes (JSON)" })
+        );
+        if (section === "extracts") {
+          exports.append(el("a", { class: "btn ghost small", href: "/api/evidence?" + new URLSearchParams({ section, occupation: slug, release: payload.release_id, limit: "200" }), text: "All role extracts (JSON)" }));
+        }
+        body.append(exports, el("p", { class: "mono", text: "Complete release datasets include all occupations; rows carry occupation identifiers. The source registry includes every published extract file path." }));
+        if (!rows.length) {
+          body.append(callout("uncertainty", "No rows", "Nothing was recorded for this section in the current release."));
+          return;
+        }
+        if (section === "extracts") {
+          rows.forEach((row) => {
+            body.append(el("article", { class: "process-item" },
+              el("div", { class: "process-head" },
+                el("span", { class: "process-rank", text: row.source_type || "source" }),
+                el("h4", { class: "process-title" }, sourceLink(row.url, row.publisher || row.url))
+              ),
+              el("div", { class: "process-meta" },
+                el("span", { text: "id " + row.source_id }),
+                el("span", { text: "retrieved " + (row.retrieved_at || "—") }),
+                el("span", { text: "sha256 " + String(row.sha256 || "").slice(0, 16) + "…" }),
+                el("span", { text: (row.inclusion ? "included" : "excluded: " + (row.exclusion_reason || "")) }),
+                el("span", { text: row.extract_chars + " chars published" })
+              ),
+              row.extract_text ? el("pre", { class: "extract-text", text: row.extract_text }) : null
+            ));
+          });
+          return;
+        }
+        const columns = {
+          admissions: ["employer", "title", "location", "variant", "seniority", "work_level", "work_level_reason", "skills", "admission_reason", "url"],
+          exclusions: ["stage", "employer", "title", "reason", "url"],
+          mappings: ["employer", "variant", "skill", "evidence"],
+          disagreements: ["kind", "claim_id", "issue", "severity", "resolution", "challenger"],
+          lineage: ["run_id", "provider", "model", "thinking", "model_fallback", "retrievals", "model_calls", "postings_admitted", "finished_at"],
+        }[section];
+        const header = el("thead", {}, el("tr", {}, ...columns.map((column) => el("th", { scope: "col", text: column }))));
+        const tableBody = el("tbody", {});
+        rows.forEach((row) => {
+          const tableRow = el("tr", {});
+          columns.forEach((column) => {
+            const value = row[column];
+            if (column === "url" && typeof value === "string" && value) tableRow.append(el("td", {}, sourceLink(value, "source")));
+            else if (Array.isArray(value)) tableRow.append(el("td", { text: value.join(", ") }));
+            else if (typeof value === "object" && value !== null) tableRow.append(el("td", { text: JSON.stringify(value) }));
+            else tableRow.append(el("td", { text: fmt(value) }));
+          });
+          tableBody.append(tableRow);
+        });
+        body.append(el("div", { class: "table-scroll" }, el("table", { class: "data-table" }, header, tableBody)));
+      });
+    }
+
+    async function showClaim(claimId) {
+      document.getElementById("role-view").hidden = true;
+      const view = document.getElementById("claim-view");
+      view.hidden = false;
+      clear(view);
+      view.append(el("p", { class: "mono", style: "padding:1.25rem;", text: "loading claim…" }));
+      const claim = await api("/api/claim", { id: claimId });
+      clear(view);
+      if (claim.status !== "ok") {
+        view.append(el("div", { class: "brief" }, callout("uncertainty", "Claim unavailable", claim.detail || `No stored claim ${claimId}.`)));
+        return;
+      }
+      const citation = el("div", { class: "process-meta" },
+        el("span", { text: "citation " + claim.citation_url }),
+        claim.quote_verified ? el("span", { class: "status st-present" }, swatch("present"), "quote byte-verified") : el("span", { class: "status st-disagree" }, swatch("disagree"), "quote unverified"),
+        el("span", { text: "release " + claim.release_id }),
+        el("span", { text: "asserted " + (claim.asserted_at || "—") })
+      );
+      view.append(
+        el("header", { class: "inv-head" },
+          el("div", {},
+            el("p", { class: "inv-kicker", text: "Claim · " + claim.claim_type + (claim.variant ? " · " + claim.variant : "") }),
+            el("h2", { id: "claim-title", text: claim.claim_id })
+          ),
+          el("div", { class: "inv-meta" },
+            el("a", { class: "btn ghost small", href: claim.occupation_slug ? `#/role/${claim.occupation_slug}` : "#/", text: "Back to role" }),
+            el("a", { class: "btn present-soft small", href: claim.citation_url, text: "Open citation JSON" })
+          )
+        ),
+        el("section", { class: "brief-section" },
+          el("span", { class: "sec-num", text: "Statement" }),
+          el("p", { class: "finding", text: claim.statement }),
+          claim.quote ? el("p", { class: "quote", text: claim.quote }) : null,
+          el("p", { class: "quote-src", text: claim.evidence && claim.evidence.kind ? "evidence · " + claim.evidence.kind : "" }),
+          el("div", { class: "process-meta" },
+            el("span", { text: "scope " + ((claim.scope && claim.scope.geography) || "") + " · " + ((claim.scope && claim.scope.seniority) || "") }),
+            el("span", { text: "confidence " + (claim.confidence || "bounded") })
+          ),
+          citation,
+          el("h3", { style: "margin-top:1.25rem;", text: "Cited sources" }),
+          el("ul", { class: "ledger" }, ...(claim.sources || []).map((source) => el("li", {},
+            el("span", { class: "src-id", text: source.id }),
+            el("p", { class: "src-title" }, sourceLink(source.url, (source.publisher || "") + " · " + (source.url || ""))),
+            el("span", { class: "src-meta" },
+              el("span", { text: "retrieved " + (source.retrieved_at || "—") }),
+              el("span", { text: "rights " + (source.rights || "") })
+            )
+          )))
+        )
+      );
+    }
+
+    function renderAnswer(payload) {
+      const region = document.getElementById("answer-region");
+      clear(region);
+      if (!payload || (!payload.status && !payload.detail)) {
+        region.append(callout("uncertainty", "No response", "The query returned no payload."));
+        return;
+      }
+      if (payload.status === "cited_evidence") {
+        region.append(el("div", { class: "callout present" },
+          el("span", { class: "callout-label", text: "Cited evidence · " + payload.release_id }),
+          el("p", { class: "finding", text: payload.answer })
+        ));
+        region.append(el("ul", { class: "claim-list", dataset: { stage: "finding" } }, ...(payload.claims || []).map(claimCard)));
+        if ((payload.learning_priorities || []).length) {
+          region.append(el("p", { class: "mono", text: "related learning priorities: " + payload.learning_priorities.map((item) => item.label).join(" · ") }));
+        }
+        region.append(el("p", { class: "mono", style: "color: var(--graphite-soft);", text: payload.confidence.basis }));
+        return;
+      }
+      const statusLabel = payload.status === "insufficient_evidence" ? "Insufficient evidence" : "Unsupported question";
+      region.append(callout("uncertainty", statusLabel, payload.detail || payload.confidence && payload.confidence.basis || "No stored claim supports this question."));
+      if (payload.handoff) {
+        const handoff = payload.handoff;
+        const box = el("div", { class: "handoff" },
+          el("h4", { text: "Bounded local research handoff" }),
+          el("p", { text: "This public surface never launches research. An operator can run the bounded plan below locally against the subscription agent runtime; the plan is read-only and does not mutate state." }),
+          el("span", { class: "mono", text: "stages: " + (handoff.suggested_stages || []).join(" → ") }),
+          el("span", { class: "mono", text: "bounds: " + JSON.stringify(handoff.bounds || {}) }),
+          el("span", { class: "mono", text: "command: " + (handoff.operator_command || "") })
+        );
+        const link = el("a", {
+          class: "btn ghost small",
+          style: "margin-top:0.6rem;",
+          href: "/api/research-plan?q=" + encodeURIComponent(handoff.question || ""),
+          text: "Download research plan JSON",
+        });
+        box.append(link);
+        region.append(box);
+      }
+    }
+
+    async function runQuery(query, occupation, pushHash) {
+      const region = document.getElementById("answer-region");
+      clear(region);
+      region.append(el("p", { class: "mono", text: "querying stored evidence…" }));
+      const payload = await api("/api/query", { q: query, occupation: occupation || "", limit: 5 });
+      if (pushHash) {
+        const params = new URLSearchParams({ q: query });
+        if (occupation) params.set("occupation", occupation);
+        history.replaceState(null, "", "#/query?" + params.toString());
+      }
+      renderAnswer(payload);
+    }
+
+    function route() {
+      const hash = window.location.hash.replace(/^#\/?/, "");
+      const [head, ...rest] = hash.split("?");
+      const parts = head.split("/").filter(Boolean);
+      if (parts[0] === "role" && parts[1]) { showRole(parts[1], parts[2]); return; }
+      if (parts[0] === "claim" && parts[1]) { showClaim(parts[1]); return; }
+      if (parts[0] === "query") {
+        const params = new URLSearchParams(rest.join("?"));
+        const q = params.get("q") || "";
+        const occupation = params.get("occupation") || "";
+        document.getElementById("query-input").value = q;
+        document.getElementById("query-role").value = occupation;
+        if (q) runQuery(q, occupation, false);
+        showOverview();
+        return;
+      }
+      showOverview();
+    }
+
+    document.getElementById("query-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const query = document.getElementById("query-input").value.trim();
+      const occupation = document.getElementById("query-role").value;
+      if (!query) return;
+      runQuery(query, occupation, true);
     });
+
+    document.querySelector(".skip").addEventListener("click", (event) => {
+      event.preventDefault();
+      const main = document.getElementById("main");
+      main.focus({ preventScroll: true });
+      main.scrollIntoView({ block: "start" });
+    });
+
+    window.addEventListener("hashchange", route);
+
+    (async function boot() {
+      const release = await api("/api/release");
+      state.release = release;
+      renderReleaseMeta(release);
+      await loadOccupations();
+      route();
+    })();
   </script>
 </body>
 </html>

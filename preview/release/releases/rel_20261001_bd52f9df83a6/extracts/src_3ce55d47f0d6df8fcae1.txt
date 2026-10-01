@@ -1,0 +1,12 @@
+# source src_3ce55d47f0d6df8fcae1
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_9be49b446458b786b23d
+# url https://boards-api.greenhouse.io/v1/boards/stripe/jobs/7958961
+# publisher Stripe
+# retrieved_at 2026-09-30T23:25:29Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 2ce7d92c3461b64c59ffd4a4cd1024e537e3af20f201c48848f02843fe12b974 raw_bytes 7954
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=f391c2a38496f67d7bfd7a3d employer=Stripe title=Account Executive, Product Sales - Billing (Velocity) location=New York, San Francisco, Seattle, Atlanta, Chicago variant=sales-account-executive url=https://stripe.com/jobs/search?gh_jid=7958961
+Drive revenue to achieve and overperform on targets

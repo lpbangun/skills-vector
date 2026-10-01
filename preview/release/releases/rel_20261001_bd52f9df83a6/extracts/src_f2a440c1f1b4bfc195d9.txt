@@ -1,0 +1,14 @@
+# source src_f2a440c1f1b4bfc195d9
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_121cd2f31e972a246844
+# url https://boards-api.greenhouse.io/v1/boards/gitlab/jobs/8737840002
+# publisher GitLab
+# retrieved_at 2026-09-30T23:51:31Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 0050168d03857f2866e7accf64fdca3c61a8e9b6cfad61b9fc125cbf83ac9b5e raw_bytes 16664
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=bbedf389c45349e53b8c7c99 employer=GitLab title=Public Sector Strategic Account Executive, DoW location=Remote, United States variant= url=https://job-boards.greenhouse.io/gitlab/jobs/8737840002
+Own your book of business, from pipeline development through close and expansion, using a consultative, mission-focused sales approach
+# posting id=claim:clm_67210ab4de6f9f5a5e75 employer= title= location= variant= url=
+Own your book of business, from pipeline development through close and expansion

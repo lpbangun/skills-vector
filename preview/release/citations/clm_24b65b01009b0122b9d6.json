@@ -1,0 +1,61 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_24b65b01009b0122b9d6",
+  "release_id": "rel_20260930_3206b98a56c8",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "HR policy and employment law compliance: employment legislation and HR policy guidance — recorded in 3 of 12 admitted HR Generalist postings (no variant split for this role) from 2 of 5 employers in the 2026-09-30 US sample.",
+  "quote": "human resources policies, programs, and processes",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_602e4b83494866c86558",
+      "url": "https://boards-api.greenhouse.io/v1/boards/justworks/jobs?content=true",
+      "publisher": "Justworks",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:15:11Z",
+      "sha256": "403ea3506d88bbe2d10adeb408c10532d25ee3dfbda096e198b72b005eebed3a",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_7938a9d04e30b7356116",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8505413002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_16c9794cae5faf367e83",
+      "retrieved_at": "2026-09-30T23:15:22Z",
+      "sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_cfa53ee294c2fd1d5c2b",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8843917002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_16c9794cae5faf367e83",
+      "retrieved_at": "2026-09-30T23:15:23Z",
+      "sha256": "6055ecbb182a8fe83a7b1f25fc3dcbafe42f32bf5dc577eb47dcbac8ee32be5f",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:18:34Z",
+  "published_at": "2026-09-30T23:22:05Z",
+  "citation_path": "/release/citations/clm_24b65b01009b0122b9d6.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "f0fb410550b3fed72672031fa8735367215be8e0db0c271c86f016882a9ca99a"
+}

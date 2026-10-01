@@ -1,0 +1,64 @@
+{
+  "schema_version": "benchmark.round-zero.v1",
+  "protocol_version": "completion.v2",
+  "notes": "Corrected slate config (protocol completion.v2, round-zero-protocol-completion). Occupations and advisor pin are contract-fixed and pre-filled; everything candidate/deploy/release-specific is a slate that parent/implementer fills before verdicts. Gates return UNKNOWN for any missing/empty evidence, never pass.",
+  "candidate": {
+    "worktree": "/home/logani/projects/skills-vector-worktrees/agent-market-reference",
+    "commit_sha": "",
+    "benchmark_copy_sha256": "",
+    "acceptance_copy_sha256": "",
+    "branch": "poc/agent-market-reference",
+    "frozen_at": ""
+  },
+  "deploy": {
+    "preview_base_url": "",
+    "project": "wiredwriters-projects/skills-vector",
+    "deployment_id": null,
+    "deployment_url": null,
+    "unauthorized": null
+  },
+  "occupations": [
+    { "slug": "hr-generalist", "label": "HR Generalist", "growth_variants": [] },
+    {
+      "slug": "growth-manager",
+      "label": "Growth Manager",
+      "growth_variants": ["product-growth", "growth-marketing", "sales-account-executive"]
+    },
+    { "slug": "account-executive", "label": "Account Executive", "growth_variants": [] }
+  ],
+  "gates": {
+    "hg01": { "provenance_receipt": null },
+    "hg02": { "runs": [] },
+    "hg03": { "release_dir": null },
+    "hg04": { "release_dir": null },
+    "hg05": { "release_dir": null, "min_postings_per_occupation": null },
+    "hg06": { "release_dir": null },
+    "hg07": { "endpoint": null, "required_sections": null, "allowed_missing": 0 },
+    "hg08": { "endpoints": [], "min_content_chars": 200 },
+    "hg09": { "receipt_path": null, "excluded_identities": ["openai-codex/gpt-6.1-sol", "opencode-go/deepseek-v4.1-flash", "opencode-go/glm-5.3-flash"] },
+    "hg10": { "receipts_path": null, "journeys": [] },
+    "hg11": { "receipt_path": null, "cited_claim_url": null, "expected_claim_id": null, "pre_update_content_sha256": null },
+    "hg12": { "mutation_endpoints": [], "validation_negatives": [], "max_payload_bytes": null },
+    "hg13": { "unsupported": null, "insufficient": null, "retrieval_failure": null, "outage": null, "last_good": null },
+    "hg14": { "production_host_patterns": [] },
+    "hg15": { "static_url": null, "required_html_markers": null },
+    "hg16": { "timeout_seconds": 900, "minimum_tests": null, "allow_removed_tests": 0, "removed_incidental_tests": [] },
+    "hg17": { "verdict_artifact_paths": [] },
+    "hg18": { "required_dump_entries": ["provenance"] }
+  },
+  "paths": {
+    "dump_dir": "/home/logani/oprun-evidence/skills-vector-agent-market-reference/round-zero",
+    "protocol_completion_dir": "/home/logani/oprun-evidence/skills-vector-agent-market-reference/round-zero-protocol-completion",
+    "runtime_records": [
+      "/home/logani/oprun-evidence/skills-vector-agent-market-reference/round-zero-protocol-completion/input/advisor-session-model-record.jsonl"
+    ],
+    "release_dir": null,
+    "venv_python": null
+  },
+  "review": {
+    "advisor_pin": "opencode-go/glm-5.3-flash:max",
+    "pinned_from_runtime_record": true,
+    "no_worker_scores": true,
+    "fresh_context_session_ids": []
+  }
+}

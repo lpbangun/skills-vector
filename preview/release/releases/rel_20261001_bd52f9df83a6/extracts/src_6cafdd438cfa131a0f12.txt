@@ -1,0 +1,12 @@
+# source src_6cafdd438cfa131a0f12
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_e8f50ad37e6e48abc3c6
+# url https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/6755285
+# publisher MongoDB
+# retrieved_at 2026-09-30T23:51:31Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 cf1664c2c0fbc2e80e3fc7e43dc5911245bcc3c7d7283f996346570a2719d387 raw_bytes 10419
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=909148088638d14f1b60c6da employer=MongoDB title=Enterprise Account Executive, Growth location=San Francisco variant= url=https://www.mongodb.com/careers/job/?gh_jid=6755285
+5+ years of quota-carrying field sales experience with a focus on closing new workloads and expanding accounts

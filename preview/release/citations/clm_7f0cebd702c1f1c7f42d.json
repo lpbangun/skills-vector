@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_7f0cebd702c1f1c7f42d",
+  "release_id": "rel_20260930_11872e02dacc",
+  "occupation_slug": "growth-manager",
+  "claim_type": "foundation",
+  "statement": "Marketing manager work centers on planning and directing marketing policies and programs, determining demand for products and services relative to competitors, and identifying potential customers.",
+  "quote": "Plan, direct, or coordinate marketing policies and programs, such as determining the demand for products and services offered by a firm and its competitors, and identify potential customers.",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_32aba23338609d20384e",
+      "url": "https://www.onetonline.org/link/summary/11-2021.00",
+      "publisher": "O*NET OnLine (U.S. Department of Labor)",
+      "source_type": "foundation",
+      "retrieval_kind": "",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:24:58Z",
+      "sha256": "ba7691c6065b544b041dad4726794949942a282334d6066b106c6aaededdd374",
+      "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:43:47Z",
+  "published_at": "2026-09-30T23:48:04Z",
+  "citation_path": "/release/citations/clm_7f0cebd702c1f1c7f42d.json",
+  "attribution": "agent-authored synthesis over retrieved official foundation text",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "671630bffc2007b858d81fd6df7c14416f40fd1aca408d9caf16254ba94bcd09"
+}

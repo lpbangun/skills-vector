@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_e88ca35b864aa94a843b",
+  "release_id": "rel_20261001_bd52f9df83a6",
+  "occupation_slug": "account-executive",
+  "claim_type": "foundation",
+  "statement": "O*NET lists ongoing post-sale client support as a documented task, matching the expansion and retention duties seen in the admitted postings.",
+  "quote": "Consult with clients after sales or contract signings to resolve problems and to provide ongoing support.",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_808826b942f6e7f788e9",
+      "url": "https://www.onetonline.org/link/summary/41-4012.00",
+      "publisher": "O*NET OnLine (U.S. Department of Labor)",
+      "source_type": "foundation",
+      "retrieval_kind": "",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:51:01Z",
+      "sha256": "a5f24efc7712665bbe0ec2c0a49ee16963dc180fb38c8c08345deb1a6a007ed9",
+      "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:58:53Z",
+  "published_at": "2026-10-01T00:04:44Z",
+  "citation_path": "/release/citations/clm_e88ca35b864aa94a843b.json",
+  "attribution": "agent-authored synthesis over retrieved official foundation text",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "b8e3016c7db1c5b48ecfeeb6d4bec3a7190b1a8821b8e2d83d9f8bc159b7cb89"
+}

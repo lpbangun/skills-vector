@@ -1,0 +1,73 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_32fd3604e1f08846a63e",
+  "release_id": "rel_20260930_3206b98a56c8",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "Performance management: performance management support across core HR functions — recorded in 4 of 12 admitted HR Generalist postings (no variant split for this role) from 2 of 5 employers in the 2026-09-30 US sample.",
+  "quote": "performance management, and other core HR functions",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_7e9aa8ae74ffd693c4ff",
+      "url": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs/7997879",
+      "publisher": "Coinbase",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_53da6c046349fe5d4df2",
+      "retrieved_at": "2026-09-30T23:15:21Z",
+      "sha256": "c06ac79b375bdd9cfedb762f15a1dd4f6da1e7c765aadf414d202d402090bccc",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_7938a9d04e30b7356116",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8505413002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_16c9794cae5faf367e83",
+      "retrieved_at": "2026-09-30T23:15:22Z",
+      "sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_cfa53ee294c2fd1d5c2b",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8843917002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_16c9794cae5faf367e83",
+      "retrieved_at": "2026-09-30T23:15:23Z",
+      "sha256": "6055ecbb182a8fe83a7b1f25fc3dcbafe42f32bf5dc577eb47dcbac8ee32be5f",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_d76f602be4c12ae1732a",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8530754002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_16c9794cae5faf367e83",
+      "retrieved_at": "2026-09-30T23:15:24Z",
+      "sha256": "8829ec44951c8071027b8292e65c8d38818b53a2c4e8b6d4e2654ad90e3636a0",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:18:34Z",
+  "published_at": "2026-09-30T23:22:05Z",
+  "citation_path": "/release/citations/clm_32fd3604e1f08846a63e.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "bc838d5b57643fb30a0651f7419c9b0795647f2342e2717594db778b9c13fb0e"
+}

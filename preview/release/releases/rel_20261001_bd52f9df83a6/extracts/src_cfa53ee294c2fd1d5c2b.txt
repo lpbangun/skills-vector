@@ -1,0 +1,14 @@
+# source src_cfa53ee294c2fd1d5c2b
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_16c9794cae5faf367e83
+# url https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8843917002
+# publisher SpaceX
+# retrieved_at 2026-09-30T23:15:23Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 6055ecbb182a8fe83a7b1f25fc3dcbafe42f32bf5dc577eb47dcbac8ee32be5f raw_bytes 9399
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=6cb163ca811585852bf3de3e employer=SpaceX title=Sr. HR Business Partner location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8843917002?gh_jid=8843917002
+Operate as a key business partner to employees, managers, directors and senior leaders on workforce analytics, organizational optimization, leadership development, and other strategic initiatives
+# posting id=claim:clm_f8ec8e49ad811f49024d employer= title= location= variant= url=
+workforce analytics, organizational optimization, leadership development

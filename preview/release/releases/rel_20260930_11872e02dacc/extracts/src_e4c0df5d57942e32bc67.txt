@@ -1,0 +1,12 @@
+# source src_e4c0df5d57942e32bc67
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_9be49b446458b786b23d
+# url https://boards-api.greenhouse.io/v1/boards/stripe/jobs/8190036
+# publisher Stripe
+# retrieved_at 2026-09-30T23:25:29Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 bd5c9382116def65688baaead8ec5c796726d966b892cd4f905c43307fb0bc86 raw_bytes 10374
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=2d967f82b8303b53d31cd474 employer=Stripe title=Account Executive, Product - Local Payment Methods location=US-CA variant=sales-account-executive url=https://stripe.com/jobs/search?gh_jid=8190036
+Deliver against an individual quota by driving adoption, payment volume, and revenue

@@ -1,0 +1,17 @@
+# source src_bafc0231efe3d6f5b44e
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/duolingo/jobs?content=true
+# publisher Duolingo
+# retrieved_at 2026-09-30T23:25:01Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 6a93fe6d31512d1393db27487ce419166818d95ebd4a863a39664f47257feb07 raw_bytes 1027945
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=1a76c35ae1f30d92cf37057b employer=Duolingo title=Senior Performance Marketing Manager location=New York, NY variant=growth-marketing url=https://careers.duolingo.com/jobs/8778318002?gh_jid=8778318002
+In this hands-on role, you’ll be directly responsible for running and optimizing mobile acquisition at scale
+# posting id=e411f342b2af0a434a779836 employer=Duolingo title=Ad Sales Lead, Programmatic location=New York, NY variant=sales-account-executive url=https://careers.duolingo.com/jobs/8851677002?gh_jid=8851677002
+Own a programmatic revenue target and forecast
+# posting id=7c0448947f7676d8716866c5 employer=Duolingo title=Senior Product Manager, Growth location=Pittsburgh, PA variant=product-growth url=https://careers.duolingo.com/jobs/8747171002?gh_jid=8747171002
+Own product strategy and execution for a new growth team, from identifying opportunities to shipping and iterating on solutions
+# posting id=4b22d444fb0fa18221e9de6d employer=Duolingo title=Senior Product Manager, Growth location=New York, NY variant=product-growth url=https://careers.duolingo.com/jobs/8747275002?gh_jid=8747275002
+Own product strategy and execution for a new growth team

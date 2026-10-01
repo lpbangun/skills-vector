@@ -1,0 +1,11 @@
+# source src_8b717ba57e58f189150d
+# source_type job-board
+# retrieval_kind listing
+# url https://api.ashbyhq.com/posting-api/job-board/ramp
+# publisher Ramp
+# retrieved_at 2026-09-30T23:51:15Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 e135ba2a187d32b20ec5e83795118956ac337fe34287c505e4c5789f6ac9a1e0 raw_bytes 2097152
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=b943700bf7916a69868298ef employer=Ramp title=Account Manager | Mid-Market location=New York, NY (HQ) variant= url=https://jobs.ashbyhq.com/ramp/d84bbf19-572a-499c-9c87-0c154ce85caf
+This is a build role, not a maintain role.

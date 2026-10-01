@@ -1,0 +1,647 @@
+[
+  {
+    "id": "clm_6ea964c58cd91c366ef9",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "O*NET's Human Resources Specialists occupation (13-1071.00) lists HR Generalist among its sample of reported job titles, alongside coordinator, specialist, analyst, and recruiter titles.",
+    "quote": "Sample of reported job titles: Corporate Recruiter, Employment Representative, HR Analyst (Human Resources Analyst), HR Coordinator (Human Resources Coordinator), HR Generalist (Human Resources Generalist)",
+    "source_ids": [
+      "src_75bca50e000c73a05cb5"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_75bca50e000c73a05cb5"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "13-1071.00",
+      "alongside",
+      "among",
+      "analyst",
+      "coordinator",
+      "generalist",
+      "hr",
+      "human",
+      "lists",
+      "net",
+      "occupation",
+      "recruiter"
+    ],
+    "agent_run_id": "run_20260930T231324Z_22002c",
+    "asserted_at": "2026-09-30T23:18:34Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_5e3782328695ed44c926",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "The O*NET occupational definition frames this work around recruiting, screening, interviewing, and placing individuals within an organization.",
+    "quote": "Recruit, screen, interview, or place individuals within an organization.",
+    "source_ids": [
+      "src_75bca50e000c73a05cb5"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_75bca50e000c73a05cb5"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "around",
+      "definition",
+      "frames",
+      "individuals",
+      "interviewing",
+      "net",
+      "occupational",
+      "organization.",
+      "placing",
+      "recruiting",
+      "screening",
+      "within"
+    ],
+    "agent_run_id": "run_20260930T231324Z_22002c",
+    "asserted_at": "2026-09-30T23:18:34Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_d4e7d7516941bd90ca45",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "A documented core task is interpreting and explaining HR policies, procedures, laws, standards, or regulations.",
+    "quote": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+    "source_ids": [
+      "src_75bca50e000c73a05cb5"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_75bca50e000c73a05cb5"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "core",
+      "documented",
+      "explaining",
+      "hr",
+      "interpreting",
+      "laws",
+      "policies",
+      "procedures",
+      "regulations.",
+      "standards",
+      "task"
+    ],
+    "agent_run_id": "run_20260930T231324Z_22002c",
+    "asserted_at": "2026-09-30T23:18:34Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_91390271516e94b3be60",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "The occupation includes maintaining employment records for hiring, termination, leave, transfer, or promotion events using HR management system software.",
+    "quote": "Prepare or maintain employment records related to events",
+    "source_ids": [
+      "src_75bca50e000c73a05cb5"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_75bca50e000c73a05cb5"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "employment",
+      "events",
+      "hiring",
+      "hr",
+      "includes",
+      "leave",
+      "maintaining",
+      "management",
+      "occupation",
+      "promotion",
+      "records",
+      "software."
+    ],
+    "agent_run_id": "run_20260930T231324Z_22002c",
+    "asserted_at": "2026-09-30T23:18:34Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_296069227aa1398fa0d5",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "HR manager work is defined as acting as a link between management and employees by handling questions and resolving work-related problems.",
+    "quote": "Serve as a link between management and employees by handling questions",
+    "source_ids": [
+      "src_81d88b146e78fd6ae20d"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_81d88b146e78fd6ae20d"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "acting",
+      "defined",
+      "employees",
+      "handling",
+      "hr",
+      "link",
+      "management",
+      "manager",
+      "problems.",
+      "questions",
+      "resolving",
+      "work-related"
+    ],
+    "agent_run_id": "run_20260930T231324Z_22002c",
+    "asserted_at": "2026-09-30T23:18:34Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_038f42943e159c4b559e",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "BLS tracks compensation, benefits, and job analysis as a distinct specialist occupational area adjacent to generalist HR work.",
+    "quote": "Compensation, Benefits, and Job Analysis Specialists",
+    "source_ids": [
+      "src_15f41bfbe276afd69880"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_15f41bfbe276afd69880"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "adjacent",
+      "analysis",
+      "area",
+      "benefits",
+      "bls",
+      "compensation",
+      "distinct",
+      "generalist",
+      "hr",
+      "occupational",
+      "specialist",
+      "tracks"
+    ],
+    "agent_run_id": "run_20260930T231324Z_22002c",
+    "asserted_at": "2026-09-30T23:18:34Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_d8d0f07e5bde97f1dbd5",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Employee relations casework: handling employee inquiries, complaints, and investigations — recorded in 3 of 12 admitted HR Generalist postings (no variant split for this role) from 1 of 5 employers in the 2026-09-30 US sample.",
+    "quote": "Respond to employee inquiries, questions and complaints",
+    "source_ids": [
+      "src_2989feeae46ca5cf297b",
+      "src_8f1eb13e42a2f9d905b1",
+      "src_d76f602be4c12ae1732a"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 12,
+      "postings_matched": 3,
+      "employers_matched": 1,
+      "employers_considered": 5,
+      "quote_source": "src_2989feeae46ca5cf297b",
+      "detail": "Postings ask for frontline response to employee questions and complaints, plus investigation and conflict-resolution support in coordinator and business-partner roles.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Employee relations casework",
+      "HR policies",
+      "HR policies, programs, and processes",
+      "HR reporting",
+      "HRIS",
+      "Workday",
+      "benefits fairs",
+      "casework",
+      "confidentiality",
+      "conflict resolution",
+      "core HR functions",
+      "employee",
+      "employee inquiries",
+      "employee life-cycle processes",
+      "employee relations",
+      "employee relations investigations",
+      "employment verifications",
+      "exit interviews",
+      "human resources policies, programs, and processes",
+      "internal transfers"
+    ],
+    "agent_run_id": "run_20260930T231324Z_22002c",
+    "asserted_at": "2026-09-30T23:18:34Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_80fcc04c9919334dca35",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "HRIS administration: Workday configuration and HRIS record maintenance — recorded in 3 of 12 admitted HR Generalist postings (no variant split for this role) from 2 of 5 employers in the 2026-09-30 US sample.",
+    "quote": "Maintain our HRIS for all employee life-cycle processes",
+    "source_ids": [
+      "src_3b74b40433ab53ab82da",
+      "src_8f1eb13e42a2f9d905b1",
+      "src_a5eed0620cfc4a7c9c21"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 12,
+      "postings_matched": 3,
+      "employers_matched": 2,
+      "employers_considered": 5,
+      "quote_source": "src_8f1eb13e42a2f9d905b1",
+      "detail": "Work includes configuring Workday Core HCM business processes, notifications, security roles, and calculated fields, plus processing HR transactions and working an HRIS support ticket queue.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "HR policies",
+      "HR policies, programs, and processes",
+      "HR reporting",
+      "HR transactions",
+      "HRIS",
+      "HRIS administration",
+      "HRIS support ticket queue",
+      "SOX",
+      "Workday",
+      "Workday Core HCM",
+      "Workday releases",
+      "administration",
+      "benefits fairs",
+      "business processes",
+      "calculated fields",
+      "confidentiality",
+      "conflict resolution",
+      "employee inquiries",
+      "employee life-cycle processes",
+      "employee relations"
+    ],
+    "agent_run_id": "run_20260930T231324Z_22002c",
+    "asserted_at": "2026-09-30T23:18:34Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_32fd3604e1f08846a63e",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Performance management: performance management support across core HR functions — recorded in 4 of 12 admitted HR Generalist postings (no variant split for this role) from 2 of 5 employers in the 2026-09-30 US sample.",
+    "quote": "performance management, and other core HR functions",
+    "source_ids": [
+      "src_7938a9d04e30b7356116",
+      "src_7e9aa8ae74ffd693c4ff",
+      "src_cfa53ee294c2fd1d5c2b",
+      "src_d76f602be4c12ae1732a"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 12,
+      "postings_matched": 4,
+      "employers_matched": 2,
+      "employers_considered": 5,
+      "quote_source": "src_7938a9d04e30b7356116",
+      "detail": "Postings place performance management beside employee relations as a recurring core HR function supported by generalists and business partners.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Greenhouse, UltiPro, and/or Workday",
+      "HR policies",
+      "HR projects",
+      "Performance management",
+      "Workday",
+      "change management",
+      "compensation",
+      "compliance",
+      "confidentiality",
+      "employee relations",
+      "engagement",
+      "exit interviews",
+      "human resources policies, programs, and processes",
+      "internal transfers",
+      "leadership development",
+      "management",
+      "org design",
+      "organizational optimization",
+      "people programs",
+      "performance"
+    ],
+    "agent_run_id": "run_20260930T231324Z_22002c",
+    "asserted_at": "2026-09-30T23:18:34Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_5860e40d706fa54e6fc4",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Employee lifecycle administration: onboarding, transfers, promotions, and exit processing — recorded in 3 of 12 admitted HR Generalist postings (no variant split for this role) from 1 of 5 employers in the 2026-09-30 US sample.",
+    "quote": "Serve as the onboarding point of contact for the new hire program",
+    "source_ids": [
+      "src_62dc99e3d0305d3900f0",
+      "src_7938a9d04e30b7356116",
+      "src_8f1eb13e42a2f9d905b1"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 12,
+      "postings_matched": 3,
+      "employers_matched": 1,
+      "employers_considered": 5,
+      "quote_source": "src_62dc99e3d0305d3900f0",
+      "detail": "Coordinator and generalist postings cover new-hire onboarding, internal transfers and promotions, exit interviews, employment verifications, and benefits fairs.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Employee lifecycle administration",
+      "Greenhouse, UltiPro, and/or Workday",
+      "HR policies",
+      "HR policies, programs, and processes",
+      "HR projects",
+      "HR reporting",
+      "HRIS",
+      "administration",
+      "benefits fairs",
+      "confidentiality",
+      "conflict resolution",
+      "employee",
+      "employee inquiries",
+      "employee life-cycle processes",
+      "employee relations",
+      "employee relations investigations",
+      "employment verifications",
+      "exit interviews",
+      "human resources policies, programs, and processes",
+      "internal transfers"
+    ],
+    "agent_run_id": "run_20260930T231324Z_22002c",
+    "asserted_at": "2026-09-30T23:18:34Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_24b65b01009b0122b9d6",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "HR policy and employment law compliance: employment legislation and HR policy guidance — recorded in 3 of 12 admitted HR Generalist postings (no variant split for this role) from 2 of 5 employers in the 2026-09-30 US sample.",
+    "quote": "human resources policies, programs, and processes",
+    "source_ids": [
+      "src_602e4b83494866c86558",
+      "src_7938a9d04e30b7356116",
+      "src_cfa53ee294c2fd1d5c2b"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 12,
+      "postings_matched": 3,
+      "employers_matched": 2,
+      "employers_considered": 5,
+      "quote_source": "src_7938a9d04e30b7356116",
+      "detail": "Postings reference compliance content, HR policy frameworks, and employment law context used when coaching managers and answering employee questions.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "AI tools",
+      "Greenhouse, UltiPro, and/or Workday",
+      "HR policy and employment law compliance",
+      "HR projects",
+      "HR-related content, tools, and experiences",
+      "Workday",
+      "complex HR questions",
+      "compliance",
+      "confidentiality",
+      "customer compliance newsletter",
+      "customer learning opportunities",
+      "employee relations",
+      "employment",
+      "employment legislation",
+      "exit interviews",
+      "hr",
+      "human resources policies, programs, and processes",
+      "internal transfers",
+      "law",
+      "leadership development"
+    ],
+    "agent_run_id": "run_20260930T231324Z_22002c",
+    "asserted_at": "2026-09-30T23:18:34Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_be5cd380f9c8796016df",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Strategic HR business partnering: coaching and influencing senior leaders — recorded in 3 of 12 admitted HR Generalist postings (no variant split for this role) from 2 of 5 employers in the 2026-09-30 US sample.",
+    "quote": "coaching and influencing Director and VP+ level leaders",
+    "source_ids": [
+      "src_a04fbadd3ba8d83d76dd",
+      "src_cfa53ee294c2fd1d5c2b",
+      "src_d76f602be4c12ae1732a"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 12,
+      "postings_matched": 3,
+      "employers_matched": 2,
+      "employers_considered": 5,
+      "quote_source": "src_a04fbadd3ba8d83d76dd",
+      "detail": "Senior business-partner postings expect autonomy in advising directors, VPs, and executives and operating as a key partner on strategic initiatives.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Strategic HR business partnering",
+      "Workday",
+      "business",
+      "change management plans",
+      "coaching",
+      "confidentiality",
+      "data",
+      "employee relations",
+      "employment law",
+      "exit interviews",
+      "hr",
+      "human resources policies, programs, and processes",
+      "internal transfers",
+      "leadership development",
+      "organizational optimization",
+      "partnering",
+      "people operations",
+      "performance management",
+      "promotion opportunities",
+      "strategic"
+    ],
+    "agent_run_id": "run_20260930T231324Z_22002c",
+    "asserted_at": "2026-09-30T23:18:34Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_f8ec8e49ad811f49024d",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Workforce analytics and org design: workforce analytics and organizational optimization — recorded in 3 of 12 admitted HR Generalist postings (no variant split for this role) from 2 of 5 employers in the 2026-09-30 US sample.",
+    "quote": "workforce analytics, organizational optimization, leadership development",
+    "source_ids": [
+      "src_7e9aa8ae74ffd693c4ff",
+      "src_cfa53ee294c2fd1d5c2b",
+      "src_d76f602be4c12ae1732a"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 12,
+      "postings_matched": 3,
+      "employers_matched": 2,
+      "employers_considered": 5,
+      "quote_source": "src_cfa53ee294c2fd1d5c2b",
+      "detail": "Postings pair workforce analytics with organizational optimization, leadership development, and org design and workforce planning activities.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "HR policies",
+      "Workday",
+      "Workforce analytics and org design",
+      "analytics",
+      "change management",
+      "compensation",
+      "compliance",
+      "confidentiality",
+      "design",
+      "employee relations",
+      "engagement",
+      "exit interviews",
+      "human resources policies, programs, and processes",
+      "internal transfers",
+      "leadership development",
+      "org",
+      "org design",
+      "organizational optimization",
+      "people programs",
+      "performance management"
+    ],
+    "agent_run_id": "run_20260930T231324Z_22002c",
+    "asserted_at": "2026-09-30T23:18:34Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_4387aa266eaab9d936da",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "People programs and retention: ownership of people programs, engagement, and retention — recorded in 2 of 12 admitted HR Generalist postings (no variant split for this role) from 2 of 5 employers in the 2026-09-30 US sample.",
+    "quote": "Own people programs and strategies for your client group",
+    "source_ids": [
+      "src_7938a9d04e30b7356116",
+      "src_7e9aa8ae74ffd693c4ff"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 12,
+      "postings_matched": 2,
+      "employers_matched": 2,
+      "employers_considered": 5,
+      "quote_source": "src_7e9aa8ae74ffd693c4ff",
+      "detail": "A business-partner posting assigns ownership of people programs and strategies covering compensation, talent development, engagement, and retention.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Greenhouse, UltiPro, and/or Workday",
+      "HR policies",
+      "HR projects",
+      "People programs and retention",
+      "change management",
+      "compensation",
+      "compliance",
+      "employee relations",
+      "engagement",
+      "exit interviews",
+      "human resources policies, programs, and processes",
+      "internal transfers",
+      "org design",
+      "people",
+      "people programs",
+      "performance management",
+      "programs",
+      "promotion opportunities",
+      "retention",
+      "retention, career development"
+    ],
+    "agent_run_id": "run_20260930T231324Z_22002c",
+    "asserted_at": "2026-09-30T23:18:34Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  }
+]

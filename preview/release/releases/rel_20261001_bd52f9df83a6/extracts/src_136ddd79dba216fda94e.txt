@@ -1,0 +1,12 @@
+# source src_136ddd79dba216fda94e
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_73cf3754f3c9cc627a4e
+# url https://boards-api.greenhouse.io/v1/boards/verkada/jobs/4248001007
+# publisher Verkada
+# retrieved_at 2026-09-30T23:51:33Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 b5492d1d286d4907648b8bcd6ac6b7e4a968caba9db7182e3c5a55793d2bb6e4 raw_bytes 12374
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=fb4b6e34f661d2913148de59 employer=Verkada title=Account Executive, Select, Austin location=Austin, TX United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/4248001007
+Manage the complete sales cycle, from initial contact to close, with a focus on meeting or exceeding quarterly sales quotas.

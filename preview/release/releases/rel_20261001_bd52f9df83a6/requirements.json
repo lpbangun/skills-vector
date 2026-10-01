@@ -1,0 +1,423 @@
+[
+  {
+    "id": "req_fed4d69b5aee00cba433",
+    "occupation_slug": "hr-generalist",
+    "label": "Employee relations casework",
+    "learning_outcome": "Handle employee inquiries, complaints, and low-risk employee relations issues using documented guidance, investigation basics, and clear escalation criteria.",
+    "rationale": "Employee relations appears across coordinator, generalist, and business-partner postings in the sample, from frontline inquiry response to investigation support, making it the most transferable capability to build first.",
+    "uncertainty": "Case mix, volume, and the boundary between low-risk handling and formal investigation are not observable from the excerpts.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "employee relations issues",
+      "low-risk employee relations issues",
+      "employee inquiries, questions and complaints",
+      "employee relations investigations"
+    ],
+    "evidence_claim_ids": [
+      "clm_d8d0f07e5bde97f1dbd5"
+    ],
+    "evidence_rationale": "The recorded demand for responding to employee inquiries, questions, and complaints is the casework this priority teaches.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_0e7e5124450bb61cc62e",
+    "occupation_slug": "hr-generalist",
+    "label": "HRIS administration",
+    "learning_outcome": "Configure and maintain Workday Core HCM, keep employee records current, process HR transactions, and work an HRIS support queue.",
+    "rationale": "HRIS work anchors a dedicated analyst posting and recurs in coordinator and business-partner postings that name Workday specifically, so system fluency is directly exercised on the job.",
+    "uncertainty": "Workday is the only platform named in the sample; other employers may run different HRIS products.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Configure and maintain Workday Core HCM",
+      "Maintain our HRIS for all employee life-cycle processes",
+      "process HR transactions in Workday"
+    ],
+    "evidence_claim_ids": [
+      "clm_80fcc04c9919334dca35"
+    ],
+    "evidence_rationale": "Workday configuration and HRIS life-cycle record maintenance recorded in postings is exactly the system administration this priority covers.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_892f968433ff30ffe107",
+    "occupation_slug": "hr-generalist",
+    "label": "Performance management",
+    "learning_outcome": "Guide managers and employees through performance management processes for low-risk cases and connect them to core HR functions.",
+    "rationale": "Performance management is named alongside employee relations as a core supported function in generalist and business-partner postings, so it pairs naturally with ER skill building.",
+    "uncertainty": "Excerpts do not show whether the role owns full performance cycles or only supports managers in defined steps.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "performance management, and other core HR functions",
+      "performance management"
+    ],
+    "evidence_claim_ids": [
+      "clm_32fd3604e1f08846a63e"
+    ],
+    "evidence_rationale": "Postings asking for performance management support among core HR functions match this priority's manager-guidance outcome.",
+    "model_order": 2,
+    "priority": 3
+  },
+  {
+    "id": "req_1011ccbe312e5231bb8e",
+    "occupation_slug": "hr-generalist",
+    "label": "Employee lifecycle administration",
+    "learning_outcome": "Run onboarding, internal transfers, promotions, exit interviews, and related recordkeeping for the full employee lifecycle.",
+    "rationale": "Lifecycle administration appears in coordinator and generalist postings through explicit onboarding ownership and lifecycle process maintenance, forming the operational base of generalist work.",
+    "uncertainty": "Benefits, leave, and unemployment-claim duties appear only as short skill tags, so their depth in the role is unclear.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "onboarding point of contact",
+      "employee life-cycle processes",
+      "internal transfers",
+      "exit interviews",
+      "employment verifications"
+    ],
+    "evidence_claim_ids": [
+      "clm_5860e40d706fa54e6fc4"
+    ],
+    "evidence_rationale": "Onboarding, transfer, promotion, and exit processing demand maps directly to the lifecycle administration this priority targets.",
+    "model_order": 3,
+    "priority": 4
+  },
+  {
+    "id": "req_3e697f6823839954969f",
+    "occupation_slug": "hr-generalist",
+    "label": "HR policy and employment law compliance",
+    "learning_outcome": "Apply employment legislation and HR policy frameworks when advising managers and answering employee questions.",
+    "rationale": "Postings reference compliance content and HR policy frameworks, and the O*NET foundation lists interpreting HR policies, procedures, and laws among core tasks, so policy fluency underpins defensible generalist advice.",
+    "uncertainty": "Postings reference policy and legislation broadly without showing jurisdiction-specific depth or certification requirements.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "employment legislation",
+      "human resources policies, programs, and processes",
+      "Equal Employment Opportunity"
+    ],
+    "evidence_claim_ids": [
+      "clm_24b65b01009b0122b9d6"
+    ],
+    "evidence_rationale": "Demand for guidance on HR policies, programs, and processes grounds the policy and employment-law advising outcome.",
+    "model_order": 4,
+    "priority": 5
+  },
+  {
+    "id": "req_bff41d9505bc507ba6ab",
+    "occupation_slug": "hr-generalist",
+    "label": "Strategic HR business partnering",
+    "learning_outcome": "Coach and influence director-and-above leaders, operating as a key business partner on people decisions.",
+    "rationale": "Business-partner postings in the sample expect independent coaching of senior leaders, which is the advancement path from generalist operational work.",
+    "uncertainty": "The seniority threshold varies across postings, from HRBP to senior HRBP, so the level at which this capability is required is unclear.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "coaching and influencing Director and VP+ level leaders",
+      "key business partner"
+    ],
+    "evidence_claim_ids": [
+      "clm_be5cd380f9c8796016df"
+    ],
+    "evidence_rationale": "Postings requiring coaching and influencing Director- and VP-level leaders evidence the strategic business-partnering skill this priority builds.",
+    "model_order": 5,
+    "priority": 6
+  },
+  {
+    "id": "req_e1c0377e608c25fcf2da",
+    "occupation_slug": "hr-generalist",
+    "label": "Workforce analytics and org design",
+    "learning_outcome": "Use workforce data to support organizational optimization, leadership development, and workforce planning decisions.",
+    "rationale": "Senior business-partner postings pair workforce analytics with organizational optimization and org design, indicating an analytics expectation at the partnering level.",
+    "uncertainty": "Excerpts do not specify analytics tooling or the depth of quantitative work expected.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "workforce analytics, organizational optimization, leadership development",
+      "org design",
+      "workforce planning"
+    ],
+    "evidence_claim_ids": [
+      "clm_f8ec8e49ad811f49024d"
+    ],
+    "evidence_rationale": "Demand for workforce analytics and organizational optimization directly supports the data-driven org design outcome.",
+    "model_order": 6,
+    "priority": 7
+  },
+  {
+    "id": "req_e0a9de627039597e1b25",
+    "occupation_slug": "growth-manager",
+    "label": "Growth experimentation and product strategy ownership",
+    "learning_outcome": "Own product strategy for a growth area: identify opportunities, run a portfolio of experiments, and ship and iterate solutions that move retention and DAU metrics.",
+    "rationale": "Growth-titled postings at Duolingo and Figma assign product strategy, experiment portfolios and retention metric ownership to a single role.",
+    "uncertainty": "Only a few admitted postings carry the product-growth title, so the depth of statistical tooling and experimentation infrastructure expected is not established by the sample.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": "product-growth",
+    "search_terms": [
+      "product strategy",
+      "portfolio of experiments",
+      "run fast experiments"
+    ],
+    "evidence_claim_ids": [
+      "clm_f0dcc0301be61ac84489"
+    ],
+    "evidence_rationale": "The only recorded product-growth claim: employer demand for owning a growth team's product strategy and experimentation from opportunity identification through shipping and iterating.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_1401791f6ff073da6c0b",
+    "occupation_slug": "growth-manager",
+    "label": "Paid acquisition and performance marketing operations",
+    "learning_outcome": "Plan, run and optimize paid acquisition across mobile and emerging channels, managing LTV/CAC, CPI and creative strategy against revenue targets.",
+    "rationale": "Performance marketing postings assign channel-level ownership of paid acquisition and pair it with unit-economics metrics and creative strategy.",
+    "uncertainty": "Named channels (UAC, Meta, TikTok, YouTube, ChatGPT, Reddit) shift quickly, so sampled channel tactics may not transfer to a different channel mix.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": "growth-marketing",
+    "search_terms": [
+      "paid acquisition",
+      "performance marketing channels",
+      "LTV/CAC",
+      "creative strategy"
+    ],
+    "evidence_claim_ids": [
+      "clm_c7184b94c0d938a661cc"
+    ],
+    "evidence_rationale": "Records demand for owning paid acquisition across mobile and emerging channels, matching this performance-marketing operations priority.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_c40e11be5a5238a40352",
+    "occupation_slug": "growth-manager",
+    "label": "Lifecycle and retention marketing",
+    "learning_outcome": "Design lifecycle journeys and campaigns for product areas using customer segmentation, A/B testing and SQL-based analysis.",
+    "rationale": "Robinhood's lifecycle posting assigns journey strategy ownership and expects segmentation, testing and SQL as day-to-day tooling.",
+    "uncertainty": "Segmentation and SQL expectations come from one lifecycle posting; other admitted postings do not restate them, so required analytics depth is unclear.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": "growth-marketing",
+    "search_terms": [
+      "lifecycle journeys",
+      "customer segmentation",
+      "A/B testing"
+    ],
+    "evidence_claim_ids": [
+      "clm_c003f2e3a07a88ffaa3b"
+    ],
+    "evidence_rationale": "Records lifecycle journey and campaign ownership for product areas, the core retention-marketing work this priority covers.",
+    "model_order": 2,
+    "priority": 3
+  },
+  {
+    "id": "req_8290dc9b505c3a3465fc",
+    "occupation_slug": "growth-manager",
+    "label": "Full-cycle enterprise selling",
+    "learning_outcome": "Carry a full sales cycle from prospecting and qualification through multi-stakeholder negotiation and close on a named account list.",
+    "rationale": "Full-cycle ownership, quota attainment and C-level negotiation recur across the admitted sales postings.",
+    "uncertainty": "Advertised requirements describe posted role scoping, and the admitted set does not show which of these skills hiring teams actually screen for.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": "sales-account-executive",
+    "search_terms": [
+      "full sales cycle",
+      "quota-carrying",
+      "account plans"
+    ],
+    "evidence_claim_ids": [
+      "clm_e9e9361cb12bb7f58612",
+      "clm_52c1a86f714c073d4e86"
+    ],
+    "evidence_rationale": "Both sales-account-executive claims describe owning the full cycle from prospecting and qualifying through negotiating and closing, directly supporting this priority.",
+    "model_order": 3,
+    "priority": 4
+  },
+  {
+    "id": "req_f7e843e4c99f54a90308",
+    "occupation_slug": "growth-manager",
+    "label": "Expansion and renewal revenue",
+    "learning_outcome": "Grow existing accounts through discovery, activation and upsell while managing renewals, pricing negotiation and client retention.",
+    "rationale": "Stripe grower roles and Figma's mid-market posting define growth as maintaining and expanding an existing book of business rather than net-new acquisition only.",
+    "uncertainty": "Expansion-focused postings come from a small set of employers, so renewal mechanics may differ by product and contract model.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": "sales-account-executive",
+    "search_terms": [
+      "contract renewals",
+      "upsell",
+      "expanding product adoption"
+    ],
+    "evidence_claim_ids": [
+      "clm_898be872fabd46286a04"
+    ],
+    "evidence_rationale": "Records demand for maintaining and growing an existing mid-market customer book, matching expansion and renewal revenue work.",
+    "model_order": 4,
+    "priority": 5
+  },
+  {
+    "id": "req_9f6cc75cbe84ac70139d",
+    "occupation_slug": "growth-manager",
+    "label": "Programmatic and ad-platform revenue selling",
+    "learning_outcome": "Own a programmatic revenue target: build pipeline and forecast, negotiate annual and upfront commitments with agencies and trading desks, and optimize campaign performance.",
+    "rationale": "Ad sales postings at Duolingo and Pinterest assign revenue target ownership, forecast accountability and agency-side negotiation.",
+    "uncertainty": "Programmatic selling appears only in ad-monetization postings, so transferability to non-advertising growth roles is unverified.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": "sales-account-executive",
+    "search_terms": [
+      "programmatic revenue target",
+      "trading desks",
+      "agency holding companies"
+    ],
+    "evidence_claim_ids": [
+      "clm_9e21aeb5722726c43646",
+      "clm_8e0f9b3c3234b3afcaf8"
+    ],
+    "evidence_rationale": "Records ownership of a programmatic revenue target plus consultative solution-selling into retail media accounts, both ad-platform revenue motions.",
+    "model_order": 5,
+    "priority": 6
+  },
+  {
+    "id": "req_b4456368adbb0f03e910",
+    "occupation_slug": "growth-manager",
+    "label": "Public sector procurement selling",
+    "learning_outcome": "Sell into SLED and federal buyers using contract vehicles, channel partners and multi-stakeholder procurement processes.",
+    "rationale": "Vanta's regional SLED postings and Figma's federal civilian posting require procurement-landscape fluency and government contract vehicles.",
+    "uncertainty": "Government selling is confined to a niche group of postings; whether a growth role needs it depends entirely on the employer's customer segment.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": "sales-account-executive",
+    "search_terms": [
+      "SLED sales opportunities",
+      "contract vehicles",
+      "channel partners"
+    ],
+    "evidence_claim_ids": [
+      "clm_eff11a02fd02cff0a630"
+    ],
+    "evidence_rationale": "Records SLED and federal procurement selling demand, exactly the public-sector motion this priority covers.",
+    "model_order": 6,
+    "priority": 7
+  },
+  {
+    "id": "req_c7a70daab0a25a598e62",
+    "occupation_slug": "account-executive",
+    "label": "Run an end-to-end technical sales cycle",
+    "learning_outcome": "Own every stage from prospecting through demonstration, negotiation, and close without handing off to a specialist.",
+    "rationale": "This is the most repeated framing of the role in the admitted sample, appearing across Datadog, Twilio, Verkada, and MongoDB postings, and it subsumes several narrower skills listed elsewhere.",
+    "uncertainty": "Excerpts give cycle expectations but rarely the deal size, segment, or product complexity that would set how much depth is needed.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "full sales cycle",
+      "technical demonstrations",
+      "prospecting to deal closure"
+    ],
+    "evidence_claim_ids": [
+      "clm_8d990561b3e05dd50572",
+      "clm_1f8d615b7724360a92e2"
+    ],
+    "evidence_rationale": "Full-cycle ownership from prospecting to close (with demos and negotiation) plus the SaaS/PaaS full-cycle closing expectation are the recorded evidence that an AE must personally run the whole cycle.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_43c6c43ff9c04ac2fb14",
+    "occupation_slug": "account-executive",
+    "label": "Build and carry new-business quota coverage",
+    "learning_outcome": "Generate net-new customer acquisition through outbound prospecting and manage performance against an assigned quota.",
+    "rationale": "Quota and net-new business language recurs across the Verkada, Twilio, and Datadog postings, making prospecting volume and quota management the second most load-bearing skill set.",
+    "uncertainty": "Quota mechanics differ by posting (iACV targets versus general net-new emphasis), and none of the excerpts state quota values or ramp expectations.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "new customer acquisition",
+      "net new business sales",
+      "quota"
+    ],
+    "evidence_claim_ids": [
+      "clm_1d205ecd77f44e9cff09"
+    ],
+    "evidence_rationale": "The net-new business quota demand is the only recorded claim evidencing acquisition targets and assigned quota ownership.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_53b6dc97e1e5b00d18bc",
+    "occupation_slug": "account-executive",
+    "label": "Manage pipeline and a named book of business",
+    "learning_outcome": "Sustain a forecastable pipeline and independently manage a defined book of business or territory.",
+    "rationale": "Pipeline development and book-of-business ownership appear in the GitLab, MongoDB, and Verkada postings, and are the operational substrate the full-cycle and quota skills above depend on.",
+    "uncertainty": "The excerpts do not name the CRM or forecasting tooling; tool-specific terms in the data come from skill tags rather than prose, so required system fluency is inferred.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "pipeline development",
+      "book of business",
+      "sales pipeline"
+    ],
+    "evidence_claim_ids": [
+      "clm_67210ab4de6f9f5a5e75"
+    ],
+    "evidence_rationale": "Book-of-business ownership running from pipeline development through close is the recorded demand for sustaining a forecastable pipeline and named territory.",
+    "model_order": 2,
+    "priority": 3
+  },
+  {
+    "id": "req_348a93471751fca2f16e",
+    "occupation_slug": "account-executive",
+    "label": "Execute land-and-expand playbooks",
+    "learning_outcome": "Grow existing accounts by closing new workloads and upselling beyond the initial purchase.",
+    "rationale": "MongoDB growth postings, the Databricks emerging enterprise role, and the Datadog sponsorship role all pair expansion or renewal targets with new-business duties, indicating expansion is expected alongside acquisition.",
+    "uncertainty": "Excerpts describe expansion expectations but not the expansion mechanisms, contract structures, or product attach patterns used to achieve them.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "expanding accounts",
+      "closing new workloads"
+    ],
+    "evidence_claim_ids": [
+      "clm_5d343d6c13815024982b"
+    ],
+    "evidence_rationale": "Closing new workloads while expanding existing accounts is the recorded land-and-expand demand behind this priority.",
+    "model_order": 3,
+    "priority": 4
+  },
+  {
+    "id": "req_bb57c7850bbe649db1d6",
+    "occupation_slug": "account-executive",
+    "label": "Sell consultatively to enterprise stakeholders",
+    "learning_outcome": "Apply discovery and consultative selling to build durable customer relationships while meeting quota.",
+    "rationale": "GitLab, Datadog, and Twilio postings describe consultative cycles for enterprise and complex deals, and O*NET lists post-sale client consultation as a documented task, so the skill is both advertised and occupationally grounded.",
+    "uncertainty": "No excerpt details the discovery methodology or stakeholder mapping expectations beyond general consultative phrasing.",
+    "confidence": "bounded",
+    "basis": "foundation",
+    "variant": null,
+    "search_terms": [
+      "consultative sales cycles",
+      "customer relationships"
+    ],
+    "evidence_claim_ids": [
+      "clm_e88ca35b864aa94a843b"
+    ],
+    "evidence_rationale": "The documented consult-with-clients duty providing ongoing support grounds the durable-relationship element, though it covers post-sale support rather than pre-sale discovery.",
+    "model_order": 4,
+    "priority": 5
+  }
+]

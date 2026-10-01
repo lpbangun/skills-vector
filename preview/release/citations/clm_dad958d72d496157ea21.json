@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_dad958d72d496157ea21",
+  "release_id": "rel_20260930_11872e02dacc",
+  "occupation_slug": "growth-manager",
+  "claim_type": "foundation",
+  "statement": "Marketing managers formulate and coordinate marketing activities and policies to promote products or services in collaboration with advertising or promotion managers.",
+  "quote": "Formulate, direct, or coordinate marketing activities or policies to promote products or services, working with advertising or promotion managers.",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_32aba23338609d20384e",
+      "url": "https://www.onetonline.org/link/summary/11-2021.00",
+      "publisher": "O*NET OnLine (U.S. Department of Labor)",
+      "source_type": "foundation",
+      "retrieval_kind": "",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:24:58Z",
+      "sha256": "ba7691c6065b544b041dad4726794949942a282334d6066b106c6aaededdd374",
+      "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:43:47Z",
+  "published_at": "2026-09-30T23:48:04Z",
+  "citation_path": "/release/citations/clm_dad958d72d496157ea21.json",
+  "attribution": "agent-authored synthesis over retrieved official foundation text",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "cb2834d91b0636c419e70f64eb53eec7f1a5694b32d51f4296d0e0243dbff0e6"
+}

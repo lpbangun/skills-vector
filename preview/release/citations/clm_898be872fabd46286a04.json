@@ -1,0 +1,73 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_898be872fabd46286a04",
+  "release_id": "rel_20260930_11872e02dacc",
+  "occupation_slug": "growth-manager",
+  "claim_type": "advertised_demand",
+  "statement": "expansion and renewal revenue: expansion and renewal of existing accounts — recorded in 4 of 26 admitted Growth Manager postings (variant scope sales-account-executive) from 2 of 8 employers in the 2026-09-30 US sample.",
+  "quote": "Maintaining and growing a targeted book of existing Mid-Market (500-5000 FTEs) customers",
+  "variant": "sales-account-executive",
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_79d1a054c685dee86878",
+      "url": "https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true",
+      "publisher": "Figma",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:25:00Z",
+      "sha256": "17f412f45c48bd184eb293c5df521ff2cd5609f96875b597ae709c115b9609fb",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_990d39e57452045ea3c1",
+      "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs/8238098",
+      "publisher": "Stripe",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_9be49b446458b786b23d",
+      "retrieved_at": "2026-09-30T23:25:29Z",
+      "sha256": "5ec6a9aef9eb8faae9935fd0c308eaafaa4cc4eb4d3762fc72d12b090913290f",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_818e513ffaa0d0da0dfb",
+      "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs/8190044",
+      "publisher": "Stripe",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_9be49b446458b786b23d",
+      "retrieved_at": "2026-09-30T23:25:29Z",
+      "sha256": "44e9591dc175e10794aaa1096fcae3150bca1d1eaaa4adb5f6482b9372237ec2",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_559b4b6c00efe1a47dc4",
+      "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs/7576999",
+      "publisher": "Stripe",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_9be49b446458b786b23d",
+      "retrieved_at": "2026-09-30T23:25:29Z",
+      "sha256": "968d886243f379125d2bad3ba004d44c98b2742385acd2d4f958e0f713219673",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:43:47Z",
+  "published_at": "2026-09-30T23:48:04Z",
+  "citation_path": "/release/citations/clm_898be872fabd46286a04.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "a78f94be834df6a5aca28ae042f876014e68ad865ebf812c20778f6b43d1eb29"
+}

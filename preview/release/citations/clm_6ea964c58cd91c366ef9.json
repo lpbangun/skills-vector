@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_6ea964c58cd91c366ef9",
+  "release_id": "rel_20260930_3206b98a56c8",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "foundation",
+  "statement": "O*NET's Human Resources Specialists occupation (13-1071.00) lists HR Generalist among its sample of reported job titles, alongside coordinator, specialist, analyst, and recruiter titles.",
+  "quote": "Sample of reported job titles: Corporate Recruiter, Employment Representative, HR Analyst (Human Resources Analyst), HR Coordinator (Human Resources Coordinator), HR Generalist (Human Resources Generalist)",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_75bca50e000c73a05cb5",
+      "url": "https://www.onetonline.org/link/summary/13-1071.00",
+      "publisher": "O*NET OnLine (U.S. Department of Labor)",
+      "source_type": "foundation",
+      "retrieval_kind": "",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:14:41Z",
+      "sha256": "1cf732820fc7d485cf036e0cc9dfc8a56204b86881fafcfdfa2ec3c5ace375db",
+      "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:18:34Z",
+  "published_at": "2026-09-30T23:22:05Z",
+  "citation_path": "/release/citations/clm_6ea964c58cd91c366ef9.json",
+  "attribution": "agent-authored synthesis over retrieved official foundation text",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "1e706b5763a9043619fe520721ccbddf607afb96b42fa402834696b8d4c5da51"
+}

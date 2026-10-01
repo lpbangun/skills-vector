@@ -1,0 +1,49 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_e9e9361cb12bb7f58612",
+  "release_id": "rel_20260930_11872e02dacc",
+  "occupation_slug": "growth-manager",
+  "claim_type": "advertised_demand",
+  "statement": "full-cycle enterprise sales ownership: full sales cycle ownership for enterprise accounts — recorded in 2 of 26 admitted Growth Manager postings (variant scope sales-account-executive) from 1 of 8 employers in the 2026-09-30 US sample.",
+  "quote": "Own the full sales cycle from lead to close for upper middle market and enterprise companies",
+  "variant": "sales-account-executive",
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_52fccb6feadf79a4aa8b",
+      "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs/8222009",
+      "publisher": "Stripe",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_9be49b446458b786b23d",
+      "retrieved_at": "2026-09-30T23:25:28Z",
+      "sha256": "bbd424fb7194d3ad22097e4474ba72938337beb2e639b4abf69d65096bf49568",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_559b4b6c00efe1a47dc4",
+      "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs/7576999",
+      "publisher": "Stripe",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_9be49b446458b786b23d",
+      "retrieved_at": "2026-09-30T23:25:29Z",
+      "sha256": "968d886243f379125d2bad3ba004d44c98b2742385acd2d4f958e0f713219673",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:43:47Z",
+  "published_at": "2026-09-30T23:48:04Z",
+  "citation_path": "/release/citations/clm_e9e9361cb12bb7f58612.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "e9a2be3744a34f61117202957362c7a03386acd59fdfa60d9bc0d748cfd26f21"
+}

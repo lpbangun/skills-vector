@@ -1,0 +1,326 @@
+[
+  {
+    "slug": "hr-generalist",
+    "label": "HR Generalist",
+    "family": "People Operations & Talent",
+    "aliases": [
+      "hr generalist",
+      "people operations",
+      "human resources generalist",
+      "people ops"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "sampled_at": "2026-09-30T23:13:24Z",
+    "sampling_note": "Counts describe only the job-board postings enumerated in the retrieval window for this role; they are not market prevalence. Enumerated boards were listed once per board API at the timestamp above, sampled most recently published first, then title and posting id (board API page order is not preserved); boards whose listing API pages or truncates report their enumerated/total bound in sources.json and board denominators are unaffected by per-posting detail retrievals. The candidate cap was allocated fairly across retrieved employers and provisional title/variant buckets; cap exclusions are recorded per posting. Posting text and quotes are attributed to the exact retrieved response that contains them (sources.json retrieval_kind/parent_source_id); only short excerpts are published.",
+    "selection": {
+      "prefilter_candidates": 19,
+      "feedback_triggered": false,
+      "missing_required_buckets": [],
+      "detail_fetches": 14,
+      "detail_text_failures": 0,
+      "candidates_excluded_without_text": 0,
+      "remaining_retrievals": 21,
+      "cap_allocation": {
+        "method": "deterministic fair allocation: one candidate per employer per provisional bucket (growth variants first) in employer importance order, then a round-robin remainder across employers; within an employer bucket, most recently published first, then title and posting id",
+        "cap": 60,
+        "eligible_candidates": 19,
+        "selected_candidates": 19,
+        "excluded_by_cap": 0,
+        "bucket_outcomes": {
+          "role": {
+            "eligible": 19,
+            "selected": 19,
+            "excluded_by_cap": 0
+          }
+        },
+        "employer_outcomes": {
+          "SpaceX": {
+            "eligible": 12,
+            "selected": 12,
+            "excluded_by_cap": 0
+          },
+          "Justworks": {
+            "eligible": 1,
+            "selected": 1,
+            "excluded_by_cap": 0
+          },
+          "Figma": {
+            "eligible": 2,
+            "selected": 2,
+            "excluded_by_cap": 0
+          },
+          "Stripe": {
+            "eligible": 1,
+            "selected": 1,
+            "excluded_by_cap": 0
+          },
+          "Coinbase": {
+            "eligible": 1,
+            "selected": 1,
+            "excluded_by_cap": 0
+          },
+          "Instacart": {
+            "eligible": 1,
+            "selected": 1,
+            "excluded_by_cap": 0
+          },
+          "Ramp": {
+            "eligible": 1,
+            "selected": 1,
+            "excluded_by_cap": 0
+          }
+        }
+      }
+    },
+    "stats": {
+      "total_seen": 5268,
+      "sampled": 5268,
+      "prefilter_candidates": 19,
+      "detail_text_fetches": 14,
+      "detail_sources_used": 9,
+      "postings_dedup": 12,
+      "employers_dedup": 5,
+      "boards_attempted": 16,
+      "boards_used": 5,
+      "excluded_total": 5256,
+      "foundations_used": 3
+    },
+    "run_ids": [
+      "run_20260930T231324Z_22002c"
+    ]
+  },
+  {
+    "slug": "growth-manager",
+    "label": "Growth Manager",
+    "family": "Go-to-market & growth",
+    "aliases": [
+      "growth manager",
+      "growth marketing",
+      "product growth",
+      "growth lead"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "sampled_at": "2026-09-30T23:23:07Z",
+    "sampling_note": "Counts describe only the job-board postings enumerated in the retrieval window for this role; they are not market prevalence. Enumerated boards were listed once per board API at the timestamp above, sampled most recently published first, then title and posting id (board API page order is not preserved); boards whose listing API pages or truncates report their enumerated/total bound in sources.json and board denominators are unaffected by per-posting detail retrievals. The candidate cap was allocated fairly across retrieved employers and provisional title/variant buckets; cap exclusions are recorded per posting. Posting text and quotes are attributed to the exact retrieved response that contains them (sources.json retrieval_kind/parent_source_id); only short excerpts are published.",
+    "selection": {
+      "prefilter_candidates": 60,
+      "feedback_triggered": false,
+      "missing_required_buckets": [],
+      "detail_fetches": 9,
+      "detail_text_failures": 0,
+      "candidates_excluded_without_text": 0,
+      "remaining_retrievals": 30,
+      "cap_allocation": {
+        "method": "deterministic fair allocation: one candidate per employer per provisional bucket (growth variants first) in employer importance order, then a round-robin remainder across employers; within an employer bucket, most recently published first, then title and posting id",
+        "cap": 60,
+        "eligible_candidates": 127,
+        "selected_candidates": 60,
+        "excluded_by_cap": 67,
+        "bucket_outcomes": {
+          "sales-account-executive": {
+            "eligible": 95,
+            "selected": 36,
+            "excluded_by_cap": 59
+          },
+          "growth-marketing": {
+            "eligible": 8,
+            "selected": 5,
+            "excluded_by_cap": 3
+          },
+          "unassigned": {
+            "eligible": 21,
+            "selected": 16,
+            "excluded_by_cap": 5
+          },
+          "product-growth": {
+            "eligible": 3,
+            "selected": 3,
+            "excluded_by_cap": 0
+          }
+        },
+        "employer_outcomes": {
+          "Stripe": {
+            "eligible": 61,
+            "selected": 9,
+            "excluded_by_cap": 52
+          },
+          "Figma": {
+            "eligible": 15,
+            "selected": 8,
+            "excluded_by_cap": 7
+          },
+          "Duolingo": {
+            "eligible": 10,
+            "selected": 8,
+            "excluded_by_cap": 2
+          },
+          "Instacart": {
+            "eligible": 9,
+            "selected": 9,
+            "excluded_by_cap": 0
+          },
+          "Robinhood": {
+            "eligible": 1,
+            "selected": 1,
+            "excluded_by_cap": 0
+          },
+          "Reddit": {
+            "eligible": 2,
+            "selected": 2,
+            "excluded_by_cap": 0
+          },
+          "Discord": {
+            "eligible": 5,
+            "selected": 5,
+            "excluded_by_cap": 0
+          },
+          "Pinterest": {
+            "eligible": 4,
+            "selected": 4,
+            "excluded_by_cap": 0
+          },
+          "OpenAI": {
+            "eligible": 1,
+            "selected": 1,
+            "excluded_by_cap": 0
+          },
+          "Ramp": {
+            "eligible": 13,
+            "selected": 7,
+            "excluded_by_cap": 6
+          },
+          "Vanta": {
+            "eligible": 6,
+            "selected": 6,
+            "excluded_by_cap": 0
+          }
+        }
+      }
+    },
+    "stats": {
+      "total_seen": 1941,
+      "sampled": 1941,
+      "prefilter_candidates": 60,
+      "detail_text_fetches": 9,
+      "detail_sources_used": 6,
+      "postings_dedup": 26,
+      "employers_dedup": 8,
+      "boards_attempted": 16,
+      "boards_used": 8,
+      "excluded_total": 1915,
+      "foundations_used": 4
+    },
+    "run_ids": [
+      "run_20260930T232307Z_0d1ee5"
+    ],
+    "growth_variants": [
+      "product-growth",
+      "growth-marketing",
+      "sales-account-executive"
+    ]
+  },
+  {
+    "slug": "account-executive",
+    "label": "Account Executive",
+    "family": "Sales",
+    "aliases": [
+      "account executive",
+      "sales executive",
+      "ae",
+      "closing sales"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "sampled_at": "2026-09-30T23:49:23Z",
+    "sampling_note": "Counts describe only the job-board postings enumerated in the retrieval window for this role; they are not market prevalence. Enumerated boards were listed once per board API at the timestamp above, sampled most recently published first, then title and posting id (board API page order is not preserved); boards whose listing API pages or truncates report their enumerated/total bound in sources.json and board denominators are unaffected by per-posting detail retrievals. The candidate cap was allocated fairly across retrieved employers and provisional title/variant buckets; cap exclusions are recorded per posting. Posting text and quotes are attributed to the exact retrieved response that contains them (sources.json retrieval_kind/parent_source_id); only short excerpts are published.",
+    "selection": {
+      "prefilter_candidates": 60,
+      "feedback_triggered": false,
+      "missing_required_buckets": [],
+      "detail_fetches": 33,
+      "detail_text_failures": 0,
+      "candidates_excluded_without_text": 14,
+      "remaining_retrievals": 0,
+      "cap_allocation": {
+        "method": "deterministic fair allocation: one candidate per employer per provisional bucket (growth variants first) in employer importance order, then a round-robin remainder across employers; within an employer bucket, most recently published first, then title and posting id",
+        "cap": 60,
+        "eligible_candidates": 242,
+        "selected_candidates": 60,
+        "excluded_by_cap": 182,
+        "bucket_outcomes": {
+          "role": {
+            "eligible": 242,
+            "selected": 60,
+            "excluded_by_cap": 182
+          }
+        },
+        "employer_outcomes": {
+          "Datadog": {
+            "eligible": 64,
+            "selected": 8,
+            "excluded_by_cap": 56
+          },
+          "MongoDB": {
+            "eligible": 28,
+            "selected": 8,
+            "excluded_by_cap": 20
+          },
+          "Verkada": {
+            "eligible": 59,
+            "selected": 8,
+            "excluded_by_cap": 51
+          },
+          "Samsara": {
+            "eligible": 41,
+            "selected": 8,
+            "excluded_by_cap": 33
+          },
+          "Databricks": {
+            "eligible": 20,
+            "selected": 7,
+            "excluded_by_cap": 13
+          },
+          "GitLab": {
+            "eligible": 11,
+            "selected": 8,
+            "excluded_by_cap": 3
+          },
+          "Twilio": {
+            "eligible": 6,
+            "selected": 6,
+            "excluded_by_cap": 0
+          },
+          "Ramp": {
+            "eligible": 13,
+            "selected": 7,
+            "excluded_by_cap": 6
+          }
+        }
+      }
+    },
+    "stats": {
+      "total_seen": 3357,
+      "sampled": 3357,
+      "prefilter_candidates": 60,
+      "detail_text_fetches": 33,
+      "detail_sources_used": 15,
+      "postings_dedup": 19,
+      "employers_dedup": 7,
+      "boards_attempted": 16,
+      "boards_used": 7,
+      "excluded_total": 3338,
+      "foundations_used": 3
+    },
+    "run_ids": [
+      "run_20260930T234923Z_e17111"
+    ]
+  }
+]

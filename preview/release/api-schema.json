@@ -1,0 +1,145 @@
+{
+  "schema_version": "market-api/1",
+  "core_version": "market-core/1.0",
+  "release_schema": "market-release/1",
+  "base_url": null,
+  "read_only": true,
+  "mutation_methods": "rejected (405) on every /api path",
+  "bounds": {
+    "max_query_length": 400,
+    "max_limit": 200,
+    "max_body_bytes": 8192,
+    "no_inference": "queries select stored claims; no model calls happen in the API"
+  },
+  "endpoints": [
+    {
+      "path": "/api/health",
+      "returns": "release pointer status and occupation slugs"
+    },
+    {
+      "path": "/api/release",
+      "params": [
+        "release?"
+      ],
+      "returns": "release metadata, scope, versions"
+    },
+    {
+      "path": "/api/occupations",
+      "returns": "role list with stats and scope"
+    },
+    {
+      "path": "/api/occupation",
+      "params": [
+        "slug"
+      ],
+      "returns": "role bundle: foundations, demand, learning priorities, claims, lineage"
+    },
+    {
+      "path": "/api/query",
+      "params": [
+        "q",
+        "occupation?",
+        "limit?",
+        "release?"
+      ],
+      "returns": "answer envelope with status cited_evidence|insufficient_evidence|unsupported_question"
+    },
+    {
+      "path": "/api/claim",
+      "params": [
+        "id",
+        "release?"
+      ],
+      "returns": "claim, quote verification, sources, citation url"
+    },
+    {
+      "path": "/api/citation",
+      "params": [
+        "id"
+      ],
+      "returns": "immutable citation document"
+    },
+    {
+      "path": "/api/evidence",
+      "params": [
+        "section",
+        "occupation?",
+        "limit?",
+        "no_text?"
+      ],
+      "returns": "inspector rows",
+      "sections": [
+        "extracts",
+        "admissions",
+        "exclusions",
+        "mappings",
+        "disagreements",
+        "lineage",
+        "all"
+      ]
+    },
+    {
+      "path": "/api/inspector",
+      "params": [
+        "occupation?",
+        "limit?",
+        "no_text?"
+      ],
+      "returns": "all inspector sections in one document"
+    },
+    {
+      "path": "/api/research-plan",
+      "params": [
+        "q",
+        "occupation?"
+      ],
+      "returns": "bounded local research handoff plan (never launches research)"
+    },
+    {
+      "path": "/api/schema",
+      "returns": "this document"
+    },
+    {
+      "path": "/api/agent-guide",
+      "returns": "agent guide markdown"
+    }
+  ],
+  "query_status_semantics": {
+    "cited_evidence": "one or more stored, quote-verified claims match the question; answer text is selected stored statements",
+    "insufficient_evidence": "the question is in scope but no stored claim clears the citation threshold",
+    "unsupported_question": "the question falls outside the covered occupational scope"
+  },
+  "citation_path_pattern": "/release/citations/<claim_id>.json",
+  "release_path_pattern": "/release/releases/<release_id>/manifest.json",
+  "research": {
+    "launched_by_public_api": false,
+    "operator_only": true,
+    "handoff_kind": "bounded_research_request",
+    "handoff_stages": [
+      "discovery",
+      "retrieval",
+      "extraction",
+      "admission",
+      "mapping",
+      "reconciliation",
+      "challenge",
+      "release"
+    ],
+    "limits": {
+      "max_retrievals": 60,
+      "max_model_calls": 12,
+      "max_response_bytes": 2097152,
+      "serialized_calls": true
+    },
+    "allowlisted_hosts": [
+      "api.ashbyhq.com",
+      "api.lever.co",
+      "api.smartrecruiters.com",
+      "apply.workable.com",
+      "boards-api.greenhouse.io",
+      "www.bls.gov",
+      "www.onetcenter.org",
+      "www.onetonline.org"
+    ]
+  }
+}

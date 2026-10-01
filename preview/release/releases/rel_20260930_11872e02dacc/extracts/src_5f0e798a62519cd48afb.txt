@@ -1,0 +1,13 @@
+# source src_5f0e798a62519cd48afb
+# source_type job-board
+# retrieval_kind listing
+# url https://api.ashbyhq.com/posting-api/job-board/ramp
+# publisher Ramp
+# retrieved_at 2026-09-30T23:25:26Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 e135ba2a187d32b20ec5e83795118956ac337fe34287c505e4c5789f6ac9a1e0 raw_bytes 2097152
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=3c103cb7c229a1d1cc180594 employer=Ramp title=Performance Marketing Manager location=New York, NY (HQ) variant=growth-marketing url=https://jobs.ashbyhq.com/ramp/f4545aaa-c98b-4134-b250-f12dc46ad6a8
+Ramp is looking for a Performance Marketing Manager to own paid acquisition on YouTube, ChatGPT, X, Rideshare, and Reddit
+# posting id=aac7cf347be5eece96b24861 employer=Ramp title=Account Executive | Enterprise location=New York, NY (HQ) variant=sales-account-executive url=https://jobs.ashbyhq.com/ramp/8f3c27f0-50fb-47ba-a3dd-597428380843
+Minimum 6 years of quota-carrying direct SaaS sales experience in a full cycle closing role with strong prospecting, qualifying, negotiating, and closing skills

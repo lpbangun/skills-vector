@@ -1,0 +1,837 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skills-vector.invalid/acceptance/config.schema.json",
+  "title": "Acceptance config for BENCHMARK.md round-zero freeze (protocol completion.v2)",
+  "description": "Filled per candidate by parent/implementer; slate values ('' / null / []) keep gates UNKNOWN. gates.py v2 refuses configs without protocol_version completion.v2.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "protocol_version",
+    "candidate",
+    "deploy",
+    "occupations",
+    "gates",
+    "paths",
+    "review"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "benchmark.round-zero.v1"
+    },
+    "protocol_version": {
+      "const": "completion.v2"
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "worktree",
+        "commit_sha",
+        "benchmark_copy_sha256",
+        "acceptance_copy_sha256"
+      ],
+      "properties": {
+        "worktree": {
+          "type": "string",
+          "minLength": 1
+        },
+        "commit_sha": {
+          "type": "string",
+          "pattern": "^$|^[0-9a-f]{40}$"
+        },
+        "benchmark_copy_sha256": {
+          "type": "string",
+          "pattern": "^$|^[0-9a-f]{64}$"
+        },
+        "acceptance_copy_sha256": {
+          "type": "string",
+          "pattern": "^$|^[0-9a-f]{64}$",
+          "description": "sha256 of acceptance/gates.py working copy; must equal the frozen corrected copy in paths.protocol_completion_dir."
+        },
+        "branch": {
+          "type": "string"
+        },
+        "frozen_at": {
+          "type": "string"
+        }
+      }
+    },
+    "deploy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "preview_base_url"
+      ],
+      "properties": {
+        "preview_base_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^https?://|^$"
+        },
+        "project": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deployment_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deployment_url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unauthorized": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "true when preview authority/linkage could not be established; deployed gates then report BLOCKED, never pass."
+        }
+      }
+    },
+    "occupations": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "slug",
+          "label"
+        ],
+        "properties": {
+          "slug": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "growth_variants": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "For growth-manager occupation: product-growth / growth-marketing / sales-account-executive kept distinct."
+          }
+        }
+      }
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "hg01": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "provenance_receipt": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Candidate freeze file (evidence/HG01/provenance.json). Schema: {candidate_commit_sha, hashes{benchmark_copy_sha256, acceptance_copy_sha256}, deployment{preview_base_url, deployment_id, deployment_url, deployment_receipt{path,sha256}}, output{release_id, output_receipt{path,sha256}}}."
+            }
+          }
+        },
+        "hg02": {
+          "type": "object",
+          "properties": {
+            "runs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "occupation",
+                  "receipt_path"
+                ],
+                "properties": {
+                  "occupation": {
+                    "type": "string"
+                  },
+                  "receipt_path": {
+                    "type": "string"
+                  },
+                  "description": "Run receipt schema: {occupation, provider, model, model_fallback:false, started_at, finished_at, execution_context (agent-runtime|vps|local-runtime), sampling{geography, seniority, denominators}, artifacts{name:{path,sha256}}, session_records:[{path,sha256}] (runtime records containing provider+model strings), fixtures_used:false, discovery:[...], retrieval:[...], extraction:[...], reconciliation:[...], challenge:[...]}."
+                }
+              }
+            }
+          }
+        },
+        "hg03": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "release_dir": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "hg04": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "release_dir": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "hg05": {
+          "type": "object",
+          "properties": {
+            "release_dir": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "min_postings_per_occupation": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            }
+          }
+        },
+        "hg06": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "release_dir": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "hg07": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "endpoint": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Deployed inspector endpoint (path or absolute URL) exposing extracts/admissions/exclusions/mappings/disagreements/lineage."
+            },
+            "required_sections": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "allowed_missing": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "hg08": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "min_content_chars": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "endpoints": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "path"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "enum": [
+                      "json",
+                      "html"
+                    ],
+                    "default": "json"
+                  },
+                  "expect_status": {
+                    "type": "integer",
+                    "default": 200
+                  },
+                  "must_contain": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Case-insensitive substrings required in body; use honest markers for negative-path endpoints (e.g. unsupported_question/insufficient_evidence)."
+                  },
+                  "must_not_contain": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "e.g. ['fixture'] for negative paths."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "hg09": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "receipt_path": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Independent consumption receipt. Schema: {consumer{identity, kind:'agent', session_record{path,sha256}}, cli{command, exit_code:0, output{path,sha256}} (output must parse as JSON), mcp{tools:[{tool, exit_code:0, result{path,sha256}}]}, verdict:'PASS'}."
+            },
+            "excluded_identities": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Identity substrings that are NOT independent (parent/implementer/reviewer models)."
+            }
+          }
+        },
+        "hg10": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "receipts_path": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "journeys": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name",
+                  "steps"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "steps": {
+                    "type": "array",
+                    "minItems": 5,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "type"
+                      ],
+                      "properties": {
+                        "type": {
+                          "enum": [
+                            "goto",
+                            "click",
+                            "fill",
+                            "press",
+                            "wait",
+                            "assert_text",
+                            "source"
+                          ]
+                        },
+                        "url": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "selector": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "value": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "stage": {
+                          "enum": [
+                            "browse",
+                            "query",
+                            "finding",
+                            "inspect",
+                            "source"
+                          ]
+                        },
+                        "timeout_ms": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        },
+                        "artifact": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "hg11": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "receipt_path": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Second-update research receipt (HG02 run-receipt schema plus first_release_id, second_release_id)."
+            },
+            "cited_claim_url": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "expected_claim_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "pre_update_content_sha256": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^$|^[0-9a-f]{64}$",
+              "description": "sha256 of the cited claim body recorded BEFORE the second update; gates.py re-fetches live and requires byte identity."
+            }
+          }
+        },
+        "hg12": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "mutation_endpoints": {
+              "type": "array",
+              "items": {
+                "type": [
+                  "string",
+                  "object"
+                ]
+              },
+              "description": "Endpoints (path or {path}) that must reject unauthenticated POST {\"op\":\"declare-pass\"} with status >= 400."
+            },
+            "validation_negatives": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "endpoint",
+                  "expect_status"
+                ],
+                "properties": {
+                  "endpoint": {
+                    "type": "string"
+                  },
+                  "payload": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Inline JSON payload string."
+                  },
+                  "payload_over_bytes": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "description": "If set (with gates.hg12.max_payload_bytes), posts an oversized generated body."
+                  },
+                  "expect_status": {
+                    "type": "integer",
+                    "description": "Required rejection status (>= 400 enforced at run time)."
+                  }
+                }
+              }
+            },
+            "max_payload_bytes": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            }
+          }
+        },
+        "hg13": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "unsupported": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "path": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "Deployed path/URL for an unsupported question; must return 200 with an honest marker and no fixture content."
+                },
+                "honest_markers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "insufficient": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "path": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "honest_markers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "retrieval_failure": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "receipt_path": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "Scenario receipt schema: {scenario, trigger, observed{http_status?, body{path,sha256}, fixture_used:false}, honest:true}. must_contain lists explicit-failure markers verified in observed.body text."
+                },
+                "must_contain": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "outage": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "receipt_path": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "must_contain": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "last_good": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "url": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "content_sha256": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "pattern": "^$|^[0-9a-f]{64}$",
+                  "description": "sha256 of the last-good release body recorded before the induced failure; gates.py re-fetches after failure."
+                }
+              }
+            }
+          }
+        },
+        "hg14": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "production_host_patterns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Regex patterns for production hosts; preview URLs and recorded mutation traffic must not match."
+            }
+          }
+        },
+        "hg15": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "static_url": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Deployed surface path for static HTML marker checks (default base)."
+            },
+            "required_html_markers": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "default": [
+                "<html lang",
+                "skip"
+              ]
+            }
+          }
+        },
+        "hg16": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "timeout_seconds": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "minimum_tests": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "description": "Test count floor from the previous verdict receipt; null disables the floor."
+            },
+            "allow_removed_tests": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "description": "Count of tests removed under developer rules (incidental wording/wiring tests); must equal len(removed_incidental_tests)."
+            },
+            "removed_incidental_tests": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "path",
+                  "reason"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "description": "Developer-rule category (e.g. incidental wording/wiring test)."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "hg17": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "verdict_artifact_paths": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "hg18": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "required_dump_entries": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Path substrings that must appear among dump manifest entries (default ['provenance'])."
+            }
+          }
+        }
+      }
+    },
+    "paths": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dump_dir",
+        "protocol_completion_dir",
+        "runtime_records"
+      ],
+      "properties": {
+        "dump_dir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "protocol_completion_dir": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Frozen corrected-protocol directory (round-zero-protocol-completion) verified by HG01/HG18 logic."
+        },
+        "runtime_records": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "release_dir": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "venv_python": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Isolated env python for HG16 (and optional journeys driver); e.g. .venv/bin/python."
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "advisor_pin",
+        "pinned_from_runtime_record",
+        "no_worker_scores"
+      ],
+      "properties": {
+        "advisor_pin": {
+          "type": "string",
+          "minLength": 3,
+          "description": "e.g. opencode-go/glm-5.3-flash:max"
+        },
+        "pinned_from_runtime_record": {
+          "type": "boolean"
+        },
+        "no_worker_scores": {
+          "type": "boolean"
+        },
+        "fresh_context_session_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Fresh pinned advisor session ids per verdict; HG17 requires nonempty."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_d9219407a1f0af861e7b",
+  "release_id": "rel_20261001_bd52f9df83a6",
+  "occupation_slug": "account-executive",
+  "claim_type": "foundation",
+  "statement": "The services sales representative occupation is defined as selling services to individuals or businesses, the broad framing that covers the SaaS and infrastructure postings in this sample.",
+  "quote": "Sell services to individuals or businesses.",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_eb60d5eff1660d876eec",
+      "url": "https://www.onetonline.org/link/summary/41-3099.00",
+      "publisher": "O*NET OnLine (U.S. Department of Labor)",
+      "source_type": "foundation",
+      "retrieval_kind": "",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:51:03Z",
+      "sha256": "b5ec6c2f9dd810feb23862a7aec963fcdab58cc6abe51701c0a22802d37df6c0",
+      "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:58:53Z",
+  "published_at": "2026-10-01T00:04:44Z",
+  "citation_path": "/release/citations/clm_d9219407a1f0af861e7b.json",
+  "attribution": "agent-authored synthesis over retrieved official foundation text",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "b50e82f90a8e44b6198c2910b1d11739dbcc66d450a88c709988c919fb50189d"
+}

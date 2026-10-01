@@ -1,0 +1,95 @@
+[
+  {
+    "slug": "hr-generalist",
+    "label": "HR Generalist",
+    "family": "People Operations & Talent",
+    "aliases": [
+      "hr generalist",
+      "people operations",
+      "human resources generalist",
+      "people ops"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "sampled_at": "2026-09-30T23:13:24Z",
+    "sampling_note": "Counts describe only the job-board postings enumerated in the retrieval window for this role; they are not market prevalence. Enumerated boards were listed once per board API at the timestamp above, sampled most recently published first, then title and posting id (board API page order is not preserved); boards whose listing API pages or truncates report their enumerated/total bound in sources.json and board denominators are unaffected by per-posting detail retrievals. The candidate cap was allocated fairly across retrieved employers and provisional title/variant buckets; cap exclusions are recorded per posting. Posting text and quotes are attributed to the exact retrieved response that contains them (sources.json retrieval_kind/parent_source_id); only short excerpts are published.",
+    "selection": {
+      "prefilter_candidates": 19,
+      "feedback_triggered": false,
+      "missing_required_buckets": [],
+      "detail_fetches": 14,
+      "detail_text_failures": 0,
+      "candidates_excluded_without_text": 0,
+      "remaining_retrievals": 21,
+      "cap_allocation": {
+        "method": "deterministic fair allocation: one candidate per employer per provisional bucket (growth variants first) in employer importance order, then a round-robin remainder across employers; within an employer bucket, most recently published first, then title and posting id",
+        "cap": 60,
+        "eligible_candidates": 19,
+        "selected_candidates": 19,
+        "excluded_by_cap": 0,
+        "bucket_outcomes": {
+          "role": {
+            "eligible": 19,
+            "selected": 19,
+            "excluded_by_cap": 0
+          }
+        },
+        "employer_outcomes": {
+          "SpaceX": {
+            "eligible": 12,
+            "selected": 12,
+            "excluded_by_cap": 0
+          },
+          "Justworks": {
+            "eligible": 1,
+            "selected": 1,
+            "excluded_by_cap": 0
+          },
+          "Figma": {
+            "eligible": 2,
+            "selected": 2,
+            "excluded_by_cap": 0
+          },
+          "Stripe": {
+            "eligible": 1,
+            "selected": 1,
+            "excluded_by_cap": 0
+          },
+          "Coinbase": {
+            "eligible": 1,
+            "selected": 1,
+            "excluded_by_cap": 0
+          },
+          "Instacart": {
+            "eligible": 1,
+            "selected": 1,
+            "excluded_by_cap": 0
+          },
+          "Ramp": {
+            "eligible": 1,
+            "selected": 1,
+            "excluded_by_cap": 0
+          }
+        }
+      }
+    },
+    "stats": {
+      "total_seen": 5268,
+      "sampled": 5268,
+      "prefilter_candidates": 19,
+      "detail_text_fetches": 14,
+      "detail_sources_used": 9,
+      "postings_dedup": 12,
+      "employers_dedup": 5,
+      "boards_attempted": 16,
+      "boards_used": 5,
+      "excluded_total": 5256,
+      "foundations_used": 3
+    },
+    "run_ids": [
+      "run_20260930T231324Z_22002c"
+    ]
+  }
+]

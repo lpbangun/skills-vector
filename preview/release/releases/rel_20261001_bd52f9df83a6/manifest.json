@@ -1,0 +1,75 @@
+{
+  "release_schema": "market-release/1",
+  "release_id": "rel_20261001_bd52f9df83a6",
+  "generated_at": "2026-10-01T00:04:44Z",
+  "published_at": "2026-10-01T00:04:44Z",
+  "agent_attribution": "Agent-authored synthesis produced by the pinned subscription task model(s): opencode-go/deepseek-v4.1-flash (thinking max, fallback False). Run receipts, retrieval bytes and private transcripts are retained outside the public release.",
+  "role_scope": {
+    "geography": "United States (per-occupation bounds in occupations[].role_scope)",
+    "seniority": "per-occupation bands in occupations[].role_scope"
+  },
+  "sampling_scope": {
+    "method": "Direct retrieval from allowlisted public occupational foundations and public employer job-board APIs selected by the discovery pass; no paid or metered search provider.",
+    "occupations": {
+      "hr-generalist": {
+        "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+        "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)",
+        "sampled_at": "2026-09-30T23:13:24Z",
+        "boards_attempted": 16,
+        "boards_used": 5,
+        "total_seen": 5268,
+        "sampled": 5268,
+        "postings_dedup": 12,
+        "employers_dedup": 5,
+        "excluded_total": 5256
+      },
+      "growth-manager": {
+        "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+        "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)",
+        "sampled_at": "2026-09-30T23:23:07Z",
+        "boards_attempted": 16,
+        "boards_used": 8,
+        "total_seen": 1941,
+        "sampled": 1941,
+        "postings_dedup": 26,
+        "employers_dedup": 8,
+        "excluded_total": 1915
+      },
+      "account-executive": {
+        "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+        "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)",
+        "sampled_at": "2026-09-30T23:49:23Z",
+        "boards_attempted": 16,
+        "boards_used": 7,
+        "total_seen": 3357,
+        "sampled": 3357,
+        "postings_dedup": 19,
+        "employers_dedup": 7,
+        "excluded_total": 3338
+      }
+    },
+    "dedup": "job id + canonical url + normalized employer + normalized title",
+    "label": "sample counts describe the retrieved window only; not market prevalence"
+  },
+  "frequency_caveat": "Posting frequency is not importance, proficiency, hires or employability; counts describe the retrieved sample only and are not market prevalence.",
+  "skip_rules": [
+    {
+      "rule": "insufficient_admitted_postings",
+      "threshold": 8,
+      "action": "publish foundation/scope claims only; no demand claims for that occupation slice"
+    },
+    {
+      "rule": "no_matching_stored_claim",
+      "action": "query returns insufficient_evidence or unsupported_question with a bounded local research handoff; never a fabricated answer"
+    },
+    {
+      "rule": "no_trend_claims_without_comparable_periods",
+      "action": "trend language is rejected at challenge; paired comparable retrieval windows are required before any trend claim"
+    }
+  ],
+  "run_ids": [
+    "run_20260930T231324Z_22002c",
+    "run_20260930T232307Z_0d1ee5",
+    "run_20260930T234923Z_e17111"
+  ]
+}

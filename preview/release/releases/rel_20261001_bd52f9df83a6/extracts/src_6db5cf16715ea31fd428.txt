@@ -1,0 +1,14 @@
+# source src_6db5cf16715ea31fd428
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_73cf3754f3c9cc627a4e
+# url https://boards-api.greenhouse.io/v1/boards/verkada/jobs/5248108007
+# publisher Verkada
+# retrieved_at 2026-09-30T23:51:26Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f raw_bytes 14339
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=6edf48c5d896152e0dc53eda employer=Verkada title=Enterprise Account Executive (Florida - ED) location=Florida, United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/5248108007
+Manage the entire sales process to ensure delivery against key performance metrics and quota, with a strong emphasis on net new business sales.
+# posting id=claim:clm_1d205ecd77f44e9cff09 employer= title= location= variant= url=
+with a strong emphasis on net new business sales

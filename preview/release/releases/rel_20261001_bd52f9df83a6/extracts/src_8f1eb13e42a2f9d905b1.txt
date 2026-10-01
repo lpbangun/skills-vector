@@ -1,0 +1,12 @@
+# source src_8f1eb13e42a2f9d905b1
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_16c9794cae5faf367e83
+# url https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8657726002
+# publisher SpaceX
+# retrieved_at 2026-09-30T23:15:23Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 4bd7d9d8f0afa672c9beb54146300db6fef808e042edc183a9a421cb20865a5b raw_bytes 9565
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=31da79101501285402bbc44c employer=SpaceX title=Human Resources Coordinator (Employee Relations) location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8657726002?gh_jid=8657726002
+Maintain our HRIS for all employee life-cycle processes

@@ -10,9 +10,11 @@ data/
 *.sqlite
 .vercel-out
 .vercel
+.market-staging/
 .poc-lane.json
 .poc-env/
 .pi/
 playwright-report/
 test-results/
+acceptance/evidence
 

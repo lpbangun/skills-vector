@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_52c1a86f714c073d4e86",
+  "release_id": "rel_20260930_11872e02dacc",
+  "occupation_slug": "growth-manager",
+  "claim_type": "advertised_demand",
+  "statement": "quota-carrying SaaS closing experience: quota-carrying SaaS closing experience — recorded in 1 of 26 admitted Growth Manager postings (variant scope sales-account-executive) from 1 of 8 employers in the 2026-09-30 US sample.",
+  "quote": "Minimum 6 years of quota-carrying direct SaaS sales experience in a full cycle closing role with strong prospecting, qualifying, negotiating, and closing skills",
+  "variant": "sales-account-executive",
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_5f0e798a62519cd48afb",
+      "url": "https://api.ashbyhq.com/posting-api/job-board/ramp",
+      "publisher": "Ramp",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:25:26Z",
+      "sha256": "e135ba2a187d32b20ec5e83795118956ac337fe34287c505e4c5789f6ac9a1e0",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:43:47Z",
+  "published_at": "2026-09-30T23:48:04Z",
+  "citation_path": "/release/citations/clm_52c1a86f714c073d4e86.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "0de855d6e13c40c64609006aef3c30820615a70e1fbb05a5fc82e5aa1e5e4a2d"
+}

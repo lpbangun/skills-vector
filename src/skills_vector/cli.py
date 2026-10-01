@@ -48,6 +48,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="skills-vector",
         description="Local occupational skills research and approved static exports.",
+        epilog=(
+            "market commands (browse, query, occupation, claim, evidence, release-info, research-plan, "
+            "research run, publish, validate, rollback, serve, mcp, agent-guide) are available as "
+            "`skills-vector market <command>`."
+        ),
     )
     sub = parser.add_subparsers(dest="command", required=True)
 
@@ -106,7 +111,12 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
-    args = build_parser().parse_args(argv)
+    actual_argv = list(argv if argv is not None else sys.argv[1:])
+    if actual_argv and actual_argv[0] == "market":
+        from . import market_cli
+
+        return market_cli.main(actual_argv[1:])
+    args = build_parser().parse_args(actual_argv)
     if args.command == "structured-job-analysis":
         from .structured_job_analysis import (
             DEFAULT_BASE_CORPUS_DIR,
@@ -116,7 +126,7 @@ def main(argv: list[str] | None = None) -> int:
             run_pipeline,
         )
 
-        actual_argv = argv if argv is not None else sys.argv[1:]
+        actual_argv = list(argv if argv is not None else sys.argv[1:])
         command = shlex.join([sys.executable, "-m", "skills_vector", *actual_argv])
         try:
             receipt = run_pipeline(

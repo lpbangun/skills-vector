@@ -1,0 +1,944 @@
+[
+  {
+    "id": "src_75bca50e000c73a05cb5",
+    "url": "https://www.onetonline.org/link/summary/13-1071.00",
+    "publisher": "O*NET OnLine (U.S. Department of Labor)",
+    "source_type": "foundation",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:14:41Z",
+    "sha256": "1cf732820fc7d485cf036e0cc9dfc8a56204b86881fafcfdfa2ec3c5ace375db",
+    "bytes": 233903,
+    "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+    "inclusion": true,
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "extract_path": "extracts/src_75bca50e000c73a05cb5.txt",
+    "extract_sha256": "7f7c2d27064cd972375645d20f63f704a843b3d9a9faf0e89bed51b4cd0afdd1"
+  },
+  {
+    "id": "src_81d88b146e78fd6ae20d",
+    "url": "https://www.onetonline.org/link/summary/11-3121.00",
+    "publisher": "O*NET OnLine (U.S. Department of Labor)",
+    "source_type": "foundation",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:14:42Z",
+    "sha256": "1ca196004b40b563c93336aeb18e0f12af6030beecc2da8e08d523a8518861ad",
+    "bytes": 233977,
+    "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+    "inclusion": true,
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "extract_path": "extracts/src_81d88b146e78fd6ae20d.txt",
+    "extract_sha256": "2cd3ca9fd65bb770f6a2f4c916059b58473fc2f705f9f1a22fc33999e6f51060"
+  },
+  {
+    "id": "src_bec07bd2555aadb59e60",
+    "url": "https://www.bls.gov/ooh/business-and-financial/hr-specialists.htm",
+    "publisher": "www.bls.gov",
+    "source_type": "foundation",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:14:42Z",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "rights": "not published (retrieval failed)",
+    "inclusion": false,
+    "exclusion_reason": "http 403",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "extract_path": "extracts/src_bec07bd2555aadb59e60.txt",
+    "extract_sha256": "88ca5e42875e368006062785dd15540d12925a4c2fae1d14225d1296a33a6973"
+  },
+  {
+    "id": "src_15f41bfbe276afd69880",
+    "url": "https://www.bls.gov/ooh/business-and-financial/compensation-benefits-and-job-analysis-specialists.htm",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "source_type": "foundation",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:14:43Z",
+    "sha256": "01a8bbee0feffc5b27a9a4c0ec03063c8cffdded2dc1c3c78504d4cfa038679b",
+    "bytes": 113485,
+    "rights": "U.S. Bureau of Labor Statistics public domain; short excerpts published with attribution",
+    "inclusion": true,
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "extract_path": "extracts/src_15f41bfbe276afd69880.txt",
+    "extract_sha256": "289436cbe9f46628f4502f089e16863d84fac485eaf306ae439cac890b45181a"
+  },
+  {
+    "id": "src_16c9794cae5faf367e83",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs",
+    "publisher": "SpaceX",
+    "source_type": "job-board",
+    "retrieval_kind": "listing",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:10Z",
+    "sha256": "20bd3cee08305dbe2f31fb2ab8f7487e729fdc428a8be20f377923166f85f52f",
+    "bytes": 2097152,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "ats": "greenhouse",
+    "token": "spacex",
+    "postings_enumerated": 2227,
+    "postings_retrieved": 2227,
+    "board_total": null,
+    "listing_truncated": true,
+    "listing_attempts": [
+      {
+        "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs?content=true",
+        "status": 200,
+        "bytes": 2097152,
+        "sha256": "d68697b41fed0009661b1aa29f0dcb8f8282237baa69d48429362841021cb8b4",
+        "truncated": true,
+        "parsed_postings": 177,
+        "note": "json prefix salvaged from truncated payload"
+      },
+      {
+        "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs",
+        "status": 200,
+        "bytes": 2097152,
+        "sha256": "20bd3cee08305dbe2f31fb2ab8f7487e729fdc428a8be20f377923166f85f52f",
+        "truncated": true,
+        "parsed_postings": 2227,
+        "note": "compact listing fallback"
+      }
+    ],
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_602e4b83494866c86558",
+    "url": "https://boards-api.greenhouse.io/v1/boards/justworks/jobs?content=true",
+    "publisher": "Justworks",
+    "source_type": "job-board",
+    "retrieval_kind": "listing",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:11Z",
+    "sha256": "403ea3506d88bbe2d10adeb408c10532d25ee3dfbda096e198b72b005eebed3a",
+    "bytes": 1595426,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "ats": "greenhouse",
+    "token": "justworks",
+    "postings_enumerated": 92,
+    "postings_retrieved": 92,
+    "board_total": null,
+    "listing_truncated": false,
+    "listing_attempts": [
+      {
+        "url": "https://boards-api.greenhouse.io/v1/boards/justworks/jobs?content=true",
+        "status": 200,
+        "bytes": 1595426,
+        "sha256": "403ea3506d88bbe2d10adeb408c10532d25ee3dfbda096e198b72b005eebed3a",
+        "truncated": false,
+        "parsed_postings": 92,
+        "note": ""
+      }
+    ],
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "extract_path": "extracts/src_602e4b83494866c86558.txt",
+    "extract_sha256": "7f5d72e8ff92b4fd6f9e105c2950c016707687fcc6fcac046d5263d267213ca2"
+  },
+  {
+    "id": "src_a5eed0620cfc4a7c9c21",
+    "url": "https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true",
+    "publisher": "Figma",
+    "source_type": "job-board",
+    "retrieval_kind": "listing",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:12Z",
+    "sha256": "17f412f45c48bd184eb293c5df521ff2cd5609f96875b597ae709c115b9609fb",
+    "bytes": 1844614,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "ats": "greenhouse",
+    "token": "figma",
+    "postings_enumerated": 165,
+    "postings_retrieved": 165,
+    "board_total": null,
+    "listing_truncated": false,
+    "listing_attempts": [
+      {
+        "url": "https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true",
+        "status": 200,
+        "bytes": 1844614,
+        "sha256": "17f412f45c48bd184eb293c5df521ff2cd5609f96875b597ae709c115b9609fb",
+        "truncated": false,
+        "parsed_postings": 165,
+        "note": ""
+      }
+    ],
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "extract_path": "extracts/src_a5eed0620cfc4a7c9c21.txt",
+    "extract_sha256": "9e3fa291c05e895230808a9c7583f68e2cb2e2200a00f13885ae751cfe9dbce4"
+  },
+  {
+    "id": "src_2b7556c98f0110a11745",
+    "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs",
+    "publisher": "Stripe",
+    "source_type": "job-board",
+    "retrieval_kind": "listing",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:13Z",
+    "sha256": "4d988621c768c69f17f4e2efa5e46d3711725362d6a3aa9efd4e01cb521ab852",
+    "bytes": 447434,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "ats": "greenhouse",
+    "token": "stripe",
+    "postings_enumerated": 716,
+    "postings_retrieved": 716,
+    "board_total": null,
+    "listing_truncated": false,
+    "listing_attempts": [
+      {
+        "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs?content=true",
+        "status": 200,
+        "bytes": 2097152,
+        "sha256": "f13eff88c1e4909ff5d4d9beebcf2dde5fc8bbdf65fabf33a61eda9381de99a5",
+        "truncated": true,
+        "parsed_postings": 280,
+        "note": "json prefix salvaged from truncated payload"
+      },
+      {
+        "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs",
+        "status": 200,
+        "bytes": 447434,
+        "sha256": "4d988621c768c69f17f4e2efa5e46d3711725362d6a3aa9efd4e01cb521ab852",
+        "truncated": false,
+        "parsed_postings": 716,
+        "note": "compact listing fallback"
+      }
+    ],
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_e2fd23b5508f6cb43f45",
+    "url": "https://boards-api.greenhouse.io/v1/boards/doordash/jobs?content=true",
+    "publisher": "DoorDash",
+    "source_type": "job-board",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:14Z",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "rights": "not published (retrieval failed)",
+    "inclusion": false,
+    "exclusion_reason": "http 404",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_a65819ce1c8bdcc60bb4",
+    "url": "https://boards-api.greenhouse.io/v1/boards/airbnb/jobs",
+    "publisher": "Airbnb",
+    "source_type": "job-board",
+    "retrieval_kind": "listing",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:14Z",
+    "sha256": "e983f33bcef208684d6e2e8cccd62b2dec285174778a370eae8be086dd2beeb4",
+    "bytes": 120216,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "ats": "greenhouse",
+    "token": "airbnb",
+    "postings_enumerated": 156,
+    "postings_retrieved": 156,
+    "board_total": null,
+    "listing_truncated": false,
+    "listing_attempts": [
+      {
+        "url": "https://boards-api.greenhouse.io/v1/boards/airbnb/jobs?content=true",
+        "status": 200,
+        "bytes": 2097152,
+        "sha256": "d2ba466f21ca21d817f23b2848a33cc543061911eb9f03f4b669608ad50d3d13",
+        "truncated": true,
+        "parsed_postings": 145,
+        "note": "json prefix salvaged from truncated payload"
+      },
+      {
+        "url": "https://boards-api.greenhouse.io/v1/boards/airbnb/jobs",
+        "status": 200,
+        "bytes": 120216,
+        "sha256": "e983f33bcef208684d6e2e8cccd62b2dec285174778a370eae8be086dd2beeb4",
+        "truncated": false,
+        "parsed_postings": 156,
+        "note": "compact listing fallback"
+      }
+    ],
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_53da6c046349fe5d4df2",
+    "url": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs",
+    "publisher": "Coinbase",
+    "source_type": "job-board",
+    "retrieval_kind": "listing",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:15Z",
+    "sha256": "c4e1cbfe1b602e7d4cc9a8c490d6926f8ed3f8d327e97544e3225a4a04350578",
+    "bytes": 249634,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "ats": "greenhouse",
+    "token": "coinbase",
+    "postings_enumerated": 218,
+    "postings_retrieved": 218,
+    "board_total": null,
+    "listing_truncated": false,
+    "listing_attempts": [
+      {
+        "url": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs?content=true",
+        "status": 200,
+        "bytes": 2097152,
+        "sha256": "9ee9f07426635a1aba38a833ccb4769df08e6933e01f37030de6510ef11258df",
+        "truncated": true,
+        "parsed_postings": 189,
+        "note": "json prefix salvaged from truncated payload"
+      },
+      {
+        "url": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs",
+        "status": 200,
+        "bytes": 249634,
+        "sha256": "c4e1cbfe1b602e7d4cc9a8c490d6926f8ed3f8d327e97544e3225a4a04350578",
+        "truncated": false,
+        "parsed_postings": 218,
+        "note": "compact listing fallback"
+      }
+    ],
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_dd02347218047275266a",
+    "url": "https://boards-api.greenhouse.io/v1/boards/reddit/jobs?content=true",
+    "publisher": "Reddit",
+    "source_type": "job-board",
+    "retrieval_kind": "listing",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:15Z",
+    "sha256": "e812cba0d892b30cf14c3c5519493c62524c9a313bf3e8fd881a98c4b2a638bb",
+    "bytes": 1994760,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "ats": "greenhouse",
+    "token": "reddit",
+    "postings_enumerated": 145,
+    "postings_retrieved": 145,
+    "board_total": null,
+    "listing_truncated": false,
+    "listing_attempts": [
+      {
+        "url": "https://boards-api.greenhouse.io/v1/boards/reddit/jobs?content=true",
+        "status": 200,
+        "bytes": 1994760,
+        "sha256": "e812cba0d892b30cf14c3c5519493c62524c9a313bf3e8fd881a98c4b2a638bb",
+        "truncated": false,
+        "parsed_postings": 145,
+        "note": ""
+      }
+    ],
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_a04fbadd3ba8d83d76dd",
+    "url": "https://boards-api.greenhouse.io/v1/boards/instacart/jobs?content=true",
+    "publisher": "Instacart",
+    "source_type": "job-board",
+    "retrieval_kind": "listing",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:16Z",
+    "sha256": "51b44c654cf5c3aaa4e286911ff946365775ae9f99adfeb48a12451239858854",
+    "bytes": 1450405,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "ats": "greenhouse",
+    "token": "instacart",
+    "postings_enumerated": 124,
+    "postings_retrieved": 124,
+    "board_total": null,
+    "listing_truncated": false,
+    "listing_attempts": [
+      {
+        "url": "https://boards-api.greenhouse.io/v1/boards/instacart/jobs?content=true",
+        "status": 200,
+        "bytes": 1450405,
+        "sha256": "51b44c654cf5c3aaa4e286911ff946365775ae9f99adfeb48a12451239858854",
+        "truncated": false,
+        "parsed_postings": 124,
+        "note": ""
+      }
+    ],
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "extract_path": "extracts/src_a04fbadd3ba8d83d76dd.txt",
+    "extract_sha256": "022d7207c9743abbf79cb203d04ec27837e203a5190bec5b7d4cdceb37d8eddd"
+  },
+  {
+    "id": "src_056089a432e4cbdd7c18",
+    "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs",
+    "publisher": "Databricks",
+    "source_type": "job-board",
+    "retrieval_kind": "listing",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:17Z",
+    "sha256": "bba13dc00c69a60460aa86cc0eb54f689c177d80cffad663c1e1eacde1d1ba14",
+    "bytes": 756271,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "ats": "greenhouse",
+    "token": "databricks",
+    "postings_enumerated": 881,
+    "postings_retrieved": 881,
+    "board_total": null,
+    "listing_truncated": false,
+    "listing_attempts": [
+      {
+        "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs?content=true",
+        "status": 200,
+        "bytes": 2097152,
+        "sha256": "32290f3312174f8ceab87303b26a1e90ec7878b4a2805a87695ef794d5cc0aff",
+        "truncated": true,
+        "parsed_postings": 186,
+        "note": "json prefix salvaged from truncated payload"
+      },
+      {
+        "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs",
+        "status": 200,
+        "bytes": 756271,
+        "sha256": "bba13dc00c69a60460aa86cc0eb54f689c177d80cffad663c1e1eacde1d1ba14",
+        "truncated": false,
+        "parsed_postings": 881,
+        "note": "compact listing fallback"
+      }
+    ],
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_f0b6e3d89c078cfaf66d",
+    "url": "https://boards-api.greenhouse.io/v1/boards/affirm/jobs?content=true",
+    "publisher": "Affirm",
+    "source_type": "job-board",
+    "retrieval_kind": "listing",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:18Z",
+    "sha256": "f0fcffca4469be9d30a760633c5dc64a781fb26725da752efd51437fa3d49d2b",
+    "bytes": 2009601,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "ats": "greenhouse",
+    "token": "affirm",
+    "postings_enumerated": 183,
+    "postings_retrieved": 183,
+    "board_total": null,
+    "listing_truncated": false,
+    "listing_attempts": [
+      {
+        "url": "https://boards-api.greenhouse.io/v1/boards/affirm/jobs?content=true",
+        "status": 200,
+        "bytes": 2009601,
+        "sha256": "f0fcffca4469be9d30a760633c5dc64a781fb26725da752efd51437fa3d49d2b",
+        "truncated": false,
+        "parsed_postings": 183,
+        "note": ""
+      }
+    ],
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_1b58f97d03f893ef48bd",
+    "url": "https://api.ashbyhq.com/posting-api/job-board/openai",
+    "publisher": "OpenAI",
+    "source_type": "job-board",
+    "retrieval_kind": "listing",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:18Z",
+    "sha256": "55f93c06bc855e1ea0536d03918798a995c704cf437bd564ef689a2acf1a9ec0",
+    "bytes": 2097152,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "ats": "ashby",
+    "token": "openai",
+    "postings_enumerated": 137,
+    "postings_retrieved": 137,
+    "board_total": null,
+    "listing_truncated": true,
+    "listing_attempts": [
+      {
+        "url": "https://api.ashbyhq.com/posting-api/job-board/openai",
+        "status": 200,
+        "bytes": 2097152,
+        "sha256": "55f93c06bc855e1ea0536d03918798a995c704cf437bd564ef689a2acf1a9ec0",
+        "truncated": true,
+        "parsed_postings": 137,
+        "note": "json prefix salvaged from truncated payload"
+      }
+    ],
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_7e5e752630f59adf8e55",
+    "url": "https://api.ashbyhq.com/posting-api/job-board/ramp",
+    "publisher": "Ramp",
+    "source_type": "job-board",
+    "retrieval_kind": "listing",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:18Z",
+    "sha256": "e135ba2a187d32b20ec5e83795118956ac337fe34287c505e4c5789f6ac9a1e0",
+    "bytes": 2097152,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "ats": "ashby",
+    "token": "ramp",
+    "postings_enumerated": 124,
+    "postings_retrieved": 124,
+    "board_total": null,
+    "listing_truncated": true,
+    "listing_attempts": [
+      {
+        "url": "https://api.ashbyhq.com/posting-api/job-board/ramp",
+        "status": 200,
+        "bytes": 2097152,
+        "sha256": "e135ba2a187d32b20ec5e83795118956ac337fe34287c505e4c5789f6ac9a1e0",
+        "truncated": true,
+        "parsed_postings": 124,
+        "note": "json prefix salvaged from truncated payload"
+      }
+    ],
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_b703bbc1f1bb61eac78d",
+    "url": "https://api.ashbyhq.com/posting-api/job-board/vercel",
+    "publisher": "Vercel",
+    "source_type": "job-board",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:19Z",
+    "sha256": "03e836a65ca1e7ce4ab6bd534fd3b8d6c359fa5ceae781af2ce1c0e113ca1b9a",
+    "bytes": 28,
+    "rights": "not published (retrieval failed)",
+    "inclusion": false,
+    "exclusion_reason": "payload contained no titled postings",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_ac165f348c17ff741b95",
+    "url": "https://api.smartrecruiters.com/v1/companies/Visa/postings",
+    "publisher": "Visa",
+    "source_type": "job-board",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:19Z",
+    "sha256": "dd343c33c470fed1e87299640e449a7c124a75f563e0d8052bb781ea88e74b46",
+    "bytes": 52,
+    "rights": "not published (retrieval failed)",
+    "inclusion": false,
+    "exclusion_reason": "payload contained no titled postings",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_deb834dd8b000a1d0505",
+    "url": "https://api.smartrecruiters.com/v1/companies/BoschGroup/postings",
+    "publisher": "Bosch",
+    "source_type": "job-board",
+    "retrieval_kind": "listing",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:20Z",
+    "sha256": "0fca261ea6f862dfd15469ed191a4a234ca6d14d7ec50fb94de8d172f0bf9106",
+    "bytes": 311584,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "ats": "smartrecruiters",
+    "token": "BoschGroup",
+    "postings_enumerated": 100,
+    "postings_retrieved": 100,
+    "board_total": 4835,
+    "listing_truncated": false,
+    "listing_attempts": [
+      {
+        "url": "https://api.smartrecruiters.com/v1/companies/BoschGroup/postings",
+        "status": 200,
+        "bytes": 311584,
+        "sha256": "0fca261ea6f862dfd15469ed191a4a234ca6d14d7ec50fb94de8d172f0bf9106",
+        "truncated": false,
+        "parsed_postings": 100,
+        "note": ""
+      }
+    ],
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_2989feeae46ca5cf297b",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8581427002",
+    "publisher": "SpaceX",
+    "source_type": "job-posting-detail",
+    "retrieval_kind": "detail",
+    "parent_source_id": "src_16c9794cae5faf367e83",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:21Z",
+    "sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce",
+    "bytes": 9454,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "posting_ids": [
+      "8581427002"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "extract_path": "extracts/src_2989feeae46ca5cf297b.txt",
+    "extract_sha256": "240ac43df268a13f8a96e14d87694318421a5172b0217b06aa6fd1fd1c43aacc"
+  },
+  {
+    "id": "src_67c1ce779534a2913056",
+    "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs/7466921",
+    "publisher": "Stripe",
+    "source_type": "job-posting-detail",
+    "retrieval_kind": "detail",
+    "parent_source_id": "src_2b7556c98f0110a11745",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:21Z",
+    "sha256": "6abe77a905a3e40340aa6a7f562e6e967f84023acf94734ebd39319f4959007e",
+    "bytes": 7968,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "posting_ids": [
+      "7466921"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_7e9aa8ae74ffd693c4ff",
+    "url": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs/7997879",
+    "publisher": "Coinbase",
+    "source_type": "job-posting-detail",
+    "retrieval_kind": "detail",
+    "parent_source_id": "src_53da6c046349fe5d4df2",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:21Z",
+    "sha256": "c06ac79b375bdd9cfedb762f15a1dd4f6da1e7c765aadf414d202d402090bccc",
+    "bytes": 10425,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "posting_ids": [
+      "7997879"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "extract_path": "extracts/src_7e9aa8ae74ffd693c4ff.txt",
+    "extract_sha256": "685d245e581e0e2c00ee13260868ed0a55ad6fc7ae03ce2c412fd334b578d43c"
+  },
+  {
+    "id": "src_3b74b40433ab53ab82da",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8790633002",
+    "publisher": "SpaceX",
+    "source_type": "job-posting-detail",
+    "retrieval_kind": "detail",
+    "parent_source_id": "src_16c9794cae5faf367e83",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:22Z",
+    "sha256": "0411d65a96f27623b90349c66847f7ceaa13a1f802078ada3e993dc74eb85dca",
+    "bytes": 8029,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "posting_ids": [
+      "8790633002"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "extract_path": "extracts/src_3b74b40433ab53ab82da.txt",
+    "extract_sha256": "2d4bc4a9edb1ca7e26d69be9ebd78ea1e7f1647acb12f2ae2b93e0c930e4d526"
+  },
+  {
+    "id": "src_62dc99e3d0305d3900f0",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8779717002",
+    "publisher": "SpaceX",
+    "source_type": "job-posting-detail",
+    "retrieval_kind": "detail",
+    "parent_source_id": "src_16c9794cae5faf367e83",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:22Z",
+    "sha256": "e2c0e3661a5eb842b52ae06ba3c41c6374c6c12fd5a39c57474ac337e6430783",
+    "bytes": 8323,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "posting_ids": [
+      "8779717002"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "extract_path": "extracts/src_62dc99e3d0305d3900f0.txt",
+    "extract_sha256": "51077e212601b9cc982fd397d37aa1a43b3045635413f09bea9e99726df62970"
+  },
+  {
+    "id": "src_7938a9d04e30b7356116",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8505413002",
+    "publisher": "SpaceX",
+    "source_type": "job-posting-detail",
+    "retrieval_kind": "detail",
+    "parent_source_id": "src_16c9794cae5faf367e83",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:22Z",
+    "sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+    "bytes": 8637,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "posting_ids": [
+      "8505413002"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "extract_path": "extracts/src_7938a9d04e30b7356116.txt",
+    "extract_sha256": "ce9bd42b326a92571cd860d8f851faa0aae7e28f89be84f0a73e6fb94309238c"
+  },
+  {
+    "id": "src_9b5cd7bfa677ce7d9ac3",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8788674002",
+    "publisher": "SpaceX",
+    "source_type": "job-posting-detail",
+    "retrieval_kind": "detail",
+    "parent_source_id": "src_16c9794cae5faf367e83",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:22Z",
+    "sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682",
+    "bytes": 8419,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "posting_ids": [
+      "8788674002"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "extract_path": "extracts/src_9b5cd7bfa677ce7d9ac3.txt",
+    "extract_sha256": "6cd3fbe4637aa050bd6d0a07a23362e75958c012190cde7386930d7dbeed8eed"
+  },
+  {
+    "id": "src_91365d1112f23a704782",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8857194002",
+    "publisher": "SpaceX",
+    "source_type": "job-posting-detail",
+    "retrieval_kind": "detail",
+    "parent_source_id": "src_16c9794cae5faf367e83",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:23Z",
+    "sha256": "4e458bbea0d6f688ca3cce30e0484d663c70f7c169ec56f98ce31586e191c343",
+    "bytes": 8199,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "posting_ids": [
+      "8857194002"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_8f1eb13e42a2f9d905b1",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8657726002",
+    "publisher": "SpaceX",
+    "source_type": "job-posting-detail",
+    "retrieval_kind": "detail",
+    "parent_source_id": "src_16c9794cae5faf367e83",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:23Z",
+    "sha256": "4bd7d9d8f0afa672c9beb54146300db6fef808e042edc183a9a421cb20865a5b",
+    "bytes": 9565,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "posting_ids": [
+      "8657726002"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "extract_path": "extracts/src_8f1eb13e42a2f9d905b1.txt",
+    "extract_sha256": "8c372b68b236cf1bf59f646a342125d61bf5ea9788898774243e9c78420bda02"
+  },
+  {
+    "id": "src_cfa53ee294c2fd1d5c2b",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8843917002",
+    "publisher": "SpaceX",
+    "source_type": "job-posting-detail",
+    "retrieval_kind": "detail",
+    "parent_source_id": "src_16c9794cae5faf367e83",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:23Z",
+    "sha256": "6055ecbb182a8fe83a7b1f25fc3dcbafe42f32bf5dc577eb47dcbac8ee32be5f",
+    "bytes": 9399,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "posting_ids": [
+      "8843917002"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "extract_path": "extracts/src_cfa53ee294c2fd1d5c2b.txt",
+    "extract_sha256": "327b2166247e79771909f18d228b4a924513d7cdb22500792d036cc980963b2c"
+  },
+  {
+    "id": "src_e0b833f57a8f7420d5cf",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8436754002",
+    "publisher": "SpaceX",
+    "source_type": "job-posting-detail",
+    "retrieval_kind": "detail",
+    "parent_source_id": "src_16c9794cae5faf367e83",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:24Z",
+    "sha256": "a4e03a4bd927347eae8b906ca4305a72be6a40c26f3d5300b6f189940b9a4f29",
+    "bytes": 8504,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "posting_ids": [
+      "8436754002"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_d76f602be4c12ae1732a",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8530754002",
+    "publisher": "SpaceX",
+    "source_type": "job-posting-detail",
+    "retrieval_kind": "detail",
+    "parent_source_id": "src_16c9794cae5faf367e83",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:24Z",
+    "sha256": "8829ec44951c8071027b8292e65c8d38818b53a2c4e8b6d4e2654ad90e3636a0",
+    "bytes": 9520,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "posting_ids": [
+      "8530754002"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "extract_path": "extracts/src_d76f602be4c12ae1732a.txt",
+    "extract_sha256": "220125dfd626964f9918b2bfb076bd65e0a1796516d6e3035cab50c6793e13c0"
+  },
+  {
+    "id": "src_87f0ca239f83a03f76b2",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8681182002",
+    "publisher": "SpaceX",
+    "source_type": "job-posting-detail",
+    "retrieval_kind": "detail",
+    "parent_source_id": "src_16c9794cae5faf367e83",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:24Z",
+    "sha256": "d95006438e400932265bf2efcb8c8745755ee7fbe67c34608821f1267d654767",
+    "bytes": 7218,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "posting_ids": [
+      "8681182002"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  },
+  {
+    "id": "src_50922748c79d8dd07e14",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8681187002",
+    "publisher": "SpaceX",
+    "source_type": "job-posting-detail",
+    "retrieval_kind": "detail",
+    "parent_source_id": "src_16c9794cae5faf367e83",
+    "occupation_slug": "hr-generalist",
+    "retrieved_at": "2026-09-30T23:15:24Z",
+    "sha256": "2f0ef1899b8cf0dd9bbf1a608858c4542867d807cca222530edef5389c3ea27d",
+    "bytes": 8611,
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "inclusion": true,
+    "posting_ids": [
+      "8681187002"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    }
+  }
+]

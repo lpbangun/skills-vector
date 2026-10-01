@@ -1,0 +1,434 @@
+[
+  {
+    "run_id": "run_20260930T231324Z_22002c",
+    "occupation_slug": "hr-generalist",
+    "occupations": [
+      "hr-generalist"
+    ],
+    "provider": "opencode-go",
+    "model": "deepseek-v4.1-flash",
+    "thinking": "max",
+    "model_fallback": false,
+    "started_at": "2026-09-30T23:13:24Z",
+    "finished_at": "2026-09-30T23:22:05Z",
+    "question": null,
+    "retrievals": 39,
+    "model_calls": 6,
+    "boards_attempted": 16,
+    "boards_used": 5,
+    "detail_sources": 14,
+    "foundations_included": 3,
+    "postings_seen": 5268,
+    "postings_admitted": 12,
+    "excluded": 5256,
+    "stages": {
+      "discovery": {
+        "foundations_targeted": 4,
+        "boards_targeted": 16,
+        "search_terms": [
+          "HR Generalist",
+          "Human Resources Generalist",
+          "People Operations Generalist",
+          "HR Operations Specialist",
+          "Human Resources Operations Specialist",
+          "People Operations Specialist",
+          "HR Specialist",
+          "Human Resources Specialist",
+          "HR Operations Generalist",
+          "People Generalist"
+        ]
+      },
+      "retrieval": {
+        "retrievals": 39
+      },
+      "candidate_selection": {
+        "prefilter_candidates": 19,
+        "feedback_triggered": false,
+        "missing_required_buckets": [],
+        "detail_fetches": 14,
+        "detail_text_failures": 0,
+        "candidates_excluded_without_text": 0,
+        "remaining_retrievals": 21,
+        "cap_allocation": {
+          "method": "deterministic fair allocation: one candidate per employer per provisional bucket (growth variants first) in employer importance order, then a round-robin remainder across employers; within an employer bucket, most recently published first, then title and posting id",
+          "cap": 60,
+          "eligible_candidates": 19,
+          "selected_candidates": 19,
+          "excluded_by_cap": 0,
+          "bucket_outcomes": {
+            "role": {
+              "eligible": 19,
+              "selected": 19,
+              "excluded_by_cap": 0
+            }
+          },
+          "employer_outcomes": {
+            "SpaceX": {
+              "eligible": 12,
+              "selected": 12,
+              "excluded_by_cap": 0
+            },
+            "Justworks": {
+              "eligible": 1,
+              "selected": 1,
+              "excluded_by_cap": 0
+            },
+            "Figma": {
+              "eligible": 2,
+              "selected": 2,
+              "excluded_by_cap": 0
+            },
+            "Stripe": {
+              "eligible": 1,
+              "selected": 1,
+              "excluded_by_cap": 0
+            },
+            "Coinbase": {
+              "eligible": 1,
+              "selected": 1,
+              "excluded_by_cap": 0
+            },
+            "Instacart": {
+              "eligible": 1,
+              "selected": 1,
+              "excluded_by_cap": 0
+            },
+            "Ramp": {
+              "eligible": 1,
+              "selected": 1,
+              "excluded_by_cap": 0
+            }
+          }
+        }
+      },
+      "discovery_feedback": {
+        "triggered": false,
+        "boards_proposed": 0
+      },
+      "admission": {
+        "admitted": 12,
+        "excluded": 5256,
+        "work_level_rejections": {
+          "missing_or_malformed_work_level": 2,
+          "people_manager": 1
+        }
+      },
+      "reconciliation": {
+        "foundation_claims": 6,
+        "demand_claims": 8,
+        "learning_priorities": 7
+      },
+      "challenge": {
+        "disagreements": 14
+      }
+    },
+    "publish": {
+      "status": "validated"
+    },
+    "skip_rules_applied": [
+      "challenge"
+    ]
+  },
+  {
+    "run_id": "run_20260930T232307Z_0d1ee5",
+    "occupation_slug": "growth-manager",
+    "occupations": [
+      "growth-manager"
+    ],
+    "provider": "opencode-go",
+    "model": "deepseek-v4.1-flash",
+    "thinking": "max",
+    "model_fallback": false,
+    "started_at": "2026-09-30T23:23:07Z",
+    "finished_at": "2026-09-30T23:48:03Z",
+    "question": null,
+    "retrievals": 30,
+    "model_calls": 10,
+    "boards_attempted": 16,
+    "boards_used": 8,
+    "detail_sources": 9,
+    "foundations_included": 4,
+    "postings_seen": 1941,
+    "postings_admitted": 26,
+    "excluded": 1915,
+    "stages": {
+      "discovery": {
+        "foundations_targeted": 4,
+        "boards_targeted": 16,
+        "search_terms": [
+          "Growth Manager",
+          "Product Growth Manager",
+          "Growth Product Manager",
+          "Growth Marketing Manager",
+          "Growth Marketing Specialist",
+          "Lifecycle Marketing Manager",
+          "Retention Marketing Manager",
+          "Performance Marketing Manager",
+          "Paid Acquisition Manager",
+          "Account Executive",
+          "Mid-Market Account Executive",
+          "SMB Account Executive"
+        ]
+      },
+      "retrieval": {
+        "retrievals": 30
+      },
+      "candidate_selection": {
+        "prefilter_candidates": 60,
+        "feedback_triggered": false,
+        "missing_required_buckets": [],
+        "detail_fetches": 9,
+        "detail_text_failures": 0,
+        "candidates_excluded_without_text": 0,
+        "remaining_retrievals": 30,
+        "cap_allocation": {
+          "method": "deterministic fair allocation: one candidate per employer per provisional bucket (growth variants first) in employer importance order, then a round-robin remainder across employers; within an employer bucket, most recently published first, then title and posting id",
+          "cap": 60,
+          "eligible_candidates": 127,
+          "selected_candidates": 60,
+          "excluded_by_cap": 67,
+          "bucket_outcomes": {
+            "sales-account-executive": {
+              "eligible": 95,
+              "selected": 36,
+              "excluded_by_cap": 59
+            },
+            "growth-marketing": {
+              "eligible": 8,
+              "selected": 5,
+              "excluded_by_cap": 3
+            },
+            "unassigned": {
+              "eligible": 21,
+              "selected": 16,
+              "excluded_by_cap": 5
+            },
+            "product-growth": {
+              "eligible": 3,
+              "selected": 3,
+              "excluded_by_cap": 0
+            }
+          },
+          "employer_outcomes": {
+            "Stripe": {
+              "eligible": 61,
+              "selected": 9,
+              "excluded_by_cap": 52
+            },
+            "Figma": {
+              "eligible": 15,
+              "selected": 8,
+              "excluded_by_cap": 7
+            },
+            "Duolingo": {
+              "eligible": 10,
+              "selected": 8,
+              "excluded_by_cap": 2
+            },
+            "Instacart": {
+              "eligible": 9,
+              "selected": 9,
+              "excluded_by_cap": 0
+            },
+            "Robinhood": {
+              "eligible": 1,
+              "selected": 1,
+              "excluded_by_cap": 0
+            },
+            "Reddit": {
+              "eligible": 2,
+              "selected": 2,
+              "excluded_by_cap": 0
+            },
+            "Discord": {
+              "eligible": 5,
+              "selected": 5,
+              "excluded_by_cap": 0
+            },
+            "Pinterest": {
+              "eligible": 4,
+              "selected": 4,
+              "excluded_by_cap": 0
+            },
+            "OpenAI": {
+              "eligible": 1,
+              "selected": 1,
+              "excluded_by_cap": 0
+            },
+            "Ramp": {
+              "eligible": 13,
+              "selected": 7,
+              "excluded_by_cap": 6
+            },
+            "Vanta": {
+              "eligible": 6,
+              "selected": 6,
+              "excluded_by_cap": 0
+            }
+          }
+        }
+      },
+      "discovery_feedback": {
+        "triggered": false,
+        "boards_proposed": 0
+      },
+      "admission": {
+        "admitted": 26,
+        "excluded": 1915,
+        "work_level_rejections": {
+          "people_manager": 11
+        }
+      },
+      "reconciliation": {
+        "foundation_claims": 7,
+        "demand_claims": 9,
+        "learning_priorities": 7
+      },
+      "challenge": {
+        "disagreements": 7
+      }
+    },
+    "publish": {
+      "status": "validated"
+    },
+    "skip_rules_applied": [
+      "challenge"
+    ]
+  },
+  {
+    "run_id": "run_20260930T234923Z_e17111",
+    "occupation_slug": "account-executive",
+    "occupations": [
+      "account-executive"
+    ],
+    "provider": "opencode-go",
+    "model": "deepseek-v4.1-flash",
+    "thinking": "max",
+    "model_fallback": false,
+    "started_at": "2026-09-30T23:49:23Z",
+    "finished_at": "2026-10-01T00:02:38Z",
+    "question": null,
+    "retrievals": 60,
+    "model_calls": 9,
+    "boards_attempted": 16,
+    "boards_used": 7,
+    "detail_sources": 33,
+    "foundations_included": 3,
+    "postings_seen": 3357,
+    "postings_admitted": 19,
+    "excluded": 3338,
+    "stages": {
+      "discovery": {
+        "foundations_targeted": 4,
+        "boards_targeted": 16,
+        "search_terms": [
+          "Account Executive",
+          "Mid-Market Account Executive",
+          "Account Executive, Mid-Market",
+          "SMB Account Executive",
+          "Commercial Account Executive",
+          "New Business Account Executive",
+          "Full Cycle Account Executive",
+          "Account Executive - New Business",
+          "Outside Sales Account Executive",
+          "Account Executive, Commercial Sales"
+        ]
+      },
+      "retrieval": {
+        "retrievals": 60
+      },
+      "candidate_selection": {
+        "prefilter_candidates": 60,
+        "feedback_triggered": false,
+        "missing_required_buckets": [],
+        "detail_fetches": 33,
+        "detail_text_failures": 0,
+        "candidates_excluded_without_text": 14,
+        "remaining_retrievals": 0,
+        "cap_allocation": {
+          "method": "deterministic fair allocation: one candidate per employer per provisional bucket (growth variants first) in employer importance order, then a round-robin remainder across employers; within an employer bucket, most recently published first, then title and posting id",
+          "cap": 60,
+          "eligible_candidates": 242,
+          "selected_candidates": 60,
+          "excluded_by_cap": 182,
+          "bucket_outcomes": {
+            "role": {
+              "eligible": 242,
+              "selected": 60,
+              "excluded_by_cap": 182
+            }
+          },
+          "employer_outcomes": {
+            "Datadog": {
+              "eligible": 64,
+              "selected": 8,
+              "excluded_by_cap": 56
+            },
+            "MongoDB": {
+              "eligible": 28,
+              "selected": 8,
+              "excluded_by_cap": 20
+            },
+            "Verkada": {
+              "eligible": 59,
+              "selected": 8,
+              "excluded_by_cap": 51
+            },
+            "Samsara": {
+              "eligible": 41,
+              "selected": 8,
+              "excluded_by_cap": 33
+            },
+            "Databricks": {
+              "eligible": 20,
+              "selected": 7,
+              "excluded_by_cap": 13
+            },
+            "GitLab": {
+              "eligible": 11,
+              "selected": 8,
+              "excluded_by_cap": 3
+            },
+            "Twilio": {
+              "eligible": 6,
+              "selected": 6,
+              "excluded_by_cap": 0
+            },
+            "Ramp": {
+              "eligible": 13,
+              "selected": 7,
+              "excluded_by_cap": 6
+            }
+          }
+        }
+      },
+      "discovery_feedback": {
+        "triggered": false,
+        "boards_proposed": 0
+      },
+      "admission": {
+        "admitted": 19,
+        "excluded": 3338,
+        "work_level_rejections": {
+          "missing_or_malformed_work_level": 5,
+          "people_manager": 3,
+          "unknown_work_level": 3
+        }
+      },
+      "reconciliation": {
+        "foundation_claims": 5,
+        "demand_claims": 6,
+        "learning_priorities": 5
+      },
+      "challenge": {
+        "disagreements": 11
+      }
+    },
+    "publish": {
+      "status": "skipped"
+    },
+    "skip_rules_applied": [
+      "challenge"
+    ]
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_1f8d615b7724360a92e2",
+  "release_id": "rel_20261001_bd52f9df83a6",
+  "occupation_slug": "account-executive",
+  "claim_type": "advertised_demand",
+  "statement": "SaaS/PaaS closing experience: SaaS/PaaS closing tenure expectation — recorded in 1 of 19 admitted Account Executive postings (no variant split for this role) from 1 of 7 employers in the 2026-09-30 US sample.",
+  "quote": "2+ years of full- cycle closing sales experience in SaaS/PaaS companies",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_64936b9dccf2363d7715",
+      "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs/7716357002",
+      "publisher": "Databricks",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_75d422739bcdbf59b816",
+      "retrieved_at": "2026-09-30T23:51:30Z",
+      "sha256": "b3c8e4e4b5299ddbbbf31046c04c487af99c1421e79f6f5a740325fc454e4f8d",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:58:53Z",
+  "published_at": "2026-10-01T00:04:44Z",
+  "citation_path": "/release/citations/clm_1f8d615b7724360a92e2.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "b69ec9f97e6ae331cdf79d563c81d267118b07fb4fc64ed83b1bb86f61d8a9c6"
+}

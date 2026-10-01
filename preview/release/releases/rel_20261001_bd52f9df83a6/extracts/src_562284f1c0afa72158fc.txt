@@ -1,0 +1,12 @@
+# source src_562284f1c0afa72158fc
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_73cf3754f3c9cc627a4e
+# url https://boards-api.greenhouse.io/v1/boards/verkada/jobs/5251121007
+# publisher Verkada
+# retrieved_at 2026-09-30T23:51:29Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 dcd5aac86f2e5ca357161c2e580d9a76640c52b75b373b0d1f5987a6d1a49318 raw_bytes 16272
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=c96d39a3d75a27738af1c49b employer=Verkada title=Enterprise Account Executive (SLED) location=Birmingham, AL United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/5251121007
+Manage the entire sales process to ensure delivery against key performance metrics and quota

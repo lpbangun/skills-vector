@@ -1,0 +1,61 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_be5cd380f9c8796016df",
+  "release_id": "rel_20260930_3206b98a56c8",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "Strategic HR business partnering: coaching and influencing senior leaders — recorded in 3 of 12 admitted HR Generalist postings (no variant split for this role) from 2 of 5 employers in the 2026-09-30 US sample.",
+  "quote": "coaching and influencing Director and VP+ level leaders",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_a04fbadd3ba8d83d76dd",
+      "url": "https://boards-api.greenhouse.io/v1/boards/instacart/jobs?content=true",
+      "publisher": "Instacart",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:15:16Z",
+      "sha256": "51b44c654cf5c3aaa4e286911ff946365775ae9f99adfeb48a12451239858854",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_cfa53ee294c2fd1d5c2b",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8843917002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_16c9794cae5faf367e83",
+      "retrieved_at": "2026-09-30T23:15:23Z",
+      "sha256": "6055ecbb182a8fe83a7b1f25fc3dcbafe42f32bf5dc577eb47dcbac8ee32be5f",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_d76f602be4c12ae1732a",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8530754002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_16c9794cae5faf367e83",
+      "retrieved_at": "2026-09-30T23:15:24Z",
+      "sha256": "8829ec44951c8071027b8292e65c8d38818b53a2c4e8b6d4e2654ad90e3636a0",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:18:34Z",
+  "published_at": "2026-09-30T23:22:05Z",
+  "citation_path": "/release/citations/clm_be5cd380f9c8796016df.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "d9124e2a7a80b5224b3de4b8bc17d77ef31ba03307a574a1fe6f75651443430f"
+}

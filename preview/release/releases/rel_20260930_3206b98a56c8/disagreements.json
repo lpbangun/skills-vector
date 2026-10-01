@@ -1,0 +1,142 @@
+[
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_6ea964c58cd91c366ef9",
+    "claim_statement": "O*NET's Human Resources Specialists occupation (13-1071.00) lists HR Generalist among its sample of reported job titles, alongside coordinator, specialist, analyst, and recruiter titles.",
+    "issue": "Core assertion (HR Generalist as a reported title) is quoted verbatim, but the statement's enumeration adds 'specialist' titles not present in the excerpt; quote the full sample-titles list or drop 'specialist' from the sentence.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_5e3782328695ed44c926",
+    "claim_statement": "The O*NET occupational definition frames this work around recruiting, screening, interviewing, and placing individuals within an organization.",
+    "issue": "Quote is the occupation-level description of 13-1071.00 (the parent occupation that also covers recruiter/coordinator titles), so 'frames this work' risks framing HR Generalist as a recruiting-first role; label the parent occupation explicitly and note the definition is occupation-wide, not generalist-specific.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_91390271516e94b3be60",
+    "claim_statement": "The occupation includes maintaining employment records for hiring, termination, leave, transfer, or promotion events using HR management system software.",
+    "issue": "Quote stops at 'related to events' — the event types (hiring, termination, leave, transfer, promotion) and 'HR management system software' are asserted but absent from the evidence; extend the quote to the full O*NET task sentence or trim the statement to the quoted fragment.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_296069227aa1398fa0d5",
+    "claim_statement": "HR manager work is defined as acting as a link between management and employees by handling questions and resolving work-related problems.",
+    "issue": "Quote covers only the first half ('link between management and employees by handling questions'); 'resolving work-related problems' is unevidenced, and 'is defined as' elevates one 11-3121.00 task into the occupation definition. Extend the quote and reword as one task among many, flagged as manager-level (adjacent occupation 11-3121.00, not the generalist's 13-1071.00).",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_b6e9980b6426287733c8",
+    "claim_statement": "HR managers coordinate staff work spanning employment, compensation, labor relations, and employee relations functions.",
+    "issue": "Quote is a subject-less, verb-less modifier fragment ('relating to employment, compensation, labor relations, and employee relations'); no part of the asserted action (coordinate staff work) appears in the evidence, so the claim is unsupported as recorded. Re-source the complete sentence if a manager-level foundation is needed.",
+    "severity": "blocker",
+    "resolution": "dropped by challenge pass",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_038f42943e159c4b559e",
+    "claim_statement": "BLS tracks compensation, benefits, and job analysis as a distinct specialist occupational area adjacent to generalist HR work.",
+    "issue": "Evidence is only an occupation title; 'distinct specialist occupational area' is inferable from a separate listing, but 'adjacent to generalist HR work' and the 'BLS tracks' attribution are editorial gloss not present in the excerpt — verify source attribution and trim the gloss.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_d8d0f07e5bde97f1dbd5",
+    "claim_statement": "Employee relations casework: handling employee inquiries, complaints, and investigations — recorded in 3 of 12 admitted HR Generalist postings (no variant split for this role) from 1 of 5 employers in the 2026-09-30 US sample.",
+    "issue": "Statement scope adds 'investigations', which the exemplar quote does not show and the detail attributes to coordinator and business-partner postings, so the 3/12 count mixes HR titles under an 'HR Generalist postings' label. Counts are sample-scoped with no trend overreach, and the growth-variant check is N/A (no product-growth/growth-marketing/sales-AE content exists in this draft) — the real defect is HR-variant conflation; split by title or relabel the sample as the generalist family.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_80fcc04c9919334dca35",
+    "claim_statement": "HRIS administration: Workday configuration and HRIS record maintenance — recorded in 3 of 12 admitted HR Generalist postings (no variant split for this role) from 2 of 5 employers in the 2026-09-30 US sample.",
+    "issue": "'Workday configuration' appears only in the detail; the exemplar quote evidences generic HRIS maintenance. If the 3/12 count was not adjudicated on Workday specifically, narrow the label to HRIS administration or recount only Workday-mentioning postings.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_5860e40d706fa54e6fc4",
+    "claim_statement": "Employee lifecycle administration: onboarding, transfers, promotions, and exit processing — recorded in 3 of 12 admitted HR Generalist postings (no variant split for this role) from 1 of 5 employers in the 2026-09-30 US sample.",
+    "issue": "Quote evidences onboarding only; transfers, promotions, exit processing, and verifications rest on the detail summary. The count is also 3/12 from a single employer (1/5): verify each lifecycle element per posting and disclose the single-employer concentration.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_24b65b01009b0122b9d6",
+    "claim_statement": "HR policy and employment law compliance: employment legislation and HR policy guidance — recorded in 3 of 12 admitted HR Generalist postings (no variant split for this role) from 2 of 5 employers in the 2026-09-30 US sample.",
+    "issue": "Exemplar quote is generic HR-policy language with no employment-law/legislation content; 'compliance' and 'employment law' are supported only by the detail. Extend the quote or narrow the label; the exemplar shares source src_7938a9d04e30b7356116 with clm_32fd, so verify the two counts use distinct match criteria.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_be5cd380f9c8796016df",
+    "claim_statement": "Strategic HR business partnering: coaching and influencing senior leaders — recorded in 3 of 12 admitted HR Generalist postings (no variant split for this role) from 2 of 5 employers in the 2026-09-30 US sample.",
+    "issue": "Detail states the matches are senior business-partner postings (coaching Director/VP+ leaders); presenting this as HR Generalist demand conflates Generalist with HR Business Partner unless the sample is explicitly family-scoped. Keep only with a variant split or family relabel.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_f8ec8e49ad811f49024d",
+    "claim_statement": "Workforce analytics and org design: workforce analytics and organizational optimization — recorded in 3 of 12 admitted HR Generalist postings (no variant split for this role) from 2 of 5 employers in the 2026-09-30 US sample.",
+    "issue": "'Workforce analytics' and org design read as senior BP/COE requirements, and the 3/12 count likely shares postings with clm_be5c/clm_4387 (same senior cohort), so counts are not independent; disclose overlap and split variant.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_4387aa266eaab9d936da",
+    "claim_statement": "People programs and retention: ownership of people programs, engagement, and retention — recorded in 2 of 12 admitted HR Generalist postings (no variant split for this role) from 2 of 5 employers in the 2026-09-30 US sample.",
+    "issue": "Detail says the evidence comes from a business-partner posting and the label's engagement/retention elements sit outside the exemplar quote; n=2/12 across 2 employers is thin — keep only as a family-level signal and consider merging with the senior-BP cluster.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_d814bc21e7c4d438dad4",
+    "claim_statement": "HR advisory enablement: peer coaching and QA feedback for consultants — recorded in 1 of 12 admitted HR Generalist postings (no variant split for this role) from 1 of 5 employers in the 2026-09-30 US sample.",
+    "issue": "A single posting from a single employer (1/12, 1/5) is presented as a demand signal; the detail describes an HR consulting-services role coaching HR consultants (not in-house generalist work), and the exemplar quote ('providing quality assurance feedback') does not evidence the consultant/peer-mentoring context — a one-posting anecdote cannot carry a signal category.",
+    "severity": "blocker",
+    "resolution": "dropped by challenge pass",
+    "challenger": "agent challenge pass (pinned task model)"
+  }
+]

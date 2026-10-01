@@ -1,0 +1,73 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_1d205ecd77f44e9cff09",
+  "release_id": "rel_20261001_bd52f9df83a6",
+  "occupation_slug": "account-executive",
+  "claim_type": "advertised_demand",
+  "statement": "New customer acquisition quotas: net-new business targets and assigned quota ownership — recorded in 4 of 19 admitted Account Executive postings (no variant split for this role) from 3 of 7 employers in the 2026-09-30 US sample.",
+  "quote": "with a strong emphasis on net new business sales",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_0094a0707188c6ed301f",
+      "url": "https://boards-api.greenhouse.io/v1/boards/twilio/jobs?content=true",
+      "publisher": "Twilio",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:51:11Z",
+      "sha256": "63a82dca4d5e23cafe7a57b981109f48d9967f10c7c18df16773a46af7b85ad0",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_6db5cf16715ea31fd428",
+      "url": "https://boards-api.greenhouse.io/v1/boards/verkada/jobs/5248108007",
+      "publisher": "Verkada",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_73cf3754f3c9cc627a4e",
+      "retrieved_at": "2026-09-30T23:51:26Z",
+      "sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_629d40f8b2f5b459bd52",
+      "url": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs/1694375",
+      "publisher": "Datadog",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_2d7e006bbc80ded82b95",
+      "retrieved_at": "2026-09-30T23:51:29Z",
+      "sha256": "8808842dfc88b7d1998638908f5b3400dfe32d17820de0d555af1bb188903fe5",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_ef0e8a41a4de1756b584",
+      "url": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs/1497543",
+      "publisher": "Datadog",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_2d7e006bbc80ded82b95",
+      "retrieved_at": "2026-09-30T23:51:30Z",
+      "sha256": "3e7bb5bc31308c306897d925abcd17ff44e1cca2152044d1cf5607739555f86d",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:58:53Z",
+  "published_at": "2026-10-01T00:04:44Z",
+  "citation_path": "/release/citations/clm_1d205ecd77f44e9cff09.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "1b965c840b850509efccc3324244c3b41297bb0edf736fd046553fe0dacc343f"
+}

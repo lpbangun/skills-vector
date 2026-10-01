@@ -1,0 +1,11 @@
+# source src_a5eed0620cfc4a7c9c21
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true
+# publisher Figma
+# retrieved_at 2026-09-30T23:15:12Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 17f412f45c48bd184eb293c5df521ff2cd5609f96875b597ae709c115b9609fb raw_bytes 1844614
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=49fe009623daaf424f9a6295 employer=Figma title=HRIS Analyst location=San Francisco, CA • New York, NY • United States variant= url=https://boards.greenhouse.io/figma/jobs/6201385004?gh_jid=6201385004
+Configure and maintain Workday Core HCM

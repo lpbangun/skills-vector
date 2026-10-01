@@ -1,0 +1,12 @@
+# source src_64936b9dccf2363d7715
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_75d422739bcdbf59b816
+# url https://boards-api.greenhouse.io/v1/boards/databricks/jobs/7716357002
+# publisher Databricks
+# retrieved_at 2026-09-30T23:51:30Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 b3c8e4e4b5299ddbbbf31046c04c487af99c1421e79f6f5a740325fc454e4f8d raw_bytes 8312
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=d1e5fe3ef9582b189b7f35cc employer=Databricks title=Emerging Enterprise Account Executive location=United States variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=7716357002
+2+ years of full- cycle closing sales experience in SaaS/PaaS companies

@@ -1,0 +1,13 @@
+# source src_a04fbadd3ba8d83d76dd
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/instacart/jobs?content=true
+# publisher Instacart
+# retrieved_at 2026-09-30T23:15:16Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 51b44c654cf5c3aaa4e286911ff946365775ae9f99adfeb48a12451239858854 raw_bytes 1450405
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=31b2b5a0da698d97a12a0e7c employer=Instacart title=HR Business Partner location=United States - Remote variant= url=https://instacart.careers/job/?gh_jid=8214732
+Demonstrated track record of coaching and influencing Director and VP+ level leaders with autonomy and confidence
+# posting id=claim:clm_be5cd380f9c8796016df employer= title= location= variant= url=
+coaching and influencing Director and VP+ level leaders

@@ -1,0 +1,61 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_5860e40d706fa54e6fc4",
+  "release_id": "rel_20260930_3206b98a56c8",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "Employee lifecycle administration: onboarding, transfers, promotions, and exit processing — recorded in 3 of 12 admitted HR Generalist postings (no variant split for this role) from 1 of 5 employers in the 2026-09-30 US sample.",
+  "quote": "Serve as the onboarding point of contact for the new hire program",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_62dc99e3d0305d3900f0",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8779717002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_16c9794cae5faf367e83",
+      "retrieved_at": "2026-09-30T23:15:22Z",
+      "sha256": "e2c0e3661a5eb842b52ae06ba3c41c6374c6c12fd5a39c57474ac337e6430783",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_7938a9d04e30b7356116",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8505413002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_16c9794cae5faf367e83",
+      "retrieved_at": "2026-09-30T23:15:22Z",
+      "sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_8f1eb13e42a2f9d905b1",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8657726002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_16c9794cae5faf367e83",
+      "retrieved_at": "2026-09-30T23:15:23Z",
+      "sha256": "4bd7d9d8f0afa672c9beb54146300db6fef808e042edc183a9a421cb20865a5b",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:18:34Z",
+  "published_at": "2026-09-30T23:22:05Z",
+  "citation_path": "/release/citations/clm_5860e40d706fa54e6fc4.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "5b2dc428e4b4189c26e80cb409575f1510f547430a8f534f56f3a7845a543362"
+}

@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_038f42943e159c4b559e",
+  "release_id": "rel_20260930_3206b98a56c8",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "foundation",
+  "statement": "BLS tracks compensation, benefits, and job analysis as a distinct specialist occupational area adjacent to generalist HR work.",
+  "quote": "Compensation, Benefits, and Job Analysis Specialists",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_15f41bfbe276afd69880",
+      "url": "https://www.bls.gov/ooh/business-and-financial/compensation-benefits-and-job-analysis-specialists.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "source_type": "foundation",
+      "retrieval_kind": "",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:14:43Z",
+      "sha256": "01a8bbee0feffc5b27a9a4c0ec03063c8cffdded2dc1c3c78504d4cfa038679b",
+      "rights": "U.S. Bureau of Labor Statistics public domain; short excerpts published with attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:18:34Z",
+  "published_at": "2026-09-30T23:22:05Z",
+  "citation_path": "/release/citations/clm_038f42943e159c4b559e.json",
+  "attribution": "agent-authored synthesis over retrieved official foundation text",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "a02152b7625071790cba4bd38463e0e2246d5b264e58e41a7de3c212d7edb293"
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "current": "rel_20261001_bd52f9df83a6",
+  "releases": [
+    {
+      "release_id": "rel_20260930_3206b98a56c8",
+      "published_at": "2026-09-30T23:22:05Z",
+      "generated_at": "2026-09-30T23:22:05Z",
+      "occupations": [
+        "hr-generalist"
+      ],
+      "manifest_sha256": "cb2145472c4a3164d2e06c4f33efcf1d278c9825e65ff26c3eec896768913ebc"
+    },
+    {
+      "release_id": "rel_20260930_11872e02dacc",
+      "published_at": "2026-09-30T23:48:04Z",
+      "generated_at": "2026-09-30T23:48:04Z",
+      "occupations": [
+        "hr-generalist",
+        "growth-manager"
+      ],
+      "manifest_sha256": "03d86f0c4c2731aef9f742813f5a1801c7eee0cdd2915a4c4cca9118b1a975b8"
+    },
+    {
+      "release_id": "rel_20261001_bd52f9df83a6",
+      "published_at": "2026-10-01T00:04:44Z",
+      "generated_at": "2026-10-01T00:04:44Z",
+      "occupations": [
+        "hr-generalist",
+        "growth-manager",
+        "account-executive"
+      ],
+      "manifest_sha256": "0bb6dd249d462fa4d421d581956e9ede727901f28c24d273841322c50658b5db"
+    }
+  ],
+  "updated_at": "2026-10-01T00:04:44Z"
+}

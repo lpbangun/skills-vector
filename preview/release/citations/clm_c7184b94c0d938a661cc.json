@@ -1,0 +1,49 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_c7184b94c0d938a661cc",
+  "release_id": "rel_20260930_11872e02dacc",
+  "occupation_slug": "growth-manager",
+  "claim_type": "advertised_demand",
+  "statement": "paid acquisition channel operations: paid acquisition channel ownership — recorded in 2 of 26 admitted Growth Manager postings (variant scope growth-marketing) from 2 of 8 employers in the 2026-09-30 US sample.",
+  "quote": "Ramp is looking for a Performance Marketing Manager to own paid acquisition on YouTube, ChatGPT, X, Rideshare, and Reddit",
+  "variant": "growth-marketing",
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_bafc0231efe3d6f5b44e",
+      "url": "https://boards-api.greenhouse.io/v1/boards/duolingo/jobs?content=true",
+      "publisher": "Duolingo",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:25:01Z",
+      "sha256": "6a93fe6d31512d1393db27487ce419166818d95ebd4a863a39664f47257feb07",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_5f0e798a62519cd48afb",
+      "url": "https://api.ashbyhq.com/posting-api/job-board/ramp",
+      "publisher": "Ramp",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:25:26Z",
+      "sha256": "e135ba2a187d32b20ec5e83795118956ac337fe34287c505e4c5789f6ac9a1e0",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:43:47Z",
+  "published_at": "2026-09-30T23:48:04Z",
+  "citation_path": "/release/citations/clm_c7184b94c0d938a661cc.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "5d8b17a70d180248f5b8cf26161ca46d4d82ee734c0e50d9bda47808790a8430"
+}

@@ -1,0 +1,73 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_3973c17cb60f6aee7bbd",
+  "release_id": "rel_20261001_bd52f9df83a6",
+  "occupation_slug": "account-executive",
+  "claim_type": "advertised_demand",
+  "statement": "Consultative customer relationships: consultative selling and durable customer relationships — recorded in 4 of 19 admitted Account Executive postings (no variant split for this role) from 3 of 7 employers in the 2026-09-30 US sample.",
+  "quote": "Meet or exceed quota while fostering strong customer relationships",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_0094a0707188c6ed301f",
+      "url": "https://boards-api.greenhouse.io/v1/boards/twilio/jobs?content=true",
+      "publisher": "Twilio",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:51:11Z",
+      "sha256": "63a82dca4d5e23cafe7a57b981109f48d9967f10c7c18df16773a46af7b85ad0",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_45492b082f53eeb736c3",
+      "url": "https://boards-api.greenhouse.io/v1/boards/gitlab/jobs/8592555002",
+      "publisher": "GitLab",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_121cd2f31e972a246844",
+      "retrieved_at": "2026-09-30T23:51:25Z",
+      "sha256": "022f6f9dfc5389ce2f14e6e3518c57ff4964a4ca6d1c258d6152b4041eb8447b",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_18bedda5851795708803",
+      "url": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs/8214090",
+      "publisher": "Datadog",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_2d7e006bbc80ded82b95",
+      "retrieved_at": "2026-09-30T23:51:26Z",
+      "sha256": "bf0d22e158b265c2f2419f2c9d01fe6cec2abd3db88a87b89ad50c6eed2223a3",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_f2a440c1f1b4bfc195d9",
+      "url": "https://boards-api.greenhouse.io/v1/boards/gitlab/jobs/8737840002",
+      "publisher": "GitLab",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_121cd2f31e972a246844",
+      "retrieved_at": "2026-09-30T23:51:31Z",
+      "sha256": "0050168d03857f2866e7accf64fdca3c61a8e9b6cfad61b9fc125cbf83ac9b5e",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:58:53Z",
+  "published_at": "2026-10-01T00:04:44Z",
+  "citation_path": "/release/citations/clm_3973c17cb60f6aee7bbd.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "912598e73e834fb0c09179dac33df7acd33617cee9c1be1ad269b58dc85c762c"
+}

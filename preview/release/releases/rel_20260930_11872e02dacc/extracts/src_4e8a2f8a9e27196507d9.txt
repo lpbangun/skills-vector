@@ -1,0 +1,15 @@
+# source src_4e8a2f8a9e27196507d9
+# source_type job-board
+# retrieval_kind listing
+# url https://api.ashbyhq.com/posting-api/job-board/vanta
+# publisher Vanta
+# retrieved_at 2026-09-30T23:25:26Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 22b686f06165eebdcd8d5a99441c7833452b67599818b77e005da3ba45bfcf81 raw_bytes 1348140
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=918dcf7d9675ed30c062b305 employer=Vanta title=Account Executive, SLED Government - Mountain West location=Denver, CO variant=sales-account-executive url=https://jobs.ashbyhq.com/vanta/03199be5-023c-46b6-97c8-6c568afe9514
+As an individual contributor, proactively work to cultivate, pursue, and capture SLED sales opportunities.
+# posting id=d624be775fba08fe49195663 employer=Vanta title=Account Executive, SLED Government - South location=Austin, TX variant=sales-account-executive url=https://jobs.ashbyhq.com/vanta/c4f91672-04ee-4265-b4a7-6979a7e83308
+As an individual contributor, proactively work to cultivate, pursue, and capture SLED sales opportunities.
+# posting id=e4cebd153f6b5c364ca54bc9 employer=Vanta title=Account Executive, SLED Government - East location=Washington, D.C. variant=sales-account-executive url=https://jobs.ashbyhq.com/vanta/c3b74285-982c-4648-bb79-d62c5b0adaf4
+As an individual contributor, proactively work to cultivate, pursue, and capture SLED sales opportunities

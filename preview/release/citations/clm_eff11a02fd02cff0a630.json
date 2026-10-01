@@ -1,0 +1,49 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_eff11a02fd02cff0a630",
+  "release_id": "rel_20260930_11872e02dacc",
+  "occupation_slug": "growth-manager",
+  "claim_type": "advertised_demand",
+  "statement": "public sector procurement sales: SLED and federal procurement sales motion — recorded in 4 of 26 admitted Growth Manager postings (variant scope sales-account-executive) from 2 of 8 employers in the 2026-09-30 US sample.",
+  "quote": "As an individual contributor, proactively work to cultivate, pursue, and capture SLED sales opportunities.",
+  "variant": "sales-account-executive",
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_79d1a054c685dee86878",
+      "url": "https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true",
+      "publisher": "Figma",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:25:00Z",
+      "sha256": "17f412f45c48bd184eb293c5df521ff2cd5609f96875b597ae709c115b9609fb",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_4e8a2f8a9e27196507d9",
+      "url": "https://api.ashbyhq.com/posting-api/job-board/vanta",
+      "publisher": "Vanta",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-09-30T23:25:26Z",
+      "sha256": "22b686f06165eebdcd8d5a99441c7833452b67599818b77e005da3ba45bfcf81",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:43:47Z",
+  "published_at": "2026-09-30T23:48:04Z",
+  "citation_path": "/release/citations/clm_eff11a02fd02cff0a630.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "c39b967811201daf04a0f918dbdb93e9f7ca775d18d8c92f62833ba05259cbc9"
+}

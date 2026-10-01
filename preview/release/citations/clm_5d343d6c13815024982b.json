@@ -1,0 +1,85 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_5d343d6c13815024982b",
+  "release_id": "rel_20261001_bd52f9df83a6",
+  "occupation_slug": "account-executive",
+  "claim_type": "advertised_demand",
+  "statement": "Account expansion and growth: expanding existing accounts and closing new workloads — recorded in 5 of 19 admitted Account Executive postings (no variant split for this role) from 3 of 7 employers in the 2026-09-30 US sample.",
+  "quote": "5+ years of quota-carrying field sales experience with a focus on closing new workloads and expanding accounts",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_b336eb34f53554f80141",
+      "url": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/8039113",
+      "publisher": "MongoDB",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_e8f50ad37e6e48abc3c6",
+      "retrieved_at": "2026-09-30T23:51:25Z",
+      "sha256": "6b34945c1fff41908c4ced24aec3c43e470e6c1b02f571ad3f1e4b1c29d6fe97",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_18bedda5851795708803",
+      "url": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs/8214090",
+      "publisher": "Datadog",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_2d7e006bbc80ded82b95",
+      "retrieved_at": "2026-09-30T23:51:26Z",
+      "sha256": "bf0d22e158b265c2f2419f2c9d01fe6cec2abd3db88a87b89ad50c6eed2223a3",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_64936b9dccf2363d7715",
+      "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs/7716357002",
+      "publisher": "Databricks",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_75d422739bcdbf59b816",
+      "retrieved_at": "2026-09-30T23:51:30Z",
+      "sha256": "b3c8e4e4b5299ddbbbf31046c04c487af99c1421e79f6f5a740325fc454e4f8d",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_6cafdd438cfa131a0f12",
+      "url": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/6755285",
+      "publisher": "MongoDB",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_e8f50ad37e6e48abc3c6",
+      "retrieved_at": "2026-09-30T23:51:31Z",
+      "sha256": "cf1664c2c0fbc2e80e3fc7e43dc5911245bcc3c7d7283f996346570a2719d387",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_269905261fc3a680be07",
+      "url": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/7031396",
+      "publisher": "MongoDB",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_e8f50ad37e6e48abc3c6",
+      "retrieved_at": "2026-09-30T23:51:34Z",
+      "sha256": "d734c3ef68629a024c7c541b41541ab73772a2278a2447224de698fbc42a0667",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:58:53Z",
+  "published_at": "2026-10-01T00:04:44Z",
+  "citation_path": "/release/citations/clm_5d343d6c13815024982b.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "5060bb9d0e2115e72e2c7ea95d456d5108b4dfd9ad38a81c6382400089edad43"
+}

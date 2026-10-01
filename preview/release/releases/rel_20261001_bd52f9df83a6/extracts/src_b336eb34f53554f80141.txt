@@ -1,0 +1,12 @@
+# source src_b336eb34f53554f80141
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_e8f50ad37e6e48abc3c6
+# url https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/8039113
+# publisher MongoDB
+# retrieved_at 2026-09-30T23:51:25Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 6b34945c1fff41908c4ced24aec3c43e470e6c1b02f571ad3f1e4b1c29d6fe97 raw_bytes 10413
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=bb6c20d5755e05df7ceceb91 employer=MongoDB title=Senior Enterprise Account Executive, Growth location=St. Louis variant= url=https://www.mongodb.com/careers/job/?gh_jid=8039113
+5+ years of quota-carrying field sales experience with a focus on closing new workloads and expanding accounts

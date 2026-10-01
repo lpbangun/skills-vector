@@ -1,0 +1,157 @@
+[
+  {
+    "id": "req_fed4d69b5aee00cba433",
+    "occupation_slug": "hr-generalist",
+    "label": "Employee relations casework",
+    "learning_outcome": "Handle employee inquiries, complaints, and low-risk employee relations issues using documented guidance, investigation basics, and clear escalation criteria.",
+    "rationale": "Employee relations appears across coordinator, generalist, and business-partner postings in the sample, from frontline inquiry response to investigation support, making it the most transferable capability to build first.",
+    "uncertainty": "Case mix, volume, and the boundary between low-risk handling and formal investigation are not observable from the excerpts.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "employee relations issues",
+      "low-risk employee relations issues",
+      "employee inquiries, questions and complaints",
+      "employee relations investigations"
+    ],
+    "evidence_claim_ids": [
+      "clm_d8d0f07e5bde97f1dbd5"
+    ],
+    "evidence_rationale": "The recorded demand for responding to employee inquiries, questions, and complaints is the casework this priority teaches.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_0e7e5124450bb61cc62e",
+    "occupation_slug": "hr-generalist",
+    "label": "HRIS administration",
+    "learning_outcome": "Configure and maintain Workday Core HCM, keep employee records current, process HR transactions, and work an HRIS support queue.",
+    "rationale": "HRIS work anchors a dedicated analyst posting and recurs in coordinator and business-partner postings that name Workday specifically, so system fluency is directly exercised on the job.",
+    "uncertainty": "Workday is the only platform named in the sample; other employers may run different HRIS products.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Configure and maintain Workday Core HCM",
+      "Maintain our HRIS for all employee life-cycle processes",
+      "process HR transactions in Workday"
+    ],
+    "evidence_claim_ids": [
+      "clm_80fcc04c9919334dca35"
+    ],
+    "evidence_rationale": "Workday configuration and HRIS life-cycle record maintenance recorded in postings is exactly the system administration this priority covers.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_892f968433ff30ffe107",
+    "occupation_slug": "hr-generalist",
+    "label": "Performance management",
+    "learning_outcome": "Guide managers and employees through performance management processes for low-risk cases and connect them to core HR functions.",
+    "rationale": "Performance management is named alongside employee relations as a core supported function in generalist and business-partner postings, so it pairs naturally with ER skill building.",
+    "uncertainty": "Excerpts do not show whether the role owns full performance cycles or only supports managers in defined steps.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "performance management, and other core HR functions",
+      "performance management"
+    ],
+    "evidence_claim_ids": [
+      "clm_32fd3604e1f08846a63e"
+    ],
+    "evidence_rationale": "Postings asking for performance management support among core HR functions match this priority's manager-guidance outcome.",
+    "model_order": 2,
+    "priority": 3
+  },
+  {
+    "id": "req_1011ccbe312e5231bb8e",
+    "occupation_slug": "hr-generalist",
+    "label": "Employee lifecycle administration",
+    "learning_outcome": "Run onboarding, internal transfers, promotions, exit interviews, and related recordkeeping for the full employee lifecycle.",
+    "rationale": "Lifecycle administration appears in coordinator and generalist postings through explicit onboarding ownership and lifecycle process maintenance, forming the operational base of generalist work.",
+    "uncertainty": "Benefits, leave, and unemployment-claim duties appear only as short skill tags, so their depth in the role is unclear.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "onboarding point of contact",
+      "employee life-cycle processes",
+      "internal transfers",
+      "exit interviews",
+      "employment verifications"
+    ],
+    "evidence_claim_ids": [
+      "clm_5860e40d706fa54e6fc4"
+    ],
+    "evidence_rationale": "Onboarding, transfer, promotion, and exit processing demand maps directly to the lifecycle administration this priority targets.",
+    "model_order": 3,
+    "priority": 4
+  },
+  {
+    "id": "req_3e697f6823839954969f",
+    "occupation_slug": "hr-generalist",
+    "label": "HR policy and employment law compliance",
+    "learning_outcome": "Apply employment legislation and HR policy frameworks when advising managers and answering employee questions.",
+    "rationale": "Postings reference compliance content and HR policy frameworks, and the O*NET foundation lists interpreting HR policies, procedures, and laws among core tasks, so policy fluency underpins defensible generalist advice.",
+    "uncertainty": "Postings reference policy and legislation broadly without showing jurisdiction-specific depth or certification requirements.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "employment legislation",
+      "human resources policies, programs, and processes",
+      "Equal Employment Opportunity"
+    ],
+    "evidence_claim_ids": [
+      "clm_24b65b01009b0122b9d6"
+    ],
+    "evidence_rationale": "Demand for guidance on HR policies, programs, and processes grounds the policy and employment-law advising outcome.",
+    "model_order": 4,
+    "priority": 5
+  },
+  {
+    "id": "req_bff41d9505bc507ba6ab",
+    "occupation_slug": "hr-generalist",
+    "label": "Strategic HR business partnering",
+    "learning_outcome": "Coach and influence director-and-above leaders, operating as a key business partner on people decisions.",
+    "rationale": "Business-partner postings in the sample expect independent coaching of senior leaders, which is the advancement path from generalist operational work.",
+    "uncertainty": "The seniority threshold varies across postings, from HRBP to senior HRBP, so the level at which this capability is required is unclear.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "coaching and influencing Director and VP+ level leaders",
+      "key business partner"
+    ],
+    "evidence_claim_ids": [
+      "clm_be5cd380f9c8796016df"
+    ],
+    "evidence_rationale": "Postings requiring coaching and influencing Director- and VP-level leaders evidence the strategic business-partnering skill this priority builds.",
+    "model_order": 5,
+    "priority": 6
+  },
+  {
+    "id": "req_e1c0377e608c25fcf2da",
+    "occupation_slug": "hr-generalist",
+    "label": "Workforce analytics and org design",
+    "learning_outcome": "Use workforce data to support organizational optimization, leadership development, and workforce planning decisions.",
+    "rationale": "Senior business-partner postings pair workforce analytics with organizational optimization and org design, indicating an analytics expectation at the partnering level.",
+    "uncertainty": "Excerpts do not specify analytics tooling or the depth of quantitative work expected.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "workforce analytics, organizational optimization, leadership development",
+      "org design",
+      "workforce planning"
+    ],
+    "evidence_claim_ids": [
+      "clm_f8ec8e49ad811f49024d"
+    ],
+    "evidence_rationale": "Demand for workforce analytics and organizational optimization directly supports the data-driven org design outcome.",
+    "model_order": 6,
+    "priority": 7
+  }
+]

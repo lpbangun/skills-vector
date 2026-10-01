@@ -1,0 +1,132 @@
+[
+  {
+    "run_id": "run_20260930T231324Z_22002c",
+    "occupation_slug": "hr-generalist",
+    "occupations": [
+      "hr-generalist"
+    ],
+    "provider": "opencode-go",
+    "model": "deepseek-v4.1-flash",
+    "thinking": "max",
+    "model_fallback": false,
+    "started_at": "2026-09-30T23:13:24Z",
+    "finished_at": "2026-09-30T23:22:05Z",
+    "question": null,
+    "retrievals": 39,
+    "model_calls": 6,
+    "boards_attempted": 16,
+    "boards_used": 5,
+    "detail_sources": 14,
+    "foundations_included": 3,
+    "postings_seen": 5268,
+    "postings_admitted": 12,
+    "excluded": 5256,
+    "stages": {
+      "discovery": {
+        "foundations_targeted": 4,
+        "boards_targeted": 16,
+        "search_terms": [
+          "HR Generalist",
+          "Human Resources Generalist",
+          "People Operations Generalist",
+          "HR Operations Specialist",
+          "Human Resources Operations Specialist",
+          "People Operations Specialist",
+          "HR Specialist",
+          "Human Resources Specialist",
+          "HR Operations Generalist",
+          "People Generalist"
+        ]
+      },
+      "retrieval": {
+        "retrievals": 39
+      },
+      "candidate_selection": {
+        "prefilter_candidates": 19,
+        "feedback_triggered": false,
+        "missing_required_buckets": [],
+        "detail_fetches": 14,
+        "detail_text_failures": 0,
+        "candidates_excluded_without_text": 0,
+        "remaining_retrievals": 21,
+        "cap_allocation": {
+          "method": "deterministic fair allocation: one candidate per employer per provisional bucket (growth variants first) in employer importance order, then a round-robin remainder across employers; within an employer bucket, most recently published first, then title and posting id",
+          "cap": 60,
+          "eligible_candidates": 19,
+          "selected_candidates": 19,
+          "excluded_by_cap": 0,
+          "bucket_outcomes": {
+            "role": {
+              "eligible": 19,
+              "selected": 19,
+              "excluded_by_cap": 0
+            }
+          },
+          "employer_outcomes": {
+            "SpaceX": {
+              "eligible": 12,
+              "selected": 12,
+              "excluded_by_cap": 0
+            },
+            "Justworks": {
+              "eligible": 1,
+              "selected": 1,
+              "excluded_by_cap": 0
+            },
+            "Figma": {
+              "eligible": 2,
+              "selected": 2,
+              "excluded_by_cap": 0
+            },
+            "Stripe": {
+              "eligible": 1,
+              "selected": 1,
+              "excluded_by_cap": 0
+            },
+            "Coinbase": {
+              "eligible": 1,
+              "selected": 1,
+              "excluded_by_cap": 0
+            },
+            "Instacart": {
+              "eligible": 1,
+              "selected": 1,
+              "excluded_by_cap": 0
+            },
+            "Ramp": {
+              "eligible": 1,
+              "selected": 1,
+              "excluded_by_cap": 0
+            }
+          }
+        }
+      },
+      "discovery_feedback": {
+        "triggered": false,
+        "boards_proposed": 0
+      },
+      "admission": {
+        "admitted": 12,
+        "excluded": 5256,
+        "work_level_rejections": {
+          "missing_or_malformed_work_level": 2,
+          "people_manager": 1
+        }
+      },
+      "reconciliation": {
+        "foundation_claims": 6,
+        "demand_claims": 8,
+        "learning_priorities": 7
+      },
+      "challenge": {
+        "disagreements": 14
+      }
+    },
+    "publish": {
+      "status": "validated"
+    },
+    "skip_rules_applied": [
+      "challenge"
+    ]
+  }
+]

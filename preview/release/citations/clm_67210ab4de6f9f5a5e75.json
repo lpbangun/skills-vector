@@ -1,0 +1,85 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_67210ab4de6f9f5a5e75",
+  "release_id": "rel_20261001_bd52f9df83a6",
+  "occupation_slug": "account-executive",
+  "claim_type": "advertised_demand",
+  "statement": "Pipeline and book-of-business management: pipeline development and ownership of a book of business — recorded in 5 of 19 admitted Account Executive postings (no variant split for this role) from 3 of 7 employers in the 2026-09-30 US sample.",
+  "quote": "Own your book of business, from pipeline development through close and expansion",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_45492b082f53eeb736c3",
+      "url": "https://boards-api.greenhouse.io/v1/boards/gitlab/jobs/8592555002",
+      "publisher": "GitLab",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_121cd2f31e972a246844",
+      "retrieved_at": "2026-09-30T23:51:25Z",
+      "sha256": "022f6f9dfc5389ce2f14e6e3518c57ff4964a4ca6d1c258d6152b4041eb8447b",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_925368d0f378cecffe86",
+      "url": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/7615794",
+      "publisher": "MongoDB",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_e8f50ad37e6e48abc3c6",
+      "retrieved_at": "2026-09-30T23:51:26Z",
+      "sha256": "9d6e95e850e3cafc00d87ffcbe2f8e5fa7c8f7cecd922e3d666dc3d4edbd154b",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_f2a440c1f1b4bfc195d9",
+      "url": "https://boards-api.greenhouse.io/v1/boards/gitlab/jobs/8737840002",
+      "publisher": "GitLab",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_121cd2f31e972a246844",
+      "retrieved_at": "2026-09-30T23:51:31Z",
+      "sha256": "0050168d03857f2866e7accf64fdca3c61a8e9b6cfad61b9fc125cbf83ac9b5e",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_136ddd79dba216fda94e",
+      "url": "https://boards-api.greenhouse.io/v1/boards/verkada/jobs/4248001007",
+      "publisher": "Verkada",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_73cf3754f3c9cc627a4e",
+      "retrieved_at": "2026-09-30T23:51:33Z",
+      "sha256": "b5492d1d286d4907648b8bcd6ac6b7e4a968caba9db7182e3c5a55793d2bb6e4",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_269905261fc3a680be07",
+      "url": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/7031396",
+      "publisher": "MongoDB",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_e8f50ad37e6e48abc3c6",
+      "retrieved_at": "2026-09-30T23:51:34Z",
+      "sha256": "d734c3ef68629a024c7c541b41541ab73772a2278a2447224de698fbc42a0667",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-09-30T23:58:53Z",
+  "published_at": "2026-10-01T00:04:44Z",
+  "citation_path": "/release/citations/clm_67210ab4de6f9f5a5e75.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "394a849010c78be60c310ca5f4e64a7bb848b75c634215c66358a754f89012cb"
+}
