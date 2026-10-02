@@ -19,7 +19,9 @@ by title.
   charts; aggregate tables, underlying observations, and provenance expand on demand.
   Chart tables accept keyboard focus for horizontal scrolling. The global connection
   guide provides a selectable, copyable SDK snippet using the origin serving the page.
-  Provisional or unpublished roles remain separate from findings.
+  Provisional or unpublished roles remain separate from findings. The published FDE
+  brief identifies its mission-authorized, not-human-reviewed pilot status and partial
+  O*NET anchor; recorded alias decisions and bases appear in a native disclosure.
 - **Refinement and comparison.** Filter admitted postings by work level,
   responsibility band, advertised experience, employer/customer context, and distinct
   expectation dimensions/bases. Unknown remains a first-class filter. Comparisons show

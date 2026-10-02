@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_41259437315d4ddbc185",
+  "release_id": "rel_20261002_cbdc6e8d5c4f",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "HRIS configuration: Workday Core HCM configuration — recorded in 1 of 5 admitted HR Generalist postings (no variant split for this role) from 1 of 3 employers in the 2026-10-02 US sample.",
+  "quote": "Configure and maintain Workday Core HCM",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_e427ebf38b2d67d898f7",
+      "url": "https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true",
+      "publisher": "Figma",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T19:54:51Z",
+      "sha256": "1ac23290bcdbb44aade0a4106708ce893c955a52e48ee0f499afa6c2b9450cb0",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T19:55:50Z",
+  "published_at": "2026-10-02T20:39:47Z",
+  "citation_path": "/release/citations/clm_41259437315d4ddbc185.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "33bd327465e261ceedab4c293bbad3bfce582f16de4fa7986c13eea54ce32577"
+}

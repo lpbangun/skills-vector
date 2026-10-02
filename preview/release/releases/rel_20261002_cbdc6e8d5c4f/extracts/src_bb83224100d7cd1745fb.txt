@@ -1,0 +1,26 @@
+# source src_bb83224100d7cd1745fb
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_6737b1a9091ef5b42fd6
+# url https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8505413002
+# publisher SpaceX
+# retrieved_at 2026-10-02T19:54:55Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671 raw_bytes 8637
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=0f556d03efbac0c5b485a50f:posting-excerpt employer=SpaceX title=HR Generalist location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8505413002?gh_jid=8505413002
+Counsel a small client group (150-200 employees) Partner with HRBPs and coordinators to identify department needs, recommend changes, and implement improvements
+# posting id=0f556d03efbac0c5b485a50f:context:geography employer=SpaceX title=HR Generalist location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8505413002?gh_jid=8505413002
+Hawthorne, CA
+# posting id=0f556d03efbac0c5b485a50f:experience:0 employer=SpaceX title=HR Generalist location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8505413002?gh_jid=8505413002
+6+ months as a SpaceX HR Coordinator or 1+ years of professional human resources experience
+# posting id=0f556d03efbac0c5b485a50f:expectation:exp_5a89944dc44ae368d4ef employer=SpaceX title=HR Generalist location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8505413002?gh_jid=8505413002
+Counsel a small client group (150-200 employees)
+# posting id=0f556d03efbac0c5b485a50f:expectation:exp_a6e454e5cf951fd00616 employer=SpaceX title=HR Generalist location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8505413002?gh_jid=8505413002
+implementation of human resources policies, programs, and processes
+# posting id=0f556d03efbac0c5b485a50f:expectation:exp_229558159c703667d7bf employer=SpaceX title=HR Generalist location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8505413002?gh_jid=8505413002
+Respond to day-to-day employee inquiries, questions and complaints
+# posting id=0f556d03efbac0c5b485a50f:expectation:exp_7ea10a59394dfa8c4246 employer=SpaceX title=HR Generalist location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8505413002?gh_jid=8505413002
+Experience independently handling employee relations issues
+# posting id=claim:clm_6186ee1bd9d213f21c93 employer= title= location= variant= url=
+implementation of human resources policies, programs, and processes

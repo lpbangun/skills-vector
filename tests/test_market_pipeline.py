@@ -10,7 +10,7 @@ import unittest
 import urllib.error
 from pathlib import Path
 from typing import Any
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
@@ -34,7 +34,12 @@ from skills_vector.market.pipeline import (  # noqa: E402
     resolve_priority_links,
     run_research,
 )
-from skills_vector.market.release import validate_release  # noqa: E402
+from skills_vector.market.release import (
+    responsibility_quote_supported,
+    sales_segment_quote_supported,
+    sha256_text,
+    validate_release,
+)
 from skills_vector.market.sources import seniority_exclusion_reason, us_location_ok  # noqa: E402
 
 FOUNDATION_URL = "https://www.onetonline.org/link/summary/13-1071.00"
@@ -500,6 +505,212 @@ class PipelineBoundaryTests(unittest.TestCase):
         )
         self.assertEqual(valid["claim_ids"], ["demand"])
         self.assertTrue(any(row["kind"] == "invalid_priority_link" for row in valid["disagreements"]))
+
+    def test_worker_responsibility_and_sales_segment_qualifications_normalize_safely(self) -> None:
+        strategic_customer_tier = (
+            "target and close new business with Datadog’s largest, most strategic customers and prospects"
+        )
+        growth_strategy = "Shape Figma’s growth strategy as our business and product evolve"
+        fde_strategy = "own the architecture and shape long-term strategic priorities"
+        ambiguous_fde_work = "owning ambiguous technical problems end to end"
+        enterprise_artifact = (
+            "Make an enterprise design system agent-ready so AI tools generate faithful, on-system code"
+        )
+        enterprise_customers = "enterprise customer environments"
+        mixed_tier_artifact = "Make an enterprise design system for SMB customers."
+        artifact_with_generic_buyers = "Make an enterprise design system for customers."
+        enterprise_clients = "enterprise clients"
+        smb_accounts = "SMB accounts"
+        enterprise_market = "enterprise market"
+
+        self.assertFalse(
+            responsibility_quote_supported(
+                "senior_strategic_ic", strategic_customer_tier, "individual_contributor",
+            )
+        )
+        for quote in (growth_strategy, fde_strategy, ambiguous_fde_work):
+            with self.subTest(responsibility_quote=quote):
+                self.assertTrue(
+                    responsibility_quote_supported("senior_strategic_ic", quote, "individual_contributor")
+                )
+        for quote in (
+            enterprise_artifact, mixed_tier_artifact, artifact_with_generic_buyers,
+        ):
+            with self.subTest(sales_segment_quote=quote):
+                self.assertFalse(sales_segment_quote_supported("enterprise", quote))
+        self.assertTrue(sales_segment_quote_supported("enterprise", enterprise_customers))
+        self.assertTrue(sales_segment_quote_supported("enterprise", enterprise_clients))
+        self.assertTrue(sales_segment_quote_supported("SMB", smb_accounts))
+        self.assertTrue(sales_segment_quote_supported("enterprise", enterprise_market))
+
+        budgets = []
+
+        def stage_admissions(occupation: str, cases: list[dict[str, Any]], run_id: str) -> ResearchRun:
+            runtime, budget = active_runtime_bundle(self.tmp / f"operator-{run_id}")
+            budgets.append(budget)
+            config = ResearchConfig(
+                occupation=occupation,
+                evidence_root=self.tmp / f"evidence-{run_id}",
+                release_root=self.tmp / f"release-{run_id}",
+                runtime=runtime,
+                mission_budget=budget,
+                min_postings=1,
+                max_postings=len(cases),
+                run_id=run_id,
+                challenge_enabled=False,
+            )
+            with patch.dict(os.environ, {"DEEPINFRA_API_KEY": "unit-test-only-not-a-credential"}):
+                run = ResearchRun(config)
+
+            admissions = []
+            for case in cases:
+                source_id = f"src_{run_id}_{case['key']}"
+                text = str(case["text"])
+                run.candidates.append(
+                    {
+                        "key": case["key"],
+                        "employer": case["employer"],
+                        "title": case["title"],
+                        "location": "Remote - US",
+                        "url": f"https://boards-api.greenhouse.io/v1/boards/testco/jobs?gh_jid={case['key']}",
+                        "text": text,
+                        "source_id": source_id,
+                    }
+                )
+                run.sources.append({"id": source_id, "sha256": sha256_text(text)})
+                run._raw_text[source_id] = text
+                admissions.append(
+                    {
+                        "posting_id": case["key"],
+                        "decision": "admit",
+                        "reason": "The posting describes role-specific duties.",
+                        "variant": case.get("variant"),
+                        "work_level": "individual_contributor",
+                        "work_level_reason": "The posting explicitly states individual-contributor work.",
+                        "work_level_quote": "individual contributor role with no direct reports",
+                        "people_management_quote": "",
+                        "responsibility_band": case.get("responsibility_band", "unknown"),
+                        "responsibility_reason": case.get(
+                            "responsibility_reason", "The source does not establish a responsibility band.",
+                        ),
+                        "responsibility_quote": case.get("responsibility_quote", ""),
+                        "advertised_experience": [],
+                        "context_dimensions": {
+                            "sales_segment": case.get("sales_segment", {"value": None, "quote": ""}),
+                        },
+                        "expectations": [],
+                        "excerpt": "individual contributor role with no direct reports",
+                    }
+                )
+            result = Mock()
+            result.as_metadata.return_value = {}
+            with patch.object(run.runner, "require_json", return_value=({"admissions": admissions}, result)):
+                run.stage_admission()
+            return run
+
+        try:
+            account_run = stage_admissions(
+                "account-executive",
+                [{
+                    "key": "strategic-account",
+                    "employer": "Datadog",
+                    "title": "Account Executive",
+                    "text": (
+                        "individual contributor role with no direct reports. "
+                        f"{strategic_customer_tier}."
+                    ),
+                    "responsibility_band": "senior_strategic_ic",
+                    "responsibility_reason": "The accounts are described as strategic.",
+                    "responsibility_quote": strategic_customer_tier,
+                }],
+                "run_qualification_account",
+            )
+            growth_run = stage_admissions(
+                "growth-manager",
+                [{
+                    "key": "growth-strategy",
+                    "employer": "Figma",
+                    "title": "Growth Manager",
+                    "variant": "product-growth",
+                    "text": f"individual contributor role with no direct reports. {growth_strategy}.",
+                    "responsibility_band": "senior_strategic_ic",
+                    "responsibility_reason": "The role shapes the growth strategy.",
+                    "responsibility_quote": growth_strategy,
+                }],
+                "run_qualification_growth",
+            )
+            fde_run = stage_admissions(
+                "forward-deployed-engineer",
+                [
+                    {
+                        "key": "enterprise-artifact",
+                        "employer": "Figma",
+                        "title": "Forward Deployed Engineer",
+                        "text": f"individual contributor role with no direct reports. {mixed_tier_artifact}",
+                        "sales_segment": {"value": "enterprise", "quote": mixed_tier_artifact},
+                    },
+                    {
+                        "key": "enterprise-customer-environments",
+                        "employer": "MongoDB",
+                        "title": "Forward Deployed Engineer",
+                        "text": (
+                            "individual contributor role with no direct reports. "
+                            f"{fde_strategy}. Work in {enterprise_customers}."
+                        ),
+                        "responsibility_band": "senior_strategic_ic",
+                        "responsibility_reason": "The work owns architecture and shapes strategic priorities.",
+                        "responsibility_quote": fde_strategy,
+                        "sales_segment": {"value": "enterprise", "quote": enterprise_customers},
+                    },
+                ],
+                "run_qualification_fde",
+            )
+
+            account_posting = account_run.postings[0]
+            self.assertEqual(len(account_run.postings), 1)
+            self.assertEqual(account_posting["responsibility_band"], "unknown")
+            self.assertIsNone(account_posting["responsibility_evidence"]["quote"])
+            self.assertEqual(
+                account_posting["responsibility_evidence"]["source_id"],
+                account_posting["source_id"],
+            )
+            self.assertTrue(account_posting["responsibility_evidence"]["source_sha256"])
+            band_issue = next(
+                row for row in account_run.disagreements
+                if row.get("kind") == "classification_unknown" and row.get("field") == "responsibility_band"
+            )
+            self.assertEqual(band_issue["source_id"], account_posting["source_id"])
+            self.assertIn("matching responsibility signal", band_issue["issue"])
+            self.assertEqual(
+                band_issue["resolution"],
+                "classification retained as unknown; posting not discarded",
+            )
+
+            self.assertEqual(growth_run.postings[0]["responsibility_band"], "senior_strategic_ic")
+            artifact_posting, customer_posting = fde_run.postings
+            artifact_segment = artifact_posting["context_dimensions"]["sales_segment"]
+            self.assertEqual(artifact_segment["status"], "unknown")
+            self.assertIsNone(artifact_segment["value"])
+            self.assertEqual(artifact_segment["source_id"], artifact_posting["source_id"])
+            self.assertTrue(artifact_segment["source_sha256"])
+            self.assertEqual(
+                artifact_segment["unknown_reason"],
+                "sales segment is not linked to customer, account, client, business, or sales-market evidence",
+            )
+            segment_issue = next(
+                row for row in fde_run.disagreements
+                if row.get("kind") == "classification_unknown" and row.get("field") == "sales_segment"
+            )
+            self.assertEqual(segment_issue["source_id"], artifact_posting["source_id"])
+            self.assertIn("not linked", segment_issue["issue"])
+            self.assertEqual(customer_posting["responsibility_band"], "senior_strategic_ic")
+            self.assertEqual(customer_posting["context_dimensions"]["sales_segment"]["status"], "present")
+            self.assertEqual(customer_posting["context_dimensions"]["sales_segment"]["value"], "enterprise")
+            self.assertEqual(fde_run.exclusions, [])
+            self.assertEqual(len(fde_run.postings), 2)
+        finally:
+            for budget in budgets:
+                budget.close()
 
     def test_active_pipeline_keeps_verified_manager_and_unknown_rows_and_freezes_candidate_only(self) -> None:
         config, budget, provider, result = self._run()

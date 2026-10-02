@@ -1,0 +1,21 @@
+# source src_140307f829bfdb285349
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true
+# publisher Figma
+# retrieved_at 2026-10-02T19:51:57Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 1ac23290bcdbb44aade0a4106708ce893c955a52e48ee0f499afa6c2b9450cb0 raw_bytes 1825355
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=bf7ed583f9d0873d973f7c59:posting-excerpt employer=Figma title=Forward Deployed Engineer location=San Francisco, CA • New York, NY • United States variant= url=https://boards.greenhouse.io/figma/jobs/6158162004?gh_jid=6158162004
+Get Make Local, Code Layers, and our newest products working in a customer’s real environment, writing code, config, agent skills, and guideline files against their systems and ours.
+# posting id=bf7ed583f9d0873d973f7c59:responsibility_evidence employer=Figma title=Forward Deployed Engineer location=San Francisco, CA • New York, NY • United States variant= url=https://boards.greenhouse.io/figma/jobs/6158162004?gh_jid=6158162004
+Comfort owning ambiguous technical problems end to end, identifying patterns across customer engagements, and turning field learning into reusable product improvements.
+# posting id=bf7ed583f9d0873d973f7c59:expectation:exp_afcf8bd0d641cb76f8bc employer=Figma title=Forward Deployed Engineer location=San Francisco, CA • New York, NY • United States variant= url=https://boards.greenhouse.io/figma/jobs/6158162004?gh_jid=6158162004
+writing code, config, agent skills, and guideline files against their systems and ours
+# posting id=bf7ed583f9d0873d973f7c59:expectation:exp_2a15127f52c6323eba0d employer=Figma title=Forward Deployed Engineer location=San Francisco, CA • New York, NY • United States variant= url=https://boards.greenhouse.io/figma/jobs/6158162004?gh_jid=6158162004
+Run technical discovery: understand a customer's dev environment, toolchain, and constraints
+# posting id=bf7ed583f9d0873d973f7c59:expectation:exp_85f409bf1e1f266df29e employer=Figma title=Forward Deployed Engineer location=San Francisco, CA • New York, NY • United States variant= url=https://boards.greenhouse.io/figma/jobs/6158162004?gh_jid=6158162004
+Comfort owning ambiguous technical problems end to end
+# posting id=bf7ed583f9d0873d973f7c59:expectation:exp_68eee845d85f00be02f6 employer=Figma title=Forward Deployed Engineer location=San Francisco, CA • New York, NY • United States variant= url=https://boards.greenhouse.io/figma/jobs/6158162004?gh_jid=6158162004
+Background in forward-deployed engineering, solutions engineering, professional services, developer experience, or a similar customer-f

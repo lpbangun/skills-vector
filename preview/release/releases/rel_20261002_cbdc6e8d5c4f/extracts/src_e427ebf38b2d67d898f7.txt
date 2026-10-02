@@ -1,0 +1,21 @@
+# source src_e427ebf38b2d67d898f7
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true
+# publisher Figma
+# retrieved_at 2026-10-02T19:54:51Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 1ac23290bcdbb44aade0a4106708ce893c955a52e48ee0f499afa6c2b9450cb0 raw_bytes 1825355
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=49fe009623daaf424f9a6295:posting-excerpt employer=Figma title=HRIS Analyst location=San Francisco, CA • New York, NY • United States variant= url=https://boards.greenhouse.io/figma/jobs/6201385004?gh_jid=6201385004
+We're looking for a collaborative and detail-oriented HRIS Analyst
+# posting id=49fe009623daaf424f9a6295:expectation:exp_0adef5d31d5e38633e51 employer=Figma title=HRIS Analyst location=San Francisco, CA • New York, NY • United States variant= url=https://boards.greenhouse.io/figma/jobs/6201385004?gh_jid=6201385004
+Configure and maintain Workday Core HCM
+# posting id=49fe009623daaf424f9a6295:expectation:exp_c8872e6541fd46d5c947 employer=Figma title=HRIS Analyst location=San Francisco, CA • New York, NY • United States variant= url=https://boards.greenhouse.io/figma/jobs/6201385004?gh_jid=6201385004
+Manage the HRIS support ticket queue
+# posting id=49fe009623daaf424f9a6295:expectation:exp_c468a82ad944f8c0679f employer=Figma title=HRIS Analyst location=San Francisco, CA • New York, NY • United States variant= url=https://boards.greenhouse.io/figma/jobs/6201385004?gh_jid=6201385004
+Build, maintain, and troubleshoot Workday reports, dashboards, and calculated fields
+# posting id=49fe009623daaf424f9a6295:expectation:exp_5712e34b1ce55fbb4683 employer=Figma title=HRIS Analyst location=San Francisco, CA • New York, NY • United States variant= url=https://boards.greenhouse.io/figma/jobs/6201385004?gh_jid=6201385004
+Create, execute, and troubleshoot Enterprise Interface Builder (EIB) integrations
+# posting id=claim:clm_41259437315d4ddbc185 employer= title= location= variant= url=
+Configure and maintain Workday Core HCM

@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_f4f2d3699b1864035acc",
+  "release_id": "rel_20261002_cbdc6e8d5c4f",
+  "occupation_slug": "account-executive",
+  "claim_type": "advertised_demand",
+  "statement": "Sales goal attainment: met or exceeded direct sales goals — recorded in 1 of 5 admitted Account Executive postings (no variant split for this role) from 1 of 5 employers in the 2026-10-02 US sample.",
+  "quote": "met/exceeded direct sales goals of 1M+",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_73b0452f4c687bbded4c",
+      "url": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs/6522720",
+      "publisher": "Datadog",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_67001e3945e4c58d600d",
+      "retrieved_at": "2026-10-02T19:50:32Z",
+      "sha256": "899e22116f988f4ef2edac53e9e8d5597ab1ad28585470852d9f130f3c9c4600",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T20:28:53Z",
+  "published_at": "2026-10-02T20:39:47Z",
+  "citation_path": "/release/citations/clm_f4f2d3699b1864035acc.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "8ae44b8d9481ba53ad38d14eaec81fcd986d8a35601dbd445bdcf92168b6c85a"
+}

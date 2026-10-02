@@ -1,0 +1,26 @@
+# source src_73b0452f4c687bbded4c
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_67001e3945e4c58d600d
+# url https://boards-api.greenhouse.io/v1/boards/datadog/jobs/6522720
+# publisher Datadog
+# retrieved_at 2026-10-02T19:50:32Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 899e22116f988f4ef2edac53e9e8d5597ab1ad28585470852d9f130f3c9c4600 raw_bytes 12025
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=031b24ad47ad38fe2f3456a3:posting-excerpt employer=Datadog title=Strategic Account Executive location=Georgia, USA, Remote; Tennessee, USA, Remote variant= url=https://careers.datadoghq.com/detail/6522720/?gh_jid=6522720
+Our Strategic Account Executives target and close new business with Datadog’s largest, most strategic customers and prospects.
+# posting id=031b24ad47ad38fe2f3456a3:context:work_context employer=Datadog title=Strategic Account Executive location=Georgia, USA, Remote; Tennessee, USA, Remote variant= url=https://careers.datadoghq.com/detail/6522720/?gh_jid=6522720
+We operate as a hybrid workplace
+# posting id=031b24ad47ad38fe2f3456a3:experience:0 employer=Datadog title=Strategic Account Executive location=Georgia, USA, Remote; Tennessee, USA, Remote variant= url=https://careers.datadoghq.com/detail/6522720/?gh_jid=6522720
+5+ years closing experience (mix of field selling within mid-market and enterprise)
+# posting id=031b24ad47ad38fe2f3456a3:expectation:exp_c639e95141b37a1493d0 employer=Datadog title=Strategic Account Executive location=Georgia, USA, Remote; Tennessee, USA, Remote variant= url=https://careers.datadoghq.com/detail/6522720/?gh_jid=6522720
+5+ years closing experience
+# posting id=031b24ad47ad38fe2f3456a3:expectation:exp_190299a5e6a11f7cc1a8 employer=Datadog title=Strategic Account Executive location=Georgia, USA, Remote; Tennessee, USA, Remote variant= url=https://careers.datadoghq.com/detail/6522720/?gh_jid=6522720
+met/exceeded direct sales goals of 1M+
+# posting id=031b24ad47ad38fe2f3456a3:expectation:exp_0d94f071e153a8e4daa5 employer=Datadog title=Strategic Account Executive location=Georgia, USA, Remote; Tennessee, USA, Remote variant= url=https://careers.datadoghq.com/detail/6522720/?gh_jid=6522720
+Negotiate favorable pricing and business terms
+# posting id=031b24ad47ad38fe2f3456a3:expectation:exp_9f2162a5e898f127929c employer=Datadog title=Strategic Account Executive location=Georgia, USA, Remote; Tennessee, USA, Remote variant= url=https://careers.datadoghq.com/detail/6522720/?gh_jid=6522720
+Ensure high forecasting accuracy and consistency
+# posting id=claim:clm_f4f2d3699b1864035acc employer= title= location= variant= url=
+met/exceeded direct sales goals of 1M+

@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_c50c007e40dd75df4f91",
+  "release_id": "rel_20261002_cbdc6e8d5c4f",
+  "occupation_slug": "forward-deployed-engineer",
+  "claim_type": "advertised_demand",
+  "statement": "Production coding experience: hands-on engineering experience — recorded in 1 of 5 admitted Forward Deployed Engineer postings (no variant split for this role) from 1 of 5 employers in the 2026-10-02 US sample.",
+  "quote": "Hands-on production engineering experience, including writing code,",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+  },
+  "sources": [
+    {
+      "id": "src_6f6386f2dbdc790195d8",
+      "url": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/8094523",
+      "publisher": "MongoDB",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_9cefa8085f01422b4e3e",
+      "retrieved_at": "2026-10-02T19:52:04Z",
+      "sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T20:32:36Z",
+  "published_at": "2026-10-02T20:39:47Z",
+  "citation_path": "/release/citations/clm_c50c007e40dd75df4f91.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "8e518b1e7e794f9f8ed6ffe133ef7726a7dc8ea8a517f0f7f52a8ca46d99b5a5"
+}

@@ -1,0 +1,61 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_e2870c511e05208e44ad",
+  "release_id": "rel_20261002_cbdc6e8d5c4f",
+  "occupation_slug": "forward-deployed-engineer",
+  "claim_type": "advertised_demand",
+  "statement": "Customer technical discovery: customer-facing technical work — recorded in 3 of 5 admitted Forward Deployed Engineer postings (no variant split for this role) from 3 of 5 employers in the 2026-10-02 US sample.",
+  "quote": "Work directly with customers to understand their technical and",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+  },
+  "sources": [
+    {
+      "id": "src_140307f829bfdb285349",
+      "url": "https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true",
+      "publisher": "Figma",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T19:51:57Z",
+      "sha256": "1ac23290bcdbb44aade0a4106708ce893c955a52e48ee0f499afa6c2b9450cb0",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_e35af9278335d5045c77",
+      "url": "https://boards-api.greenhouse.io/v1/boards/asana/jobs?content=true",
+      "publisher": "Asana",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T19:51:58Z",
+      "sha256": "dd6bfe2b63dea8174e4ca7379dfed7d40a329a011923600debe9e68470b2b650",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_6413b1c5f80546a23d4d",
+      "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs/7230452",
+      "publisher": "Stripe",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_e6f5838b01d2d98a52d6",
+      "retrieved_at": "2026-10-02T19:52:03Z",
+      "sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T20:32:36Z",
+  "published_at": "2026-10-02T20:39:47Z",
+  "citation_path": "/release/citations/clm_e2870c511e05208e44ad.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "01c1712f26a38f1ceb7176300e6270142bc9fec7d4077b12f1f6a64b84dfce46"
+}

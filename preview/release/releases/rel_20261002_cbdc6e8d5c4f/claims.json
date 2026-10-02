@@ -1,0 +1,941 @@
+[
+  {
+    "id": "clm_28d33823898a29fdce76",
+    "occupation_slug": "account-executive",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "Sell goods for wholesalers or manufacturers to businesses or groups of individuals.",
+    "quote": "Sell goods for wholesalers or manufacturers to businesses or groups of individuals.",
+    "source_ids": [
+      "src_3d355c8e4edbd6e5043e"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "expectation_dimension": "task",
+    "evidence_basis": "official_foundation",
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_3d355c8e4edbd6e5043e"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "businesses",
+      "goods",
+      "groups",
+      "individuals.",
+      "manufacturers",
+      "sell",
+      "wholesalers"
+    ],
+    "agent_run_id": "recovery_1963d5699250469aa455_account-executive",
+    "asserted_at": "2026-10-02T20:28:53Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_0e494da1cf57515519ab",
+    "occupation_slug": "account-executive",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Quota-carrying sales experience: prior quota-carrying sales experience — recorded in 4 of 5 admitted Account Executive postings (no variant split for this role) from 4 of 5 employers in the 2026-10-02 US sample.",
+    "quote": "At least 2+ years of sales experience in a quota-carrying capacity",
+    "source_ids": [
+      "src_3fe01ef9bfa3c8e6402e",
+      "src_6098b7029cbc74dc882c",
+      "src_73b0452f4c687bbded4c",
+      "src_9474d748372eef14060d"
+    ],
+    "expectation_dimension": "experience",
+    "evidence_basis": "employer_requirement",
+    "expectation_ids": [
+      "exp_7bb382ad1e02c214023a",
+      "exp_ac048487d40394a14d4d",
+      "exp_ad277058a749e0537057",
+      "exp_c639e95141b37a1493d0"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "posting_ids": [
+        "031b24ad47ad38fe2f3456a3",
+        "0ed45105a02c40ed703b5253",
+        "126ac2cfb1c706b3eb843cae",
+        "441e49c4ad2a3ef3d76a6872"
+      ],
+      "employer_ids": [
+        "Datadog",
+        "MongoDB",
+        "Stripe",
+        "Verkada"
+      ],
+      "expectation_ids": [
+        "exp_7bb382ad1e02c214023a",
+        "exp_ac048487d40394a14d4d",
+        "exp_ad277058a749e0537057",
+        "exp_c639e95141b37a1493d0"
+      ],
+      "postings_considered": 5,
+      "postings_matched": 4,
+      "employers_matched": 4,
+      "employers_considered": 5,
+      "quote_source": "src_9474d748372eef14060d",
+      "detail": "Postings specify minimum years or quota-carrying closing roles; years are treated as experience, not knowledge or proficiency.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Quota-carrying sales experience",
+      "experience",
+      "quota-carrying",
+      "sales"
+    ],
+    "agent_run_id": "recovery_1963d5699250469aa455_account-executive",
+    "asserted_at": "2026-10-02T20:28:53Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_f4f2d3699b1864035acc",
+    "occupation_slug": "account-executive",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Sales goal attainment: met or exceeded direct sales goals — recorded in 1 of 5 admitted Account Executive postings (no variant split for this role) from 1 of 5 employers in the 2026-10-02 US sample.",
+    "quote": "met/exceeded direct sales goals of 1M+",
+    "source_ids": [
+      "src_73b0452f4c687bbded4c"
+    ],
+    "expectation_dimension": "demonstration",
+    "evidence_basis": "employer_requirement",
+    "expectation_ids": [
+      "exp_190299a5e6a11f7cc1a8"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "posting_ids": [
+        "031b24ad47ad38fe2f3456a3"
+      ],
+      "employer_ids": [
+        "Datadog"
+      ],
+      "expectation_ids": [
+        "exp_190299a5e6a11f7cc1a8"
+      ],
+      "postings_considered": 5,
+      "postings_matched": 1,
+      "employers_matched": 1,
+      "employers_considered": 5,
+      "quote_source": "src_73b0452f4c687bbded4c",
+      "detail": "One posting cites a numeric direct sales goal threshold as a demonstration expectation.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Sales goal attainment",
+      "attainment",
+      "goal",
+      "sales"
+    ],
+    "agent_run_id": "recovery_1963d5699250469aa455_account-executive",
+    "asserted_at": "2026-10-02T20:28:53Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_d42f293ef99dadb94485",
+    "occupation_slug": "account-executive",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Communication and technical fluency: communication and complex technical ecosystem understanding — recorded in 2 of 5 admitted Account Executive postings (no variant split for this role) from 2 of 5 employers in the 2026-10-02 US sample.",
+    "quote": "Highly effective communication skills",
+    "source_ids": [
+      "src_6098b7029cbc74dc882c",
+      "src_9474d748372eef14060d"
+    ],
+    "expectation_dimension": "capability",
+    "evidence_basis": "employer_requirement",
+    "expectation_ids": [
+      "exp_75bd6317fa8826bc12a1",
+      "exp_bfae533d3af2772444ca"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "posting_ids": [
+        "0ed45105a02c40ed703b5253",
+        "126ac2cfb1c706b3eb843cae"
+      ],
+      "employer_ids": [
+        "Stripe",
+        "Verkada"
+      ],
+      "expectation_ids": [
+        "exp_75bd6317fa8826bc12a1",
+        "exp_bfae533d3af2772444ca"
+      ],
+      "postings_considered": 5,
+      "postings_matched": 2,
+      "employers_matched": 2,
+      "employers_considered": 5,
+      "quote_source": "src_9474d748372eef14060d",
+      "detail": "Two postings list communication effectiveness and ability to understand complex technical ecosystems as capabilities.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Communication and technical fluency",
+      "communication",
+      "fluency",
+      "technical"
+    ],
+    "agent_run_id": "recovery_1963d5699250469aa455_account-executive",
+    "asserted_at": "2026-10-02T20:28:53Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_7fc1c98a00255061cf19",
+    "occupation_slug": "account-executive",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Prospecting and sales cycle: prospect, build relationships, and conduct demos — recorded in 1 of 5 admitted Account Executive postings (no variant split for this role) from 1 of 5 employers in the 2026-10-02 US sample.",
+    "quote": "prospect, build relationships, and sign up new restaurateurs",
+    "source_ids": [
+      "src_2ef617516a5da8524028"
+    ],
+    "expectation_dimension": "task",
+    "evidence_basis": "employer_requirement",
+    "expectation_ids": [
+      "exp_87bae35eb78ede2a8153",
+      "exp_d760be0e164ba8a3c9df"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "posting_ids": [
+        "5da2e1a5e0bc206eebbcf0ac"
+      ],
+      "employer_ids": [
+        "Toast"
+      ],
+      "expectation_ids": [
+        "exp_87bae35eb78ede2a8153",
+        "exp_d760be0e164ba8a3c9df"
+      ],
+      "postings_considered": 5,
+      "postings_matched": 1,
+      "employers_matched": 1,
+      "employers_considered": 5,
+      "quote_source": "src_2ef617516a5da8524028",
+      "detail": "One posting describes prospecting, relationship building, and demo tasks across the sales cycle.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Prospecting and sales cycle",
+      "cycle",
+      "prospecting",
+      "sales"
+    ],
+    "agent_run_id": "recovery_1963d5699250469aa455_account-executive",
+    "asserted_at": "2026-10-02T20:28:53Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_e2870c511e05208e44ad",
+    "occupation_slug": "forward-deployed-engineer",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Customer technical discovery: customer-facing technical work — recorded in 3 of 5 admitted Forward Deployed Engineer postings (no variant split for this role) from 3 of 5 employers in the 2026-10-02 US sample.",
+    "quote": "Work directly with customers to understand their technical and",
+    "source_ids": [
+      "src_140307f829bfdb285349",
+      "src_6413b1c5f80546a23d4d",
+      "src_e35af9278335d5045c77"
+    ],
+    "expectation_dimension": "task",
+    "evidence_basis": "employer_requirement",
+    "expectation_ids": [
+      "exp_2a15127f52c6323eba0d",
+      "exp_6bb4f34aef8998483fdd",
+      "exp_7bbf5dcf442f19fe0b52"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "posting_ids": [
+        "7cf53ba1465e666d299e98a0",
+        "bf7ed583f9d0873d973f7c59",
+        "da58f07367ace66ebfe7e129"
+      ],
+      "employer_ids": [
+        "Asana",
+        "Figma",
+        "Stripe"
+      ],
+      "expectation_ids": [
+        "exp_2a15127f52c6323eba0d",
+        "exp_6bb4f34aef8998483fdd",
+        "exp_7bbf5dcf442f19fe0b52"
+      ],
+      "postings_considered": 5,
+      "postings_matched": 3,
+      "employers_matched": 3,
+      "employers_considered": 5,
+      "quote_source": "src_6413b1c5f80546a23d4d",
+      "detail": "Understanding customer technical needs and environments appears across multiple postings.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Customer technical discovery",
+      "customer",
+      "discovery",
+      "technical"
+    ],
+    "agent_run_id": "recovery_1963d5699250469aa455_forward-deployed-engineer",
+    "asserted_at": "2026-10-02T20:32:36Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_fe729763c170f0bec4cb",
+    "occupation_slug": "forward-deployed-engineer",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Software solution prototyping: prototype and propose solutions — recorded in 1 of 5 admitted Forward Deployed Engineer postings (no variant split for this role) from 1 of 5 employers in the 2026-10-02 US sample.",
+    "quote": "prototype and propose software solutions",
+    "source_ids": [
+      "src_6413b1c5f80546a23d4d"
+    ],
+    "expectation_dimension": "task",
+    "evidence_basis": "employer_requirement",
+    "expectation_ids": [
+      "exp_d4b2e99660d678806ff8"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "posting_ids": [
+        "da58f07367ace66ebfe7e129"
+      ],
+      "employer_ids": [
+        "Stripe"
+      ],
+      "expectation_ids": [
+        "exp_d4b2e99660d678806ff8"
+      ],
+      "postings_considered": 5,
+      "postings_matched": 1,
+      "employers_matched": 1,
+      "employers_considered": 5,
+      "quote_source": "src_6413b1c5f80546a23d4d",
+      "detail": "Proposing and prototyping software solutions is stated as a task expectation.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Software solution prototyping",
+      "prototyping",
+      "software",
+      "solution"
+    ],
+    "agent_run_id": "recovery_1963d5699250469aa455_forward-deployed-engineer",
+    "asserted_at": "2026-10-02T20:32:36Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_c50c007e40dd75df4f91",
+    "occupation_slug": "forward-deployed-engineer",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Production coding experience: hands-on engineering experience — recorded in 1 of 5 admitted Forward Deployed Engineer postings (no variant split for this role) from 1 of 5 employers in the 2026-10-02 US sample.",
+    "quote": "Hands-on production engineering experience, including writing code,",
+    "source_ids": [
+      "src_6f6386f2dbdc790195d8"
+    ],
+    "expectation_dimension": "experience",
+    "evidence_basis": "employer_requirement",
+    "expectation_ids": [
+      "exp_f625eaee392adac2367b"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "posting_ids": [
+        "4f9082e0ca94c9a0d9bffb7d"
+      ],
+      "employer_ids": [
+        "MongoDB"
+      ],
+      "expectation_ids": [
+        "exp_f625eaee392adac2367b"
+      ],
+      "postings_considered": 5,
+      "postings_matched": 1,
+      "employers_matched": 1,
+      "employers_considered": 5,
+      "quote_source": "src_6f6386f2dbdc790195d8",
+      "detail": "Production engineering experience including writing code is required.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Production coding experience",
+      "coding",
+      "experience",
+      "production"
+    ],
+    "agent_run_id": "recovery_1963d5699250469aa455_forward-deployed-engineer",
+    "asserted_at": "2026-10-02T20:32:36Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_dbc7dde2eb35c0ca0123",
+    "occupation_slug": "forward-deployed-engineer",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Cloud ecosystem knowledge: cloud platform familiarity — recorded in 1 of 5 admitted Forward Deployed Engineer postings (no variant split for this role) from 1 of 5 employers in the 2026-10-02 US sample.",
+    "quote": "Working knowledge of two or more common Cloud ecosystems (AWS, Azure,",
+    "source_ids": [
+      "src_2b15a14ab97190e211f7"
+    ],
+    "expectation_dimension": "knowledge",
+    "evidence_basis": "employer_requirement",
+    "expectation_ids": [
+      "exp_2c24478c3859fd0fbace"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "posting_ids": [
+        "3d3afe13c27bbf828dd47a2f"
+      ],
+      "employer_ids": [
+        "Databricks"
+      ],
+      "expectation_ids": [
+        "exp_2c24478c3859fd0fbace"
+      ],
+      "postings_considered": 5,
+      "postings_matched": 1,
+      "employers_matched": 1,
+      "employers_considered": 5,
+      "quote_source": "src_2b15a14ab97190e211f7",
+      "detail": "Working knowledge of multiple common cloud ecosystems is required.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Cloud ecosystem knowledge",
+      "cloud",
+      "ecosystem",
+      "knowledge"
+    ],
+    "agent_run_id": "recovery_1963d5699250469aa455_forward-deployed-engineer",
+    "asserted_at": "2026-10-02T20:32:36Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_87e0596b6a5d39e2a731",
+    "occupation_slug": "growth-manager",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "Market research analysts and marketing specialists research conditions in local, regional, national, or online markets and gather information to determine potential sales of a product or service or plan a marketing or advertising campaign.",
+    "quote": "Research conditions in local, regional, national, or online markets. Gather information to determine potential sales of a product or service, or plan a marketing or advertising campaign.",
+    "source_ids": [
+      "src_5adcf4b6a53289b61d25"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "expectation_dimension": "task",
+    "evidence_basis": "official_foundation",
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_5adcf4b6a53289b61d25"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "advertising",
+      "analysts",
+      "campaign.",
+      "conditions",
+      "determine",
+      "gather",
+      "information",
+      "local",
+      "market",
+      "marketing",
+      "markets",
+      "national"
+    ],
+    "agent_run_id": "refresh_1963d5699250469aa455_growth-manager",
+    "asserted_at": "2026-10-02T19:54:22Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_16efc00e00fb3e4962be",
+    "occupation_slug": "growth-manager",
+    "claim_type": "advertised_demand",
+    "variant": "sales-account-executive",
+    "statement": "Sales or business development experience: prior sales or business development experience — recorded in 1 of 1 admitted Growth Manager postings (variant scope sales-account-executive) from 1 of 1 employers in the 2026-10-02 US sample.",
+    "quote": "Previous experience in a sales or business development role",
+    "source_ids": [
+      "src_6076d691fd591ccffd48"
+    ],
+    "expectation_dimension": "experience",
+    "evidence_basis": "unknown",
+    "expectation_ids": [
+      "exp_ea5816d78d69ce510e21"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "posting_ids": [
+        "e194045c9495262260dc708d"
+      ],
+      "employer_ids": [
+        "Instacart"
+      ],
+      "expectation_ids": [
+        "exp_ea5816d78d69ce510e21"
+      ],
+      "postings_considered": 1,
+      "postings_matched": 1,
+      "employers_matched": 1,
+      "employers_considered": 1,
+      "quote_source": "src_6076d691fd591ccffd48",
+      "detail": "Stated as previous experience in a sales or business development role; basis not specified in the posting.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Sales or business development experience",
+      "business",
+      "development",
+      "experience",
+      "sales"
+    ],
+    "agent_run_id": "refresh_1963d5699250469aa455_growth-manager",
+    "asserted_at": "2026-10-02T19:54:22Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_2f68037097c53b73b89b",
+    "occupation_slug": "growth-manager",
+    "claim_type": "advertised_demand",
+    "variant": "product-growth",
+    "statement": "Product management experience: years of product management experience — recorded in 1 of 1 admitted Growth Manager postings (variant scope product-growth) from 1 of 1 employers in the 2026-10-02 US sample.",
+    "quote": "7+ years of product management experience",
+    "source_ids": [
+      "src_f793b4b4dbf42ae0efb2"
+    ],
+    "expectation_dimension": "experience",
+    "evidence_basis": "employer_requirement",
+    "expectation_ids": [
+      "exp_f9e5816f0bb06f5c190a"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "posting_ids": [
+        "5100869e45f2160aa6a8ba00"
+      ],
+      "employer_ids": [
+        "Figma"
+      ],
+      "expectation_ids": [
+        "exp_f9e5816f0bb06f5c190a"
+      ],
+      "postings_considered": 1,
+      "postings_matched": 1,
+      "employers_matched": 1,
+      "employers_considered": 1,
+      "quote_source": "src_f793b4b4dbf42ae0efb2",
+      "detail": "Posting states 7+ years of product management experience; years are treated as experience, not knowledge or proficiency.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Product management experience",
+      "experience",
+      "management",
+      "product"
+    ],
+    "agent_run_id": "refresh_1963d5699250469aa455_growth-manager",
+    "asserted_at": "2026-10-02T19:54:22Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_834870a969ef279912d3",
+    "occupation_slug": "growth-manager",
+    "claim_type": "advertised_demand",
+    "variant": "growth-marketing",
+    "statement": "Global performance marketing execution: owning global performance marketing campaigns — recorded in 1 of 2 admitted Growth Manager postings (variant scope growth-marketing) from 1 of 2 employers in the 2026-10-02 US sample.",
+    "quote": "Own day-to-day execution of global performance marketing campaigns",
+    "source_ids": [
+      "src_1ed341a8573851cfd6b0"
+    ],
+    "expectation_dimension": "task",
+    "evidence_basis": "employer_requirement",
+    "expectation_ids": [
+      "exp_2871dae65f6be77b9f83",
+      "exp_2f07bb431bdf072d441a"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "posting_ids": [
+        "1a76c35ae1f30d92cf37057b"
+      ],
+      "employer_ids": [
+        "Duolingo"
+      ],
+      "expectation_ids": [
+        "exp_2871dae65f6be77b9f83",
+        "exp_2f07bb431bdf072d441a"
+      ],
+      "postings_considered": 2,
+      "postings_matched": 1,
+      "employers_matched": 1,
+      "employers_considered": 2,
+      "quote_source": "src_1ed341a8573851cfd6b0",
+      "detail": "Posting requires driving global user acquisition campaigns and owning day-to-day execution of global performance marketing campaigns.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Global performance marketing execution",
+      "execution",
+      "global",
+      "marketing",
+      "performance"
+    ],
+    "agent_run_id": "refresh_1963d5699250469aa455_growth-manager",
+    "asserted_at": "2026-10-02T19:54:22Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_1e0835f9106cbbbc98d2",
+    "occupation_slug": "growth-manager",
+    "claim_type": "advertised_demand",
+    "variant": "growth-marketing",
+    "statement": "Creative team guidance: guiding designers, copywriters, and video editors — recorded in 1 of 2 admitted Growth Manager postings (variant scope growth-marketing) from 1 of 2 employers in the 2026-10-02 US sample.",
+    "quote": "guide a team of designers, copywriters, and video editors",
+    "source_ids": [
+      "src_faf73f88dbaba0d70efb"
+    ],
+    "expectation_dimension": "task",
+    "evidence_basis": "employer_requirement",
+    "expectation_ids": [
+      "exp_57fe0bc3bc9f2906286b"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "posting_ids": [
+        "feec93b2d9dd8777f41114f9"
+      ],
+      "employer_ids": [
+        "Chime"
+      ],
+      "expectation_ids": [
+        "exp_57fe0bc3bc9f2906286b"
+      ],
+      "postings_considered": 2,
+      "postings_matched": 1,
+      "employers_matched": 1,
+      "employers_considered": 2,
+      "quote_source": "src_faf73f88dbaba0d70efb",
+      "detail": "Posting requires guiding a team of designers, copywriters, and video editors in producing original creative.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Creative team guidance",
+      "creative",
+      "guidance",
+      "team"
+    ],
+    "agent_run_id": "refresh_1963d5699250469aa455_growth-manager",
+    "asserted_at": "2026-10-02T19:54:22Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_a32db240ea9269c34148",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "Human Resources Specialists recruit, screen, interview, or place individuals within an organization and may perform other activities in multiple human resources areas.",
+    "quote": "Recruit, screen, interview, or place individuals within an organization. May perform other activities in multiple human resources areas.",
+    "source_ids": [
+      "src_c0c36636b26209c07cf2"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "expectation_dimension": "task",
+    "evidence_basis": "official_foundation",
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_c0c36636b26209c07cf2"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "activities",
+      "areas.",
+      "human",
+      "individuals",
+      "interview",
+      "may",
+      "multiple",
+      "organization",
+      "perform",
+      "place",
+      "recruit",
+      "resources"
+    ],
+    "agent_run_id": "refresh_1963d5699250469aa455_hr-generalist",
+    "asserted_at": "2026-10-02T19:55:50Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_75138b87efb2b704752d",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Employee relations handling: independent employee relations work — recorded in 2 of 5 admitted HR Generalist postings (no variant split for this role) from 1 of 3 employers in the 2026-10-02 US sample.",
+    "quote": "Experience independently handling employee relations issues",
+    "source_ids": [
+      "src_9b15265c573be6162aac",
+      "src_b062fd8e938dd36fa472"
+    ],
+    "expectation_dimension": "experience",
+    "evidence_basis": "employer_preference",
+    "expectation_ids": [
+      "exp_7ea10a59394dfa8c4246"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "posting_ids": [
+        "8c8a03fb3aaa8a0a26eb04dc",
+        "d83b6766a139d20367deecc7"
+      ],
+      "employer_ids": [
+        "SpaceX"
+      ],
+      "expectation_ids": [
+        "exp_7ea10a59394dfa8c4246"
+      ],
+      "postings_considered": 5,
+      "postings_matched": 2,
+      "employers_matched": 1,
+      "employers_considered": 3,
+      "quote_source": "src_b062fd8e938dd36fa472",
+      "detail": "Listed as a preference in two postings; no proficiency level stated.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Employee relations handling",
+      "employee",
+      "handling",
+      "relations"
+    ],
+    "agent_run_id": "refresh_1963d5699250469aa455_hr-generalist",
+    "asserted_at": "2026-10-02T19:55:50Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_5a4a0943bb4ffb0f50d0",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "HR experience tenure: years of HR experience — recorded in 2 of 5 admitted HR Generalist postings (no variant split for this role) from 1 of 3 employers in the 2026-10-02 US sample.",
+    "quote": "1+ years of professional human resources experience",
+    "source_ids": [
+      "src_9b15265c573be6162aac",
+      "src_b062fd8e938dd36fa472"
+    ],
+    "expectation_dimension": "experience",
+    "evidence_basis": "employer_requirement",
+    "expectation_ids": [
+      "exp_65d3afce6f2fe1699a4f",
+      "exp_d4445101640ea4559347"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "posting_ids": [
+        "8c8a03fb3aaa8a0a26eb04dc",
+        "d83b6766a139d20367deecc7"
+      ],
+      "employer_ids": [
+        "SpaceX"
+      ],
+      "expectation_ids": [
+        "exp_65d3afce6f2fe1699a4f",
+        "exp_d4445101640ea4559347"
+      ],
+      "postings_considered": 5,
+      "postings_matched": 2,
+      "employers_matched": 1,
+      "employers_considered": 3,
+      "quote_source": "src_b062fd8e938dd36fa472",
+      "detail": "Requirements range from 1+ to 2+ years across postings; years are experience, not knowledge or proficiency.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "HR experience tenure",
+      "experience",
+      "hr",
+      "tenure"
+    ],
+    "agent_run_id": "refresh_1963d5699250469aa455_hr-generalist",
+    "asserted_at": "2026-10-02T19:55:50Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_6186ee1bd9d213f21c93",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "HR policy implementation: HR policy and program implementation — recorded in 1 of 5 admitted HR Generalist postings (no variant split for this role) from 1 of 3 employers in the 2026-10-02 US sample.",
+    "quote": "implementation of human resources policies, programs, and processes",
+    "source_ids": [
+      "src_bb83224100d7cd1745fb"
+    ],
+    "expectation_dimension": "task",
+    "evidence_basis": "employer_requirement",
+    "expectation_ids": [
+      "exp_a6e454e5cf951fd00616"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "posting_ids": [
+        "0f556d03efbac0c5b485a50f"
+      ],
+      "employer_ids": [
+        "SpaceX"
+      ],
+      "expectation_ids": [
+        "exp_a6e454e5cf951fd00616"
+      ],
+      "postings_considered": 5,
+      "postings_matched": 1,
+      "employers_matched": 1,
+      "employers_considered": 3,
+      "quote_source": "src_bb83224100d7cd1745fb",
+      "detail": "Implementation of HR policies, programs, and processes.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "HR policy implementation",
+      "hr",
+      "implementation",
+      "policy"
+    ],
+    "agent_run_id": "refresh_1963d5699250469aa455_hr-generalist",
+    "asserted_at": "2026-10-02T19:55:50Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_41259437315d4ddbc185",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "HRIS configuration: Workday Core HCM configuration — recorded in 1 of 5 admitted HR Generalist postings (no variant split for this role) from 1 of 3 employers in the 2026-10-02 US sample.",
+    "quote": "Configure and maintain Workday Core HCM",
+    "source_ids": [
+      "src_e427ebf38b2d67d898f7"
+    ],
+    "expectation_dimension": "task",
+    "evidence_basis": "employer_requirement",
+    "expectation_ids": [
+      "exp_0adef5d31d5e38633e51",
+      "exp_c8872e6541fd46d5c947"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "posting_ids": [
+        "49fe009623daaf424f9a6295"
+      ],
+      "employer_ids": [
+        "Figma"
+      ],
+      "expectation_ids": [
+        "exp_0adef5d31d5e38633e51",
+        "exp_c8872e6541fd46d5c947"
+      ],
+      "postings_considered": 5,
+      "postings_matched": 1,
+      "employers_matched": 1,
+      "employers_considered": 3,
+      "quote_source": "src_e427ebf38b2d67d898f7",
+      "detail": "Configure and maintain Workday Core HCM; HRIS support ticket queue management.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "HRIS configuration",
+      "configuration",
+      "hris"
+    ],
+    "agent_run_id": "refresh_1963d5699250469aa455_hr-generalist",
+    "asserted_at": "2026-10-02T19:55:50Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  }
+]

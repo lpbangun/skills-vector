@@ -1,0 +1,30 @@
+# source src_2b15a14ab97190e211f7
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_35651dff8363b1760484
+# url https://boards-api.greenhouse.io/v1/boards/databricks/jobs/8657488002
+# publisher Databricks
+# retrieved_at 2026-10-02T19:52:03Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2 raw_bytes 14955
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=3d3afe13c27bbf828dd47a2f:posting-excerpt employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+As a Sr. Forward Deployed Engineer (FDE), you will work with federal government customers to build and productionize solutions to their data & AI challenges using the Databricks platform.
+# posting id=3d3afe13c27bbf828dd47a2f:responsibility_evidence employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+You will own the architecture, lead design decisions, and implement end-to-end systems spanning data engineering, AI, and application development.
+# posting id=3d3afe13c27bbf828dd47a2f:context:employer_industry employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+building and running the world's best data and AI infrastructure platform
+# posting id=3d3afe13c27bbf828dd47a2f:context:customer_industry employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+work with federal government customers
+# posting id=3d3afe13c27bbf828dd47a2f:experience:0 employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+6+ years experience in data engineering, data platforms & analytics, or software engineering
+# posting id=3d3afe13c27bbf828dd47a2f:expectation:exp_86c927e0020227cc11be employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+Fluency in writing code in Python, Scala, JavaScript/TypeScript, and modern frameworks
+# posting id=3d3afe13c27bbf828dd47a2f:expectation:exp_2c24478c3859fd0fbace employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+Working knowledge of two or more common Cloud ecosystems (AWS, Azure, GCP)
+# posting id=3d3afe13c27bbf828dd47a2f:expectation:exp_002d2af3fd561ce81a30 employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+Deep experience with distributed computing with Apache Spark™
+# posting id=3d3afe13c27bbf828dd47a2f:expectation:exp_b5c5fbc7354bbacffc3b employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+Familiarity with CI/CD for produc
+# posting id=claim:clm_dbc7dde2eb35c0ca0123 employer= title= location= variant= url=
+Working knowledge of two or more common Cloud ecosystems (AWS, Azure,

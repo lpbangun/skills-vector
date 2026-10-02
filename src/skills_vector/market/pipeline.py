@@ -41,7 +41,8 @@ from .limits import RESEARCH_LIMITS
 from .publish import PublishError
 from .release import (
     ADVERTISED_YEARS_RE, BAD_PATTERN_HINTS, IC_QUOTE_RE, canonical_json, expectation_relationship_id, management_quote_supported,
-    responsibility_quote_supported, safe_https_url, sha256_file, sha256_text, source_literal_identity,
+    responsibility_quote_supported, safe_https_url, sales_segment_quote_supported, sha256_file, sha256_text,
+    source_literal_identity,
 )
 from .research_config import ResearchRuntimeConfig
 from .sources import (
@@ -1205,13 +1206,16 @@ Rules:
   alone proves nothing. IC must be explicitly stated as individual-contributor/non-manager; otherwise use unknown.
   Unknown is valid and never a reason to drop an otherwise in-scope posting.
 - responsibility_band is separate: early_career needs explicit supervised/training evidence; independent_ic needs
-  explicit independent/end-to-end ownership evidence; senior_strategic_ic needs explicit complexity, strategy or
-  cross-functional influence evidence. people_management needs explicit supervisory ownership/influence duties
-  and a verified people-manager work_level. Do not assign IC bands to a verified people manager.
-  Otherwise return unknown. Quote duties, not a title, advertised years, or company mission.
+  explicit independent/end-to-end ownership evidence; senior_strategic_ic needs worker-duty wording that shows
+  autonomy, complexity, ownership or influence. A strategic customer/account tier or strategy adjective alone is
+  not worker responsibility. people_management needs explicit supervisory ownership/influence duties and a
+  verified people-manager work_level. Do not assign IC bands to a verified people manager. Otherwise use unknown
+  and keep the in-scope posting admitted. Quote duties, not a title, advertised years, or company mission.
 - Copy actual experience wording exactly, not credential or proficiency requirements. Keep advertised years in the experience dimension; they are not knowledge, ability, or a responsibility band.
 - Employer industry, customer industry, sales segment, work context, employer size and stage are separate fields.
-  Never infer them from employer name, role title, product, or one another. Use null and empty quote if unstated.
+  Never infer them from employer name, role title, product, or one another. A sales segment must link the buyer tier
+  to customers, accounts, clients, businesses, or a sales market; product or artifact scale alone is not a segment.
+  Use null and empty quote when a segment or other context is unstated or unlinked.
 - Expectations distinguish task, capability, tool, knowledge, experience, contextual_expectation, demonstration and credential. Contextual expectations describe operating conditions; demonstrations describe requested work samples or proof. Do not collapse them into generic skills.
   List at most {EXPECTATIONS_PER_POSTING} short phrases. Basis is requirement/preference only when explicit; otherwise
   emergent_signal or unknown. Proficiency is not measured: use explicitly_stated only with a verbatim proficiency phrase.
@@ -1240,7 +1244,11 @@ POSTINGS:
         value = normalize_ws(str(raw_value or ""))
         quote = self._verified_source_quote(raw_quote, item)
         source_id = str(item.get("source_id") or "")
-        if value and quote and value.casefold() in quote.casefold():
+        issue = "classification value is not a literal phrase in its byte-verified source quote"
+        literal_match = bool(value and quote and value.casefold() in quote.casefold())
+        if literal_match and field_name == "sales_segment" and not sales_segment_quote_supported(value, quote):
+            issue = "sales segment is not linked to customer, account, client, business, or sales-market evidence"
+        elif literal_match:
             return {
                 "value": value[:120],
                 "status": "present",
@@ -1253,10 +1261,7 @@ POSTINGS:
                 "method": "literal-classification-phrase/1",
             }
         if value or raw_quote:
-            self._record_classification_issue(
-                field_name, item, key,
-                "classification value is not a literal phrase in its byte-verified source quote",
-            )
+            self._record_classification_issue(field_name, item, key, issue)
         return {
             "value": None,
             "status": "unknown",
@@ -1267,7 +1272,7 @@ POSTINGS:
             ),
             "quote": None,
             "method": "literal-classification-phrase/1",
-            "unknown_reason": "not established by a verified source phrase",
+            "unknown_reason": issue if value or raw_quote else "not established by a verified source phrase",
         }
 
     def _admission_batches(self, candidates: list[dict[str, Any]]) -> list[tuple[list[dict[str, Any]], str]]:
@@ -1648,6 +1653,7 @@ Rules:
 - Link demand claims only to supplied posting_id and expectation_id values. Mixed dimensions or bases become unknown.
 - Keep the listed dimensions distinct; years are not knowledge or proficiency. Foundation basis is official_foundation.
   Advertised basis is requirement, preference, emergent_signal or unknown. Never infer proficiency.
+- Worker duty, not account tier, establishes responsibility; buyer/customer wording, not artifacts, establishes sales segment.
 - Counts describe the sample, not prevalence, trend, importance, proficiency, hires or employability. No market-wide claims.
 - Learning priorities are analyst recommendations, not observed requirements or measured proficiency:
   one evidence topic, explicit uncertainty, at most 3 priorities.

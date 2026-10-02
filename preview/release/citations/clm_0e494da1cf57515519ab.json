@@ -1,0 +1,73 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_0e494da1cf57515519ab",
+  "release_id": "rel_20261002_cbdc6e8d5c4f",
+  "occupation_slug": "account-executive",
+  "claim_type": "advertised_demand",
+  "statement": "Quota-carrying sales experience: prior quota-carrying sales experience — recorded in 4 of 5 admitted Account Executive postings (no variant split for this role) from 4 of 5 employers in the 2026-10-02 US sample.",
+  "quote": "At least 2+ years of sales experience in a quota-carrying capacity",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_9474d748372eef14060d",
+      "url": "https://boards-api.greenhouse.io/v1/boards/verkada/jobs/5161632007",
+      "publisher": "Verkada",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_55e8378f4ee85a29e6b8",
+      "retrieved_at": "2026-10-02T19:50:31Z",
+      "sha256": "896bbf40eea5f7abac1cbc8856fe74ca4e99c87a48ba0439b76b64af982b63f8",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_73b0452f4c687bbded4c",
+      "url": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs/6522720",
+      "publisher": "Datadog",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_67001e3945e4c58d600d",
+      "retrieved_at": "2026-10-02T19:50:32Z",
+      "sha256": "899e22116f988f4ef2edac53e9e8d5597ab1ad28585470852d9f130f3c9c4600",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_6098b7029cbc74dc882c",
+      "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs/8238731",
+      "publisher": "Stripe",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_71db7daada81158b8623",
+      "retrieved_at": "2026-10-02T19:50:32Z",
+      "sha256": "4a352611b1e0a74ee1641467f9936e3083c70944d0cedb5e3bb332e70bc45bc8",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_3fe01ef9bfa3c8e6402e",
+      "url": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/8126598",
+      "publisher": "MongoDB",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_ae34e2bf8204fa9fad5d",
+      "retrieved_at": "2026-10-02T19:50:32Z",
+      "sha256": "78fbec8f10bad12402d5463a3e61e9517080540eed7be0936e1d624be5979587",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T20:28:53Z",
+  "published_at": "2026-10-02T20:39:47Z",
+  "citation_path": "/release/citations/clm_0e494da1cf57515519ab.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "1db01ba68f77f7f8598ec57f707e4c7b7ca804b4ad4923d36eb87554391d4a99"
+}

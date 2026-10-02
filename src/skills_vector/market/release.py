@@ -69,7 +69,16 @@ PROFICIENCY_QUOTE_RE = re.compile(
 RESPONSIBILITY_SIGNAL_RE = {
     "early_career": re.compile(r"\b(?:with guidance|under supervision|closely supervised|receive training|be mentored)\b", re.IGNORECASE),
     "independent_ic": re.compile(r"\b(?:independently|autonomously|without supervision|end.to.end ownership|own(?:s|ed)? the)\b", re.IGNORECASE),
-    "senior_strategic_ic": re.compile(r"\b(?:strategy|strategic|ambiguous|complex|roadmap|architect|influence|lead(?:ing)? cross.functional|drive cross.functional)\b", re.IGNORECASE),
+    "senior_strategic_ic": re.compile(
+        r"(?:\b(?:shape|set|define|develop|drive|lead(?:s|ing)?|own(?:s|ed|ing)?|architect|influence|establish)\b"
+        r".{0,80}\b(?:strategy|strategic (?:priorities|direction|initiatives?)|roadmap|architecture|"
+        r"(?:product|technical|organizational) direction|priorities|decisions)\b"
+        r"|\b(?:own(?:s|ed|ing)?|solve(?:s|d|ing)?|tackle(?:s|d|ing)?|address(?:es|ed|ing)?|"
+        r"lead(?:s|ing)?|drive(?:s|n|ing)?|work through)\b.{0,50}\b(?:ambiguous|complex|ill[- ]defined)\b"
+        r"|\b(?:lead(?:s|ing)?|drive(?:s|n|ing)?|influence|shape|own(?:s|ed|ing)?)\b.{0,60}\b"
+        r"(?:cross[- ]functional|stakeholders?|organizational decisions|company-wide direction)\b)",
+        re.IGNORECASE,
+    ),
 }
 ADVERTISED_YEARS_RE = re.compile(r"\b(?:\d+\+?\s*(?:[-–]\s*\d+\s*)?years?|years? of experience)\b", re.IGNORECASE)
 
@@ -84,7 +93,7 @@ def management_quote_supported(quote: str) -> bool:
 
 
 def responsibility_quote_supported(band: str, quote: str, work_level: str) -> bool:
-    """Verify a responsibility signal, independently of title and advertised years."""
+    """Require worker-duty evidence, not a customer tier or title."""
     if not quote or ADVERTISED_YEARS_RE.search(quote):
         return False
     if band == "people_management":
@@ -93,6 +102,31 @@ def responsibility_quote_supported(band: str, quote: str, work_level: str) -> bo
         return False
     signal = RESPONSIBILITY_SIGNAL_RE.get(band)
     return bool(signal and signal.search(quote))
+
+SALES_SEGMENT_TERM = r"(?:enterprise|mid[- ]market|midmarket|SMB)"
+SALES_SEGMENT_LABEL_RE = re.compile(r"\b" + SALES_SEGMENT_TERM + r"\b", re.IGNORECASE)
+SALES_SEGMENT_CONTEXT_RE = re.compile(
+    r"\b(" + SALES_SEGMENT_TERM + r")\s+\b"
+    r"(?:customers?|accounts?|clients?|business(?:es)?|buyers?)\b"
+    r"|\b(" + SALES_SEGMENT_TERM + r")\s+(?:sales\s+)?(?:market|segment)\b"
+    r"|\b(?:market|segment)\s+(?:for|of)\s+(" + SALES_SEGMENT_TERM + r")\b",
+    re.IGNORECASE,
+)
+
+
+def sales_segment_quote_supported(value: str, quote: str) -> bool:
+    """Require the selected tier marker to attach to a buyer or sales market."""
+    selected = SALES_SEGMENT_LABEL_RE.fullmatch(value)
+    if selected is None:
+        return False
+    selected_marker = selected.group(0).casefold()
+    for context in SALES_SEGMENT_CONTEXT_RE.finditer(quote):
+        for marker in context.groups():
+            if marker and marker.casefold() == selected_marker:
+                return True
+    return False
+
+
 
 SUPPORTING_DATASETS = ("exclusions.json", "mappings.json", "disagreements.json", "lineage.json")
 
@@ -571,6 +605,8 @@ def validate_release(root: Path | str, *, min_postings: dict[str, int] | None = 
                         problems.append(f"posting context {field_name!r} cites a different source")
                     elif quote not in extracts_checked.get(sid, "") or value.casefold() not in quote.casefold():
                         problems.append(f"posting context {field_name!r} value is not literal in its source quote")
+                    elif field_name == "sales_segment" and not sales_segment_quote_supported(str(value), quote):
+                        problems.append("posting sales_segment lacks verified customer, account, client, business, or sales-market context")
                 elif status == "unknown":
                     if value is not None or quote:
                         problems.append(f"unknown posting context {field_name!r} must keep value and quote empty")

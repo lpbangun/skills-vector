@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_1e0835f9106cbbbc98d2",
+  "release_id": "rel_20261002_cbdc6e8d5c4f",
+  "occupation_slug": "growth-manager",
+  "claim_type": "advertised_demand",
+  "statement": "Creative team guidance: guiding designers, copywriters, and video editors — recorded in 1 of 2 admitted Growth Manager postings (variant scope growth-marketing) from 1 of 2 employers in the 2026-10-02 US sample.",
+  "quote": "guide a team of designers, copywriters, and video editors",
+  "variant": "growth-marketing",
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_faf73f88dbaba0d70efb",
+      "url": "https://boards-api.greenhouse.io/v1/boards/chime/jobs?content=true",
+      "publisher": "Chime",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T19:53:22Z",
+      "sha256": "d52215c6054e49a95ef1539e57c744497733c5437cf53a2d0699c5ca811c314d",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T19:54:22Z",
+  "published_at": "2026-10-02T20:39:47Z",
+  "citation_path": "/release/citations/clm_1e0835f9106cbbbc98d2.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "80d48f508ed8fe842360e3a416793576e7dbe5cecc6e737172f88dacfb55ef40"
+}

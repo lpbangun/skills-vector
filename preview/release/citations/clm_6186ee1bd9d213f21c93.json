@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_6186ee1bd9d213f21c93",
+  "release_id": "rel_20261002_cbdc6e8d5c4f",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "HR policy implementation: HR policy and program implementation — recorded in 1 of 5 admitted HR Generalist postings (no variant split for this role) from 1 of 3 employers in the 2026-10-02 US sample.",
+  "quote": "implementation of human resources policies, programs, and processes",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_bb83224100d7cd1745fb",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8505413002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_6737b1a9091ef5b42fd6",
+      "retrieved_at": "2026-10-02T19:54:55Z",
+      "sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T19:55:50Z",
+  "published_at": "2026-10-02T20:39:47Z",
+  "citation_path": "/release/citations/clm_6186ee1bd9d213f21c93.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "66607b26c162dc32ef7070d840624e27c6799df0230e4e77e1dea856a34afeea"
+}

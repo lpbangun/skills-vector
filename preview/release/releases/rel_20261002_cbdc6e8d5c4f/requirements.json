@@ -1,0 +1,250 @@
+[
+  {
+    "id": "req_0cdecf4f68196f1e69ad",
+    "occupation_slug": "account-executive",
+    "label": "Quota-carrying sales experience",
+    "learning_outcome": "Build foundational understanding of quota-carrying sales roles and how performance against sales targets is described in job postings.",
+    "rationale": "Four of five sampled postings list quota-carrying or closing sales experience as an employer requirement.",
+    "uncertainty": "Sample is small and not representative; years thresholds vary and do not indicate proficiency or hiring likelihood.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "At least 2+ years of sales experience in a quota-carrying capacity",
+      "5+ years closing experience",
+      "quota carrying closing role"
+    ],
+    "evidence_claim_ids": [
+      "clm_0e494da1cf57515519ab"
+    ],
+    "evidence_rationale": "This advertised_demand claim directly records prior quota-carrying sales experience as a requirement in the sampled Account Executive postings.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_3bb215429bc3ac16a703",
+    "occupation_slug": "account-executive",
+    "label": "Sales goal attainment",
+    "learning_outcome": "Understand how demonstrated sales goal attainment is expressed as a requirement in account executive postings.",
+    "rationale": "One sampled posting requires demonstrated attainment of a numeric direct sales goal.",
+    "uncertainty": "Single-posting evidence; the numeric threshold is employer-specific and not a general standard.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "met/exceeded direct sales goals of 1M+"
+    ],
+    "evidence_claim_ids": [
+      "clm_f4f2d3699b1864035acc"
+    ],
+    "evidence_rationale": "This advertised_demand claim records met/exceeded direct sales goals as an explicit posting requirement, matching the priority's focus on sales goal attainment.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_6dfaed84c18e29f2988d",
+    "occupation_slug": "account-executive",
+    "label": "Prospecting and sales cycle",
+    "learning_outcome": "Learn the task sequence of prospecting, relationship building, demos, and closing within a sales cycle.",
+    "rationale": "One sampled posting describes prospecting and demo tasks as employer requirements.",
+    "uncertainty": "Single-posting evidence; task descriptions may differ by segment and employer.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "prospect, build relationships, and sign up new restaurateurs",
+      "Conduct demos and develop a solution"
+    ],
+    "evidence_claim_ids": [
+      "clm_7fc1c98a00255061cf19"
+    ],
+    "evidence_rationale": "This advertised_demand claim records prospecting, relationship building, and demos, which are the sales-cycle tasks the priority covers.",
+    "model_order": 2,
+    "priority": 3
+  },
+  {
+    "id": "req_aef008f62c3c65b6df65",
+    "occupation_slug": "forward-deployed-engineer",
+    "label": "Customer technical discovery",
+    "learning_outcome": "Practice eliciting and documenting customer technical requirements and environments.",
+    "rationale": "Multiple admitted postings list direct customer technical discovery as a task expectation.",
+    "uncertainty": "Sample is small and titles do not establish responsibility; no proficiency level is observed.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Work directly with customers to understand their technical and",
+      "work directly with customers",
+      "Run technical discovery: understand a customer's dev environment,"
+    ],
+    "evidence_claim_ids": [
+      "clm_e2870c511e05208e44ad"
+    ],
+    "evidence_rationale": "This advertised_demand claim directly records customer-facing technical discovery work in the postings, matching the priority's elicitation focus.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_8b8340f56a4744bb652e",
+    "occupation_slug": "forward-deployed-engineer",
+    "label": "Software solution prototyping",
+    "learning_outcome": "Build ability to prototype and propose software solutions from customer needs.",
+    "rationale": "One admitted posting explicitly lists prototyping and proposing software solutions.",
+    "uncertainty": "Single-posting evidence; no prevalence or proficiency inference.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "prototype and propose software solutions"
+    ],
+    "evidence_claim_ids": [
+      "clm_fe729763c170f0bec4cb"
+    ],
+    "evidence_rationale": "This advertised_demand claim records prototyping and proposing software solutions, the exact activity the priority targets.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_7da5ffa0974675111c4a",
+    "occupation_slug": "forward-deployed-engineer",
+    "label": "Production coding experience",
+    "learning_outcome": "Develop hands-on production engineering and coding experience.",
+    "rationale": "One admitted posting requires hands-on production engineering experience including writing code.",
+    "uncertainty": "Single-posting evidence; years and proficiency are not inferred.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Hands-on production engineering experience, including writing code,"
+    ],
+    "evidence_claim_ids": [
+      "clm_c50c007e40dd75df4f91"
+    ],
+    "evidence_rationale": "This advertised_demand claim records hands-on production engineering and coding experience, directly supporting the priority.",
+    "model_order": 2,
+    "priority": 3
+  },
+  {
+    "id": "req_842dfbe54cfde7476705",
+    "occupation_slug": "growth-manager",
+    "label": "Performance marketing campaign ownership",
+    "learning_outcome": "Ability to plan, execute, and own day-to-day global performance marketing campaigns.",
+    "rationale": "One admitted posting explicitly requires owning day-to-day execution of global performance marketing campaigns; this is advertised demand within the sample, not a prevalence or proficiency claim.",
+    "uncertainty": "Based on a single posting; no work level or responsibility band was determined, and the sample does not establish market-wide demand.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": "growth-marketing",
+    "search_terms": [
+      "Own day-to-day execution of global performance marketing campaigns",
+      "drive Duolingo’s global user acquisition campaigns across multiple"
+    ],
+    "evidence_claim_ids": [
+      "clm_834870a969ef279912d3"
+    ],
+    "evidence_rationale": "This growth-marketing claim directly records owning day-to-day global performance marketing campaigns, matching the priority's learning outcome.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_31a23672cbf05cf32a1e",
+    "occupation_slug": "growth-manager",
+    "label": "Creative team leadership",
+    "learning_outcome": "Ability to guide designers, copywriters, and video editors in producing original creative.",
+    "rationale": "One admitted posting explicitly requires guiding a team of designers, copywriters, and video editors; this is advertised demand within the sample.",
+    "uncertainty": "Based on a single posting; the posting does not specify team size, reporting line, or proficiency level.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": "growth-marketing",
+    "search_terms": [
+      "guide a team of designers, copywriters, and video editors"
+    ],
+    "evidence_claim_ids": [
+      "clm_1e0835f9106cbbbc98d2"
+    ],
+    "evidence_rationale": "This growth-marketing claim records guiding designers, copywriters, and video editors, which is the creative team guidance the priority targets.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_2c9f2e5b9cdd705d2ed1",
+    "occupation_slug": "growth-manager",
+    "label": "Market research and sales analysis",
+    "learning_outcome": "Ability to research market conditions and gather information to determine potential sales or plan marketing campaigns.",
+    "rationale": "The official foundation passage describes researching market conditions and gathering information to determine potential sales or plan campaigns; this is a foundation-based recommendation, not an observed posting requirement.",
+    "uncertainty": "Foundation description is broad and not tied to any admitted posting; no proficiency level is implied.",
+    "confidence": "low",
+    "basis": "foundation",
+    "variant": null,
+    "search_terms": [
+      "Research conditions in local, regional, national, or online markets",
+      "Gather information to determine potential sales of a product or service, or plan a marketing or advertising campaign"
+    ],
+    "evidence_claim_ids": [
+      "clm_87e0596b6a5d39e2a731"
+    ],
+    "evidence_rationale": "The foundation claim describes researching market conditions and gathering information to determine potential sales or plan campaigns, matching the priority's outcome.",
+    "model_order": 2,
+    "priority": 3
+  },
+  {
+    "id": "req_bf00c7ba2aa3d7115028",
+    "occupation_slug": "hr-generalist",
+    "label": "Employee relations practice",
+    "learning_outcome": "Develop capability to independently handle employee relations issues.",
+    "rationale": "Two postings list independent employee relations handling as a preference.",
+    "uncertainty": "Preference wording does not establish required proficiency or frequency.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Experience independently handling employee relations issues"
+    ],
+    "evidence_claim_ids": [
+      "clm_75138b87efb2b704752d"
+    ],
+    "evidence_rationale": "This advertised_demand claim records independent employee relations work in the sample, directly matching the priority's learning outcome.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_ca423fbca7730c372c62",
+    "occupation_slug": "hr-generalist",
+    "label": "HR policy implementation",
+    "learning_outcome": "Apply human resources policies, programs, and processes in an organization.",
+    "rationale": "One posting requires implementation of HR policies, programs, and processes.",
+    "uncertainty": "Single posting; scope and complexity not specified.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "implementation of human resources policies, programs, and processes"
+    ],
+    "evidence_claim_ids": [
+      "clm_6186ee1bd9d213f21c93"
+    ],
+    "evidence_rationale": "This advertised_demand claim records HR policy and program implementation, which is the exact capability the priority targets.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_8d0fb0f346425e37e969",
+    "occupation_slug": "hr-generalist",
+    "label": "HRIS configuration",
+    "learning_outcome": "Configure and maintain Workday Core HCM and manage HRIS support tickets.",
+    "rationale": "One posting requires Workday Core HCM configuration and ticket queue management.",
+    "uncertainty": "Single posting; tool-specific and may not generalize.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Configure and maintain Workday Core HCM",
+      "Manage the HRIS support ticket queue"
+    ],
+    "evidence_claim_ids": [
+      "clm_41259437315d4ddbc185"
+    ],
+    "evidence_rationale": "This advertised_demand claim records Workday Core HCM configuration, the core skill named in the priority's learning outcome.",
+    "model_order": 2,
+    "priority": 3
+  }
+]

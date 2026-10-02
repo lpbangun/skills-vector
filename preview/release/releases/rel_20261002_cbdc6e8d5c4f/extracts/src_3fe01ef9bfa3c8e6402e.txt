@@ -1,0 +1,22 @@
+# source src_3fe01ef9bfa3c8e6402e
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_ae34e2bf8204fa9fad5d
+# url https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/8126598
+# publisher MongoDB
+# retrieved_at 2026-10-02T19:50:32Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 78fbec8f10bad12402d5463a3e61e9517080540eed7be0936e1d624be5979587 raw_bytes 9762
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=441e49c4ad2a3ef3d76a6872:posting-excerpt employer=MongoDB title=Inside Account Executive location=San Francisco; Utah variant= url=https://www.mongodb.com/careers/job/?gh_jid=8126598
+The Inside Account Executive role focuses exclusively on formulating and executing a sales strategy within MongoDB’s most strategic accounts, closing net new workloads and expanding MongoDB’s footprint.
+# posting id=441e49c4ad2a3ef3d76a6872:experience:0 employer=MongoDB title=Inside Account Executive location=San Francisco; Utah variant= url=https://www.mongodb.com/careers/job/?gh_jid=8126598
+Min. 3 year B2B sales experience in a quota carrying closing role, or Strategic Account-based selling experience
+# posting id=441e49c4ad2a3ef3d76a6872:expectation:exp_ac048487d40394a14d4d employer=MongoDB title=Inside Account Executive location=San Francisco; Utah variant= url=https://www.mongodb.com/careers/job/?gh_jid=8126598
+quota carrying closing role
+# posting id=441e49c4ad2a3ef3d76a6872:expectation:exp_20a3b4c23aa4e76aa865 employer=MongoDB title=Inside Account Executive location=San Francisco; Utah variant= url=https://www.mongodb.com/careers/job/?gh_jid=8126598
+Experience selling complex Saas and/or Cloud products/services
+# posting id=441e49c4ad2a3ef3d76a6872:expectation:exp_be4935d176bc364f5695 employer=MongoDB title=Inside Account Executive location=San Francisco; Utah variant= url=https://www.mongodb.com/careers/job/?gh_jid=8126598
+generating your own pipeline and hitting sales targets
+# posting id=441e49c4ad2a3ef3d76a6872:expectation:exp_a875ef953827f0d64cef employer=MongoDB title=Inside Account Executive location=San Francisco; Utah variant= url=https://www.mongodb.com/careers/job/?gh_jid=8126598
+Ability to articulate the business value of complex enterprise technology

@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_16efc00e00fb3e4962be",
+  "release_id": "rel_20261002_cbdc6e8d5c4f",
+  "occupation_slug": "growth-manager",
+  "claim_type": "advertised_demand",
+  "statement": "Sales or business development experience: prior sales or business development experience — recorded in 1 of 1 admitted Growth Manager postings (variant scope sales-account-executive) from 1 of 1 employers in the 2026-10-02 US sample.",
+  "quote": "Previous experience in a sales or business development role",
+  "variant": "sales-account-executive",
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_6076d691fd591ccffd48",
+      "url": "https://boards-api.greenhouse.io/v1/boards/instacart/jobs?content=true",
+      "publisher": "Instacart",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T19:53:17Z",
+      "sha256": "2b6e1d797b5bb9945be60ec5e2c0fd46cfe6ee3e7d4abb78aaea34bc95beb077",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T19:54:22Z",
+  "published_at": "2026-10-02T20:39:47Z",
+  "citation_path": "/release/citations/clm_16efc00e00fb3e4962be.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "e5c5936ca34e56431a1b1ec1eb33a7124f5f5632dc9fb07b600ac9d8f833ab61"
+}

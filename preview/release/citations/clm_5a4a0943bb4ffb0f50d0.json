@@ -1,0 +1,49 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_5a4a0943bb4ffb0f50d0",
+  "release_id": "rel_20261002_cbdc6e8d5c4f",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "HR experience tenure: years of HR experience — recorded in 2 of 5 admitted HR Generalist postings (no variant split for this role) from 1 of 3 employers in the 2026-10-02 US sample.",
+  "quote": "1+ years of professional human resources experience",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_b062fd8e938dd36fa472",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8788674002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_6737b1a9091ef5b42fd6",
+      "retrieved_at": "2026-10-02T19:54:55Z",
+      "sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_9b15265c573be6162aac",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8581427002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_6737b1a9091ef5b42fd6",
+      "retrieved_at": "2026-10-02T19:54:55Z",
+      "sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T19:55:50Z",
+  "published_at": "2026-10-02T20:39:47Z",
+  "citation_path": "/release/citations/clm_5a4a0943bb4ffb0f50d0.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "4544ff98af29df73a80a6fca072a338b8e9e6cdbf697bdfc26c4b7a2f3ca03f0"
+}

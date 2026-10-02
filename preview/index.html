@@ -686,6 +686,60 @@
       const body = el("div", { class: `callout ${kind}` }, el("span", { class: "callout-label", text: label }), el("p", { text }));
       return body;
     }
+    function aliasDecisionDisclosure(profile) {
+      const decisions = Array.isArray(profile && profile.alias_decisions) ? profile.alias_decisions : [];
+      if (!decisions.length) return null;
+      const title = profile.label || profile.slug || "Role";
+      return el("details", { class: "component-details" },
+        el("summary", { text: `Investigated role aliases (${decisions.length})` }),
+        el("div", { class: "table-scroll" },
+          el("table", { class: "data-table", tabindex: "0", "aria-label": `${title} alias decisions` },
+            el("caption", { class: "mono", style: "padding:0.5rem; text-align:left;", text: "Recorded alias decisions and their bases." }),
+            el("thead", {}, el("tr", {},
+              el("th", { scope: "col", text: "Role label" }),
+              el("th", { scope: "col", text: "Decision" }),
+              el("th", { scope: "col", text: "Recorded basis" })
+            )),
+            el("tbody", {}, ...decisions.map((item) => el("tr", {},
+              el("th", { scope: "row", text: item.label || "Unlabeled" }),
+              el("td", { text: item.decision === "accepted_canonical_alias"
+                ? "Accepted canonical alias"
+                : item.decision === "not_equivalent_by_title"
+                  ? "Not equivalent by title"
+                  : item.decision || "not recorded" }),
+              el("td", { text: item.basis || "Basis not recorded" })
+            )))
+          )
+        )
+      );
+    }
+
+    function roleRegistrationEvidence(profile, detail) {
+      if (!profile || profile.provisional !== true || profile.registration_status !== "mission-authorized-pilot") return null;
+      const anchor = profile.official_anchor;
+      const notes = [];
+      if (detail) notes.push(detail);
+      if (profile.human_review_status === "not_reviewed") notes.push("This profile has not been human-reviewed.");
+      else notes.push(`Human review status · ${profile.human_review_status || "not recorded"}.`);
+      if (anchor && anchor.status === "partial_taxonomy_anchor_only") {
+        const anchorName = [anchor.code, anchor.label].filter(Boolean).join(" · ");
+        notes.push(`${anchorName ? `${anchorName} is` : "The official taxonomy reference is"} a partial task-level anchor only.`);
+      }
+      const anchorName = anchor && [anchor.code, anchor.label].filter(Boolean).join(" · ");
+      return el("div", {},
+        callout(
+          "uncertainty",
+          detail ? "Mission-authorized pilot · no published findings" : "Mission-authorized pilot",
+          notes.join(" ")
+        ),
+        anchor ? el("p", { class: "result-meta" },
+          anchor.url && anchorName ? sourceLink(anchor.url, anchorName) : anchorName ? el("span", { text: anchorName }) : null,
+          el("span", { text: anchor.status || "anchor status not recorded" }),
+          anchor.basis ? el("span", { text: anchor.basis }) : null
+        ) : null
+      );
+    }
+
 
     function sourceLink(href, text, opts = {}) {
       const attrs = Object.assign({ href, dataset: { stage: "source" } }, opts);
@@ -1262,7 +1316,11 @@
           return;
         }
         const pilot = data.status === "pilot_only" || profile.provisional === true;
-        const decisions = profile.alias_decisions || [];
+        const registrationDetail = pilot
+          ? data.detail || "This role has no admitted findings in the current release. No title-derived facts are shown."
+          : null;
+        const registrationEvidence = roleRegistrationEvidence(profile, registrationDetail);
+
         view.append(
           el("header", { class: "inv-head" },
             el("div", {},
@@ -1275,28 +1333,18 @@
             )
           ),
           el("section", { class: "brief-section" },
-            callout(
+            registrationEvidence || callout(
               "uncertainty",
               pilot ? "Pilot registration · no published findings" : "Registered · not in current release",
               data.detail || "This role has no admitted findings in the current release. No title-derived facts are shown."
             ),
-            profile.official_anchor ? el("p", { class: "result-meta" },
+            !registrationEvidence && profile.official_anchor ? el("p", { class: "result-meta" },
               sourceLink(profile.official_anchor.url, `${profile.official_anchor.code} · ${profile.official_anchor.label}`),
               el("span", { text: profile.official_anchor.status || "anchor status not recorded" }),
               el("span", { text: profile.official_anchor.basis || "" })
             ) : null,
-            decisions.length ? el("div", { class: "table-scroll" },
-              el("table", { class: "data-table" },
-                el("thead", {}, el("tr", {},
-                  el("th", { scope: "col", text: "Role label" }),
-                  el("th", { scope: "col", text: "Registration decision" })
-                )),
-                el("tbody", {}, ...decisions.map((item) => el("tr", {},
-                  el("th", { scope: "row", text: item.label || "Unlabeled" }),
-                  el("td", { text: item.decision || "not recorded" })
-                )))
-              )
-            ) : null,
+            aliasDecisionDisclosure(profile),
+
             el("p", { class: "mono", text: `Registration · ${profile.registration_status || "not recorded"} · Human review · ${profile.human_review_status || "not recorded"} · Publication · ${profile.publication_status || "not recorded"}` })
           )
         );
@@ -1396,7 +1444,8 @@
             )
           )
           : callout("uncertainty", "No published demand claim", "This release has no source-backed demand claim for a concise finding. No title-derived summary is substituted."),
-        occ.provisional ? callout("uncertainty", "Emerging-role pilot", "FDE findings are provisional, source-backed observations. Official occupation codes are partial task-level anchors, not an official FDE designation.") : null,
+        roleRegistrationEvidence(occ),
+        aliasDecisionDisclosure(occ),
         callout("provenance", "Sample boundary", `${roleScopeText(occ.role_scope)} · ${fmt(stats.postings_dedup)} admitted postings from ${fmt(stats.employers_dedup)} employers, sampled ${fmt(occ.sampled_at)}. These counts describe this release's bounded sample only.`)
       );
       const expectationSections = data.expectation_sections || {};

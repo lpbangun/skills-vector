@@ -1,0 +1,25 @@
+# source src_6076d691fd591ccffd48
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/instacart/jobs?content=true
+# publisher Instacart
+# retrieved_at 2026-10-02T19:53:17Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 2b6e1d797b5bb9945be60ec5e2c0fd46cfe6ee3e7d4abb78aaea34bc95beb077 raw_bytes 1533691
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=e194045c9495262260dc708d:posting-excerpt employer=Instacart title=Activation Sales Development Representative I location=United States - Remote variant=sales-account-executive url=https://instacart.careers/job/?gh_jid=7144697
+generating new business opportunities for the company by identifying, contacting, and qualifying potential customers
+# posting id=e194045c9495262260dc708d:context:customer_industry employer=Instacart title=Activation Sales Development Representative I location=United States - Remote variant=sales-account-executive url=https://instacart.careers/job/?gh_jid=7144697
+preferably in the advertising industry
+# posting id=e194045c9495262260dc708d:context:work_context employer=Instacart title=Activation Sales Development Representative I location=United States - Remote variant=sales-account-executive url=https://instacart.careers/job/?gh_jid=7144697
+Ability to adapt to a fast-paced
+# posting id=e194045c9495262260dc708d:experience:0 employer=Instacart title=Activation Sales Development Representative I location=United States - Remote variant=sales-account-executive url=https://instacart.careers/job/?gh_jid=7144697
+Previous experience in a sales or business development role, preferably in the advertising industry.
+# posting id=e194045c9495262260dc708d:expectation:exp_ea5816d78d69ce510e21 employer=Instacart title=Activation Sales Development Representative I location=United States - Remote variant=sales-account-executive url=https://instacart.careers/job/?gh_jid=7144697
+Previous experience in a sales or business development role
+# posting id=e194045c9495262260dc708d:expectation:exp_3fd43ba7f7d082ad1800 employer=Instacart title=Activation Sales Development Representative I location=United States - Remote variant=sales-account-executive url=https://instacart.careers/job/?gh_jid=7144697
+Strong communication skills, both written and verbal
+# posting id=e194045c9495262260dc708d:expectation:exp_b2071ae7d820df016c0f employer=Instacart title=Activation Sales Development Representative I location=United States - Remote variant=sales-account-executive url=https://instacart.careers/job/?gh_jid=7144697
+Proven track record of meeting or exceeding sales targets and KPIs
+# posting id=claim:clm_16efc00e00fb3e4962be employer= title= location= variant= url=
+Previous experience in a sales or business development role

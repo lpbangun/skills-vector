@@ -1,0 +1,26 @@
+# source src_2ef617516a5da8524028
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_ab79111f6f077fc87cd4
+# url https://boards-api.greenhouse.io/v1/boards/toast/jobs/8242799
+# publisher Toast
+# retrieved_at 2026-10-02T19:50:33Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87 raw_bytes 12276
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=5da2e1a5e0bc206eebbcf0ac:posting-excerpt employer=Toast title=Territory Account Executive , SMB - Atlanta, GA location=Atlanta, GA variant= url=https://careers.toasttab.com/jobs?gh_jid=8242799
+Generate list of prospective restaurants and manage the entire sales cycle from initial call to close Conduct demos and develop a solution that best meets the prospect’s needs
+# posting id=5da2e1a5e0bc206eebbcf0ac:context:geography employer=Toast title=Territory Account Executive , SMB - Atlanta, GA location=Atlanta, GA variant= url=https://careers.toasttab.com/jobs?gh_jid=8242799
+Atlanta, GA
+# posting id=5da2e1a5e0bc206eebbcf0ac:experience:0 employer=Toast title=Territory Account Executive , SMB - Atlanta, GA location=Atlanta, GA variant= url=https://careers.toasttab.com/jobs?gh_jid=8242799
+1+ years of experience in a sourcing or closing sales role, restaurant operations, or a relatable field and industry
+# posting id=5da2e1a5e0bc206eebbcf0ac:expectation:exp_d760be0e164ba8a3c9df employer=Toast title=Territory Account Executive , SMB - Atlanta, GA location=Atlanta, GA variant= url=https://careers.toasttab.com/jobs?gh_jid=8242799
+prospect, build relationships, and sign up new restaurateurs
+# posting id=5da2e1a5e0bc206eebbcf0ac:expectation:exp_87bae35eb78ede2a8153 employer=Toast title=Territory Account Executive , SMB - Atlanta, GA location=Atlanta, GA variant= url=https://careers.toasttab.com/jobs?gh_jid=8242799
+Conduct demos and develop a solution
+# posting id=5da2e1a5e0bc206eebbcf0ac:expectation:exp_dbd425d1a0bd9e9d2d27 employer=Toast title=Territory Account Executive , SMB - Atlanta, GA location=Atlanta, GA variant= url=https://careers.toasttab.com/jobs?gh_jid=8242799
+Leverage Salesforce (our CRM) to manage all sales activities
+# posting id=5da2e1a5e0bc206eebbcf0ac:expectation:exp_d10def6af0b129870963 employer=Toast title=Territory Account Executive , SMB - Atlanta, GA location=Atlanta, GA variant= url=https://careers.toasttab.com/jobs?gh_jid=8242799
+Strong communication, organizational and presentation skills with the ability to sell and negotiate at all decision-making levels
+# posting id=claim:clm_7fc1c98a00255061cf19 employer= title= location= variant= url=
+prospect, build relationships, and sign up new restaurateurs

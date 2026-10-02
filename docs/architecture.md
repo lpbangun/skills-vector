@@ -41,8 +41,13 @@ allowlisted public-source discovery/retrieval → hash and lineage receipts
   share one frozen retrieved corpus. Model agreement is not independent
   corroboration. Admission requires source-backed role scope and verified
   wording; deterministic checks enforce exact quotes, source identity, and
-  classification constraints. Unsupported claims and disagreements remain
-  inspectable rather than being repaired with title-based assumptions.
+  classification constraints. Responsibility bands require worker-duty evidence
+  of autonomy, complexity, ownership, or influence—not a strategic customer tier.
+  Sales segments require linked buyer or sales-market wording; product/artifact
+  scale alone normalizes to unknown with provenance and an inspectable issue,
+  without dropping an otherwise in-scope posting. Unsupported claims and
+  disagreements remain inspectable rather than being repaired with title-based
+  assumptions.
 - **Distinct work dimensions.** Work level (individual contributor, people
   manager, unknown), responsibility band (`early_career`, `independent_ic`,
   `senior_strategic_ic`, `people_management`, unknown), advertised experience
@@ -55,8 +60,10 @@ allowlisted public-source discovery/retrieval → hash and lineage receipts
   is inferred, and each edge retains its own wording, basis, and posting context.
   New releases use `market-release/2` and an explicit
   `role_scope.responsibility_scope` inclusion boundary instead of forced
-  mid-level seniority. Historical v1 artifacts are read in their original scope
-  and remain immutable; unknown classifications are not retroactively inferred.
+  mid-level seniority.
+  Existing immutable releases are read as recorded; catalog loading does not
+  revalidate or relabel them under current semantic rules. Unknown classifications
+  are not retroactively inferred.
   Advertised experience, contextual expectations, and requested demonstrations have
   separate expectation dimensions; explicit years-of-experience wording is not knowledge
   or proficiency. The source quote and relationship retain the distinction.

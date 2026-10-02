@@ -1,0 +1,24 @@
+# source src_6413b1c5f80546a23d4d
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_e6f5838b01d2d98a52d6
+# url https://boards-api.greenhouse.io/v1/boards/stripe/jobs/7230452
+# publisher Stripe
+# retrieved_at 2026-10-02T19:52:03Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f raw_bytes 7973
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=da58f07367ace66ebfe7e129:posting-excerpt employer=Stripe title=Forward Deployed Engineer, Privy location=New York Privy HQ variant= url=https://stripe.com/jobs/search?gh_jid=7230452
+We're looking for an exceptional Forward Deployed Engineer to join our team and be the primary technical owner for building out new capabilities with Privy's most important customers.
+# posting id=da58f07367ace66ebfe7e129:expectation:exp_7bbf5dcf442f19fe0b52 employer=Stripe title=Forward Deployed Engineer, Privy location=New York Privy HQ variant= url=https://stripe.com/jobs/search?gh_jid=7230452
+Work directly with customers to understand their technical and operational objectives
+# posting id=da58f07367ace66ebfe7e129:expectation:exp_d4b2e99660d678806ff8 employer=Stripe title=Forward Deployed Engineer, Privy location=New York Privy HQ variant= url=https://stripe.com/jobs/search?gh_jid=7230452
+prototype and propose software solutions
+# posting id=da58f07367ace66ebfe7e129:expectation:exp_059e741574790bc954cc employer=Stripe title=Forward Deployed Engineer, Privy location=New York Privy HQ variant= url=https://stripe.com/jobs/search?gh_jid=7230452
+Design, code, and launch features
+# posting id=da58f07367ace66ebfe7e129:expectation:exp_d392071a149d7d3d7615 employer=Stripe title=Forward Deployed Engineer, Privy location=New York Privy HQ variant= url=https://stripe.com/jobs/search?gh_jid=7230452
+using tools like TypeScript , React , and Next.js
+# posting id=claim:clm_e2870c511e05208e44ad employer= title= location= variant= url=
+Work directly with customers to understand their technical and
+# posting id=claim:clm_fe729763c170f0bec4cb employer= title= location= variant= url=
+prototype and propose software solutions

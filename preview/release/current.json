@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "current": "rel_20261002_eb0937b49c70",
+  "current": "rel_20261002_cbdc6e8d5c4f",
   "releases": [
     {
       "release_id": "rel_20260930_3206b98a56c8",
@@ -78,7 +78,19 @@
         "hr-generalist"
       ],
       "manifest_sha256": "c612751530f33b7e0507fe7334cd3ad6dbe920ff451da4cd5a472fc372816ab8"
+    },
+    {
+      "release_id": "rel_20261002_cbdc6e8d5c4f",
+      "published_at": "2026-10-02T20:39:47Z",
+      "generated_at": "2026-10-02T20:39:46Z",
+      "occupations": [
+        "account-executive",
+        "forward-deployed-engineer",
+        "growth-manager",
+        "hr-generalist"
+      ],
+      "manifest_sha256": "1562a9619e1cebc557f92ff52be64eafa07b75ec8ee697d3c8e68a77fe8b5e15"
     }
   ],
-  "updated_at": "2026-10-02T17:33:28Z"
+  "updated_at": "2026-10-02T20:39:47Z"
 }

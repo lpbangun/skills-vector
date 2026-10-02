@@ -1,0 +1,26 @@
+# source src_9474d748372eef14060d
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_55e8378f4ee85a29e6b8
+# url https://boards-api.greenhouse.io/v1/boards/verkada/jobs/5161632007
+# publisher Verkada
+# retrieved_at 2026-10-02T19:50:31Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 896bbf40eea5f7abac1cbc8856fe74ca4e99c87a48ba0439b76b64af982b63f8 raw_bytes 10873
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=126ac2cfb1c706b3eb843cae:posting-excerpt employer=Verkada title=Account Executive, Territory (Mid-Market) location=Boston, MA United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/5161632007
+Source and close new business to consistently meet or exceed quarterly sales quotas
+# posting id=126ac2cfb1c706b3eb843cae:context:customer_industry employer=Verkada title=Account Executive, Territory (Mid-Market) location=Boston, MA United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/5161632007
+mid-sized companies across various corporate sectors such as Technology, Finance, Healthcare, Retail, Manufacturing, Professional Services
+# posting id=126ac2cfb1c706b3eb843cae:experience:0 employer=Verkada title=Account Executive, Territory (Mid-Market) location=Boston, MA United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/5161632007
+At least 2+ years of sales experience in a quota-carrying capacity
+# posting id=126ac2cfb1c706b3eb843cae:expectation:exp_75bd6317fa8826bc12a1 employer=Verkada title=Account Executive, Territory (Mid-Market) location=Boston, MA United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/5161632007
+Highly effective communication skills
+# posting id=126ac2cfb1c706b3eb843cae:expectation:exp_38257cc3e55e9a6a522b employer=Verkada title=Account Executive, Territory (Mid-Market) location=Boston, MA United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/5161632007
+Experience in Salesforce is a plus
+# posting id=126ac2cfb1c706b3eb843cae:expectation:exp_c9dda90f896e5bcd0d28 employer=Verkada title=Account Executive, Territory (Mid-Market) location=Boston, MA United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/5161632007
+Thrive in a dynamic, competitive, and fast-paced startup environment
+# posting id=claim:clm_0e494da1cf57515519ab employer= title= location= variant= url=
+At least 2+ years of sales experience in a quota-carrying capacity
+# posting id=claim:clm_d42f293ef99dadb94485 employer= title= location= variant= url=
+Highly effective communication skills

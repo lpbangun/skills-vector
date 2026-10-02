@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_7fc1c98a00255061cf19",
+  "release_id": "rel_20261002_cbdc6e8d5c4f",
+  "occupation_slug": "account-executive",
+  "claim_type": "advertised_demand",
+  "statement": "Prospecting and sales cycle: prospect, build relationships, and conduct demos — recorded in 1 of 5 admitted Account Executive postings (no variant split for this role) from 1 of 5 employers in the 2026-10-02 US sample.",
+  "quote": "prospect, build relationships, and sign up new restaurateurs",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_2ef617516a5da8524028",
+      "url": "https://boards-api.greenhouse.io/v1/boards/toast/jobs/8242799",
+      "publisher": "Toast",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_ab79111f6f077fc87cd4",
+      "retrieved_at": "2026-10-02T19:50:33Z",
+      "sha256": "30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T20:28:53Z",
+  "published_at": "2026-10-02T20:39:47Z",
+  "citation_path": "/release/citations/clm_7fc1c98a00255061cf19.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "17712c592dc379601f79b90fb0ace3f8aa501b240b4c1a703ffc4f9313672d82"
+}
