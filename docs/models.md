@@ -30,6 +30,12 @@ tokens, 2,048 output tokens, two retries, a 120-second model timeout, and a
 at most US$2; each call is reserved before it can be sent. Actual usage and
 remaining holds must be read from the durable ledger and receipts; estimates and
 historical spend are not current accounting.
+The reconciliation prompt limits the entire demand-claim array to four
+representative claims across all postings, not four per posting or priority.
+Claim counts are rendered from validated evidence IDs, not agent-authored signal
+or detail text.
+Original distinct expectation rows remain available; incomplete provider JSON is
+rejected rather than salvaged or retried with a larger output ceiling.
 
 An ambiguous billed attempt is never blindly repeated to recover its result.
 `skills-vector market research reconcile` can settle it only when the exact

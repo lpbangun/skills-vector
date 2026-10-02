@@ -274,8 +274,10 @@ uv run skills-vector market research refresh --once \\
 
 Both commands require operator-owned external configuration, source-policy allowlists,
 evidence storage, and the reserved durable mission budget. Refresh installs no
-schedule. Candidate publication still requires fresh independent adjudication of the
-exact frozen comparison; the public API never performs research or publication.
+schedule. Changing the retained stage requires fresh independent adjudication of the
+exact frozen four-role comparison. Routine refresh uses the recorded retention
+decision and frozen publication gates; it is not fresh independent or human review.
+The public API never performs research or publication.
 """
 
 

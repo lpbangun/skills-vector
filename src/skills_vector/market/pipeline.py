@@ -1626,10 +1626,12 @@ POSTINGS:
             "sampled_at": self.started_at[:10],
         }
         return f"""You are the evidence reconciliation pass for "{spec['label']}".
-Counts are computed by the pipeline; use only these sample denominators and do not invent counts:
+The pipeline alone writes claim counts. Put no counts in signal or detail; link exact evidence IDs:
 {json.dumps(counts, ensure_ascii=False, separators=(",", ":"))}
 
-Return one complete JSON object:
+Return one complete JSON object. The entire demand_claims array may contain at most 4
+claims TOTAL across all postings, not 4 per posting or per learning priority.
+Select representative evidence topics; the original distinct expectation rows remain recorded.
 {{"foundation_claims":[{{"statement":"…","quote":"verbatim official-foundation phrase","source_id":"…",
 "dimension":"task|capability|tool|knowledge|experience|contextual_expectation|demonstration|credential|unknown","confidence":"bounded"}}],
 "demand_claims":[{{"topic_label":"2-6 words","signal":"short noun phrase","detail":"optional, bounded context",
@@ -1648,7 +1650,7 @@ Rules:
   Advertised basis is requirement, preference, emergent_signal or unknown. Never infer proficiency.
 - Counts describe the sample, not prevalence, trend, importance, proficiency, hires or employability. No market-wide claims.
 - Learning priorities are analyst recommendations, not observed requirements or measured proficiency:
-  one evidence topic, explicit uncertainty, at most 4 demand claims and 3 priorities.
+  one evidence topic, explicit uncertainty, at most 3 priorities.
 - Return concise, complete JSON.
 
 OFFICIAL FOUNDATION PASSAGE:
