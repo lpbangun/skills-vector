@@ -1,201 +1,259 @@
-# Skills Vector
+# Skills Vector · Evidence Atlas
 
-Evidence-based occupational skills reference and local assessment contract for **U.S. startup workers**, especially people adopting AI.
+A source-grounded occupational brief for four registered U.S. roles: HR Generalist,
+Growth Manager, Account Executive, and provisional Forward Deployed Engineer (FDE).
+Published evidence is an immutable sample, not a market census, prevalence estimate,
+proficiency measure, hiring outcome, or individual career prediction.
 
-Initial market: U.S. startups. Three families — engineering/AI, product/design, go-to-market/operations. This repository’s first vertical slice covers three contrasting pilots:
+The historical release tree remains immutable and may contain only its original
+three roles. FDE is a mission-authorized pilot profile; it is not human-reviewed,
+not an official O*NET occupation, and has no findings until admissible source evidence
+exists. O*NET 15-1252.00 is only a partial task-level anchor. Solutions/sales engineering,
+customer success/implementation, and general software engineering are not equivalent
+by title.
 
-| Occupation ID | Family | O*NET baseline |
-| --- | --- | --- |
-| `occ_founding_engineer` | engineering/AI | 15-1252.00 Software Developers |
-| `occ_product_manager` | product/design | 15-1299.09 IT Project Managers |
-| `occ_growth_operator` | go-to-market/operations | 13-1161.00 Market Research Analysts |
+## Product surfaces
 
-Public beta still targets **30 reviewed occupations** (about ten per family). That gate is **not** met by this slice. Individuals are the first audience. [Jobsss](docs/jobsss.md) retains private profiles.
+- **Brief first.** Global evidence search and “Use with your agent” onboarding precede
+  role selection. Published roles open with concise cited findings and raw-count
+  charts; aggregate tables, underlying observations, and provenance expand on demand.
+  Chart tables accept keyboard focus for horizontal scrolling. The global connection
+  guide provides a selectable, copyable SDK snippet using the origin serving the page.
+  Provisional or unpublished roles remain separate from findings.
+- **Refinement and comparison.** Filter admitted postings by work level,
+  responsibility band, advertised experience, employer/customer context, and distinct
+  expectation dimensions/bases. Unknown remains a first-class filter. Comparisons show
+  admitted counts and observed dimensions only—never fabricated coverage percentages
+  or personal fit scores.
+- **One catalog core.** `CatalogStore` powers the REST reads, preview, CLI, and MCP
+  tools. Search/refinement are deterministic reads; they never call a model.
+- **Read-only MCP.** The maintained Python MCP SDK serves stdio for local hosts and
+  stateless Streamable HTTP at `/api/mcp`. The tools return the same catalog results as
+  the API. No public API or MCP tool starts research or publication.
+- **Pinned components.** Every supported chart has a deterministic component id,
+  definition version, release pin, scoped dates, raw numerator/denominator,
+  calculation, underlying observations, source links, and limitations. The copyable
+  `component_id@release_id` reference survives subsequent catalog updates.
+- **Local operator research.** Only local commands may retrieve public sources or call
+  DeepInfra. Research is bounded and budget-reserved; only a separate fresh
+  independent adjudication receipt can authorize candidate materialization or local
+  publication. No model key is bundled into Vercel.
 
-## Market reference lane (current product surface)
+## Evidence and classification boundaries
 
-`src/skills_vector/market/` implements the current lane: bounded live research over
-public occupational foundations and employer job boards, published as immutable
-versioned releases served by a read-only API.
+Board listings define their retrieved sampling frame. Per-posting detail responses
+are separate lineage sources; incomplete or truncated listing responses are never
+silently treated as complete. Published material includes rights-safe metadata and
+short source-verbatim excerpts only; raw responses and model/tool receipts remain in
+the external evidence root.
 
-- **Research (local authority only).** `market research run` executes the pipeline
-  `discovery → retrieval → candidate selection → admission → reconciliation →
-  evidence linking → challenge → release` with the pinned subscription task model,
-  fixed retrieval and model-call caps, an allowlist of public source hosts,
-  byte-verbatim quote verification and no fallback. Long research never runs
-  inside a Vercel request.
-- **Quote provenance is the fetched response, not a listing index.** Board
-  listing responses are the population records (enumerated postings, board
-  denominators). When a listing carries no description text, the per-posting
-  detail response becomes its own source record (original detail URL, response
-  hash, retrieved_at, byte count, rights, parent board id) and the posting,
-  claim verification and published extract cite that response. Detail sources
-  never inflate boards attempted/used, sampled postings or employer counts, and
-  only short verified excerpts are published — never full job descriptions.
-- **Learning priorities cite agent-selected claims.** A separate bounded linking
-  pass selects the recorded claim ids (with a short rationale) that support each
-  priority; the deterministic validator only enforces identity/role/basis/variant
-  discipline, drops unknown, other-role, wrong-basis or cross-variant ids, and
-  drops a priority whose links do not survive. Lexical overlap is never treated
-  as evidence linking.
-- **Scope admission is explicit and fail-closed.** The admission pass must
-  classify each posting's work level (`individual_contributor` | `people_manager`
-  | `unknown`) with a grounded rationale, and must copy a byte-verbatim
-  people-management quote when the posting owns direct reports — including
-  manager postings that also mention quota or account ownership. Only literal
-  `individual_contributor` decisions with a nonempty rationale and no
-  people-management evidence are admitted; manager ownership, `unknown`, and
-  missing/malformed decisions are excluded. Reasons are recorded in
-  `exclusions.json`, with category counts in run lineage. Failed description
-  retrievals cannot be admitted from a title alone. A `Manager` title alone is never treated as
-  people-management evidence, and advising or coordinating colleagues is not
-  direct-report ownership. Long descriptions are windowed around
-  responsibilities/duties headings within the existing 1800-character per-posting
-  prompt bound so scope duties are not hidden behind company boilerplate, and
-  release validation rejects any admitted posting without a clean, typed
-  individual-contributor decision or referring to an excluded source.
-- **Candidate caps are allocated fairly.** One candidate per employer per
-  provisional bucket first (growth variants before generic buckets), then a
-  round-robin remainder, so a large or alphabetically early employer cannot
-  monopolize the candidate/detail budget; cap exclusions and per-bucket outcomes
-  are reported honestly, and a missing required growth bucket triggers the same
-  bounded discovery-feedback pass as low total yield.
-  Initial discovery and replacement feedback share the same total board-attempt
-  ceiling; exhausted board capacity stops feedback before another model call.
-- **Published releases.** Validated slices are merged into `preview/release/releases/<release_id>/`
-  and pointed to atomically by `preview/release/current.json`; claim citations are
-  write-once. `/api/release` identifies the current live-researched occupations
-  and immutable versions; an empty release tree returns an honest `no_release`
-  catalog rather than fixtures. Release identities cover supporting evidence
-  datasets and verified extracts, including run lineage.
-- **Read surfaces.** One catalog/query core backs the frontend, the deployed read
-  API (`/api/*`), the CLI (`market browse|query|occupation|claim|evidence|release-info`)
-  and the MCP stdio tools. If stored evidence cannot answer a question, the
-  response is `insufficient_evidence`/`unsupported_question` plus a bounded
-  research handoff plan — never a fabricated answer.
-- **Role inspection.** Role pages show the sampling date and scope. The Control
-  contents rail moves keyboard focus to the selected section without replacing
-  the role route. The skip link focuses main content without losing a role or
-  claim route. Evidence lists and source links wrap within the viewport rather
-  than widening the page. Run lineage records the bounded agent stages and
-  resource counters; full runtime receipts remain in the external evidence root.
-  The provenance graph uses stage-specific recorded counts, not coverage:
-  board targets, retrieval requests, candidate postings, admissions, mapping
-  rows, claims, and challenge findings. Mapping counts and inspector reads are
-  pinned to the role page's release; absent counts say `not recorded`, not zero.
-  Role filters are initialized before routing, including direct role, claim,
-  and query links; a deep link does not silently reduce scoped searches to cross-role.
-  Inspector previews state the displayed/total row counts and link to complete
-  versioned JSON datasets, source registries with extract paths, and file hashes.
-  The extracts tab also exposes the complete bounded role-extract JSON response.
+Candidate allocation (`title-prioritized-employer-bucket-round-robin/3`) applies
+canonical-title, other title-hinted, and unhinted tiers globally. Within each tier,
+employer/provisional-bucket coverage precedes round-robin remainders; Growth variant
+buckets stay distinct. Titles prioritize bounded retrieval only, never admission,
+work level, or responsibility. A changed sampling method does not establish a trend.
 
-### Source rights, sampling and learning caveats
+Each posting distinguishes work level (`individual_contributor`, `people_manager`, or
+`unknown`) from responsibility band (`early_career`, `independent_ic`,
+`senior_strategic_ic`, `people_management`, or `unknown`). `people_management`
+requires source-backed management evidence; senior strategic IC is not management.
+Neither dimension is inferred from title or advertised years. Years remain verbatim
+experience wording. Context dimensions and expectations (task, capability, tool,
+knowledge, experience, contextual expectation, demonstration, credential), evidence
+basis, and explicit proficiency wording stay
+separate; unknown is preserved rather than dropped. `identity_id` groups the
+normalized exact wording within its dimension, independently of basis;
+`expectation_id` includes basis, and `relationship_id` identifies its specific
+posting/source edge. No synonyms or semantic equivalence are inferred.
+Counts refer to the admitted source sample at its recorded date. They are not market
+prevalence, importance, proficiency, hires, or employability. No trend claim is made
+without comparable retrieval windows; model agreement is not independent evidence.
+Producer and publication gates share assertion-shaped honesty rules: unsupported
+market percentages, market-wide employer claims, and directional trends are rejected.
+An explicit small-sample disclaimer does not become a contradiction merely because
+it uses the word “prevalence.”
 
-- Postings are retrieved from public employer job-board APIs; only rights-safe
-  metadata, verified short excerpts, decisions, mappings and lineage are
-  published. Full raw responses stay in the external evidence root and are never
-  committed or served. Every published quote/excerpt is attributed to the exact
-  response that contains it (`sources.json` `retrieval_kind`/`parent_source_id`
-  distinguishes a compact listing from the per-posting detail response).
-- Counts describe only the postings enumerated in the retrieval window for one
-  role and date; boards report their enumerated/total bound in `sources.json`
-  when an API pages or caps its listing. Counts are **not** market prevalence,
-  and posting frequency is not importance, proficiency, hires or employability.
-- Occupational foundations, advertised demand, and recommended learning
-  priorities stay distinct. Learning priorities are analyst recommendations
-  derived from cited claims, ordered by the reconciliation pass and linked to
-  agent-selected recorded claim ids with a stated rationale and explicitly
-  bounded uncertainty — not measured importance, not lexical keyword matching,
-  and not practitioner validation.
-- No trend claims without comparable paired retrieval windows; agent agreement is
-  not practitioner validation. No credentials belong on Vercel: the deployment is
-  a read-only static release tree plus a stdlib Python function that never calls a
-  model.
+New artifacts use `market-release/2`: `role_scope.responsibility_scope` replaces the
+old forced mid-level `seniority` scope. It describes inclusion, not an inferred
+classification. Historical `market-release/1` artifacts remain immutable and readable,
+with their original scope; broader bands or contexts are supported only by new
+source-backed records, never by relabeling the old sample.
 
-### Legal/rights note
+## Install and run locally
 
-Official foundation pages are quoted with attribution (O*NET OnLine CC BY 4.0;
-BLS public domain). Employer postings are published as short attributed excerpts
-only.
+Python 3.12 is used for the isolated feature environment. `uv sync` installs the
+locked runtime and CLI dependencies.
 
-## Legacy experiments (historical)
-
-The earlier occupational-slice work (`skills_vector.domain`, `operating_loop`,
-SQLite catalog, DeepInfra budget ledger, structured-job-analysis POC) remains
-in-tree as the previous experiment; it defaults to deterministic stubs and its
-one-shot live permissions are spent. Historical sealed run artifacts under
-`outputs/` and `docs/structured-job-analysis-poc.md` stay as history. Production
-market research **never** substitutes stubs or fixtures.
-
-## Preview on Vercel (do not merge first)
-
-A PR preview is enough to look at the desk. **Do not merge to `main` just to deploy.**
-Keep production untouched until a catalog is reviewed.
-
-1. The preview deployment serves `preview/index.html` plus the read API in
-   `api/index.py` (Python serverless function, stdlib only).
-2. `vercel.json` runs `bash scripts/assemble_vercel.sh`, which copies the static
-   preview and the committed `preview/release/` tree beside it. Vercel ignores
-   memory settings for active-CPU billing, so none are configured.
-3. `.python-version` pins the minor line (`3.12`); a patch pin (`3.12.3`) can
-   select a build Vercel does not offer, while the minor pin still resolves
-   portability across machines.
-4. Preview deployments may require a per-deployment protection bypass
-   (`/aliases/<deployment-id>/protection-bypass`); project-wide or production
-   access settings are not changed.
-5. The deployed function is read-only: mutation methods return 405, no secrets or
-   model calls exist there, and browsing the empty catalog is the honest state
-   until a real release is published from the VPS/agent runtime.
-
-## Local run
-
-Python 3.11+. Copy `.env.example` locally only if you add keys for legacy lanes; do not commit keys.
-
-```bash
-uv venv .venv
-uv pip install --python .venv/bin/python -e .
-.venv/bin/python -m unittest discover -s tests -v
-.venv/bin/python -m compileall -q src tests
+```sh
+uv sync
+uv run skills-vector market serve --host 127.0.0.1 --port 8787
 ```
 
-Read surfaces against the local release tree (no models, no network):
+Open `http://127.0.0.1:8787/`. The local server uses the same ASGI REST/MCP app as the
+Vercel function. Useful local reads:
 
-```bash
-env PYTHONPATH=src python3 -m skills_vector market browse
-env PYTHONPATH=src python3 -m skills_vector market query "what does an HR generalist do?"
-env PYTHONPATH=src python3 -m skills_vector market occupation hr-generalist
-env PYTHONPATH=src python3 -m skills_vector market evidence --section exclusions --occupation hr-generalist
-env PYTHONPATH=src python3 -m skills_vector market serve --port 8787
-env PYTHONPATH=src python3 -m skills_vector market mcp --print-tools
+```sh
+uv run skills-vector market browse
+uv run skills-vector market query "employee relations" --occupation hr-generalist
+uv run skills-vector market search "employee relations" --occupation hr-generalist
+uv run skills-vector market refine --occupation hr-generalist --responsibility-band people_management
+# Set IDENTITY_ID to an observed identity_id from refinement or comparison output.
+uv run skills-vector market refine --occupation hr-generalist --expectation-identity "$IDENTITY_ID"
+uv run skills-vector market compare hr-generalist account-executive
+uv run skills-vector market occupation hr-generalist
+# Set these values from occupation output's component_refs.
+uv run skills-vector market component "$COMPONENT_ID" --release "$RELEASE_ID"
+uv run skills-vector market evidence --section admissions --occupation hr-generalist
+uv run skills-vector market mcp --release-root preview/release
 ```
 
-Bounded live research (subscription agent runtime; writes immutable run evidence
-outside the repo and only publishes when every precondition passes):
+REST search/refinement endpoints:
 
-```bash
-env PYTHONPATH=src python3 -m skills_vector market research probe \
-  --evidence-root ~/.local/share/skills-vector-evidence \
-  --overlay <runtime-overlay.yml>
-
-env PYTHONPATH=src python3 -m skills_vector market research run \
-  --occupation hr-generalist \
-  --evidence-root ~/.local/share/skills-vector-evidence \
-  --release-root preview/release \
-  --overlay <runtime-overlay.yml>
+```sh
+curl 'http://127.0.0.1:8787/api/brief'
+curl 'http://127.0.0.1:8787/api/search?q=employee+relations'
+curl 'http://127.0.0.1:8787/api/refine?occupation=hr-generalist&work_level=people_manager&responsibility_band=people_management'
+# Set IDENTITY_ID to an observed identity_id from refinement or comparison output.
+curl --get 'http://127.0.0.1:8787/api/refine' \
+  --data-urlencode 'occupation=hr-generalist' \
+  --data-urlencode "expectation_identity=$IDENTITY_ID"
+curl 'http://127.0.0.1:8787/api/compare?occupation=hr-generalist&occupation=account-executive'
 ```
 
-Failed or thin runs write receipts and keep the last good release untouched
-(`--no-publish` validates only). One mutating research worker at a time; the run
-is not a Vercel request.
+MCP clients can use stdio with `uv run skills-vector market mcp --release-root
+preview/release`, or connect directly to `http://127.0.0.1:8787/api/mcp` with the
+maintained `mcp` SDK. MCP is stateless Streamable HTTP and read-only.
 
-## Design system
+The stable guide is `/api/agent-guide`, also linked globally above role selection.
+It renders the originating host's actual connection address and a runnable Python
+`mcp` 2.x session script (tested with 2.2.0). The UI's copy action includes its
+`asyncio.run(main())` entry point. `get_occupation` returns `component_refs`; MCP `get_component`
+accepts `component_id` and optional `release_id`. HTTP reads use
+`/api/component?id=<returned-id>&release=<returned-release>`. MCP evidence tools
+accept bounded `release_id` pins; REST uses `release` where documented. Omitting a
+pin selects current, not the release of a previously saved reference. Personal
+assessment stays in the user's own harness: absent personal evidence means “not
+demonstrated,” never “lacks skill.”
 
-UI work follows **Evidence Atlas · Control** in [`DESIGN.md`](DESIGN.md). The Vercel frontend and API read validated published JSON; research still runs locally. `design-concepts/app.html` remains the design reference, not a shipped specimen/fixture route.
+## Research, refresh, and local publication
 
-## Docs
+All operator configuration, credentials, price receipts, durable mission-budget data,
+raw responses, and receipts live outside this worktree. The external JSON config
+contains the exact DeepInfra model pins and price-receipt hash, never an API key. Supply
+`DEEPINFRA_API_KEY` through the operator environment only after the authoritative
+ledger shows the mission reservation. Missing credentials or reservations must stop
+research; there is no OMP provider or fixture fallback.
+
+```sh
+export SV_RESEARCH_CONFIG=/path/outside/worktree/research-config.json
+export SV_EVIDENCE_ROOT=/path/outside/worktree/evidence
+export SV_REFRESH_POLICY=/path/outside/worktree/refresh-policy.json
+export SV_STAGE_RETENTION=/path/outside/worktree/evidence/stage-retention.json
+export SV_REFRESH_CHECKPOINT=/path/outside/worktree/refresh/checkpoint.json
+
+uv run skills-vector market research budget --config "$SV_RESEARCH_CONFIG"
+uv run skills-vector market research probe --config "$SV_RESEARCH_CONFIG" \
+  --evidence-root "$SV_EVIDENCE_ROOT" --model-role primary
+uv run skills-vector market research probe --config "$SV_RESEARCH_CONFIG" \
+  --evidence-root "$SV_EVIDENCE_ROOT" --model-role challenger
+uv run skills-vector market research probe --config "$SV_RESEARCH_CONFIG" \
+  --evidence-root "$SV_EVIDENCE_ROOT" --model-role escalation
+
+# Reconcile only when an original provider response is already retained for this exact attempt.
+uv run skills-vector market research reconcile --config "$SV_RESEARCH_CONFIG" \
+  --evidence-root "$SV_EVIDENCE_ROOT" --run-id "$SV_RUN_ID" \
+  --attempt-id "$SV_ATTEMPT_ID" --response "$SV_RETAINED_RESPONSE"
+
+# Experimental comparisons freeze both A/B arms; no publication occurs here.
+uv run skills-vector market research run --config "$SV_RESEARCH_CONFIG" \
+  --occupation hr-generalist --evidence-root "$SV_EVIDENCE_ROOT" \
+  --min-postings 3 --max-postings 5 --release-root preview/release
+
+# Routine refresh consumes the fresh independent four-role retention decision,
+# uses the same reserved mission budget, and installs no recurring job.
+uv run skills-vector market research refresh --once --config "$SV_RESEARCH_CONFIG" \
+  --policy "$SV_REFRESH_POLICY" --retention-record "$SV_STAGE_RETENTION" \
+  --evidence-root "$SV_EVIDENCE_ROOT" --checkpoint "$SV_REFRESH_CHECKPOINT" \
+  --release-root preview/release
+
+# `refresh-policy.json` is external and has exactly these bounded controls:
+# {"schema_version":"skills-vector-operator-refresh/1","cadence_hours":24,
+#  "min_postings":3,"max_postings":5,"max_boards":16}
+# The retention record schema is skills-vector-four-role-stage-retention/1 and
+# binds each role's comparison/adjudication paths, hashes, reviewer and A/B metrics.
+
+# These require an independent, fresh adjudication of the exact comparison hash.
+uv run skills-vector market candidate --comparison <comparison.json> \
+  --adjudication <independent-adjudication.json> --out <candidate-dir>
+uv run skills-vector market publish --comparison <comparison.json> \
+  --adjudication <independent-adjudication.json> --candidate-out <candidate-dir> \
+  --release-root preview/release
+uv run skills-vector market validate <candidate-dir>
+uv run skills-vector market research budget --config "$SV_RESEARCH_CONFIG"
+uv run skills-vector market research settle --config "$SV_RESEARCH_CONFIG"
+```
+
+`research run` freezes primary-only and primary-plus-challenge arms over the same
+passages and does not publish. The fresh stage-retention record makes the frozen
+four-role decision (primary-only or primary-plus-challenge) from independently
+adjudicated per-role receipts; refresh follows that stage rather than making a new
+per-role stage choice. A primary-only refresh executes no phantom challenger pass.
+Routine refresh uses one shared mission budget and bounded caps for all four fixed
+roles. It re-fetches job-board listings and may reuse only recent allowlisted official
+foundation responses while retaining their original retrieval time and hash. Existing
+role identity and material evidence definitions must remain unchanged; citations,
+rights, schema, source quotes, known provider costs and contradiction gates must all
+pass before an automatic release pointer update. New registrations, identity/taxonomy
+changes, major unresolved contradictions, thin candidates, or unknown cost leave the
+last-good release serving. Automatic refresh is labeled not human-reviewed; FDE pilot
+registration is not a human review. A currently unresolved challenge finding shipped
+under a retained challenger stage remains explicitly labeled unresolved.
+
+The command requires `--once`; it creates no cron, gateway, deployment, or public
+mutation path. Use the cadence checkpoint to decide when an operator may run it again.
+Never reset the durable budget to retry.
+
+Each new publication includes immutable `changes.json` beside its manifest. It
+records the previous release, added/removed/updated claim, posting, and source IDs
+and counts, plus the recorded sampling and expectation-method definitions before
+and after the update. The release API and header expose this artifact only when it
+exists; historical releases are not backfilled or rewritten.
+
+Automatic-release metadata records the actual frozen policy fingerprint, cadence,
+posting minimum/maximum and board cap. Its minimum-posting rule describes the
+all-or-nothing guard: any insufficient role blocks the candidate and preserves the
+last-good catalog. The policy comes from the selected immutable release, not from
+the latest pointer when a consumer asks for an older release.
+
+## Vercel preview assembly
+
+```sh
+bash scripts/assemble_vercel.sh
+```
+
+This assembles `.vercel-out` for review. It is not a deployment or promotion command.
+The Vercel function exposes the REST and `/api/mcp` reads over one ASGI app and the
+bundled immutable release. Deployment, aliasing, access changes, and production
+promotion are owned separately; do not run `vercel deploy` from this implementation
+workflow.
+
+The authorized four-role mission preview is
+<https://skills-vector-four-role-atlas-preview-wiredwriters-projects.vercel.app/>.
+Its catalog-wide connection is `/api/mcp`; the stable guide is `/api/agent-guide`.
+This dedicated preview alias can move between explicitly authorized preview
+deployments while release-pinned citations and components retain their original
+data. It is not a production promotion or a recurring refresh service.
+
+## Design system and project history
+
+Every product UI follows **Evidence Atlas · Control** in [`DESIGN.md`](DESIGN.md),
+with tokens/primitives in `design-concepts/design-system/` and the reference in
+`design-concepts/app.html`. Historical archived explorations are not product UI.
+
+Earlier occupational-slice and structured-job-analysis experiments remain documented
+as history; they are not active market inference or a fallback path.
 
 - [Market architecture](docs/architecture.md)
+- [Current model and budget notes](docs/models.md)
 - [Structured Job Analysis POC (historical)](docs/structured-job-analysis-poc.md)
-- [Models and budget (legacy lane)](docs/models.md)
 - [Jobsss boundary](docs/jobsss.md)
-- [Goal loop](docs/goal-loop.md)

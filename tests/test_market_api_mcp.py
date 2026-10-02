@@ -1,44 +1,27 @@
-"""Deployed-surface behavior: local HTTP server routes, bounds, MCP JSON-RPC, remote reads."""
+"""Behavioral checks for the public ASGI API and maintained MCP client protocol."""
 
 from __future__ import annotations
 
 import json
 import sys
 import tempfile
-import threading
 import unittest
-import urllib.error
-import urllib.request
-from io import StringIO
 from pathlib import Path
+
+import anyio
+import httpx2
+from mcp.client.session import ClientSession
+from mcp.client.streamable_http import streamable_http_client
+from starlette.testclient import TestClient
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from market_support import build_slice, default_claim_id, publish_test_release  # noqa: E402
 
 from skills_vector.market.core import CatalogStore  # noqa: E402
-from skills_vector.market.mcp import LocalBackend, McpServer # noqa: E402
-from skills_vector.market.server import build_server  # noqa: E402
+from skills_vector.market.web import create_market_app  # noqa: E402
 
 WORKTREE = Path(__file__).resolve().parents[1]
-
-
-def _get(url: str) -> tuple[int, bytes, str]:
-    request = urllib.request.Request(url, headers={"accept": "application/json"})
-    try:
-        with urllib.request.urlopen(request, timeout=10) as response:  # noqa: S310 - local test server
-            return response.status, response.read(), response.headers.get("content-type", "")
-    except urllib.error.HTTPError as exc:
-        return exc.code, exc.read(), exc.headers.get("content-type", "")
-
-
-def _post(url: str, body: bytes) -> tuple[int, bytes]:
-    request = urllib.request.Request(url, data=body, method="POST", headers={"content-type": "application/json"})
-    try:
-        with urllib.request.urlopen(request, timeout=10) as response:  # noqa: S310
-            return response.status, response.read()
-    except urllib.error.HTTPError as exc:
-        return exc.code, exc.read()
 
 
 class MarketServerTests(unittest.TestCase):
@@ -47,117 +30,212 @@ class MarketServerTests(unittest.TestCase):
         cls._tmp = tempfile.TemporaryDirectory()
         root = Path(cls._tmp.name) / "release"
         root.mkdir(parents=True)
-        (root / "current.json").write_text(json.dumps({"schema_version": 1, "current": None, "releases": []}), encoding="utf-8")
+        (root / "current.json").write_text(
+            json.dumps({"schema_version": 1, "current": None, "releases": []}), encoding="utf-8"
+        )
         cls.publish = publish_test_release(root, build_slice(Path(cls._tmp.name) / "slice"))
         cls.release_root = root
         cls.store = CatalogStore(root)
-        cls.server = build_server(WORKTREE, root, host="127.0.0.1", port=0)
-        cls.port = cls.server.server_address[1]
-        cls.thread = threading.Thread(target=cls.server.serve_forever, daemon=True)
-        cls.thread.start()
+        app = create_market_app(
+            cls.store,
+            worktree=WORKTREE,
+            release_root=root,
+            serve_static=True,
+        )
+        cls.client = TestClient(app)
+        cls.client.__enter__()
 
     @classmethod
     def tearDownClass(cls) -> None:
-        cls.server.shutdown()
-        cls.server.server_close()
+        cls.client.__exit__(None, None, None)
         cls._tmp.cleanup()
 
-    def url(self, path: str) -> str:
-        return f"http://127.0.0.1:{self.port}{path}"
+    def test_health_brief_and_unpublished_role_are_honest(self) -> None:
+        health = self.client.get("/api/health")
+        self.assertEqual(health.status_code, 200)
+        self.assertEqual(health.json()["status"], "ok")
+        self.assertEqual(health.json()["release_id"], self.publish["release_id"])
 
-    def test_health_and_occupations(self) -> None:
-        status, body, _ = _get(self.url("/api/health"))
-        self.assertEqual(status, 200)
-        health = json.loads(body)
-        self.assertEqual(health["status"], "ok")
-        self.assertEqual(health["release_id"], self.publish["release_id"])
+        brief_response = self.client.get("/api/brief")
+        self.assertEqual(brief_response.status_code, 200)
+        roles = brief_response.json()["roles"]
+        self.assertEqual(
+            [role["slug"] for role in roles],
+            ["hr-generalist", "growth-manager", "account-executive", "forward-deployed-engineer"],
+        )
+        by_slug = {role["slug"]: role for role in roles}
+        self.assertEqual(by_slug["hr-generalist"]["status"], "published")
+        self.assertEqual(by_slug["forward-deployed-engineer"]["status"], "pilot_only")
+        self.assertEqual(by_slug["forward-deployed-engineer"]["counts"]["claims"], 0)
+        self.assertEqual(by_slug["forward-deployed-engineer"]["official_anchor"]["status"], "partial_taxonomy_anchor_only")
 
-        status, body, _ = _get(self.url("/api/occupations"))
-        self.assertEqual(status, 200)
-        occupations = json.loads(body)
-        self.assertEqual([occ["slug"] for occ in occupations["occupations"]], ["hr-generalist"])
+        occupation = self.client.get("/api/occupation", params={"slug": "forward-deployed-engineer"})
+        self.assertEqual(occupation.status_code, 200)
+        self.assertEqual(occupation.json()["status"], "pilot_only")
 
-    def test_query_negative_paths_are_honest(self) -> None:
-        status, body, _ = _get(self.url("/api/query?q=onboarding"))
-        self.assertEqual(status, 200)
-        self.assertEqual(json.loads(body)["status"], "cited_evidence")
+        listed = self.client.get("/api/occupations").json()["occupations"]
+        self.assertEqual([role["slug"] for role in listed], [role["slug"] for role in roles])
 
-        status, body, _ = _get(self.url("/api/query?q=quantum%20welding%20certification"))
-        self.assertEqual(status, 200)
-        payload = json.loads(body)
-        self.assertEqual(payload["status"], "unsupported_question")
-        self.assertIn("handoff", payload)
-        self.assertNotIn("fixture", body.decode("utf-8").lower())
+    def test_query_search_refine_and_compare_are_cited_sample_reads(self) -> None:
+        cited = self.client.get("/api/query", params={"q": "onboarding"})
+        self.assertEqual(cited.status_code, 200)
+        self.assertEqual(cited.json()["status"], "cited_evidence")
 
-        status, body, _ = _get(self.url("/api/query?q=onboarding&occupation=account-executive"))
-        self.assertEqual(status, 200)
-        payload = json.loads(body)
-        self.assertEqual(payload["status"], "insufficient_evidence")
-        self.assertIn("handoff", payload)
+        search = self.client.get("/api/search", params={"q": "onboarding"})
+        self.assertEqual(search.status_code, 200)
+        self.assertIn("claim", {row["kind"] for row in search.json()["results"]})
+        self.assertIn("market prevalence", search.json()["sample_note"])
 
-    def test_mutations_rejected_and_bounds_enforced(self) -> None:
-        status, _ = _post(self.url("/api/query?q=onboarding"), b'{"q": "onboarding"}')
-        self.assertEqual(status, 405)
-        status, _ = _post(self.url("/api/release"), b"x" * 100)
-        self.assertEqual(status, 405)
-        status, body, _ = _get(self.url("/api/query?q=" + "a" * 500))
-        self.assertEqual(status, 400)
-        status, body, _ = _get(self.url("/api/evidence?section=nope"))
-        self.assertEqual(status, 400)
+        refined = self.client.get(
+            "/api/refine",
+            params={"occupation": "hr-generalist", "work_level": "individual_contributor"},
+        )
+        self.assertEqual(refined.status_code, 200)
+        self.assertEqual(refined.json()["count"], 1)
+        self.assertEqual(refined.json()["rows"][0]["work_level"], "individual_contributor")
 
-    def test_citation_routes_and_traversal_rejection(self) -> None:
+        compared = self.client.get(
+            "/api/compare",
+            params=[
+                ("occupation", "hr-generalist"),
+                ("occupation", "forward-deployed-engineer"),
+            ],
+        )
+        self.assertEqual(compared.status_code, 200)
+        by_slug = {role["slug"]: role for role in compared.json()["roles"]}
+        self.assertEqual(by_slug["hr-generalist"]["postings_admitted"], 1)
+        self.assertIsNone(by_slug["forward-deployed-engineer"]["postings_admitted"])
+        self.assertEqual(by_slug["forward-deployed-engineer"]["published_findings"], 0)
+        self.assertNotIn("coverage_percent", compared.json())
+
+        unsupported = self.client.get("/api/query", params={"q": "quantum welding certification"})
+        self.assertEqual(unsupported.status_code, 200)
+        self.assertEqual(unsupported.json()["status"], "unsupported_question")
+        self.assertTrue(unsupported.json()["handoff"]["local_only"])
+        self.assertFalse(unsupported.json()["handoff"]["mutates_public_state"])
+
+    def test_component_http_reconstruction_and_fail_closed_ids(self) -> None:
+        role = self.client.get("/api/occupation", params={"slug": "hr-generalist"}).json()
+        ref = next(row for row in role["component_refs"] if row["measure"] == "responsibility_band_distribution")
+        response = self.client.get("/api/component", params={"id": ref["component_id"], "release": role["release_id"]})
+        self.assertEqual(response.status_code, 200)
+        component = response.json()
+        self.assertEqual(component["release_id"], role["release_id"])
+        self.assertEqual(component["rows"][0]["value"], "independent_ic")
+        self.assertEqual(component["rows"][0]["numerator"], 1)
+        self.assertEqual(component["denominator"], len(component["observations"]))
+        self.assertEqual(self.client.get("/api/component", params={"id": "invalid"}).status_code, 400)
+        self.assertEqual(self.client.get("/api/component", params={"id": "cmp_" + "0" * 20}).status_code, 404)
+        self.assertEqual(
+            self.client.get("/api/component", params={"id": ref["component_id"], "release": "../current"}).status_code,
+            400,
+        )
+
+    def test_public_api_rejects_mutations_and_enforces_input_bounds(self) -> None:
+        for method in ("POST", "PUT", "PATCH", "DELETE"):
+            response = self.client.request(method, "/api/query?q=onboarding", json={"q": "onboarding"})
+            self.assertEqual(response.status_code, 405)
+        self.assertEqual(self.client.get("/api/query", params={"q": "a" * 500}).status_code, 400)
+        self.assertEqual(self.client.get("/api/query", params={"q": "onboarding", "limit": "0"}).status_code, 400)
+        self.assertEqual(self.client.get("/api/evidence", params={"section": "secrets"}).status_code, 400)
+        self.assertEqual(self.client.get("/api/refine", params={"context_value": "remote"}).status_code, 400)
+        self.assertEqual(self.client.get("/api/compare", params=[("occupation", "hr-generalist")]).status_code, 400)
+        self.assertEqual(
+            self.client.request("GET", "/api/query?q=onboarding", content=b"x" * 9000).status_code,
+            413,
+        )
+
+    def test_citation_is_served_and_static_traversal_is_rejected(self) -> None:
         claim_id = default_claim_id()
-        status, body, content_type = _get(self.url(f"/release/citations/{claim_id}.json"))
-        self.assertEqual(status, 200)
-        self.assertEqual(json.loads(body)["claim_id"], claim_id)
-
-        status, _, _ = _get(self.url("/release/releases/../../.gitignore"))
-        self.assertEqual(status, 404)
+        citation = self.client.get(f"/release/citations/{claim_id}.json")
+        self.assertEqual(citation.status_code, 200)
+        self.assertEqual(citation.json()["claim_id"], claim_id)
+        traversal = self.client.get("/release/releases/../../.gitignore")
+        self.assertEqual(traversal.status_code, 404)
 
 
 class MarketMcpTests(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls) -> None:
-        cls._tmp = tempfile.TemporaryDirectory()
-        root = Path(cls._tmp.name) / "release"
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        root = Path(self._tmp.name) / "release"
         root.mkdir(parents=True)
-        (root / "current.json").write_text(json.dumps({"schema_version": 1, "current": None, "releases": []}), encoding="utf-8")
-        publish_test_release(root, build_slice(Path(cls._tmp.name) / "slice"))
-        cls.release_root = root
-        cls.backend = LocalBackend(root)
-        cls.server = McpServer(cls.backend)
-
-    @classmethod
-    def tearDownClass(cls) -> None:
-        cls._tmp.cleanup()
-
-    def test_protocol_errors(self) -> None:
-        missing = self.server.handle_message({"jsonrpc": "2.0", "id": 9, "method": "no/such"})
-        self.assertEqual(missing["error"]["code"], -32601)
-        bad_tool = self.server.handle_message(
-            {"jsonrpc": "2.0", "id": 10, "method": "tools/call", "params": {"name": "does_not_exist", "arguments": {}}}
+        (root / "current.json").write_text(
+            json.dumps({"schema_version": 1, "current": None, "releases": []}), encoding="utf-8"
         )
-        self.assertTrue(bad_tool["result"]["isError"])
-        missing_arg = self.server.handle_message(
-            {"jsonrpc": "2.0", "id": 11, "method": "tools/call", "params": {"name": "get_claim", "arguments": {}}}
-        )
-        self.assertTrue(missing_arg["result"]["isError"])
-        notification = self.server.handle_message({"jsonrpc": "2.0", "method": "notifications/initialized"})
-        self.assertIsNone(notification)
+        publish_test_release(root, build_slice(Path(self._tmp.name) / "slice"))
+        self.store = CatalogStore(root)
+        self.app = create_market_app(self.store, release_root=root)
 
-    def test_stdio_framing(self) -> None:
-        stdin = StringIO(
-            json.dumps({"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}})
-            + "\n"
-            + json.dumps({"jsonrpc": "2.0", "id": 2, "method": "tools/list"})
-            + "\n"
-        )
-        stdout = StringIO()
-        self.server.serve_stdio(stdin=stdin, stdout=stdout)
-        lines = [json.loads(line) for line in stdout.getvalue().splitlines()]
-        self.assertEqual(len(lines), 2)
-        self.assertEqual(lines[0]["id"], 1)
-        self.assertEqual(lines[1]["id"], 2)
+    def tearDown(self) -> None:
+        self._tmp.cleanup()
+
+    def test_sdk_session_lists_read_only_tools_and_calls_shared_catalog(self) -> None:
+        async def exercise() -> None:
+            transport = httpx2.ASGITransport(app=self.app)
+            async with self.app.router.lifespan_context(self.app), httpx2.AsyncClient(
+                transport=transport, base_url="http://127.0.0.1:8000",
+            ) as http_client:
+                async with streamable_http_client(
+                    "http://127.0.0.1:8000/api/mcp",
+                    http_client=http_client,
+                ) as (read_stream, write_stream):
+                    async with ClientSession(read_stream, write_stream) as session:
+                        await session.initialize()
+                        listing = await session.list_tools()
+                        tools = {tool.name: tool for tool in listing.tools}
+                        self.assertTrue(
+                            {
+                                "get_brief",
+                                "get_occupation",
+                                "search_evidence",
+                                "refine_evidence",
+                                "compare_roles",
+                                "get_claim",
+                                "get_component",
+                                "release_info",
+                                "inspect_evidence",
+                                "research_plan",
+                            }.issubset(tools)
+                        )
+                        for tool in tools.values():
+                            self.assertIsNotNone(tool.annotations)
+                            self.assertTrue(tool.annotations.read_only_hint)
+                            self.assertFalse(tool.annotations.open_world_hint)
+
+                        mcp_brief = await session.call_tool("get_brief", {})
+                        mcp_data = mcp_brief.structured_content or json.loads(mcp_brief.content[0].text)
+                        rest_data = (await http_client.get("/api/brief")).json()
+                        self.assertEqual(mcp_data, rest_data)
+
+                        profile = await session.call_tool(
+                            "get_occupation",
+                            {"slug": "forward-deployed-engineer"},
+                        )
+                        profile_data = profile.structured_content or json.loads(profile.content[0].text)
+                        self.assertEqual(profile_data["status"], "pilot_only")
+                        self.assertEqual(profile_data["occupation"]["publication_status"], "no_fde_findings_without_admissible_source_evidence")
+
+                        role_result = await session.call_tool("get_occupation", {"slug": "hr-generalist"})
+                        role = role_result.structured_content
+                        ref = next(row for row in role["component_refs"] if row["measure"] == "responsibility_band_distribution")
+                        result = await session.call_tool(
+                            "get_component", {"component_id": ref["component_id"], "release_id": role["release_id"]},
+                        )
+                        component = result.structured_content
+                        self.assertEqual(component["release_id"], role["release_id"])
+                        self.assertEqual(component["rows"][0]["value"], "independent_ic")
+                        self.assertEqual(component["rows"][0]["numerator"], 1)
+                        self.assertEqual(component["denominator"], len(component["observations"]))
+
+                        handoff = await session.call_tool(
+                            "research_plan",
+                            {"query": "onboarding", "occupation": "forward-deployed-engineer"},
+                        )
+                        handoff_data = handoff.structured_content or json.loads(handoff.content[0].text)
+                        self.assertTrue(handoff_data["local_only"])
+                        self.assertFalse(handoff_data["mutates_public_state"])
+
+        anyio.run(exercise)
 
 
 if __name__ == "__main__":

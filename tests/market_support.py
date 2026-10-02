@@ -1,17 +1,19 @@
 """Test support for the market reference core (synthetic, temp-dir scoped).
 
-These helpers build synthetic slices/releases and scripted agent responses for
-deterministic behavior tests only. They never write into ``preview/release`` and
-never ship as product data.
+These helpers build synthetic slices/releases for isolated behavior tests only.
+They never write to preview/release or ship as product data.
 """
 
 from __future__ import annotations
 
+import hashlib
 import json
+import sqlite3
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Callable
 
-from skills_vector.market.release import sha256_text
+from skills_vector.market.release import expectation_relationship_id, sha256_text, source_literal_identity
 from skills_vector.market.sources import dedup_key, normalize_ws
 
 FOUNDATION_TEXT = (
@@ -50,9 +52,7 @@ def build_slice(
     *,
     run_id: str = "run_test_0001",
     occupation: str = "hr-generalist",
-    label: str = "HR Generalist",
-    geography: str = "United States",
-    seniority: str = "mid-level individual contributor",
+    label: str | None = None,
     claim_statement: str | None = None,
     claim_quote: str | None = None,
     stats_override: dict[str, Any] | None = None,
@@ -60,22 +60,78 @@ def build_slice(
     """Write a synthetic occupation slice directory (valid unless tampered)."""
 
     root = Path(root)
+    from skills_vector.market.pipeline import OCCUPATION_CONFIG
+
+    registry = OCCUPATION_CONFIG[occupation]
+    label = label or str(registry["label"])
+    scope = {
+        "geography": str(registry["geography"]),
+        "responsibility_scope": str(registry["responsibility_scope"]),
+    }
     (root / "extracts").mkdir(parents=True, exist_ok=True)
-    source_id = "src_test_foundation"
-    board_source_id = "src_test_board"
+    suffix = "" if occupation == "hr-generalist" else "_" + occupation.replace("-", "_")
+    source_id = "src_test_foundation" + suffix
+    board_source_id = "src_test_board" + suffix
     extract_text = f"# source {source_id}\n{FOUNDATION_TEXT}\n"
     (root / "extracts" / f"{source_id}.txt").write_text(extract_text, encoding="utf-8")
-    scope = {"geography": geography, "seniority": seniority}
+    board_text = (
+        "This is an individual contributor role with no direct reports. "
+        "Independently own end-to-end onboarding workflows. "
+        "Required: experience with HRIS records. Our employer operates in manufacturing. "
+        "Clients include healthcare organizations. 3 years of experience. Hybrid work in Austin, TX."
+    )
+    board_extract = f"# synthetic test source {board_source_id}\n{board_text}\n"
+    (root / "extracts" / f"{board_source_id}.txt").write_text(board_extract, encoding="utf-8")
+    board_sha = sha256_text(board_text)
+    contexts = {}
+    for field_name, value, phrase in (
+        ("employer_industry", "manufacturing", "Our employer operates in manufacturing"),
+        ("customer_industry", "healthcare", "Clients include healthcare organizations"),
+        ("work_context", "Hybrid", "Hybrid work in Austin, TX"),
+        ("geography", "Austin, TX", "Hybrid work in Austin, TX"),
+        ("sales_segment", None, None),
+        ("employer_size", None, None),
+        ("employer_stage", None, None),
+    ):
+        contexts[field_name] = {
+            "value": value, "status": "present" if value else "unknown",
+            "quote": phrase, "source_id": board_source_id, "source_sha256": board_sha,
+            "method": "synthetic-test-annotation/1",
+            "unknown_reason": None if value else "not stated in synthetic source",
+        }
+    expectations = []
+    for dimension, basis, phrase in (
+        ("task", "emergent_signal", "Independently own end-to-end onboarding workflows"),
+        ("knowledge", "employer_requirement", "experience with HRIS records"),
+    ):
+        normalized = " ".join(phrase.split()).casefold()
+        expectation_id = "exp_" + sha256_text(f"expectation/2|{dimension}|{basis}|{normalized}")[:20]
+        expectations.append({
+            "expectation_id": expectation_id,
+            "identity_id": source_literal_identity(dimension, phrase),
+            "identity_method": "source-literal-identity/1", "kind": dimension,
+            "relationship_id": expectation_relationship_id(
+                occupation, "dedup_test_0001" + suffix, board_source_id, expectation_id,
+            ),
+            "relationship_method": "posting-source-expectation/1",
+            "source_wording": phrase, "normalized_label": normalized,
+            "dimension": dimension, "basis": basis, "proficiency": "not_stated",
+            "proficiency_quote": None, "mapping_method": "exact-normalized-label/2",
+            "source_id": board_source_id, "source_sha256": board_sha,
+        })
     statement = claim_statement or "HR generalists administer onboarding, HRIS records and employee lifecycle processes."
     quote = claim_quote if claim_quote is not None else "administer employee lifecycle processes"
-    claim_id = "clm_" + sha256_text(f"{run_id}|{statement}|{quote}")[:16]
+    identity = f"{run_id}|{statement}|{quote}"
+    if suffix:
+        identity += "|" + occupation
+    claim_id = "clm_" + sha256_text(identity)[:16]
     postings = [
         {
-            "id": "pst_test_0001",
+            "id": "pst_test_0001" + suffix,
             "occupation_slug": occupation,
             "variant": None,
+            "title": label,
             "employer": "Testco",
-            "title": "HR Generalist",
             "location": "Austin, TX",
             "url": "https://boards-api.greenhouse.io/v1/boards/testco/jobs?content=true#1",
             "posted_at": "2026-09-01",
@@ -84,8 +140,28 @@ def build_slice(
             "work_level": "individual_contributor",
             "work_level_reason": "Synthetic test row: personally performs the work with no direct reports.",
             "people_management_quote": "",
+            "work_level_evidence": {
+                "source_id": board_source_id, "source_sha256": board_sha,
+                "quote": "individual contributor role with no direct reports",
+                "reason": "explicit synthetic non-manager wording",
+                "method": "synthetic-test-annotation/1",
+            },
+            "responsibility_band": "independent_ic",
+            "responsibility_evidence": {
+                "source_id": board_source_id, "source_sha256": board_sha,
+                "quote": "Independently own end-to-end onboarding workflows",
+                "reason": "explicit synthetic autonomy wording",
+                "method": "synthetic-test-annotation/1",
+            },
+            "context_dimensions": contexts,
+            "advertised_experience": {
+                "value": ["3 years of experience"], "quotes": ["3 years of experience"],
+                "status": "present", "source_id": board_source_id, "source_sha256": board_sha,
+                "method": "verbatim-advertised-wording/1",
+            },
+            "expectations": expectations,
             "skills": ["onboarding"],
-            "dedup_key": "dedup_test_0001",
+            "dedup_key": "dedup_test_0001" + suffix,
             "admission_reason": "synthetic test row",
         }
     ]
@@ -98,6 +174,13 @@ def build_slice(
         "boards_used": 1,
         "excluded_total": 0,
         "foundations_used": 1,
+        "work_level_counts": {"individual_contributor": 1},
+        "responsibility_band_counts": {"independent_ic": 1},
+        "expectation_dimension_counts": {"knowledge": 1, "task": 1},
+        "expectation_basis_counts": {"employer_requirement": 1, "emergent_signal": 1},
+        "context_value_counts": {
+            name: {row["value"]: 1} if row["value"] else {} for name, row in contexts.items()
+        },
     }
     if stats_override:
         stats.update(stats_override)
@@ -113,6 +196,37 @@ def build_slice(
             "run_ids": [run_id],
         }
     ]
+    occupations[0].update({
+        key: registry[key] for key in (
+            "aliases", "growth_variants", "provisional", "registration_status", "human_review_status",
+            "publication_status", "official_anchor", "alias_decisions",
+        ) if key in registry
+    })
+    if occupation == "growth-manager":
+        occupations[0]["growth_variants"] = ["product-growth", "growth-marketing", "sales-account-executive"]
+        postings[0]["variant"] = "product-growth"
+    occupations[0]["coverage"] = {
+        "planned": {"objective": "isolated synthetic domain scenario", "employers_target": 3},
+        "achieved": {
+            "postings": 1, "employers": 1, "employer_industries": ["manufacturing"],
+            "responsibility_band_counts": stats["responsibility_band_counts"],
+            "context_value_counts": stats["context_value_counts"],
+        },
+        "unsupported_variants": {
+            value: {
+                "status": "unavailable", "value": value,
+                "attempt_source_ids": [board_source_id],
+                "query_terms": ["growth manager", "product growth", "growth marketing", "account executive"],
+            }
+            for value in occupations[0].get("growth_variants", []) if value != "product-growth"
+        },
+        "unsupported_bands": {
+            value: {"status": "unavailable", "value": value, "attempt_source_ids": [board_source_id], "query_terms": [label]}
+            for value in ("early_career", "senior_strategic_ic", "people_management")
+        },
+        "unavailable_sources": [], "caps_reached": {}, "sample_date": "2026-09-30",
+        "limitation": "Synthetic isolated test data, never a public occupational finding.",
+    }
     sources = [
         {
             "id": source_id,
@@ -137,11 +251,13 @@ def build_slice(
             "retrieval_kind": "listing",
             "occupation_slug": occupation,
             "retrieved_at": "2026-09-30T00:00:00Z",
-            "sha256": sha256_text("{}"),
-            "bytes": 2,
+            "sha256": board_sha,
+            "bytes": len(board_text.encode("utf-8")),
             "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
             "inclusion": True,
             "role_scope": scope,
+            "extract_path": f"extracts/{board_source_id}.txt",
+            "extract_sha256": sha256_text(board_extract),
         },
     ]
     claims = [
@@ -151,6 +267,8 @@ def build_slice(
             "claim_type": "foundation",
             "statement": statement,
             "quote": quote,
+            "expectation_dimension": "task",
+            "evidence_basis": "official_foundation",
             "source_ids": [source_id],
             "scope": scope,
             "evidence": {"kind": "official foundation excerpt"},
@@ -162,7 +280,7 @@ def build_slice(
     ]
     requirements = [
         {
-            "id": "req_test_0001",
+            "id": "req_test_0001" + suffix,
             "occupation_slug": occupation,
             "priority": 1,
             "label": "Employee lifecycle operations",
@@ -170,7 +288,7 @@ def build_slice(
             "rationale": "Foundation and sample evidence both describe lifecycle administration.",
             "uncertainty": "Sample is small; ordering is evidence-based priority, not measured importance.",
             "confidence": "low",
-            "basis": "advertised_demand",
+            "basis": "foundation",
             "search_terms": ["onboarding"],
             "evidence_claim_ids": [claim_id],
         }
@@ -181,6 +299,11 @@ def build_slice(
         ("postings", postings),
         ("claims", claims),
         ("requirements", requirements),
+        ("lineage", [{
+            "run_id": run_id, "occupation_slug": occupation,
+            "execution_context": "isolated-unit-test", "fixtures_used": True,
+            "provider": None, "models": {}, "model_fallback": None,
+        }]),
     ):
         (root / f"{stem}.json").write_text(json.dumps(rows, indent=2) + "\n", encoding="utf-8")
     return root
@@ -203,71 +326,102 @@ def publish_test_release(release_root: Path, slice_dir: Path) -> dict[str, Any]:
     return publish_release(Path(release_root), candidate)
 
 
-class ScriptedAgent:
-    """Deterministic stand-in for the OMP CLI subprocess.
 
-    Writes a valid OMP-shaped session record into the ``--session-dir`` passed on
-    the command line, so the runner's identity verification is exercised.
+
+def active_runtime_bundle(
+    root: Path,
+    *,
+    allocation_usd: float = 1.0,
+    monthly_cap_usd: float = 10.0,
+    limit_overrides: dict[str, int] | None = None,
+):
+    """Create a fully isolated active DeepInfra config and seeded mission ledger.
+
+    Tests replace the HTTP opener; these deliberately synthetic price rows and
+    a test-only environment key never authorize or reach a product provider.
     """
 
-    def __init__(
-        self,
-        responses: dict[str, str],
-        *,
-        fallback: bool = False,
-        model: str = "opencode-go/deepseek-v4.1-flash",
-        thinking: str = "max",
-    ) -> None:
-        self.responses = responses
-        self.fallback = fallback
-        self.model = model
-        self.thinking = thinking
-        self.calls: list[list[str]] = []
+    from skills_vector.budget import BudgetLedger
+    from skills_vector.market.budgeting import MissionBudget
+    from skills_vector.market.research_config import (
+        CONFIG_SCHEMA,
+        ENDPOINT,
+        HARD_LIMITS,
+        PROVIDER,
+        load_research_config,
+    )
 
-    def _session_dir(self, cmd: list[str]) -> Path:
-        return Path(cmd[cmd.index("--session-dir") + 1])
-
-    def _stage(self, prompt: str) -> str:
-        if "discovery feedback pass" in prompt:
-            return "discovery_feedback"
-        if "discovery pass" in prompt:
-            return "discovery"
-        if "extraction/admission pass" in prompt:
-            return "admission"
-        if "reconciliation/synthesis pass" in prompt:
-            return "reconciliation"
-        if "evidence-linking pass" in prompt:
-            return "evidence_linking"
-        if "challenge/skeptic pass" in prompt:
-            return "challenge"
-        return "unknown"
-
-    def __call__(self, cmd: list[str], timeout: int) -> tuple[int, str, str]:
-        self.calls.append(cmd)
-        prompt = cmd[-1]
-        session_dir = self._session_dir(cmd)
-        session_dir.mkdir(parents=True, exist_ok=True)
-        session = session_dir / f"session-{len(self.calls):02d}.jsonl"
-        records = [
-            {"type": "session", "id": f"test-{len(self.calls)}"},
-            {
-                "type": "model_change",
-                "model": self.model,
-                "resolvedModelIsFallback": self.fallback,
+    root = Path(root).resolve()
+    root.mkdir(parents=True, exist_ok=True)
+    month = datetime.now(UTC).strftime("%Y-%m")
+    model_ids = {
+        "primary": "deepseek-ai/DeepSeek-V4.1-Flash",
+        "challenger": "zai-org/GLM-5.3-Flash",
+        "escalation": "zai-org/GLM-5.3",
+    }
+    price_rows = {
+        model_id: {
+            "model_id": model_id,
+            "input_usd_per_million": 1.0,
+            "output_usd_per_million": 1.0,
+            "standard_tier": True,
+            "promotional_discount_not_applied": True,
+            "catalog_record": {
+                "model_name": model_id,
+                "pricing": {"rate_per_input_token_cached": 0.1},
             },
-            {"type": "thinking_level_change", "thinkingLevel": self.thinking},
+        }
+        for model_id in model_ids.values()
+    }
+    pricing_receipt = root / "test-pricing-receipt.json"
+    pricing_bytes = json.dumps(
+        {"provider": PROVIDER, "endpoint": ENDPOINT, "verified_at": f"{month}-01T00:00:00Z", "models": price_rows},
+        sort_keys=True,
+    ).encode("utf-8")
+    pricing_receipt.write_bytes(pricing_bytes)
+
+    ledger_path = root / "test-budget.sqlite3"
+    mission_id = "test-market-mission"
+    connection = sqlite3.connect(ledger_path)
+    try:
+        ledger = BudgetLedger(connection, monthly_cap_usd=monthly_cap_usd)
+        reservation_id = ledger.reserve(
+            run_id=mission_id,
+            model_id="catalog-wide-deepinfra",
+            estimated_usd=allocation_usd,
+            note="isolated market test reservation",
+        )
+    finally:
+        connection.close()
+
+    limits = dict(HARD_LIMITS)
+    limits.update(limit_overrides or {})
+    config_path = root / "test-research-config.json"
+    config_path.write_text(
+        json.dumps(
             {
-                "type": "message",
-                "message": {
-                    "role": "assistant",
-                    "provider": "opencode-go",
-                    "model": self.model.split("/")[-1],
-                    "usage": {"cost": {"total": 0.0}},
-                },
+                "schema_version": CONFIG_SCHEMA,
+                "provider": PROVIDER,
+                "endpoint": ENDPOINT,
+                "ledger_path": str(ledger_path),
+                "month": month,
+                "monthly_cap_usd": monthly_cap_usd,
+                "mission_id": mission_id,
+                "mission_reservation_id": reservation_id,
+                "mission_allocation_usd": allocation_usd,
+                "pricing_receipt_path": str(pricing_receipt),
+                "pricing_receipt_sha256": hashlib.sha256(pricing_bytes).hexdigest(),
+                "models": model_ids,
+                "limits": limits,
             },
-        ]
-        session.write_text("\n".join(json.dumps(record) for record in records) + "\n", encoding="utf-8")
-        return 0, self.responses.get(self._stage(prompt), "{}"), ""
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    product_root = Path(__file__).resolve().parents[1]
+    runtime = load_research_config(config_path, product_root=product_root)
+    return runtime, MissionBudget(runtime)
 
 
 def greenhouse_payload(jobs: list[dict[str, Any]]) -> bytes:

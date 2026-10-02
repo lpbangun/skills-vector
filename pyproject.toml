@@ -9,6 +9,7 @@ description = "Evidence-based occupational skills reference for U.S. startup rol
 requires-python = ">=3.11"
 dependencies = [
   "langgraph>=1.0,<2",
+  "mcp>=2.2,<3",
 ]
 
 [dependency-groups]

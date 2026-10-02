@@ -94,7 +94,7 @@ def fetch_url(
     """Fetch one allowlisted URL, bounded and with at most two infra retries."""
 
     max_bytes = int(max_bytes if max_bytes is not None else RESEARCH_LIMITS["max_response_bytes"])
-    retries = int(retries if retries is not None else RESEARCH_LIMITS["infrastructure_retries"])
+    retries = int(retries if retries is not None else RESEARCH_LIMITS["max_retries"])
     reason = url_problem(url)
     if reason:
         return FetchResult(url=url, status=None, error=f"refused by allowlist: {reason}")

@@ -98,6 +98,7 @@ def estimate_cost_usd(
 class BudgetLedger:
     def __init__(self, db: sqlite3.Connection, *, monthly_cap_usd: float = DEFAULT_MONTHLY_CAP_USD) -> None:
         self._db = db
+        self._db.row_factory = sqlite3.Row
         self.monthly_cap_usd = monthly_cap_usd
         self._db.execute(
             """

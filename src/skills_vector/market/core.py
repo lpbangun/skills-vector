@@ -61,7 +61,7 @@ def _scope_basis(occupations: list[dict[str, Any]]) -> str:
         stats = occ.get("stats") if isinstance(occ.get("stats"), dict) else {}
         parts.append(
             f"{occ.get('label') or occ.get('slug')}: {scope.get('geography') or 'unbounded geography'}; "
-            f"{scope.get('seniority') or 'unbounded seniority'}; "
+            f"{scope.get('responsibility_scope') or scope.get('seniority') or 'responsibility scope not recorded'}; "
             f"{stats.get('postings_dedup', 0)} admitted postings / {stats.get('employers_dedup', 0)} employers "
             f"of {stats.get('sampled', 0)} sampled of {stats.get('total_seen', 0)} retrieved"
         )
@@ -118,6 +118,43 @@ def build_citation_document(
     body["content_sha256"] = sha256_text(canonical_json({k: v for k, v in body.items() if k != "content_sha256"}))
     return body
 
+
+REGISTERED_ROLES = (
+    {"slug": "hr-generalist", "label": "HR Generalist", "family": "People Operations & Talent"},
+    {"slug": "growth-manager", "label": "Growth Manager", "family": "Go-to-market & growth"},
+    {"slug": "account-executive", "label": "Account Executive", "family": "Sales"},
+    {
+        "slug": "forward-deployed-engineer",
+        "label": "Forward Deployed Engineer",
+        "family": "Applied engineering & customer delivery",
+        "aliases": ["FDE", "forward-deployed engineer", "forward deployed engineer", "forward-deployed software engineer"],
+        "alias_decisions": [
+            {"label": "FDE / forward-deployed engineer", "decision": "accepted_canonical_alias"},
+            {"label": "solutions engineer / sales engineer", "decision": "not_equivalent_by_title"},
+            {"label": "customer success / implementation engineer", "decision": "not_equivalent_by_title"},
+            {"label": "software engineer", "decision": "not_equivalent_by_title"},
+        ],
+        "official_anchor": {
+            "code": "15-1252.00",
+            "label": "Software Developers",
+            "url": "https://www.onetonline.org/link/summary/15-1252.00",
+            "status": "partial_taxonomy_anchor_only",
+            "basis": "task-level comparison anchor; not an official FDE code, whole-role equivalence, or release finding",
+        },
+        "provisional": True,
+        "registration_status": "mission-authorized-pilot",
+        "human_review_status": "not_reviewed",
+        "publication_status": "no_fde_findings_without_admissible_source_evidence",
+    },
+)
+
+FACET_DIMENSIONS = ("employer_industry", "customer_industry", "sales_segment", "work_context", "employer_size", "employer_stage", "geography")
+WORK_LEVEL_VALUES = ("individual_contributor", "people_manager", "unknown")
+RESPONSIBILITY_BAND_VALUES = ("early_career", "independent_ic", "senior_strategic_ic", "people_management", "unknown")
+EXPECTATION_DIMENSION_VALUES = ("task", "capability", "tool", "knowledge", "experience", "contextual_expectation", "demonstration", "credential", "unknown")
+EXPECTATION_BASIS_VALUES = ("employer_requirement", "employer_preference", "emergent_signal", "unknown")
+EXPECTATION_PROFICIENCY_VALUES = ("explicitly_stated", "not_stated", "unknown")
+COMPONENT_DEFINITION_VERSION = "distribution/1"
 
 @dataclass
 class CatalogStore:
@@ -191,6 +228,216 @@ class CatalogStore:
     def claim_api_url(self, claim_id: str, release_id: str | None = None) -> str:
         suffix = f"&release={release_id}" if release_id else ""
         return self._url(f"/api/claim?id={claim_id}{suffix}")
+    @staticmethod
+    def _component_id(occupation: str, measure: str) -> str:
+        return "cmp_" + sha256_text(
+            f"market-component/{occupation}/{measure}/{COMPONENT_DEFINITION_VERSION}"
+        )[:20]
+
+    def component_references(self, occupation: str, release_id: str | None = None) -> list[dict[str, Any]]:
+        """Return stable component references backed by the selected release's posting rows."""
+
+        release = self.release(release_id)
+        if release is None or occupation not in release.occupation_by_slug():
+            return []
+        postings = release.postings_by_occupation(occupation)
+        if not postings:
+            return []
+        measures = ["responsibility_band_distribution"]
+        measures.extend(
+            f"context_sample_distribution:{dimension}"
+            for dimension in FACET_DIMENSIONS
+            if any(
+                isinstance((row.get("context_dimensions") or {}).get(dimension), dict)
+                and (row["context_dimensions"][dimension].get("status") == "present")
+                and str(row["context_dimensions"][dimension].get("value") or "").strip()
+                for row in postings
+            )
+        )
+        labels = {
+            "responsibility_band_distribution": "Responsibility-band sample distribution",
+        }
+        refs = []
+        for measure in measures:
+            context_dimension = measure.partition(":")[2] or None
+            refs.append({
+                "component_id": self._component_id(occupation, measure),
+                "measure": measure,
+                "definition_version": COMPONENT_DEFINITION_VERSION,
+                "release_id": release.release_id,
+                "occupation_slug": occupation,
+                "title": labels[measure] if measure in labels else f"{context_dimension.replace('_', ' ').title()} sample distribution",
+                "reference": f"{self._component_id(occupation, measure)}@{release.release_id}",
+            })
+        return refs
+
+    def get_component(self, component_id: str, release_id: str | None = None) -> dict[str, Any]:
+        """Return a deterministic source-backed component pinned to one immutable release."""
+
+        if not re.fullmatch(r"cmp_[a-f0-9]{20}", component_id):
+            return {"status": "unknown_component", "component_id": component_id, "detail": "Invalid component id."}
+        if release_id is not None and not re.fullmatch(r"[A-Za-z0-9._-]{1,80}", release_id):
+            return {"status": "invalid_request", "component_id": component_id, "detail": "Invalid immutable release id."}
+
+        release = self.release(release_id)
+        if release is None:
+            return {
+                "status": "no_release",
+                "component_id": component_id,
+                "release_id": None,
+                "detail": "No validated release is available for this component reference.",
+            }
+        ref = next(
+            (
+                candidate
+                for occupation in release.occupations
+                for candidate in self.component_references(str(occupation.get("slug") or ""), release.release_id)
+                if candidate["component_id"] == component_id
+            ),
+            None,
+        )
+        if ref is None:
+            return {
+                "status": "unknown_component",
+                "component_id": component_id,
+                "release_id": release.release_id,
+                "detail": "No component with this stable id exists in the selected immutable release.",
+            }
+        occupation = str(ref["occupation_slug"])
+        raw_measure = str(ref["measure"])
+        context_dimension = raw_measure.partition(":")[2] or None
+        postings = release.postings_by_occupation(occupation)
+        sources = release.source_by_id()
+        occupation_row = release.occupation_by_slug()[occupation]
+        observations: list[dict[str, Any]] = []
+        grouped: dict[tuple[str, str | None], list[dict[str, Any]]] = {}
+        source_links: dict[str, dict[str, Any]] = {}
+        for posting in postings:
+            if context_dimension:
+                dimension = (posting.get("context_dimensions") or {}).get(context_dimension)
+                status = str(dimension.get("status") or "unknown") if isinstance(dimension, dict) else "unknown"
+                literal = str(dimension.get("value") or "").strip() if isinstance(dimension, dict) else ""
+                value = literal if status == "present" and literal else None
+                category_status = "present" if value is not None else "unknown"
+            else:
+                value = str(posting.get("responsibility_band") or "unknown").strip() or "unknown"
+                category_status = "recorded" if value != "unknown" else "unknown"
+            category = (category_status, value)
+            source_id = str(posting.get("source_id") or "")
+            source = sources.get(source_id, {})
+            registered_source_url = str(source.get("url") or "").strip()
+            posting_url = str(posting.get("url") or "").strip()
+            source_url = posting_url or registered_source_url
+            link = {
+                "source_id": source_id or None,
+                "url": source_url or None,
+                "source_record_url": registered_source_url or None,
+                "publisher": str(source.get("publisher") or "") or None,
+            }
+            if source_id or source_url:
+                source_links[f"{source_id}\x1f{source_url}"] = link
+            observation = {
+                "posting_id": str(posting.get("id") or posting.get("dedup_key") or ""),
+                "employer": str(posting.get("employer") or ""),
+                "title": str(posting.get("title") or ""),
+                "variant": str(posting.get("variant") or "") or None,
+                "posted_at": str(posting.get("posted_at") or "") or None,
+                "value": value,
+                "status": category_status,
+                "source": link,
+                "classification": (
+                    (posting.get("context_dimensions") or {}).get(context_dimension) or {"status": "unknown"}
+                    if context_dimension else posting.get("responsibility_evidence") or {"status": "unknown"}
+                ),
+            }
+            observations.append(observation)
+            grouped.setdefault(category, []).append(observation)
+        denominator = len(postings)
+        if context_dimension:
+            category_order = sorted(
+                grouped,
+                key=lambda item: (item[0] == "unknown", (item[1] or "").casefold(), item[1] or ""),
+            )
+            calculation = {
+                "unit": "admitted posting",
+                "numerator": "number of admitted postings with this exact stored context value",
+                "denominator": "all admitted posting rows for this occupation in the pinned release",
+                "grouping": f"context_dimensions.{context_dimension}.value, only when status is present; otherwise unknown",
+            }
+            definition = (
+                "Each admitted posting contributes once. A literal value is counted only when this dimension is "
+                "stored with status=present; every missing or non-present value remains in the explicit unknown bucket."
+            )
+            measure_label = context_dimension.replace("_", " ")
+        else:
+            band_order = {value: index for index, value in enumerate(RESPONSIBILITY_BAND_VALUES)}
+            category_order = sorted(
+                grouped,
+                key=lambda item: (band_order.get(item[1] or "", len(band_order)), (item[1] or "").casefold()),
+            )
+            calculation = {
+                "unit": "admitted posting",
+                "numerator": "number of admitted postings assigned to this stored responsibility_band value",
+                "denominator": "all admitted posting rows for this occupation in the pinned release",
+                "grouping": "responsibility_band; missing or blank values are unknown",
+            }
+            definition = (
+                "Each admitted posting contributes once to its stored responsibility_band. Missing or blank values "
+                "remain unknown; role titles and advertised years are not used to infer a band."
+            )
+            measure_label = "responsibility band"
+        rows = []
+        for status, value in category_order:
+            members = grouped[(status, value)]
+            row_sources = {
+                f"{member['source'].get('source_id') or ''}\x1f{member['source'].get('url') or ''}": member["source"]
+                for member in members
+                if member["source"].get("source_id") or member["source"].get("url")
+            }
+            rows.append({
+                "category": "unknown" if status == "unknown" else "recorded",
+                "value": value if value is not None else "unknown",
+                "status": status,
+                "numerator": len(members),
+                "denominator": denominator,
+                "posting_ids": [member["posting_id"] for member in members],
+                "source_links": [row_sources[key] for key in sorted(row_sources)],
+            })
+        posting_dates = sorted(str(posting.get("posted_at") or "").strip() for posting in postings if posting.get("posted_at"))
+        occupation_label = str(occupation_row.get("label") or occupation)
+        component = {
+            "status": "ok",
+            "schema": "market-component/1",
+            **ref,
+            "kind": "sample_distribution",
+            "context_dimension": context_dimension,
+            "occupation_label": occupation_label,
+            "immutable": True,
+            "sample_scope": {
+                "role_scope": occupation_row.get("role_scope") or {},
+                "sampled_at": str(occupation_row.get("sampled_at") or "") or None,
+                "posting_date_field": "posted_at",
+                "posting_date_start": posting_dates[0] if posting_dates else None,
+                "posting_date_end": posting_dates[-1] if posting_dates else None,
+                "admitted_postings": denominator,
+                "admitted_employers": (occupation_row.get("stats") or {}).get("employers_dedup"),
+            },
+            "numerator": sum(row["numerator"] for row in rows),
+            "denominator": denominator,
+            "calculation": calculation,
+            "definition": definition,
+            "rows": rows,
+            "observations": observations,
+            "source_links": [source_links[key] for key in sorted(source_links)],
+            "limitations": [
+                str(occupation_row.get("sampling_note") or "The sample is limited to admitted source-backed postings."),
+                "Counts describe the pinned admitted sample only, not workforce prevalence or the wider labor market.",
+                "Unknown means the source-backed classification is missing or non-present; it does not mean the role lacks this characteristic.",
+                "This measure is not an importance, proficiency, competence, employability, or trend estimate.",
+                "Values are release-specific; compare roles only as separately scoped raw counts, never as semantic equivalence.",
+            ],
+        }
+        return component
 
     # -- browse ----------------------------------------------------------
 
@@ -219,7 +466,7 @@ class CatalogStore:
                 "has_release": False,
             }
         manifest = release.manifest
-        return {
+        release_info = {
             "status": "ok",
             "core_version": CORE_VERSION,
             "schema_version": API_SCHEMA_VERSION,
@@ -229,6 +476,7 @@ class CatalogStore:
             "generated_at": str(manifest.get("generated_at") or ""),
             "published_at": str(manifest.get("published_at") or ""),
             "agent_attribution": str(manifest.get("agent_attribution") or ""),
+            "publication_policy": manifest.get("publication_policy"),
             "role_scope": manifest.get("role_scope") or {},
             "sampling_scope": manifest.get("sampling_scope") or {},
             "frequency_caveat": manifest.get("frequency_caveat"),
@@ -248,6 +496,10 @@ class CatalogStore:
             "manifest_path": f"/release/releases/{release.release_id}/manifest.json",
             "lineage_path": f"/release/releases/{release.release_id}/lineage.json",
         }
+        changes_path = release.root / "changes.json"
+        if changes_path.is_file() and changes_path.stat().st_size > 0:
+            release_info["changes_path"] = f"/release/releases/{release.release_id}/changes.json"
+        return release_info
 
     def list_occupations(self, release_id: str | None = None) -> dict[str, Any]:
         release = self.release(release_id)
@@ -255,22 +507,41 @@ class CatalogStore:
             return {
                 "status": "no_release",
                 "release_id": None,
-                "occupations": [],
-                "detail": "No validated release is published yet.",
+                "occupations": [
+                    {
+                        **profile,
+                        "publication_status": profile.get("publication_status", "not_in_current_release"),
+                        "status": "pilot_only" if profile.get("provisional") else "not_in_current_release",
+                        "counts": {"claims": 0, "foundation_claims": 0, "demand_claims": 0, "learning_priorities": 0, "sources": 0},
+                    }
+                    for profile in REGISTERED_ROLES
+                ],
+                "detail": "No validated release is published yet; registered role profiles are not findings.",
             }
+        registered = {str(row["slug"]): row for row in REGISTERED_ROLES}
         occupations = []
+        present_slugs: set[str] = set()
         for occ in release.occupations:
             slug = str(occ.get("slug"))
+            present_slugs.add(slug)
             claims = release.claims_by_occupation(slug)
+            profile = registered.get(slug, {})
             occupations.append(
                 {
                     "slug": slug,
                     "label": str(occ.get("label")),
                     "family": str(occ.get("family") or ""),
-                    "aliases": occ.get("aliases") or [],
+                    "aliases": occ.get("aliases") or profile.get("aliases") or [],
                     "role_scope": occ.get("role_scope") or {},
                     "stats": occ.get("stats") or {},
                     "growth_variants": occ.get("growth_variants") or [],
+                    "provisional": occ.get("provisional") is True,
+                    "registration_status": occ.get("registration_status", "published_role"),
+                    "human_review_status": occ.get("human_review_status"),
+                    "publication_status": occ.get("publication_status", "published"),
+                    "official_anchor": occ.get("official_anchor"),
+                    "coverage": occ.get("coverage"),
+                    "status": "published",
                     "counts": {
                         "claims": len(claims),
                         "foundation_claims": len([c for c in claims if c.get("claim_type") == "foundation"]),
@@ -287,14 +558,403 @@ class CatalogStore:
                     "run_ids": sorted({str(claim.get("agent_run_id")) for claim in claims if claim.get("agent_run_id")}),
                 }
             )
+        for slug, profile in registered.items():
+            if slug in present_slugs:
+                continue
+            occupations.append(
+                {
+                    **profile,
+                    "status": "pilot_only" if profile.get("provisional") else "not_in_current_release",
+                    "publication_status": profile.get("publication_status", "not_in_current_release"),
+                    "counts": {"claims": 0, "foundation_claims": 0, "demand_claims": 0, "learning_priorities": 0, "sources": 0},
+                }
+            )
         return {"status": "ok", "release_id": release.release_id, "occupations": occupations}
+    def brief(self, release_id: str | None = None) -> dict[str, Any]:
+        """Role index and published status for the brief-first surface."""
+
+        roles = self.list_occupations(release_id)
+        return {
+            "status": roles["status"],
+            "release": self.release_info(release_id),
+            "roles": roles["occupations"],
+            "notice": "Published sample counts describe admitted evidence only, not workforce prevalence or individual suitability.",
+        }
+
+    @staticmethod
+    def _posting_bundle(posting: dict[str, Any], release: ReleaseData) -> dict[str, Any]:
+        sources = release.source_by_id()
+        source_id = str(posting.get("source_id") or "")
+        source = sources.get(source_id, {})
+        role = release.occupation_by_slug().get(str(posting.get("occupation_slug") or ""), {})
+        return {
+            "occupation_slug": str(posting.get("occupation_slug") or ""),
+            "occupation_label": str(role.get("label") or ""),
+            "posting_id": str(posting.get("id") or posting.get("dedup_key") or posting.get("url") or ""),
+            "employer": str(posting.get("employer") or ""),
+            "title": str(posting.get("title") or ""),
+            "location": str(posting.get("location") or ""),
+            "variant": posting.get("variant"),
+            "work_level": str(posting.get("work_level") or "unknown"),
+            "work_level_reason": str(posting.get("work_level_reason") or ""),
+            "work_level_evidence": posting.get("work_level_evidence") or {},
+            "responsibility_band": str(posting.get("responsibility_band") or "unknown"),
+            "responsibility_evidence": posting.get("responsibility_evidence") or {},
+            "advertised_experience": posting.get("advertised_experience") or {"status": "unknown", "value": []},
+            "context_dimensions": posting.get("context_dimensions") or {},
+            "expectations": posting.get("expectations") or [],
+            "excerpt": str(posting.get("excerpt") or ""),
+            "posted_at": str(posting.get("posted_at") or ""),
+            "source": {
+                "id": source_id,
+                "url": str(source.get("url") or posting.get("url") or ""),
+                "publisher": str(source.get("publisher") or ""),
+                "retrieved_at": str(source.get("retrieved_at") or ""),
+                "sha256": str(source.get("sha256") or ""),
+                "extract_sha256": str(source.get("extract_sha256") or ""),
+                "rights": str(source.get("rights") or ""),
+                "inclusion": source.get("inclusion"),
+            },
+        }
+
+    def refine(
+        self,
+        *,
+        occupation: str | None = None,
+        filters: dict[str, str] | None = None,
+        query: str = "",
+        limit: int = 50,
+        release_id: str | None = None,
+    ) -> dict[str, Any]:
+        """Filter admitted, source-backed rows; return raw counts, including unknown values."""
+
+        release = self.release(release_id)
+        if release is None:
+            return {
+                "status": "no_release",
+                "release_id": None,
+                "rows": [],
+                "count": 0,
+                "facets": {},
+                "expectation_identities": [],
+            }
+        if occupation is not None and occupation not in release.occupation_by_slug():
+            registered = {str(row["slug"]) for row in REGISTERED_ROLES}
+            return {
+                "status": "not_in_current_release" if occupation in registered else "unknown_occupation",
+                "occupation": occupation,
+                "rows": [],
+                "count": 0,
+                "facets": {},
+                "expectation_identities": [],
+            }
+        filters = {str(key): str(value).strip() for key, value in (filters or {}).items() if value}
+        postings = [
+            row for row in release.postings
+            if occupation is None or str(row.get("occupation_slug") or "") == occupation
+        ]
+        sources_by_id = release.source_by_id()
+        facets: dict[str, dict[str, int]] = {}
+        identity_records: dict[str, dict[str, Any]] = {}
+
+        def add_count(facet: str, value: str) -> None:
+            values = facets.setdefault(facet, {})
+            values[value] = values.get(value, 0) + 1
+
+        for row in postings:
+            add_count("work_level", str(row.get("work_level") or "unknown"))
+            add_count("responsibility_band", str(row.get("responsibility_band") or "unknown"))
+            expectations = [item for item in (row.get("expectations") or []) if isinstance(item, dict)]
+            for facet, key in (
+                ("expectation_dimension", "dimension"),
+                ("expectation_basis", "basis"),
+                ("expectation_proficiency", "proficiency"),
+            ):
+                values = {str(item.get(key) or "unknown") for item in expectations} or {"unknown"}
+                for value in values:
+                    add_count(facet, value)
+
+            seen_identity_ids: set[str] = set()
+            seen_identity_bases: set[tuple[str, str]] = set()
+            for item in expectations:
+                identity_id = str(item.get("identity_id") or "").strip()
+                if not identity_id:
+                    continue
+                record = identity_records.setdefault(
+                    identity_id,
+                    {
+                        "identity_id": identity_id,
+                        "source_wordings": set(),
+                        "dimensions": set(),
+                        "kinds": set(),
+                        "expectation_ids": set(),
+                        "relationship_ids": set(),
+                        "identity_methods": set(),
+                        "relationship_methods": set(),
+                        "postings_in_sample": 0,
+                        "basis_counts": {},
+                        "observations": [],
+                    },
+                )
+                wording = str(item.get("source_wording") or item.get("label") or "")
+                if wording:
+                    record["source_wordings"].add(wording)
+                dimension = str(item.get("dimension") or "")
+                if dimension:
+                    record["dimensions"].add(dimension)
+                kind = str(item.get("kind") or "")
+                if kind:
+                    record["kinds"].add(kind)
+                expectation_id = str(item.get("expectation_id") or "").strip()
+                relationship_id = str(item.get("relationship_id") or "").strip()
+                identity_method = str(item.get("identity_method") or "").strip()
+                relationship_method = str(item.get("relationship_method") or "").strip()
+                if expectation_id:
+                    record["expectation_ids"].add(expectation_id)
+                if relationship_id:
+                    record["relationship_ids"].add(relationship_id)
+                if identity_method:
+                    record["identity_methods"].add(identity_method)
+                if relationship_method:
+                    record["relationship_methods"].add(relationship_method)
+                source_id = str(item.get("source_id") or row.get("source_id") or "")
+                source = sources_by_id.get(source_id, {})
+                record["observations"].append(
+                    {
+                        "identity_id": identity_id,
+                        "expectation_id": expectation_id or None,
+                        "relationship_id": relationship_id or None,
+                        "identity_method": identity_method or None,
+                        "relationship_method": relationship_method or None,
+                        "posting_id": str(row.get("id") or ""),
+                        "source_id": source_id,
+                        "source_url": str(source.get("url") or row.get("url") or ""),
+                        "employer": str(row.get("employer") or ""),
+                        "variant": str(row.get("variant") or ""),
+                        "location": str(row.get("location") or ""),
+                        "title": str(row.get("title") or ""),
+                        "source_wording": wording,
+                        "dimension": dimension or "unknown",
+                        "kind": kind or "unknown",
+                        "basis": str(item.get("basis") or "unknown"),
+                        "proficiency": str(item.get("proficiency") or "unknown"),
+                        "proficiency_quote": item.get("proficiency_quote"),
+                        "work_level": str(row.get("work_level") or "unknown"),
+                        "responsibility_band": str(row.get("responsibility_band") or "unknown"),
+                        "advertised_experience": row.get("advertised_experience"),
+                        "context_dimensions": row.get("context_dimensions"),
+                    }
+                )
+                basis = str(item.get("basis") or "unknown")
+                if identity_id not in seen_identity_ids:
+                    record["postings_in_sample"] += 1
+                    seen_identity_ids.add(identity_id)
+                if (identity_id, basis) not in seen_identity_bases:
+                    basis_counts = record["basis_counts"]
+                    basis_counts[basis] = basis_counts.get(basis, 0) + 1
+                    seen_identity_bases.add((identity_id, basis))
+            for identity_id in seen_identity_ids:
+                add_count("expectation_identity", identity_id)
+
+            experience = row.get("advertised_experience") or {}
+            add_count(
+                "experience_status",
+                str(experience.get("status") or "unknown") if isinstance(experience, dict) else "unknown",
+            )
+            for field_name in FACET_DIMENSIONS:
+                context = (row.get("context_dimensions") or {}).get(field_name)
+                if isinstance(context, dict):
+                    add_count(f"{field_name}_status", str(context.get("status") or "unknown"))
+                    if context.get("status") == "present" and context.get("value"):
+                        add_count(f"{field_name}_value", str(context["value"]))
+                else:
+                    add_count(f"{field_name}_status", "unknown")
+
+        tokens = tokenize(query)
+        expectation_filter_fields = {
+            "expectation_dimension": "dimension",
+            "expectation_basis": "basis",
+            "expectation_proficiency": "proficiency",
+        }
+
+        def matches(row: dict[str, Any]) -> bool:
+            if filters.get("work_level") and str(row.get("work_level") or "unknown") != filters["work_level"]:
+                return False
+            if filters.get("responsibility_band") and str(row.get("responsibility_band") or "unknown") != filters["responsibility_band"]:
+                return False
+            expectations = [item for item in (row.get("expectations") or []) if isinstance(item, dict)]
+            for filter_name, field_name in expectation_filter_fields.items():
+                required = filters.get(filter_name)
+                if required and not any(str(item.get(field_name) or "unknown") == required for item in expectations):
+                    if required != "unknown" or expectations:
+                        return False
+            required_identity = filters.get("expectation_identity")
+            if required_identity and not any(
+                str(item.get("identity_id") or "").strip() == required_identity for item in expectations
+            ):
+                return False
+            experience = row.get("advertised_experience") or {}
+            experience_values = experience.get("value") or [] if isinstance(experience, dict) else []
+            experience_status = str(experience.get("status") or "unknown") if isinstance(experience, dict) else "unknown"
+            if filters.get("experience_status") and experience_status != filters["experience_status"]:
+                return False
+            experience_filter = filters.get("experience", "").casefold()
+            if experience_filter and not any(experience_filter in str(value).casefold() for value in experience_values):
+                return False
+            context_name = filters.get("context_dimension")
+            context = (row.get("context_dimensions") or {}).get(context_name) if context_name else None
+            if context_name and context_name not in FACET_DIMENSIONS:
+                return False
+            if context_name and filters.get("context_status"):
+                status = str(context.get("status") or "unknown") if isinstance(context, dict) else "unknown"
+                if status != filters["context_status"]:
+                    return False
+            context_value = filters.get("context_value", "").casefold()
+            if context_value and (
+                not isinstance(context, dict)
+                or context.get("status") != "present"
+                or context_value not in str(context.get("value") or "").casefold()
+            ):
+                return False
+            if tokens:
+                reason = row.get("responsibility_evidence") or {}
+                parts = [
+                    str(row.get("title") or ""), str(row.get("employer") or ""), str(row.get("location") or ""),
+                    str(row.get("excerpt") or ""), str(row.get("work_level_reason") or ""),
+                    str(reason.get("reason") or "") if isinstance(reason, dict) else "",
+                    *(str(value) for value in experience_values),
+                    *(str(item.get("source_wording") or "") for item in expectations),
+                    *(
+                        str((row.get("context_dimensions") or {}).get(field, {}).get("value") or "")
+                        for field in FACET_DIMENSIONS
+                    ),
+                ]
+                haystack = " ".join(parts).casefold()
+                if not all(token in haystack for token in tokens):
+                    return False
+            return True
+
+        selected = [row for row in postings if matches(row)]
+        selected.sort(
+            key=lambda row: (
+                str(row.get("employer") or "").casefold(),
+                str(row.get("title") or "").casefold(),
+                str(row.get("id") or ""),
+            )
+        )
+        return {
+            "status": "ok",
+            "release_id": release.release_id,
+            "occupation": occupation,
+            "filters": filters,
+            "query": query,
+            "count": len(selected),
+            "rows": [self._posting_bundle(row, release) for row in selected[: max(1, min(int(limit), 200))]],
+            "facets": {key: dict(sorted(values.items())) for key, values in sorted(facets.items())},
+            "expectation_identities": [
+                {
+                    **{
+                        key: sorted(value) if isinstance(value, set) else value
+                        for key, value in record.items()
+                    },
+                    "basis_counts": dict(sorted(record["basis_counts"].items())),
+                }
+                for _, record in sorted(
+                    identity_records.items(),
+                    key=lambda item: (
+                        min(item[1]["dimensions"]) if item[1]["dimensions"] else "",
+                        min(item[1]["source_wordings"]) if item[1]["source_wordings"] else item[0],
+                        item[0],
+                    ),
+                )
+            ],
+            "sample_note": "Counts are from the admitted sample, not percentages, market prevalence, proficiency, or importance.",
+        }
+
+    def search(self, query: str, occupation: str | None = None, limit: int = 20, release_id: str | None = None) -> dict[str, Any]:
+        """Deterministic global search over stored claims and admitted postings."""
+
+        clean_query = re.sub(r"\s+", " ", str(query or "")).strip()
+        if not clean_query:
+            return {"status": "invalid_query", "query": "", "results": [], "count": 0}
+        limit = max(1, min(int(limit), 100))
+        claim_result = self.query(clean_query, occupation, limit=limit, release_id=release_id)
+        posting_result = self.refine(
+            occupation=occupation, query=clean_query, limit=limit, release_id=release_id
+        )
+        results = [{"kind": "claim", **claim} for claim in claim_result.get("claims", [])]
+        results.extend({"kind": "posting", **row} for row in posting_result.get("rows", []))
+        return {
+            "status": "ok" if results else posting_result.get("status", claim_result.get("status", "no_hits")),
+            "query": clean_query,
+            "occupation": occupation,
+            "release_id": claim_result.get("release_id"),
+            "count": len(results),
+            "results": results[:limit],
+            "handoff": claim_result.get("handoff") if not results else None,
+            "sample_note": "Search locates stored evidence; it does not run inference or assert market prevalence.",
+        }
+
+    def compare(self, occupations: list[str], release_id: str | None = None) -> dict[str, Any]:
+        """Compare sample counts and explicit source-literal identities without semantic merging."""
+
+        release = self.release(release_id)
+        if release is None:
+            return {"status": "no_release", "release_id": None, "roles": []}
+        slugs = list(dict.fromkeys(str(slug) for slug in occupations if slug))
+        if not 2 <= len(slugs) <= 4:
+            return {"status": "invalid_selection", "detail": "select two to four distinct registered roles"}
+        role_rows = self.list_occupations(release.release_id)["occupations"]
+        by_slug = {str(row["slug"]): row for row in role_rows}
+        unknown = [slug for slug in slugs if slug not in by_slug]
+        if unknown:
+            return {"status": "unknown_occupation", "occupations": unknown, "known_occupations": sorted(by_slug)}
+        roles = []
+        for slug in slugs:
+            role = by_slug[slug]
+            summary = self.refine(occupation=slug, limit=1, release_id=release.release_id)
+            stats = role.get("stats") or {}
+            roles.append(
+                {
+                    **role,
+                    "postings_admitted": stats.get("postings_dedup"),
+                    "employers_admitted": stats.get("employers_dedup"),
+                    "facets": summary.get("facets") or {},
+                    "expectation_identities": summary.get("expectation_identities") or [],
+                    "published_findings": int((role.get("counts") or {}).get("claims") or 0),
+                }
+            )
+        return {
+            "status": "ok",
+            "release_id": release.release_id,
+            "roles": roles,
+            "note": "Compare admitted counts, explicit exact-source-label identities, and observed dimensions; no synonym or semantic equivalence, coverage percentages, or individual fit scores.",
+        }
 
     def occupation(self, slug: str, release_id: str | None = None) -> dict[str, Any]:
         release = self.release(release_id)
         if release is None:
-            return {"status": "no_release", "occupation": slug, "detail": "No validated release is published yet."}
+            profile = next((row for row in REGISTERED_ROLES if str(row["slug"]) == slug), None)
+            if profile is None:
+                return {"status": "no_release", "occupation": slug, "detail": "No validated release is published yet."}
+            return {
+                "status": "pilot_only" if profile.get("provisional") else "no_release",
+                "release_id": None,
+                "occupation": profile,
+                "component_refs": [],
+                "detail": "This registration is not a published finding; no current validated release is available.",
+            }
         occ = release.occupation_by_slug().get(slug)
         if occ is None:
+            profile = next((row for row in REGISTERED_ROLES if str(row["slug"]) == slug), None)
+            if profile:
+                return {
+                    "status": "pilot_only" if profile.get("provisional") else "not_in_current_release",
+                    "release_id": release.release_id,
+                    "occupation": profile,
+                    "component_refs": [],
+                    "detail": "No admitted findings for this registered role are present in the current release.",
+                }
             return {
                 "status": "unknown_occupation",
                 "occupation": slug,
@@ -353,12 +1013,15 @@ class CatalogStore:
                     "claim_type": str(claim.get("claim_type") or ""),
                     "variant": claim.get("variant"),
                     "quote": claim.get("quote"),
+                    "expectation_dimension": claim.get("expectation_dimension") or "unknown",
+                    "evidence_basis": claim.get("evidence_basis") or "unknown",
                     "source_ids": [str(s) for s in (claim.get("source_ids") or [])],
                     "confidence": str(claim.get("confidence") or ""),
                     "evidence": claim.get("evidence") or {},
                     "agent_run_id": str(claim.get("agent_run_id") or ""),
                     "asserted_at": str(claim.get("asserted_at") or ""),
                     "citation_url": self.citation_url(str(claim.get("id"))),
+                    "release_id": release.release_id,
                 }
                 for claim in claim_rows
             ]
@@ -384,9 +1047,35 @@ class CatalogStore:
             }
             for req in requirements
         ]
+        expectation_sections = {}
+        for section, basis in (
+            ("employer_required", "employer_requirement"),
+            ("employer_preferred", "employer_preference"),
+            ("emerging_practice", "emergent_signal"),
+            ("legal_credentials", "legal_requirement"),
+        ):
+            observations = [
+                {
+                    **expectation,
+                    "posting_id": posting.get("id") or posting.get("dedup_key"),
+                    "employer": posting.get("employer"),
+                    "variant": posting.get("variant"),
+                    "source_url": posting.get("url") or sources.get(str(posting.get("source_id") or ""), {}).get("url"),
+                }
+                for posting in postings
+                for expectation in posting.get("expectations") or []
+                if expectation.get("basis") == basis
+                and (section != "legal_credentials" or expectation.get("dimension") == "credential")
+            ]
+            expectation_sections[section] = {
+                "status": "present" if observations else "unavailable",
+                "observations": observations,
+                "limitation": "Source-literal observations, not normalized cross-role equivalence. A credential requirement alone is not a legal credential.",
+            }
         return {
             "status": "ok",
             "release_id": release.release_id,
+            "component_refs": self.component_references(slug, release.release_id),
             "occupation": {
                 "slug": slug,
                 "label": str(occ.get("label")),
@@ -394,9 +1083,15 @@ class CatalogStore:
                 "aliases": occ.get("aliases") or [],
                 "role_scope": occ.get("role_scope") or {},
                 "stats": occ.get("stats") or {},
-                "growth_variants": occ.get("growth_variants") or [],
+                "coverage": occ.get("coverage"),
                 "sampling_note": str(occ.get("sampling_note") or ""),
                 "sampled_at": str(occ.get("sampled_at") or ""),
+                "provisional": occ.get("provisional") is True,
+                "registration_status": occ.get("registration_status", "published_role"),
+                "human_review_status": occ.get("human_review_status"),
+                "publication_status": occ.get("publication_status", "published"),
+                "official_anchor": occ.get("official_anchor"),
+                "alias_decisions": occ.get("alias_decisions") or [],
             },
             "foundations": {
                 "claims": claim_docs(foundation_claims),
@@ -410,23 +1105,13 @@ class CatalogStore:
                     for employer, count in sorted(employers.items(), key=lambda item: (-item[1], item[0]))
                 ],
                 "sample_postings": [
-                    {
-                        "posting_id": str(posting.get("id") or posting.get("dedup_key")),
-                        "employer": str(posting.get("employer") or ""),
-                        "title": str(posting.get("title") or ""),
-                        "location": str(posting.get("location") or ""),
-                        "variant": posting.get("variant"),
-                        "seniority": str(posting.get("seniority") or ""),
-                        "url": str(posting.get("url") or ""),
-                        "posted_at": str(posting.get("posted_at") or ""),
-                        "skills": [str(s) for s in (posting.get("skills") or [])],
-                        "source_id": str(posting.get("source_id") or ""),
-                    }
+                    self._posting_bundle(posting, release)
                     for posting in sorted(postings, key=lambda p: str(p.get("employer") or ""))[:40]
                 ],
                 "sources": source_docs(demand_claims),
             },
             "scope_claims": claim_docs(scope_claims),
+            "expectation_sections": expectation_sections,
             "learning_priorities": learning,
             "claims": claim_docs(claims),
             "lineage": self.evidence("lineage", slug, release_id=release.release_id).get("rows", []),
@@ -653,9 +1338,12 @@ class CatalogStore:
                 "serialized_calls",
             )},
             "operator_command": (
-                "env PYTHONPATH=src python3 -m skills_vector market research run "
-                f"--occupation {occupation or '<slug>'} --question-file <plan.json> --overlay <runtime-overlay.yml>"
+                "uv run skills-vector market research run "
+                "--config <operator-config.json> "
+                f"--occupation {occupation or '<registered-role-slug>'} "
+                "--evidence-root <external-evidence-root>"
             ),
+            "operator_command_note": "Local only; requires the externally approved provider config and reserved mission budget. This handoff does not execute research.",
             "plan_url": self._url("/api/research-plan?q=" + re.sub(r"[^A-Za-z0-9 ]", "", q).strip().replace(" ", "+")
                                   + (f"&occupation={occupation}" if occupation else "")),
         }
@@ -826,20 +1514,7 @@ class CatalogStore:
                     continue
                 rows.append(
                     {
-                        "posting_id": str(posting.get("id") or posting.get("dedup_key")),
-                        "occupation_slug": str(posting.get("occupation_slug")),
-                        "variant": posting.get("variant"),
-                        "employer": str(posting.get("employer") or ""),
-                        "title": str(posting.get("title") or ""),
-                        "location": str(posting.get("location") or ""),
-                        "seniority": str(posting.get("seniority") or ""),
-                        "work_level": str(posting.get("work_level") or ""),
-                        "work_level_reason": str(posting.get("work_level_reason") or ""),
-                        "people_management_quote": str(posting.get("people_management_quote") or ""),
-                        "url": str(posting.get("url") or ""),
-                        "posted_at": str(posting.get("posted_at") or ""),
-                        "source_id": str(posting.get("source_id") or ""),
-                        "skills": [str(s) for s in (posting.get("skills") or [])],
+                        **self._posting_bundle(posting, release),
                         "admission_reason": str(posting.get("admission_reason") or ""),
                         "dedup_key": str(posting.get("dedup_key") or ""),
                     }

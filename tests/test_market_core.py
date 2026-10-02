@@ -15,7 +15,7 @@ from market_support import build_slice, default_claim_id, make_candidate, publis
 from skills_vector.market.api import handle_request  # noqa: E402
 from skills_vector.market.core import CatalogStore  # noqa: E402
 from skills_vector.market.publish import PublishError, publish_release  # noqa: E402
-from skills_vector.market.release import sha256_text, validate_release  # noqa: E402
+from skills_vector.market.release import expectation_relationship_id, sha256_text, source_literal_identity, validate_release  # noqa: E402
 
 
 class MarketCoreTests(unittest.TestCase):
@@ -41,12 +41,41 @@ class MarketCoreTests(unittest.TestCase):
         (empty / "current.json").write_text(json.dumps({"schema_version": 1, "current": None, "releases": []}), encoding="utf-8")
         store = CatalogStore(empty)
         self.assertEqual(store.release_info()["status"], "no_release")
-        self.assertEqual(store.list_occupations()["occupations"], [])
+        occupations = store.list_occupations()["occupations"]
+        self.assertEqual([row["slug"] for row in occupations], [
+            "hr-generalist", "growth-manager", "account-executive", "forward-deployed-engineer"
+        ])
+        self.assertEqual(occupations[-1]["status"], "pilot_only")
+        self.assertEqual(occupations[-1]["counts"]["claims"], 0)
         answer = store.query("onboarding")
         self.assertEqual(answer["status"], "insufficient_evidence")
         self.assertIsNone(answer["answer"])
         self.assertTrue(answer["handoff"]["local_only"])
         self.assertFalse(answer["handoff"]["mutates_public_state"])
+
+    def test_release_info_pins_publication_policy_and_preserves_legacy_unknown(self) -> None:
+        historical = self.store.release()
+        self.assertIsNotNone(historical)
+        historical_id = historical.release_id
+
+        next_slice = build_slice(
+            Path(self._tmp.name) / "slice-b",
+            run_id="run_test_0002",
+            occupation="growth-manager",
+        )
+        publish_test_release(self.root, next_slice)
+        current_id = self.store.current_release_id()
+        self.assertNotEqual(current_id, historical_id)
+
+        policy = {"mode": "automatic", "human_reviewed": False}
+        manifest_path = self.root / "releases" / str(current_id) / "manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["publication_policy"] = policy
+        manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+        store = CatalogStore(self.root)
+        self.assertEqual(store.release_info(str(current_id))["publication_policy"], policy)
+        self.assertIsNone(store.release_info(historical_id)["publication_policy"])
 
     def test_query_supported_insufficient_unsupported(self) -> None:
         cited = self.store.query("onboarding")
@@ -69,6 +98,123 @@ class MarketCoreTests(unittest.TestCase):
         self.assertEqual(role_bundle["status"], "ok")
         self.assertEqual(role_bundle["demand"]["employers"][0]["employer"], "Testco")
 
+    def test_registered_roles_and_comparison_never_promote_unpublished_fde(self) -> None:
+        occupations = self.store.list_occupations()["occupations"]
+        self.assertEqual(
+            {row["slug"] for row in occupations},
+            {"hr-generalist", "growth-manager", "account-executive", "forward-deployed-engineer"},
+        )
+        fde = self.store.occupation("forward-deployed-engineer")
+        self.assertEqual(fde["status"], "pilot_only")
+        self.assertEqual(fde["occupation"]["official_anchor"]["status"], "partial_taxonomy_anchor_only")
+
+        comparison = self.store.compare(["hr-generalist", "forward-deployed-engineer"])
+        self.assertEqual(comparison["status"], "ok")
+        compared_fde = next(row for row in comparison["roles"] if row["slug"] == "forward-deployed-engineer")
+        self.assertEqual(compared_fde["status"], "pilot_only")
+        self.assertIsNone(compared_fde["postings_admitted"])
+        self.assertEqual(compared_fde["facets"], {})
+        self.assertEqual(compared_fde["published_findings"], 0)
+        self.assertNotIn("coverage_percent", comparison)
+
+        search = self.store.search("onboarding")
+        self.assertEqual(search["status"], "ok")
+        self.assertIn("claim", {row["kind"] for row in search["results"]})
+
+    def test_refine_keeps_source_literal_identity_separate_from_edges_and_basis(self) -> None:
+        release = self.store.release()
+        self.assertIsNotNone(release)
+        posting = release.postings[0]
+        source_id = str(posting["source_id"])
+        source_sha256 = release.source_by_id()[source_id]["sha256"]
+        shared_wording = "Independently own end-to-end onboarding workflows"
+        distinct_wording = "experience with HRIS records"
+
+        def expectation(dimension: str, basis: str, wording: str) -> dict[str, str | None]:
+            normalized = " ".join(wording.split()).casefold()
+            expectation_id = "exp_" + sha256_text(
+                f"expectation/2|{dimension}|{basis}|{normalized}"
+            )[:20]
+            return {
+                "expectation_id": expectation_id,
+                "identity_id": source_literal_identity(dimension, wording),
+                "identity_method": "source-literal-identity/1",
+                "kind": dimension,
+                "relationship_id": expectation_relationship_id(
+                    "hr-generalist", str(posting["dedup_key"]), source_id, expectation_id,
+                ),
+                "relationship_method": "posting-source-expectation/1",
+                "source_wording": wording,
+                "normalized_label": normalized,
+                "dimension": dimension,
+                "basis": basis,
+                "proficiency": "not_stated",
+                "proficiency_quote": None,
+                "mapping_method": "exact-normalized-label/2",
+                "source_id": source_id,
+                "source_sha256": source_sha256,
+            }
+
+        required = expectation("task", "employer_requirement", shared_wording)
+        preferred = expectation("task", "employer_preference", shared_wording)
+        different = expectation("knowledge", "employer_requirement", distinct_wording)
+        posting["expectations"] = [required, preferred, different]
+
+        refined = self.store.refine(
+            occupation="hr-generalist",
+            filters={"expectation_identity": required["identity_id"]},
+        )
+        self.assertEqual(refined["count"], 1)
+        self.assertEqual(refined["facets"]["expectation_identity"][required["identity_id"]], 1)
+        identities = {row["identity_id"]: row for row in refined["expectation_identities"]}
+        shared = identities[required["identity_id"]]
+        self.assertEqual(shared["postings_in_sample"], 1)
+        self.assertEqual(shared["basis_counts"], {"employer_preference": 1, "employer_requirement": 1})
+        self.assertEqual(set(shared["expectation_ids"]), {required["expectation_id"], preferred["expectation_id"]})
+        self.assertEqual(set(shared["relationship_ids"]), {required["relationship_id"], preferred["relationship_id"]})
+        self.assertEqual(
+            {row["basis"] for row in shared["observations"]},
+            {"employer_preference", "employer_requirement"},
+        )
+        self.assertTrue(
+            all(row["context_dimensions"]["employer_industry"]["value"] == "manufacturing" for row in shared["observations"])
+        )
+        self.assertEqual(
+            identities[different["identity_id"]]["source_wordings"],
+            [distinct_wording],
+        )
+        self.assertEqual(
+            {row["relationship_id"] for row in refined["rows"][0]["expectations"]},
+            {required["relationship_id"], preferred["relationship_id"], different["relationship_id"]},
+        )
+        comparison = self.store.compare(["hr-generalist", "forward-deployed-engineer"])
+        hr = next(row for row in comparison["roles"] if row["slug"] == "hr-generalist")
+        fde = next(row for row in comparison["roles"] if row["slug"] == "forward-deployed-engineer")
+        self.assertEqual(
+            {row["identity_id"] for row in hr["expectation_identities"]},
+            {required["identity_id"], different["identity_id"]},
+        )
+        self.assertEqual(fde["expectation_identities"], [])
+
+    def test_management_band_filter_is_recognized_without_inferring_management(self) -> None:
+        management = handle_request(
+            "GET",
+            "/api/refine?occupation=hr-generalist&work_level=individual_contributor&responsibility_band=people_management",
+            store=self.store,
+        )
+        self.assertEqual(management.status, 200)
+        management_payload = json.loads(management.body)
+        self.assertEqual(management_payload["filters"]["responsibility_band"], "people_management")
+        self.assertEqual(management_payload["count"], 0)
+
+        independent = handle_request(
+            "GET",
+            "/api/refine?occupation=hr-generalist&work_level=individual_contributor&responsibility_band=independent_ic",
+            store=self.store,
+        )
+        self.assertEqual(independent.status, 200)
+        self.assertEqual(json.loads(independent.body)["count"], 1)
+
     def test_claim_and_citation_resolution(self) -> None:
         claim_id = default_claim_id()
         claim = self.store.claim(claim_id)
@@ -79,6 +225,32 @@ class MarketCoreTests(unittest.TestCase):
         self.assertEqual(citation["claim_id"], claim_id)
         self.assertEqual(citation["statement"], claim["statement"])
         self.assertEqual(citation["citation_path"], f"/release/citations/{claim_id}.json")
+
+    def test_component_counts_unknowns_and_history_remain_reconstructable(self) -> None:
+        first_release = self.publish_result["release_id"]
+        ref = next(
+            row for row in self.store.occupation("hr-generalist")["component_refs"]
+            if row["measure"] == "responsibility_band_distribution"
+        )
+        before = self.store.get_component(ref["component_id"], first_release)
+        self.assertEqual(before["denominator"], 1)
+        self.assertEqual(before["rows"][0]["value"], "independent_ic")
+        self.assertEqual(before["rows"][0]["numerator"], 1)
+        self.assertEqual(before["observations"][0]["source"]["url"], "https://boards-api.greenhouse.io/v1/boards/testco/jobs?content=true#1")
+
+        slice_b = build_slice(Path(self._tmp.name) / "component-update", run_id="run_component_2")
+        second = publish_test_release(self.root, slice_b)
+        self.assertEqual(self.store.get_component(ref["component_id"], first_release), before)
+        release = self.store.release(second["release_id"])
+        release.postings[0]["responsibility_band"] = "unknown"
+        after = self.store.get_component(ref["component_id"])
+        self.assertEqual(after["release_id"], second["release_id"])
+        self.assertEqual(after["rows"][0]["value"], "unknown")
+        self.assertEqual(after["rows"][0]["status"], "unknown")
+        self.assertEqual(sum(row["numerator"] for row in after["rows"]), after["denominator"])
+        self.assertEqual(after["denominator"], len(after["observations"]))
+        self.assertEqual(self.store.get_component(ref["component_id"], first_release), before)
+        self.assertEqual(self.store.get_component("cmp_" + "0" * 20)["status"], "unknown_component")
 
     # -- citations/immutability -----------------------------------------
 
@@ -104,6 +276,40 @@ class MarketCoreTests(unittest.TestCase):
         citation_after = self.store.citation(claim_id)
         self.assertEqual(citation_after["claim_id"], claim_id)
         self.assertEqual(json.dumps(citation_after["sources"], sort_keys=True), json.dumps(json.loads(first_bytes)["sources"], sort_keys=True))
+
+    def test_changes_artifact_tracks_pinned_publication_delta_and_idempotence(self) -> None:
+        first_id = self.publish_result["release_id"]
+        first_path = self.root / "releases" / first_id / "changes.json"
+        first_bytes = first_path.read_bytes()
+        first = json.loads(first_bytes)
+        self.assertEqual(first["schema_version"], "market-release-changes/1")
+        self.assertEqual(first["release_id"], first_id)
+        self.assertIsNone(first["previous_release_id"])
+        self.assertEqual(first["changes"]["claims"]["added"], [default_claim_id()])
+
+        second_slice = build_slice(
+            Path(self._tmp.name) / "slice-b",
+            run_id="run_test_0002",
+            claim_statement="A second release adds a distinct foundation claim for lifecycle support.",
+            claim_quote="coordinate onboarding and offboarding",
+        )
+        second = publish_test_release(self.root, second_slice)
+        second_id = second["release_id"]
+        second_path = self.root / "releases" / second_id / "changes.json"
+        second = json.loads(second_path.read_text(encoding="utf-8"))
+        next_claim_id = json.loads((Path(self._tmp.name) / "slice-b" / "claims.json").read_text(encoding="utf-8"))[0]["id"]
+        self.assertEqual(second["previous_release_id"], first_id)
+        self.assertEqual(second["changes"]["claims"]["added"], [next_claim_id])
+        self.assertEqual(second["changes"]["claims"]["removed"], [default_claim_id()])
+        self.assertEqual(second["changes"]["claims"]["counts"], {"added": 1, "removed": 1, "updated": 0})
+        self.assertEqual(second["changes"]["postings"]["counts"], {"added": 0, "removed": 0, "updated": 0})
+        self.assertEqual(second["changes"]["sources"]["counts"], {"added": 0, "removed": 0, "updated": 0})
+        self.assertEqual(first_path.read_bytes(), first_bytes)
+
+        second_bytes = second_path.read_bytes()
+        repeated = publish_test_release(self.root, second_slice)
+        self.assertEqual(repeated["release_id"], second_id)
+        self.assertEqual(second_path.read_bytes(), second_bytes)
 
     def test_republishing_identical_content_preserves_release_and_citation(self) -> None:
         citation_path = self.root / "citations" / f"{default_claim_id()}.json"
@@ -239,6 +445,50 @@ class MarketCoreTests(unittest.TestCase):
                     publish_release(self.root, candidate)
                 self.assertEqual((self.root / "current.json").read_bytes(), pointer_before)
 
+
+    def test_validator_rejects_source_contradicted_manager_even_with_matching_counts(self) -> None:
+        slice_dir = build_slice(Path(self._tmp.name) / "slice-contradicted-manager")
+        postings_path = slice_dir / "postings.json"
+        postings = json.loads(postings_path.read_text(encoding="utf-8"))
+        posting = postings[0]
+        quote = "individual contributor role with no direct reports"
+        posting["work_level"] = "people_manager"
+        posting["work_level_reason"] = "Contradictory classifier label for a source passage that says no direct reports."
+        posting["work_level_evidence"] = {
+            **posting["work_level_evidence"],
+            "quote": quote,
+            "reason": "Deliberately contradicted by the exact source wording.",
+        }
+        posting["people_management_quote"] = quote
+        posting["responsibility_band"] = "people_management"
+        posting["responsibility_evidence"] = {
+            **posting["responsibility_evidence"],
+            "quote": quote,
+            "reason": "Deliberately contradicted by the exact source wording.",
+        }
+        postings_path.write_text(json.dumps(postings), encoding="utf-8")
+
+        occupations_path = slice_dir / "occupations.json"
+        occupations = json.loads(occupations_path.read_text(encoding="utf-8"))
+        occupations[0]["stats"]["work_level_counts"] = {"people_manager": 1}
+        occupations[0]["stats"]["responsibility_band_counts"] = {"people_management": 1}
+        occupations_path.write_text(json.dumps(occupations), encoding="utf-8")
+
+        candidate = make_candidate(slice_dir, Path(self._tmp.name) / "work-contradicted-manager")
+        problems = validate_release(candidate)
+        self.assertTrue(
+            any("people-manager posting lacks explicit direct-report wording" in problem for problem in problems),
+            problems,
+        )
+        self.assertTrue(
+            any("classified responsibility band lacks a verified source-extract quote" in problem for problem in problems),
+            problems,
+        )
+        self.assertFalse(
+            any("stats.work_level_counts" in problem or "stats.responsibility_band_counts" in problem for problem in problems),
+            problems,
+        )
+
     def test_excluded_source_cannot_supply_admitted_postings(self) -> None:
         pointer_before = (self.root / "current.json").read_bytes()
         slice_dir = build_slice(Path(self._tmp.name) / "slice-excluded-source")
@@ -255,19 +505,6 @@ class MarketCoreTests(unittest.TestCase):
             publish_release(self.root, candidate)
         self.assertEqual((self.root / "current.json").read_bytes(), pointer_before)
 
-    def test_growth_variant_separation_required(self) -> None:
-        growth = build_slice(Path(self._tmp.name) / "slice-growth", occupation="growth-manager", label="Growth Manager")
-        postings_path = growth / "postings.json"
-        postings = json.loads(postings_path.read_text(encoding="utf-8"))
-        postings[0]["variant"] = "product-growth"
-        postings_path.write_text(json.dumps(postings), encoding="utf-8")
-        occupations_path = growth / "occupations.json"
-        occupations = json.loads(occupations_path.read_text(encoding="utf-8"))
-        occupations[0]["growth_variants"] = ["product-growth", "growth-marketing", "sales-account-executive"]
-        occupations_path.write_text(json.dumps(occupations), encoding="utf-8")
-        problems = validate_release(make_candidate(growth, Path(self._tmp.name) / "work-growth"))
-        missing = [problem for problem in problems if "no postings rows" in problem]
-        self.assertEqual(len(missing), 2, problems)
 
     # -- API router bounds ----------------------------------------------
 

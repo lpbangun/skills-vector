@@ -15,7 +15,16 @@ from pathlib import Path
 from typing import Any, Callable
 from urllib.parse import parse_qs, urlsplit
 
-from .core import INSPECTOR_SECTIONS, CatalogStore
+from .core import (
+    EXPECTATION_BASIS_VALUES,
+    EXPECTATION_DIMENSION_VALUES,
+    EXPECTATION_PROFICIENCY_VALUES,
+    FACET_DIMENSIONS,
+    INSPECTOR_SECTIONS,
+    RESPONSIBILITY_BAND_VALUES,
+    WORK_LEVEL_VALUES,
+    CatalogStore,
+)
 from .guide import agent_guide_markdown, api_schema
 
 MAX_QUERY_LENGTH = 400
@@ -109,6 +118,8 @@ def handle_request(
     route = path[len("/api") :] or "/"
     if route == "/health":
         return _json(200, catalog.health())
+    if route == "/brief":
+        return _json(200, catalog.brief(release_id=_one(params, "release")))
     if route == "/schema":
         return _json(200, api_schema(base_url=base_url))
     if route == "/agent-guide":
@@ -123,7 +134,81 @@ def handle_request(
         if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", slug):
             return _error(400, "invalid_request", "slug must be a lowercase occupation slug")
         payload = catalog.occupation(slug, release_id=_one(params, "release"))
-        status = 200 if payload.get("status") == "ok" else 404
+        status = 404 if payload.get("status") == "unknown_occupation" else 200
+        return _json(status, payload)
+    if route == "/component":
+        component_id = _one(params, "id") or ""
+        if not re.fullmatch(r"cmp_[a-f0-9]{20}", component_id):
+            return _error(400, "invalid_request", "id must be a stable component id")
+        release_id = _one(params, "release")
+        if release_id and not re.fullmatch(r"[A-Za-z0-9._-]{1,80}", release_id):
+            return _error(400, "invalid_request", "release must be an immutable release id")
+        payload = catalog.get_component(component_id, release_id=release_id)
+        return _json(404 if payload.get("status") == "unknown_component" else 200, payload)
+    if route == "/search":
+        raw_query = _one(params, "q") or ""
+        if len(raw_query) > MAX_QUERY_LENGTH:
+            return _error(400, "invalid_request", f"q exceeds {MAX_QUERY_LENGTH} characters")
+        if not raw_query.strip():
+            return _error(400, "invalid_request", "q is required")
+        occupation = _one(params, "occupation")
+        if occupation is not None and not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", occupation):
+            return _error(400, "invalid_request", "occupation must be a lowercase occupation slug")
+        limit = _bounded_int(params, "limit", 20, 100)
+        if limit is None:
+            return _error(400, "invalid_request", "limit must be an integer between 1 and 100")
+        return _json(200, catalog.search(raw_query, occupation, limit, _one(params, "release")))
+    if route == "/refine":
+        occupation = _one(params, "occupation")
+        if occupation is not None and not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", occupation):
+            return _error(400, "invalid_request", "occupation must be a lowercase occupation slug")
+        raw_query = _one(params, "q") or ""
+        if len(raw_query) > MAX_QUERY_LENGTH:
+            return _error(400, "invalid_request", f"q exceeds {MAX_QUERY_LENGTH} characters")
+        limit = _bounded_int(params, "limit", 50, MAX_LIMIT)
+        if limit is None:
+            return _error(400, "invalid_request", f"limit must be an integer between 1 and {MAX_LIMIT}")
+        allowed = {
+            "work_level": WORK_LEVEL_VALUES,
+            "responsibility_band": RESPONSIBILITY_BAND_VALUES,
+            "expectation_dimension": EXPECTATION_DIMENSION_VALUES,
+            "expectation_basis": EXPECTATION_BASIS_VALUES,
+            "expectation_proficiency": EXPECTATION_PROFICIENCY_VALUES,
+            "experience_status": ("present", "unknown"),
+            "context_dimension": FACET_DIMENSIONS,
+            "context_status": ("present", "unknown"),
+        }
+        filters: dict[str, str] = {}
+        for field_name, values in allowed.items():
+            value = _one(params, field_name)
+            if value:
+                if value not in values:
+                    return _error(400, "invalid_request", f"{field_name} must be one of {list(values)}")
+                filters[field_name] = value
+        for field_name, max_length in (("experience", 100), ("context_value", 100), ("expectation_identity", 160)):
+            value = _one(params, field_name) or ""
+            if len(value) > max_length:
+                return _error(400, "invalid_request", f"{field_name} exceeds {max_length} characters")
+            if value:
+                filters[field_name] = value
+        if filters.get("context_value") and not filters.get("context_dimension"):
+            return _error(400, "invalid_request", "context_value requires context_dimension")
+        return _json(
+            200,
+            catalog.refine(
+                occupation=occupation,
+                filters=filters,
+                query=raw_query,
+                limit=limit,
+                release_id=_one(params, "release"),
+            ),
+        )
+    if route == "/compare":
+        slugs = params.get("occupation") or params.get("slug") or []
+        if not 2 <= len(slugs) <= 4 or any(not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", slug) for slug in slugs):
+            return _error(400, "invalid_request", "compare requires two to four occupation=<slug> values")
+        payload = catalog.compare(slugs, release_id=_one(params, "release"))
+        status = 200 if payload.get("status") == "ok" else 404 if payload.get("status") == "unknown_occupation" else 400
         return _json(status, payload)
     if route == "/query":
         raw_query = _one(params, "q") or ""

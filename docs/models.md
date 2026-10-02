@@ -1,16 +1,46 @@
 # Model and budget notes
 
-Verified 2026-09-20 against DeepInfra public pages. No proprietary fallback.
+Active occupational research is restricted to the authenticated DeepInfra
+endpoint. The operator-owned config pins these exact model IDs by role:
 
-| Role | Pinned id | License | DeepInfra list price (standard) | Structured JSON |
-| --- | --- | --- | --- | --- |
-| extract / map / default challenge | `deepseek-ai/DeepSeek-V4.1-Flash` | MIT | $0.20 / 1M in, $0.60 / 1M out, $0.006 cached | advertised |
-| hard reconciliation / hard challenge (`escalate_hard`) | `zai-org/GLM-5.3` | Z.AI MIT-style; MaaS security review if licensee revenue > $10B | $1.20 / 1M in, $4.00 / 1M out, $0.20 cached | advertised |
+| Runtime role | Exact DeepInfra model ID | Use |
+| --- | --- | --- |
+| `primary` | `deepseek-ai/DeepSeek-V4.1-Flash` | Primary research arm |
+| `challenger` | `zai-org/GLM-5.3-Flash` | Same-corpus challenger arm |
+| `escalation` | `zai-org/GLM-5.3` | Explicitly justified hard-case escalation |
 
-`zai-org/GLM-5.3-Flash` ($0.15 / $0.50) exists and is cheaper, but this repo pins GLM-5.3 only for escalations so the default $10 month stays on DeepSeek-V4.1-Flash.
+There is no OMP market-inference lane, fixture fallback, silent model
+substitution, or inference from public browsing/query/MCP requests. Model
+agreement is not independent corroboration. Both candidate arms use the same
+retrieved evidence; only a fresh independent adjudication can authorize a
+candidate for local publication.
 
-Live HTTP is off until `DEEPINFRA_API_KEY` is set **and** the DeepInfra interpreter is constructed with `live=True`. Budget reservations happen before every call. Exhaustion queues work and leaves the last approved release in place.
+The research config, verified pricing receipt, durable mission budget ledger,
+and run evidence live outside the product worktree. The config pins the
+pricing-receipt SHA-256 and validates exact model identity, standard (not
+promotional) price records, reservation, month, and resource ceilings. Prices
+are therefore read from the verified receipt for that mission rather than
+copied into source code or assumed from a live catalog page. `DEEPINFRA_API_KEY`
+is supplied only through the local process environment; it is never stored in
+the config, product, or deploy bundle.
 
-**Measured spend this slice:** US$0 (offline tests).
+The hard ceilings are 60 retrieval attempts, 12 model calls, 8,192 input
+tokens, 2,048 output tokens, two retries, a 120-second model timeout, and a
+30-minute run. The monthly account cap is at most US$10 and a mission allocation
+at most US$2; each call is reserved before it can be sent. Actual usage and
+remaining holds must be read from the durable ledger and receipts; estimates and
+historical spend are not current accounting.
 
-**Estimated example:** 2k input + 800 output tokens on Flash ≈ US$0.00088 before retries.
+An ambiguous billed attempt is never blindly repeated to recover its result.
+`skills-vector market research reconcile` can settle it only when the exact
+response bytes are retained inside that run and hash-match the attempt receipt.
+Otherwise the unknown amount remains held for explicit provider/accounting
+resolution. Reconciliation performs zero additional provider calls.
+
+Routine refresh is also a local operator command, not an inference service or
+scheduled job. It consumes the same reserved mission, bills every settled
+provider attempt to that ledger, and reconciles the four current run receipts
+against recorded actual usage before any pointer change. A previously
+independently adjudicated aggregate retention record fixes the stage; primary-only
+selection runs no challenger. Automatic refresh is never represented as fresh
+human review, and any current challenger findings remain explicitly unresolved.

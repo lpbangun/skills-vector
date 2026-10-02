@@ -45,8 +45,54 @@ KNOWN_CLAIM_TYPES = ("foundation", "advertised_demand", "scope")
 
 KNOWN_CONFIDENCE = ("bounded", "low", "none")
 
-# Admitted postings must carry a literal individual-contributor scope decision.
-WORK_LEVEL_ADMIT = "individual_contributor"
+VALID_WORK_LEVELS = ("individual_contributor", "people_manager", "unknown")
+VALID_RESPONSIBILITY_BANDS = ("early_career", "independent_ic", "senior_strategic_ic", "people_management", "unknown")
+VALID_EXPECTATION_DIMENSIONS = ("task", "capability", "tool", "knowledge", "experience", "contextual_expectation", "demonstration", "credential", "unknown")
+VALID_EXPECTATION_BASES = ("employer_requirement", "employer_preference", "emergent_signal", "unknown")
+MANAGEMENT_QUOTE_RE = re.compile(
+    r"\b(?:direct reports?|(?:hire|hiring|coach(?:ing)?|evaluat(?:e|ing))\s+(?:your|own)\s*(?:team|staff|employees)|"
+    r"supervis(?:e|ing)\s+(?:a|the|your|own)?\s*(?:team|staff|employees)|"
+    r"manag(?:e|ing)\s+(?:a|the|your|own)?\s*(?:team|staff|employees))\b",
+    re.IGNORECASE,
+)
+IC_QUOTE_RE = re.compile(
+    r"\b(?:individual contributors?|non[- ]manager(?:ial)?|no direct reports?|"
+    r"does not manage (?:a )?team|does not manage people|not a people manager|"
+    r"non[- ]supervisory|IC role)\b",
+    re.IGNORECASE,
+)
+PROFICIENCY_QUOTE_RE = re.compile(
+    r"\b(?:proficient|proficiency|expert|advanced|intermediate|beginner|novice)\b",
+    re.IGNORECASE,
+)
+
+RESPONSIBILITY_SIGNAL_RE = {
+    "early_career": re.compile(r"\b(?:with guidance|under supervision|closely supervised|receive training|be mentored)\b", re.IGNORECASE),
+    "independent_ic": re.compile(r"\b(?:independently|autonomously|without supervision|end.to.end ownership|own(?:s|ed)? the)\b", re.IGNORECASE),
+    "senior_strategic_ic": re.compile(r"\b(?:strategy|strategic|ambiguous|complex|roadmap|architect|influence|lead(?:ing)? cross.functional|drive cross.functional)\b", re.IGNORECASE),
+}
+ADVERTISED_YEARS_RE = re.compile(r"\b(?:\d+\+?\s*(?:[-–]\s*\d+\s*)?years?|years? of experience)\b", re.IGNORECASE)
+
+
+def management_quote_supported(quote: str) -> bool:
+    """Require staff ownership, not recruiting activity or advertised experience."""
+    return bool(
+        quote and not IC_QUOTE_RE.search(quote)
+        and not ADVERTISED_YEARS_RE.search(quote)
+        and MANAGEMENT_QUOTE_RE.search(quote)
+    )
+
+
+def responsibility_quote_supported(band: str, quote: str, work_level: str) -> bool:
+    """Verify a responsibility signal, independently of title and advertised years."""
+    if not quote or ADVERTISED_YEARS_RE.search(quote):
+        return False
+    if band == "people_management":
+        return work_level == "people_manager" and management_quote_supported(quote)
+    if work_level == "people_manager" and band in ("independent_ic", "senior_strategic_ic"):
+        return False
+    signal = RESPONSIBILITY_SIGNAL_RE.get(band)
+    return bool(signal and signal.search(quote))
 
 SUPPORTING_DATASETS = ("exclusions.json", "mappings.json", "disagreements.json", "lineage.json")
 
@@ -61,6 +107,21 @@ def sha256_bytes(payload: bytes) -> str:
 
 def sha256_text(text: str) -> str:
     return sha256_bytes(text.encode("utf-8"))
+
+
+def source_literal_identity(dimension: str, wording: str) -> str:
+    """Identity of a typed exact source mention, never synonym equivalence."""
+    normalized = " ".join(wording.split()).casefold()
+    return "idn_" + sha256_text(f"source-literal-identity/1|{dimension}|{normalized}")[:20]
+
+
+def expectation_relationship_id(
+    occupation: str, posting_id: str, source_id: str, expectation_id: str,
+) -> str:
+    """Version-specific role/posting/source relationship to an expectation."""
+    return "edge_" + sha256_text(
+        f"posting-source-expectation/1|{occupation}|{posting_id}|{source_id}|{expectation_id}"
+    )[:20]
 
 
 def sha256_file(path: Path) -> str:
@@ -212,8 +273,8 @@ def safe_https_url(url: str) -> bool:
 
 
 def _problems_for_role_scope(scope: Any, what: str) -> list[str]:
-    if not isinstance(scope, dict) or not str(scope.get("geography") or "").strip() or not str(scope.get("seniority") or "").strip():
-        return [f"{what}: role_scope needs explicit geography and seniority"]
+    if not isinstance(scope, dict) or not str(scope.get("geography") or "").strip() or not str(scope.get("responsibility_scope") or "").strip():
+        return [f"{what}: role_scope needs explicit geography and responsibility_scope"]
     return []
 
 
@@ -270,7 +331,22 @@ def validate_release(root: Path | str, *, min_postings: dict[str, int] | None = 
                     str(p.get("variant") or "") == variant and str(p.get("occupation_slug") or "") == slug
                     for p in data.postings
                 ):
-                    problems.append(f"occupation {slug}: variant {variant} has no postings rows")
+                    coverage = occ.get("coverage") if isinstance(occ.get("coverage"), dict) else {}
+                    unsupported = coverage.get("unsupported_variants") or {}
+                    record = unsupported.get(variant) if isinstance(unsupported, dict) else None
+                    attempted_ids = {
+                        str(source.get("id")) for source in data.sources if isinstance(source, dict)
+                        and source.get("source_type") == "job-board" and source.get("occupation_slug") == slug
+                    }
+                    recorded_ids = record.get("attempt_source_ids") if isinstance(record, dict) else None
+                    queries = record.get("query_terms") if isinstance(record, dict) else None
+                    if not (
+                        isinstance(record, dict) and record.get("status") == "unavailable"
+                        and isinstance(recorded_ids, list) and recorded_ids
+                        and all(str(value) in attempted_ids for value in recorded_ids)
+                        and isinstance(queries, list) and any(isinstance(value, str) and value.strip() for value in queries)
+                    ):
+                        problems.append(f"occupation {slug}: variant {variant} has no postings rows or recorded attempted unavailable coverage")
         stats = occ.get("stats")
         if not isinstance(stats, dict):
             problems.append(f"occupation {slug}: missing stats")
@@ -329,24 +405,91 @@ def validate_release(root: Path | str, *, min_postings: dict[str, int] | None = 
         if not isinstance(sids, list) or not sids:
             problems.append(f"claim {cid}: no source_ids")
             continue
-        dangling = [s for s in sids if str(s) not in source_ids]
+        dangling = [source_id for source_id in sids if str(source_id) not in source_ids]
         if dangling:
             problems.append(f"claim {cid}: dangling source_ids {dangling}")
-        if str(claim.get("occupation_slug") or "") not in occ_slugs:
+        slug = str(claim.get("occupation_slug") or "")
+        if slug not in occ_slugs:
             problems.append(f"claim {cid}: unknown occupation_slug")
         quote = claim.get("quote")
         if quote is not None:
             if not isinstance(quote, str) or not quote.strip():
                 problems.append(f"claim {cid}: empty quote field")
-            else:
-                verified = any(
-                    quote in extracts_checked.get(str(sid), "") for sid in sids
-                )
-                if not verified:
-                    problems.append(f"claim {cid}: quote not byte-verbatim in any cited source extract")
+            elif not any(quote in extracts_checked.get(str(source_id), "") for source_id in sids):
+                problems.append(f"claim {cid}: quote not byte-verbatim in any cited source extract")
         claim_type = claim.get("claim_type")
         if claim_type is not None and str(claim_type) not in KNOWN_CLAIM_TYPES:
             problems.append(f"claim {cid}: unknown claim_type {claim_type!r}")
+        dimension = claim.get("expectation_dimension")
+        basis = claim.get("evidence_basis")
+        if dimension is not None and dimension not in VALID_EXPECTATION_DIMENSIONS:
+            problems.append(f"claim {cid}: invalid expectation_dimension {dimension!r}")
+        if claim_type == "foundation" and basis not in (None, "official_foundation"):
+            problems.append(f"claim {cid}: foundation evidence_basis must be official_foundation")
+        if claim_type == "advertised_demand" and basis is not None and basis not in VALID_EXPECTATION_BASES:
+            problems.append(f"claim {cid}: invalid advertised evidence_basis {basis!r}")
+        expectation_ids = claim.get("expectation_ids")
+        if expectation_ids is not None:
+            if not isinstance(expectation_ids, list) or len(expectation_ids) != len(set(map(str, expectation_ids))):
+                problems.append(f"claim {cid}: expectation_ids must be a unique array")
+                expectation_ids = []
+            known_expectation_ids = {
+                str(expected.get("expectation_id"))
+                for posting in data.postings
+                if str(posting.get("occupation_slug") or "") == slug
+                for expected in (posting.get("expectations") or [])
+                if isinstance(expected, dict)
+            }
+            if any(str(value) not in known_expectation_ids for value in expectation_ids):
+                problems.append(f"claim {cid}: expectation_ids reference rows outside this role's admitted sample")
+            evidence = claim.get("evidence") if isinstance(claim.get("evidence"), dict) else {}
+            evidence_ids = evidence.get("expectation_ids")
+            if evidence_ids is not None:
+                if not isinstance(evidence_ids, list):
+                    problems.append(f"claim {cid}: evidence expectation_ids must be an array")
+                elif set(map(str, evidence_ids)) != set(map(str, expectation_ids)):
+                    problems.append(f"claim {cid}: expectation id lineage differs between claim and evidence")
+        evidence = claim.get("evidence") if isinstance(claim.get("evidence"), dict) else {}
+        posting_ids = evidence.get("posting_ids")
+        if posting_ids is not None:
+            if not isinstance(posting_ids, list) or len(posting_ids) != len(set(map(str, posting_ids))):
+                problems.append(f"claim {cid}: evidence posting_ids must be a unique array")
+                continue
+            role_rows = [
+                posting for posting in data.postings
+                if str(posting.get("occupation_slug") or "") == slug
+            ]
+            variant = str(claim.get("variant") or "")
+            if slug == "growth-manager" and variant:
+                population = [posting for posting in role_rows if str(posting.get("variant") or "") == variant]
+            else:
+                population = role_rows
+                if slug == "growth-manager" and claim_type == "advertised_demand":
+                    problems.append(f"claim {cid}: growth demand claim must identify exactly one variant")
+            population_by_key = {
+                str(posting.get("dedup_key") or posting.get("url") or ""): posting for posting in population
+            }
+            matched = [population_by_key[str(value)] for value in posting_ids if str(value) in population_by_key]
+            if len(matched) != len(posting_ids):
+                problems.append(f"claim {cid}: evidence posting_ids fall outside its role/variant sample")
+            actual_employer_ids = sorted({str(posting.get("employer") or "") for posting in matched})
+            actual_sources = {str(posting.get("source_id") or "") for posting in matched}
+            if not actual_sources.issubset(set(map(str, sids))):
+                problems.append(f"claim {cid}: a counted posting's source is absent from source_ids")
+            employer_ids = evidence.get("employer_ids")
+            if employer_ids is not None:
+                if not isinstance(employer_ids, list) or sorted(map(str, employer_ids)) != actual_employer_ids:
+                    problems.append(f"claim {cid}: evidence employer_ids do not match counted postings")
+            expected_counts = {
+                "postings_considered": len(population),
+                "postings_matched": len(matched),
+                "employers_considered": len({str(posting.get("employer") or "") for posting in population}),
+                "employers_matched": len(actual_employer_ids),
+            }
+            for key, expected_count in expected_counts.items():
+                actual_count = evidence.get(key)
+                if isinstance(actual_count, bool) or not isinstance(actual_count, int) or actual_count != expected_count:
+                    problems.append(f"claim {cid}: evidence {key} {actual_count!r} != computed {expected_count}")
 
     for posting in data.postings:
         slug = str(posting.get("occupation_slug") or "")
@@ -365,27 +508,176 @@ def validate_release(root: Path | str, *, min_postings: dict[str, int] | None = 
         posting_url = str(posting.get("url") or "")
         if posting_url and not safe_https_url(posting_url):
             problems.append(f"posting row url is not a plain https link: {posting_url[:80]!r}")
-        # Scope admission: every admitted posting must carry a literal
-        # individual-contributor work-level decision with a rationale and no
-        # people-management evidence (no compatibility default for older rows).
-        work_level = posting.get("work_level")
-        if work_level != WORK_LEVEL_ADMIT:
-            problems.append(
-                f"posting row work_level {work_level!r} is not {WORK_LEVEL_ADMIT!r} "
-                f"(admitted postings must be individual-contributor scope)"
-            )
-        elif not isinstance(posting.get("work_level_reason"), str) or not posting["work_level_reason"].strip():
-            problems.append("posting row missing or malformed work_level_reason for individual_contributor decision")
-        management_quote = posting.get("people_management_quote")
-        if not isinstance(management_quote, str):
-            problems.append("posting row missing people_management_quote (empty string expected)")
-        elif management_quote.strip():
-            problems.append(
-                f"posting row carries people-management evidence: {management_quote[:120]!r}"
-            )
 
+        work_level = posting.get("work_level")
+        work_reason = posting.get("work_level_reason")
+        if work_level not in VALID_WORK_LEVELS:
+            problems.append(f"posting row work_level {work_level!r} is not a supported explicit or unknown value")
+        if not isinstance(work_reason, str) or not work_reason.strip():
+            problems.append("posting row missing work_level_reason")
+        work_evidence = posting.get("work_level_evidence")
+        if isinstance(work_evidence, dict):
+            quote = str(work_evidence.get("quote") or "")
+            evidence_source = str(work_evidence.get("source_id") or "")
+            if evidence_source != sid:
+                problems.append("posting row work-level evidence must cite its exact posting source")
+            if quote and quote not in extracts_checked.get(sid, ""):
+                problems.append("posting row work-level quote is absent from its source extract")
+            if work_level == "people_manager" and not management_quote_supported(quote):
+                problems.append("people-manager posting lacks explicit direct-report wording")
+            if work_level == "individual_contributor" and not (quote and IC_QUOTE_RE.search(quote)):
+                problems.append("individual-contributor posting lacks explicit non-manager wording")
+            if work_level == "unknown" and quote:
+                problems.append("unknown work-level posting must not carry a contradictory classification quote")
+        legacy_management_quote = posting.get("people_management_quote")
+        if legacy_management_quote is not None:
+            if not isinstance(legacy_management_quote, str):
+                problems.append("posting row people_management_quote must be a string when present")
+            elif legacy_management_quote.strip():
+                if work_level != "people_manager" or not management_quote_supported(legacy_management_quote):
+                    problems.append("posting row carries unsupported people-management evidence")
+
+        band = posting.get("responsibility_band")
+        if band is not None and band not in VALID_RESPONSIBILITY_BANDS:
+            problems.append(f"posting row responsibility_band {band!r} is invalid")
+        band_evidence = posting.get("responsibility_evidence")
+        if isinstance(band_evidence, dict):
+            band_quote = str(band_evidence.get("quote") or "")
+            if str(band_evidence.get("source_id") or "") != sid:
+                problems.append("posting row responsibility evidence must cite its exact posting source")
+            if band == "unknown" and band_quote:
+                problems.append("unknown responsibility band must not carry a classification quote")
+            if band not in (None, "unknown") and (
+                not band_quote or band_quote not in extracts_checked.get(sid, "")
+                or not responsibility_quote_supported(str(band), band_quote, str(work_level))
+            ):
+                problems.append("classified responsibility band lacks a verified source-extract quote")
+
+        contexts = posting.get("context_dimensions")
+        if contexts is not None and not isinstance(contexts, dict):
+            problems.append("posting row context_dimensions must be an object")
+        elif isinstance(contexts, dict):
+            for field_name, context in contexts.items():
+                if not isinstance(context, dict):
+                    problems.append(f"posting context {field_name!r} must be an object")
+                    continue
+                status = context.get("status")
+                value = context.get("value")
+                quote = str(context.get("quote") or "")
+                if status == "present":
+                    if not isinstance(value, str) or not value.strip() or not quote:
+                        problems.append(f"posting context {field_name!r} is present without a value and quote")
+                    elif str(context.get("source_id") or "") != sid:
+                        problems.append(f"posting context {field_name!r} cites a different source")
+                    elif quote not in extracts_checked.get(sid, "") or value.casefold() not in quote.casefold():
+                        problems.append(f"posting context {field_name!r} value is not literal in its source quote")
+                elif status == "unknown":
+                    if value is not None or quote:
+                        problems.append(f"unknown posting context {field_name!r} must keep value and quote empty")
+                else:
+                    problems.append(f"posting context {field_name!r} has invalid status {status!r}")
+
+        experience = posting.get("advertised_experience")
+        if isinstance(experience, dict):
+            values = experience.get("value")
+            quotes = experience.get("quotes")
+            if not isinstance(values, list) or not isinstance(quotes, list) or values != quotes:
+                problems.append("advertised experience wording must preserve its exact quote list")
+            elif any(not isinstance(value, str) or value not in extracts_checked.get(sid, "") for value in quotes):
+                problems.append("advertised experience contains wording absent from its source extract")
+            if values and experience.get("status") != "present":
+                problems.append("advertised experience with exact wording must have present status")
+            if not values and experience.get("status") != "unknown":
+                problems.append("unstated advertised experience must remain unknown")
+
+        expectations = posting.get("expectations")
+        if expectations is not None and not isinstance(expectations, list):
+            problems.append("posting expectations must be an array")
+        elif isinstance(expectations, list):
+            seen_expectation_ids: set[str] = set()
+            for expected in expectations:
+                if not isinstance(expected, dict):
+                    problems.append("posting expectation row must be an object")
+                    continue
+                expectation_id = str(expected.get("expectation_id") or "")
+                phrase = str(expected.get("source_wording") or "")
+                dimension = expected.get("dimension")
+                basis = expected.get("basis")
+                if not expectation_id or expectation_id in seen_expectation_ids:
+                    problems.append("posting expectation ids must be present and unique within the posting")
+                seen_expectation_ids.add(expectation_id)
+                if dimension not in VALID_EXPECTATION_DIMENSIONS or basis not in VALID_EXPECTATION_BASES:
+                    problems.append(f"posting expectation {expectation_id!r} has invalid dimension or basis")
+                if not phrase or len(phrase) > 240 or phrase not in extracts_checked.get(sid, ""):
+                    problems.append(f"posting expectation {expectation_id!r} lacks a short source-verbatim phrase")
+                normalized = " ".join(phrase.split()).casefold()
+                expected_id = "exp_" + sha256_text(
+                    f"expectation/2|{dimension}|{basis}|{normalized}"
+                )[:20]
+                if expectation_id and expectation_id != expected_id:
+                    problems.append(f"posting expectation {expectation_id!r} does not match its stable normalized id")
+                if expected.get("normalized_label") != normalized or expected.get("mapping_method") != "exact-normalized-label/2":
+                    problems.append(f"posting expectation {expectation_id!r} has inconsistent normalization provenance")
+                if str(expected.get("source_id") or "") != sid:
+                    problems.append(f"posting expectation {expectation_id!r} cites a different source")
+                if "identity_id" in expected or "relationship_id" in expected:
+                    if (
+                        expected.get("identity_id") != source_literal_identity(str(dimension), phrase)
+                        or expected.get("identity_method") != "source-literal-identity/1"
+                        or expected.get("kind") != dimension
+                    ):
+                        problems.append(f"posting expectation {expectation_id!r} has unverified source-literal identity")
+                    if (
+                        expected.get("relationship_id") != expectation_relationship_id(
+                            slug, str(posting.get("dedup_key") or ""), sid, expectation_id,
+                        )
+                        or expected.get("relationship_method") != "posting-source-expectation/1"
+                    ):
+                        problems.append(f"posting expectation {expectation_id!r} has inconsistent role/posting/source relationship")
+                proficiency = expected.get("proficiency")
+                proficiency_quote = str(expected.get("proficiency_quote") or "")
+                if proficiency == "explicitly_stated":
+                    if not proficiency_quote or not PROFICIENCY_QUOTE_RE.search(proficiency_quote):
+                        problems.append(f"posting expectation {expectation_id!r} lacks explicit proficiency wording")
+                    elif proficiency_quote not in extracts_checked.get(sid, ""):
+                        problems.append(f"posting expectation {expectation_id!r} proficiency quote is absent from its source")
+                elif proficiency != "not_stated" or proficiency_quote:
+                    problems.append(f"posting expectation {expectation_id!r} has unsupported proficiency status")
     for occ in data.occupations:
         slug = str(occ.get("slug") or "")
+        if slug == "forward-deployed-engineer" and occ.get("provisional") is not True:
+            problems.append("forward-deployed-engineer must remain explicitly provisional")
+        if occ.get("provisional") is True:
+            if occ.get("registration_status") != "mission-authorized-pilot":
+                problems.append(f"occupation {slug}: provisional registration must say mission-authorized-pilot")
+            if occ.get("human_review_status") != "not_reviewed":
+                problems.append(f"occupation {slug}: no human review record exists for provisional registration")
+            if occ.get("publication_status") != "no_fde_findings_without_admissible_source_evidence":
+                problems.append(f"occupation {slug}: provisional publication status is missing its evidence gate")
+            anchor = occ.get("official_anchor") if isinstance(occ.get("official_anchor"), dict) else {}
+            if (
+                anchor.get("code") != "15-1252.00"
+                or anchor.get("status") != "partial_taxonomy_anchor_only"
+                or not safe_https_url(str(anchor.get("url") or ""))
+                or "not an official FDE code" not in str(anchor.get("basis") or "")
+            ):
+                problems.append(f"occupation {slug}: official taxonomy reference must remain a partial anchor only")
+            decisions = occ.get("alias_decisions")
+            if not isinstance(decisions, list) or len(decisions) < 2:
+                problems.append(f"occupation {slug}: at least two explicit alias decisions are required")
+            else:
+                decision_by_label = {
+                    str(row.get("label") or "").casefold(): str(row.get("decision") or "")
+                    for row in decisions if isinstance(row, dict)
+                }
+                for label_fragment in ("solutions engineer", "customer success", "software engineer"):
+                    matches = [
+                        decision for label, decision in decision_by_label.items() if label_fragment in label
+                    ]
+                    if not matches or any(decision != "not_equivalent_by_title" for decision in matches):
+                        problems.append(
+                            f"occupation {slug}: {label_fragment} must not be treated as equivalent by title"
+                        )
         stats = occ.get("stats") if isinstance(occ.get("stats"), dict) else {}
         rows = [p for p in data.postings if str(p.get("occupation_slug") or "") == slug]
 
@@ -428,6 +720,58 @@ def validate_release(root: Path | str, *, min_postings: dict[str, int] | None = 
         }
         if isinstance(declared_boards_used, int) and declared_boards_used != len(used_boards):
             problems.append(f"occupation {slug}: stats.boards_used {declared_boards_used} != computed {len(used_boards)}")
+
+        def count_values(values: list[str]) -> dict[str, int]:
+            result: dict[str, int] = {}
+            for value in values:
+                result[value] = result.get(value, 0) + 1
+            return dict(sorted(result.items()))
+
+        for field_name, computed in (
+            ("work_level_counts", count_values([str(row.get("work_level") or "unknown") for row in rows])),
+            (
+                "responsibility_band_counts",
+                count_values([str(row.get("responsibility_band") or "unknown") for row in rows]),
+            ),
+            (
+                "expectation_dimension_counts",
+                count_values(
+                    [
+                        str(expected.get("dimension") or "unknown")
+                        for row in rows
+                        for expected in (row.get("expectations") or [])
+                        if isinstance(expected, dict)
+                    ]
+                ),
+            ),
+            (
+                "expectation_basis_counts",
+                count_values(
+                    [
+                        str(expected.get("basis") or "unknown")
+                        for row in rows
+                        for expected in (row.get("expectations") or [])
+                        if isinstance(expected, dict)
+                    ]
+                ),
+            ),
+        ):
+            if field_name in stats and stats[field_name] != computed:
+                problems.append(f"occupation {slug}: stats.{field_name} does not match admitted rows")
+        context_counts = stats.get("context_value_counts")
+        if isinstance(context_counts, dict):
+            for field_name, reported in context_counts.items():
+                computed = count_values(
+                    [
+                        str(context.get("value"))
+                        for row in rows
+                        if isinstance((context := (row.get("context_dimensions") or {}).get(field_name)), dict)
+                        and context.get("status") == "present"
+                        and context.get("value")
+                    ]
+                )
+                if reported != computed:
+                    problems.append(f"occupation {slug}: stats.context_value_counts.{field_name} does not match admitted rows")
 
     evidence_text = canonical_json(
         {
