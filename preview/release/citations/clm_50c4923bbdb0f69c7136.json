@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_50c4923bbdb0f69c7136",
+  "release_id": "rel_20261002_e454a97d090a",
+  "occupation_slug": "growth-manager",
+  "claim_type": "advertised_demand",
+  "statement": "AI tool fluency: hands-on comfort prompting and directing AI tools — recorded in 1 of 2 admitted Growth Manager postings (variant scope growth-marketing) from 1 of 2 employers in the 2026-10-02 US sample.",
+  "quote": "AI-native fluency: hands-on comfort prompting and directing AI tools",
+  "variant": "growth-marketing",
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_91c1cff4658d73f9ced4",
+      "url": "https://boards-api.greenhouse.io/v1/boards/chime/jobs?content=true",
+      "publisher": "Chime",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T08:17:48Z",
+      "sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T08:18:47Z",
+  "published_at": "2026-10-02T08:20:21Z",
+  "citation_path": "/release/citations/clm_50c4923bbdb0f69c7136.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "3e42463e3524811ecb606343ebaa6067aedca940648a7f6d25ed8a260765f03b"
+}

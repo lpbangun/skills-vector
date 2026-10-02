@@ -1,0 +1,12 @@
+# source src_52fccb6feadf79a4aa8b
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_9be49b446458b786b23d
+# url https://boards-api.greenhouse.io/v1/boards/stripe/jobs/8222009
+# publisher Stripe
+# retrieved_at 2026-09-30T23:25:28Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 bbd424fb7194d3ad22097e4474ba72938337beb2e639b4abf69d65096bf49568 raw_bytes 8479
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=8119218cfdfbb35d0298046f employer=Stripe title=Account Executive, Platforms - Hunter location=Chicago variant=sales-account-executive url=https://stripe.com/jobs/search?gh_jid=8222009
+Own the full sales cycle from lead to close for upper middle market and enterprise companies

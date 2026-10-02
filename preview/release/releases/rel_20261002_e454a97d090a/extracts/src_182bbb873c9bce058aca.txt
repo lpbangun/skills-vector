@@ -1,0 +1,22 @@
+# source src_182bbb873c9bce058aca
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_d80b43a88e847bba500d
+# url https://boards-api.greenhouse.io/v1/boards/toast/jobs/8242799
+# publisher Toast
+# retrieved_at 2026-10-02T08:14:29Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87 raw_bytes 12276
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=5da2e1a5e0bc206eebbcf0ac:posting-excerpt employer=Toast title=Territory Account Executive , SMB - Atlanta, GA location=Atlanta, GA variant= url=https://careers.toasttab.com/jobs?gh_jid=8242799
+Generate list of prospective restaurants and manage the entire sales cycle from initial call to close Conduct demos and develop a solution that best meets the prospect’s needs
+# posting id=5da2e1a5e0bc206eebbcf0ac:context:geography employer=Toast title=Territory Account Executive , SMB - Atlanta, GA location=Atlanta, GA variant= url=https://careers.toasttab.com/jobs?gh_jid=8242799
+Atlanta, GA
+# posting id=5da2e1a5e0bc206eebbcf0ac:experience:0 employer=Toast title=Territory Account Executive , SMB - Atlanta, GA location=Atlanta, GA variant= url=https://careers.toasttab.com/jobs?gh_jid=8242799
+1+ years of experience in a sourcing or closing sales role, restaurant operations, or a relatable field and industry
+# posting id=5da2e1a5e0bc206eebbcf0ac:expectation:exp_d10def6af0b129870963 employer=Toast title=Territory Account Executive , SMB - Atlanta, GA location=Atlanta, GA variant= url=https://careers.toasttab.com/jobs?gh_jid=8242799
+Strong communication, organizational and presentation skills with the ability to sell and negotiate at all decision-making levels
+# posting id=5da2e1a5e0bc206eebbcf0ac:expectation:exp_6e083fc720bfa7bf9b35 employer=Toast title=Territory Account Executive , SMB - Atlanta, GA location=Atlanta, GA variant= url=https://careers.toasttab.com/jobs?gh_jid=8242799
+Proven track record of success in meeting and exceeding goals
+# posting id=5da2e1a5e0bc206eebbcf0ac:expectation:exp_c6f2d1fadcd6bed861cc employer=Toast title=Territory Account Executive , SMB - Atlanta, GA location=Atlanta, GA variant= url=https://careers.toasttab.com/jobs?gh_jid=8242799
+Ability to work in a fast-paced, entrepreneurial

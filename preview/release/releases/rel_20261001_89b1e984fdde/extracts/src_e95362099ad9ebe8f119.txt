@@ -1,0 +1,11 @@
+# source src_e95362099ad9ebe8f119
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/pinterest/jobs?content=true
+# publisher Pinterest
+# retrieved_at 2026-09-30T23:25:25Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 917ce62da5413cfab33c1362b7552da07c9bb3df7a2b87e2425be4fc14fd3319 raw_bytes 1799362
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=57bb5627cf034274175933ba employer=Pinterest title=Programmatic Ads Sales Lead location=New York, NY, US variant=sales-account-executive url=https://www.pinterestcareers.com/jobs/?gh_jid=8129654
+Develop and execute full-funnel, programmatic sales strategies for top-tier clients

@@ -1,0 +1,8 @@
+# source src_4cd065e329e6a24f6dd6
+# source_type foundation
+# url https://www.bls.gov/ooh/sales/sales-representatives.htm
+# publisher www.bls.gov
+# retrieved_at 2026-10-02T17:30:25Z
+# rights not published (retrieval failed)
+# raw_sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 raw_bytes 0
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root

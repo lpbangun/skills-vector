@@ -1,0 +1,97 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_c0ffd76b80fcf140bdb4",
+  "release_id": "rel_20261001_89b1e984fdde",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "Internal mobility and exits: internal transfers, promotions and exit interview handling — recorded in 6 of 13 admitted HR Generalist postings (no variant split for this role) from 1 of 6 employers in the 2026-10-01 US sample.",
+  "quote": "Facilitate internal transfers, oversee and facilitate promotion opportunities, conduct exit interviews",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_311224378bdafbd70340",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8581427002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_30ed3cf37e84fc0b1410",
+      "retrieved_at": "2026-10-01T00:24:09Z",
+      "sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_95fa1d3c100d897bebb0",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8790633002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_30ed3cf37e84fc0b1410",
+      "retrieved_at": "2026-10-01T00:24:10Z",
+      "sha256": "0411d65a96f27623b90349c66847f7ceaa13a1f802078ada3e993dc74eb85dca",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_7a5831587ce6cc2a414e",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8505413002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_30ed3cf37e84fc0b1410",
+      "retrieved_at": "2026-10-01T00:24:10Z",
+      "sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_5fd7f2433d76cebca8e1",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8788674002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_30ed3cf37e84fc0b1410",
+      "retrieved_at": "2026-10-01T00:24:11Z",
+      "sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_cdcd89d4fd3e7cf81440",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8843917002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_30ed3cf37e84fc0b1410",
+      "retrieved_at": "2026-10-01T00:24:12Z",
+      "sha256": "6055ecbb182a8fe83a7b1f25fc3dcbafe42f32bf5dc577eb47dcbac8ee32be5f",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_536bd50f2d0a0e3e1673",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8530754002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_30ed3cf37e84fc0b1410",
+      "retrieved_at": "2026-10-01T00:24:12Z",
+      "sha256": "8829ec44951c8071027b8292e65c8d38818b53a2c4e8b6d4e2654ad90e3636a0",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-01T00:28:54Z",
+  "published_at": "2026-10-01T00:30:50Z",
+  "citation_path": "/release/citations/clm_c0ffd76b80fcf140bdb4.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "1a00436c2aae397df95578b1b2ae48a131cffe59754acaa43a66db305bc3c4dd"
+}

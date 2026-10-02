@@ -1,0 +1,23 @@
+# source src_2483dc2b6edcbf91e3b7
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/justworks/jobs?content=true
+# publisher Justworks
+# retrieved_at 2026-10-02T17:32:03Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 efbb75715151d41fc8a09977c9b6947be0a55eda2ee6485f428b97bb2162f95b raw_bytes 1658321
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=bee627a17f105b9b59569465:posting-excerpt employer=Justworks title=Senior HR Consultant location=New York, New York variant= url=https://boards.greenhouse.io/justworks/jobs/8240391?gh_jid=8240391
+Minimum of 7 years experience at the HR Generalist, HR Business Partner, HR Manager, or Employee Relations Manager level
+# posting id=bee627a17f105b9b59569465:expectation:exp_ace2f925601cb274d12b employer=Justworks title=Senior HR Consultant location=New York, New York variant= url=https://boards.greenhouse.io/justworks/jobs/8240391?gh_jid=8240391
+Experience handing compliance across multiple US states
+# posting id=bee627a17f105b9b59569465:expectation:exp_ad93c073662d77918442 employer=Justworks title=Senior HR Consultant location=New York, New York variant= url=https://boards.greenhouse.io/justworks/jobs/8240391?gh_jid=8240391
+At least 1 of the following HR certifications: PHR, SPHR, SHRM-CP, or SHRM-SCP
+# posting id=bee627a17f105b9b59569465:expectation:exp_2429d1c7762a26d5c55a employer=Justworks title=Senior HR Consultant location=New York, New York variant= url=https://boards.greenhouse.io/justworks/jobs/8240391?gh_jid=8240391
+Explain complicated compliance and HR concepts in simple, user-friendly terms
+# posting id=bee627a17f105b9b59569465:expectation:exp_b9fc8ff912468b78aa0b employer=Justworks title=Senior HR Consultant location=New York, New York variant= url=https://boards.greenhouse.io/justworks/jobs/8240391?gh_jid=8240391
+Manage longer-term projects
+# posting id=claim:clm_1e0bab92f90737d30aee employer= title= location= variant= url=
+Experience handing compliance across multiple US states
+# posting id=claim:clm_60652023913caea0ac29 employer= title= location= variant= url=
+At least 1 of the following HR certifications: PHR, SPHR, SHRM-CP, or

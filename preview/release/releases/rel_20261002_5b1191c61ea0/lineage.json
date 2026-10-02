@@ -1,0 +1,698 @@
+[
+  {
+    "run_id": "run_20261002T032923Z_f31ef4",
+    "occupation_slug": "hr-generalist",
+    "occupations": [
+      "hr-generalist"
+    ],
+    "provider": "deepinfra",
+    "models_by_role": {
+      "primary": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "challenger": null,
+      "escalation": null
+    },
+    "model_fallback": false,
+    "started_at": "2026-10-02T03:29:23Z",
+    "finished_at": "2026-10-02T03:30:42Z",
+    "question": "Collect fresh explicit-US source evidence beyond software/startups, deliberately attempting manufacturing, healthcare, education, retail and other services where retrievable. Responsibility bands require duties/autonomy/complexity/ownership/influence evidence, never titles or years. Preserve employer versus customer industry, proficiency, management, location/work context, experience wording, size/stage independently, including source-backed unknowns. Attempt at least two responsibility bands including one outside historical mid-level IC, and record unsupported contexts plus failed broader retrievals. Ground useful role briefs, level/context examples and refinements in verified verbatim source text. Foundations are anchors, not admission requirements; FDE remains provisional and aliases require distinguishing implementation-plus-customer duties evidence.",
+    "retrievals": 27,
+    "model_calls": 8,
+    "model_attempts": 8,
+    "boards_attempted": 15,
+    "boards_used": 3,
+    "detail_sources": 3,
+    "foundations_included": 3,
+    "postings_seen": 5537,
+    "postings_admitted": 3,
+    "excluded": 5534,
+    "classification_counts": {
+      "responsibility_band_unknown": 1,
+      "senior_strategic_ic": 1,
+      "unknown": 5
+    },
+    "stages": {
+      "discovery": {
+        "foundations_targeted": 4,
+        "boards_targeted": 15,
+        "search_terms": [
+          "HR Generalist",
+          "Human Resources Generalist",
+          "People Operations Generalist",
+          "HR Specialist",
+          "Human Resources Specialist",
+          "HR Coordinator",
+          "People Operations Coordinator",
+          "HR Business Partner",
+          "Employee Relations Specialist",
+          "Benefits Administrator",
+          "Onboarding Specialist",
+          "HR Compliance Specialist"
+        ]
+      },
+      "retrieval": {
+        "retrievals": 27
+      },
+      "candidate_selection": {
+        "prefilter_candidates": 5,
+        "feedback_triggered": false,
+        "missing_required_buckets": [],
+        "detail_fetches": 3,
+        "detail_text_failures": 0,
+        "candidates_excluded_without_text": 0,
+        "remaining_retrievals": 33,
+        "cap_allocation": {
+          "method": "title-prioritized-employer-bucket-round-robin/2: canonical-label priority in employer/bucket ranking; role-title-hinted pool before unhinted alternatives; fair employer/bucket allocation within each pool; titles never decide admission",
+          "cap": 5,
+          "eligible_candidates": 4052,
+          "selected_candidates": 5,
+          "excluded_by_cap": 4047,
+          "bucket_outcomes": {
+            "role": {
+              "eligible": 4052,
+              "selected": 5,
+              "excluded_by_cap": 4047
+            }
+          },
+          "employer_outcomes": {
+            "Bosch": {
+              "eligible": 9,
+              "selected": 0,
+              "excluded_by_cap": 9
+            },
+            "SpaceX": {
+              "eligible": 2222,
+              "selected": 1,
+              "excluded_by_cap": 2221
+            },
+            "Justworks": {
+              "eligible": 82,
+              "selected": 1,
+              "excluded_by_cap": 81
+            },
+            "Instacart": {
+              "eligible": 66,
+              "selected": 0,
+              "excluded_by_cap": 66
+            },
+            "Lyft": {
+              "eligible": 97,
+              "selected": 0,
+              "excluded_by_cap": 97
+            },
+            "Airbnb": {
+              "eligible": 81,
+              "selected": 0,
+              "excluded_by_cap": 81
+            },
+            "Stripe": {
+              "eligible": 323,
+              "selected": 1,
+              "excluded_by_cap": 322
+            },
+            "Coinbase": {
+              "eligible": 158,
+              "selected": 1,
+              "excluded_by_cap": 157
+            },
+            "Affirm": {
+              "eligible": 83,
+              "selected": 0,
+              "excluded_by_cap": 83
+            },
+            "Databricks": {
+              "eligible": 439,
+              "selected": 0,
+              "excluded_by_cap": 439
+            },
+            "Figma": {
+              "eligible": 109,
+              "selected": 1,
+              "excluded_by_cap": 108
+            },
+            "Reddit": {
+              "eligible": 118,
+              "selected": 0,
+              "excluded_by_cap": 118
+            },
+            "OpenAI": {
+              "eligible": 121,
+              "selected": 0,
+              "excluded_by_cap": 121
+            },
+            "Ramp": {
+              "eligible": 110,
+              "selected": 0,
+              "excluded_by_cap": 110
+            },
+            "Spotify": {
+              "eligible": 34,
+              "selected": 0,
+              "excluded_by_cap": 34
+            }
+          }
+        }
+      },
+      "discovery_feedback": {
+        "triggered": false,
+        "boards_proposed": 0
+      },
+      "admission": {
+        "admitted": 3,
+        "excluded": 5534,
+        "classification_issues": 0
+      },
+      "reconciliation": {
+        "foundation_claims": 1,
+        "demand_claims": 4,
+        "learning_priorities": 3
+      },
+      "challenge": {
+        "disagreements": 1,
+        "source_backed_additions": 0
+      }
+    },
+    "candidate_outcome": {
+      "status": "eligible_for_independent_review",
+      "arm": "primary-only",
+      "policy_gate_reasons": [],
+      "publication": "not performed"
+    },
+    "skip_rules_applied": [
+      "classification_unknown"
+    ]
+  },
+  {
+    "run_id": "run_20261002T022242Z_e25c8f",
+    "occupation_slug": "growth-manager",
+    "occupations": [
+      "growth-manager"
+    ],
+    "provider": "deepinfra",
+    "models_by_role": {
+      "primary": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "challenger": null,
+      "escalation": null
+    },
+    "model_fallback": false,
+    "started_at": "2026-10-02T02:22:42Z",
+    "finished_at": "2026-10-02T02:23:38Z",
+    "question": "Collect fresh explicit-US source evidence beyond software/startups, deliberately attempting manufacturing, healthcare, education, retail and other services where retrievable. Responsibility bands require duties/autonomy/complexity/ownership/influence evidence, never titles or years. Preserve employer versus customer industry, proficiency, management, location/work context, experience wording, size/stage independently, including source-backed unknowns. Attempt at least two responsibility bands including one outside historical mid-level IC, and record unsupported contexts plus failed broader retrievals. Ground useful role briefs, level/context examples and refinements in verified verbatim source text. Foundations are anchors, not admission requirements; FDE remains provisional and aliases require distinguishing implementation-plus-customer duties evidence.",
+    "retrievals": 23,
+    "model_calls": 7,
+    "model_attempts": 7,
+    "boards_attempted": 16,
+    "boards_used": 3,
+    "detail_sources": 1,
+    "foundations_included": 4,
+    "postings_seen": 2952,
+    "postings_admitted": 3,
+    "excluded": 2949,
+    "classification_counts": {
+      "employer_industry_unknown": 1,
+      "responsibility_band_unknown": 1,
+      "senior_strategic_ic": 2,
+      "unknown": 4,
+      "work_level_unknown": 1
+    },
+    "stages": {
+      "discovery": {
+        "foundations_targeted": 4,
+        "boards_targeted": 16,
+        "search_terms": [
+          "Growth Manager",
+          "Product Growth Manager",
+          "Growth Marketing Manager",
+          "Growth Marketing",
+          "Lifecycle Marketing Manager",
+          "Acquisition Marketing Manager",
+          "Paid Marketing Manager",
+          "SEO Manager",
+          "Account Executive",
+          "Sales Account Executive",
+          "Growth Product Manager",
+          "Retention Manager"
+        ]
+      },
+      "retrieval": {
+        "retrievals": 23
+      },
+      "candidate_selection": {
+        "prefilter_candidates": 5,
+        "feedback_triggered": false,
+        "missing_required_buckets": [
+          "sales-account-executive"
+        ],
+        "detail_fetches": 1,
+        "detail_text_failures": 0,
+        "candidates_excluded_without_text": 0,
+        "remaining_retrievals": 37,
+        "cap_allocation": {
+          "method": "title-prioritized-employer-bucket-round-robin/1: role-title-hinted candidates before unhinted candidates; within each priority pool, one per employer per provisional bucket (growth variants first), then round-robin remainder; most recent first within each bucket",
+          "cap": 5,
+          "eligible_candidates": 1757,
+          "selected_candidates": 5,
+          "excluded_by_cap": 1752,
+          "bucket_outcomes": {
+            "growth-marketing": {
+              "eligible": 95,
+              "selected": 3,
+              "excluded_by_cap": 92
+            },
+            "sales-account-executive": {
+              "eligible": 304,
+              "selected": 0,
+              "excluded_by_cap": 304
+            },
+            "unassigned": {
+              "eligible": 1319,
+              "selected": 0,
+              "excluded_by_cap": 1319
+            },
+            "product-growth": {
+              "eligible": 39,
+              "selected": 2,
+              "excluded_by_cap": 37
+            }
+          },
+          "employer_outcomes": {
+            "Stripe": {
+              "eligible": 323,
+              "selected": 0,
+              "excluded_by_cap": 323
+            },
+            "Figma": {
+              "eligible": 109,
+              "selected": 1,
+              "excluded_by_cap": 108
+            },
+            "Duolingo": {
+              "eligible": 69,
+              "selected": 0,
+              "excluded_by_cap": 69
+            },
+            "Instacart": {
+              "eligible": 66,
+              "selected": 2,
+              "excluded_by_cap": 64
+            },
+            "Robinhood": {
+              "eligible": 130,
+              "selected": 0,
+              "excluded_by_cap": 130
+            },
+            "Reddit": {
+              "eligible": 118,
+              "selected": 0,
+              "excluded_by_cap": 118
+            },
+            "Discord": {
+              "eligible": 47,
+              "selected": 0,
+              "excluded_by_cap": 47
+            },
+            "Pinterest": {
+              "eligible": 126,
+              "selected": 0,
+              "excluded_by_cap": 126
+            },
+            "OpenAI": {
+              "eligible": 121,
+              "selected": 0,
+              "excluded_by_cap": 121
+            },
+            "Ramp": {
+              "eligible": 110,
+              "selected": 0,
+              "excluded_by_cap": 110
+            },
+            "Vanta": {
+              "eligible": 4,
+              "selected": 0,
+              "excluded_by_cap": 4
+            },
+            "Peloton": {
+              "eligible": 32,
+              "selected": 0,
+              "excluded_by_cap": 32
+            },
+            "Chime": {
+              "eligible": 63,
+              "selected": 1,
+              "excluded_by_cap": 62
+            },
+            "Databricks": {
+              "eligible": 439,
+              "selected": 1,
+              "excluded_by_cap": 438
+            }
+          }
+        }
+      },
+      "discovery_feedback": {
+        "triggered": false,
+        "boards_proposed": 0
+      },
+      "admission": {
+        "admitted": 3,
+        "excluded": 2949,
+        "classification_issues": 0
+      },
+      "reconciliation": {
+        "foundation_claims": 1,
+        "demand_claims": 4,
+        "learning_priorities": 2
+      },
+      "challenge": {
+        "disagreements": 4,
+        "source_backed_additions": 0
+      }
+    },
+    "candidate_outcome": {
+      "status": "eligible_for_independent_review",
+      "arm": "primary-only",
+      "policy_gate_reasons": [],
+      "publication": "not performed"
+    },
+    "skip_rules_applied": [
+      "classification_unknown",
+      "cross_variant_priority_link"
+    ]
+  },
+  {
+    "run_id": "run_20261002T032923Z_78199a",
+    "occupation_slug": "account-executive",
+    "occupations": [
+      "account-executive"
+    ],
+    "provider": "deepinfra",
+    "models_by_role": {
+      "primary": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "challenger": null,
+      "escalation": null
+    },
+    "model_fallback": false,
+    "started_at": "2026-10-02T03:29:23Z",
+    "finished_at": "2026-10-02T03:31:01Z",
+    "question": "Collect fresh explicit-US source evidence beyond software/startups, deliberately attempting manufacturing, healthcare, education, retail and other services where retrievable. Responsibility bands require duties/autonomy/complexity/ownership/influence evidence, never titles or years. Preserve employer versus customer industry, proficiency, management, location/work context, experience wording, size/stage independently, including source-backed unknowns. Attempt at least two responsibility bands including one outside historical mid-level IC, and record unsupported contexts plus failed broader retrievals. Ground useful role briefs, level/context examples and refinements in verified verbatim source text. Foundations are anchors, not admission requirements; FDE remains provisional and aliases require distinguishing implementation-plus-customer duties evidence.",
+    "retrievals": 31,
+    "model_calls": 7,
+    "model_attempts": 7,
+    "boards_attempted": 16,
+    "boards_used": 5,
+    "detail_sources": 4,
+    "foundations_included": 3,
+    "postings_seen": 3357,
+    "postings_admitted": 5,
+    "excluded": 3352,
+    "classification_counts": {
+      "demand_expectation_classification_unknown": 1,
+      "employer_industry_unknown": 1,
+      "responsibility_band_unknown": 3,
+      "unknown": 10,
+      "work_context_unknown": 1
+    },
+    "stages": {
+      "discovery": {
+        "foundations_targeted": 4,
+        "boards_targeted": 16,
+        "search_terms": [
+          "Account Executive",
+          "Enterprise Account Executive",
+          "Mid-Market Account Executive",
+          "Field Sales Representative",
+          "Outside Sales Representative",
+          "Territory Sales Representative",
+          "Sales Representative",
+          "Business Development Representative",
+          "Account Manager",
+          "Regional Sales Manager"
+        ]
+      },
+      "retrieval": {
+        "retrievals": 31
+      },
+      "candidate_selection": {
+        "prefilter_candidates": 5,
+        "feedback_triggered": false,
+        "missing_required_buckets": [],
+        "detail_fetches": 4,
+        "detail_text_failures": 0,
+        "candidates_excluded_without_text": 0,
+        "remaining_retrievals": 29,
+        "cap_allocation": {
+          "method": "title-prioritized-employer-bucket-round-robin/2: canonical-label priority in employer/bucket ranking; role-title-hinted pool before unhinted alternatives; fair employer/bucket allocation within each pool; titles never decide admission",
+          "cap": 5,
+          "eligible_candidates": 1673,
+          "selected_candidates": 5,
+          "excluded_by_cap": 1668,
+          "bucket_outcomes": {
+            "role": {
+              "eligible": 1673,
+              "selected": 5,
+              "excluded_by_cap": 1668
+            }
+          },
+          "employer_outcomes": {
+            "Datadog": {
+              "eligible": 212,
+              "selected": 1,
+              "excluded_by_cap": 211
+            },
+            "MongoDB": {
+              "eligible": 121,
+              "selected": 0,
+              "excluded_by_cap": 121
+            },
+            "Cloudflare": {
+              "eligible": 39,
+              "selected": 0,
+              "excluded_by_cap": 39
+            },
+            "Verkada": {
+              "eligible": 240,
+              "selected": 1,
+              "excluded_by_cap": 239
+            },
+            "Samsara": {
+              "eligible": 169,
+              "selected": 0,
+              "excluded_by_cap": 169
+            },
+            "Databricks": {
+              "eligible": 439,
+              "selected": 1,
+              "excluded_by_cap": 438
+            },
+            "GitLab": {
+              "eligible": 99,
+              "selected": 1,
+              "excluded_by_cap": 98
+            },
+            "Twilio": {
+              "eligible": 56,
+              "selected": 1,
+              "excluded_by_cap": 55
+            },
+            "Palantir": {
+              "eligible": 67,
+              "selected": 0,
+              "excluded_by_cap": 67
+            },
+            "OpenAI": {
+              "eligible": 121,
+              "selected": 0,
+              "excluded_by_cap": 121
+            },
+            "Ramp": {
+              "eligible": 110,
+              "selected": 0,
+              "excluded_by_cap": 110
+            }
+          }
+        }
+      },
+      "discovery_feedback": {
+        "triggered": false,
+        "boards_proposed": 0
+      },
+      "admission": {
+        "admitted": 5,
+        "excluded": 3352,
+        "classification_issues": 0
+      },
+      "reconciliation": {
+        "foundation_claims": 1,
+        "demand_claims": 4,
+        "learning_priorities": 3
+      },
+      "challenge": {
+        "disagreements": 8,
+        "source_backed_additions": 0
+      }
+    },
+    "candidate_outcome": {
+      "status": "eligible_for_independent_review",
+      "arm": "primary-only",
+      "policy_gate_reasons": [],
+      "publication": "not performed"
+    },
+    "skip_rules_applied": [
+      "None",
+      "classification_unknown",
+      "quote_verification"
+    ]
+  },
+  {
+    "run_id": "run_20261002T022242Z_7130e8",
+    "occupation_slug": "forward-deployed-engineer",
+    "occupations": [
+      "forward-deployed-engineer"
+    ],
+    "provider": "deepinfra",
+    "models_by_role": {
+      "primary": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "challenger": null,
+      "escalation": null
+    },
+    "model_fallback": false,
+    "started_at": "2026-10-02T02:22:42Z",
+    "finished_at": "2026-10-02T02:24:04Z",
+    "question": "Collect fresh explicit-US source evidence beyond software/startups, deliberately attempting manufacturing, healthcare, education, retail and other services where retrievable. Responsibility bands require duties/autonomy/complexity/ownership/influence evidence, never titles or years. Preserve employer versus customer industry, proficiency, management, location/work context, experience wording, size/stage independently, including source-backed unknowns. Attempt at least two responsibility bands including one outside historical mid-level IC, and record unsupported contexts plus failed broader retrievals. Ground useful role briefs, level/context examples and refinements in verified verbatim source text. Foundations are anchors, not admission requirements; FDE remains provisional and aliases require distinguishing implementation-plus-customer duties evidence.",
+    "retrievals": 28,
+    "model_calls": 8,
+    "model_attempts": 8,
+    "boards_attempted": 16,
+    "boards_used": 3,
+    "detail_sources": 4,
+    "foundations_included": 4,
+    "postings_seen": 2929,
+    "postings_admitted": 3,
+    "excluded": 2926,
+    "classification_counts": {
+      "responsibility_band_unknown": 1,
+      "unknown": 6,
+      "work_context_unknown": 3,
+      "work_level_unknown": 1
+    },
+    "stages": {
+      "discovery": {
+        "foundations_targeted": 4,
+        "boards_targeted": 16,
+        "search_terms": [
+          "forward deployed engineer",
+          "forward-deployed engineer",
+          "forward deployed software engineer",
+          "deployment engineer",
+          "field engineer",
+          "field applications engineer",
+          "customer engineer",
+          "solutions engineer",
+          "implementation engineer",
+          "integration engineer",
+          "technical solutions engineer",
+          "professional services engineer"
+        ]
+      },
+      "retrieval": {
+        "retrievals": 28
+      },
+      "candidate_selection": {
+        "prefilter_candidates": 5,
+        "feedback_triggered": false,
+        "missing_required_buckets": [],
+        "detail_fetches": 4,
+        "detail_text_failures": 0,
+        "candidates_excluded_without_text": 0,
+        "remaining_retrievals": 32,
+        "cap_allocation": {
+          "method": "title-prioritized-employer-bucket-round-robin/1: role-title-hinted candidates before unhinted candidates; within each priority pool, one per employer per provisional bucket (growth variants first), then round-robin remainder; most recent first within each bucket",
+          "cap": 5,
+          "eligible_candidates": 1751,
+          "selected_candidates": 5,
+          "excluded_by_cap": 1746,
+          "bucket_outcomes": {
+            "role": {
+              "eligible": 1751,
+              "selected": 5,
+              "excluded_by_cap": 1746
+            }
+          },
+          "employer_outcomes": {
+            "Palantir Technologies": {
+              "eligible": 67,
+              "selected": 0,
+              "excluded_by_cap": 67
+            },
+            "Scale AI": {
+              "eligible": 137,
+              "selected": 1,
+              "excluded_by_cap": 136
+            },
+            "OpenAI": {
+              "eligible": 121,
+              "selected": 1,
+              "excluded_by_cap": 120
+            },
+            "Anthropic": {
+              "eligible": 501,
+              "selected": 1,
+              "excluded_by_cap": 500
+            },
+            "Databricks": {
+              "eligible": 439,
+              "selected": 1,
+              "excluded_by_cap": 438
+            },
+            "Stripe": {
+              "eligible": 323,
+              "selected": 1,
+              "excluded_by_cap": 322
+            },
+            "Figma": {
+              "eligible": 109,
+              "selected": 0,
+              "excluded_by_cap": 109
+            },
+            "Airtable": {
+              "eligible": 3,
+              "selected": 0,
+              "excluded_by_cap": 3
+            },
+            "Asana": {
+              "eligible": 51,
+              "selected": 0,
+              "excluded_by_cap": 51
+            }
+          }
+        }
+      },
+      "discovery_feedback": {
+        "triggered": false,
+        "boards_proposed": 0
+      },
+      "admission": {
+        "admitted": 3,
+        "excluded": 2926,
+        "classification_issues": 0
+      },
+      "reconciliation": {
+        "foundation_claims": 2,
+        "demand_claims": 4,
+        "learning_priorities": 3
+      },
+      "challenge": {
+        "disagreements": 5,
+        "source_backed_additions": 0
+      }
+    },
+    "candidate_outcome": {
+      "status": "eligible_for_independent_review",
+      "arm": "primary-only",
+      "policy_gate_reasons": [],
+      "publication": "not performed"
+    },
+    "skip_rules_applied": [
+      "classification_unknown"
+    ]
+  }
+]

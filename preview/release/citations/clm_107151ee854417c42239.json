@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_107151ee854417c42239",
+  "release_id": "rel_20261001_89b1e984fdde",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "foundation",
+  "statement": "The related Human Resources Managers occupation (11-3121.00) covers acting as a link between management and employees and resolving work-related problems, the escalation layer above generalist roles.",
+  "quote": "Serve as a link between management and employees by handling questions, interpreting and administering contracts and helping resolve work-related problems.",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_52ee3f2520b88ea8448f",
+      "url": "https://www.onetonline.org/link/summary/11-3121.00",
+      "publisher": "O*NET OnLine (U.S. Department of Labor)",
+      "source_type": "foundation",
+      "retrieval_kind": "",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-01T00:23:49Z",
+      "sha256": "1ca196004b40b563c93336aeb18e0f12af6030beecc2da8e08d523a8518861ad",
+      "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-01T00:28:54Z",
+  "published_at": "2026-10-01T00:30:50Z",
+  "citation_path": "/release/citations/clm_107151ee854417c42239.json",
+  "attribution": "agent-authored synthesis over retrieved official foundation text",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "821853059e21c611b4b66135c51d4fa2132a4a6cc99bde20653ef15c450fb92a"
+}

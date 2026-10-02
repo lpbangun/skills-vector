@@ -1,0 +1,30 @@
+# source src_c6c45f5305645e2c983b
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_110db607019db933bf5e
+# url https://boards-api.greenhouse.io/v1/boards/databricks/jobs/8657488002
+# publisher Databricks
+# retrieved_at 2026-10-02T08:16:09Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2 raw_bytes 14955
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=3d3afe13c27bbf828dd47a2f:posting-excerpt employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+As a Sr. Forward Deployed Engineer (FDE), you will work with federal government customers to build and productionize solutions to their data & AI challenges using the Databricks platform.
+# posting id=3d3afe13c27bbf828dd47a2f:context:customer_industry employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+work with federal government customers
+# posting id=3d3afe13c27bbf828dd47a2f:context:work_context employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+This is a hands-on, customer-facing role
+# posting id=3d3afe13c27bbf828dd47a2f:experience:0 employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+6+ years experience in data engineering, data platforms & analytics, or software engineering
+# posting id=3d3afe13c27bbf828dd47a2f:expectation:exp_86c927e0020227cc11be employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+Fluency in writing code in Python, Scala, JavaScript/TypeScript, and modern frameworks
+# posting id=3d3afe13c27bbf828dd47a2f:expectation:exp_2c24478c3859fd0fbace employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+Working knowledge of two or more common Cloud ecosystems (AWS, Azure, GCP)
+# posting id=3d3afe13c27bbf828dd47a2f:expectation:exp_002d2af3fd561ce81a30 employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+Deep experience with distributed computing with Apache Spark™
+# posting id=3d3afe13c27bbf828dd47a2f:expectation:exp_a0f2627c7615360a42d4 employer=Databricks title=Sr. Forward Deployed Engineer (FDE) - Public Sector location=Alabama; Remote - Virginia; Remote - Washington D.C. variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002
+Familiarity with CI/CD for produc
+# posting id=claim:clm_54fe2f46a9847962d0f6 employer= title= location= variant= url=
+Fluency in writing code in Python, Scala, JavaScript/TypeScript, and
+# posting id=claim:clm_8312aeaaf75becfa7519 employer= title= location= variant= url=
+Working knowledge of two or more common Cloud ecosystems (AWS, Azure,

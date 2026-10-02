@@ -1,0 +1,12 @@
+# source src_95fa1d3c100d897bebb0
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_30ed3cf37e84fc0b1410
+# url https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8790633002
+# publisher SpaceX
+# retrieved_at 2026-10-01T00:24:10Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 0411d65a96f27623b90349c66847f7ceaa13a1f802078ada3e993dc74eb85dca raw_bytes 8029
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=d08c071fccd75b0fcbeb368a employer=SpaceX title=HR Business Partner (Employee Relations) location=Starbase, TX variant= url=https://boards.greenhouse.io/spacex/jobs/8790633002?gh_jid=8790633002
+Counsel and assist employees and managers, guided by the Company’s policies and relevant laws/regulations

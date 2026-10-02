@@ -1,0 +1,26 @@
+# source src_fbc6c74fc7ccc07688fa
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_4936fefba660b77613f6
+# url https://boards-api.greenhouse.io/v1/boards/stripe/jobs/8055930
+# publisher Stripe
+# retrieved_at 2026-10-02T02:23:24Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 6bf19ab97a9fa7f289e450bb2e524e7ebb1a462f54f523f4ec9619c0ec6dce11 raw_bytes 10414
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=2a34ae0d303f93d5328fd809:posting-excerpt employer=Stripe title=Forward Deployed AI Accelerator, Marketing location=Remote in the US, Remote in Canada variant= url=https://stripe.com/jobs/search?gh_jid=8055930
+Build custom tools, agents, automations, and skills tailored to each marketer's specific responsibilities
+# posting id=2a34ae0d303f93d5328fd809:context:employer_industry employer=Stripe title=Forward Deployed AI Accelerator, Marketing location=Remote in the US, Remote in Canada variant= url=https://stripe.com/jobs/search?gh_jid=8055930
+Stripe is a financial infrastructure platform for businesses.
+# posting id=2a34ae0d303f93d5328fd809:experience:0 employer=Stripe title=Forward Deployed AI Accelerator, Marketing location=Remote in the US, Remote in Canada variant= url=https://stripe.com/jobs/search?gh_jid=8055930
+5+ years of professional experience in a role requiring diagnostic thinking, problem-solving, and cross-functional collaboration
+# posting id=2a34ae0d303f93d5328fd809:experience:1 employer=Stripe title=Forward Deployed AI Accelerator, Marketing location=Remote in the US, Remote in Canada variant= url=https://stripe.com/jobs/search?gh_jid=8055930
+Demonstrated, hands-on experience building and deploying AI-powered agents, tools, automations, or workflows that real people use in their actual work
+# posting id=2a34ae0d303f93d5328fd809:expectation:exp_f079b3d741a29e8f5018 employer=Stripe title=Forward Deployed AI Accelerator, Marketing location=Remote in the US, Remote in Canada variant= url=https://stripe.com/jobs/search?gh_jid=8055930
+Demonstrated, hands-on experience building and deploying AI-powered agents, tools, automations, or workflows
+# posting id=2a34ae0d303f93d5328fd809:expectation:exp_6df21b1205bf3ddf9684 employer=Stripe title=Forward Deployed AI Accelerator, Marketing location=Remote in the US, Remote in Canada variant= url=https://stripe.com/jobs/search?gh_jid=8055930
+Proficiency with AI development tools
+# posting id=claim:clm_54bb3419b556f6600470 employer= title= location= variant= url=
+5+ years of professional experience in a role requiring diagnostic think
+# posting id=claim:clm_711027f93875597a38d8 employer= title= location= variant= url=
+Demonstrated, hands-on experience building and deploying AI-powered agen

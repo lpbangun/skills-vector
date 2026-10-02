@@ -1,0 +1,12 @@
+# source src_629d40f8b2f5b459bd52
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_2d7e006bbc80ded82b95
+# url https://boards-api.greenhouse.io/v1/boards/datadog/jobs/1694375
+# publisher Datadog
+# retrieved_at 2026-09-30T23:51:29Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 8808842dfc88b7d1998638908f5b3400dfe32d17820de0d555af1bb188903fe5 raw_bytes 10737
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=141ffafdf649c40d9c102c7c employer=Datadog title=Commercial Account Executive location=Denver, Colorado, USA variant= url=https://careers.datadoghq.com/detail/1694375/?gh_jid=1694375
+Manage the full sales cycle, including technical demonstrations and negotiation

@@ -1,0 +1,73 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_8e815121639e065c4ddb",
+  "release_id": "rel_20261001_89b1e984fdde",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "HR business partnering: advising leaders on organization design and change — recorded in 4 of 13 admitted HR Generalist postings (no variant split for this role) from 3 of 6 employers in the 2026-10-01 US sample.",
+  "quote": "Advise and coach leaders and managers on org design and strategy, change management interventions and other key organizational initiatives",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_83d8634bde72857a25e6",
+      "url": "https://boards-api.greenhouse.io/v1/boards/instacart/jobs?content=true",
+      "publisher": "Instacart",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-01T00:24:03Z",
+      "sha256": "51b44c654cf5c3aaa4e286911ff946365775ae9f99adfeb48a12451239858854",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_02874e8d80292471ceeb",
+      "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs/7466921",
+      "publisher": "Stripe",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_afd847b53e8473f978ce",
+      "retrieved_at": "2026-10-01T00:24:09Z",
+      "sha256": "6abe77a905a3e40340aa6a7f562e6e967f84023acf94734ebd39319f4959007e",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_cdcd89d4fd3e7cf81440",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8843917002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_30ed3cf37e84fc0b1410",
+      "retrieved_at": "2026-10-01T00:24:12Z",
+      "sha256": "6055ecbb182a8fe83a7b1f25fc3dcbafe42f32bf5dc577eb47dcbac8ee32be5f",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_536bd50f2d0a0e3e1673",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8530754002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_30ed3cf37e84fc0b1410",
+      "retrieved_at": "2026-10-01T00:24:12Z",
+      "sha256": "8829ec44951c8071027b8292e65c8d38818b53a2c4e8b6d4e2654ad90e3636a0",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-01T00:28:54Z",
+  "published_at": "2026-10-01T00:30:50Z",
+  "citation_path": "/release/citations/clm_8e815121639e065c4ddb.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "d9773dafc0a60fd1d92ebe16e446498c407afea242cfac4974b8712e225a1dc6"
+}

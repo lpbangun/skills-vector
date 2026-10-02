@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_3394abdeac967cb378a8",
+  "release_id": "rel_20261002_eb0937b49c70",
+  "occupation_slug": "forward-deployed-engineer",
+  "claim_type": "advertised_demand",
+  "statement": "Cloud ecosystem knowledge: cloud platform familiarity — recorded in 1 of 5 admitted Forward Deployed Engineer postings (no variant split for this role) from 1 of 5 employers in the 2026-10-02 US sample.",
+  "quote": "Working knowledge of two or more common Cloud ecosystems (AWS, Azure,",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+  },
+  "sources": [
+    {
+      "id": "src_8227622bf6ac5a2c2a2f",
+      "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs/8657488002",
+      "publisher": "Databricks",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_567189007dbec0ebabaa",
+      "retrieved_at": "2026-10-02T17:29:00Z",
+      "sha256": "69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T17:29:59Z",
+  "published_at": "2026-10-02T17:33:28Z",
+  "citation_path": "/release/citations/clm_3394abdeac967cb378a8.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "1906008482412df8d0a3ec9ea05404d2849768f884fade103337f411f7976d9d"
+}

@@ -1,0 +1,12 @@
+# source src_925368d0f378cecffe86
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_e8f50ad37e6e48abc3c6
+# url https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/7615794
+# publisher MongoDB
+# retrieved_at 2026-09-30T23:51:26Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 9d6e95e850e3cafc00d87ffcbe2f8e5fa7c8f7cecd922e3d666dc3d4edbd154b raw_bytes 11374
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=aa15fbf31e3ffe38f2638b4a employer=MongoDB title=Associate Commercial Growth Account Executive location=Austin variant= url=https://www.mongodb.com/careers/job/?gh_jid=7615794
+Manage a book of business of several million dollars

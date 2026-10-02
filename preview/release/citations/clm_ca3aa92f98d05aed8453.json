@@ -1,0 +1,49 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_ca3aa92f98d05aed8453",
+  "release_id": "rel_20261002_e454a97d090a",
+  "occupation_slug": "forward-deployed-engineer",
+  "claim_type": "advertised_demand",
+  "statement": "Customer technical engagement: work directly with customers — recorded in 2 of 5 admitted Forward Deployed Engineer postings (no variant split for this role) from 2 of 5 employers in the 2026-10-02 US sample.",
+  "quote": "Work directly with customers to understand their technical and",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+  },
+  "sources": [
+    {
+      "id": "src_d8920fcd13ab0c04720b",
+      "url": "https://boards-api.greenhouse.io/v1/boards/asana/jobs?content=true",
+      "publisher": "Asana",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T08:16:03Z",
+      "sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_3d6b1f46d7b18e856b93",
+      "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs/7230452",
+      "publisher": "Stripe",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_c1fb9a9933e6b686a47d",
+      "retrieved_at": "2026-10-02T08:16:09Z",
+      "sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T08:17:24Z",
+  "published_at": "2026-10-02T08:20:21Z",
+  "citation_path": "/release/citations/clm_ca3aa92f98d05aed8453.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "5016d43ec0c9bfa0242ae4204cd18b000f92b44d3dfffca270515128d9e317b4"
+}

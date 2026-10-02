@@ -1,0 +1,12 @@
+# source src_02874e8d80292471ceeb
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_afd847b53e8473f978ce
+# url https://boards-api.greenhouse.io/v1/boards/stripe/jobs/7466921
+# publisher Stripe
+# retrieved_at 2026-10-01T00:24:09Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 6abe77a905a3e40340aa6a7f562e6e967f84023acf94734ebd39319f4959007e raw_bytes 7968
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=5969764600328e1cf66ad22c employer=Stripe title=People Partner, Technology location=San Francisco, Chicago, New York City or Seattle variant= url=https://stripe.com/jobs/search?gh_jid=7466921
+Advise and coach leaders and managers on org design and strategy, change management interventions and other key organizational initiatives

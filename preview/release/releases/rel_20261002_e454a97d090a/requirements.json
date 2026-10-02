@@ -1,0 +1,264 @@
+[
+  {
+    "id": "req_fc3e3d9c7a6687eaf27b",
+    "occupation_slug": "account-executive",
+    "label": "Full-cycle sales execution",
+    "learning_outcome": "Practice managing a sales cycle from initial call through close, including technical demonstrations.",
+    "rationale": "Two of five sampled postings describe managing the full sales cycle or the entire sales cycle from initial call to close.",
+    "uncertainty": "Sample is five postings; work level, responsibility band, and variant are unknown for all; no proficiency level is stated.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Manage the full sales cycle, including technical demonstrations and",
+      "manage the entire sales cycle from initial call to clos"
+    ],
+    "evidence_claim_ids": [
+      "clm_a0e7fa0114f20dd6e714"
+    ],
+    "evidence_rationale": "The sales-cycle-management demand claim directly covers managing the full sales cycle including technical demonstrations, matching this priority's outcome.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_28e34b6b5fb0270864dd",
+    "occupation_slug": "account-executive",
+    "label": "Outbound new-business acquisition",
+    "learning_outcome": "Build outbound prospecting and net-new customer acquisition skills.",
+    "rationale": "Two of five sampled postings require net-new logo acquisition via outbound activity or driving new customer acquisition.",
+    "uncertainty": "Sample is five postings; no quota attainment, tooling, or proficiency level is specified.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Focus on net-new logo acquisition via outbound activity",
+      "Drive new customer acquisition"
+    ],
+    "evidence_claim_ids": [
+      "clm_2d6ef3a556173cec2e10"
+    ],
+    "evidence_rationale": "The net-new logo acquisition claim via outbound activity directly supports building outbound prospecting and new-customer acquisition skills.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_53d71f311993b8bdbe0e",
+    "occupation_slug": "account-executive",
+    "label": "Consultative analytical selling",
+    "learning_outcome": "Develop analytical, consultative sales-cycle skills to win business.",
+    "rationale": "One sampled posting requires owning highly analytical and consultative sales cycles to win business.",
+    "uncertainty": "Single-posting signal within a five-posting sample; no proficiency level is stated.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Own highly analytical and consultative sales cycles to win business"
+    ],
+    "evidence_claim_ids": [
+      "clm_6070286437ffa9732868"
+    ],
+    "evidence_rationale": "The consultative sales cycles claim directly supports developing analytical, consultative selling skills to win business.",
+    "model_order": 2,
+    "priority": 3
+  },
+  {
+    "id": "req_872d6c1c54c4a293aa12",
+    "occupation_slug": "forward-deployed-engineer",
+    "label": "Customer-facing technical discovery",
+    "learning_outcome": "Practice translating customer technical needs and dev environments into scoped software work.",
+    "rationale": "Multiple sampled postings describe direct customer engagement and technical discovery as tasks.",
+    "uncertainty": "Sample of 5 postings; no work level, responsibility band, or proficiency is established.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Work directly with customers to understand their technical and",
+      "Run technical discovery: understand a customer's dev environment,"
+    ],
+    "evidence_claim_ids": [
+      "clm_ca3aa92f98d05aed8453",
+      "clm_d7f7eecb0760e7b092b0",
+      "clm_7985cbc0f37c8fa2112d"
+    ],
+    "evidence_rationale": "These advertised-demand claims cover working directly with customers, running technical discovery of their dev environments, and being deeply technical and customer-facing, which together define the discovery skill this priority targets.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_dbeeb8f51714952fe7b4",
+    "occupation_slug": "forward-deployed-engineer",
+    "label": "Multi-language production coding",
+    "learning_outcome": "Build fluency writing production code across Python, Scala, and JavaScript/TypeScript.",
+    "rationale": "One sampled posting requires fluency in writing code in these languages and hands-on production engineering experience.",
+    "uncertainty": "Based on a single posting; no proficiency level or market-wide demand is implied.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Fluency in writing code in Python, Scala, JavaScript/TypeScript, and",
+      "Hands-on production engineering experience, including writing code,"
+    ],
+    "evidence_claim_ids": [
+      "clm_54fe2f46a9847962d0f6",
+      "clm_7852b3991874484d58ff",
+      "clm_b3c002914d3cba8c8bf7"
+    ],
+    "evidence_rationale": "The fluency claim names Python, Scala, and JavaScript/TypeScript, while the production-engineering and feature design/code/launch claims show that coding is expected in production settings.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_536eb0d3f891314f7699",
+    "occupation_slug": "forward-deployed-engineer",
+    "label": "Cloud ecosystem working knowledge",
+    "learning_outcome": "Gain working knowledge of two or more common cloud ecosystems such as AWS and Azure.",
+    "rationale": "One sampled posting lists working knowledge of common cloud ecosystems as a requirement.",
+    "uncertainty": "Single-posting signal; no depth of knowledge or prevalence is established.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Working knowledge of two or more common Cloud ecosystems (AWS, Azure,"
+    ],
+    "evidence_claim_ids": [
+      "clm_8312aeaaf75becfa7519"
+    ],
+    "evidence_rationale": "This is the only recorded claim naming cloud ecosystems (AWS, Azure), directly matching the priority's working-knowledge outcome.",
+    "model_order": 2,
+    "priority": 3
+  },
+  {
+    "id": "req_d9d3ed78aff915d34ae5",
+    "occupation_slug": "growth-manager",
+    "label": "Growth experimentation and product initiatives",
+    "learning_outcome": "Practice designing and leading product or growth initiatives supported by data and experiments.",
+    "rationale": "Two sampled postings in the product-growth and growth-marketing variants describe leading growth initiatives and using data and insights to build experiments and features; the official foundation also frames marketing work around gathering information to plan campaigns.",
+    "uncertainty": "Only one product-growth posting and two growth-marketing postings are in the sample; work_level is unknown for all postings, and the sample does not establish prevalence, proficiency, or market-wide demand.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": "product-growth",
+    "search_terms": [
+      "Experience leading major product or growth initiatives across",
+      "Use data and insights to build a portfolio of experiments and new features that drive users to disco"
+    ],
+    "evidence_claim_ids": [
+      "clm_1685274592c655303f64",
+      "clm_3014b718abdb68ab3b08"
+    ],
+    "evidence_rationale": "Both product-growth variant claims describe leading major product or growth initiatives and 7+ years of product management experience, directly supporting practice in designing and leading growth initiatives.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_11f59d87d75791763e37",
+    "occupation_slug": "growth-manager",
+    "label": "Integrated campaign planning and framework",
+    "learning_outcome": "Practice planning and scaling integrated marketing campaigns and defining campaign frameworks with strategic guidance.",
+    "rationale": "One sampled growth-marketing posting explicitly requires leading how campaigns are planned and scaled and defining the campaign framework and strategic guidance; the official foundation describes planning a marketing or advertising campaign.",
+    "uncertainty": "Based on a single sampled posting; the sample does not establish prevalence, importance, or proficiency expectations.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": "growth-marketing",
+    "search_terms": [
+      "leads how Databricks plans and scales integrated marketing campaigns",
+      "defines the campaign framework and strategic guidance"
+    ],
+    "evidence_claim_ids": [
+      "clm_4c2f6184f67fca184cfa",
+      "clm_a509d6d8961468935093"
+    ],
+    "evidence_rationale": "Both growth-marketing variant claims cover planning and scaling integrated marketing campaigns and defining campaign frameworks with strategic guidance.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_3356a78cd2a3b830a19b",
+    "occupation_slug": "growth-manager",
+    "label": "AI tool fluency for creative work",
+    "learning_outcome": "Build hands-on familiarity prompting and directing AI tools in a creative growth-marketing context.",
+    "rationale": "One sampled growth-marketing posting lists AI-native fluency and hands-on comfort prompting and directing AI tools as a requirement.",
+    "uncertainty": "Based on a single sampled posting; the sample does not establish prevalence, required proficiency level, or market-wide demand.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": "growth-marketing",
+    "search_terms": [
+      "AI-native fluency: hands-on comfort prompting and directing AI tools"
+    ],
+    "evidence_claim_ids": [
+      "clm_50c4923bbdb0f69c7136"
+    ],
+    "evidence_rationale": "The growth-marketing claim on AI-native fluency describes hands-on comfort prompting and directing AI tools, matching the priority's learning outcome.",
+    "model_order": 2,
+    "priority": 3
+  },
+  {
+    "id": "req_397279bc869d47b1b6e2",
+    "occupation_slug": "hr-generalist",
+    "label": "Employee relations and counseling practice",
+    "learning_outcome": "Develop the ability to counsel employee client groups and independently handle employee relations issues, inquiries, and complaints.",
+    "rationale": "Sampled postings include employer requirements to counsel a 150-200 employee client group and respond to day-to-day employee inquiries, questions and complaints, plus an emergent signal for independently handling employee relations issues.",
+    "uncertainty": "Only 4 postings from 2 employers were sampled; work level and responsibility band are unknown for all, and the employee relations expectation is an emergent signal rather than a stated requirement.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Counsel a small client group (150-200 employees)",
+      "Respond to day-to-day employee inquiries, questions and complaints",
+      "Experience independently handling employee relations issues"
+    ],
+    "evidence_claim_ids": [
+      "clm_ed56be1a17509ac8eac8",
+      "clm_3ba30b758432424b507d",
+      "clm_3e5a215906b8adba498c"
+    ],
+    "evidence_rationale": "These three advertised-demand claims directly cover counseling a client group, responding to employee inquiries and complaints, and independently handling employee relations issues.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_6d3cad45653a1852f057",
+    "occupation_slug": "hr-generalist",
+    "label": "HR compliance across states",
+    "learning_outcome": "Build working knowledge of HR compliance obligations across multiple US states.",
+    "rationale": "One sampled posting lists experience handling compliance across multiple US states as an employer requirement.",
+    "uncertainty": "This signal comes from a single posting at one employer; the sample is small and not representative of the market.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Experience handing compliance across multiple US states"
+    ],
+    "evidence_claim_ids": [
+      "clm_13bca6754f506c3bf3fd"
+    ],
+    "evidence_rationale": "The only recorded claim about compliance across multiple US states directly supports building multi-state HR compliance knowledge.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_b591ab36edb60e5d7f0a",
+    "occupation_slug": "hr-generalist",
+    "label": "HR credentials and experience baseline",
+    "learning_outcome": "Understand the credential and experience baselines referenced in sampled postings, including bachelor's degree, HR certifications, and years of HR experience.",
+    "rationale": "Sampled postings reference a bachelor's degree, at least one HR certification (PHR, SPHR, SHRM-CP, or similar), and 1+ to 2+ years of human resources experience as employer requirements.",
+    "uncertainty": "Credential and experience expectations vary across postings and employers; years are experience requirements, not measures of knowledge or proficiency, and the sample is too small to generalize.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Bachelor’s degree",
+      "At least 1 of the following HR certifications: PHR, SPHR, SHRM-CP, or",
+      "1+ years of professional human resources experience",
+      "2+ years of human resources experience"
+    ],
+    "evidence_claim_ids": [
+      "clm_638e929a3c8854377c75",
+      "clm_82cfe4ea38b36bf665a8",
+      "clm_1797ba5874d6476525c7",
+      "clm_b83a43a332fced759ccb"
+    ],
+    "evidence_rationale": "These advertised-demand claims record the bachelor's degree, HR certification, and years-of-HR-experience baselines the priority describes.",
+    "model_order": 2,
+    "priority": 3
+  }
+]

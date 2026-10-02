@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_d042fc89375126145369",
+  "release_id": "rel_20261002_e454a97d090a",
+  "occupation_slug": "growth-manager",
+  "claim_type": "foundation",
+  "statement": "Market Research Analysts and Marketing Specialists gather information to determine potential sales of a product or service, or plan a marketing or advertising campaign.",
+  "quote": "Gather information to determine potential sales of a product or service, or plan a marketing or advertising campaign.",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_9fb1d2077ef2c9a711fe",
+      "url": "https://www.onetonline.org/link/summary/13-1161.00",
+      "publisher": "O*NET OnLine (U.S. Department of Labor)",
+      "source_type": "foundation",
+      "retrieval_kind": "",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T04:44:47Z",
+      "sha256": "95496cff3bb59f28eee6460f1832dddac790b03336b81323658e7fe7e7d07929",
+      "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T08:18:47Z",
+  "published_at": "2026-10-02T08:20:21Z",
+  "citation_path": "/release/citations/clm_d042fc89375126145369.json",
+  "attribution": "agent-authored synthesis over retrieved official foundation text",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "260839b253665834174e0b37bf0b080120331eea87a116882dab84288edfbae1"
+}

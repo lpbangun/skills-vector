@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_06941d8d1f1ec1454e8e",
+  "release_id": "rel_20261002_5b1191c61ea0",
+  "occupation_slug": "growth-manager",
+  "claim_type": "advertised_demand",
+  "statement": "Campaign requirements translation: translating business needs into campaign requirements — recorded in 1 of 2 admitted Growth Manager postings (variant scope growth-marketing) from 1 of 2 employers in the 2026-10-02 US sample.",
+  "quote": "translates business needs into business requirements for campaign operat",
+  "variant": "growth-marketing",
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_8f88086cd2f1ef355c93",
+      "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs/8407917002",
+      "publisher": "Databricks",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_2cc440c600b8375aa9af",
+      "retrieved_at": "2026-10-02T02:23:04Z",
+      "sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T02:23:34Z",
+  "published_at": "2026-10-02T04:39:32Z",
+  "citation_path": "/release/citations/clm_06941d8d1f1ec1454e8e.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "e2a7d2ff3dd06c68b14b77c8c1a3d274072f51262197fdbb8c4a79134f4d04a9"
+}

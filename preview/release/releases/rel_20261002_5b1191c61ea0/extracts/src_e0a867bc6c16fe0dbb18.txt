@@ -1,0 +1,26 @@
+# source src_e0a867bc6c16fe0dbb18
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_bceebd7d22b7d31dac32
+# url https://boards-api.greenhouse.io/v1/boards/scaleai/jobs/4518690005
+# publisher Scale AI
+# retrieved_at 2026-10-02T02:23:23Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 89ac166022b447b70fc7697a79a7fe7068920d87fa8d6e3fc1997075ec9bae04 raw_bytes 11591
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=666b56ab403ee6cb8f0d90e4:posting-excerpt employer=Scale AI title=Field Engineer, Data Engine location=Colorado Springs, CO; Omaha, NE; St. Louis, MO; Washington, DC variant= url=https://job-boards.greenhouse.io/scaleai/jobs/4518690005
+Deploy and maintain Scale software at customer sites. Develop customer requested features and work closely with them
+# posting id=666b56ab403ee6cb8f0d90e4:context:customer_industry employer=Scale AI title=Field Engineer, Data Engine location=Colorado Springs, CO; Omaha, NE; St. Louis, MO; Washington, DC variant= url=https://job-boards.greenhouse.io/scaleai/jobs/4518690005
+supporting Scale’s government customers
+# posting id=666b56ab403ee6cb8f0d90e4:expectation:exp_97556ebbe44536f3a752 employer=Scale AI title=Field Engineer, Data Engine location=Colorado Springs, CO; Omaha, NE; St. Louis, MO; Washington, DC variant= url=https://job-boards.greenhouse.io/scaleai/jobs/4518690005
+Knowledge of ETL (Extract, Transform, Load) processes and experience in building data pipelines
+# posting id=666b56ab403ee6cb8f0d90e4:expectation:exp_3ee1d34985f4e3944fc9 employer=Scale AI title=Field Engineer, Data Engine location=Colorado Springs, CO; Omaha, NE; St. Louis, MO; Washington, DC variant= url=https://job-boards.greenhouse.io/scaleai/jobs/4518690005
+Prior experience developing with Python
+# posting id=666b56ab403ee6cb8f0d90e4:expectation:exp_fca25dbb79ffc04c8c7f employer=Scale AI title=Field Engineer, Data Engine location=Colorado Springs, CO; Omaha, NE; St. Louis, MO; Washington, DC variant= url=https://job-boards.greenhouse.io/scaleai/jobs/4518690005
+Familiarity with cloud platforms (e.g., AWS, Azure, GCP)
+# posting id=666b56ab403ee6cb8f0d90e4:expectation:exp_ca335dcc873ac6e115cc employer=Scale AI title=Field Engineer, Data Engine location=Colorado Springs, CO; Omaha, NE; St. Louis, MO; Washington, DC variant= url=https://job-boards.greenhouse.io/scaleai/jobs/4518690005
+Understanding of shell scripting, operating systems, etc
+# posting id=claim:clm_179e85f1f4846432f515 employer= title= location= variant= url=
+Knowledge of ETL (Extract, Transform, Load) processes and experience in
+# posting id=claim:clm_fb8b8658ddaa7c8d5169 employer= title= location= variant= url=
+Prior experience developing with Python

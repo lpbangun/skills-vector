@@ -1,0 +1,272 @@
+[
+  {
+    "kind": "challenge",
+    "occupation_slug": "growth-manager",
+    "claim_id": "clm_e0c749b74b7ae0fd7bac",
+    "claim_statement": "Market research analyst work includes search marketing tactics, web metrics analysis, and recommendations that raise search engine ranking and visibility for target markets.",
+    "issue": "Modal strengthening: the source task says 'May employ search marketing tactics' (permissive/optional task bullet), while the statement converts it into 'work includes' (definite constituent duty); the hedge is dropped without basis, changing an optional activity into a definitional one.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "growth-manager",
+    "claim_id": "clm_b1c2b8429c50970fb542",
+    "claim_statement": "Marketing manager duties include overseeing product development and monitoring trends that signal demand for new products and services.",
+    "issue": "Disjunction turned into conjunction: the source lists 'Oversee product development OR monitor trends' (alternative duties), but the statement asserts duties include both overseeing product development and monitoring trends, asserting both branches where the source offers either.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "growth-manager",
+    "claim_id": "clm_9e21aeb5722726c43646",
+    "claim_statement": "programmatic advertising sales: programmatic revenue target ownership — recorded in 2 of 26 admitted Growth Manager postings (variant scope sales-account-executive) from 2 of 8 employers in the 2026-09-30 US sample.",
+    "issue": "Prevalence claim not auditable from cited evidence: the statement asserts 2 of 26 postings from 2 of 8 employers, but the attached evidence identifies only Duolingo (both the quote and the detail); the second matched employer/posting is unnamed and unquoted, so employers_matched=2 cannot be verified. Name and quote the second employer or reduce the count to 1 employer.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "growth-manager",
+    "claim_id": "clm_8e0f9b3c3234b3afcaf8",
+    "claim_statement": "retail media consultative selling: consultative solution-selling into retail media accounts — recorded in 3 of 26 admitted Growth Manager postings (variant scope sales-account-executive) from 1 of 8 employers in the 2026-09-30 US sample.",
+    "issue": "Quote does not support the retail-media qualifier: the quote evidences only a consultative, education-led sales approach; 'retail media' comes solely from Instacart context in the detail, not the quote. Additionally all 3 matched postings are from 1 employer, so the domain-specific framing rests on a single employer's ads ecosystem and exceeds the quoted evidence.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "growth-manager",
+    "claim_id": "clm_eff11a02fd02cff0a630",
+    "claim_statement": "public sector procurement sales: SLED and federal procurement sales motion — recorded in 4 of 26 admitted Growth Manager postings (variant scope sales-account-executive) from 2 of 8 employers in the 2026-09-30 US sample.",
+    "issue": "Quote covers SLED only ('capture SLED sales opportunities', Vanta); the federal half of the headline rests on unquoted detail (Figma federal civilian). Presenting SLED and federal as one procurement sales motion overstates what the cited quote shows.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "growth-manager",
+    "claim_id": "clm_c003f2e3a07a88ffaa3b",
+    "claim_statement": "lifecycle and retention marketing: lifecycle journey ownership with segmentation and testing — recorded in 1 of 26 admitted Growth Manager postings (variant scope growth-marketing) from 1 of 8 employers in the 2026-09-30 US sample.",
+    "issue": "Unsupported term in headline: 'retention' has no support anywhere in the evidence — the quote covers lifecycle journeys and campaigns only, and the detail adds segmentation, A/B testing and SQL, not retention or retention metrics; the signal is 1 of 26 postings from 1 employer. Strike 'retention' or attach a retention-specific quote.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "growth-manager",
+    "claim_id": "clm_898be872fabd46286a04",
+    "claim_statement": "expansion and renewal revenue: expansion and renewal of existing accounts — recorded in 4 of 26 admitted Growth Manager postings (variant scope sales-account-executive) from 2 of 8 employers in the 2026-09-30 US sample.",
+    "issue": "Quote supports expansion only ('maintaining and growing a targeted book' of existing customers); 'renewal' appears only in the detail's paraphrase (upsell and renewals) with no quoted support, so the renewal half of the headline is not directly evidenced by the cited quote.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "account-executive",
+    "claim_id": "clm_09329c49cbe088a037a2",
+    "claim_statement": "The O*NET wholesale and manufacturing sales representative occupation frames the core work as selling goods to businesses or groups of individuals, with substantial product knowledge required.",
+    "issue": "Unsupported clause: the quote only supports 'Sell goods for wholesalers or manufacturers to businesses or groups of individuals'; 'with substantial product knowledge required' appears nowhere in the quote or evidence block. If that clause comes from the source's adjacent summary sentence, extend the quote to include it; otherwise trim the clause.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "account-executive",
+    "claim_id": "clm_e88ca35b864aa94a843b",
+    "claim_statement": "O*NET lists ongoing post-sale client support as a documented task, matching the expansion and retention duties seen in the admitted postings.",
+    "issue": "Editorial add-on: the O*NET task quote supports post-sale consultation, but 'matching the expansion and retention duties seen in the admitted postings' is editorial cross-reference not in the source, and it depends on clm_74355f9c6f623bd98bd9, whose quoted posting is a non-AE account-manager req that explicitly disclaims maintenance. Trim the clause to keep the claim source-bound.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "account-executive",
+    "claim_id": "clm_e7eb587d61a44ee6776a",
+    "claim_statement": "Maintaining customer records in automated systems is a documented task, indicating CRM-style recordkeeping is part of the occupation rather than an employer-specific extra.",
+    "issue": "Interpretive add-ons: the quote says 'using automated systems', so 'CRM-style' is an added modern mapping, and 'rather than an employer-specific extra' over-reads one task line. The statement also says 'the occupation' without naming it; the source is the technical/scientific wholesale occupation, not the services occupation backing the SaaS mapping. Keep quote-bound wording and name the occupation.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "account-executive",
+    "claim_id": "clm_d9219407a1f0af861e7b",
+    "claim_statement": "The services sales representative occupation is defined as selling services to individuals or businesses, the broad framing that covers the SaaS and infrastructure postings in this sample.",
+    "issue": "Unsupported mapping clause: the quoted definition does not establish that it 'covers the SaaS and infrastructure postings in this sample'. That is an inference about the sample's occupation mapping, not source content. Move it to the method note or drop it.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "account-executive",
+    "claim_id": "clm_8d990561b3e05dd50572",
+    "claim_statement": "Full-cycle deal ownership: end-to-end sales cycle from prospecting to close — recorded in 6 of 19 admitted Account Executive postings (no variant split for this role) from 4 of 7 employers in the 2026-09-30 US sample.",
+    "issue": "Two gaps: (a) the exemplar quote does not contain 'from prospecting to close'; it folds technical demonstrations and negotiation into the cycle, so the claim should state the operational definition actually counted instead of a paraphrase; (b) the role bucket has no variant split, so the 6 matches may span product-growth / growth-marketing / sales-account-executive variants -- label them role-level aggregates and do not compare with variant-split counts.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "account-executive",
+    "claim_id": "clm_1d205ecd77f44e9cff09",
+    "claim_statement": "New customer acquisition quotas: net-new business targets and assigned quota ownership — recorded in 4 of 19 admitted Account Executive postings (no variant split for this role) from 3 of 7 employers in the 2026-09-30 US sample.",
+    "issue": "Compound claim only half-quoted: the quote evidences net-new emphasis but not 'assigned quota ownership' -- that component rests on the detail's Twilio iACV mention with no quote -- and employers_matched=3 names only Verkada and Twilio. Add the quota quote and name the third employer, or narrow to net-new acquisition; define 'net new' so it cannot silently overlap the expansion construct in clm_5d343d6c13815024982b.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "account-executive",
+    "claim_id": "clm_5d343d6c13815024982b",
+    "claim_statement": "Account expansion and growth: expanding existing accounts and closing new workloads — recorded in 5 of 19 admitted Account Executive postings (no variant split for this role) from 3 of 7 employers in the 2026-09-30 US sample.",
+    "issue": "Variant-conflation risk: the evidence detail calls the MongoDB matches 'growth postings' while this role has no variant split; with product-growth / growth-marketing / sales-account-executive variants in the taxonomy, each of the 5 matches must be verified as a sales-account-executive req before the count is published as an AE signal. Also give component-level counts (new-workload closing vs account expansion); the compound count may include matches for either half.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "account-executive",
+    "claim_id": "clm_67210ab4de6f9f5a5e75",
+    "claim_statement": "Pipeline and book-of-business management: pipeline development and ownership of a book of business — recorded in 5 of 19 admitted Account Executive postings (no variant split for this role) from 3 of 7 employers in the 2026-09-30 US sample.",
+    "issue": "Compound count: the detail shows matches may satisfy only one component (MongoDB associate 'pipeline and forecasting duties'), yet 5/19 is reported for the pair; give component-level counts or narrow to the quoted construct. 'MongoDB associate' also implies associate-level reqs are inside the AE bucket -- state that inclusion rule.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "account-executive",
+    "claim_id": "clm_3973c17cb60f6aee7bbd",
+    "claim_statement": "Consultative customer relationships: consultative selling and durable customer relationships — recorded in 4 of 19 admitted Account Executive postings (no variant split for this role) from 3 of 7 employers in the 2026-09-30 US sample.",
+    "issue": "Quote supports only the relationship half ('fostering strong customer relationships'); the consultative-selling half is asserted in the detail (Datadog, Twilio) without a quote. Supply the consultative-selling quote with its component count, or narrow the claim to customer relationship building.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "account-executive",
+    "claim_id": "clm_74355f9c6f623bd98bd9",
+    "claim_statement": "Post-sale retention and adoption: retention, adoption and expansion targets after the sale — recorded in 2 of 19 admitted Account Executive postings (no variant split for this role) from 2 of 7 employers in the 2026-09-30 US sample.",
+    "issue": "Quote negates the claim: 'This is a build role, not a maintain role.' is offered as evidence for post-sale retention and adoption targets, but it explicitly disclaims maintenance work. A quote that states the opposite of the signal cannot support the claim.",
+    "severity": "blocker",
+    "resolution": "dropped by challenge pass",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "account-executive",
+    "claim_id": "clm_1f8d615b7724360a92e2",
+    "claim_statement": "SaaS/PaaS closing experience: SaaS/PaaS closing tenure expectation — recorded in 1 of 19 admitted Account Executive postings (no variant split for this role) from 1 of 7 employers in the 2026-09-30 US sample.",
+    "issue": "n=1 of 19 is anecdote, and the detail concedes the requirement is visible 'in its excerpt', so the count is excerpt-length-limited and not comparable to the other signals' counts. Keep only with an explicit single-posting, excerpt-limited caveat; do not aggregate into prevalence or trend framing.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_9cbb1b1cf7224a6eb17a",
+    "claim_statement": "O*NET maps the HR Generalist job title to Human Resources Specialists (13-1071.00), an occupation defined by recruiting, screening, interviewing and placing individuals within an organization.",
+    "issue": "Quote is a single O*NET task statement, not the occupation definition or sample-job-title list; it cannot support 'O*NET maps the HR Generalist job title to 13-1071.00' nor that the occupation is 'defined by' recruiting/screening/interviewing/placing. Add the definition/sample-title excerpt, or weaken to 'includes recruiting, screening, interviewing and placing among its listed tasks'.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_107151ee854417c42239",
+    "claim_statement": "The related Human Resources Managers occupation (11-3121.00) covers acting as a link between management and employees and resolving work-related problems, the escalation layer above generalist roles.",
+    "issue": "'the escalation layer above generalist roles' is an unsourced inference; the excerpt supports only the liaison and problem-resolution duties. O*NET lists HR Managers (11-3121.00) and HR Specialists (13-1071.00) as separate occupations, not an explicit ladder — trim the hierarchy framing or cite a source for it.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_38c15a308e8cd02e6202",
+    "claim_statement": "Employee relations casework: employee and manager counseling on policy and conflict — recorded in 9 of 13 admitted HR Generalist postings (no variant split for this role) from 2 of 6 employers in the 2026-10-01 US sample.",
+    "issue": "Internal contradiction: employers_matched=2 but the detail names three employers (SpaceX, Coinbase, Justworks). 'conflict' is also not in the quote (policy and laws/regulations only; conflict appears solely in the vague 'several postings' note). The 9-of-13 count cannot be reproduced from the record as written and is concentrated in 2 of 6 employers — re-derive before use.",
+    "severity": "blocker",
+    "resolution": "dropped by challenge pass",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_8e815121639e065c4ddb",
+    "claim_statement": "HR business partnering: advising leaders on organization design and change — recorded in 4 of 13 admitted HR Generalist postings (no variant split for this role) from 3 of 6 employers in the 2026-10-01 US sample.",
+    "issue": "Scope conflation: claim counts 'HR Generalist postings', but the corroboration is HRBP-level — Stripe/Instacart 'coaching and influencing Director/VP+ leaders' plus explicitly 'senior SpaceX business-partner postings'. Growth-variant conflation (product-growth / growth-marketing / sales-account-executive) does not apply to this role — no such variants appear in any claim; the live conflation risk is HR Generalist vs HR Business Partner scope. Verify admitted-posting titles or re-scope the claim.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_f0c16edbadbbea8ca087",
+    "claim_statement": "HRIS and lifecycle transactions: HRIS transaction processing and employee lifecycle records — recorded in 4 of 13 admitted HR Generalist postings (no variant split for this role) from 1 of 6 employers in the 2026-10-01 US sample.",
+    "issue": "Prevalence overreach: '4 of 13' comes from 1 of 6 employers (SpaceX only; detail admits all matches are SpaceX postings) — one company's posting multiplicity, not market demand. 'Employee lifecycle records' also adds framing absent from the quote ('employee files', 'HR transactions').",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_c0ffd76b80fcf140bdb4",
+    "claim_statement": "Internal mobility and exits: internal transfers, promotions and exit interview handling — recorded in 6 of 13 admitted HR Generalist postings (no variant split for this role) from 1 of 6 employers in the 2026-10-01 US sample.",
+    "issue": "Prevalence overreach: '6 of 13' (46%) rests on a single employer (SpaceX), and the detail pools 'generalist and business-partner postings', mixing scopes. A one-company practice presented as the sample's strongest demand signal; employer coverage is 1 of 6.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_04dd9faf2f61b8c058b9",
+    "claim_statement": "Onboarding coordination: new-hire onboarding coordination — recorded in 2 of 13 admitted HR Generalist postings (no variant split for this role) from 1 of 6 employers in the 2026-10-01 US sample.",
+    "issue": "Thin support: 2 of 13 postings from 1 of 6 employers; detail cites 'SpaceX coordinator postings', so matches may be HR Coordinator-titled postings folded into the HR Generalist sample — confirm title/variant handling before treating as generalist demand.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_387e3c8b7969bbe38edd",
+    "claim_statement": "HR process automation: employee-lifecycle process redesign and automation — recorded in 1 of 13 admitted HR Generalist postings (no variant split for this role) from 1 of 6 employers in the 2026-10-01 US sample.",
+    "issue": "Single-posting anecdote (1 of 13, 1 of 6 employers); detail says 'Lyft's HR operations posting', i.e., possibly an HR Operations title rather than HR Generalist. n=1 cannot carry an advertised_demand category without explicit n=1/employer-concentration caveats.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  },
+  {
+    "kind": "challenge",
+    "occupation_slug": "hr-generalist",
+    "claim_id": "clm_980298dc0a1b8ed60586",
+    "claim_statement": "Coaching HR team members: mentoring and quality-assurance of HR consultants — recorded in 1 of 13 admitted HR Generalist postings (no variant split for this role) from 1 of 6 employers in the 2026-10-01 US sample.",
+    "issue": "Single-posting anecdote (1 of 13, 1 of 6 employers); the quote addresses 'HR Consultants' ('Coach and mentor fellow HR Consultants'), indicating the admitted posting is a consultant-titled role at Justworks rather than HR Generalist — title conflation plus n=1.",
+    "severity": "warning",
+    "resolution": "retained after challenge",
+    "challenger": "agent challenge pass (pinned task model)"
+  }
+]

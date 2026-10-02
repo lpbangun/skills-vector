@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_85266e2d0acaee048e3a",
+  "release_id": "rel_20261002_eb0937b49c70",
+  "occupation_slug": "forward-deployed-engineer",
+  "claim_type": "advertised_demand",
+  "statement": "Customer engagement ownership: technical ownership of engagements — recorded in 1 of 5 admitted Forward Deployed Engineer postings (no variant split for this role) from 1 of 5 employers in the 2026-10-02 US sample.",
+  "quote": "Serve as the primary technical owner for customer engagements from",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+  },
+  "sources": [
+    {
+      "id": "src_8efe09ea0ab8845c7414",
+      "url": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/8094523",
+      "publisher": "MongoDB",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_584ae4cefc64005b6557",
+      "retrieved_at": "2026-10-02T17:29:00Z",
+      "sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T17:29:59Z",
+  "published_at": "2026-10-02T17:33:28Z",
+  "citation_path": "/release/citations/clm_85266e2d0acaee048e3a.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "6d631bdcb31e1f81c332ea3794903a4cb8cb0d76b9c9736920d4a1288e6adbab"
+}

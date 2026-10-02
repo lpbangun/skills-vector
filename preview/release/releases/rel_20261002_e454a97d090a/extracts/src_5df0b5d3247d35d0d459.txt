@@ -1,0 +1,24 @@
+# source src_5df0b5d3247d35d0d459
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_3ea2dfd5cc63c571f78b
+# url https://boards-api.greenhouse.io/v1/boards/databricks/jobs/8407917002
+# publisher Databricks
+# retrieved_at 2026-10-02T08:17:52Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf raw_bytes 12189
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=c02384c02c0ee9a02e233623:posting-excerpt employer=Databricks title=Principal Demand Generation Manager, Campaign Development location=United States variant=growth-marketing url=https://databricks.com/company/careers/open-positions/job?gh_jid=8407917002
+This role defines the campaign framework and strategic guidance, and enables marketers to execute consistently.
+# posting id=c02384c02c0ee9a02e233623:expectation:exp_751f0022586660d7a82b employer=Databricks title=Principal Demand Generation Manager, Campaign Development location=United States variant=growth-marketing url=https://databricks.com/company/careers/open-positions/job?gh_jid=8407917002
+leads how Databricks plans and scales integrated marketing campaigns across the organization
+# posting id=c02384c02c0ee9a02e233623:expectation:exp_c34df5c6911ed6165097 employer=Databricks title=Principal Demand Generation Manager, Campaign Development location=United States variant=growth-marketing url=https://databricks.com/company/careers/open-positions/job?gh_jid=8407917002
+defines the campaign framework and strategic guidance
+# posting id=c02384c02c0ee9a02e233623:expectation:exp_54bbbfdc1714e320f408 employer=Databricks title=Principal Demand Generation Manager, Campaign Development location=United States variant=growth-marketing url=https://databricks.com/company/careers/open-positions/job?gh_jid=8407917002
+translates business needs into business requirements for campaign operations and planning tools
+# posting id=c02384c02c0ee9a02e233623:expectation:exp_eefd494c22a194cab88c employer=Databricks title=Principal Demand Generation Manager, Campaign Development location=United States variant=growth-marketing url=https://databricks.com/company/careers/open-positions/job?gh_jid=8407917002
+uniting cross-functional stakeholders
+# posting id=claim:clm_4c2f6184f67fca184cfa employer= title= location= variant= url=
+leads how Databricks plans and scales integrated marketing campaigns
+# posting id=claim:clm_a509d6d8961468935093 employer= title= location= variant= url=
+defines the campaign framework and strategic guidance

@@ -1,0 +1,28 @@
+# source src_545204355456ab64be3a
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_527c1029fa1c57e1dc09
+# url https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/8094523
+# publisher MongoDB
+# retrieved_at 2026-10-02T08:16:09Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6 raw_bytes 11986
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=4f9082e0ca94c9a0d9bffb7d:posting-excerpt employer=MongoDB title=Senior Forward Deployed Engineer location=United States variant= url=https://www.mongodb.com/careers/job/?gh_jid=8094523
+Senior Forward Deployed Engineers (FDE) sit at the intersection of enterprise customer environments and a fast-moving internal product.
+# posting id=4f9082e0ca94c9a0d9bffb7d:context:sales_segment employer=MongoDB title=Senior Forward Deployed Engineer location=United States variant= url=https://www.mongodb.com/careers/job/?gh_jid=8094523
+enterprise customer environments
+# posting id=4f9082e0ca94c9a0d9bffb7d:context:geography employer=MongoDB title=Senior Forward Deployed Engineer location=United States variant= url=https://www.mongodb.com/careers/job/?gh_jid=8094523
+United States
+# posting id=4f9082e0ca94c9a0d9bffb7d:experience:0 employer=MongoDB title=Senior Forward Deployed Engineer location=United States variant= url=https://www.mongodb.com/careers/job/?gh_jid=8094523
+5 - 8 years of engineering experience required
+# posting id=4f9082e0ca94c9a0d9bffb7d:expectation:exp_f625eaee392adac2367b employer=MongoDB title=Senior Forward Deployed Engineer location=United States variant= url=https://www.mongodb.com/careers/job/?gh_jid=8094523
+Hands-on production engineering experience, including writing code, debugging failures, and implementing fixes directly
+# posting id=4f9082e0ca94c9a0d9bffb7d:expectation:exp_c5bbf5231a4fc07c7588 employer=MongoDB title=Senior Forward Deployed Engineer location=United States variant= url=https://www.mongodb.com/careers/job/?gh_jid=8094523
+Experience with developing and deploying software within enterprise environments
+# posting id=4f9082e0ca94c9a0d9bffb7d:expectation:exp_62595de605d216da0998 employer=MongoDB title=Senior Forward Deployed Engineer location=United States variant= url=https://www.mongodb.com/careers/job/?gh_jid=8094523
+Experience building integrations across existing systems
+# posting id=claim:clm_f2a272ad818f13ecd138 employer= title= location= variant= url=
+5 - 8 years of engineering experience required
+# posting id=claim:clm_7852b3991874484d58ff employer= title= location= variant= url=
+Hands-on production engineering experience, including writing code,

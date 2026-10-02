@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_1797ba5874d6476525c7",
+  "release_id": "rel_20261002_e454a97d090a",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "HR experience: professional HR experience — recorded in 1 of 4 admitted HR Generalist postings (no variant split for this role) from 1 of 2 employers in the 2026-10-02 US sample.",
+  "quote": "1+ years of professional human resources experience",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_5cacda542a6ad762a1df",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8788674002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_e86365d2310f1dc2f064",
+      "retrieved_at": "2026-10-02T08:19:15Z",
+      "sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T08:20:13Z",
+  "published_at": "2026-10-02T08:20:21Z",
+  "citation_path": "/release/citations/clm_1797ba5874d6476525c7.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "e3acfb62c64135a9a4ed4e0f61e00d766d6b3bee8978ead6501953698d7c8510"
+}

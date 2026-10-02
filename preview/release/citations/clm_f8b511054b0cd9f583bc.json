@@ -1,0 +1,73 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_f8b511054b0cd9f583bc",
+  "release_id": "rel_20261001_89b1e984fdde",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "Employment law compliance: employment law and policy compliance in people operations — recorded in 4 of 13 admitted HR Generalist postings (no variant split for this role) from 4 of 6 employers in the 2026-10-01 US sample.",
+  "quote": "Working knowledge of employment law and its application in day-to-day people operations",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_5fef106d18511fefc3fd",
+      "url": "https://boards-api.greenhouse.io/v1/boards/justworks/jobs?content=true",
+      "publisher": "Justworks",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-01T00:23:51Z",
+      "sha256": "403ea3506d88bbe2d10adeb408c10532d25ee3dfbda096e198b72b005eebed3a",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_83d8634bde72857a25e6",
+      "url": "https://boards-api.greenhouse.io/v1/boards/instacart/jobs?content=true",
+      "publisher": "Instacart",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-01T00:24:03Z",
+      "sha256": "51b44c654cf5c3aaa4e286911ff946365775ae9f99adfeb48a12451239858854",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_311224378bdafbd70340",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8581427002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_30ed3cf37e84fc0b1410",
+      "retrieved_at": "2026-10-01T00:24:09Z",
+      "sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_656901ec560ccb4d3083",
+      "url": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs/7997879",
+      "publisher": "Coinbase",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_ba0cd7b685f202b43839",
+      "retrieved_at": "2026-10-01T00:24:10Z",
+      "sha256": "c06ac79b375bdd9cfedb762f15a1dd4f6da1e7c765aadf414d202d402090bccc",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-01T00:28:54Z",
+  "published_at": "2026-10-01T00:30:50Z",
+  "citation_path": "/release/citations/clm_f8b511054b0cd9f583bc.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "d1d892495ca0c3bd91bb46ba568a7e6dd5e7adc033955fee959cfcca781d5e73"
+}

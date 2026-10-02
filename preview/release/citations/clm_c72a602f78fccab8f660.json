@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_c72a602f78fccab8f660",
+  "release_id": "rel_20261002_eb0937b49c70",
+  "occupation_slug": "account-executive",
+  "claim_type": "advertised_demand",
+  "statement": "Sales cycle ownership: consultative sales cycles — recorded in 1 of 5 admitted Account Executive postings (no variant split for this role) from 1 of 5 employers in the 2026-10-02 US sample.",
+  "quote": "Own highly analytical and consultative sales cycles",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_b4d168f3e108198212d3",
+      "url": "https://boards-api.greenhouse.io/v1/boards/twilio/jobs?content=true",
+      "publisher": "Twilio",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T17:27:21Z",
+      "sha256": "4d239d2723fa87930d28bb7d3151e1cd6a3f0bd324f26edbb524ddea88864e6e",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T17:28:23Z",
+  "published_at": "2026-10-02T17:33:28Z",
+  "citation_path": "/release/citations/clm_c72a602f78fccab8f660.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "67ee43cc60d59a41f7bd05243ed41a79ae3afeabd7383931cd8b3430f554d5fb"
+}

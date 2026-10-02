@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_d4234920cf708ef3959d",
+  "release_id": "rel_20261002_5b1191c61ea0",
+  "occupation_slug": "forward-deployed-engineer",
+  "claim_type": "foundation",
+  "statement": "Software Developers research, design, and develop computer and network software or specialized utility programs.",
+  "quote": "Research, design, and develop computer and network software or specialized utility programs.",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+  },
+  "sources": [
+    {
+      "id": "src_2b8bee541b5db2cbf9a5",
+      "url": "https://www.onetonline.org/link/summary/15-1252.00",
+      "publisher": "O*NET OnLine (U.S. Department of Labor)",
+      "source_type": "foundation",
+      "retrieval_kind": "",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T02:22:55Z",
+      "sha256": "4b323fdd8a671efd44190d3fe60e4388f04446183b436f39b1d6666befd199cc",
+      "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T02:24:01Z",
+  "published_at": "2026-10-02T04:39:32Z",
+  "citation_path": "/release/citations/clm_d4234920cf708ef3959d.json",
+  "attribution": "agent-authored synthesis over retrieved official foundation text",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "525a83c56973ac210ee0a559cf6b4ab3f43cb8cfb813f7ae85e2d37e4468cb2e"
+}

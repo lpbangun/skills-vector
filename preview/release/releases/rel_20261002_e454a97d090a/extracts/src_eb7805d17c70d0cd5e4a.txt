@@ -1,0 +1,25 @@
+# source src_eb7805d17c70d0cd5e4a
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true
+# publisher Figma
+# retrieved_at 2026-10-02T08:17:42Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea raw_bytes 1836371
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=5100869e45f2160aa6a8ba00:posting-excerpt employer=Figma title=Product Manager, AI Growth location=San Francisco, CA • New York, NY • United States variant=product-growth url=https://boards.greenhouse.io/figma/jobs/5989185004?gh_jid=5989185004
+Use data and insights to build a portfolio of experiments and new features that drive users to discover the transformative impact of Figma’s AI features and products
+# posting id=5100869e45f2160aa6a8ba00:responsibility_evidence employer=Figma title=Product Manager, AI Growth location=San Francisco, CA • New York, NY • United States variant=product-growth url=https://boards.greenhouse.io/figma/jobs/5989185004?gh_jid=5989185004
+Shape Figma’s growth strategy as our business and product evolve.
+# posting id=5100869e45f2160aa6a8ba00:experience:0 employer=Figma title=Product Manager, AI Growth location=San Francisco, CA • New York, NY • United States variant=product-growth url=https://boards.greenhouse.io/figma/jobs/5989185004?gh_jid=5989185004
+7+ years of product management experience
+# posting id=5100869e45f2160aa6a8ba00:expectation:exp_924f6e2c84e5fd104e41 employer=Figma title=Product Manager, AI Growth location=San Francisco, CA • New York, NY • United States variant=product-growth url=https://boards.greenhouse.io/figma/jobs/5989185004?gh_jid=5989185004
+Experience leading major product or growth initiatives across user-facing products
+# posting id=5100869e45f2160aa6a8ba00:expectation:exp_c511e9616ac4b2ebd630 employer=Figma title=Product Manager, AI Growth location=San Francisco, CA • New York, NY • United States variant=product-growth url=https://boards.greenhouse.io/figma/jobs/5989185004?gh_jid=5989185004
+Track record of delivering impact through data-driven experimentation and strategic bets
+# posting id=5100869e45f2160aa6a8ba00:expectation:exp_d82cfaff2f680d65e2d9 employer=Figma title=Product Manager, AI Growth location=San Francisco, CA • New York, NY • United States variant=product-growth url=https://boards.greenhouse.io/figma/jobs/5989185004?gh_jid=5989185004
+Familiarity with current AI-powered product development and a POV on how our industry will evolve
+# posting id=claim:clm_3014b718abdb68ab3b08 employer= title= location= variant= url=
+7+ years of product management experience
+# posting id=claim:clm_1685274592c655303f64 employer= title= location= variant= url=
+Experience leading major product or growth initiatives across

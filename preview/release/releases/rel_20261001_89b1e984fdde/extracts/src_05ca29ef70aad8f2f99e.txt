@@ -1,0 +1,21 @@
+# source src_05ca29ef70aad8f2f99e
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/instacart/jobs?content=true
+# publisher Instacart
+# retrieved_at 2026-09-30T23:25:01Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 51b44c654cf5c3aaa4e286911ff946365775ae9f99adfeb48a12451239858854 raw_bytes 1450405
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=e875c4eef02fa0f192bc2562 employer=Instacart title=Senior AI Solutions Sales Executive location=United States - Remote variant=sales-account-executive url=https://instacart.careers/job/?gh_jid=8241548
+The cash variable incentive target is based on individual sales performance.
+# posting id=59f6123d9e64e8d5578b5cb5 employer=Instacart title=Sales Associate - San Francisco/Los Angeles location=United States - Remote variant=sales-account-executive url=https://instacart.careers/job/?gh_jid=7560993
+A consultative sales approach with a track record of growing accounts through education and solution-selling
+# posting id=9dc372090f61fdc9817a1f6a employer=Instacart title=Sales Associate location=United States - Remote variant=sales-account-executive url=https://instacart.careers/job/?gh_jid=7572155
+A consultative sales approach with a track record of growing accounts through education and solution-selling
+# posting id=a7573ddfb44ac5ba746d0138 employer=Instacart title=Senior Sales Associate location=United States - Remote variant=sales-account-executive url=https://instacart.careers/job/?gh_jid=7931358
+A consultative sales approach with a track record of growing accounts through education and solution-selling
+# posting id=07a3ad0adbb5d941b959aa31 employer=Instacart title=Sales Associate - New York location=United States - Remote variant=sales-account-executive url=https://instacart.careers/job/?gh_jid=7558978
+The cash variable incentive target is based on individual sales performance
+# posting id=eb74ba6a49f878393fd44028 employer=Instacart title=Retention Sales Development Representative II location=United States - Remote variant=sales-account-executive url=https://instacart.careers/job/?gh_jid=7712406
+owning all aspects of the advertising relationship

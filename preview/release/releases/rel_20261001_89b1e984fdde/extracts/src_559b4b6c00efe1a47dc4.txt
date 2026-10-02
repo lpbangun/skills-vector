@@ -1,0 +1,12 @@
+# source src_559b4b6c00efe1a47dc4
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_9be49b446458b786b23d
+# url https://boards-api.greenhouse.io/v1/boards/stripe/jobs/7576999
+# publisher Stripe
+# retrieved_at 2026-09-30T23:25:29Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 968d886243f379125d2bad3ba004d44c98b2742385acd2d4f958e0f713219673 raw_bytes 6529
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=7e8d2c87a279483262e49dc9 employer=Stripe title=Account Executive, SMB Grower location=Chicago variant=sales-account-executive url=https://stripe.com/jobs/search?gh_jid=7576999
+Own the full sales cycle from lead to close for startups and small/medium businesses

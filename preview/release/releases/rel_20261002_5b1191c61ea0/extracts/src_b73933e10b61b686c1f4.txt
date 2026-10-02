@@ -1,0 +1,19 @@
+# source src_b73933e10b61b686c1f4
+# source_type job-board
+# retrieval_kind listing
+# url https://api.ashbyhq.com/posting-api/job-board/openai
+# publisher OpenAI
+# retrieved_at 2026-10-02T02:23:01Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 4d4301e5dff75301b212568d68e7ebb7a0b690094378b5d93a4a997795347262 raw_bytes 2097152
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=9426ce75f1ce9f96d14c8113:posting-excerpt employer=OpenAI title=Manager, Forward Deployed Engineering- NYC location=New York City variant= url=https://jobs.ashbyhq.com/openai/5bbc43df-558a-4e4b-a0cf-83f185c664d7
+OpenAI’s Forward Deployed Engineering team partners with customers to turn research breakthroughs into production systems.
+# posting id=9426ce75f1ce9f96d14c8113:context:geography employer=OpenAI title=Manager, Forward Deployed Engineering- NYC location=New York City variant= url=https://jobs.ashbyhq.com/openai/5bbc43df-558a-4e4b-a0cf-83f185c664d7
+New York City
+# posting id=9426ce75f1ce9f96d14c8113:expectation:exp_78868b1695df6613c881 employer=OpenAI title=Manager, Forward Deployed Engineering- NYC location=New York City variant= url=https://jobs.ashbyhq.com/openai/5bbc43df-558a-4e4b-a0cf-83f185c664d7
+lead FDE through high-stakes, ambiguous customer deployments
+# posting id=9426ce75f1ce9f96d14c8113:expectation:exp_8269de11cbaddaef9b74 employer=OpenAI title=Manager, Forward Deployed Engineering- NYC location=New York City variant= url=https://jobs.ashbyhq.com/openai/5bbc43df-558a-4e4b-a0cf-83f185c664d7
+own technical and business value outcomes end to end
+# posting id=9426ce75f1ce9f96d14c8113:expectation:exp_8c6429bd88cd66d5ed2d employer=OpenAI title=Manager, Forward Deployed Engineering- NYC location=New York City variant= url=https://jobs.ashbyhq.com/openai/5bbc43df-558a-4e4b-a0cf-83f185c664d7
+partner closely with Product, Research, Sales, and GTM

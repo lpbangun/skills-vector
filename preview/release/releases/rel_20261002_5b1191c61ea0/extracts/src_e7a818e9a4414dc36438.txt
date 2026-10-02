@@ -1,0 +1,8 @@
+# source src_e7a818e9a4414dc36438
+# source_type foundation
+# url https://www.bls.gov/ooh/sales/sales-representatives-wholesale-and-manufacturing.htm
+# publisher www.bls.gov
+# retrieved_at 2026-10-02T03:29:36Z
+# rights not published (retrieval failed)
+# raw_sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 raw_bytes 0
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root

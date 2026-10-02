@@ -1,0 +1,227 @@
+[
+  {
+    "id": "req_23e5e3617f78993e6160",
+    "occupation_slug": "hr-generalist",
+    "label": "HR experience tenure",
+    "learning_outcome": "Build progressive professional HR experience across generalist and business partner responsibilities.",
+    "rationale": "All three sampled postings state explicit years-of-experience requirements, ranging from 1+ to 10+ years.",
+    "uncertainty": "Sample is three postings; years required vary widely and no proficiency or market-wide demand is implied.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "1+ years of professional human resources experience",
+      "Minimum of 7 years experience at the HR Generalist, HR Business Partner,",
+      "10+ years of experience as an HR business partner"
+    ],
+    "evidence_claim_ids": [
+      "clm_27674e0ad2be5db0f9ef"
+    ],
+    "evidence_rationale": "The only recorded tenure demand is the years-of-HR-experience requirement, which directly supports building progressive professional HR experience.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_e8c20c692cbda8d09518",
+    "occupation_slug": "hr-generalist",
+    "label": "Multi-state compliance",
+    "learning_outcome": "Develop working knowledge of HR compliance obligations across multiple US states.",
+    "rationale": "One sampled posting explicitly requires experience handling compliance across multiple US states.",
+    "uncertainty": "Single-posting signal; no prevalence or depth of required proficiency is established.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Experience handing compliance across multiple US states"
+    ],
+    "evidence_claim_ids": [
+      "clm_352858e826603212c34c"
+    ],
+    "evidence_rationale": "The multi-state compliance posting requirement is the sole recorded claim matching this priority's cross-state compliance outcome.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_1bdc0506f00b5f00f2d3",
+    "occupation_slug": "hr-generalist",
+    "label": "Technology organization support",
+    "learning_outcome": "Gain experience supporting functions within a technology organization.",
+    "rationale": "One sampled posting explicitly requires experience supporting functions within a Technology organization.",
+    "uncertainty": "Single-posting signal; no prevalence or proficiency level is established.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Experience supporting functions within a Technology organization"
+    ],
+    "evidence_claim_ids": [
+      "clm_a632413af5b32e5717bd"
+    ],
+    "evidence_rationale": "The recorded requirement for supporting functions within a Technology organization directly matches this priority's outcome.",
+    "model_order": 2,
+    "priority": 3
+  },
+  {
+    "id": "req_0d9bdd3b779db47d7767",
+    "occupation_slug": "growth-manager",
+    "label": "Campaign requirements translation",
+    "learning_outcome": "Practice converting business needs into documented requirements for campaign operations.",
+    "rationale": "One sampled growth-marketing posting lists this translation task as a requirement.",
+    "uncertainty": "Single-posting signal; no evidence of how often this task appears across the market.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": "growth-marketing",
+    "search_terms": [
+      "translates business needs into business requirements for campaign operat"
+    ],
+    "evidence_claim_ids": [
+      "clm_06941d8d1f1ec1454e8e"
+    ],
+    "evidence_rationale": "This growth-marketing claim directly records translating business needs into campaign requirements, matching the priority's outcome.",
+    "model_order": 1,
+    "priority": 1
+  },
+  {
+    "id": "req_7f04f2990fb88c4fed86",
+    "occupation_slug": "growth-manager",
+    "label": "Market research foundations",
+    "learning_outcome": "Learn to research market conditions and gather information to assess potential sales or plan campaigns.",
+    "rationale": "The official foundation describes market research and information gathering as core occupation tasks.",
+    "uncertainty": "Foundation description is occupational-level and not tied to any sampled posting requirement.",
+    "confidence": "bounded",
+    "basis": "foundation",
+    "variant": null,
+    "search_terms": [
+      "Research conditions in local, regional, national, or online markets. Gather information to determine potential sales of a product or service, or plan a marketing or advertising campaign."
+    ],
+    "evidence_claim_ids": [
+      "clm_15d3f6c9ed8cc67e3c9d"
+    ],
+    "evidence_rationale": "The foundation claim describes researching market conditions and gathering information to assess sales or plan campaigns, which is the market-research basis for this priority.",
+    "model_order": 2,
+    "priority": 2
+  },
+  {
+    "id": "req_ee0a798a46aa8e749fdc",
+    "occupation_slug": "account-executive",
+    "label": "New business acquisition",
+    "learning_outcome": "Practice outbound prospecting and net-new customer acquisition motions.",
+    "rationale": "Multiple admitted postings frame new customer acquisition as an employer requirement.",
+    "uncertainty": "Sample is five postings; no prevalence or proficiency is implied.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Focus on net-new logo acquisition via outbound activity",
+      "Drive new customer acquisition",
+      "driving new business acquisition"
+    ],
+    "evidence_claim_ids": [
+      "clm_9ea27fe7e870fcebf030"
+    ],
+    "evidence_rationale": "This advertised-demand claim directly records net-new logo acquisition via outbound activity, matching the priority's outbound prospecting and new-customer acquisition outcome.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_30d2b76f78f8d249c93b",
+    "occupation_slug": "account-executive",
+    "label": "Quota-carrying readiness",
+    "learning_outcome": "Build familiarity with quota-carrying sales roles and quota-based performance expectations.",
+    "rationale": "Quota appears in admitted postings, but dimension and basis disagree across linked rows.",
+    "uncertainty": "Linked rows disagree on dimension and basis; treated as unknown.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Experienced in carrying quota",
+      "Meet or exceed quota"
+    ],
+    "evidence_claim_ids": [
+      "clm_de402f8b73b4926f6416"
+    ],
+    "evidence_rationale": "This advertised-demand claim records carrying quota, which is the quota-based performance expectation the priority targets.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_525634505206e406c661",
+    "occupation_slug": "account-executive",
+    "label": "Consultative selling",
+    "learning_outcome": "Develop consultative and analytical sales-cycle skills.",
+    "rationale": "One admitted posting requires owning highly analytical and consultative sales cycles.",
+    "uncertainty": "Single-posting signal; no prevalence or proficiency is implied.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Own highly analytical and consultative sales cycles"
+    ],
+    "evidence_claim_ids": [
+      "clm_08033183ffd2ce5d2c70"
+    ],
+    "evidence_rationale": "This advertised-demand claim records ownership of analytical consultative sales cycles, directly supporting the consultative and analytical selling skills outcome.",
+    "model_order": 2,
+    "priority": 3
+  },
+  {
+    "id": "req_68fca96b6d04af2e6f80",
+    "occupation_slug": "forward-deployed-engineer",
+    "label": "ETL process knowledge",
+    "learning_outcome": "Understand extract, transform, and load processes and how they are applied in data pipelines.",
+    "rationale": "One sampled posting lists ETL process knowledge as a preference.",
+    "uncertainty": "Based on a single preference in a 3-posting sample; not a prevalence or proficiency measure.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Knowledge of ETL (Extract, Transform, Load) processes and experience in"
+    ],
+    "evidence_claim_ids": [
+      "clm_179e85f1f4846432f515"
+    ],
+    "evidence_rationale": "The only recorded claim naming ETL processes directly supports this priority's advertised demand for ETL process knowledge.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_af2407168cbc3de45fc0",
+    "occupation_slug": "forward-deployed-engineer",
+    "label": "Python development experience",
+    "learning_outcome": "Develop working proficiency in building software with Python.",
+    "rationale": "One sampled posting lists prior Python development experience as a preference.",
+    "uncertainty": "Based on a single preference in a 3-posting sample; not a prevalence or proficiency measure.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Prior experience developing with Python"
+    ],
+    "evidence_claim_ids": [
+      "clm_fb8b8658ddaa7c8d5169"
+    ],
+    "evidence_rationale": "The recorded posting claim for prior Python development experience directly supports this priority's advertised demand for Python development experience.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_17937d6222c8ede84de2",
+    "occupation_slug": "forward-deployed-engineer",
+    "label": "AI agent deployment",
+    "learning_outcome": "Build and deploy AI-powered agents in hands-on settings.",
+    "rationale": "One sampled posting requires demonstrated, hands-on experience building and deploying AI-powered agents.",
+    "uncertainty": "Based on a single requirement in a 3-posting sample; not a prevalence or proficiency measure.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Demonstrated, hands-on experience building and deploying AI-powered agen"
+    ],
+    "evidence_claim_ids": [
+      "clm_711027f93875597a38d8"
+    ],
+    "evidence_rationale": "The recorded claim for hands-on building and deploying AI-powered agents directly supports this priority's advertised demand for AI agent deployment.",
+    "model_order": 2,
+    "priority": 3
+  }
+]

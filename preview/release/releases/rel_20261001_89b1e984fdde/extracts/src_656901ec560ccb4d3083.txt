@@ -1,0 +1,12 @@
+# source src_656901ec560ccb4d3083
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_ba0cd7b685f202b43839
+# url https://boards-api.greenhouse.io/v1/boards/coinbase/jobs/7997879
+# publisher Coinbase
+# retrieved_at 2026-10-01T00:24:10Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 c06ac79b375bdd9cfedb762f15a1dd4f6da1e7c765aadf414d202d402090bccc raw_bytes 10425
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=d1e666a9f44b2f86e9193ffa employer=Coinbase title=HR Business Partner location=Remote - USA variant= url=https://www.coinbase.com/careers/positions/7997879?gh_jid=7997879
+Build and apply HR policies with an eye toward compliance and risk reduction, managing employee relations issues across global teams

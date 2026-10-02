@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_13bca6754f506c3bf3fd",
+  "release_id": "rel_20261002_e454a97d090a",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "Multi-state compliance: multi-state compliance experience — recorded in 1 of 4 admitted HR Generalist postings (no variant split for this role) from 1 of 2 employers in the 2026-10-02 US sample.",
+  "quote": "Experience handing compliance across multiple US states",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_923a212a2be514d7551a",
+      "url": "https://boards-api.greenhouse.io/v1/boards/justworks/jobs?content=true",
+      "publisher": "Justworks",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T08:19:05Z",
+      "sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T08:20:13Z",
+  "published_at": "2026-10-02T08:20:21Z",
+  "citation_path": "/release/citations/clm_13bca6754f506c3bf3fd.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "a0bd28f7bf4b4ab936cccce059c935267d6d85a4da98fa636299b16a328833ce"
+}

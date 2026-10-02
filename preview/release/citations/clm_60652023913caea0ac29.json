@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_60652023913caea0ac29",
+  "release_id": "rel_20261002_eb0937b49c70",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "HR certification credential: PHR, SPHR, or SHRM-CP — recorded in 1 of 4 admitted HR Generalist postings (no variant split for this role) from 1 of 2 employers in the 2026-10-02 US sample.",
+  "quote": "At least 1 of the following HR certifications: PHR, SPHR, SHRM-CP, or",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_2483dc2b6edcbf91e3b7",
+      "url": "https://boards-api.greenhouse.io/v1/boards/justworks/jobs?content=true",
+      "publisher": "Justworks",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T17:32:03Z",
+      "sha256": "efbb75715151d41fc8a09977c9b6947be0a55eda2ee6485f428b97bb2162f95b",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T17:33:21Z",
+  "published_at": "2026-10-02T17:33:28Z",
+  "citation_path": "/release/citations/clm_60652023913caea0ac29.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "d3cfe3f53c3b81a61c4a1d1380e26fc81ea1121d4828b80d62e30d3d6b90fadd"
+}

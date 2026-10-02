@@ -1,0 +1,61 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_27674e0ad2be5db0f9ef",
+  "release_id": "rel_20261002_5b1191c61ea0",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "HR experience tenure: years of HR experience — recorded in 3 of 3 admitted HR Generalist postings (no variant split for this role) from 3 of 3 employers in the 2026-10-02 US sample.",
+  "quote": "1+ years of professional human resources experience",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_172e3ee6d74ad663e6ec",
+      "url": "https://boards-api.greenhouse.io/v1/boards/justworks/jobs?content=true",
+      "publisher": "Justworks",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T03:29:41Z",
+      "sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_ff857e65f20f98338030",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8505413002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_605572a4bd1c432412c7",
+      "retrieved_at": "2026-10-02T03:29:52Z",
+      "sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_fd0e2611f0a920a9bda0",
+      "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs/7466921",
+      "publisher": "Stripe",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_b18c21fbb9ce910405b3",
+      "retrieved_at": "2026-10-02T03:29:52Z",
+      "sha256": "6abe77a905a3e40340aa6a7f562e6e967f84023acf94734ebd39319f4959007e",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T03:30:39Z",
+  "published_at": "2026-10-02T04:39:32Z",
+  "citation_path": "/release/citations/clm_27674e0ad2be5db0f9ef.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "c1d7566fbaa1033a77cb2567294ed304794adfe297e493e86c1a90cd7ea36123"
+}

@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_1685274592c655303f64",
+  "release_id": "rel_20261002_e454a97d090a",
+  "occupation_slug": "growth-manager",
+  "claim_type": "advertised_demand",
+  "statement": "Leading growth initiatives: experience leading major product or growth initiatives — recorded in 1 of 1 admitted Growth Manager postings (variant scope product-growth) from 1 of 1 employers in the 2026-10-02 US sample.",
+  "quote": "Experience leading major product or growth initiatives across",
+  "variant": "product-growth",
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_eb7805d17c70d0cd5e4a",
+      "url": "https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true",
+      "publisher": "Figma",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T08:17:42Z",
+      "sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T08:18:47Z",
+  "published_at": "2026-10-02T08:20:21Z",
+  "citation_path": "/release/citations/clm_1685274592c655303f64.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "7ca1b7927a4af8c49ce1b0a40f584187f847bf2696ebfa860dc8442b5916609c"
+}

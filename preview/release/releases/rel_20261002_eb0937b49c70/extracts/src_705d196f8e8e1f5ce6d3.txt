@@ -1,0 +1,25 @@
+# source src_705d196f8e8e1f5ce6d3
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/asana/jobs?content=true
+# publisher Asana
+# retrieved_at 2026-10-02T17:28:52Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 99c5bd6ae9acfa77081dae72e3f4df651bd031f7f62efe120c41113d41e2307a raw_bytes 1356188
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=7cf53ba1465e666d299e98a0:posting-excerpt employer=Asana title=Forward Deployed Engineer, Command by Asana location=San Francisco variant= url=https://www.asana.com/jobs/apply/8031595?gh_jid=8031595
+We are looking for a deeply technical, customer-facing Forward Deployed Engineer to help product development organizations deploy Command - a new offering from Asana.
+# posting id=7cf53ba1465e666d299e98a0:context:work_context employer=Asana title=Forward Deployed Engineer, Command by Asana location=San Francisco variant= url=https://www.asana.com/jobs/apply/8031595?gh_jid=8031595
+This role is based in our San Francisco or New York City office with an office-centric hybrid schedule.
+# posting id=7cf53ba1465e666d299e98a0:context:geography employer=Asana title=Forward Deployed Engineer, Command by Asana location=San Francisco variant= url=https://www.asana.com/jobs/apply/8031595?gh_jid=8031595
+San Francisco
+# posting id=7cf53ba1465e666d299e98a0:expectation:exp_84e0e5529ea42be61dbb employer=Asana title=Forward Deployed Engineer, Command by Asana location=San Francisco variant= url=https://www.asana.com/jobs/apply/8031595?gh_jid=8031595
+deeply technical, customer-facing
+# posting id=7cf53ba1465e666d299e98a0:expectation:exp_6bb4f34aef8998483fdd employer=Asana title=Forward Deployed Engineer, Command by Asana location=San Francisco variant= url=https://www.asana.com/jobs/apply/8031595?gh_jid=8031595
+work directly with customers
+# posting id=7cf53ba1465e666d299e98a0:expectation:exp_e617863f4c2709eaf563 employer=Asana title=Forward Deployed Engineer, Command by Asana location=San Francisco variant= url=https://www.asana.com/jobs/apply/8031595?gh_jid=8031595
+move quickly from insight to implementation
+# posting id=7cf53ba1465e666d299e98a0:expectation:exp_60b9dcdb42fe2367068a employer=Asana title=Forward Deployed Engineer, Command by Asana location=San Francisco variant= url=https://www.asana.com/jobs/apply/8031595?gh_jid=8031595
+bring real-world learning back into the product
+# posting id=claim:clm_848ca47bc6989b5074fc employer= title= location= variant= url=
+work directly with customers

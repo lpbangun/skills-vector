@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_387e3c8b7969bbe38edd",
+  "release_id": "rel_20261001_89b1e984fdde",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "HR process automation: employee-lifecycle process redesign and automation — recorded in 1 of 13 admitted HR Generalist postings (no variant split for this role) from 1 of 6 employers in the 2026-10-01 US sample.",
+  "quote": "Evaluate end-to-end HR processes across the employee lifecycle to eliminate friction, improve accuracy, and incorporate automation where appropriate",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_cb9aa2f05b91f8f2ff7f",
+      "url": "https://boards-api.greenhouse.io/v1/boards/lyft/jobs?content=true",
+      "publisher": "Lyft",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-01T00:24:05Z",
+      "sha256": "d8ee345a81ffee0744bad824c31ecdf1b9a957c4ca8dd7241843290f38ebb595",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-01T00:28:54Z",
+  "published_at": "2026-10-01T00:30:50Z",
+  "citation_path": "/release/citations/clm_387e3c8b7969bbe38edd.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "37ef0e8757dc4fd38e6f760b025dd76d90d6f81ffbc047d55ca05c1c5dbe915a"
+}

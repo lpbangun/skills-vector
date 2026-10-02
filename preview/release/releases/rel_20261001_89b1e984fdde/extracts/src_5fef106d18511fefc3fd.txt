@@ -1,0 +1,11 @@
+# source src_5fef106d18511fefc3fd
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/justworks/jobs?content=true
+# publisher Justworks
+# retrieved_at 2026-10-01T00:23:51Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 403ea3506d88bbe2d10adeb408c10532d25ee3dfbda096e198b72b005eebed3a raw_bytes 1595426
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=bee627a17f105b9b59569465 employer=Justworks title=Senior HR Consultant location=New York, New York variant= url=https://boards.greenhouse.io/justworks/jobs/8240391?gh_jid=8240391
+Coach and mentor fellow HR Consultants, supporting them in their day-to-day work, and providing quality assurance feedback

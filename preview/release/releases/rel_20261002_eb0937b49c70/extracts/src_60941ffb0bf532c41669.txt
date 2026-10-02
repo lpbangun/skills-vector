@@ -1,0 +1,23 @@
+# source src_60941ffb0bf532c41669
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/duolingo/jobs?content=true
+# publisher Duolingo
+# retrieved_at 2026-10-02T17:30:27Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 a4d892749462ef78fce87bbbacc8d4b100620d0fcf876ebb1e3f9275c3159f3d raw_bytes 801600
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=1a76c35ae1f30d92cf37057b:posting-excerpt employer=Duolingo title=Senior Performance Marketing Manager location=New York, NY variant=growth-marketing url=https://careers.duolingo.com/jobs/8778318002?gh_jid=8778318002
+We’re looking for a Senior Performance Marketing Manager to drive Duolingo’s global user acquisition campaigns across multiple channels.
+# posting id=1a76c35ae1f30d92cf37057b:context:geography employer=Duolingo title=Senior Performance Marketing Manager location=New York, NY variant=growth-marketing url=https://careers.duolingo.com/jobs/8778318002?gh_jid=8778318002
+New York, NY
+# posting id=1a76c35ae1f30d92cf37057b:expectation:exp_2871dae65f6be77b9f83 employer=Duolingo title=Senior Performance Marketing Manager location=New York, NY variant=growth-marketing url=https://careers.duolingo.com/jobs/8778318002?gh_jid=8778318002
+drive Duolingo’s global user acquisition campaigns across multiple channels
+# posting id=1a76c35ae1f30d92cf37057b:expectation:exp_2f07bb431bdf072d441a employer=Duolingo title=Senior Performance Marketing Manager location=New York, NY variant=growth-marketing url=https://careers.duolingo.com/jobs/8778318002?gh_jid=8778318002
+Own day-to-day execution of global performance marketing campaigns
+# posting id=1a76c35ae1f30d92cf37057b:expectation:exp_9ed219056085653e1d48 employer=Duolingo title=Senior Performance Marketing Manager location=New York, NY variant=growth-marketing url=https://careers.duolingo.com/jobs/8778318002?gh_jid=8778318002
+Strategically run and optimize mobile install campaigns across major platforms
+# posting id=1a76c35ae1f30d92cf37057b:expectation:exp_1edbd4baf88be7edf2a1 employer=Duolingo title=Senior Performance Marketing Manager location=New York, NY variant=growth-marketing url=https://careers.duolingo.com/jobs/8778318002?gh_jid=8778318002
+setting the creative strategy
+# posting id=claim:clm_981dbcb07254b1e1b0a7 employer= title= location= variant= url=
+drive Duolingo’s global user acquisition campaigns across multiple

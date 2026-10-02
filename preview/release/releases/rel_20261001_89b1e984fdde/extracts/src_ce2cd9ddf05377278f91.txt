@@ -1,0 +1,12 @@
+# source src_ce2cd9ddf05377278f91
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_30ed3cf37e84fc0b1410
+# url https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8779717002
+# publisher SpaceX
+# retrieved_at 2026-10-01T00:24:10Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 e2c0e3661a5eb842b52ae06ba3c41c6374c6c12fd5a39c57474ac337e6430783 raw_bytes 8323
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=8a6a4916527e0a950e866106 employer=SpaceX title=HR Coordinator location=Starbase, TX variant= url=https://boards.greenhouse.io/spacex/jobs/8779717002?gh_jid=8779717002
+Maintain our HRIS for all employee life-cycle processes

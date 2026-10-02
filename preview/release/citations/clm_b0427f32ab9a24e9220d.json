@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_b0427f32ab9a24e9220d",
+  "release_id": "rel_20261001_89b1e984fdde",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "foundation",
+  "statement": "Interpreting and explaining human resources policies, procedures, laws and standards is a listed core task of HR Specialists.",
+  "quote": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_dda6cabc167b799a5635",
+      "url": "https://www.onetonline.org/link/summary/13-1071.00",
+      "publisher": "O*NET OnLine (U.S. Department of Labor)",
+      "source_type": "foundation",
+      "retrieval_kind": "",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-01T00:23:48Z",
+      "sha256": "1cf732820fc7d485cf036e0cc9dfc8a56204b86881fafcfdfa2ec3c5ace375db",
+      "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-01T00:28:54Z",
+  "published_at": "2026-10-01T00:30:50Z",
+  "citation_path": "/release/citations/clm_b0427f32ab9a24e9220d.json",
+  "attribution": "agent-authored synthesis over retrieved official foundation text",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "1b77dde88f4221c5992e6f132687db3b4223ab709d47e2523a95b7a83d046db0"
+}

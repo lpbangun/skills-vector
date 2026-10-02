@@ -1,0 +1,28 @@
+# source src_5cacda542a6ad762a1df
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_e86365d2310f1dc2f064
+# url https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8788674002
+# publisher SpaceX
+# retrieved_at 2026-10-02T08:19:15Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682 raw_bytes 8419
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=8c8a03fb3aaa8a0a26eb04dc:posting-excerpt employer=SpaceX title=HR Generalist location=Redmond, WA variant= url=https://boards.greenhouse.io/spacex/jobs/8788674002?gh_jid=8788674002
+Counsel a small client group (150-200 employees) Partner with HRBPs and coordinators to identify department needs, recommend changes, and implement improvements
+# posting id=8c8a03fb3aaa8a0a26eb04dc:context:geography employer=SpaceX title=HR Generalist location=Redmond, WA variant= url=https://boards.greenhouse.io/spacex/jobs/8788674002?gh_jid=8788674002
+Redmond, WA
+# posting id=8c8a03fb3aaa8a0a26eb04dc:experience:0 employer=SpaceX title=HR Generalist location=Redmond, WA variant= url=https://boards.greenhouse.io/spacex/jobs/8788674002?gh_jid=8788674002
+6+ months as a SpaceX HR Coordinator or 1+ years of professional human resources experience
+# posting id=8c8a03fb3aaa8a0a26eb04dc:expectation:exp_d9a55e70e45774ab7353 employer=SpaceX title=HR Generalist location=Redmond, WA variant= url=https://boards.greenhouse.io/spacex/jobs/8788674002?gh_jid=8788674002
+Bachelor’s degree
+# posting id=8c8a03fb3aaa8a0a26eb04dc:expectation:exp_65d3afce6f2fe1699a4f employer=SpaceX title=HR Generalist location=Redmond, WA variant= url=https://boards.greenhouse.io/spacex/jobs/8788674002?gh_jid=8788674002
+1+ years of professional human resources experience
+# posting id=8c8a03fb3aaa8a0a26eb04dc:expectation:exp_7ea10a59394dfa8c4246 employer=SpaceX title=HR Generalist location=Redmond, WA variant= url=https://boards.greenhouse.io/spacex/jobs/8788674002?gh_jid=8788674002
+Experience independently handling employee relations issues
+# posting id=8c8a03fb3aaa8a0a26eb04dc:expectation:exp_2b2923528bfe1f9962f7 employer=SpaceX title=HR Generalist location=Redmond, WA variant= url=https://boards.greenhouse.io/spacex/jobs/8788674002?gh_jid=8788674002
+Experience in an engineering, production or manufacturing environment supporting an exempt and hourly workforce
+# posting id=claim:clm_638e929a3c8854377c75 employer= title= location= variant= url=
+Bachelor’s degree
+# posting id=claim:clm_1797ba5874d6476525c7 employer= title= location= variant= url=
+1+ years of professional human resources experience

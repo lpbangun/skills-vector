@@ -1,0 +1,28 @@
+# source src_9150d237392e5ff8a75b
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_7fd4450f671a550e320a
+# url https://boards-api.greenhouse.io/v1/boards/verkada/jobs/5248108007
+# publisher Verkada
+# retrieved_at 2026-10-02T08:14:29Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f raw_bytes 14339
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=6edf48c5d896152e0dc53eda:posting-excerpt employer=Verkada title=Enterprise Account Executive (Florida - ED) location=Florida, United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/5248108007
+The Enterprise Account Executive will play an integral role in developing the territory and will focus on formulating and executing a sales strategy within an assigned territory, resulting in new customer acquisition and revenue growth.
+# posting id=6edf48c5d896152e0dc53eda:context:customer_industry employer=Verkada title=Enterprise Account Executive (Florida - ED) location=Florida, United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/5248108007
+experience driving new business acquisition in the K-12 education sector
+# posting id=6edf48c5d896152e0dc53eda:context:sales_segment employer=Verkada title=Enterprise Account Executive (Florida - ED) location=Florida, United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/5248108007
+Enterprise Account Executive
+# posting id=6edf48c5d896152e0dc53eda:context:work_context employer=Verkada title=Enterprise Account Executive (Florida - ED) location=Florida, United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/5248108007
+Public Sector Field Sales team
+# posting id=6edf48c5d896152e0dc53eda:context:employer_stage employer=Verkada title=Enterprise Account Executive (Florida - ED) location=Florida, United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/5248108007
+rapidly growing start-up
+# posting id=6edf48c5d896152e0dc53eda:expectation:exp_fedec9dce81c72668be3 employer=Verkada title=Enterprise Account Executive (Florida - ED) location=Florida, United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/5248108007
+Develop and Implement a comprehensive te
+# posting id=6edf48c5d896152e0dc53eda:expectation:exp_e8f9262e93c2760bcc8c employer=Verkada title=Enterprise Account Executive (Florida - ED) location=Florida, United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/5248108007
+Devise a comprehensive customer acquisition strategy
+# posting id=6edf48c5d896152e0dc53eda:expectation:exp_9bba85be30a80f1e7f2e employer=Verkada title=Enterprise Account Executive (Florida - ED) location=Florida, United States variant= url=https://job-boards.greenhouse.io/verkada/jobs/5248108007
+partner with Verkada’s channel partner sales organization
+# posting id=claim:clm_510148953076728a7b3c employer= title= location= variant= url=
+The Enterprise Account Executive will play an integral role in developing the territory and will foc

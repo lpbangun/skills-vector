@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "current": "rel_20261001_bd52f9df83a6",
+  "current": "rel_20261002_eb0937b49c70",
   "releases": [
     {
       "release_id": "rel_20260930_3206b98a56c8",
@@ -31,7 +31,54 @@
         "account-executive"
       ],
       "manifest_sha256": "0bb6dd249d462fa4d421d581956e9ede727901f28c24d273841322c50658b5db"
+    },
+    {
+      "release_id": "rel_20261001_89b1e984fdde",
+      "published_at": "2026-10-01T00:30:50Z",
+      "generated_at": "2026-10-01T00:30:50Z",
+      "occupations": [
+        "growth-manager",
+        "account-executive",
+        "hr-generalist"
+      ],
+      "manifest_sha256": "869ef1ef39da1f67252f7fd797f49e9b30f11ad2d6317dd11553a58097eb6faf"
+    },
+    {
+      "release_id": "rel_20261002_5b1191c61ea0",
+      "published_at": "2026-10-02T04:39:32Z",
+      "generated_at": "2026-10-02T04:39:32Z",
+      "occupations": [
+        "hr-generalist",
+        "growth-manager",
+        "account-executive",
+        "forward-deployed-engineer"
+      ],
+      "manifest_sha256": "8938b630bd64a1f59f0ca2e7f239406f92bd0f83de87e8f7f1941adc2cb9984a"
+    },
+    {
+      "release_id": "rel_20261002_e454a97d090a",
+      "published_at": "2026-10-02T08:20:21Z",
+      "generated_at": "2026-10-02T08:20:21Z",
+      "occupations": [
+        "account-executive",
+        "forward-deployed-engineer",
+        "growth-manager",
+        "hr-generalist"
+      ],
+      "manifest_sha256": "7669f82b0d9866417bb1491f98fecf8f9871725c94f42b321dea88a405a4a4c5"
+    },
+    {
+      "release_id": "rel_20261002_eb0937b49c70",
+      "published_at": "2026-10-02T17:33:28Z",
+      "generated_at": "2026-10-02T17:33:27Z",
+      "occupations": [
+        "account-executive",
+        "forward-deployed-engineer",
+        "growth-manager",
+        "hr-generalist"
+      ],
+      "manifest_sha256": "c612751530f33b7e0507fe7334cd3ad6dbe920ff451da4cd5a472fc372816ab8"
     }
   ],
-  "updated_at": "2026-10-01T00:04:44Z"
+  "updated_at": "2026-10-02T17:33:28Z"
 }

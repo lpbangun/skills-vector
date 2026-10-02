@@ -1,0 +1,12 @@
+# source src_269905261fc3a680be07
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_e8f50ad37e6e48abc3c6
+# url https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/7031396
+# publisher MongoDB
+# retrieved_at 2026-09-30T23:51:34Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 d734c3ef68629a024c7c541b41541ab73772a2278a2447224de698fbc42a0667 raw_bytes 11107
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=baa552664690f1232e3e4cda employer=MongoDB title=Enterprise Account Executive, Growth location=Atlanta; Florida; North Carolina; South Carolina; Tennessee variant= url=https://www.mongodb.com/careers/job/?gh_jid=7031396
+5+ years of quota-carrying field sales experience with a focus on closing new workloads and expanding accounts

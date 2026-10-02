@@ -1,0 +1,12 @@
+# source src_6b64af6cb7bf8eca43f0
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_e8f50ad37e6e48abc3c6
+# url https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/6587328
+# publisher MongoDB
+# retrieved_at 2026-09-30T23:51:30Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 1ef99b2041f7e5f5f5565ef0a82acdee60ff7fb112d613434e2ad961919423c0 raw_bytes 10919
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=ab1e080bc91a528d1162f204 employer=MongoDB title=Enterprise Account Executive location=Los Angeles variant= url=https://www.mongodb.com/careers/job/?gh_jid=6587328
+Manage the full sales cycle for all MongoDB Products & Services

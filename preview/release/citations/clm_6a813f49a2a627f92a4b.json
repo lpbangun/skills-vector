@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_6a813f49a2a627f92a4b",
+  "release_id": "rel_20261002_5b1191c61ea0",
+  "occupation_slug": "growth-manager",
+  "claim_type": "advertised_demand",
+  "statement": "Product management experience: years of product management experience — recorded in 1 of 1 admitted Growth Manager postings (variant scope product-growth) from 1 of 1 employers in the 2026-10-02 US sample.",
+  "quote": "7+ years of product management experience",
+  "variant": "product-growth",
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_17dea70fc60fae158b27",
+      "url": "https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true",
+      "publisher": "Figma",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T02:22:56Z",
+      "sha256": "168805991d3896551fc3ebcd87035b9c3e885cdb9233e527296a25ffe6c372fb",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T02:23:34Z",
+  "published_at": "2026-10-02T04:39:32Z",
+  "citation_path": "/release/citations/clm_6a813f49a2a627f92a4b.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "2620313bf75556925e31567fa771f3f074a9ca84c5204e50c28de4eff6111ff3"
+}

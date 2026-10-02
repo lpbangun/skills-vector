@@ -1,0 +1,1730 @@
+[
+  {
+    "id": "clm_e0c749b74b7ae0fd7bac",
+    "occupation_slug": "growth-manager",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "Market research analyst work includes search marketing tactics, web metrics analysis, and recommendations that raise search engine ranking and visibility for target markets.",
+    "quote": "May employ search marketing tactics, analyze web metrics, and develop recommendations to increase search engine ranking and visibility to target markets.",
+    "source_ids": [
+      "src_e626c4c10a90f496be4d"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_e626c4c10a90f496be4d"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "analysis",
+      "analyst",
+      "engine",
+      "includes",
+      "market",
+      "marketing",
+      "markets.",
+      "metrics",
+      "raise",
+      "ranking",
+      "recommendations",
+      "research"
+    ],
+    "agent_run_id": "run_20260930T232307Z_0d1ee5",
+    "asserted_at": "2026-09-30T23:43:47Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_7f0cebd702c1f1c7f42d",
+    "occupation_slug": "growth-manager",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "Marketing manager work centers on planning and directing marketing policies and programs, determining demand for products and services relative to competitors, and identifying potential customers.",
+    "quote": "Plan, direct, or coordinate marketing policies and programs, such as determining the demand for products and services offered by a firm and its competitors, and identify potential customers.",
+    "source_ids": [
+      "src_32aba23338609d20384e"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_32aba23338609d20384e"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "centers",
+      "competitors",
+      "customers.",
+      "demand",
+      "determining",
+      "directing",
+      "identifying",
+      "manager",
+      "marketing",
+      "planning",
+      "policies",
+      "potential"
+    ],
+    "agent_run_id": "run_20260930T232307Z_0d1ee5",
+    "asserted_at": "2026-09-30T23:43:47Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_dad958d72d496157ea21",
+    "occupation_slug": "growth-manager",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "Marketing managers formulate and coordinate marketing activities and policies to promote products or services in collaboration with advertising or promotion managers.",
+    "quote": "Formulate, direct, or coordinate marketing activities or policies to promote products or services, working with advertising or promotion managers.",
+    "source_ids": [
+      "src_32aba23338609d20384e"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_32aba23338609d20384e"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "activities",
+      "advertising",
+      "collaboration",
+      "coordinate",
+      "formulate",
+      "managers",
+      "managers.",
+      "marketing",
+      "policies",
+      "products",
+      "promote",
+      "promotion"
+    ],
+    "agent_run_id": "run_20260930T232307Z_0d1ee5",
+    "asserted_at": "2026-09-30T23:43:47Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_b1c2b8429c50970fb542",
+    "occupation_slug": "growth-manager",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "Marketing manager duties include overseeing product development and monitoring trends that signal demand for new products and services.",
+    "quote": "Oversee product development or monitor trends that indicate the need for new products and services.",
+    "source_ids": [
+      "src_32aba23338609d20384e"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_32aba23338609d20384e"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "demand",
+      "development",
+      "duties",
+      "include",
+      "manager",
+      "marketing",
+      "monitoring",
+      "new",
+      "overseeing",
+      "product",
+      "products",
+      "services."
+    ],
+    "agent_run_id": "run_20260930T232307Z_0d1ee5",
+    "asserted_at": "2026-09-30T23:43:47Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_1ab8657a80201f19885c",
+    "occupation_slug": "growth-manager",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "Sales representative work consists of selling goods from wholesalers or manufacturers to businesses or groups of individuals.",
+    "quote": "Sell goods for wholesalers or manufacturers to businesses or groups of individuals.",
+    "source_ids": [
+      "src_e80f411fe16da334dc31"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_e80f411fe16da334dc31"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "businesses",
+      "consists",
+      "goods",
+      "groups",
+      "individuals.",
+      "manufacturers",
+      "representative",
+      "sales",
+      "selling",
+      "wholesalers"
+    ],
+    "agent_run_id": "run_20260930T232307Z_0d1ee5",
+    "asserted_at": "2026-09-30T23:43:47Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_2f5f0375c9976c9dec9e",
+    "occupation_slug": "growth-manager",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "The sales representative occupation requires substantial product knowledge of the items sold.",
+    "quote": "Work requires substantial knowledge of items sold.",
+    "source_ids": [
+      "src_e80f411fe16da334dc31"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_e80f411fe16da334dc31"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "items",
+      "knowledge",
+      "occupation",
+      "product",
+      "representative",
+      "requires",
+      "sales",
+      "sold.",
+      "substantial"
+    ],
+    "agent_run_id": "run_20260930T232307Z_0d1ee5",
+    "asserted_at": "2026-09-30T23:43:47Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_1582465d398cd5ec20a8",
+    "occupation_slug": "growth-manager",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "Sales representatives answer customer questions about products, prices, availability, product uses, and credit terms.",
+    "quote": "Answer customers' questions about products, prices, availability, product uses, and credit terms.",
+    "source_ids": [
+      "src_e80f411fe16da334dc31"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_e80f411fe16da334dc31"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "answer",
+      "availability",
+      "credit",
+      "customer",
+      "prices",
+      "product",
+      "products",
+      "questions",
+      "representatives",
+      "sales",
+      "terms.",
+      "uses"
+    ],
+    "agent_run_id": "run_20260930T232307Z_0d1ee5",
+    "asserted_at": "2026-09-30T23:43:47Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_e9e9361cb12bb7f58612",
+    "occupation_slug": "growth-manager",
+    "claim_type": "advertised_demand",
+    "variant": "sales-account-executive",
+    "statement": "full-cycle enterprise sales ownership: full sales cycle ownership for enterprise accounts — recorded in 2 of 26 admitted Growth Manager postings (variant scope sales-account-executive) from 1 of 8 employers in the 2026-09-30 US sample.",
+    "quote": "Own the full sales cycle from lead to close for upper middle market and enterprise companies",
+    "source_ids": [
+      "src_52fccb6feadf79a4aa8b",
+      "src_559b4b6c00efe1a47dc4"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 26,
+      "postings_matched": 2,
+      "employers_matched": 1,
+      "employers_considered": 8,
+      "quote_source": "src_52fccb6feadf79a4aa8b",
+      "detail": "Stripe hunter roles pair a named account list with C-level engagement across upper middle market and enterprise segments, and ownership runs from lead through close.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "C-level executives",
+      "account plans",
+      "client retention",
+      "cold calling",
+      "contract renewals",
+      "cross-functional teams",
+      "enterprise",
+      "full sales cycle",
+      "full-cycle",
+      "full-cycle enterprise sales ownership",
+      "named account list",
+      "negotiations",
+      "outbound strategies",
+      "ownership",
+      "pricing",
+      "sales",
+      "upper middle market and enterprise",
+      "upsell"
+    ],
+    "agent_run_id": "run_20260930T232307Z_0d1ee5",
+    "asserted_at": "2026-09-30T23:43:47Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_52c1a86f714c073d4e86",
+    "occupation_slug": "growth-manager",
+    "claim_type": "advertised_demand",
+    "variant": "sales-account-executive",
+    "statement": "quota-carrying SaaS closing experience: quota-carrying SaaS closing experience — recorded in 1 of 26 admitted Growth Manager postings (variant scope sales-account-executive) from 1 of 8 employers in the 2026-09-30 US sample.",
+    "quote": "Minimum 6 years of quota-carrying direct SaaS sales experience in a full cycle closing role with strong prospecting, qualifying, negotiating, and closing skills",
+    "source_ids": [
+      "src_5f0e798a62519cd48afb"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 26,
+      "postings_matched": 1,
+      "employers_matched": 1,
+      "employers_considered": 8,
+      "quote_source": "src_5f0e798a62519cd48afb",
+      "detail": "Ramp's enterprise account executive role sets an explicit bar of six years of quota-carrying SaaS closing plus prospecting, qualifying and negotiation skills.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "C-Level executives",
+      "closing",
+      "experience",
+      "full cycle closing role",
+      "monthly revenue forecasting",
+      "negotiating",
+      "outbound prospecting",
+      "quota attainment",
+      "quota-carrying",
+      "quota-carrying SaaS closing experience",
+      "saas",
+      "sales qualification standards"
+    ],
+    "agent_run_id": "run_20260930T232307Z_0d1ee5",
+    "asserted_at": "2026-09-30T23:43:47Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_9e21aeb5722726c43646",
+    "occupation_slug": "growth-manager",
+    "claim_type": "advertised_demand",
+    "variant": "sales-account-executive",
+    "statement": "programmatic advertising sales: programmatic revenue target ownership — recorded in 2 of 26 admitted Growth Manager postings (variant scope sales-account-executive) from 2 of 8 employers in the 2026-09-30 US sample.",
+    "quote": "Own a programmatic revenue target and forecast",
+    "source_ids": [
+      "src_bafc0231efe3d6f5b44e",
+      "src_e95362099ad9ebe8f119"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 26,
+      "postings_matched": 2,
+      "employers_matched": 2,
+      "employers_considered": 8,
+      "quote_source": "src_bafc0231efe3d6f5b44e",
+      "detail": "Duolingo's ad sales lead carries a programmatic revenue target and forecast, selling to agency holding companies and trading desks and negotiating annual and upfront commitments.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "PMP/PG",
+      "QBRs",
+      "advertising",
+      "agency holding companies",
+      "campaign performance",
+      "deal negotiations",
+      "executive-level relationships",
+      "full-funnel",
+      "joint business planning",
+      "negotiate annual and upfront commitments",
+      "optimization",
+      "pipeline",
+      "premium programmatic buyers",
+      "programmatic",
+      "programmatic advertising sales",
+      "programmatic buying",
+      "programmatic sales strategies",
+      "revenue target and forecast",
+      "sales",
+      "trading desks"
+    ],
+    "agent_run_id": "run_20260930T232307Z_0d1ee5",
+    "asserted_at": "2026-09-30T23:43:47Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_8e0f9b3c3234b3afcaf8",
+    "occupation_slug": "growth-manager",
+    "claim_type": "advertised_demand",
+    "variant": "sales-account-executive",
+    "statement": "retail media consultative selling: consultative solution-selling into retail media accounts — recorded in 3 of 26 admitted Growth Manager postings (variant scope sales-account-executive) from 1 of 8 employers in the 2026-09-30 US sample.",
+    "quote": "A consultative sales approach with a track record of growing accounts through education and solution-selling",
+    "source_ids": [
+      "src_05ca29ef70aad8f2f99e"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 26,
+      "postings_matched": 3,
+      "employers_matched": 1,
+      "employers_considered": 8,
+      "quote_source": "src_05ca29ef70aad8f2f99e",
+      "detail": "Instacart sales roles require a consultative, education-led approach to growing accounts inside the retail media ecosystem, tracked through ad-platform campaign metrics.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Salesforce",
+      "ad platforms",
+      "campaign metrics",
+      "consultative",
+      "consultative sales approach",
+      "growing accounts",
+      "growing accounts through education and solution-selling",
+      "high-activity sales environment",
+      "media",
+      "retail",
+      "retail media consultative selling",
+      "retail media ecosystem",
+      "selling",
+      "solution-selling"
+    ],
+    "agent_run_id": "run_20260930T232307Z_0d1ee5",
+    "asserted_at": "2026-09-30T23:43:47Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_eff11a02fd02cff0a630",
+    "occupation_slug": "growth-manager",
+    "claim_type": "advertised_demand",
+    "variant": "sales-account-executive",
+    "statement": "public sector procurement sales: SLED and federal procurement sales motion — recorded in 4 of 26 admitted Growth Manager postings (variant scope sales-account-executive) from 2 of 8 employers in the 2026-09-30 US sample.",
+    "quote": "As an individual contributor, proactively work to cultivate, pursue, and capture SLED sales opportunities.",
+    "source_ids": [
+      "src_4e8a2f8a9e27196507d9",
+      "src_79d1a054c685dee86878"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 26,
+      "postings_matched": 4,
+      "employers_matched": 2,
+      "employers_considered": 8,
+      "quote_source": "src_4e8a2f8a9e27196507d9",
+      "detail": "Vanta's regional SLED roles and Figma's federal civilian role call for navigating procurement landscapes, contract vehicles, channel partners and multi-stakeholder deals.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "GovRAMP",
+      "SLED procurement landscape",
+      "SLED sales",
+      "SLED sales opportunities",
+      "SaaS",
+      "account plans",
+      "channel partners",
+      "closing complex, multi-stakeholder deals",
+      "complex, multi-stakeholder deals",
+      "contract vehicles",
+      "enterprise sales",
+      "executive sponsorship",
+      "federal contracting vehicles",
+      "multi-threading",
+      "negotiation",
+      "pipeline",
+      "procurement",
+      "public",
+      "public sector procurement sales",
+      "sales"
+    ],
+    "agent_run_id": "run_20260930T232307Z_0d1ee5",
+    "asserted_at": "2026-09-30T23:43:47Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_c003f2e3a07a88ffaa3b",
+    "occupation_slug": "growth-manager",
+    "claim_type": "advertised_demand",
+    "variant": "growth-marketing",
+    "statement": "lifecycle and retention marketing: lifecycle journey ownership with segmentation and testing — recorded in 1 of 26 admitted Growth Manager postings (variant scope growth-marketing) from 1 of 8 employers in the 2026-09-30 US sample.",
+    "quote": "Own the strategy of lifecycle journeys and campaigns for your product areas",
+    "source_ids": [
+      "src_9084327c1a550f19ccbd"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 26,
+      "postings_matched": 1,
+      "employers_matched": 1,
+      "employers_considered": 8,
+      "quote_source": "src_9084327c1a550f19ccbd",
+      "detail": "Robinhood's lifecycle marketing role owns journey and campaign strategy for assigned product areas and expects segmentation, A/B testing and SQL.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "A/B testing",
+      "SQL",
+      "customer segmentation",
+      "growth marketing",
+      "lifecycle",
+      "lifecycle and retention marketing",
+      "lifecycle journeys",
+      "marketing",
+      "marketing strategy",
+      "retention"
+    ],
+    "agent_run_id": "run_20260930T232307Z_0d1ee5",
+    "asserted_at": "2026-09-30T23:43:47Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_c7184b94c0d938a661cc",
+    "occupation_slug": "growth-manager",
+    "claim_type": "advertised_demand",
+    "variant": "growth-marketing",
+    "statement": "paid acquisition channel operations: paid acquisition channel ownership — recorded in 2 of 26 admitted Growth Manager postings (variant scope growth-marketing) from 2 of 8 employers in the 2026-09-30 US sample.",
+    "quote": "Ramp is looking for a Performance Marketing Manager to own paid acquisition on YouTube, ChatGPT, X, Rideshare, and Reddit",
+    "source_ids": [
+      "src_5f0e798a62519cd48afb",
+      "src_bafc0231efe3d6f5b44e"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 26,
+      "postings_matched": 2,
+      "employers_matched": 2,
+      "employers_considered": 8,
+      "quote_source": "src_5f0e798a62519cd48afb",
+      "detail": "Ramp's performance marketing role names paid acquisition channels including YouTube, ChatGPT, X, Rideshare and Reddit; Duolingo pairs mobile user acquisition at scale with LTV/CAC and creative strategy.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "CPI",
+      "Google UAC",
+      "LTV-to-CAC efficiency",
+      "LTV/CAC",
+      "Meta",
+      "Tiktok",
+      "acquisition",
+      "channel",
+      "channel operations",
+      "creative strategy",
+      "full-funnel performance",
+      "incremental SQLs",
+      "mobile user acquisition",
+      "operations",
+      "paid",
+      "paid acquisition",
+      "paid acquisition channel operations",
+      "performance marketing channels",
+      "programmatic"
+    ],
+    "agent_run_id": "run_20260930T232307Z_0d1ee5",
+    "asserted_at": "2026-09-30T23:43:47Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_f0dcc0301be61ac84489",
+    "occupation_slug": "growth-manager",
+    "claim_type": "advertised_demand",
+    "variant": "product-growth",
+    "statement": "growth product experimentation: growth team experimentation and product strategy — recorded in 3 of 26 admitted Growth Manager postings (variant scope product-growth) from 2 of 8 employers in the 2026-09-30 US sample.",
+    "quote": "Own product strategy and execution for a new growth team, from identifying opportunities to shipping and iterating on solutions",
+    "source_ids": [
+      "src_79d1a054c685dee86878",
+      "src_bafc0231efe3d6f5b44e"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 26,
+      "postings_matched": 3,
+      "employers_matched": 2,
+      "employers_considered": 8,
+      "quote_source": "src_bafc0231efe3d6f5b44e",
+      "detail": "Duolingo and Figma growth product roles pair product strategy and retention with running experiments and shipping iterated solutions, including a portfolio of experiments around AI features.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "AI-powered product development",
+      "DAUs",
+      "cross-functional",
+      "cross-functional collaborator",
+      "data-driven experimentation",
+      "experimentation",
+      "experiments",
+      "growth",
+      "growth product experimentation",
+      "growth strategy",
+      "portfolio of experiments",
+      "prioritization",
+      "product",
+      "product strategy",
+      "retention",
+      "retention (short and long term)",
+      "roadmap",
+      "run fast experiments",
+      "user empathy",
+      "user retention"
+    ],
+    "agent_run_id": "run_20260930T232307Z_0d1ee5",
+    "asserted_at": "2026-09-30T23:43:47Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_898be872fabd46286a04",
+    "occupation_slug": "growth-manager",
+    "claim_type": "advertised_demand",
+    "variant": "sales-account-executive",
+    "statement": "expansion and renewal revenue: expansion and renewal of existing accounts — recorded in 4 of 26 admitted Growth Manager postings (variant scope sales-account-executive) from 2 of 8 employers in the 2026-09-30 US sample.",
+    "quote": "Maintaining and growing a targeted book of existing Mid-Market (500-5000 FTEs) customers",
+    "source_ids": [
+      "src_559b4b6c00efe1a47dc4",
+      "src_79d1a054c685dee86878",
+      "src_818e513ffaa0d0da0dfb",
+      "src_990d39e57452045ea3c1"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 26,
+      "postings_matched": 4,
+      "employers_matched": 2,
+      "employers_considered": 8,
+      "quote_source": "src_79d1a054c685dee86878",
+      "detail": "Stripe grower roles and Figma's mid-market posting frame growth as maintaining and expanding an existing book of business through discovery, activation, upsell and renewals.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Issuing and Treasury",
+      "account plans",
+      "client retention",
+      "cold calling",
+      "commercial negotiations",
+      "complex sales cycles",
+      "contract renewals",
+      "cross-functional teams",
+      "customer discovery",
+      "discovery and value-selling",
+      "embedded-finance use cases",
+      "executive-level relationships",
+      "expanding product adoption",
+      "expansion",
+      "expansion and renewal revenue",
+      "full sales cycle",
+      "identifying new use cases",
+      "multi-threading",
+      "negotiations",
+      "pipeline generation"
+    ],
+    "agent_run_id": "run_20260930T232307Z_0d1ee5",
+    "asserted_at": "2026-09-30T23:43:47Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_09329c49cbe088a037a2",
+    "occupation_slug": "account-executive",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "The O*NET wholesale and manufacturing sales representative occupation frames the core work as selling goods to businesses or groups of individuals, with substantial product knowledge required.",
+    "quote": "Sell goods for wholesalers or manufacturers to businesses or groups of individuals.",
+    "source_ids": [
+      "src_808826b942f6e7f788e9"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_808826b942f6e7f788e9"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "businesses",
+      "core",
+      "frames",
+      "goods",
+      "groups",
+      "individuals",
+      "knowledge",
+      "manufacturing",
+      "net",
+      "occupation",
+      "product",
+      "representative"
+    ],
+    "agent_run_id": "run_20260930T234923Z_e17111",
+    "asserted_at": "2026-09-30T23:58:53Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_e88ca35b864aa94a843b",
+    "occupation_slug": "account-executive",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "O*NET lists ongoing post-sale client support as a documented task, matching the expansion and retention duties seen in the admitted postings.",
+    "quote": "Consult with clients after sales or contract signings to resolve problems and to provide ongoing support.",
+    "source_ids": [
+      "src_808826b942f6e7f788e9"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_808826b942f6e7f788e9"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "admitted",
+      "client",
+      "documented",
+      "duties",
+      "expansion",
+      "lists",
+      "matching",
+      "net",
+      "ongoing",
+      "post-sale",
+      "postings.",
+      "retention"
+    ],
+    "agent_run_id": "run_20260930T234923Z_e17111",
+    "asserted_at": "2026-09-30T23:58:53Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_13b36c50b657c53ae169",
+    "occupation_slug": "account-executive",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "Negotiation of prices or terms of sales and service agreements is a documented task in the technical and scientific sales representative occupation.",
+    "quote": "Negotiate prices or terms of sales or service agreements.",
+    "source_ids": [
+      "src_cfa52952a435282f420d"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_cfa52952a435282f420d"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "agreements",
+      "documented",
+      "negotiation",
+      "occupation.",
+      "prices",
+      "representative",
+      "sales",
+      "scientific",
+      "service",
+      "task",
+      "technical",
+      "terms"
+    ],
+    "agent_run_id": "run_20260930T234923Z_e17111",
+    "asserted_at": "2026-09-30T23:58:53Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_e7eb587d61a44ee6776a",
+    "occupation_slug": "account-executive",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "Maintaining customer records in automated systems is a documented task, indicating CRM-style recordkeeping is part of the occupation rather than an employer-specific extra.",
+    "quote": "Maintain customer records, using automated systems.",
+    "source_ids": [
+      "src_cfa52952a435282f420d"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_cfa52952a435282f420d"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "automated",
+      "crm-style",
+      "customer",
+      "documented",
+      "employer-specific",
+      "extra.",
+      "indicating",
+      "maintaining",
+      "occupation",
+      "part",
+      "rather",
+      "recordkeeping"
+    ],
+    "agent_run_id": "run_20260930T234923Z_e17111",
+    "asserted_at": "2026-09-30T23:58:53Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_d9219407a1f0af861e7b",
+    "occupation_slug": "account-executive",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "The services sales representative occupation is defined as selling services to individuals or businesses, the broad framing that covers the SaaS and infrastructure postings in this sample.",
+    "quote": "Sell services to individuals or businesses.",
+    "source_ids": [
+      "src_eb60d5eff1660d876eec"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_eb60d5eff1660d876eec"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "broad",
+      "businesses",
+      "covers",
+      "defined",
+      "framing",
+      "individuals",
+      "infrastructure",
+      "occupation",
+      "postings",
+      "representative",
+      "saas",
+      "sales"
+    ],
+    "agent_run_id": "run_20260930T234923Z_e17111",
+    "asserted_at": "2026-09-30T23:58:53Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_8d990561b3e05dd50572",
+    "occupation_slug": "account-executive",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Full-cycle deal ownership: end-to-end sales cycle from prospecting to close — recorded in 6 of 19 admitted Account Executive postings (no variant split for this role) from 4 of 7 employers in the 2026-09-30 US sample.",
+    "quote": "Manage the full sales cycle, including technical demonstrations and negotiation",
+    "source_ids": [
+      "src_0094a0707188c6ed301f",
+      "src_136ddd79dba216fda94e",
+      "src_629d40f8b2f5b459bd52",
+      "src_6b64af6cb7bf8eca43f0",
+      "src_9644131c03ba227f3569",
+      "src_ef0e8a41a4de1756b584"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 19,
+      "postings_matched": 6,
+      "employers_matched": 4,
+      "employers_considered": 7,
+      "quote_source": "src_629d40f8b2f5b459bd52",
+      "detail": "Postings across Datadog, Twilio, Verkada, and MongoDB describe owning the whole cycle rather than a single stage. Technical demonstrations and negotiation are folded into the same cycle in the Datadog commercial postings.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Full-cycle deal ownership",
+      "MEDDIC",
+      "Sales Development Representatives",
+      "account strategy",
+      "carrying quota",
+      "channel partners",
+      "co-selling",
+      "deal",
+      "deal closure",
+      "deep discovery",
+      "expanding accounts",
+      "expansion discussions",
+      "forecast",
+      "forecasting",
+      "full sales cycle",
+      "full-cycle",
+      "negotiate pricing",
+      "negotiation",
+      "net-new logo acquisition",
+      "outbound activity"
+    ],
+    "agent_run_id": "run_20260930T234923Z_e17111",
+    "asserted_at": "2026-09-30T23:58:53Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_1d205ecd77f44e9cff09",
+    "occupation_slug": "account-executive",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "New customer acquisition quotas: net-new business targets and assigned quota ownership — recorded in 4 of 19 admitted Account Executive postings (no variant split for this role) from 3 of 7 employers in the 2026-09-30 US sample.",
+    "quote": "with a strong emphasis on net new business sales",
+    "source_ids": [
+      "src_0094a0707188c6ed301f",
+      "src_629d40f8b2f5b459bd52",
+      "src_6db5cf16715ea31fd428",
+      "src_ef0e8a41a4de1756b584"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 19,
+      "postings_matched": 4,
+      "employers_matched": 3,
+      "employers_considered": 7,
+      "quote_source": "src_6db5cf16715ea31fd428",
+      "detail": "Verkada ties quota delivery directly to net new business, while Twilio assigns an explicit iACV quota for new customer acquisition.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "MEDDIC",
+      "New customer acquisition quotas",
+      "acquisition",
+      "carrying quota",
+      "consultative sales cycles",
+      "customer",
+      "full sales cycle",
+      "negotiation",
+      "net new business sales",
+      "net-new logo acquisition",
+      "new",
+      "new customer acquisition",
+      "outbound activity",
+      "pipeline",
+      "product demos",
+      "product trials",
+      "prospecting",
+      "quota",
+      "quotas",
+      "strategic negotiations"
+    ],
+    "agent_run_id": "run_20260930T234923Z_e17111",
+    "asserted_at": "2026-09-30T23:58:53Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_5d343d6c13815024982b",
+    "occupation_slug": "account-executive",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Account expansion and growth: expanding existing accounts and closing new workloads — recorded in 5 of 19 admitted Account Executive postings (no variant split for this role) from 3 of 7 employers in the 2026-09-30 US sample.",
+    "quote": "5+ years of quota-carrying field sales experience with a focus on closing new workloads and expanding accounts",
+    "source_ids": [
+      "src_18bedda5851795708803",
+      "src_269905261fc3a680be07",
+      "src_64936b9dccf2363d7715",
+      "src_6cafdd438cfa131a0f12",
+      "src_b336eb34f53554f80141"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 19,
+      "postings_matched": 5,
+      "employers_matched": 3,
+      "employers_considered": 7,
+      "quote_source": "src_b336eb34f53554f80141",
+      "detail": "The MongoDB growth postings pair new workload closing with expansion inside named accounts; Databricks and the Datadog sponsorship role also list upselling and renewals.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Account expansion and growth",
+      "MEDDIC",
+      "SaaS/PaaS",
+      "account",
+      "closing",
+      "closing new workloads",
+      "co-selling",
+      "co-selling with cloud service providers",
+      "expanding accounts",
+      "expansion",
+      "full consultative sales cycle",
+      "full sales cycle",
+      "full- cycle closing sales",
+      "growth",
+      "negotiation",
+      "outbound prospecting",
+      "prospecting",
+      "quota-carrying field sales",
+      "renewals",
+      "revenue targets"
+    ],
+    "agent_run_id": "run_20260930T234923Z_e17111",
+    "asserted_at": "2026-09-30T23:58:53Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_67210ab4de6f9f5a5e75",
+    "occupation_slug": "account-executive",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Pipeline and book-of-business management: pipeline development and ownership of a book of business — recorded in 5 of 19 admitted Account Executive postings (no variant split for this role) from 3 of 7 employers in the 2026-09-30 US sample.",
+    "quote": "Own your book of business, from pipeline development through close and expansion",
+    "source_ids": [
+      "src_136ddd79dba216fda94e",
+      "src_269905261fc3a680be07",
+      "src_45492b082f53eeb736c3",
+      "src_925368d0f378cecffe86",
+      "src_f2a440c1f1b4bfc195d9"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 19,
+      "postings_matched": 5,
+      "employers_matched": 3,
+      "employers_considered": 7,
+      "quote_source": "src_f2a440c1f1b4bfc195d9",
+      "detail": "GitLab expects ownership from pipeline development through close and expansion; MongoDB associate and Verkada roles add pipeline and forecasting duties.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "MEDDIC",
+      "MEDPICC",
+      "Pipeline and book-of-business management",
+      "book of business",
+      "book-of-business",
+      "channel partners",
+      "close a sales pipeline",
+      "close new business",
+      "closing new workloads",
+      "co-selling with cloud service providers",
+      "complex procurement and contracting",
+      "expanding accounts",
+      "expansion discussions",
+      "forecast",
+      "forecasting",
+      "management",
+      "negotiate pricing",
+      "outbound prospecting",
+      "pipeline",
+      "pipeline development"
+    ],
+    "agent_run_id": "run_20260930T234923Z_e17111",
+    "asserted_at": "2026-09-30T23:58:53Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_3973c17cb60f6aee7bbd",
+    "occupation_slug": "account-executive",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Consultative customer relationships: consultative selling and durable customer relationships — recorded in 4 of 19 admitted Account Executive postings (no variant split for this role) from 3 of 7 employers in the 2026-09-30 US sample.",
+    "quote": "Meet or exceed quota while fostering strong customer relationships",
+    "source_ids": [
+      "src_0094a0707188c6ed301f",
+      "src_18bedda5851795708803",
+      "src_45492b082f53eeb736c3",
+      "src_f2a440c1f1b4bfc195d9"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 19,
+      "postings_matched": 4,
+      "employers_matched": 3,
+      "employers_considered": 7,
+      "quote_source": "src_45492b082f53eeb736c3",
+      "detail": "GitLab frames quota attainment alongside relationship building; Datadog and Twilio describe consultative cycles for enterprise and complex deals.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "C-Suite",
+      "Consultative customer relationships",
+      "MEDPICC",
+      "channel partners",
+      "close new business",
+      "closing",
+      "complex deals",
+      "complex procurement and contracting",
+      "consultative",
+      "consultative sales cycles",
+      "customer",
+      "expansion",
+      "forecast",
+      "full consultative sales cycle",
+      "multi-thread Enterprise accounts",
+      "negotiation",
+      "pipeline",
+      "pipeline development",
+      "prospecting",
+      "quota"
+    ],
+    "agent_run_id": "run_20260930T234923Z_e17111",
+    "asserted_at": "2026-09-30T23:58:53Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_1f8d615b7724360a92e2",
+    "occupation_slug": "account-executive",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "SaaS/PaaS closing experience: SaaS/PaaS closing tenure expectation — recorded in 1 of 19 admitted Account Executive postings (no variant split for this role) from 1 of 7 employers in the 2026-09-30 US sample.",
+    "quote": "2+ years of full- cycle closing sales experience in SaaS/PaaS companies",
+    "source_ids": [
+      "src_64936b9dccf2363d7715"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 19,
+      "postings_matched": 1,
+      "employers_matched": 1,
+      "employers_considered": 7,
+      "quote_source": "src_64936b9dccf2363d7715",
+      "detail": "Only the Databricks emerging enterprise posting states SaaS/PaaS closing experience as a year-counted requirement in its excerpt.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "low",
+    "tags": [
+      "SaaS/PaaS",
+      "SaaS/PaaS closing experience",
+      "closing",
+      "experience",
+      "full- cycle closing sales",
+      "paas",
+      "saas",
+      "up selling existing accounts"
+    ],
+    "agent_run_id": "run_20260930T234923Z_e17111",
+    "asserted_at": "2026-09-30T23:58:53Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_9cbb1b1cf7224a6eb17a",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "O*NET maps the HR Generalist job title to Human Resources Specialists (13-1071.00), an occupation defined by recruiting, screening, interviewing and placing individuals within an organization.",
+    "quote": "Recruit, screen, interview, or place individuals within an organization.",
+    "source_ids": [
+      "src_dda6cabc167b799a5635"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_dda6cabc167b799a5635"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "13-1071.00",
+      "defined",
+      "generalist",
+      "hr",
+      "human",
+      "individuals",
+      "interviewing",
+      "maps",
+      "net",
+      "occupation",
+      "organization.",
+      "placing"
+    ],
+    "agent_run_id": "run_20261001T002305Z_0e1010",
+    "asserted_at": "2026-10-01T00:28:54Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_b0427f32ab9a24e9220d",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "Interpreting and explaining human resources policies, procedures, laws and standards is a listed core task of HR Specialists.",
+    "quote": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+    "source_ids": [
+      "src_dda6cabc167b799a5635"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_dda6cabc167b799a5635"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "core",
+      "explaining",
+      "hr",
+      "human",
+      "interpreting",
+      "laws",
+      "listed",
+      "policies",
+      "procedures",
+      "resources",
+      "specialists.",
+      "standards"
+    ],
+    "agent_run_id": "run_20261001T002305Z_0e1010",
+    "asserted_at": "2026-10-01T00:28:54Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_4f461fecbe73176e68c2",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "HR Specialist task lists include maintaining employment records for hiring, termination, leave, transfer and promotion events using HR management system software.",
+    "quote": "Prepare or maintain employment records related to events, such as hiring, termination, leaves, transfers, or promotions, using human resources management system software.",
+    "source_ids": [
+      "src_dda6cabc167b799a5635"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_dda6cabc167b799a5635"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "employment",
+      "events",
+      "hiring",
+      "hr",
+      "include",
+      "leave",
+      "lists",
+      "maintaining",
+      "management",
+      "promotion",
+      "records",
+      "software."
+    ],
+    "agent_run_id": "run_20261001T002305Z_0e1010",
+    "asserted_at": "2026-10-01T00:28:54Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_107151ee854417c42239",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "The related Human Resources Managers occupation (11-3121.00) covers acting as a link between management and employees and resolving work-related problems, the escalation layer above generalist roles.",
+    "quote": "Serve as a link between management and employees by handling questions, interpreting and administering contracts and helping resolve work-related problems.",
+    "source_ids": [
+      "src_52ee3f2520b88ea8448f"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_52ee3f2520b88ea8448f"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "11-3121.00",
+      "above",
+      "acting",
+      "covers",
+      "employees",
+      "escalation",
+      "generalist",
+      "human",
+      "layer",
+      "link",
+      "management",
+      "managers"
+    ],
+    "agent_run_id": "run_20261001T002305Z_0e1010",
+    "asserted_at": "2026-10-01T00:28:54Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_cb9016d7419c2bd9d169",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "foundation",
+    "variant": null,
+    "statement": "Manager-level HR task lists include difficult staffing duties such as refereeing disputes and administering disciplinary procedures.",
+    "quote": "Perform difficult staffing duties, including dealing with understaffing, refereeing disputes, firing employees, and administering disciplinary procedures.",
+    "source_ids": [
+      "src_52ee3f2520b88ea8448f"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "official foundation excerpt",
+      "source_id": "src_52ee3f2520b88ea8448f"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "administering",
+      "difficult",
+      "disciplinary",
+      "disputes",
+      "duties",
+      "hr",
+      "include",
+      "lists",
+      "manager-level",
+      "procedures.",
+      "refereeing",
+      "staffing"
+    ],
+    "agent_run_id": "run_20261001T002305Z_0e1010",
+    "asserted_at": "2026-10-01T00:28:54Z",
+    "agent_attribution": "agent-authored synthesis over retrieved official foundation text"
+  },
+  {
+    "id": "clm_f8b511054b0cd9f583bc",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Employment law compliance: employment law and policy compliance in people operations — recorded in 4 of 13 admitted HR Generalist postings (no variant split for this role) from 4 of 6 employers in the 2026-10-01 US sample.",
+    "quote": "Working knowledge of employment law and its application in day-to-day people operations",
+    "source_ids": [
+      "src_311224378bdafbd70340",
+      "src_5fef106d18511fefc3fd",
+      "src_656901ec560ccb4d3083",
+      "src_83d8634bde72857a25e6"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 13,
+      "postings_matched": 4,
+      "employers_matched": 4,
+      "employers_considered": 6,
+      "quote_source": "src_83d8634bde72857a25e6",
+      "detail": "Instacart expects working employment-law knowledge, Coinbase frames HR policy work around compliance and risk reduction, and Justworks names employment legislation.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Employment law compliance",
+      "HR policies",
+      "HR transactions in Workday",
+      "HR-related content",
+      "change management plans",
+      "coaching and influencing Director and VP+ level leaders",
+      "compliance",
+      "compliance and HR concepts",
+      "compliance and risk reduction",
+      "customer compliance newsletter",
+      "customer-facing interactions",
+      "data and financial metrics",
+      "employee relations",
+      "employment",
+      "employment law",
+      "employment legislation",
+      "exit interviews",
+      "human resources policies",
+      "internal transfers",
+      "law"
+    ],
+    "agent_run_id": "run_20261001T002305Z_0e1010",
+    "asserted_at": "2026-10-01T00:28:54Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_8e815121639e065c4ddb",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "HR business partnering: advising leaders on organization design and change — recorded in 4 of 13 admitted HR Generalist postings (no variant split for this role) from 3 of 6 employers in the 2026-10-01 US sample.",
+    "quote": "Advise and coach leaders and managers on org design and strategy, change management interventions and other key organizational initiatives",
+    "source_ids": [
+      "src_02874e8d80292471ceeb",
+      "src_536bd50f2d0a0e3e1673",
+      "src_83d8634bde72857a25e6",
+      "src_cdcd89d4fd3e7cf81440"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 13,
+      "postings_matched": 4,
+      "employers_matched": 3,
+      "employers_considered": 6,
+      "quote_source": "src_02874e8d80292471ceeb",
+      "detail": "Stripe and Instacart ask for coaching and influencing Director/VP+ leaders on org design, change management and organizational strategy; senior SpaceX business-partner postings mirror the leader-facing framing.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "HR business partnering",
+      "Workday",
+      "benefits",
+      "business",
+      "change management",
+      "change management plans",
+      "coach leaders and managers",
+      "coaching and influencing Director and VP+ level leaders",
+      "compensation",
+      "confidentiality",
+      "data and financial metrics",
+      "employee inquiries",
+      "employee relations",
+      "employment law",
+      "exit interviews",
+      "global talent and organizational planning",
+      "hr",
+      "human resources policies",
+      "internal transfers",
+      "leadership development"
+    ],
+    "agent_run_id": "run_20261001T002305Z_0e1010",
+    "asserted_at": "2026-10-01T00:28:54Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_f0c16edbadbbea8ca087",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "HRIS and lifecycle transactions: HRIS transaction processing and employee lifecycle records — recorded in 4 of 13 admitted HR Generalist postings (no variant split for this role) from 1 of 6 employers in the 2026-10-01 US sample.",
+    "quote": "Maintain employee files and processing HR transactions in Workday",
+    "source_ids": [
+      "src_2eb2575e9d38bbf7f5e2",
+      "src_311224378bdafbd70340",
+      "src_536bd50f2d0a0e3e1673",
+      "src_ce2cd9ddf05377278f91"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 13,
+      "postings_matched": 4,
+      "employers_matched": 1,
+      "employers_considered": 6,
+      "quote_source": "src_536bd50f2d0a0e3e1673",
+      "detail": "SpaceX postings name Workday transaction processing, employee files and HRIS upkeep across the employee lifecycle.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Greenhouse",
+      "HR policies",
+      "HR reporting",
+      "HR transactions in Workday",
+      "HRIS",
+      "HRIS and lifecycle transactions",
+      "UltiPro",
+      "Workday",
+      "benefits fairs",
+      "confidentiality",
+      "conflict resolution",
+      "employee inquiries",
+      "employee life-cycle processes",
+      "employee relations",
+      "employee relations investigations",
+      "employment verifications",
+      "exit interviews",
+      "hris",
+      "human resources policies",
+      "internal transfers"
+    ],
+    "agent_run_id": "run_20261001T002305Z_0e1010",
+    "asserted_at": "2026-10-01T00:28:54Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_c0ffd76b80fcf140bdb4",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Internal mobility and exits: internal transfers, promotions and exit interview handling — recorded in 6 of 13 admitted HR Generalist postings (no variant split for this role) from 1 of 6 employers in the 2026-10-01 US sample.",
+    "quote": "Facilitate internal transfers, oversee and facilitate promotion opportunities, conduct exit interviews",
+    "source_ids": [
+      "src_311224378bdafbd70340",
+      "src_536bd50f2d0a0e3e1673",
+      "src_5fd7f2433d76cebca8e1",
+      "src_7a5831587ce6cc2a414e",
+      "src_95fa1d3c100d897bebb0",
+      "src_cdcd89d4fd3e7cf81440"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 13,
+      "postings_matched": 6,
+      "employers_matched": 1,
+      "employers_considered": 6,
+      "quote_source": "src_5fd7f2433d76cebca8e1",
+      "detail": "SpaceX generalist and business-partner postings list internal transfers, promotion oversight and exit interviews among core duties.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Greenhouse",
+      "HR projects",
+      "HR transactions in Workday",
+      "Internal mobility and exits",
+      "Workday",
+      "benefits",
+      "career development",
+      "client group",
+      "compensation",
+      "confidentiality",
+      "employee inquiries",
+      "employee relations",
+      "employee relations issues",
+      "exempt and hourly workforce",
+      "exit interviews",
+      "exits",
+      "human resources policies",
+      "internal",
+      "internal transfers",
+      "leadership development"
+    ],
+    "agent_run_id": "run_20261001T002305Z_0e1010",
+    "asserted_at": "2026-10-01T00:28:54Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_04dd9faf2f61b8c058b9",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Onboarding coordination: new-hire onboarding coordination — recorded in 2 of 13 admitted HR Generalist postings (no variant split for this role) from 1 of 6 employers in the 2026-10-01 US sample.",
+    "quote": "Serve as the onboarding point of contact for the new hire program",
+    "source_ids": [
+      "src_2eb2575e9d38bbf7f5e2",
+      "src_ce2cd9ddf05377278f91"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 13,
+      "postings_matched": 2,
+      "employers_matched": 1,
+      "employers_considered": 6,
+      "quote_source": "src_2eb2575e9d38bbf7f5e2",
+      "detail": "SpaceX coordinator postings assign onboarding point-of-contact duties and list onboarding among employee life-cycle skills.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Greenhouse",
+      "HR policies",
+      "HR reporting",
+      "HRIS",
+      "Onboarding coordination",
+      "UltiPro",
+      "Workday",
+      "benefits fairs",
+      "confidentiality",
+      "conflict resolution",
+      "coordination",
+      "employee life-cycle processes",
+      "employee relations investigations",
+      "employment verifications",
+      "human resources policies",
+      "labor laws",
+      "onboarding",
+      "unemployment claims"
+    ],
+    "agent_run_id": "run_20261001T002305Z_0e1010",
+    "asserted_at": "2026-10-01T00:28:54Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_387e3c8b7969bbe38edd",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "HR process automation: employee-lifecycle process redesign and automation — recorded in 1 of 13 admitted HR Generalist postings (no variant split for this role) from 1 of 6 employers in the 2026-10-01 US sample.",
+    "quote": "Evaluate end-to-end HR processes across the employee lifecycle to eliminate friction, improve accuracy, and incorporate automation where appropriate",
+    "source_ids": [
+      "src_cb9aa2f05b91f8f2ff7f"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 13,
+      "postings_matched": 1,
+      "employers_matched": 1,
+      "employers_considered": 6,
+      "quote_source": "src_cb9aa2f05b91f8f2ff7f",
+      "detail": "Lyft's HR operations posting adds end-to-end process evaluation, automation and low-code tooling to the generalist skill set.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "HR process automation",
+      "HR processes across the employee lifecycle",
+      "M&A Integration",
+      "automation",
+      "hr",
+      "low-code tools",
+      "operational readiness",
+      "process",
+      "process redesign"
+    ],
+    "agent_run_id": "run_20261001T002305Z_0e1010",
+    "asserted_at": "2026-10-01T00:28:54Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  },
+  {
+    "id": "clm_980298dc0a1b8ed60586",
+    "occupation_slug": "hr-generalist",
+    "claim_type": "advertised_demand",
+    "variant": null,
+    "statement": "Coaching HR team members: mentoring and quality-assurance of HR consultants — recorded in 1 of 13 admitted HR Generalist postings (no variant split for this role) from 1 of 6 employers in the 2026-10-01 US sample.",
+    "quote": "Coach and mentor fellow HR Consultants, supporting them in their day-to-day work, and providing quality assurance feedback",
+    "source_ids": [
+      "src_5fef106d18511fefc3fd"
+    ],
+    "scope": {
+      "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+      "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+    },
+    "evidence": {
+      "kind": "count within admitted sample",
+      "postings_considered": 13,
+      "postings_matched": 1,
+      "employers_matched": 1,
+      "employers_considered": 6,
+      "quote_source": "src_5fef106d18511fefc3fd",
+      "detail": "Justworks expects senior consultants to mentor fellow consultants and give quality-assurance feedback on their work.",
+      "method": "agent-identified signals over the admitted retrieved sample"
+    },
+    "confidence": "bounded",
+    "tags": [
+      "Coaching HR team members",
+      "HR-related content",
+      "coaching",
+      "compliance and HR concepts",
+      "customer compliance newsletter",
+      "customer-facing interactions",
+      "employment legislation",
+      "hr",
+      "members",
+      "mentor fellow HR Consultants",
+      "sensitive matters",
+      "team"
+    ],
+    "agent_run_id": "run_20261001T002305Z_0e1010",
+    "asserted_at": "2026-10-01T00:28:54Z",
+    "agent_attribution": "agent-authored synthesis over admitted public postings"
+  }
+]

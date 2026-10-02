@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_ed56be1a17509ac8eac8",
+  "release_id": "rel_20261002_e454a97d090a",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "Employee counseling: counseling a client group — recorded in 1 of 4 admitted HR Generalist postings (no variant split for this role) from 1 of 2 employers in the 2026-10-02 US sample.",
+  "quote": "Counsel a small client group (150-200 employees)",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_1e69e09fba29339b08f0",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8505413002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_e86365d2310f1dc2f064",
+      "retrieved_at": "2026-10-02T08:19:15Z",
+      "sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T08:20:13Z",
+  "published_at": "2026-10-02T08:20:21Z",
+  "citation_path": "/release/citations/clm_ed56be1a17509ac8eac8.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "e4135339ba94dafcfd93cd724d09294533705de42bea7a543e99e537e38e4d2b"
+}

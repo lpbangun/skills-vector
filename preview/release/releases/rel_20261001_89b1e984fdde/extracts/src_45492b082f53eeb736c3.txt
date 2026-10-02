@@ -1,0 +1,12 @@
+# source src_45492b082f53eeb736c3
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_121cd2f31e972a246844
+# url https://boards-api.greenhouse.io/v1/boards/gitlab/jobs/8592555002
+# publisher GitLab
+# retrieved_at 2026-09-30T23:51:25Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 022f6f9dfc5389ce2f14e6e3518c57ff4964a4ca6d1c258d6152b4041eb8447b raw_bytes 16358
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=e7591f2491393f0ce55ace1c employer=GitLab title=Commercial Account Executive, Named - West location=Remote, United States variant= url=https://job-boards.greenhouse.io/gitlab/jobs/8592555002
+Meet or exceed quota while fostering strong customer relationships

@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_a509d6d8961468935093",
+  "release_id": "rel_20261002_e454a97d090a",
+  "occupation_slug": "growth-manager",
+  "claim_type": "advertised_demand",
+  "statement": "Campaign framework definition: defines campaign framework and strategic guidance — recorded in 1 of 2 admitted Growth Manager postings (variant scope growth-marketing) from 1 of 2 employers in the 2026-10-02 US sample.",
+  "quote": "defines the campaign framework and strategic guidance",
+  "variant": "growth-marketing",
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_5df0b5d3247d35d0d459",
+      "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs/8407917002",
+      "publisher": "Databricks",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_3ea2dfd5cc63c571f78b",
+      "retrieved_at": "2026-10-02T08:17:52Z",
+      "sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T08:18:47Z",
+  "published_at": "2026-10-02T08:20:21Z",
+  "citation_path": "/release/citations/clm_a509d6d8961468935093.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "41611757babb13bdefd799166c02899869195c0cb192cf7c2bf1cfe9197ce51e"
+}

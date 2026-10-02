@@ -1,0 +1,1678 @@
+[
+  {
+    "slug": "account-executive",
+    "label": "Account Executive",
+    "family": "Sales",
+    "aliases": [
+      "account executive",
+      "sales executive",
+      "ae",
+      "closing sales"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sampled_at": "2026-10-02T08:14:00Z",
+    "sampling_note": "Counts describe only the job-board postings enumerated in the retrieval window for this role; they are not market prevalence. Enumerated boards were listed once per board API at the timestamp above, sampled most recently published first, then title and posting id (board API page order is not preserved); boards whose listing API pages or truncates report their enumerated/total bound in sources.json and board denominators are unaffected by per-posting detail retrievals. The candidate cap was allocated fairly across retrieved employers and provisional title/variant buckets; cap exclusions are recorded per posting. Posting text and quotes are attributed to the exact retrieved response that contains them (sources.json retrieval_kind/parent_source_id); only short excerpts are published.",
+    "selection": {
+      "prefilter_candidates": 5,
+      "feedback_triggered": false,
+      "missing_required_buckets": [],
+      "detail_fetches": 4,
+      "detail_text_failures": 0,
+      "candidates_excluded_without_text": 0,
+      "remaining_retrievals": 28,
+      "cap_allocation": {
+        "method": "title-prioritized-employer-bucket-round-robin/3: canonical-title matches, other role-title-hinted candidates, then unhinted alternatives globally; within each tier, one per employer/provisional bucket (growth variants first), then round-robin remainder; employers rank by freshest in-tier candidate, buckets by posting date/title/id; titles prioritize retrieval only, never admission",
+        "cap": 5,
+        "eligible_candidates": 1918,
+        "selected_candidates": 5,
+        "excluded_by_cap": 1913,
+        "bucket_outcomes": {
+          "role": {
+            "eligible": 1918,
+            "selected": 5,
+            "excluded_by_cap": 1913
+          }
+        },
+        "employer_outcomes": {
+          "Datadog": {
+            "eligible": 212,
+            "selected": 1,
+            "excluded_by_cap": 211
+          },
+          "MongoDB": {
+            "eligible": 121,
+            "selected": 0,
+            "excluded_by_cap": 121
+          },
+          "Cloudflare": {
+            "eligible": 38,
+            "selected": 0,
+            "excluded_by_cap": 38
+          },
+          "Verkada": {
+            "eligible": 240,
+            "selected": 1,
+            "excluded_by_cap": 239
+          },
+          "Samsara": {
+            "eligible": 169,
+            "selected": 0,
+            "excluded_by_cap": 169
+          },
+          "Databricks": {
+            "eligible": 439,
+            "selected": 1,
+            "excluded_by_cap": 438
+          },
+          "GitLab": {
+            "eligible": 99,
+            "selected": 0,
+            "excluded_by_cap": 99
+          },
+          "Twilio": {
+            "eligible": 57,
+            "selected": 1,
+            "excluded_by_cap": 56
+          },
+          "Palantir": {
+            "eligible": 67,
+            "selected": 0,
+            "excluded_by_cap": 67
+          },
+          "OpenAI": {
+            "eligible": 121,
+            "selected": 0,
+            "excluded_by_cap": 121
+          },
+          "Ramp": {
+            "eligible": 110,
+            "selected": 0,
+            "excluded_by_cap": 110
+          },
+          "Toast": {
+            "eligible": 245,
+            "selected": 1,
+            "excluded_by_cap": 244
+          }
+        }
+      }
+    },
+    "stats": {
+      "total_seen": 3686,
+      "sampled": 3686,
+      "prefilter_candidates": 5,
+      "detail_text_fetches": 4,
+      "detail_sources_used": 4,
+      "postings_dedup": 5,
+      "employers_dedup": 5,
+      "boards_attempted": 16,
+      "boards_used": 5,
+      "excluded_total": 3681,
+      "foundations_used": 3,
+      "work_level_counts": {
+        "unknown": 5
+      },
+      "responsibility_band_counts": {
+        "unknown": 5
+      },
+      "expectation_dimension_counts": {
+        "capability": 5,
+        "contextual_expectation": 2,
+        "demonstration": 1,
+        "experience": 2,
+        "task": 9
+      },
+      "expectation_basis_counts": {
+        "employer_preference": 1,
+        "employer_requirement": 18
+      },
+      "context_value_counts": {
+        "employer_industry": {},
+        "customer_industry": {
+          "Financial Services": 1,
+          "K-12 education": 1,
+          "sports teams and organizations": 1
+        },
+        "sales_segment": {
+          "enterprise": 2,
+          "small to midsize markets": 1
+        },
+        "work_context": {
+          "field sales": 1,
+          "hybrid workplace": 1,
+          "remote": 1,
+          "remote - East Coast": 1
+        },
+        "employer_size": {},
+        "employer_stage": {
+          "rapidly growing start-up": 1
+        }
+      }
+    },
+    "run_ids": [
+      "refresh_f13a48a542414f7e95cf_account-executive"
+    ],
+    "coverage": {
+      "planned": {
+        "objective": null,
+        "minimum_postings": 3,
+        "candidate_cap": 5,
+        "employers_target": 3,
+        "responsibility_bands": [
+          "early_career",
+          "independent_ic",
+          "senior_strategic_ic",
+          "people_management"
+        ],
+        "employer_industry_targets": [
+          "manufacturing",
+          "healthcare",
+          "education",
+          "retail",
+          "services"
+        ],
+        "employer_size_stage": "source-backed only; unknown when not stated"
+      },
+      "achieved": {
+        "postings": 5,
+        "employers": 5,
+        "employer_industries": [],
+        "responsibility_band_counts": {
+          "unknown": 5
+        },
+        "context_value_counts": {
+          "employer_industry": {},
+          "customer_industry": {
+            "Financial Services": 1,
+            "K-12 education": 1,
+            "sports teams and organizations": 1
+          },
+          "sales_segment": {
+            "enterprise": 2,
+            "small to midsize markets": 1
+          },
+          "work_context": {
+            "field sales": 1,
+            "hybrid workplace": 1,
+            "remote": 1,
+            "remote - East Coast": 1
+          },
+          "employer_size": {},
+          "employer_stage": {
+            "rapidly growing start-up": 1
+          }
+        },
+        "unknown_work_levels": 5,
+        "unknown_context_counts": {
+          "employer_industry": 5,
+          "customer_industry": 2,
+          "sales_segment": 2,
+          "work_context": 1,
+          "employer_size": 5,
+          "employer_stage": 4
+        }
+      },
+      "unsupported_bands": {
+        "early_career": {
+          "status": "unavailable",
+          "value": "early_career",
+          "reason": "No admitted source establishes this refinement in the bounded retrieved sample.",
+          "attempt_source_ids": [
+            "src_3a9d3f51ced93e38fcc0",
+            "src_cdb4b336fe505e12483d",
+            "src_7c0955ffc240b0e37f73",
+            "src_7fd4450f671a550e320a",
+            "src_0a8cfaf3871ae9289deb",
+            "src_a5053381eb9f05b7d741",
+            "src_b2369df6b1c14fc54463",
+            "src_617b70118c94fa55e06d",
+            "src_7e11defac3802d3fdc6a",
+            "src_e1ec20ea1893807ea78e",
+            "src_09dec91b9b9474112459",
+            "src_707607b08551565540c7",
+            "src_d80b43a88e847bba500d",
+            "src_e34b17c18a81b9df037e",
+            "src_06c6e65f567400dd813a",
+            "src_ffb097422603955f5a46"
+          ],
+          "query_terms": [
+            "Account Executive",
+            "Enterprise Account Executive",
+            "Mid-Market Account Executive",
+            "SMB Account Executive",
+            "Field Account Executive",
+            "Outside Sales Representative",
+            "Inside Sales Representative",
+            "Sales Representative",
+            "Territory Account Executive",
+            "Strategic Account Executive",
+            "Commercial Account Executive",
+            "New Business Account Executive",
+            "account executive",
+            "sales executive",
+            "account manager",
+            "sales representative",
+            "sales"
+          ]
+        },
+        "independent_ic": {
+          "status": "unavailable",
+          "value": "independent_ic",
+          "reason": "No admitted source establishes this refinement in the bounded retrieved sample.",
+          "attempt_source_ids": [
+            "src_3a9d3f51ced93e38fcc0",
+            "src_cdb4b336fe505e12483d",
+            "src_7c0955ffc240b0e37f73",
+            "src_7fd4450f671a550e320a",
+            "src_0a8cfaf3871ae9289deb",
+            "src_a5053381eb9f05b7d741",
+            "src_b2369df6b1c14fc54463",
+            "src_617b70118c94fa55e06d",
+            "src_7e11defac3802d3fdc6a",
+            "src_e1ec20ea1893807ea78e",
+            "src_09dec91b9b9474112459",
+            "src_707607b08551565540c7",
+            "src_d80b43a88e847bba500d",
+            "src_e34b17c18a81b9df037e",
+            "src_06c6e65f567400dd813a",
+            "src_ffb097422603955f5a46"
+          ],
+          "query_terms": [
+            "Account Executive",
+            "Enterprise Account Executive",
+            "Mid-Market Account Executive",
+            "SMB Account Executive",
+            "Field Account Executive",
+            "Outside Sales Representative",
+            "Inside Sales Representative",
+            "Sales Representative",
+            "Territory Account Executive",
+            "Strategic Account Executive",
+            "Commercial Account Executive",
+            "New Business Account Executive",
+            "account executive",
+            "sales executive",
+            "account manager",
+            "sales representative",
+            "sales"
+          ]
+        },
+        "senior_strategic_ic": {
+          "status": "unavailable",
+          "value": "senior_strategic_ic",
+          "reason": "No admitted source establishes this refinement in the bounded retrieved sample.",
+          "attempt_source_ids": [
+            "src_3a9d3f51ced93e38fcc0",
+            "src_cdb4b336fe505e12483d",
+            "src_7c0955ffc240b0e37f73",
+            "src_7fd4450f671a550e320a",
+            "src_0a8cfaf3871ae9289deb",
+            "src_a5053381eb9f05b7d741",
+            "src_b2369df6b1c14fc54463",
+            "src_617b70118c94fa55e06d",
+            "src_7e11defac3802d3fdc6a",
+            "src_e1ec20ea1893807ea78e",
+            "src_09dec91b9b9474112459",
+            "src_707607b08551565540c7",
+            "src_d80b43a88e847bba500d",
+            "src_e34b17c18a81b9df037e",
+            "src_06c6e65f567400dd813a",
+            "src_ffb097422603955f5a46"
+          ],
+          "query_terms": [
+            "Account Executive",
+            "Enterprise Account Executive",
+            "Mid-Market Account Executive",
+            "SMB Account Executive",
+            "Field Account Executive",
+            "Outside Sales Representative",
+            "Inside Sales Representative",
+            "Sales Representative",
+            "Territory Account Executive",
+            "Strategic Account Executive",
+            "Commercial Account Executive",
+            "New Business Account Executive",
+            "account executive",
+            "sales executive",
+            "account manager",
+            "sales representative",
+            "sales"
+          ]
+        },
+        "people_management": {
+          "status": "unavailable",
+          "value": "people_management",
+          "reason": "No admitted source establishes this refinement in the bounded retrieved sample.",
+          "attempt_source_ids": [
+            "src_3a9d3f51ced93e38fcc0",
+            "src_cdb4b336fe505e12483d",
+            "src_7c0955ffc240b0e37f73",
+            "src_7fd4450f671a550e320a",
+            "src_0a8cfaf3871ae9289deb",
+            "src_a5053381eb9f05b7d741",
+            "src_b2369df6b1c14fc54463",
+            "src_617b70118c94fa55e06d",
+            "src_7e11defac3802d3fdc6a",
+            "src_e1ec20ea1893807ea78e",
+            "src_09dec91b9b9474112459",
+            "src_707607b08551565540c7",
+            "src_d80b43a88e847bba500d",
+            "src_e34b17c18a81b9df037e",
+            "src_06c6e65f567400dd813a",
+            "src_ffb097422603955f5a46"
+          ],
+          "query_terms": [
+            "Account Executive",
+            "Enterprise Account Executive",
+            "Mid-Market Account Executive",
+            "SMB Account Executive",
+            "Field Account Executive",
+            "Outside Sales Representative",
+            "Inside Sales Representative",
+            "Sales Representative",
+            "Territory Account Executive",
+            "Strategic Account Executive",
+            "Commercial Account Executive",
+            "New Business Account Executive",
+            "account executive",
+            "sales executive",
+            "account manager",
+            "sales representative",
+            "sales"
+          ]
+        }
+      },
+      "unsupported_variants": {},
+      "unavailable_sources": [
+        {
+          "source_id": "src_731849dce6ec76b1a6de",
+          "url": "https://www.bls.gov/ooh/sales/sales-representatives-wholesale-and-manufacturing.htm",
+          "reason": "http 403"
+        },
+        {
+          "source_id": "src_707607b08551565540c7",
+          "url": "https://boards-api.greenhouse.io/v1/boards/hubspot/jobs?content=true",
+          "reason": "payload contained no titled postings"
+        },
+        {
+          "source_id": "src_e34b17c18a81b9df037e",
+          "url": "https://api.lever.co/v0/postings/netflix?mode=json",
+          "reason": "http 404"
+        },
+        {
+          "source_id": "src_06c6e65f567400dd813a",
+          "url": "https://api.smartrecruiters.com/v1/companies/Visa/postings",
+          "reason": "payload contained no titled postings"
+        },
+        {
+          "source_id": "src_ffb097422603955f5a46",
+          "url": "https://apply.workable.com/api/v1/widget/accounts/salesforce?details=true",
+          "reason": "payload contained no titled postings"
+        }
+      ],
+      "caps_reached": {
+        "candidates": true,
+        "boards": true,
+        "retrievals": false,
+        "model_attempts": false
+      },
+      "sample_date": "2026-10-02",
+      "limitation": "Achieved counts describe this source sample, not population coverage or prevalence."
+    }
+  },
+  {
+    "slug": "forward-deployed-engineer",
+    "label": "Forward Deployed Engineer",
+    "family": "Applied engineering & customer delivery",
+    "aliases": [
+      "FDE",
+      "forward-deployed engineer",
+      "forward deployed engineer",
+      "forward-deployed software engineer"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sampled_at": "2026-10-02T08:15:39Z",
+    "sampling_note": "Counts describe only the job-board postings enumerated in the retrieval window for this role; they are not market prevalence. Enumerated boards were listed once per board API at the timestamp above, sampled most recently published first, then title and posting id (board API page order is not preserved); boards whose listing API pages or truncates report their enumerated/total bound in sources.json and board denominators are unaffected by per-posting detail retrievals. The candidate cap was allocated fairly across retrieved employers and provisional title/variant buckets; cap exclusions are recorded per posting. Posting text and quotes are attributed to the exact retrieved response that contains them (sources.json retrieval_kind/parent_source_id); only short excerpts are published.",
+    "selection": {
+      "prefilter_candidates": 5,
+      "feedback_triggered": false,
+      "missing_required_buckets": [],
+      "detail_fetches": 3,
+      "detail_text_failures": 0,
+      "candidates_excluded_without_text": 0,
+      "remaining_retrievals": 30,
+      "cap_allocation": {
+        "method": "title-prioritized-employer-bucket-round-robin/3: canonical-title matches, other role-title-hinted candidates, then unhinted alternatives globally; within each tier, one per employer/provisional bucket (growth variants first), then round-robin remainder; employers rank by freshest in-tier candidate, buckets by posting date/title/id; titles prioritize retrieval only, never admission",
+        "cap": 5,
+        "eligible_candidates": 2090,
+        "selected_candidates": 5,
+        "excluded_by_cap": 2085,
+        "bucket_outcomes": {
+          "role": {
+            "eligible": 2090,
+            "selected": 5,
+            "excluded_by_cap": 2085
+          }
+        },
+        "employer_outcomes": {
+          "Palantir Technologies": {
+            "eligible": 67,
+            "selected": 0,
+            "excluded_by_cap": 67
+          },
+          "Scale AI": {
+            "eligible": 137,
+            "selected": 0,
+            "excluded_by_cap": 137
+          },
+          "OpenAI": {
+            "eligible": 121,
+            "selected": 0,
+            "excluded_by_cap": 121
+          },
+          "Anthropic": {
+            "eligible": 501,
+            "selected": 0,
+            "excluded_by_cap": 501
+          },
+          "Databricks": {
+            "eligible": 439,
+            "selected": 1,
+            "excluded_by_cap": 438
+          },
+          "Stripe": {
+            "eligible": 323,
+            "selected": 1,
+            "excluded_by_cap": 322
+          },
+          "Figma": {
+            "eligible": 109,
+            "selected": 1,
+            "excluded_by_cap": 108
+          },
+          "Airtable": {
+            "eligible": 3,
+            "selected": 0,
+            "excluded_by_cap": 3
+          },
+          "Asana": {
+            "eligible": 51,
+            "selected": 1,
+            "excluded_by_cap": 50
+          },
+          "MongoDB": {
+            "eligible": 121,
+            "selected": 1,
+            "excluded_by_cap": 120
+          },
+          "Elastic": {
+            "eligible": 123,
+            "selected": 0,
+            "excluded_by_cap": 123
+          },
+          "Twilio": {
+            "eligible": 57,
+            "selected": 0,
+            "excluded_by_cap": 57
+          },
+          "Cloudflare": {
+            "eligible": 38,
+            "selected": 0,
+            "excluded_by_cap": 38
+          }
+        }
+      }
+    },
+    "stats": {
+      "total_seen": 4238,
+      "sampled": 4238,
+      "prefilter_candidates": 5,
+      "detail_text_fetches": 3,
+      "detail_sources_used": 3,
+      "postings_dedup": 5,
+      "employers_dedup": 5,
+      "boards_attempted": 16,
+      "boards_used": 5,
+      "excluded_total": 4233,
+      "foundations_used": 4,
+      "work_level_counts": {
+        "unknown": 5
+      },
+      "responsibility_band_counts": {
+        "unknown": 5
+      },
+      "expectation_dimension_counts": {
+        "capability": 4,
+        "experience": 6,
+        "knowledge": 1,
+        "task": 8,
+        "tool": 1
+      },
+      "expectation_basis_counts": {
+        "employer_preference": 1,
+        "employer_requirement": 19
+      },
+      "context_value_counts": {
+        "employer_industry": {},
+        "customer_industry": {
+          "federal government": 1
+        },
+        "sales_segment": {
+          "enterprise": 2
+        },
+        "work_context": {
+          "customer-facing": 1,
+          "office-centric hybrid schedule": 1
+        },
+        "employer_size": {},
+        "employer_stage": {}
+      }
+    },
+    "run_ids": [
+      "refresh_f13a48a542414f7e95cf_forward-deployed-engineer"
+    ],
+    "coverage": {
+      "planned": {
+        "objective": null,
+        "minimum_postings": 3,
+        "candidate_cap": 5,
+        "employers_target": 3,
+        "responsibility_bands": [
+          "early_career",
+          "independent_ic",
+          "senior_strategic_ic",
+          "people_management"
+        ],
+        "employer_industry_targets": [
+          "manufacturing",
+          "healthcare",
+          "education",
+          "retail",
+          "services"
+        ],
+        "employer_size_stage": "source-backed only; unknown when not stated"
+      },
+      "achieved": {
+        "postings": 5,
+        "employers": 5,
+        "employer_industries": [],
+        "responsibility_band_counts": {
+          "unknown": 5
+        },
+        "context_value_counts": {
+          "employer_industry": {},
+          "customer_industry": {
+            "federal government": 1
+          },
+          "sales_segment": {
+            "enterprise": 2
+          },
+          "work_context": {
+            "customer-facing": 1,
+            "office-centric hybrid schedule": 1
+          },
+          "employer_size": {},
+          "employer_stage": {}
+        },
+        "unknown_work_levels": 5,
+        "unknown_context_counts": {
+          "employer_industry": 5,
+          "customer_industry": 4,
+          "sales_segment": 3,
+          "work_context": 3,
+          "employer_size": 5,
+          "employer_stage": 5
+        }
+      },
+      "unsupported_bands": {
+        "early_career": {
+          "status": "unavailable",
+          "value": "early_career",
+          "reason": "No admitted source establishes this refinement in the bounded retrieved sample.",
+          "attempt_source_ids": [
+            "src_1ccf455a60f7e4c83f62",
+            "src_c9976d4c61ef09de470f",
+            "src_2269720c8c8acd254745",
+            "src_d9be33ac2b784bb029c6",
+            "src_110db607019db933bf5e",
+            "src_c1fb9a9933e6b686a47d",
+            "src_85874711b8762d616f17",
+            "src_57daf64254ee3beabd58",
+            "src_d8920fcd13ab0c04720b",
+            "src_1030ec189e4de921d9e7",
+            "src_527c1029fa1c57e1dc09",
+            "src_03590ad5fbffee80a943",
+            "src_f43f3749a54c273810ea",
+            "src_afbbb3ad8bda7aff9f4e",
+            "src_c5d0d45aaef3fa057950",
+            "src_c0814acec79a8dec24a5"
+          ],
+          "query_terms": [
+            "forward deployed engineer",
+            "forward-deployed engineer",
+            "forward deployed software engineer",
+            "forward deployed engineering",
+            "deployment engineer",
+            "field engineer",
+            "field software engineer",
+            "customer engineer",
+            "technical solutions engineer",
+            "solutions architect",
+            "implementation engineer",
+            "integration engineer",
+            "forward-deployed",
+            "forward deployed",
+            "fde",
+            "embedded software engineer"
+          ]
+        },
+        "independent_ic": {
+          "status": "unavailable",
+          "value": "independent_ic",
+          "reason": "No admitted source establishes this refinement in the bounded retrieved sample.",
+          "attempt_source_ids": [
+            "src_1ccf455a60f7e4c83f62",
+            "src_c9976d4c61ef09de470f",
+            "src_2269720c8c8acd254745",
+            "src_d9be33ac2b784bb029c6",
+            "src_110db607019db933bf5e",
+            "src_c1fb9a9933e6b686a47d",
+            "src_85874711b8762d616f17",
+            "src_57daf64254ee3beabd58",
+            "src_d8920fcd13ab0c04720b",
+            "src_1030ec189e4de921d9e7",
+            "src_527c1029fa1c57e1dc09",
+            "src_03590ad5fbffee80a943",
+            "src_f43f3749a54c273810ea",
+            "src_afbbb3ad8bda7aff9f4e",
+            "src_c5d0d45aaef3fa057950",
+            "src_c0814acec79a8dec24a5"
+          ],
+          "query_terms": [
+            "forward deployed engineer",
+            "forward-deployed engineer",
+            "forward deployed software engineer",
+            "forward deployed engineering",
+            "deployment engineer",
+            "field engineer",
+            "field software engineer",
+            "customer engineer",
+            "technical solutions engineer",
+            "solutions architect",
+            "implementation engineer",
+            "integration engineer",
+            "forward-deployed",
+            "forward deployed",
+            "fde",
+            "embedded software engineer"
+          ]
+        },
+        "senior_strategic_ic": {
+          "status": "unavailable",
+          "value": "senior_strategic_ic",
+          "reason": "No admitted source establishes this refinement in the bounded retrieved sample.",
+          "attempt_source_ids": [
+            "src_1ccf455a60f7e4c83f62",
+            "src_c9976d4c61ef09de470f",
+            "src_2269720c8c8acd254745",
+            "src_d9be33ac2b784bb029c6",
+            "src_110db607019db933bf5e",
+            "src_c1fb9a9933e6b686a47d",
+            "src_85874711b8762d616f17",
+            "src_57daf64254ee3beabd58",
+            "src_d8920fcd13ab0c04720b",
+            "src_1030ec189e4de921d9e7",
+            "src_527c1029fa1c57e1dc09",
+            "src_03590ad5fbffee80a943",
+            "src_f43f3749a54c273810ea",
+            "src_afbbb3ad8bda7aff9f4e",
+            "src_c5d0d45aaef3fa057950",
+            "src_c0814acec79a8dec24a5"
+          ],
+          "query_terms": [
+            "forward deployed engineer",
+            "forward-deployed engineer",
+            "forward deployed software engineer",
+            "forward deployed engineering",
+            "deployment engineer",
+            "field engineer",
+            "field software engineer",
+            "customer engineer",
+            "technical solutions engineer",
+            "solutions architect",
+            "implementation engineer",
+            "integration engineer",
+            "forward-deployed",
+            "forward deployed",
+            "fde",
+            "embedded software engineer"
+          ]
+        },
+        "people_management": {
+          "status": "unavailable",
+          "value": "people_management",
+          "reason": "No admitted source establishes this refinement in the bounded retrieved sample.",
+          "attempt_source_ids": [
+            "src_1ccf455a60f7e4c83f62",
+            "src_c9976d4c61ef09de470f",
+            "src_2269720c8c8acd254745",
+            "src_d9be33ac2b784bb029c6",
+            "src_110db607019db933bf5e",
+            "src_c1fb9a9933e6b686a47d",
+            "src_85874711b8762d616f17",
+            "src_57daf64254ee3beabd58",
+            "src_d8920fcd13ab0c04720b",
+            "src_1030ec189e4de921d9e7",
+            "src_527c1029fa1c57e1dc09",
+            "src_03590ad5fbffee80a943",
+            "src_f43f3749a54c273810ea",
+            "src_afbbb3ad8bda7aff9f4e",
+            "src_c5d0d45aaef3fa057950",
+            "src_c0814acec79a8dec24a5"
+          ],
+          "query_terms": [
+            "forward deployed engineer",
+            "forward-deployed engineer",
+            "forward deployed software engineer",
+            "forward deployed engineering",
+            "deployment engineer",
+            "field engineer",
+            "field software engineer",
+            "customer engineer",
+            "technical solutions engineer",
+            "solutions architect",
+            "implementation engineer",
+            "integration engineer",
+            "forward-deployed",
+            "forward deployed",
+            "fde",
+            "embedded software engineer"
+          ]
+        }
+      },
+      "unsupported_variants": {},
+      "unavailable_sources": [
+        {
+          "source_id": "src_1030ec189e4de921d9e7",
+          "url": "https://boards-api.greenhouse.io/v1/boards/snowflake/jobs?content=true",
+          "reason": "http 404"
+        },
+        {
+          "source_id": "src_f43f3749a54c273810ea",
+          "url": "https://boards-api.greenhouse.io/v1/boards/confluent/jobs?content=true",
+          "reason": "http 404"
+        },
+        {
+          "source_id": "src_afbbb3ad8bda7aff9f4e",
+          "url": "https://boards-api.greenhouse.io/v1/boards/hashicorp/jobs?content=true",
+          "reason": "http 404"
+        }
+      ],
+      "caps_reached": {
+        "candidates": true,
+        "boards": true,
+        "retrievals": false,
+        "model_attempts": false
+      },
+      "sample_date": "2026-10-02",
+      "limitation": "Achieved counts describe this source sample, not population coverage or prevalence."
+    },
+    "alias_decisions": [
+      {
+        "label": "FDE / forward-deployed engineer",
+        "decision": "accepted_canonical_alias",
+        "basis": "explicit role name"
+      },
+      {
+        "label": "solutions engineer / sales engineer",
+        "decision": "not_equivalent_by_title",
+        "basis": "include only if source-backed implementation responsibilities independently meet the FDE definition"
+      },
+      {
+        "label": "customer success / implementation engineer",
+        "decision": "not_equivalent_by_title",
+        "basis": "support or deployment labels alone do not establish software-building responsibility"
+      },
+      {
+        "label": "software engineer",
+        "decision": "not_equivalent_by_title",
+        "basis": "general software engineering is not FDE without source-backed customer-context work"
+      }
+    ],
+    "official_anchor": {
+      "code": "15-1252.00",
+      "label": "Software Developers",
+      "url": "https://www.onetonline.org/link/summary/15-1252.00",
+      "status": "partial_taxonomy_anchor_only",
+      "basis": "task-level comparison anchor; not an official FDE code, whole-role equivalence, or release finding"
+    },
+    "provisional": true,
+    "registration_status": "mission-authorized-pilot",
+    "human_review_status": "not_reviewed",
+    "publication_status": "no_fde_findings_without_admissible_source_evidence"
+  },
+  {
+    "slug": "growth-manager",
+    "label": "Growth Manager",
+    "family": "Go-to-market & growth",
+    "aliases": [
+      "growth manager",
+      "growth marketing",
+      "product growth",
+      "growth lead"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sampled_at": "2026-10-02T08:17:28Z",
+    "sampling_note": "Counts describe only the job-board postings enumerated in the retrieval window for this role; they are not market prevalence. Enumerated boards were listed once per board API at the timestamp above, sampled most recently published first, then title and posting id (board API page order is not preserved); boards whose listing API pages or truncates report their enumerated/total bound in sources.json and board denominators are unaffected by per-posting detail retrievals. The candidate cap was allocated fairly across retrieved employers and provisional title/variant buckets; cap exclusions are recorded per posting. Posting text and quotes are attributed to the exact retrieved response that contains them (sources.json retrieval_kind/parent_source_id); only short excerpts are published.",
+    "selection": {
+      "prefilter_candidates": 5,
+      "feedback_triggered": false,
+      "missing_required_buckets": [
+        "sales-account-executive"
+      ],
+      "detail_fetches": 2,
+      "detail_text_failures": 0,
+      "candidates_excluded_without_text": 0,
+      "remaining_retrievals": 35,
+      "cap_allocation": {
+        "method": "title-prioritized-employer-bucket-round-robin/3: canonical-title matches, other role-title-hinted candidates, then unhinted alternatives globally; within each tier, one per employer/provisional bucket (growth variants first), then round-robin remainder; employers rank by freshest in-tier candidate, buckets by posting date/title/id; titles prioritize retrieval only, never admission",
+        "cap": 5,
+        "eligible_candidates": 1838,
+        "selected_candidates": 5,
+        "excluded_by_cap": 1833,
+        "bucket_outcomes": {
+          "unassigned": {
+            "eligible": 1395,
+            "selected": 0,
+            "excluded_by_cap": 1395
+          },
+          "growth-marketing": {
+            "eligible": 97,
+            "selected": 3,
+            "excluded_by_cap": 94
+          },
+          "sales-account-executive": {
+            "eligible": 307,
+            "selected": 0,
+            "excluded_by_cap": 307
+          },
+          "product-growth": {
+            "eligible": 39,
+            "selected": 2,
+            "excluded_by_cap": 37
+          }
+        },
+        "employer_outcomes": {
+          "Stripe": {
+            "eligible": 323,
+            "selected": 1,
+            "excluded_by_cap": 322
+          },
+          "Figma": {
+            "eligible": 109,
+            "selected": 1,
+            "excluded_by_cap": 108
+          },
+          "Duolingo": {
+            "eligible": 69,
+            "selected": 0,
+            "excluded_by_cap": 69
+          },
+          "Instacart": {
+            "eligible": 66,
+            "selected": 1,
+            "excluded_by_cap": 65
+          },
+          "Robinhood": {
+            "eligible": 130,
+            "selected": 0,
+            "excluded_by_cap": 130
+          },
+          "Reddit": {
+            "eligible": 118,
+            "selected": 0,
+            "excluded_by_cap": 118
+          },
+          "Discord": {
+            "eligible": 47,
+            "selected": 0,
+            "excluded_by_cap": 47
+          },
+          "Pinterest": {
+            "eligible": 126,
+            "selected": 0,
+            "excluded_by_cap": 126
+          },
+          "OpenAI": {
+            "eligible": 121,
+            "selected": 0,
+            "excluded_by_cap": 121
+          },
+          "Ramp": {
+            "eligible": 110,
+            "selected": 0,
+            "excluded_by_cap": 110
+          },
+          "Vanta": {
+            "eligible": 4,
+            "selected": 0,
+            "excluded_by_cap": 4
+          },
+          "Peloton": {
+            "eligible": 32,
+            "selected": 0,
+            "excluded_by_cap": 32
+          },
+          "Chime": {
+            "eligible": 63,
+            "selected": 1,
+            "excluded_by_cap": 62
+          },
+          "Databricks": {
+            "eligible": 439,
+            "selected": 1,
+            "excluded_by_cap": 438
+          },
+          "Airbnb": {
+            "eligible": 81,
+            "selected": 0,
+            "excluded_by_cap": 81
+          }
+        }
+      }
+    },
+    "stats": {
+      "total_seen": 3099,
+      "sampled": 3099,
+      "prefilter_candidates": 5,
+      "detail_text_fetches": 2,
+      "detail_sources_used": 1,
+      "postings_dedup": 4,
+      "employers_dedup": 4,
+      "boards_attempted": 16,
+      "boards_used": 4,
+      "excluded_total": 3095,
+      "foundations_used": 4,
+      "work_level_counts": {
+        "unknown": 4
+      },
+      "responsibility_band_counts": {
+        "senior_strategic_ic": 1,
+        "unknown": 3
+      },
+      "expectation_dimension_counts": {
+        "capability": 3,
+        "contextual_expectation": 2,
+        "demonstration": 2,
+        "experience": 5,
+        "knowledge": 1,
+        "task": 3
+      },
+      "expectation_basis_counts": {
+        "emergent_signal": 1,
+        "employer_requirement": 15
+      },
+      "context_value_counts": {
+        "employer_industry": {
+          "grocery delivery": 1
+        },
+        "customer_industry": {
+          "advertising": 1
+        },
+        "sales_segment": {},
+        "work_context": {
+          "remote": 1
+        },
+        "employer_size": {},
+        "employer_stage": {}
+      }
+    },
+    "run_ids": [
+      "refresh_f13a48a542414f7e95cf_growth-manager"
+    ],
+    "coverage": {
+      "planned": {
+        "objective": null,
+        "minimum_postings": 3,
+        "candidate_cap": 5,
+        "employers_target": 3,
+        "responsibility_bands": [
+          "early_career",
+          "independent_ic",
+          "senior_strategic_ic",
+          "people_management"
+        ],
+        "employer_industry_targets": [
+          "manufacturing",
+          "healthcare",
+          "education",
+          "retail",
+          "services"
+        ],
+        "employer_size_stage": "source-backed only; unknown when not stated"
+      },
+      "achieved": {
+        "postings": 4,
+        "employers": 4,
+        "employer_industries": [
+          "grocery delivery"
+        ],
+        "responsibility_band_counts": {
+          "senior_strategic_ic": 1,
+          "unknown": 3
+        },
+        "context_value_counts": {
+          "employer_industry": {
+            "grocery delivery": 1
+          },
+          "customer_industry": {
+            "advertising": 1
+          },
+          "sales_segment": {},
+          "work_context": {
+            "remote": 1
+          },
+          "employer_size": {},
+          "employer_stage": {}
+        },
+        "unknown_work_levels": 4,
+        "unknown_context_counts": {
+          "employer_industry": 3,
+          "customer_industry": 3,
+          "sales_segment": 4,
+          "work_context": 3,
+          "employer_size": 4,
+          "employer_stage": 4
+        }
+      },
+      "unsupported_bands": {
+        "early_career": {
+          "status": "unavailable",
+          "value": "early_career",
+          "reason": "No admitted source establishes this refinement in the bounded retrieved sample.",
+          "attempt_source_ids": [
+            "src_73fe3689d14e402f334c",
+            "src_eb7805d17c70d0cd5e4a",
+            "src_f1a7f9bb85a61075ab74",
+            "src_8a68c2f36c5ee46519aa",
+            "src_1cf3db52db9b5b9d6b74",
+            "src_9bf3214a90b329e1520b",
+            "src_cdb35a8044b88a792832",
+            "src_895424d34239778d64ce",
+            "src_377e7522170fe19f6fc2",
+            "src_cc95addc31f596b563ae",
+            "src_7e933d1ec50b98efe409",
+            "src_50345480fdee9bb4cbc0",
+            "src_91c1cff4658d73f9ced4",
+            "src_3ea2dfd5cc63c571f78b",
+            "src_8fea9efdbd8085a64054",
+            "src_50aac245c85615755a13"
+          ],
+          "query_terms": [
+            "Growth Manager",
+            "Product Growth Manager",
+            "Growth Marketing Manager",
+            "Growth Marketing",
+            "Lifecycle Marketing Manager",
+            "Growth Product Manager",
+            "Account Executive",
+            "Account Executive Growth",
+            "Sales Account Executive",
+            "Growth Operations Manager",
+            "Retention Marketing Manager",
+            "Acquisition Marketing Manager",
+            "growth",
+            "demand generation",
+            "demand gen",
+            "lifecycle marketing",
+            "product-led",
+            "acquisition marketing",
+            "performance marketing",
+            "account executive",
+            "sales"
+          ]
+        },
+        "independent_ic": {
+          "status": "unavailable",
+          "value": "independent_ic",
+          "reason": "No admitted source establishes this refinement in the bounded retrieved sample.",
+          "attempt_source_ids": [
+            "src_73fe3689d14e402f334c",
+            "src_eb7805d17c70d0cd5e4a",
+            "src_f1a7f9bb85a61075ab74",
+            "src_8a68c2f36c5ee46519aa",
+            "src_1cf3db52db9b5b9d6b74",
+            "src_9bf3214a90b329e1520b",
+            "src_cdb35a8044b88a792832",
+            "src_895424d34239778d64ce",
+            "src_377e7522170fe19f6fc2",
+            "src_cc95addc31f596b563ae",
+            "src_7e933d1ec50b98efe409",
+            "src_50345480fdee9bb4cbc0",
+            "src_91c1cff4658d73f9ced4",
+            "src_3ea2dfd5cc63c571f78b",
+            "src_8fea9efdbd8085a64054",
+            "src_50aac245c85615755a13"
+          ],
+          "query_terms": [
+            "Growth Manager",
+            "Product Growth Manager",
+            "Growth Marketing Manager",
+            "Growth Marketing",
+            "Lifecycle Marketing Manager",
+            "Growth Product Manager",
+            "Account Executive",
+            "Account Executive Growth",
+            "Sales Account Executive",
+            "Growth Operations Manager",
+            "Retention Marketing Manager",
+            "Acquisition Marketing Manager",
+            "growth",
+            "demand generation",
+            "demand gen",
+            "lifecycle marketing",
+            "product-led",
+            "acquisition marketing",
+            "performance marketing",
+            "account executive",
+            "sales"
+          ]
+        },
+        "people_management": {
+          "status": "unavailable",
+          "value": "people_management",
+          "reason": "No admitted source establishes this refinement in the bounded retrieved sample.",
+          "attempt_source_ids": [
+            "src_73fe3689d14e402f334c",
+            "src_eb7805d17c70d0cd5e4a",
+            "src_f1a7f9bb85a61075ab74",
+            "src_8a68c2f36c5ee46519aa",
+            "src_1cf3db52db9b5b9d6b74",
+            "src_9bf3214a90b329e1520b",
+            "src_cdb35a8044b88a792832",
+            "src_895424d34239778d64ce",
+            "src_377e7522170fe19f6fc2",
+            "src_cc95addc31f596b563ae",
+            "src_7e933d1ec50b98efe409",
+            "src_50345480fdee9bb4cbc0",
+            "src_91c1cff4658d73f9ced4",
+            "src_3ea2dfd5cc63c571f78b",
+            "src_8fea9efdbd8085a64054",
+            "src_50aac245c85615755a13"
+          ],
+          "query_terms": [
+            "Growth Manager",
+            "Product Growth Manager",
+            "Growth Marketing Manager",
+            "Growth Marketing",
+            "Lifecycle Marketing Manager",
+            "Growth Product Manager",
+            "Account Executive",
+            "Account Executive Growth",
+            "Sales Account Executive",
+            "Growth Operations Manager",
+            "Retention Marketing Manager",
+            "Acquisition Marketing Manager",
+            "growth",
+            "demand generation",
+            "demand gen",
+            "lifecycle marketing",
+            "product-led",
+            "acquisition marketing",
+            "performance marketing",
+            "account executive",
+            "sales"
+          ]
+        }
+      },
+      "unsupported_variants": {},
+      "unavailable_sources": [
+        {
+          "source_id": "src_50aac245c85615755a13",
+          "url": "https://api.lever.co/v0/postings/netflix?mode=json",
+          "reason": "http 404"
+        }
+      ],
+      "caps_reached": {
+        "candidates": true,
+        "boards": true,
+        "retrievals": false,
+        "model_attempts": false
+      },
+      "sample_date": "2026-10-02",
+      "limitation": "Achieved counts describe this source sample, not population coverage or prevalence."
+    },
+    "growth_variants": [
+      "product-growth",
+      "growth-marketing",
+      "sales-account-executive"
+    ]
+  },
+  {
+    "slug": "hr-generalist",
+    "label": "HR Generalist",
+    "family": "People Operations & Talent",
+    "aliases": [
+      "hr generalist",
+      "people operations",
+      "human resources generalist",
+      "people ops"
+    ],
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sampled_at": "2026-10-02T08:18:50Z",
+    "sampling_note": "Counts describe only the job-board postings enumerated in the retrieval window for this role; they are not market prevalence. Enumerated boards were listed once per board API at the timestamp above, sampled most recently published first, then title and posting id (board API page order is not preserved); boards whose listing API pages or truncates report their enumerated/total bound in sources.json and board denominators are unaffected by per-posting detail retrievals. The candidate cap was allocated fairly across retrieved employers and provisional title/variant buckets; cap exclusions are recorded per posting. Posting text and quotes are attributed to the exact retrieved response that contains them (sources.json retrieval_kind/parent_source_id); only short excerpts are published.",
+    "selection": {
+      "prefilter_candidates": 5,
+      "feedback_triggered": false,
+      "missing_required_buckets": [],
+      "detail_fetches": 4,
+      "detail_text_failures": 0,
+      "candidates_excluded_without_text": 0,
+      "remaining_retrievals": 31,
+      "cap_allocation": {
+        "method": "title-prioritized-employer-bucket-round-robin/3: canonical-title matches, other role-title-hinted candidates, then unhinted alternatives globally; within each tier, one per employer/provisional bucket (growth variants first), then round-robin remainder; employers rank by freshest in-tier candidate, buckets by posting date/title/id; titles prioritize retrieval only, never admission",
+        "cap": 5,
+        "eligible_candidates": 4053,
+        "selected_candidates": 5,
+        "excluded_by_cap": 4048,
+        "bucket_outcomes": {
+          "role": {
+            "eligible": 4053,
+            "selected": 5,
+            "excluded_by_cap": 4048
+          }
+        },
+        "employer_outcomes": {
+          "Bosch": {
+            "eligible": 8,
+            "selected": 0,
+            "excluded_by_cap": 8
+          },
+          "SpaceX": {
+            "eligible": 2222,
+            "selected": 3,
+            "excluded_by_cap": 2219
+          },
+          "Justworks": {
+            "eligible": 82,
+            "selected": 1,
+            "excluded_by_cap": 81
+          },
+          "Instacart": {
+            "eligible": 66,
+            "selected": 0,
+            "excluded_by_cap": 66
+          },
+          "Lyft": {
+            "eligible": 97,
+            "selected": 0,
+            "excluded_by_cap": 97
+          },
+          "Airbnb": {
+            "eligible": 81,
+            "selected": 0,
+            "excluded_by_cap": 81
+          },
+          "Stripe": {
+            "eligible": 323,
+            "selected": 1,
+            "excluded_by_cap": 322
+          },
+          "Coinbase": {
+            "eligible": 159,
+            "selected": 0,
+            "excluded_by_cap": 159
+          },
+          "Affirm": {
+            "eligible": 83,
+            "selected": 0,
+            "excluded_by_cap": 83
+          },
+          "Databricks": {
+            "eligible": 439,
+            "selected": 0,
+            "excluded_by_cap": 439
+          },
+          "Figma": {
+            "eligible": 109,
+            "selected": 0,
+            "excluded_by_cap": 109
+          },
+          "Reddit": {
+            "eligible": 118,
+            "selected": 0,
+            "excluded_by_cap": 118
+          },
+          "OpenAI": {
+            "eligible": 121,
+            "selected": 0,
+            "excluded_by_cap": 121
+          },
+          "Ramp": {
+            "eligible": 110,
+            "selected": 0,
+            "excluded_by_cap": 110
+          },
+          "Spotify": {
+            "eligible": 35,
+            "selected": 0,
+            "excluded_by_cap": 35
+          }
+        }
+      }
+    },
+    "stats": {
+      "total_seen": 5539,
+      "sampled": 5539,
+      "prefilter_candidates": 5,
+      "detail_text_fetches": 4,
+      "detail_sources_used": 3,
+      "postings_dedup": 4,
+      "employers_dedup": 2,
+      "boards_attempted": 16,
+      "boards_used": 2,
+      "excluded_total": 5535,
+      "foundations_used": 4,
+      "work_level_counts": {
+        "unknown": 4
+      },
+      "responsibility_band_counts": {
+        "unknown": 4
+      },
+      "expectation_dimension_counts": {
+        "capability": 1,
+        "contextual_expectation": 1,
+        "credential": 2,
+        "demonstration": 1,
+        "experience": 7,
+        "task": 3,
+        "tool": 1
+      },
+      "expectation_basis_counts": {
+        "emergent_signal": 3,
+        "employer_preference": 4,
+        "employer_requirement": 9
+      },
+      "context_value_counts": {
+        "employer_industry": {},
+        "customer_industry": {},
+        "sales_segment": {},
+        "work_context": {
+          "engineering, production or manufacturing environment supporting an exempt and hourly workforce": 1
+        },
+        "employer_size": {},
+        "employer_stage": {}
+      }
+    },
+    "run_ids": [
+      "refresh_f13a48a542414f7e95cf_hr-generalist"
+    ],
+    "coverage": {
+      "planned": {
+        "objective": null,
+        "minimum_postings": 3,
+        "candidate_cap": 5,
+        "employers_target": 3,
+        "responsibility_bands": [
+          "early_career",
+          "independent_ic",
+          "senior_strategic_ic",
+          "people_management"
+        ],
+        "employer_industry_targets": [
+          "manufacturing",
+          "healthcare",
+          "education",
+          "retail",
+          "services"
+        ],
+        "employer_size_stage": "source-backed only; unknown when not stated"
+      },
+      "achieved": {
+        "postings": 4,
+        "employers": 2,
+        "employer_industries": [],
+        "responsibility_band_counts": {
+          "unknown": 4
+        },
+        "context_value_counts": {
+          "employer_industry": {},
+          "customer_industry": {},
+          "sales_segment": {},
+          "work_context": {
+            "engineering, production or manufacturing environment supporting an exempt and hourly workforce": 1
+          },
+          "employer_size": {},
+          "employer_stage": {}
+        },
+        "unknown_work_levels": 4,
+        "unknown_context_counts": {
+          "employer_industry": 4,
+          "customer_industry": 4,
+          "sales_segment": 4,
+          "work_context": 3,
+          "employer_size": 4,
+          "employer_stage": 4
+        }
+      },
+      "unsupported_bands": {
+        "early_career": {
+          "status": "unavailable",
+          "value": "early_career",
+          "reason": "No admitted source establishes this refinement in the bounded retrieved sample.",
+          "attempt_source_ids": [
+            "src_c2d3db7ba3176d763200",
+            "src_e86365d2310f1dc2f064",
+            "src_923a212a2be514d7551a",
+            "src_a49206515f5b07ad235d",
+            "src_dc0738799728abd49951",
+            "src_3314730a1b8dfb9433ef",
+            "src_1f778361474d6b754094",
+            "src_7c1b4de2c7edbdfbd9d3",
+            "src_3222ea2ce888370499ca",
+            "src_20d84055393fa431ac95",
+            "src_6c7ecba5161e94dba724",
+            "src_0ea63a21a571047bcf0a",
+            "src_619c8c9c2d70cf5361b9",
+            "src_62b228e2ea9769520fc1",
+            "src_e25ca948e8b7ac6c3321",
+            "src_209bc4e39ec51afdf5ce"
+          ],
+          "query_terms": [
+            "HR Generalist",
+            "Human Resources Generalist",
+            "Senior HR Generalist",
+            "HR Generalist II",
+            "People Operations Generalist",
+            "HR Specialist",
+            "Human Resources Specialist",
+            "HR Coordinator",
+            "People Operations Coordinator",
+            "HR Business Partner",
+            "Employee Relations Specialist",
+            "Benefits Administrator",
+            "hr",
+            "hris",
+            "hrbp",
+            "human resources",
+            "people ops",
+            "people operations",
+            "people partner",
+            "people experience",
+            "hr business partner",
+            "people business partner"
+          ]
+        },
+        "independent_ic": {
+          "status": "unavailable",
+          "value": "independent_ic",
+          "reason": "No admitted source establishes this refinement in the bounded retrieved sample.",
+          "attempt_source_ids": [
+            "src_c2d3db7ba3176d763200",
+            "src_e86365d2310f1dc2f064",
+            "src_923a212a2be514d7551a",
+            "src_a49206515f5b07ad235d",
+            "src_dc0738799728abd49951",
+            "src_3314730a1b8dfb9433ef",
+            "src_1f778361474d6b754094",
+            "src_7c1b4de2c7edbdfbd9d3",
+            "src_3222ea2ce888370499ca",
+            "src_20d84055393fa431ac95",
+            "src_6c7ecba5161e94dba724",
+            "src_0ea63a21a571047bcf0a",
+            "src_619c8c9c2d70cf5361b9",
+            "src_62b228e2ea9769520fc1",
+            "src_e25ca948e8b7ac6c3321",
+            "src_209bc4e39ec51afdf5ce"
+          ],
+          "query_terms": [
+            "HR Generalist",
+            "Human Resources Generalist",
+            "Senior HR Generalist",
+            "HR Generalist II",
+            "People Operations Generalist",
+            "HR Specialist",
+            "Human Resources Specialist",
+            "HR Coordinator",
+            "People Operations Coordinator",
+            "HR Business Partner",
+            "Employee Relations Specialist",
+            "Benefits Administrator",
+            "hr",
+            "hris",
+            "hrbp",
+            "human resources",
+            "people ops",
+            "people operations",
+            "people partner",
+            "people experience",
+            "hr business partner",
+            "people business partner"
+          ]
+        },
+        "senior_strategic_ic": {
+          "status": "unavailable",
+          "value": "senior_strategic_ic",
+          "reason": "No admitted source establishes this refinement in the bounded retrieved sample.",
+          "attempt_source_ids": [
+            "src_c2d3db7ba3176d763200",
+            "src_e86365d2310f1dc2f064",
+            "src_923a212a2be514d7551a",
+            "src_a49206515f5b07ad235d",
+            "src_dc0738799728abd49951",
+            "src_3314730a1b8dfb9433ef",
+            "src_1f778361474d6b754094",
+            "src_7c1b4de2c7edbdfbd9d3",
+            "src_3222ea2ce888370499ca",
+            "src_20d84055393fa431ac95",
+            "src_6c7ecba5161e94dba724",
+            "src_0ea63a21a571047bcf0a",
+            "src_619c8c9c2d70cf5361b9",
+            "src_62b228e2ea9769520fc1",
+            "src_e25ca948e8b7ac6c3321",
+            "src_209bc4e39ec51afdf5ce"
+          ],
+          "query_terms": [
+            "HR Generalist",
+            "Human Resources Generalist",
+            "Senior HR Generalist",
+            "HR Generalist II",
+            "People Operations Generalist",
+            "HR Specialist",
+            "Human Resources Specialist",
+            "HR Coordinator",
+            "People Operations Coordinator",
+            "HR Business Partner",
+            "Employee Relations Specialist",
+            "Benefits Administrator",
+            "hr",
+            "hris",
+            "hrbp",
+            "human resources",
+            "people ops",
+            "people operations",
+            "people partner",
+            "people experience",
+            "hr business partner",
+            "people business partner"
+          ]
+        },
+        "people_management": {
+          "status": "unavailable",
+          "value": "people_management",
+          "reason": "No admitted source establishes this refinement in the bounded retrieved sample.",
+          "attempt_source_ids": [
+            "src_c2d3db7ba3176d763200",
+            "src_e86365d2310f1dc2f064",
+            "src_923a212a2be514d7551a",
+            "src_a49206515f5b07ad235d",
+            "src_dc0738799728abd49951",
+            "src_3314730a1b8dfb9433ef",
+            "src_1f778361474d6b754094",
+            "src_7c1b4de2c7edbdfbd9d3",
+            "src_3222ea2ce888370499ca",
+            "src_20d84055393fa431ac95",
+            "src_6c7ecba5161e94dba724",
+            "src_0ea63a21a571047bcf0a",
+            "src_619c8c9c2d70cf5361b9",
+            "src_62b228e2ea9769520fc1",
+            "src_e25ca948e8b7ac6c3321",
+            "src_209bc4e39ec51afdf5ce"
+          ],
+          "query_terms": [
+            "HR Generalist",
+            "Human Resources Generalist",
+            "Senior HR Generalist",
+            "HR Generalist II",
+            "People Operations Generalist",
+            "HR Specialist",
+            "Human Resources Specialist",
+            "HR Coordinator",
+            "People Operations Coordinator",
+            "HR Business Partner",
+            "Employee Relations Specialist",
+            "Benefits Administrator",
+            "hr",
+            "hris",
+            "hrbp",
+            "human resources",
+            "people ops",
+            "people operations",
+            "people partner",
+            "people experience",
+            "hr business partner",
+            "people business partner"
+          ]
+        }
+      },
+      "unsupported_variants": {},
+      "unavailable_sources": [
+        {
+          "source_id": "src_209bc4e39ec51afdf5ce",
+          "url": "https://apply.workable.com/api/v1/widget/accounts/bosch?details=true",
+          "reason": "payload contained no titled postings"
+        }
+      ],
+      "caps_reached": {
+        "candidates": true,
+        "boards": true,
+        "retrievals": false,
+        "model_attempts": false
+      },
+      "sample_date": "2026-10-02",
+      "limitation": "Achieved counts describe this source sample, not population coverage or prevalence."
+    }
+  }
+]

@@ -1,0 +1,27 @@
+# source src_622ea06527c24baa58c1
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/robinhood/jobs?content=true
+# publisher Robinhood
+# retrieved_at 2026-10-02T17:30:28Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 8bc5948582a8657771055dd10325281f51dd761c615c9feb9bd2a56abe543fe8 raw_bytes 2053009
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=0b5e05913c3d3f3584c9974e:posting-excerpt employer=Robinhood title=Lifecycle Marketing Manager location=Menlo Park, CA; New York, NY variant=growth-marketing url=https://boards.greenhouse.io/robinhood/jobs/8119781?t=gh_src=&gh_jid=8119781
+Own the strategy of lifecycle journeys and campaigns for your product areas: identifying, sizing and prioritizing the opportunities that can result in higher customer engagement.
+# posting id=0b5e05913c3d3f3584c9974e:context:customer_industry employer=Robinhood title=Lifecycle Marketing Manager location=Menlo Park, CA; New York, NY variant=growth-marketing url=https://boards.greenhouse.io/robinhood/jobs/8119781?t=gh_src=&gh_jid=8119781
+consumer financial services
+# posting id=0b5e05913c3d3f3584c9974e:context:geography employer=Robinhood title=Lifecycle Marketing Manager location=Menlo Park, CA; New York, NY variant=growth-marketing url=https://boards.greenhouse.io/robinhood/jobs/8119781?t=gh_src=&gh_jid=8119781
+Menlo Park, CA; New York, NY
+# posting id=0b5e05913c3d3f3584c9974e:experience:0 employer=Robinhood title=Lifecycle Marketing Manager location=Menlo Park, CA; New York, NY variant=growth-marketing url=https://boards.greenhouse.io/robinhood/jobs/8119781?t=gh_src=&gh_jid=8119781
+5 + years of growth marketing experience in consumer financial services or equivalent experience in a data-driven field
+# posting id=0b5e05913c3d3f3584c9974e:expectation:exp_744ff3dc4f57d84638f7 employer=Robinhood title=Lifecycle Marketing Manager location=Menlo Park, CA; New York, NY variant=growth-marketing url=https://boards.greenhouse.io/robinhood/jobs/8119781?t=gh_src=&gh_jid=8119781
+Own the strategy of lifecycle journeys and campaigns for your product areas
+# posting id=0b5e05913c3d3f3584c9974e:expectation:exp_aafea9f0c67fd9e40bc4 employer=Robinhood title=Lifecycle Marketing Manager location=Menlo Park, CA; New York, NY variant=growth-marketing url=https://boards.greenhouse.io/robinhood/jobs/8119781?t=gh_src=&gh_jid=8119781
+Use customer segmentation and data analysis to find opportunities for targeted messaging and personalized experiences
+# posting id=0b5e05913c3d3f3584c9974e:expectation:exp_540e0a03cd7923a33b8b employer=Robinhood title=Lifecycle Marketing Manager location=Menlo Park, CA; New York, NY variant=growth-marketing url=https://boards.greenhouse.io/robinhood/jobs/8119781?t=gh_src=&gh_jid=8119781
+design and implement A/B tests
+# posting id=0b5e05913c3d3f3584c9974e:expectation:exp_655e37cc76fab3df2771 employer=Robinhood title=Lifecycle Marketing Manager location=Menlo Park, CA; New York, NY variant=growth-marketing url=https://boards.greenhouse.io/robinhood/jobs/8119781?t=gh_src=&gh_jid=8119781
+Excel, A/B testing, relational databases
+# posting id=claim:clm_4fc22bd6a972b5493da2 employer= title= location= variant= url=
+Own the strategy of lifecycle journeys and campaigns for your product

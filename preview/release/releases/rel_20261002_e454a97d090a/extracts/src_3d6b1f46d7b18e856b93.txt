@@ -1,0 +1,24 @@
+# source src_3d6b1f46d7b18e856b93
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_c1fb9a9933e6b686a47d
+# url https://boards-api.greenhouse.io/v1/boards/stripe/jobs/7230452
+# publisher Stripe
+# retrieved_at 2026-10-02T08:16:09Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f raw_bytes 7973
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=da58f07367ace66ebfe7e129:posting-excerpt employer=Stripe title=Forward Deployed Engineer, Privy location=New York Privy HQ variant= url=https://stripe.com/jobs/search?gh_jid=7230452
+We're looking for an exceptional Forward Deployed Engineer to join our team and be the primary technical owner for building out new capabilities with Privy's most important customers.
+# posting id=da58f07367ace66ebfe7e129:expectation:exp_dbb37381f81c7b59d1e9 employer=Stripe title=Forward Deployed Engineer, Privy location=New York Privy HQ variant= url=https://stripe.com/jobs/search?gh_jid=7230452
+Work directly with customers to understand their technical and operational objectives, scope requirements, and prototype and propose software solutions
+# posting id=da58f07367ace66ebfe7e129:expectation:exp_d9ae0009baaa8b27f009 employer=Stripe title=Forward Deployed Engineer, Privy location=New York Privy HQ variant= url=https://stripe.com/jobs/search?gh_jid=7230452
+Design, code, and launch features that improve and innovate on Privy’s core product using tools like TypeScript , React , and Next.js
+# posting id=da58f07367ace66ebfe7e129:expectation:exp_e74f88e144e24e12fa7b employer=Stripe title=Forward Deployed Engineer, Privy location=New York Privy HQ variant= url=https://stripe.com/jobs/search?gh_jid=7230452
+Drive product deployments, including configuration, testing, and troubleshooting
+# posting id=da58f07367ace66ebfe7e129:expectation:exp_922a0e2e175d3d08860c employer=Stripe title=Forward Deployed Engineer, Privy location=New York Privy HQ variant= url=https://stripe.com/jobs/search?gh_jid=7230452
+Dive deep into customer codebases
+# posting id=claim:clm_ca3aa92f98d05aed8453 employer= title= location= variant= url=
+Work directly with customers to understand their technical and
+# posting id=claim:clm_b3c002914d3cba8c8bf7 employer= title= location= variant= url=
+Design, code, and launch features that improve and innovate on Privy’s

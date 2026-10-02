@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_980298dc0a1b8ed60586",
+  "release_id": "rel_20261001_89b1e984fdde",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "Coaching HR team members: mentoring and quality-assurance of HR consultants — recorded in 1 of 13 admitted HR Generalist postings (no variant split for this role) from 1 of 6 employers in the 2026-10-01 US sample.",
+  "quote": "Coach and mentor fellow HR Consultants, supporting them in their day-to-day work, and providing quality assurance feedback",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_5fef106d18511fefc3fd",
+      "url": "https://boards-api.greenhouse.io/v1/boards/justworks/jobs?content=true",
+      "publisher": "Justworks",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-01T00:23:51Z",
+      "sha256": "403ea3506d88bbe2d10adeb408c10532d25ee3dfbda096e198b72b005eebed3a",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-01T00:28:54Z",
+  "published_at": "2026-10-01T00:30:50Z",
+  "citation_path": "/release/citations/clm_980298dc0a1b8ed60586.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "5e170726a0774c2acdefbadbd4c6153c9e7aaf2063f23cbbece93e9e56ab3a9a"
+}

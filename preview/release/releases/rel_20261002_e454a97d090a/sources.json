@@ -1,0 +1,2885 @@
+[
+  {
+    "bytes": 228754,
+    "extract_path": "extracts/src_81eaaf2a6fa71a8e7b7a.txt",
+    "extract_sha256": "cfffc2e53190986d4a7536d573a3635c08b3709d4942f0997c92149b9b84e1f6",
+    "id": "src_81eaaf2a6fa71a8e7b7a",
+    "inclusion": true,
+    "occupation_slug": "account-executive",
+    "publisher": "O*NET OnLine (U.S. Department of Labor)",
+    "retrieved_at": "2026-10-02T04:41:25Z",
+    "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "a5f24efc7712665bbe0ec2c0a49ee16963dc180fb38c8c08345deb1a6a007ed9",
+    "source_type": "foundation",
+    "url": "https://www.onetonline.org/link/summary/41-4012.00"
+  },
+  {
+    "bytes": 0,
+    "exclusion_reason": "http 403",
+    "extract_path": "extracts/src_731849dce6ec76b1a6de.txt",
+    "extract_sha256": "41c5473ed04364fc63668014d0ac7899c6ff1912a30b380561faa1285a3698f7",
+    "id": "src_731849dce6ec76b1a6de",
+    "inclusion": false,
+    "occupation_slug": "account-executive",
+    "publisher": "www.bls.gov",
+    "retrieved_at": "2026-10-02T08:14:18Z",
+    "rights": "not published (retrieval failed)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_type": "foundation",
+    "url": "https://www.bls.gov/ooh/sales/sales-representatives-wholesale-and-manufacturing.htm"
+  },
+  {
+    "bytes": 188572,
+    "extract_path": "extracts/src_254e1f685207f2e9fbd5.txt",
+    "extract_sha256": "84f0edd59fb4a3b16ebdf0b16645927bb8b52cd2d28744d3b61435d0a12546a4",
+    "id": "src_254e1f685207f2e9fbd5",
+    "inclusion": true,
+    "occupation_slug": "account-executive",
+    "publisher": "O*NET OnLine (U.S. Department of Labor)",
+    "retrieved_at": "2026-10-02T05:48:01Z",
+    "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "b5ec6c2f9dd810feb23862a7aec963fcdab58cc6abe51701c0a22802d37df6c0",
+    "source_type": "foundation",
+    "url": "https://www.onetonline.org/link/summary/41-3099.00"
+  },
+  {
+    "bytes": 119680,
+    "extract_path": "extracts/src_1178234d1ba1005dc2ba.txt",
+    "extract_sha256": "bdd48501b39801fb9119a9253036a3f6fb31bbc1ebbcc08e54407d085efe246b",
+    "id": "src_1178234d1ba1005dc2ba",
+    "inclusion": true,
+    "occupation_slug": "account-executive",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "retrieved_at": "2026-10-02T08:14:19Z",
+    "rights": "U.S. Bureau of Labor Statistics public domain; short excerpts published with attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "3a3afd738e7b221e3e45f270013feecdb6468eb30d9f16cffe7abd36fc559de5",
+    "source_type": "foundation",
+    "url": "https://www.bls.gov/ooh/sales/retail-sales-workers.htm"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 605594,
+    "id": "src_3a9d3f51ced93e38fcc0",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 170,
+        "sha256": "b3a06e30821f05c32d374d97ee0b8fe67833018996aece5fb688817e577c239d",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs?content=true"
+      },
+      {
+        "bytes": 605594,
+        "note": "compact listing fallback",
+        "parsed_postings": 440,
+        "sha256": "4786cdf8b0abbe79a80a50d78ba358cd470261f330f269be446ca9eb411c1cf4",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "account-executive",
+    "postings_enumerated": 440,
+    "postings_retrieved": 440,
+    "publisher": "Datadog",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:14:19Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "4786cdf8b0abbe79a80a50d78ba358cd470261f330f269be446ca9eb411c1cf4",
+    "source_type": "job-board",
+    "token": "datadog",
+    "url": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 841352,
+    "id": "src_cdb4b336fe505e12483d",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 192,
+        "sha256": "5d2df1903478314885a1e54c1b43ee4bdae91567eeae9e5ed35bcff3d29dba45",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs?content=true"
+      },
+      {
+        "bytes": 841352,
+        "note": "compact listing fallback",
+        "parsed_postings": 392,
+        "sha256": "8332633a5430ee728d7d6a6f63d8cb126c6be6bb77f76b958084833aa1c48b82",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "account-executive",
+    "postings_enumerated": 392,
+    "postings_retrieved": 392,
+    "publisher": "MongoDB",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:14:20Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "8332633a5430ee728d7d6a6f63d8cb126c6be6bb77f76b958084833aa1c48b82",
+    "source_type": "job-board",
+    "token": "mongodb",
+    "url": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 366884,
+    "id": "src_7c0955ffc240b0e37f73",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 119,
+        "sha256": "41a4bac0eda76e7bd68ac4c646e426361a52853d4b27507c1d988876e6e75215",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/cloudflare/jobs?content=true"
+      },
+      {
+        "bytes": 366884,
+        "note": "compact listing fallback",
+        "parsed_postings": 401,
+        "sha256": "63a6f39eb1904e5628c309f2f041c2f8c147073111ed0bf881b9dfab5492c4fd",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/cloudflare/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "account-executive",
+    "postings_enumerated": 401,
+    "postings_retrieved": 401,
+    "publisher": "Cloudflare",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:14:21Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "63a6f39eb1904e5628c309f2f041c2f8c147073111ed0bf881b9dfab5492c4fd",
+    "source_type": "job-board",
+    "token": "cloudflare",
+    "url": "https://boards-api.greenhouse.io/v1/boards/cloudflare/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 256518,
+    "id": "src_7fd4450f671a550e320a",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 177,
+        "sha256": "4c0daca5bbf7d95f0443ac0210adf3f42d87c48fa42984f30ade316abe6b5623",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/verkada/jobs?content=true"
+      },
+      {
+        "bytes": 256518,
+        "note": "compact listing fallback",
+        "parsed_postings": 307,
+        "sha256": "acbdf16ccd00e6a6cf60f343e95c377fc69b2d7b13e9448c4b5f4cb44201f5ba",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/verkada/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "account-executive",
+    "postings_enumerated": 307,
+    "postings_retrieved": 307,
+    "publisher": "Verkada",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:14:22Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "acbdf16ccd00e6a6cf60f343e95c377fc69b2d7b13e9448c4b5f4cb44201f5ba",
+    "source_type": "job-board",
+    "token": "verkada",
+    "url": "https://boards-api.greenhouse.io/v1/boards/verkada/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 190236,
+    "id": "src_0a8cfaf3871ae9289deb",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 128,
+        "sha256": "3cb553227074698b8f50b60916c29e1f476a425dd875112789abb2454223dd10",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/samsara/jobs?content=true"
+      },
+      {
+        "bytes": 190236,
+        "note": "compact listing fallback",
+        "parsed_postings": 245,
+        "sha256": "a6aae73ac772876ba2e0f6e131f7f30fd67c7d35f52d8bac7343737ff49f1cd0",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/samsara/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "account-executive",
+    "postings_enumerated": 245,
+    "postings_retrieved": 245,
+    "publisher": "Samsara",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:14:22Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "a6aae73ac772876ba2e0f6e131f7f30fd67c7d35f52d8bac7343737ff49f1cd0",
+    "source_type": "job-board",
+    "token": "samsara",
+    "url": "https://boards-api.greenhouse.io/v1/boards/samsara/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 748368,
+    "id": "src_a5053381eb9f05b7d741",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 186,
+        "sha256": "da447adf8709e6c0733df53618526352c9b30819a7ecd107bf555c9429697868",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs?content=true"
+      },
+      {
+        "bytes": 748368,
+        "note": "compact listing fallback",
+        "parsed_postings": 872,
+        "sha256": "7022a7a1740aa3fa2ee5fe7747c6c7e1a12ea208df186a698c0dee26266d8ea2",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "account-executive",
+    "postings_enumerated": 872,
+    "postings_retrieved": 872,
+    "publisher": "Databricks",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:14:23Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "7022a7a1740aa3fa2ee5fe7747c6c7e1a12ea208df186a698c0dee26266d8ea2",
+    "source_type": "job-board",
+    "token": "databricks",
+    "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 143960,
+    "id": "src_b2369df6b1c14fc54463",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 133,
+        "sha256": "f6bdd7ab4a3a8006c6189af53c6ad5ca4ab9a5c60bfe893a4e19202850de9701",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/gitlab/jobs?content=true"
+      },
+      {
+        "bytes": 143960,
+        "note": "compact listing fallback",
+        "parsed_postings": 204,
+        "sha256": "0f4742f951eed9777662cde1323ee288e1de370837b303b6eb8d2675bb85f805",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/gitlab/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "account-executive",
+    "postings_enumerated": 204,
+    "postings_retrieved": 204,
+    "publisher": "GitLab",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:14:24Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "0f4742f951eed9777662cde1323ee288e1de370837b303b6eb8d2675bb85f805",
+    "source_type": "job-board",
+    "token": "gitlab",
+    "url": "https://boards-api.greenhouse.io/v1/boards/gitlab/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 1876345,
+    "extract_path": "extracts/src_617b70118c94fa55e06d.txt",
+    "extract_sha256": "cc8e48bfbc687d39c5bf29a89f63bf062133e9cb83feb4e0fdc50b221854d229",
+    "id": "src_617b70118c94fa55e06d",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 1876345,
+        "note": "",
+        "parsed_postings": 126,
+        "sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/twilio/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "account-executive",
+    "postings_enumerated": 126,
+    "postings_retrieved": 126,
+    "publisher": "Twilio",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:14:25Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5",
+    "source_type": "job-board",
+    "token": "twilio",
+    "url": "https://boards-api.greenhouse.io/v1/boards/twilio/jobs?content=true"
+  },
+  {
+    "ats": "lever",
+    "board_total": null,
+    "bytes": 2097152,
+    "id": "src_7e11defac3802d3fdc6a",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 109,
+        "sha256": "e900c975bdba3e0a88ec7e3178c456ec7f5aeae2625085238bc3edc6be0a4bb2",
+        "status": 200,
+        "truncated": true,
+        "url": "https://api.lever.co/v0/postings/palantir?mode=json"
+      }
+    ],
+    "listing_truncated": true,
+    "occupation_slug": "account-executive",
+    "postings_enumerated": 109,
+    "postings_retrieved": 109,
+    "publisher": "Palantir",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:14:26Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "e900c975bdba3e0a88ec7e3178c456ec7f5aeae2625085238bc3edc6be0a4bb2",
+    "source_type": "job-board",
+    "token": "palantir",
+    "url": "https://api.lever.co/v0/postings/palantir?mode=json"
+  },
+  {
+    "ats": "ashby",
+    "board_total": null,
+    "bytes": 2097152,
+    "id": "src_e1ec20ea1893807ea78e",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 137,
+        "sha256": "4d4301e5dff75301b212568d68e7ebb7a0b690094378b5d93a4a997795347262",
+        "status": 200,
+        "truncated": true,
+        "url": "https://api.ashbyhq.com/posting-api/job-board/openai"
+      }
+    ],
+    "listing_truncated": true,
+    "occupation_slug": "account-executive",
+    "postings_enumerated": 137,
+    "postings_retrieved": 137,
+    "publisher": "OpenAI",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:14:26Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "4d4301e5dff75301b212568d68e7ebb7a0b690094378b5d93a4a997795347262",
+    "source_type": "job-board",
+    "token": "openai",
+    "url": "https://api.ashbyhq.com/posting-api/job-board/openai"
+  },
+  {
+    "ats": "ashby",
+    "board_total": null,
+    "bytes": 2097152,
+    "id": "src_09dec91b9b9474112459",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 123,
+        "sha256": "78fbae5c9b9b27ff48676e1a66ee1a9f706b698b2683630342fdb5fcb2d98807",
+        "status": 200,
+        "truncated": true,
+        "url": "https://api.ashbyhq.com/posting-api/job-board/ramp"
+      }
+    ],
+    "listing_truncated": true,
+    "occupation_slug": "account-executive",
+    "postings_enumerated": 123,
+    "postings_retrieved": 123,
+    "publisher": "Ramp",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:14:27Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "78fbae5c9b9b27ff48676e1a66ee1a9f706b698b2683630342fdb5fcb2d98807",
+    "source_type": "job-board",
+    "token": "ramp",
+    "url": "https://api.ashbyhq.com/posting-api/job-board/ramp"
+  },
+  {
+    "bytes": 30,
+    "exclusion_reason": "payload contained no titled postings",
+    "id": "src_707607b08551565540c7",
+    "inclusion": false,
+    "occupation_slug": "account-executive",
+    "publisher": "HubSpot",
+    "retrieved_at": "2026-10-02T08:14:27Z",
+    "rights": "not published (retrieval failed)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "09aefc0c2d96e9c065aab057f04eaa352d63f19114f01783cfa12c890427f7f8",
+    "source_type": "job-board",
+    "url": "https://boards-api.greenhouse.io/v1/boards/hubspot/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 227116,
+    "id": "src_d80b43a88e847bba500d",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 159,
+        "sha256": "32f1b66f10b263b0364359af0e3f0b780f63fd79a039f30c5665ad5f0c6db765",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/toast/jobs?content=true"
+      },
+      {
+        "bytes": 227116,
+        "note": "compact listing fallback",
+        "parsed_postings": 330,
+        "sha256": "fb047a2e7339148d6363dcc04d4d6cc45084f20712f75aa1b2ccf141e45777de",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/toast/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "account-executive",
+    "postings_enumerated": 330,
+    "postings_retrieved": 330,
+    "publisher": "Toast",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:14:28Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "fb047a2e7339148d6363dcc04d4d6cc45084f20712f75aa1b2ccf141e45777de",
+    "source_type": "job-board",
+    "token": "toast",
+    "url": "https://boards-api.greenhouse.io/v1/boards/toast/jobs"
+  },
+  {
+    "bytes": 0,
+    "exclusion_reason": "http 404",
+    "id": "src_e34b17c18a81b9df037e",
+    "inclusion": false,
+    "occupation_slug": "account-executive",
+    "publisher": "Netflix",
+    "retrieved_at": "2026-10-02T08:14:28Z",
+    "rights": "not published (retrieval failed)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_type": "job-board",
+    "url": "https://api.lever.co/v0/postings/netflix?mode=json"
+  },
+  {
+    "bytes": 52,
+    "exclusion_reason": "payload contained no titled postings",
+    "id": "src_06c6e65f567400dd813a",
+    "inclusion": false,
+    "occupation_slug": "account-executive",
+    "publisher": "Visa",
+    "retrieved_at": "2026-10-02T08:14:28Z",
+    "rights": "not published (retrieval failed)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "dd343c33c470fed1e87299640e449a7c124a75f563e0d8052bb781ea88e74b46",
+    "source_type": "job-board",
+    "url": "https://api.smartrecruiters.com/v1/companies/Visa/postings"
+  },
+  {
+    "bytes": 48,
+    "exclusion_reason": "payload contained no titled postings",
+    "id": "src_ffb097422603955f5a46",
+    "inclusion": false,
+    "occupation_slug": "account-executive",
+    "publisher": "Salesforce",
+    "retrieved_at": "2026-10-02T08:14:29Z",
+    "rights": "not published (retrieval failed)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "1383d2ecb8b3389fab2ef804f4616474c36d2d91bae06a4be5f1bfc50213a95c",
+    "source_type": "job-board",
+    "url": "https://apply.workable.com/api/v1/widget/accounts/salesforce?details=true"
+  },
+  {
+    "bytes": 12276,
+    "extract_path": "extracts/src_182bbb873c9bce058aca.txt",
+    "extract_sha256": "c5546eea15fb4215d8601d6c98c70f80437f44942bc4cd70f7f8e044637f614f",
+    "id": "src_182bbb873c9bce058aca",
+    "inclusion": true,
+    "occupation_slug": "account-executive",
+    "parent_source_id": "src_d80b43a88e847bba500d",
+    "posting_ids": [
+      "8242799"
+    ],
+    "publisher": "Toast",
+    "retrieval_kind": "detail",
+    "retrieved_at": "2026-10-02T08:14:29Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87",
+    "source_type": "job-posting-detail",
+    "url": "https://boards-api.greenhouse.io/v1/boards/toast/jobs/8242799"
+  },
+  {
+    "bytes": 10724,
+    "extract_path": "extracts/src_faceaf04a0b516628ece.txt",
+    "extract_sha256": "95baf8921c33f6fc37cbfc64a724f51f88ffa60de3036b24abfcbb1251c098f0",
+    "id": "src_faceaf04a0b516628ece",
+    "inclusion": true,
+    "occupation_slug": "account-executive",
+    "parent_source_id": "src_3a9d3f51ced93e38fcc0",
+    "posting_ids": [
+      "1497543"
+    ],
+    "publisher": "Datadog",
+    "retrieval_kind": "detail",
+    "retrieved_at": "2026-10-02T08:14:29Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11",
+    "source_type": "job-posting-detail",
+    "url": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs/1497543"
+  },
+  {
+    "bytes": 9953,
+    "extract_path": "extracts/src_d7f262d8ce3debd63976.txt",
+    "extract_sha256": "ed2589e5d189aa5e1af5f286f90f168e8d2a4bc8843c294f5f562824b7485696",
+    "id": "src_d7f262d8ce3debd63976",
+    "inclusion": true,
+    "occupation_slug": "account-executive",
+    "parent_source_id": "src_a5053381eb9f05b7d741",
+    "posting_ids": [
+      "8780748002"
+    ],
+    "publisher": "Databricks",
+    "retrieval_kind": "detail",
+    "retrieved_at": "2026-10-02T08:14:29Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "83735f8df965c250d37fd7b2ac7b032f54de95087691a5b304b111bbebb6e62b",
+    "source_type": "job-posting-detail",
+    "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs/8780748002"
+  },
+  {
+    "bytes": 14339,
+    "extract_path": "extracts/src_9150d237392e5ff8a75b.txt",
+    "extract_sha256": "8092818887a448e9eb311f8bf6bff00eeaa2b789e6f7099050fa492f82d2bf42",
+    "id": "src_9150d237392e5ff8a75b",
+    "inclusion": true,
+    "occupation_slug": "account-executive",
+    "parent_source_id": "src_7fd4450f671a550e320a",
+    "posting_ids": [
+      "5248108007"
+    ],
+    "publisher": "Verkada",
+    "retrieval_kind": "detail",
+    "retrieved_at": "2026-10-02T08:14:29Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f",
+    "source_type": "job-posting-detail",
+    "url": "https://boards-api.greenhouse.io/v1/boards/verkada/jobs/5248108007"
+  },
+  {
+    "bytes": 261766,
+    "extract_path": "extracts/src_c89150b8b4f3d1e71db6.txt",
+    "extract_sha256": "9e10cd870068265a0414cb6e8aca5a10ab44abc2d8d88a7e96725a7671c098d9",
+    "id": "src_c89150b8b4f3d1e71db6",
+    "inclusion": true,
+    "occupation_slug": "forward-deployed-engineer",
+    "publisher": "O*NET OnLine (U.S. Department of Labor)",
+    "retrieved_at": "2026-10-02T04:43:22Z",
+    "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sha256": "4b323fdd8a671efd44190d3fe60e4388f04446183b436f39b1d6666befd199cc",
+    "source_type": "foundation",
+    "url": "https://www.onetonline.org/link/summary/15-1252.00"
+  },
+  {
+    "bytes": 280527,
+    "extract_path": "extracts/src_924d2056e2cfe6554f47.txt",
+    "extract_sha256": "6ce6c33eddf03c91bf758f74213c1c20b1b7355887d45e1d3aeb5db1d3d0dfe6",
+    "id": "src_924d2056e2cfe6554f47",
+    "inclusion": true,
+    "occupation_slug": "forward-deployed-engineer",
+    "publisher": "O*NET OnLine (U.S. Department of Labor)",
+    "retrieved_at": "2026-10-02T08:15:53Z",
+    "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sha256": "8112cbdc3ffaee806279febea016460629539aeb8e3d92837d08d12910983332",
+    "source_type": "foundation",
+    "url": "https://www.onetonline.org/link/summary/15-1299.08"
+  },
+  {
+    "bytes": 125929,
+    "extract_path": "extracts/src_6ff6185b65031b345c59.txt",
+    "extract_sha256": "cd26d115b59e9f03e724ff334085fbc84ab07a0bc2b17b077e3d4c05d791cbaf",
+    "id": "src_6ff6185b65031b345c59",
+    "inclusion": true,
+    "occupation_slug": "forward-deployed-engineer",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "retrieved_at": "2026-10-02T04:43:23Z",
+    "rights": "U.S. Bureau of Labor Statistics public domain; short excerpts published with attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sha256": "ce26946508d71dcfcff956e9a21b882f76a47565166f269c952969a70a4ea6a2",
+    "source_type": "foundation",
+    "url": "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm"
+  },
+  {
+    "bytes": 117506,
+    "extract_path": "extracts/src_01c0e595acbc6d2d1d99.txt",
+    "extract_sha256": "0d3ca8402a42aac9a3de8ffbfcc6cad76538fc49f4e2084b7c95a93fbae2c3fe",
+    "id": "src_01c0e595acbc6d2d1d99",
+    "inclusion": true,
+    "occupation_slug": "forward-deployed-engineer",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "retrieved_at": "2026-10-02T08:15:54Z",
+    "rights": "U.S. Bureau of Labor Statistics public domain; short excerpts published with attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sha256": "59be878133cfd5c1850ef4d9a671adc5caad7278a209d99379c6276703dd2d06",
+    "source_type": "foundation",
+    "url": "https://www.bls.gov/ooh/computer-and-information-technology/computer-systems-analysts.htm"
+  },
+  {
+    "ats": "lever",
+    "board_total": null,
+    "bytes": 2097152,
+    "id": "src_1ccf455a60f7e4c83f62",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 109,
+        "sha256": "e900c975bdba3e0a88ec7e3178c456ec7f5aeae2625085238bc3edc6be0a4bb2",
+        "status": 200,
+        "truncated": true,
+        "url": "https://api.lever.co/v0/postings/palantir?mode=json"
+      }
+    ],
+    "listing_truncated": true,
+    "occupation_slug": "forward-deployed-engineer",
+    "postings_enumerated": 109,
+    "postings_retrieved": 109,
+    "publisher": "Palantir Technologies",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:15:57Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "e900c975bdba3e0a88ec7e3178c456ec7f5aeae2625085238bc3edc6be0a4bb2",
+    "source_type": "job-board",
+    "token": "palantir",
+    "url": "https://api.lever.co/v0/postings/palantir?mode=json"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 153263,
+    "id": "src_c9976d4c61ef09de470f",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 180,
+        "sha256": "bc80711d1beee810dcd52019f29ba8ca75539ca4f5e7414ce9f49f8ceb8de5ba",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/scaleai/jobs?content=true"
+      },
+      {
+        "bytes": 153263,
+        "note": "compact listing fallback",
+        "parsed_postings": 194,
+        "sha256": "83b91d2501839bc0b2cac15682d6db3dfbb4dc64496abb4d08466ace387bc661",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/scaleai/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "forward-deployed-engineer",
+    "postings_enumerated": 194,
+    "postings_retrieved": 194,
+    "publisher": "Scale AI",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:15:58Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "83b91d2501839bc0b2cac15682d6db3dfbb4dc64496abb4d08466ace387bc661",
+    "source_type": "job-board",
+    "token": "scaleai",
+    "url": "https://boards-api.greenhouse.io/v1/boards/scaleai/jobs"
+  },
+  {
+    "ats": "ashby",
+    "board_total": null,
+    "bytes": 2097152,
+    "id": "src_2269720c8c8acd254745",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 137,
+        "sha256": "4d4301e5dff75301b212568d68e7ebb7a0b690094378b5d93a4a997795347262",
+        "status": 200,
+        "truncated": true,
+        "url": "https://api.ashbyhq.com/posting-api/job-board/openai"
+      }
+    ],
+    "listing_truncated": true,
+    "occupation_slug": "forward-deployed-engineer",
+    "postings_enumerated": 137,
+    "postings_retrieved": 137,
+    "publisher": "OpenAI",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:15:58Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "4d4301e5dff75301b212568d68e7ebb7a0b690094378b5d93a4a997795347262",
+    "source_type": "job-board",
+    "token": "openai",
+    "url": "https://api.ashbyhq.com/posting-api/job-board/openai"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 454570,
+    "id": "src_d9be33ac2b784bb029c6",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 143,
+        "sha256": "ca4aaf7d2719e6a7a6bf7798dedc0e5ac84f941fbe3f1d48a6ac1e96061053ee",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/anthropic/jobs?content=true"
+      },
+      {
+        "bytes": 454570,
+        "note": "compact listing fallback",
+        "parsed_postings": 637,
+        "sha256": "b57e64b7cb887586ae0810fab711ae270c555a52402cb39a032a38dea87be22d",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/anthropic/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "forward-deployed-engineer",
+    "postings_enumerated": 637,
+    "postings_retrieved": 637,
+    "publisher": "Anthropic",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:16:00Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "b57e64b7cb887586ae0810fab711ae270c555a52402cb39a032a38dea87be22d",
+    "source_type": "job-board",
+    "token": "anthropic",
+    "url": "https://boards-api.greenhouse.io/v1/boards/anthropic/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 748368,
+    "id": "src_110db607019db933bf5e",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 186,
+        "sha256": "da447adf8709e6c0733df53618526352c9b30819a7ecd107bf555c9429697868",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs?content=true"
+      },
+      {
+        "bytes": 748368,
+        "note": "compact listing fallback",
+        "parsed_postings": 872,
+        "sha256": "7022a7a1740aa3fa2ee5fe7747c6c7e1a12ea208df186a698c0dee26266d8ea2",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "forward-deployed-engineer",
+    "postings_enumerated": 872,
+    "postings_retrieved": 872,
+    "publisher": "Databricks",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:16:01Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "7022a7a1740aa3fa2ee5fe7747c6c7e1a12ea208df186a698c0dee26266d8ea2",
+    "source_type": "job-board",
+    "token": "databricks",
+    "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 445595,
+    "id": "src_c1fb9a9933e6b686a47d",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 280,
+        "sha256": "b70dfa7ab271837f1a2a9408aa2319ba7d38a98216eea97645f86936565ac01d",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs?content=true"
+      },
+      {
+        "bytes": 445595,
+        "note": "compact listing fallback",
+        "parsed_postings": 713,
+        "sha256": "9d2656bd04b74b842b0a8df754061b29513fd699b9b7ba8ce069ebd54253295d",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "forward-deployed-engineer",
+    "postings_enumerated": 713,
+    "postings_retrieved": 713,
+    "publisher": "Stripe",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:16:02Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "9d2656bd04b74b842b0a8df754061b29513fd699b9b7ba8ce069ebd54253295d",
+    "source_type": "job-board",
+    "token": "stripe",
+    "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 1836371,
+    "extract_path": "extracts/src_85874711b8762d616f17.txt",
+    "extract_sha256": "3aadf361831a30aaf95c2a20a1f8e4e4f3b5fcc319d9cdaef28d451d6e1767b5",
+    "id": "src_85874711b8762d616f17",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 1836371,
+        "note": "",
+        "parsed_postings": 164,
+        "sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "forward-deployed-engineer",
+    "postings_enumerated": 164,
+    "postings_retrieved": 164,
+    "publisher": "Figma",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:16:02Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+    "source_type": "job-board",
+    "token": "figma",
+    "url": "https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 39927,
+    "id": "src_57daf64254ee3beabd58",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 39927,
+        "note": "",
+        "parsed_postings": 4,
+        "sha256": "d3a3f199825fbfc26aeea2e1af66a578ff4f2a5e6fa0830c4f58b84e3d966055",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/airtable/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "forward-deployed-engineer",
+    "postings_enumerated": 4,
+    "postings_retrieved": 4,
+    "publisher": "Airtable",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:16:03Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "d3a3f199825fbfc26aeea2e1af66a578ff4f2a5e6fa0830c4f58b84e3d966055",
+    "source_type": "job-board",
+    "token": "airtable",
+    "url": "https://boards-api.greenhouse.io/v1/boards/airtable/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 1372102,
+    "extract_path": "extracts/src_d8920fcd13ab0c04720b.txt",
+    "extract_sha256": "92a418656dc6eab4cbedc4c5e68122f314b4ad24eb54253f080208da821dde51",
+    "id": "src_d8920fcd13ab0c04720b",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 1372102,
+        "note": "",
+        "parsed_postings": 96,
+        "sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/asana/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "forward-deployed-engineer",
+    "postings_enumerated": 96,
+    "postings_retrieved": 96,
+    "publisher": "Asana",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:16:03Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832",
+    "source_type": "job-board",
+    "token": "asana",
+    "url": "https://boards-api.greenhouse.io/v1/boards/asana/jobs?content=true"
+  },
+  {
+    "bytes": 0,
+    "exclusion_reason": "http 404",
+    "id": "src_1030ec189e4de921d9e7",
+    "inclusion": false,
+    "occupation_slug": "forward-deployed-engineer",
+    "publisher": "Snowflake",
+    "retrieved_at": "2026-10-02T08:16:04Z",
+    "rights": "not published (retrieval failed)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_type": "job-board",
+    "url": "https://boards-api.greenhouse.io/v1/boards/snowflake/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 841352,
+    "id": "src_527c1029fa1c57e1dc09",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 192,
+        "sha256": "5d2df1903478314885a1e54c1b43ee4bdae91567eeae9e5ed35bcff3d29dba45",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs?content=true"
+      },
+      {
+        "bytes": 841352,
+        "note": "compact listing fallback",
+        "parsed_postings": 392,
+        "sha256": "8332633a5430ee728d7d6a6f63d8cb126c6be6bb77f76b958084833aa1c48b82",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "forward-deployed-engineer",
+    "postings_enumerated": 392,
+    "postings_retrieved": 392,
+    "publisher": "MongoDB",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:16:05Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "8332633a5430ee728d7d6a6f63d8cb126c6be6bb77f76b958084833aa1c48b82",
+    "source_type": "job-board",
+    "token": "mongodb",
+    "url": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 464032,
+    "id": "src_03590ad5fbffee80a943",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 108,
+        "sha256": "e4f50249fe164b911f838269e399ee6239894cdf4ea0b936e011a048cc6fcdc0",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/elastic/jobs?content=true"
+      },
+      {
+        "bytes": 464032,
+        "note": "compact listing fallback",
+        "parsed_postings": 393,
+        "sha256": "a50fd9cd207c83098f7ebf01079a746fb252347d8c49c52a24a240539d2e369c",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/elastic/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "forward-deployed-engineer",
+    "postings_enumerated": 393,
+    "postings_retrieved": 393,
+    "publisher": "Elastic",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:16:06Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "a50fd9cd207c83098f7ebf01079a746fb252347d8c49c52a24a240539d2e369c",
+    "source_type": "job-board",
+    "token": "elastic",
+    "url": "https://boards-api.greenhouse.io/v1/boards/elastic/jobs"
+  },
+  {
+    "bytes": 0,
+    "exclusion_reason": "http 404",
+    "id": "src_f43f3749a54c273810ea",
+    "inclusion": false,
+    "occupation_slug": "forward-deployed-engineer",
+    "publisher": "Confluent",
+    "retrieved_at": "2026-10-02T08:16:06Z",
+    "rights": "not published (retrieval failed)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_type": "job-board",
+    "url": "https://boards-api.greenhouse.io/v1/boards/confluent/jobs?content=true"
+  },
+  {
+    "bytes": 0,
+    "exclusion_reason": "http 404",
+    "id": "src_afbbb3ad8bda7aff9f4e",
+    "inclusion": false,
+    "occupation_slug": "forward-deployed-engineer",
+    "publisher": "HashiCorp",
+    "retrieved_at": "2026-10-02T08:16:06Z",
+    "rights": "not published (retrieval failed)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_type": "job-board",
+    "url": "https://boards-api.greenhouse.io/v1/boards/hashicorp/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 1876345,
+    "id": "src_c5d0d45aaef3fa057950",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 1876345,
+        "note": "",
+        "parsed_postings": 126,
+        "sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/twilio/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "forward-deployed-engineer",
+    "postings_enumerated": 126,
+    "postings_retrieved": 126,
+    "publisher": "Twilio",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:16:07Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5",
+    "source_type": "job-board",
+    "token": "twilio",
+    "url": "https://boards-api.greenhouse.io/v1/boards/twilio/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 366884,
+    "id": "src_c0814acec79a8dec24a5",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 119,
+        "sha256": "41a4bac0eda76e7bd68ac4c646e426361a52853d4b27507c1d988876e6e75215",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/cloudflare/jobs?content=true"
+      },
+      {
+        "bytes": 366884,
+        "note": "compact listing fallback",
+        "parsed_postings": 401,
+        "sha256": "63a6f39eb1904e5628c309f2f041c2f8c147073111ed0bf881b9dfab5492c4fd",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/cloudflare/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "forward-deployed-engineer",
+    "postings_enumerated": 401,
+    "postings_retrieved": 401,
+    "publisher": "Cloudflare",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:16:08Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "63a6f39eb1904e5628c309f2f041c2f8c147073111ed0bf881b9dfab5492c4fd",
+    "source_type": "job-board",
+    "token": "cloudflare",
+    "url": "https://boards-api.greenhouse.io/v1/boards/cloudflare/jobs"
+  },
+  {
+    "bytes": 7973,
+    "extract_path": "extracts/src_3d6b1f46d7b18e856b93.txt",
+    "extract_sha256": "b7fae78237aa83faba9a751bc196767859c6c4ff893149824eb9ad05538e7429",
+    "id": "src_3d6b1f46d7b18e856b93",
+    "inclusion": true,
+    "occupation_slug": "forward-deployed-engineer",
+    "parent_source_id": "src_c1fb9a9933e6b686a47d",
+    "posting_ids": [
+      "7230452"
+    ],
+    "publisher": "Stripe",
+    "retrieval_kind": "detail",
+    "retrieved_at": "2026-10-02T08:16:09Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f",
+    "source_type": "job-posting-detail",
+    "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs/7230452"
+  },
+  {
+    "bytes": 14955,
+    "extract_path": "extracts/src_c6c45f5305645e2c983b.txt",
+    "extract_sha256": "068a3d24f68450afcdcbe1c055821389a366440fe1884910be515bff8fa7b555",
+    "id": "src_c6c45f5305645e2c983b",
+    "inclusion": true,
+    "occupation_slug": "forward-deployed-engineer",
+    "parent_source_id": "src_110db607019db933bf5e",
+    "posting_ids": [
+      "8657488002"
+    ],
+    "publisher": "Databricks",
+    "retrieval_kind": "detail",
+    "retrieved_at": "2026-10-02T08:16:09Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sha256": "69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2",
+    "source_type": "job-posting-detail",
+    "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs/8657488002"
+  },
+  {
+    "bytes": 11986,
+    "extract_path": "extracts/src_545204355456ab64be3a.txt",
+    "extract_sha256": "fddac54c0956b7f8cc04f2e43c6e84042f83dd2f9e1020bbf7fad39fcf555022",
+    "id": "src_545204355456ab64be3a",
+    "inclusion": true,
+    "occupation_slug": "forward-deployed-engineer",
+    "parent_source_id": "src_527c1029fa1c57e1dc09",
+    "posting_ids": [
+      "8094523"
+    ],
+    "publisher": "MongoDB",
+    "retrieval_kind": "detail",
+    "retrieved_at": "2026-10-02T08:16:09Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+    },
+    "sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6",
+    "source_type": "job-posting-detail",
+    "url": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs/8094523"
+  },
+  {
+    "bytes": 211829,
+    "extract_path": "extracts/src_9fb1d2077ef2c9a711fe.txt",
+    "extract_sha256": "050add24bd5f206a5c3a9027abb644925a4f238ba088fbe839cc0eaaf809840f",
+    "id": "src_9fb1d2077ef2c9a711fe",
+    "inclusion": true,
+    "occupation_slug": "growth-manager",
+    "publisher": "O*NET OnLine (U.S. Department of Labor)",
+    "retrieved_at": "2026-10-02T04:44:47Z",
+    "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "95496cff3bb59f28eee6460f1832dddac790b03336b81323658e7fe7e7d07929",
+    "source_type": "foundation",
+    "url": "https://www.onetonline.org/link/summary/13-1161.00"
+  },
+  {
+    "bytes": 251326,
+    "extract_path": "extracts/src_a6906b439a618389aa6e.txt",
+    "extract_sha256": "0ba08f636ba04e860e7a200f8090eda62479401a916f4a9b68a5ce3d8de62c5f",
+    "id": "src_a6906b439a618389aa6e",
+    "inclusion": true,
+    "occupation_slug": "growth-manager",
+    "publisher": "O*NET OnLine (U.S. Department of Labor)",
+    "retrieved_at": "2026-10-02T04:44:47Z",
+    "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "ba7691c6065b544b041dad4726794949942a282334d6066b106c6aaededdd374",
+    "source_type": "foundation",
+    "url": "https://www.onetonline.org/link/summary/11-2021.00"
+  },
+  {
+    "bytes": 228754,
+    "extract_path": "extracts/src_847c2dc38f4f2a3914a5.txt",
+    "extract_sha256": "b04ee8e2f60a0d58b987397e44eaf4308a4ace55d613f9b929234de248c7e4ad",
+    "id": "src_847c2dc38f4f2a3914a5",
+    "inclusion": true,
+    "occupation_slug": "growth-manager",
+    "publisher": "O*NET OnLine (U.S. Department of Labor)",
+    "retrieved_at": "2026-10-02T04:41:25Z",
+    "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "a5f24efc7712665bbe0ec2c0a49ee16963dc180fb38c8c08345deb1a6a007ed9",
+    "source_type": "foundation",
+    "url": "https://www.onetonline.org/link/summary/41-4012.00"
+  },
+  {
+    "bytes": 111768,
+    "extract_path": "extracts/src_05c23fe5bc8e923f45cc.txt",
+    "extract_sha256": "dd027d2ce8b1007e79be94ee150c236474086d52e1f8255036065d6faae4e21d",
+    "id": "src_05c23fe5bc8e923f45cc",
+    "inclusion": true,
+    "occupation_slug": "growth-manager",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "retrieved_at": "2026-10-02T04:44:48Z",
+    "rights": "U.S. Bureau of Labor Statistics public domain; short excerpts published with attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "eb5296378b1a4e261db1db95ad0ecd9f1711c9be8129705a901d65fcb48fcd79",
+    "source_type": "foundation",
+    "url": "https://www.bls.gov/ooh/business-and-financial/market-research-analysts.htm"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 445595,
+    "id": "src_73fe3689d14e402f334c",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 280,
+        "sha256": "b70dfa7ab271837f1a2a9408aa2319ba7d38a98216eea97645f86936565ac01d",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs?content=true"
+      },
+      {
+        "bytes": 445595,
+        "note": "compact listing fallback",
+        "parsed_postings": 713,
+        "sha256": "9d2656bd04b74b842b0a8df754061b29513fd699b9b7ba8ce069ebd54253295d",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "growth-manager",
+    "postings_enumerated": 713,
+    "postings_retrieved": 713,
+    "publisher": "Stripe",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:17:41Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "9d2656bd04b74b842b0a8df754061b29513fd699b9b7ba8ce069ebd54253295d",
+    "source_type": "job-board",
+    "token": "stripe",
+    "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 1836371,
+    "extract_path": "extracts/src_eb7805d17c70d0cd5e4a.txt",
+    "extract_sha256": "afc7a597403cc4f53045d96b74cd9e3098c576889fd42f3c05a768469348804d",
+    "id": "src_eb7805d17c70d0cd5e4a",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 1836371,
+        "note": "",
+        "parsed_postings": 164,
+        "sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "growth-manager",
+    "postings_enumerated": 164,
+    "postings_retrieved": 164,
+    "publisher": "Figma",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:17:42Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+    "source_type": "job-board",
+    "token": "figma",
+    "url": "https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 993831,
+    "id": "src_f1a7f9bb85a61075ab74",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 993831,
+        "note": "",
+        "parsed_postings": 82,
+        "sha256": "2999a1337800275054f592e6a786b3363c47da92446b6e34564261a1abc4a2b5",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/duolingo/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "growth-manager",
+    "postings_enumerated": 82,
+    "postings_retrieved": 82,
+    "publisher": "Duolingo",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:17:43Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "2999a1337800275054f592e6a786b3363c47da92446b6e34564261a1abc4a2b5",
+    "source_type": "job-board",
+    "token": "duolingo",
+    "url": "https://boards-api.greenhouse.io/v1/boards/duolingo/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 1499720,
+    "extract_path": "extracts/src_8a68c2f36c5ee46519aa.txt",
+    "extract_sha256": "590cbcdc2965e364899e220f8f0299befd1feb20d8bf9cfa0ee71e6dd681c363",
+    "id": "src_8a68c2f36c5ee46519aa",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 1499720,
+        "note": "",
+        "parsed_postings": 127,
+        "sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/instacart/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "growth-manager",
+    "postings_enumerated": 127,
+    "postings_retrieved": 127,
+    "publisher": "Instacart",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:17:43Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d",
+    "source_type": "job-board",
+    "token": "instacart",
+    "url": "https://boards-api.greenhouse.io/v1/boards/instacart/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 2041163,
+    "id": "src_1cf3db52db9b5b9d6b74",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2041163,
+        "note": "",
+        "parsed_postings": 161,
+        "sha256": "69c73340f1f0e56ab2fbef485fe9cfdc09708c94254c341f6a1cd32f5890899e",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/robinhood/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "growth-manager",
+    "postings_enumerated": 161,
+    "postings_retrieved": 161,
+    "publisher": "Robinhood",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:17:44Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "69c73340f1f0e56ab2fbef485fe9cfdc09708c94254c341f6a1cd32f5890899e",
+    "source_type": "job-board",
+    "token": "robinhood",
+    "url": "https://boards-api.greenhouse.io/v1/boards/robinhood/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 2044245,
+    "id": "src_9bf3214a90b329e1520b",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2044245,
+        "note": "",
+        "parsed_postings": 149,
+        "sha256": "d82faf71d54547b1426ba9d73f99b022c25d4c79105a47c75d4353250a205959",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/reddit/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "growth-manager",
+    "postings_enumerated": 149,
+    "postings_retrieved": 149,
+    "publisher": "Reddit",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:17:45Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "d82faf71d54547b1426ba9d73f99b022c25d4c79105a47c75d4353250a205959",
+    "source_type": "job-board",
+    "token": "reddit",
+    "url": "https://boards-api.greenhouse.io/v1/boards/reddit/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 440484,
+    "id": "src_cdb35a8044b88a792832",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 440484,
+        "note": "",
+        "parsed_postings": 51,
+        "sha256": "64b3786520f65d34f16a7c7a6e8efd7b445e3a4f0eb8a1fb658a0779c51bd635",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/discord/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "growth-manager",
+    "postings_enumerated": 51,
+    "postings_retrieved": 51,
+    "publisher": "Discord",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:17:45Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "64b3786520f65d34f16a7c7a6e8efd7b445e3a4f0eb8a1fb658a0779c51bd635",
+    "source_type": "job-board",
+    "token": "discord",
+    "url": "https://boards-api.greenhouse.io/v1/boards/discord/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 2032448,
+    "id": "src_895424d34239778d64ce",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2032448,
+        "note": "",
+        "parsed_postings": 171,
+        "sha256": "f2dfaa802ddf83c1cd7bd625a96fbeeca491ffede522fe773ebec8e1e9c60915",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/pinterest/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "growth-manager",
+    "postings_enumerated": 171,
+    "postings_retrieved": 171,
+    "publisher": "Pinterest",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:17:46Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "f2dfaa802ddf83c1cd7bd625a96fbeeca491ffede522fe773ebec8e1e9c60915",
+    "source_type": "job-board",
+    "token": "pinterest",
+    "url": "https://boards-api.greenhouse.io/v1/boards/pinterest/jobs?content=true"
+  },
+  {
+    "ats": "ashby",
+    "board_total": null,
+    "bytes": 2097152,
+    "id": "src_377e7522170fe19f6fc2",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 137,
+        "sha256": "4d4301e5dff75301b212568d68e7ebb7a0b690094378b5d93a4a997795347262",
+        "status": 200,
+        "truncated": true,
+        "url": "https://api.ashbyhq.com/posting-api/job-board/openai"
+      }
+    ],
+    "listing_truncated": true,
+    "occupation_slug": "growth-manager",
+    "postings_enumerated": 137,
+    "postings_retrieved": 137,
+    "publisher": "OpenAI",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:17:47Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "4d4301e5dff75301b212568d68e7ebb7a0b690094378b5d93a4a997795347262",
+    "source_type": "job-board",
+    "token": "openai",
+    "url": "https://api.ashbyhq.com/posting-api/job-board/openai"
+  },
+  {
+    "ats": "ashby",
+    "board_total": null,
+    "bytes": 2097152,
+    "id": "src_cc95addc31f596b563ae",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 123,
+        "sha256": "78fbae5c9b9b27ff48676e1a66ee1a9f706b698b2683630342fdb5fcb2d98807",
+        "status": 200,
+        "truncated": true,
+        "url": "https://api.ashbyhq.com/posting-api/job-board/ramp"
+      }
+    ],
+    "listing_truncated": true,
+    "occupation_slug": "growth-manager",
+    "postings_enumerated": 123,
+    "postings_retrieved": 123,
+    "publisher": "Ramp",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:17:47Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "78fbae5c9b9b27ff48676e1a66ee1a9f706b698b2683630342fdb5fcb2d98807",
+    "source_type": "job-board",
+    "token": "ramp",
+    "url": "https://api.ashbyhq.com/posting-api/job-board/ramp"
+  },
+  {
+    "ats": "ashby",
+    "board_total": null,
+    "bytes": 1308530,
+    "id": "src_7e933d1ec50b98efe409",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 1308530,
+        "note": "",
+        "parsed_postings": 82,
+        "sha256": "c8cc5b700db36d41e1d521ef8c9bc937048f16335e2ef809a1f13817dd4a961d",
+        "status": 200,
+        "truncated": false,
+        "url": "https://api.ashbyhq.com/posting-api/job-board/vanta"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "growth-manager",
+    "postings_enumerated": 82,
+    "postings_retrieved": 82,
+    "publisher": "Vanta",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:17:47Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "c8cc5b700db36d41e1d521ef8c9bc937048f16335e2ef809a1f13817dd4a961d",
+    "source_type": "job-board",
+    "token": "vanta",
+    "url": "https://api.ashbyhq.com/posting-api/job-board/vanta"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 859464,
+    "id": "src_50345480fdee9bb4cbc0",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 859464,
+        "note": "",
+        "parsed_postings": 55,
+        "sha256": "c337b5f8cbb463c0b637e0bf0d11e2627547c39fe282f8fd9ac0681eeb878a8d",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/peloton/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "growth-manager",
+    "postings_enumerated": 55,
+    "postings_retrieved": 55,
+    "publisher": "Peloton",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:17:48Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "c337b5f8cbb463c0b637e0bf0d11e2627547c39fe282f8fd9ac0681eeb878a8d",
+    "source_type": "job-board",
+    "token": "peloton",
+    "url": "https://boards-api.greenhouse.io/v1/boards/peloton/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 1095513,
+    "extract_path": "extracts/src_91c1cff4658d73f9ced4.txt",
+    "extract_sha256": "f7a0dd64d75599e86941d8cd457c61ffbeb2e34fb9f18f0c66cb4931a473d085",
+    "id": "src_91c1cff4658d73f9ced4",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 1095513,
+        "note": "",
+        "parsed_postings": 63,
+        "sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/chime/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "growth-manager",
+    "postings_enumerated": 63,
+    "postings_retrieved": 63,
+    "publisher": "Chime",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:17:48Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5",
+    "source_type": "job-board",
+    "token": "chime",
+    "url": "https://boards-api.greenhouse.io/v1/boards/chime/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 748368,
+    "id": "src_3ea2dfd5cc63c571f78b",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 186,
+        "sha256": "da447adf8709e6c0733df53618526352c9b30819a7ecd107bf555c9429697868",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs?content=true"
+      },
+      {
+        "bytes": 748368,
+        "note": "compact listing fallback",
+        "parsed_postings": 872,
+        "sha256": "7022a7a1740aa3fa2ee5fe7747c6c7e1a12ea208df186a698c0dee26266d8ea2",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "growth-manager",
+    "postings_enumerated": 872,
+    "postings_retrieved": 872,
+    "publisher": "Databricks",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:17:50Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "7022a7a1740aa3fa2ee5fe7747c6c7e1a12ea208df186a698c0dee26266d8ea2",
+    "source_type": "job-board",
+    "token": "databricks",
+    "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 114807,
+    "id": "src_8fea9efdbd8085a64054",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 144,
+        "sha256": "0af1633648e2d6cd9467b38417ef75ad18cb920ae0d27a528793a3c28700322c",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/airbnb/jobs?content=true"
+      },
+      {
+        "bytes": 114807,
+        "note": "compact listing fallback",
+        "parsed_postings": 149,
+        "sha256": "ba08323827ecd08738b21bb95645e3f9dd35278ba428f99f6f029e18c182d69c",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/airbnb/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "growth-manager",
+    "postings_enumerated": 149,
+    "postings_retrieved": 149,
+    "publisher": "Airbnb",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:17:51Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "ba08323827ecd08738b21bb95645e3f9dd35278ba428f99f6f029e18c182d69c",
+    "source_type": "job-board",
+    "token": "airbnb",
+    "url": "https://boards-api.greenhouse.io/v1/boards/airbnb/jobs"
+  },
+  {
+    "bytes": 0,
+    "exclusion_reason": "http 404",
+    "id": "src_50aac245c85615755a13",
+    "inclusion": false,
+    "occupation_slug": "growth-manager",
+    "publisher": "Netflix",
+    "retrieved_at": "2026-10-02T08:17:51Z",
+    "rights": "not published (retrieval failed)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_type": "job-board",
+    "url": "https://api.lever.co/v0/postings/netflix?mode=json"
+  },
+  {
+    "bytes": 12189,
+    "extract_path": "extracts/src_5df0b5d3247d35d0d459.txt",
+    "extract_sha256": "c1acf11d9928da0c69a7f9f24fa58495f36320424df40af9a5fea5924891fd18",
+    "id": "src_5df0b5d3247d35d0d459",
+    "inclusion": true,
+    "occupation_slug": "growth-manager",
+    "parent_source_id": "src_3ea2dfd5cc63c571f78b",
+    "posting_ids": [
+      "8407917002"
+    ],
+    "publisher": "Databricks",
+    "retrieval_kind": "detail",
+    "retrieved_at": "2026-10-02T08:17:52Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf",
+    "source_type": "job-posting-detail",
+    "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs/8407917002"
+  },
+  {
+    "bytes": 10064,
+    "id": "src_86542c297a92b6dcbc5b",
+    "inclusion": true,
+    "occupation_slug": "growth-manager",
+    "parent_source_id": "src_73fe3689d14e402f334c",
+    "posting_ids": [
+      "8212667"
+    ],
+    "publisher": "Stripe",
+    "retrieval_kind": "detail",
+    "retrieved_at": "2026-10-02T08:17:52Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "95dd5e6ae104aec8b89e8ed818f4233b948d5f35d548b8634b61b517edbffa7c",
+    "source_type": "job-posting-detail",
+    "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs/8212667"
+  },
+  {
+    "bytes": 233903,
+    "extract_path": "extracts/src_bf6fab4732f9b86a9620.txt",
+    "extract_sha256": "098fa068910b57d9521c30b5860b7027807749fb7c995a06295c07ab6acea857",
+    "id": "src_bf6fab4732f9b86a9620",
+    "inclusion": true,
+    "occupation_slug": "hr-generalist",
+    "publisher": "O*NET OnLine (U.S. Department of Labor)",
+    "retrieved_at": "2026-10-02T04:45:49Z",
+    "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "1cf732820fc7d485cf036e0cc9dfc8a56204b86881fafcfdfa2ec3c5ace375db",
+    "source_type": "foundation",
+    "url": "https://www.onetonline.org/link/summary/13-1071.00"
+  },
+  {
+    "bytes": 114332,
+    "extract_path": "extracts/src_eb596d9d6d1d2f1b8cfd.txt",
+    "extract_sha256": "2c1638b28d8b7dfe6f367176ca3ece9854e22ab30d4768ea4ef40467cb18968a",
+    "id": "src_eb596d9d6d1d2f1b8cfd",
+    "inclusion": true,
+    "occupation_slug": "hr-generalist",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "retrieved_at": "2026-10-02T04:45:50Z",
+    "rights": "U.S. Bureau of Labor Statistics public domain; short excerpts published with attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "6449e9011c07967b5acc167caa341b27111066aac1670321fab72c8e9f1bd95c",
+    "source_type": "foundation",
+    "url": "https://www.bls.gov/ooh/business-and-financial/human-resources-specialists.htm"
+  },
+  {
+    "bytes": 233977,
+    "extract_path": "extracts/src_f111ab43706941ef8f05.txt",
+    "extract_sha256": "afb10e32cda9a80fee9bb989dcecb293ed108a4239b48056186f4bafa36c7e2e",
+    "id": "src_f111ab43706941ef8f05",
+    "inclusion": true,
+    "occupation_slug": "hr-generalist",
+    "publisher": "O*NET OnLine (U.S. Department of Labor)",
+    "retrieved_at": "2026-10-02T04:45:50Z",
+    "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "1ca196004b40b563c93336aeb18e0f12af6030beecc2da8e08d523a8518861ad",
+    "source_type": "foundation",
+    "url": "https://www.onetonline.org/link/summary/11-3121.00"
+  },
+  {
+    "bytes": 112535,
+    "extract_path": "extracts/src_bb988f574cfbaef8ad7b.txt",
+    "extract_sha256": "fcd5a02c99a809cbd20b86a553568f2451d5e47963235d61345ce18f503e3b0f",
+    "id": "src_bb988f574cfbaef8ad7b",
+    "inclusion": true,
+    "occupation_slug": "hr-generalist",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "retrieved_at": "2026-10-02T04:45:51Z",
+    "rights": "U.S. Bureau of Labor Statistics public domain; short excerpts published with attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "edac868084876d2396f61403c37c46180b8cea7c804daf5b286718590d323304",
+    "source_type": "foundation",
+    "url": "https://www.bls.gov/ooh/management/human-resources-managers.htm"
+  },
+  {
+    "ats": "smartrecruiters",
+    "board_total": 4812,
+    "bytes": 317826,
+    "id": "src_c2d3db7ba3176d763200",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 317826,
+        "note": "",
+        "parsed_postings": 100,
+        "sha256": "2098a3f39a8885394b2c82cdef7df8b16972958d191351dde249db8208686751",
+        "status": 200,
+        "truncated": false,
+        "url": "https://api.smartrecruiters.com/v1/companies/BoschGroup/postings"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "hr-generalist",
+    "postings_enumerated": 100,
+    "postings_retrieved": 100,
+    "publisher": "Bosch",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:19:02Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "2098a3f39a8885394b2c82cdef7df8b16972958d191351dde249db8208686751",
+    "source_type": "job-board",
+    "token": "BoschGroup",
+    "url": "https://api.smartrecruiters.com/v1/companies/BoschGroup/postings"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 2097152,
+    "id": "src_e86365d2310f1dc2f064",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 177,
+        "sha256": "11adfb77ce6ad988d44d5b9b54e593bcf0aee75f993e20f9ad7ac89af998ef19",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs?content=true"
+      },
+      {
+        "bytes": 2097152,
+        "note": "compact listing fallback",
+        "parsed_postings": 2228,
+        "sha256": "7f99e34550148c1bbc334b2759875b3d3b50127dccdecc707c797c52ca0395a6",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs"
+      }
+    ],
+    "listing_truncated": true,
+    "occupation_slug": "hr-generalist",
+    "postings_enumerated": 2228,
+    "postings_retrieved": 2228,
+    "publisher": "SpaceX",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:19:04Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "7f99e34550148c1bbc334b2759875b3d3b50127dccdecc707c797c52ca0395a6",
+    "source_type": "job-board",
+    "token": "spacex",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 1658360,
+    "extract_path": "extracts/src_923a212a2be514d7551a.txt",
+    "extract_sha256": "d165bbccb2bc335f8d8b14bbfaf6950fa0f9fd3ebfc709723af8fb2e7c718038",
+    "id": "src_923a212a2be514d7551a",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 1658360,
+        "note": "",
+        "parsed_postings": 95,
+        "sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/justworks/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "hr-generalist",
+    "postings_enumerated": 95,
+    "postings_retrieved": 95,
+    "publisher": "Justworks",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:19:05Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf",
+    "source_type": "job-board",
+    "token": "justworks",
+    "url": "https://boards-api.greenhouse.io/v1/boards/justworks/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 1499720,
+    "id": "src_a49206515f5b07ad235d",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 1499720,
+        "note": "",
+        "parsed_postings": 127,
+        "sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/instacart/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "hr-generalist",
+    "postings_enumerated": 127,
+    "postings_retrieved": 127,
+    "publisher": "Instacart",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:19:05Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d",
+    "source_type": "job-board",
+    "token": "instacart",
+    "url": "https://boards-api.greenhouse.io/v1/boards/instacart/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 1785687,
+    "id": "src_dc0738799728abd49951",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 1785687,
+        "note": "",
+        "parsed_postings": 190,
+        "sha256": "b56cdc0d9073d85c268a62c257e43035cccec95461d31fc1dc0a99ae00ab4a00",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/lyft/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "hr-generalist",
+    "postings_enumerated": 190,
+    "postings_retrieved": 190,
+    "publisher": "Lyft",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:19:06Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "b56cdc0d9073d85c268a62c257e43035cccec95461d31fc1dc0a99ae00ab4a00",
+    "source_type": "job-board",
+    "token": "lyft",
+    "url": "https://boards-api.greenhouse.io/v1/boards/lyft/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 114807,
+    "id": "src_3314730a1b8dfb9433ef",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 144,
+        "sha256": "0af1633648e2d6cd9467b38417ef75ad18cb920ae0d27a528793a3c28700322c",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/airbnb/jobs?content=true"
+      },
+      {
+        "bytes": 114807,
+        "note": "compact listing fallback",
+        "parsed_postings": 149,
+        "sha256": "ba08323827ecd08738b21bb95645e3f9dd35278ba428f99f6f029e18c182d69c",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/airbnb/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "hr-generalist",
+    "postings_enumerated": 149,
+    "postings_retrieved": 149,
+    "publisher": "Airbnb",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:19:08Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "ba08323827ecd08738b21bb95645e3f9dd35278ba428f99f6f029e18c182d69c",
+    "source_type": "job-board",
+    "token": "airbnb",
+    "url": "https://boards-api.greenhouse.io/v1/boards/airbnb/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 445595,
+    "id": "src_1f778361474d6b754094",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 280,
+        "sha256": "b70dfa7ab271837f1a2a9408aa2319ba7d38a98216eea97645f86936565ac01d",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs?content=true"
+      },
+      {
+        "bytes": 445595,
+        "note": "compact listing fallback",
+        "parsed_postings": 713,
+        "sha256": "9d2656bd04b74b842b0a8df754061b29513fd699b9b7ba8ce069ebd54253295d",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "hr-generalist",
+    "postings_enumerated": 713,
+    "postings_retrieved": 713,
+    "publisher": "Stripe",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:19:09Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "9d2656bd04b74b842b0a8df754061b29513fd699b9b7ba8ce069ebd54253295d",
+    "source_type": "job-board",
+    "token": "stripe",
+    "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 255374,
+    "id": "src_7c1b4de2c7edbdfbd9d3",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 189,
+        "sha256": "cfce00abc581576d1ee002e51164c72b6f351abb431e022b4f696b3af7010349",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs?content=true"
+      },
+      {
+        "bytes": 255374,
+        "note": "compact listing fallback",
+        "parsed_postings": 223,
+        "sha256": "7c6fc015e413d984dc597967fb59551a2111b51fa612d97dc4ebd5663aa86375",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "hr-generalist",
+    "postings_enumerated": 223,
+    "postings_retrieved": 223,
+    "publisher": "Coinbase",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:19:10Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "7c6fc015e413d984dc597967fb59551a2111b51fa612d97dc4ebd5663aa86375",
+    "source_type": "job-board",
+    "token": "coinbase",
+    "url": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 2071842,
+    "id": "src_3222ea2ce888370499ca",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2071842,
+        "note": "",
+        "parsed_postings": 189,
+        "sha256": "55b3b6c817f95768208ec611c5df93350cf4dd15643510338c7aa9f92c34f68f",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/affirm/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "hr-generalist",
+    "postings_enumerated": 189,
+    "postings_retrieved": 189,
+    "publisher": "Affirm",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:19:10Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "55b3b6c817f95768208ec611c5df93350cf4dd15643510338c7aa9f92c34f68f",
+    "source_type": "job-board",
+    "token": "affirm",
+    "url": "https://boards-api.greenhouse.io/v1/boards/affirm/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 748368,
+    "id": "src_20d84055393fa431ac95",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 186,
+        "sha256": "da447adf8709e6c0733df53618526352c9b30819a7ecd107bf555c9429697868",
+        "status": 200,
+        "truncated": true,
+        "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs?content=true"
+      },
+      {
+        "bytes": 748368,
+        "note": "compact listing fallback",
+        "parsed_postings": 872,
+        "sha256": "7022a7a1740aa3fa2ee5fe7747c6c7e1a12ea208df186a698c0dee26266d8ea2",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "hr-generalist",
+    "postings_enumerated": 872,
+    "postings_retrieved": 872,
+    "publisher": "Databricks",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:19:12Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "7022a7a1740aa3fa2ee5fe7747c6c7e1a12ea208df186a698c0dee26266d8ea2",
+    "source_type": "job-board",
+    "token": "databricks",
+    "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 1836371,
+    "id": "src_6c7ecba5161e94dba724",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 1836371,
+        "note": "",
+        "parsed_postings": 164,
+        "sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "hr-generalist",
+    "postings_enumerated": 164,
+    "postings_retrieved": 164,
+    "publisher": "Figma",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:19:12Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+    "source_type": "job-board",
+    "token": "figma",
+    "url": "https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true"
+  },
+  {
+    "ats": "greenhouse",
+    "board_total": null,
+    "bytes": 2044245,
+    "id": "src_0ea63a21a571047bcf0a",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2044245,
+        "note": "",
+        "parsed_postings": 149,
+        "sha256": "d82faf71d54547b1426ba9d73f99b022c25d4c79105a47c75d4353250a205959",
+        "status": 200,
+        "truncated": false,
+        "url": "https://boards-api.greenhouse.io/v1/boards/reddit/jobs?content=true"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "hr-generalist",
+    "postings_enumerated": 149,
+    "postings_retrieved": 149,
+    "publisher": "Reddit",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:19:13Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "d82faf71d54547b1426ba9d73f99b022c25d4c79105a47c75d4353250a205959",
+    "source_type": "job-board",
+    "token": "reddit",
+    "url": "https://boards-api.greenhouse.io/v1/boards/reddit/jobs?content=true"
+  },
+  {
+    "ats": "ashby",
+    "board_total": null,
+    "bytes": 2097152,
+    "id": "src_619c8c9c2d70cf5361b9",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 137,
+        "sha256": "4d4301e5dff75301b212568d68e7ebb7a0b690094378b5d93a4a997795347262",
+        "status": 200,
+        "truncated": true,
+        "url": "https://api.ashbyhq.com/posting-api/job-board/openai"
+      }
+    ],
+    "listing_truncated": true,
+    "occupation_slug": "hr-generalist",
+    "postings_enumerated": 137,
+    "postings_retrieved": 137,
+    "publisher": "OpenAI",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:19:13Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "4d4301e5dff75301b212568d68e7ebb7a0b690094378b5d93a4a997795347262",
+    "source_type": "job-board",
+    "token": "openai",
+    "url": "https://api.ashbyhq.com/posting-api/job-board/openai"
+  },
+  {
+    "ats": "ashby",
+    "board_total": null,
+    "bytes": 2097152,
+    "id": "src_62b228e2ea9769520fc1",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 2097152,
+        "note": "json prefix salvaged from truncated payload",
+        "parsed_postings": 123,
+        "sha256": "78fbae5c9b9b27ff48676e1a66ee1a9f706b698b2683630342fdb5fcb2d98807",
+        "status": 200,
+        "truncated": true,
+        "url": "https://api.ashbyhq.com/posting-api/job-board/ramp"
+      }
+    ],
+    "listing_truncated": true,
+    "occupation_slug": "hr-generalist",
+    "postings_enumerated": 123,
+    "postings_retrieved": 123,
+    "publisher": "Ramp",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:19:13Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "78fbae5c9b9b27ff48676e1a66ee1a9f706b698b2683630342fdb5fcb2d98807",
+    "source_type": "job-board",
+    "token": "ramp",
+    "url": "https://api.ashbyhq.com/posting-api/job-board/ramp"
+  },
+  {
+    "ats": "lever",
+    "board_total": null,
+    "bytes": 775059,
+    "id": "src_e25ca948e8b7ac6c3321",
+    "inclusion": true,
+    "listing_attempts": [
+      {
+        "bytes": 775059,
+        "note": "",
+        "parsed_postings": 80,
+        "sha256": "daf2a2b612b40758ff65ec8dc531edf4d270efe21947679b657f420dcd69bd9f",
+        "status": 200,
+        "truncated": false,
+        "url": "https://api.lever.co/v0/postings/spotify?mode=json"
+      }
+    ],
+    "listing_truncated": false,
+    "occupation_slug": "hr-generalist",
+    "postings_enumerated": 80,
+    "postings_retrieved": 80,
+    "publisher": "Spotify",
+    "retrieval_kind": "listing",
+    "retrieved_at": "2026-10-02T08:19:14Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sample_order": "most recently published first, then title and posting id (board API page order is not preserved)",
+    "sha256": "daf2a2b612b40758ff65ec8dc531edf4d270efe21947679b657f420dcd69bd9f",
+    "source_type": "job-board",
+    "token": "spotify",
+    "url": "https://api.lever.co/v0/postings/spotify?mode=json"
+  },
+  {
+    "bytes": 45,
+    "exclusion_reason": "payload contained no titled postings",
+    "id": "src_209bc4e39ec51afdf5ce",
+    "inclusion": false,
+    "occupation_slug": "hr-generalist",
+    "publisher": "Bosch (Workable)",
+    "retrieved_at": "2026-10-02T08:19:15Z",
+    "rights": "not published (retrieval failed)",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "9e811db678cc0a7ff3b6e831f2b5f74719cf72bc82946c02d760d32cdece3c61",
+    "source_type": "job-board",
+    "url": "https://apply.workable.com/api/v1/widget/accounts/bosch?details=true"
+  },
+  {
+    "bytes": 8637,
+    "extract_path": "extracts/src_1e69e09fba29339b08f0.txt",
+    "extract_sha256": "b28ef65fcdcc2b0c0947582264c3c04448e899cd6d7f0023e06b0a9dfdc60c1d",
+    "id": "src_1e69e09fba29339b08f0",
+    "inclusion": true,
+    "occupation_slug": "hr-generalist",
+    "parent_source_id": "src_e86365d2310f1dc2f064",
+    "posting_ids": [
+      "8505413002"
+    ],
+    "publisher": "SpaceX",
+    "retrieval_kind": "detail",
+    "retrieved_at": "2026-10-02T08:19:15Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+    "source_type": "job-posting-detail",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8505413002"
+  },
+  {
+    "bytes": 8419,
+    "extract_path": "extracts/src_5cacda542a6ad762a1df.txt",
+    "extract_sha256": "6a7eddcf347651cf1e528ef34dadb68623cd5e934b9bbc56c9b55c8defda80eb",
+    "id": "src_5cacda542a6ad762a1df",
+    "inclusion": true,
+    "occupation_slug": "hr-generalist",
+    "parent_source_id": "src_e86365d2310f1dc2f064",
+    "posting_ids": [
+      "8788674002"
+    ],
+    "publisher": "SpaceX",
+    "retrieval_kind": "detail",
+    "retrieved_at": "2026-10-02T08:19:15Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682",
+    "source_type": "job-posting-detail",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8788674002"
+  },
+  {
+    "bytes": 9454,
+    "extract_path": "extracts/src_75ecd226be1b97d245f5.txt",
+    "extract_sha256": "1f38c2d19cf4a76b001aaf7f855a54d871e512c6d9c12086bf172638690483e9",
+    "id": "src_75ecd226be1b97d245f5",
+    "inclusion": true,
+    "occupation_slug": "hr-generalist",
+    "parent_source_id": "src_e86365d2310f1dc2f064",
+    "posting_ids": [
+      "8581427002"
+    ],
+    "publisher": "SpaceX",
+    "retrieval_kind": "detail",
+    "retrieved_at": "2026-10-02T08:19:16Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce",
+    "source_type": "job-posting-detail",
+    "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8581427002"
+  },
+  {
+    "bytes": 7968,
+    "id": "src_6fc78cf4039dec6876fa",
+    "inclusion": true,
+    "occupation_slug": "hr-generalist",
+    "parent_source_id": "src_1f778361474d6b754094",
+    "posting_ids": [
+      "7466921"
+    ],
+    "publisher": "Stripe",
+    "retrieval_kind": "detail",
+    "retrieved_at": "2026-10-02T08:19:16Z",
+    "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+    "role_scope": {
+      "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+      "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+    },
+    "sha256": "6abe77a905a3e40340aa6a7f562e6e967f84023acf94734ebd39319f4959007e",
+    "source_type": "job-posting-detail",
+    "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs/7466921"
+  }
+]

@@ -1,0 +1,30 @@
+# source src_fd0e2611f0a920a9bda0
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_b18c21fbb9ce910405b3
+# url https://boards-api.greenhouse.io/v1/boards/stripe/jobs/7466921
+# publisher Stripe
+# retrieved_at 2026-10-02T03:29:52Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 6abe77a905a3e40340aa6a7f562e6e967f84023acf94734ebd39319f4959007e raw_bytes 7968
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=5969764600328e1cf66ad22c:posting-excerpt employer=Stripe title=People Partner, Technology location=San Francisco, Chicago, New York City or Seattle variant= url=https://stripe.com/jobs/search?gh_jid=7466921
+As a People Partner, you’ll partner with senior business leaders and managers to develop and deliver on our people strategy
+# posting id=5969764600328e1cf66ad22c:responsibility_evidence employer=Stripe title=People Partner, Technology location=San Francisco, Chicago, New York City or Seattle variant= url=https://stripe.com/jobs/search?gh_jid=7466921
+Act as a strategic consultant to leaders, partnering to guide and enable them in aligning their business and people strategies
+# posting id=5969764600328e1cf66ad22c:context:employer_industry employer=Stripe title=People Partner, Technology location=San Francisco, Chicago, New York City or Seattle variant= url=https://stripe.com/jobs/search?gh_jid=7466921
+Stripe is a financial infrastructure platform for businesses.
+# posting id=5969764600328e1cf66ad22c:context:work_context employer=Stripe title=People Partner, Technology location=San Francisco, Chicago, New York City or Seattle variant= url=https://stripe.com/jobs/search?gh_jid=7466921
+This role requires 50% on-site presence in one of our Office Locations.
+# posting id=5969764600328e1cf66ad22c:experience:0 employer=Stripe title=People Partner, Technology location=San Francisco, Chicago, New York City or Seattle variant= url=https://stripe.com/jobs/search?gh_jid=7466921
+10+ years of experience as an HR business partner, preferably with a mix of experience in fast-growing technology companies and more established organizations
+# posting id=5969764600328e1cf66ad22c:expectation:exp_70946486744cf3361ff6 employer=Stripe title=People Partner, Technology location=San Francisco, Chicago, New York City or Seattle variant= url=https://stripe.com/jobs/search?gh_jid=7466921
+10+ years of experience as an HR business partner
+# posting id=5969764600328e1cf66ad22c:expectation:exp_5b15582aacac7f1d1cae employer=Stripe title=People Partner, Technology location=San Francisco, Chicago, New York City or Seattle variant= url=https://stripe.com/jobs/search?gh_jid=7466921
+Experience supporting functions within a Technology organization
+# posting id=5969764600328e1cf66ad22c:expectation:exp_40093aafcbf412180dcd employer=Stripe title=People Partner, Technology location=San Francisco, Chicago, New York City or Seattle variant= url=https://stripe.com/jobs/search?gh_jid=7466921
+Experience partnering and influencing senior leader
+# posting id=5969764600328e1cf66ad22c:expectation:exp_2e7cd99e55025ad61380 employer=Stripe title=People Partner, Technology location=San Francisco, Chicago, New York City or Seattle variant= url=https://stripe.com/jobs/search?gh_jid=7466921
+Advise and coach leaders and managers on org design and strategy
+# posting id=claim:clm_a632413af5b32e5717bd employer= title= location= variant= url=
+Experience supporting functions within a Technology organization

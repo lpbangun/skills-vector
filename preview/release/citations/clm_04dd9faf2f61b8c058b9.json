@@ -1,0 +1,49 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_04dd9faf2f61b8c058b9",
+  "release_id": "rel_20261001_89b1e984fdde",
+  "occupation_slug": "hr-generalist",
+  "claim_type": "advertised_demand",
+  "statement": "Onboarding coordination: new-hire onboarding coordination — recorded in 2 of 13 admitted HR Generalist postings (no variant split for this role) from 1 of 6 employers in the 2026-10-01 US sample.",
+  "quote": "Serve as the onboarding point of contact for the new hire program",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid or US-remote roles located in the US)",
+    "seniority": "mid-level individual contributor (excludes intern/junior/entry and principal/director-and-above titles)"
+  },
+  "sources": [
+    {
+      "id": "src_ce2cd9ddf05377278f91",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8779717002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_30ed3cf37e84fc0b1410",
+      "retrieved_at": "2026-10-01T00:24:10Z",
+      "sha256": "e2c0e3661a5eb842b52ae06ba3c41c6374c6c12fd5a39c57474ac337e6430783",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_2eb2575e9d38bbf7f5e2",
+      "url": "https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8657726002",
+      "publisher": "SpaceX",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_30ed3cf37e84fc0b1410",
+      "retrieved_at": "2026-10-01T00:24:11Z",
+      "sha256": "4bd7d9d8f0afa672c9beb54146300db6fef808e042edc183a9a421cb20865a5b",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-01T00:28:54Z",
+  "published_at": "2026-10-01T00:30:50Z",
+  "citation_path": "/release/citations/clm_04dd9faf2f61b8c058b9.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "c9deb697efcb46339b86cc89714a07a0c67f06342d1c4aaa75757c48ea8edd27"
+}

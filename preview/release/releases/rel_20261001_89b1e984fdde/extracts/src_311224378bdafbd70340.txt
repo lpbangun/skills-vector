@@ -1,0 +1,12 @@
+# source src_311224378bdafbd70340
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_30ed3cf37e84fc0b1410
+# url https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8581427002
+# publisher SpaceX
+# retrieved_at 2026-10-01T00:24:09Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce raw_bytes 9454
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=d83b6766a139d20367deecc7 employer=SpaceX title=HR Business Partner (Employee Relations) location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8581427002?gh_jid=8581427002
+Counsel and assist employees and managers, guided by the Company’s policies and relevant laws/regulations

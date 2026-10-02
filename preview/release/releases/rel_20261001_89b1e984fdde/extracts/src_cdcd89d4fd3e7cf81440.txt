@@ -1,0 +1,12 @@
+# source src_cdcd89d4fd3e7cf81440
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_30ed3cf37e84fc0b1410
+# url https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8843917002
+# publisher SpaceX
+# retrieved_at 2026-10-01T00:24:12Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 6055ecbb182a8fe83a7b1f25fc3dcbafe42f32bf5dc577eb47dcbac8ee32be5f raw_bytes 9399
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=6cb163ca811585852bf3de3e employer=SpaceX title=Sr. HR Business Partner location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8843917002?gh_jid=8843917002
+Operate as a key business partner to employees, managers, directors and senior leaders

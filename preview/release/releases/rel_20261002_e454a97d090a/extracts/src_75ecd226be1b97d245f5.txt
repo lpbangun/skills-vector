@@ -1,0 +1,28 @@
+# source src_75ecd226be1b97d245f5
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_e86365d2310f1dc2f064
+# url https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8581427002
+# publisher SpaceX
+# retrieved_at 2026-10-02T08:19:16Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce raw_bytes 9454
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=d83b6766a139d20367deecc7:posting-excerpt employer=SpaceX title=HR Business Partner (Employee Relations) location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8581427002?gh_jid=8581427002
+Respond to employee inquiries, questions and complaints, and provide information, guidance and direction on employee relations issues, performance management, and other core HR functions
+# posting id=d83b6766a139d20367deecc7:context:work_context employer=SpaceX title=HR Business Partner (Employee Relations) location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8581427002?gh_jid=8581427002
+Experience in an engineering, production or manufacturing environment supporting an exempt and hourly workforce
+# posting id=d83b6766a139d20367deecc7:context:geography employer=SpaceX title=HR Business Partner (Employee Relations) location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8581427002?gh_jid=8581427002
+Hawthorne, CA
+# posting id=d83b6766a139d20367deecc7:experience:0 employer=SpaceX title=HR Business Partner (Employee Relations) location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8581427002?gh_jid=8581427002
+2+ years of human resources experience
+# posting id=d83b6766a139d20367deecc7:expectation:exp_1060461cd221d61e41d6 employer=SpaceX title=HR Business Partner (Employee Relations) location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8581427002?gh_jid=8581427002
+Experience independently handling employee relations issues
+# posting id=d83b6766a139d20367deecc7:expectation:exp_258e46cffd4e09e594a6 employer=SpaceX title=HR Business Partner (Employee Relations) location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8581427002?gh_jid=8581427002
+Familiarity with Greenhouse, UltiPro, and/or Workday
+# posting id=d83b6766a139d20367deecc7:expectation:exp_5af63fcc97a2ff6fd23b employer=SpaceX title=HR Business Partner (Employee Relations) location=Hawthorne, CA variant= url=https://boards.greenhouse.io/spacex/jobs/8581427002?gh_jid=8581427002
+Demonstrated success at building effective relationships
+# posting id=claim:clm_b83a43a332fced759ccb employer= title= location= variant= url=
+2+ years of human resources experience
+# posting id=claim:clm_3e5a215906b8adba498c employer= title= location= variant= url=
+Experience independently handling employee relations issues

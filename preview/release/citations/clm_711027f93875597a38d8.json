@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_711027f93875597a38d8",
+  "release_id": "rel_20261002_5b1191c61ea0",
+  "occupation_slug": "forward-deployed-engineer",
+  "claim_type": "advertised_demand",
+  "statement": "AI agent deployment: building and deploying AI agents — recorded in 1 of 3 admitted Forward Deployed Engineer postings (no variant split for this role) from 1 of 3 employers in the 2026-10-02 US sample.",
+  "quote": "Demonstrated, hands-on experience building and deploying AI-powered agen",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+  },
+  "sources": [
+    {
+      "id": "src_fbc6c74fc7ccc07688fa",
+      "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs/8055930",
+      "publisher": "Stripe",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_4936fefba660b77613f6",
+      "retrieved_at": "2026-10-02T02:23:24Z",
+      "sha256": "6bf19ab97a9fa7f289e450bb2e524e7ebb1a462f54f523f4ec9619c0ec6dce11",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T02:24:01Z",
+  "published_at": "2026-10-02T04:39:32Z",
+  "citation_path": "/release/citations/clm_711027f93875597a38d8.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "4ad37fb80e00577fa44161e3a2f47a38fd8837a360faccc77259530e66e26689"
+}

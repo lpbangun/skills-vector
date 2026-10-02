@@ -1,0 +1,23 @@
+# source src_91c1cff4658d73f9ced4
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/chime/jobs?content=true
+# publisher Chime
+# retrieved_at 2026-10-02T08:17:48Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5 raw_bytes 1095513
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=feec93b2d9dd8777f41114f9:posting-excerpt employer=Chime title=Associate Creative Director, Growth Marketing location=San Francisco, CA, USA variant=growth-marketing url=https://boards.greenhouse.io/chime/jobs/8684363002?gh_jid=8684363002
+You'll operate as a player-coach — designing best-in-class creative yourself while mentoring and guiding the team.
+# posting id=feec93b2d9dd8777f41114f9:experience:0 employer=Chime title=Associate Creative Director, Growth Marketing location=San Francisco, CA, USA variant=growth-marketing url=https://boards.greenhouse.io/chime/jobs/8684363002?gh_jid=8684363002
+Experience managing or directing external agency, freelance, or vendor creative partners
+# posting id=feec93b2d9dd8777f41114f9:expectation:exp_7698974abda8ccef6071 employer=Chime title=Associate Creative Director, Growth Marketing location=San Francisco, CA, USA variant=growth-marketing url=https://boards.greenhouse.io/chime/jobs/8684363002?gh_jid=8684363002
+Give effective creative direction and feedback across three distinct disciplines
+# posting id=feec93b2d9dd8777f41114f9:expectation:exp_fd7b8cc43e72d129cb75 employer=Chime title=Associate Creative Director, Growth Marketing location=San Francisco, CA, USA variant=growth-marketing url=https://boards.greenhouse.io/chime/jobs/8684363002?gh_jid=8684363002
+AI-native fluency: hands-on comfort prompting and directing AI tools
+# posting id=feec93b2d9dd8777f41114f9:expectation:exp_a4106b1af1cfe6632608 employer=Chime title=Associate Creative Director, Growth Marketing location=San Francisco, CA, USA variant=growth-marketing url=https://boards.greenhouse.io/chime/jobs/8684363002?gh_jid=8684363002
+Experience across print, in addition to Meta, TikTok, YouTube, Mobile, and Google
+# posting id=claim:clm_a203c7372b3728b95a01 employer= title= location= variant= url=
+Give effective creative direction and feedback across three distinct
+# posting id=claim:clm_50c4923bbdb0f69c7136 employer= title= location= variant= url=
+AI-native fluency: hands-on comfort prompting and directing AI tools

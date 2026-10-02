@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_00920542e7a3b22cf2b5",
+  "release_id": "rel_20261002_e454a97d090a",
+  "occupation_slug": "forward-deployed-engineer",
+  "claim_type": "foundation",
+  "statement": "Software Developers analyze user needs and develop software solutions, applying principles and techniques of computer science, engineering, and mathematical analysis.",
+  "quote": "Analyze user needs and develop software solutions, applying principles and techniques of computer science, engineering, and mathematical analysis.",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained"
+  },
+  "sources": [
+    {
+      "id": "src_c89150b8b4f3d1e71db6",
+      "url": "https://www.onetonline.org/link/summary/15-1252.00",
+      "publisher": "O*NET OnLine (U.S. Department of Labor)",
+      "source_type": "foundation",
+      "retrieval_kind": "",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T04:43:22Z",
+      "sha256": "4b323fdd8a671efd44190d3fe60e4388f04446183b436f39b1d6666befd199cc",
+      "rights": "O*NET OnLine, U.S. Department of Labor (CC BY 4.0); short excerpts published with attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T08:17:24Z",
+  "published_at": "2026-10-02T08:20:21Z",
+  "citation_path": "/release/citations/clm_00920542e7a3b22cf2b5.json",
+  "attribution": "agent-authored synthesis over retrieved official foundation text",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "a1d311d4db9bc33af3cb9d1fab5b722ae394cfb7b51c94803388337aaef1f38b"
+}

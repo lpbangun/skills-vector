@@ -1,0 +1,12 @@
+# source src_18bedda5851795708803
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_2d7e006bbc80ded82b95
+# url https://boards-api.greenhouse.io/v1/boards/datadog/jobs/8214090
+# publisher Datadog
+# retrieved_at 2026-09-30T23:51:26Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 bf0d22e158b265c2f2419f2c9d01fe6cec2abd3db88a87b89ad50c6eed2223a3 raw_bytes 12846
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=9fa4396e4c5eb921513307a5 employer=Datadog title=Senior Manager, Sponsorship Sales - Global Conferences location=New York, New York, USA; San Francisco, California, USA variant= url=https://careers.datadoghq.com/detail/8214090/?gh_jid=8214090
+Manage the full consultative sales cycle, including prospecting, qualification, pitching, negotiation, closing, renewals, and expansion with new and existing sponsors

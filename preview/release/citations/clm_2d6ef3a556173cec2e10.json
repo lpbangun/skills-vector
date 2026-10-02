@@ -1,0 +1,49 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_2d6ef3a556173cec2e10",
+  "release_id": "rel_20261002_e454a97d090a",
+  "occupation_slug": "account-executive",
+  "claim_type": "advertised_demand",
+  "statement": "New customer acquisition: net-new logo acquisition — recorded in 2 of 5 admitted Account Executive postings (no variant split for this role) from 2 of 5 employers in the 2026-10-02 US sample.",
+  "quote": "Focus on net-new logo acquisition via outbound activity",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_617b70118c94fa55e06d",
+      "url": "https://boards-api.greenhouse.io/v1/boards/twilio/jobs?content=true",
+      "publisher": "Twilio",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T08:14:25Z",
+      "sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_faceaf04a0b516628ece",
+      "url": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs/1497543",
+      "publisher": "Datadog",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_3a9d3f51ced93e38fcc0",
+      "retrieved_at": "2026-10-02T08:14:29Z",
+      "sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T08:15:37Z",
+  "published_at": "2026-10-02T08:20:21Z",
+  "citation_path": "/release/citations/clm_2d6ef3a556173cec2e10.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "e9c4c788247fe89a6d2488e00d6320df958ca99be960006cb2035ec25b135f34"
+}

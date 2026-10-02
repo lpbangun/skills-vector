@@ -1,0 +1,12 @@
+# source src_536bd50f2d0a0e3e1673
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_30ed3cf37e84fc0b1410
+# url https://boards-api.greenhouse.io/v1/boards/spacex/jobs/8530754002
+# publisher SpaceX
+# retrieved_at 2026-10-01T00:24:12Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 8829ec44951c8071027b8292e65c8d38818b53a2c4e8b6d4e2654ad90e3636a0 raw_bytes 9520
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=0ba0c7615d69f79ddb34acee employer=SpaceX title=Sr. Human Resources Business Partner location=Redmond, WA variant= url=https://boards.greenhouse.io/spacex/jobs/8530754002?gh_jid=8530754002
+Maintain employee files and processing HR transactions in Workday

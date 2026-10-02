@@ -1,0 +1,99 @@
+{
+  "release_schema": "market-release/2",
+  "release_id": "rel_20261002_5b1191c61ea0",
+  "generated_at": "2026-10-02T04:39:32Z",
+  "published_at": "2026-10-02T04:39:32Z",
+  "agent_attribution": "Agent-authored synthesis produced by the recorded research model(s): deepinfra/None (thinking None, fallback False). Run receipts, retrieval bytes and private transcripts are retained outside the public release.",
+  "role_scope": {
+    "geography": "United States (per-occupation bounds in occupations[].role_scope)",
+    "responsibility_scope": "per-occupation bounds in occupations[].role_scope"
+  },
+  "sampling_scope": {
+    "method": "Direct retrieval from allowlisted public occupational foundations and public employer job-board APIs selected by the discovery pass; no paid or metered search provider.",
+    "occupations": {
+      "hr-generalist": {
+        "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+        "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years",
+        "sampled_at": "2026-10-02T03:29:23Z",
+        "boards_attempted": 15,
+        "boards_used": 3,
+        "total_seen": 5537,
+        "sampled": 5537,
+        "postings_dedup": 3,
+        "employers_dedup": 3,
+        "excluded_total": 5534
+      },
+      "growth-manager": {
+        "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+        "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years",
+        "sampled_at": "2026-10-02T02:22:42Z",
+        "boards_attempted": 16,
+        "boards_used": 3,
+        "total_seen": 2952,
+        "sampled": 2952,
+        "postings_dedup": 3,
+        "employers_dedup": 3,
+        "excluded_total": 2949
+      },
+      "account-executive": {
+        "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+        "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years",
+        "sampled_at": "2026-10-02T03:29:23Z",
+        "boards_attempted": 16,
+        "boards_used": 5,
+        "total_seen": 3357,
+        "sampled": 3357,
+        "postings_dedup": 5,
+        "employers_dedup": 5,
+        "excluded_total": 3352
+      },
+      "forward-deployed-engineer": {
+        "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+        "responsibility_scope": "provisional profile; all advertised responsibility bands remain distinct and unknown is retained",
+        "sampled_at": "2026-10-02T02:22:42Z",
+        "boards_attempted": 16,
+        "boards_used": 3,
+        "total_seen": 2929,
+        "sampled": 2929,
+        "postings_dedup": 3,
+        "employers_dedup": 3,
+        "excluded_total": 2926
+      }
+    },
+    "dedup": "job id + canonical url + normalized employer + normalized title",
+    "label": "sample counts describe the retrieved window only; not market prevalence"
+  },
+  "frequency_caveat": "Posting frequency is not importance, proficiency, hires or employability; counts describe the retrieved sample only and are not market prevalence.",
+  "skip_rules": [
+    {
+      "rule": "insufficient_admitted_postings",
+      "threshold": 8,
+      "action": "publish foundation/scope claims only; no demand claims for that occupation slice"
+    },
+    {
+      "rule": "no_matching_stored_claim",
+      "action": "query returns insufficient_evidence or unsupported_question with a bounded local research handoff; never a fabricated answer"
+    },
+    {
+      "rule": "no_trend_claims_without_comparable_periods",
+      "action": "trend language is rejected at challenge; paired comparable retrieval windows are required before any trend claim"
+    }
+  ],
+  "run_ids": [
+    "run_20261002T022242Z_7130e8",
+    "run_20261002T022242Z_e25c8f",
+    "run_20261002T032923Z_78199a",
+    "run_20261002T032923Z_f31ef4"
+  ],
+  "publication_policy": {
+    "mode": "mission-authorized-preview",
+    "human_reviewed": false,
+    "selected_stage": "primary-only",
+    "stage_retention_record_sha256": "699a1a9989fe6db374cc15e65e0ba319b8320672c511d69a77edf61ed9f3e793",
+    "independent_source_adjudication": true,
+    "reviewer_model": "cursor/grok-4.7-medium",
+    "role_registration": {
+      "forward-deployed-engineer": "mission-authorized-pilot; not human-reviewed"
+    }
+  }
+}

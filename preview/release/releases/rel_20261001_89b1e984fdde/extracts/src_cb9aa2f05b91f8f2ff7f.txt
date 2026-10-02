@@ -1,0 +1,11 @@
+# source src_cb9aa2f05b91f8f2ff7f
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/lyft/jobs?content=true
+# publisher Lyft
+# retrieved_at 2026-10-01T00:24:05Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 d8ee345a81ffee0744bad824c31ecdf1b9a957c4ca8dd7241843290f38ebb595 raw_bytes 1748387
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=f2e916e9e35ac356fabe1d94 employer=Lyft title=HR Operations Project Manager location=Nashville, TN variant= url=https://app.careerpuck.com/job-board/lyft/job/8780268002?gh_jid=8780268002
+Evaluate end-to-end HR processes across the employee lifecycle to eliminate friction, improve accuracy, and incorporate automation where appropriate

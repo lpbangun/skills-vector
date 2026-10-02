@@ -1,0 +1,15 @@
+# source src_0094a0707188c6ed301f
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/twilio/jobs?content=true
+# publisher Twilio
+# retrieved_at 2026-09-30T23:51:11Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 63a82dca4d5e23cafe7a57b981109f48d9967f10c7c18df16773a46af7b85ad0 raw_bytes 1980792
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=c83151e9feb29535be9d83db employer=Twilio title=Account Executive 3 location=Remote - US variant= url=https://job-boards.greenhouse.io/twilio/jobs/8177722
+Drive new customer acquisition, while being assigned a quota for iACV (incremental Account Contract Value)
+# posting id=0a7f87983a3e7c4f4837c891 employer=Twilio title=Strategic Account Executive 5 location=Remote - US variant= url=https://job-boards.greenhouse.io/twilio/jobs/8241250
+Drive the entire sales process from prospecting to deal closure
+# posting id=acd808ee95cdb5cece3150d7 employer=Twilio title=GTM Innovation Account Executive location=Remote - US variant= url=https://job-boards.greenhouse.io/twilio/jobs/8209103
+Be responsible for acquiring customers for new product offerings across the full Twilio portfolio

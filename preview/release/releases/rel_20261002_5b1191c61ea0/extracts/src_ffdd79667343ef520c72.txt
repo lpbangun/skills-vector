@@ -1,0 +1,23 @@
+# source src_ffdd79667343ef520c72
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/twilio/jobs?content=true
+# publisher Twilio
+# retrieved_at 2026-10-02T03:29:45Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 e031b87292d9084eac3643bcfd366ec0e7703ff50ccc7b5b2f43facb666a6139 raw_bytes 1858533
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=c83151e9feb29535be9d83db:posting-excerpt employer=Twilio title=Account Executive 3 location=Remote - US variant= url=https://job-boards.greenhouse.io/twilio/jobs/8177722
+Drive new customer acquisition, while being assigned a quota for iACV (incremental Account Contract Value)
+# posting id=c83151e9feb29535be9d83db:context:customer_industry employer=Twilio title=Account Executive 3 location=Remote - US variant= url=https://job-boards.greenhouse.io/twilio/jobs/8177722
+Work with customers across assigned verticals (Financial Services)
+# posting id=c83151e9feb29535be9d83db:context:work_context employer=Twilio title=Account Executive 3 location=Remote - US variant= url=https://job-boards.greenhouse.io/twilio/jobs/8177722
+Our dedication to remote-first work
+# posting id=c83151e9feb29535be9d83db:expectation:exp_1bed9924552b2dea7e58 employer=Twilio title=Account Executive 3 location=Remote - US variant= url=https://job-boards.greenhouse.io/twilio/jobs/8177722
+Drive new customer acquisition
+# posting id=c83151e9feb29535be9d83db:expectation:exp_f4bd8d55b1c86d4c581a employer=Twilio title=Account Executive 3 location=Remote - US variant= url=https://job-boards.greenhouse.io/twilio/jobs/8177722
+Own highly analytical and consultative sales cycles
+# posting id=c83151e9feb29535be9d83db:expectation:exp_8c6e37420d57971b1bdb employer=Twilio title=Account Executive 3 location=Remote - US variant= url=https://job-boards.greenhouse.io/twilio/jobs/8177722
+world-class interpersonal and communication skills
+# posting id=claim:clm_08033183ffd2ce5d2c70 employer= title= location= variant= url=
+Own highly analytical and consultative sales cycles

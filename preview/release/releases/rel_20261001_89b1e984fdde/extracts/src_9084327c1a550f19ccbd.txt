@@ -1,0 +1,11 @@
+# source src_9084327c1a550f19ccbd
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/robinhood/jobs?content=true
+# publisher Robinhood
+# retrieved_at 2026-09-30T23:25:23Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 9f4520b61bd4373778a68fdcca25eedfb165c7af939453338aa315660a4d010d raw_bytes 2049427
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=0b5e05913c3d3f3584c9974e employer=Robinhood title=Lifecycle Marketing Manager location=Menlo Park, CA; New York, NY variant=growth-marketing url=https://boards.greenhouse.io/robinhood/jobs/8119781?t=gh_src=&gh_jid=8119781
+Own the strategy of lifecycle journeys and campaigns for your product areas

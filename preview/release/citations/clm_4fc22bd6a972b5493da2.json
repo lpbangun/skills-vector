@@ -1,0 +1,37 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_4fc22bd6a972b5493da2",
+  "release_id": "rel_20261002_eb0937b49c70",
+  "occupation_slug": "growth-manager",
+  "claim_type": "advertised_demand",
+  "statement": "Lifecycle journey strategy: owning lifecycle journey and campaign strategy — recorded in 1 of 2 admitted Growth Manager postings (variant scope growth-marketing) from 1 of 2 employers in the 2026-10-02 US sample.",
+  "quote": "Own the strategy of lifecycle journeys and campaigns for your product",
+  "variant": "growth-marketing",
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_622ea06527c24baa58c1",
+      "url": "https://boards-api.greenhouse.io/v1/boards/robinhood/jobs?content=true",
+      "publisher": "Robinhood",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T17:30:28Z",
+      "sha256": "8bc5948582a8657771055dd10325281f51dd761c615c9feb9bd2a56abe543fe8",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T17:31:41Z",
+  "published_at": "2026-10-02T17:33:28Z",
+  "citation_path": "/release/citations/clm_4fc22bd6a972b5493da2.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "4ccc01df53f62b3e6bacd0d332ff3543e6f2a5104592203149f7ca218622f9d4"
+}

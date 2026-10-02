@@ -1,0 +1,24 @@
+# source src_47095e20b80a0be7dbfb
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_cf6534528b95317f8ac9
+# url https://boards-api.greenhouse.io/v1/boards/databricks/jobs/8780748002
+# publisher Databricks
+# retrieved_at 2026-10-02T03:29:51Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 83735f8df965c250d37fd7b2ac7b032f54de95087691a5b304b111bbebb6e62b raw_bytes 9953
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=f3e312388312d1732a871106:posting-excerpt employer=Databricks title=Enterprise Account Executive - CMEG Vertical location=United States variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8780748002
+you are passionate about selling Data & AI to sports teams and organizations
+# posting id=f3e312388312d1732a871106:context:customer_industry employer=Databricks title=Enterprise Account Executive - CMEG Vertical location=United States variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8780748002
+selling Data & AI to sports teams and organizations
+# posting id=f3e312388312d1732a871106:context:sales_segment employer=Databricks title=Enterprise Account Executive - CMEG Vertical location=United States variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8780748002
+You will map to enterprise
+# posting id=f3e312388312d1732a871106:context:work_context employer=Databricks title=Enterprise Account Executive - CMEG Vertical location=United States variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8780748002
+Remote - East Coast
+# posting id=f3e312388312d1732a871106:expectation:exp_66595760b1fadf5d80b6 employer=Databricks title=Enterprise Account Executive - CMEG Vertical location=United States variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8780748002
+compress decision cycles by penetrating accounts fast
+# posting id=f3e312388312d1732a871106:expectation:exp_c5c91091c762730086a7 employer=Databricks title=Enterprise Account Executive - CMEG Vertical location=United States variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8780748002
+demonstrating the value to the customer
+# posting id=f3e312388312d1732a871106:expectation:exp_87ccc820f19ad94750e1 employer=Databricks title=Enterprise Account Executive - CMEG Vertical location=United States variant= url=https://databricks.com/company/careers/open-positions/job?gh_jid=8780748002
+understanding a product in-depth

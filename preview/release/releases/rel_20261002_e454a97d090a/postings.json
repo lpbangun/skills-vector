@@ -1,0 +1,3161 @@
+[
+  {
+    "id": "pst_d2a75038c67a26610329",
+    "occupation_slug": "account-executive",
+    "variant": null,
+    "employer": "Toast",
+    "title": "Territory Account Executive , SMB - Atlanta, GA",
+    "location": "Atlanta, GA",
+    "url": "https://careers.toasttab.com/jobs?gh_jid=8242799",
+    "posted_at": "2026-10-01T15:34:28-04:00",
+    "source_id": "src_182bbb873c9bce058aca",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit individual-contributor/non-manager statement and no direct-report supervision stated.",
+    "work_level_evidence": {
+      "source_id": "src_182bbb873c9bce058aca",
+      "source_sha256": "30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87",
+      "quote": null,
+      "reason": "No explicit individual-contributor/non-manager statement and no direct-report supervision stated.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_182bbb873c9bce058aca",
+      "source_sha256": "30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [
+        "1+ years of experience in a sourcing or closing sales role, restaurant operations, or a relatable field and industry"
+      ],
+      "status": "present",
+      "source_id": "src_182bbb873c9bce058aca",
+      "source_sha256": "30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87",
+      "quotes": [
+        "1+ years of experience in a sourcing or closing sales role, restaurant operations, or a relatable field and industry"
+      ],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": null
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_182bbb873c9bce058aca",
+        "source_sha256": "30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_182bbb873c9bce058aca",
+        "source_sha256": "30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "sales_segment": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_182bbb873c9bce058aca",
+        "source_sha256": "30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "work_context": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_182bbb873c9bce058aca",
+        "source_sha256": "30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_182bbb873c9bce058aca",
+        "source_sha256": "30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_182bbb873c9bce058aca",
+        "source_sha256": "30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "Atlanta, GA",
+        "status": "present",
+        "source_id": "src_182bbb873c9bce058aca",
+        "source_sha256": "30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87",
+        "quote": "Atlanta, GA",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_51d9b608dc9bd6d34732",
+        "identity_id": "idn_0b2fbbec88382879fa08",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_266d9377034743d04cd2",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "1+ years of experience in a sourcing or closing sales role, restaurant operations, or a relatable field and industry",
+        "normalized_label": "1+ years of experience in a sourcing or closing sales role, restaurant operations, or a relatable field and industry",
+        "dimension": "experience",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_182bbb873c9bce058aca",
+        "source_sha256": "30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87"
+      },
+      {
+        "expectation_id": "exp_d10def6af0b129870963",
+        "identity_id": "idn_b2298292fc36018fa4d0",
+        "identity_method": "source-literal-identity/1",
+        "kind": "capability",
+        "relationship_id": "edge_99045e7aa3c076615344",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Strong communication, organizational and presentation skills with the ability to sell and negotiate at all decision-making levels",
+        "normalized_label": "strong communication, organizational and presentation skills with the ability to sell and negotiate at all decision-making levels",
+        "dimension": "capability",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_182bbb873c9bce058aca",
+        "source_sha256": "30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87"
+      },
+      {
+        "expectation_id": "exp_6e083fc720bfa7bf9b35",
+        "identity_id": "idn_97f64c1397de5a9220df",
+        "identity_method": "source-literal-identity/1",
+        "kind": "demonstration",
+        "relationship_id": "edge_119e0eea007dd2d488c4",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Proven track record of success in meeting and exceeding goals",
+        "normalized_label": "proven track record of success in meeting and exceeding goals",
+        "dimension": "demonstration",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_182bbb873c9bce058aca",
+        "source_sha256": "30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87"
+      },
+      {
+        "expectation_id": "exp_c6f2d1fadcd6bed861cc",
+        "identity_id": "idn_22ee132a8574a402be08",
+        "identity_method": "source-literal-identity/1",
+        "kind": "contextual_expectation",
+        "relationship_id": "edge_f425aa953126ab3fed66",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Ability to work in a fast-paced, entrepreneurial",
+        "normalized_label": "ability to work in a fast-paced, entrepreneurial",
+        "dimension": "contextual_expectation",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_182bbb873c9bce058aca",
+        "source_sha256": "30a662a4bb10ec0f304d0672f53a2e59aa810867ade2e89f104a1a3d80143b87"
+      }
+    ],
+    "dedup_key": "5da2e1a5e0bc206eebbcf0ac",
+    "admission_reason": "Source text describes quota-style closing sales duties: prospecting, managing the entire sales cycle from initial call to close, demos, and negotiation."
+  },
+  {
+    "id": "pst_881648b03a0fd08f9453",
+    "occupation_slug": "account-executive",
+    "variant": null,
+    "employer": "Datadog",
+    "title": "Commercial Account Executive - Boston",
+    "location": "Boston, Massachusetts, USA",
+    "url": "https://careers.datadoghq.com/detail/1497543/?gh_jid=1497543",
+    "posted_at": "2026-10-01T14:33:26-04:00",
+    "source_id": "src_faceaf04a0b516628ece",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit individual-contributor/non-manager statement and no direct-report duties stated.",
+    "work_level_evidence": {
+      "source_id": "src_faceaf04a0b516628ece",
+      "source_sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11",
+      "quote": null,
+      "reason": "No explicit individual-contributor/non-manager statement and no direct-report duties stated.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_faceaf04a0b516628ece",
+      "source_sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [],
+      "status": "unknown",
+      "source_id": "src_faceaf04a0b516628ece",
+      "source_sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11",
+      "quotes": [],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": "no verified years/experience wording in the posting"
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_faceaf04a0b516628ece",
+        "source_sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_faceaf04a0b516628ece",
+        "source_sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "sales_segment": {
+        "value": "small to midsize markets",
+        "status": "present",
+        "source_id": "src_faceaf04a0b516628ece",
+        "source_sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11",
+        "quote": "closing net-new customers across small to midsize markets",
+        "method": "literal-classification-phrase/1"
+      },
+      "work_context": {
+        "value": "hybrid workplace",
+        "status": "present",
+        "source_id": "src_faceaf04a0b516628ece",
+        "source_sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11",
+        "quote": "We operate as a hybrid workplace",
+        "method": "literal-classification-phrase/1"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_faceaf04a0b516628ece",
+        "source_sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_faceaf04a0b516628ece",
+        "source_sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "Boston, Massachusetts, USA",
+        "status": "present",
+        "source_id": "src_faceaf04a0b516628ece",
+        "source_sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11",
+        "quote": "Boston, Massachusetts, USA",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_1d0058d92ae1493e82ae",
+        "identity_id": "idn_f3273ed515ff8a38e485",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_3e704e66d77bdcaee8e8",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Focus on net-new logo acquisition via outbound activity",
+        "normalized_label": "focus on net-new logo acquisition via outbound activity",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_faceaf04a0b516628ece",
+        "source_sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11"
+      },
+      {
+        "expectation_id": "exp_f97ffc75e84bb18a9bf8",
+        "identity_id": "idn_f7d71d1b3aba29c2d8f3",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_06dbbf661082d3a1187f",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Manage the full sales cycle, including technical demonstrations and negotiation",
+        "normalized_label": "manage the full sales cycle, including technical demonstrations and negotiation",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_faceaf04a0b516628ece",
+        "source_sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11"
+      },
+      {
+        "expectation_id": "exp_d8647b6d75a2d0a3ff64",
+        "identity_id": "idn_9f8212602d49f32bfa57",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_323c70fe71aa685c36b8",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Strategically prospect into Chief Technology Officers, Engineering/IT Leaders, and technical end-users",
+        "normalized_label": "strategically prospect into chief technology officers, engineering/it leaders, and technical end-users",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_faceaf04a0b516628ece",
+        "source_sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11"
+      },
+      {
+        "expectation_id": "exp_52c9ceb6fe289e7f61aa",
+        "identity_id": "idn_222741ff22d13d881451",
+        "identity_method": "source-literal-identity/1",
+        "kind": "contextual_expectation",
+        "relationship_id": "edge_ef5c08b4c4f800ecadbc",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Comfortable operating in a highly technical, fast paced environment",
+        "normalized_label": "comfortable operating in a highly technical, fast paced environment",
+        "dimension": "contextual_expectation",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_faceaf04a0b516628ece",
+        "source_sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11"
+      }
+    ],
+    "dedup_key": "5c6babed855e8fa3877a96ae",
+    "admission_reason": "Explicit closing sales role: net-new logo acquisition, full sales cycle, demos and negotiation, quota carrying."
+  },
+  {
+    "id": "pst_3306664c30aa234502b4",
+    "occupation_slug": "account-executive",
+    "variant": null,
+    "employer": "Databricks",
+    "title": "Enterprise Account Executive - CMEG Vertical",
+    "location": "United States",
+    "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8780748002",
+    "posted_at": "2026-10-01T10:24:23-04:00",
+    "source_id": "src_d7f262d8ce3debd63976",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit individual-contributor/non-manager statement and no direct-report duties stated.",
+    "work_level_evidence": {
+      "source_id": "src_d7f262d8ce3debd63976",
+      "source_sha256": "83735f8df965c250d37fd7b2ac7b032f54de95087691a5b304b111bbebb6e62b",
+      "quote": null,
+      "reason": "No explicit individual-contributor/non-manager statement and no direct-report duties stated.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_d7f262d8ce3debd63976",
+      "source_sha256": "83735f8df965c250d37fd7b2ac7b032f54de95087691a5b304b111bbebb6e62b",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [],
+      "status": "unknown",
+      "source_id": "src_d7f262d8ce3debd63976",
+      "source_sha256": "83735f8df965c250d37fd7b2ac7b032f54de95087691a5b304b111bbebb6e62b",
+      "quotes": [],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": "no verified years/experience wording in the posting"
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_d7f262d8ce3debd63976",
+        "source_sha256": "83735f8df965c250d37fd7b2ac7b032f54de95087691a5b304b111bbebb6e62b",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": "sports teams and organizations",
+        "status": "present",
+        "source_id": "src_d7f262d8ce3debd63976",
+        "source_sha256": "83735f8df965c250d37fd7b2ac7b032f54de95087691a5b304b111bbebb6e62b",
+        "quote": "selling Data & AI to sports teams and organizations",
+        "method": "literal-classification-phrase/1"
+      },
+      "sales_segment": {
+        "value": "enterprise",
+        "status": "present",
+        "source_id": "src_d7f262d8ce3debd63976",
+        "source_sha256": "83735f8df965c250d37fd7b2ac7b032f54de95087691a5b304b111bbebb6e62b",
+        "quote": "You will map to enterprise",
+        "method": "literal-classification-phrase/1"
+      },
+      "work_context": {
+        "value": "remote - East Coast",
+        "status": "present",
+        "source_id": "src_d7f262d8ce3debd63976",
+        "source_sha256": "83735f8df965c250d37fd7b2ac7b032f54de95087691a5b304b111bbebb6e62b",
+        "quote": "Remote - East Coast",
+        "method": "literal-classification-phrase/1"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_d7f262d8ce3debd63976",
+        "source_sha256": "83735f8df965c250d37fd7b2ac7b032f54de95087691a5b304b111bbebb6e62b",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_d7f262d8ce3debd63976",
+        "source_sha256": "83735f8df965c250d37fd7b2ac7b032f54de95087691a5b304b111bbebb6e62b",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "United States",
+        "status": "present",
+        "source_id": "src_d7f262d8ce3debd63976",
+        "source_sha256": "83735f8df965c250d37fd7b2ac7b032f54de95087691a5b304b111bbebb6e62b",
+        "quote": "United States",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_1bd1e27261e3705e5598",
+        "identity_id": "idn_98cd89b7b638c436a07e",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_3d0531c0d82a90a22941",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "passionate about selling Data & AI to sports teams and organizations",
+        "normalized_label": "passionate about selling data & ai to sports teams and organizations",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_d7f262d8ce3debd63976",
+        "source_sha256": "83735f8df965c250d37fd7b2ac7b032f54de95087691a5b304b111bbebb6e62b"
+      },
+      {
+        "expectation_id": "exp_c2c51fae0bd55f98d7f7",
+        "identity_id": "idn_b870a459620ff9819b9f",
+        "identity_method": "source-literal-identity/1",
+        "kind": "capability",
+        "relationship_id": "edge_2040d0868d6ffb3457c3",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "compress decision cycles by penetrating accounts fast and demonstrating the value to the customer",
+        "normalized_label": "compress decision cycles by penetrating accounts fast and demonstrating the value to the customer",
+        "dimension": "capability",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_d7f262d8ce3debd63976",
+        "source_sha256": "83735f8df965c250d37fd7b2ac7b032f54de95087691a5b304b111bbebb6e62b"
+      },
+      {
+        "expectation_id": "exp_878526a06253bb97c176",
+        "identity_id": "idn_d6a00bc9d8efa1a53379",
+        "identity_method": "source-literal-identity/1",
+        "kind": "capability",
+        "relationship_id": "edge_c6f803eccb0475a4b76b",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "love understanding a product in-depth",
+        "normalized_label": "love understanding a product in-depth",
+        "dimension": "capability",
+        "basis": "employer_preference",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_d7f262d8ce3debd63976",
+        "source_sha256": "83735f8df965c250d37fd7b2ac7b032f54de95087691a5b304b111bbebb6e62b"
+      }
+    ],
+    "dedup_key": "f3e312388312d1732a871106",
+    "admission_reason": "Enterprise closing sales role: selling Data & AI, penetrating accounts and demonstrating value to customers."
+  },
+  {
+    "id": "pst_3c5e8e6ecfedcf63ea40",
+    "occupation_slug": "account-executive",
+    "variant": null,
+    "employer": "Twilio",
+    "title": "Account Executive 3",
+    "location": "Remote - US",
+    "url": "https://job-boards.greenhouse.io/twilio/jobs/8177722",
+    "posted_at": "2026-09-30T11:14:37-04:00",
+    "source_id": "src_617b70118c94fa55e06d",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit individual-contributor/non-manager statement and no direct-report evidence.",
+    "work_level_evidence": {
+      "source_id": "src_617b70118c94fa55e06d",
+      "source_sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5",
+      "quote": null,
+      "reason": "No explicit individual-contributor/non-manager statement and no direct-report evidence.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_617b70118c94fa55e06d",
+      "source_sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [],
+      "status": "unknown",
+      "source_id": "src_617b70118c94fa55e06d",
+      "source_sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5",
+      "quotes": [],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": "no verified years/experience wording in the posting"
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_617b70118c94fa55e06d",
+        "source_sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": "Financial Services",
+        "status": "present",
+        "source_id": "src_617b70118c94fa55e06d",
+        "source_sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5",
+        "quote": "Work with customers across assigned verticals (Financial Services)",
+        "method": "literal-classification-phrase/1"
+      },
+      "sales_segment": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_617b70118c94fa55e06d",
+        "source_sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "work_context": {
+        "value": "remote",
+        "status": "present",
+        "source_id": "src_617b70118c94fa55e06d",
+        "source_sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5",
+        "quote": "Remote - US",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_617b70118c94fa55e06d",
+        "source_sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_617b70118c94fa55e06d",
+        "source_sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "Remote - US",
+        "status": "present",
+        "source_id": "src_617b70118c94fa55e06d",
+        "source_sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5",
+        "quote": "Remote - US",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_1bed9924552b2dea7e58",
+        "identity_id": "idn_346e9475c52a3e86bd48",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_7e9df1285aa05d314f6e",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Drive new customer acquisition",
+        "normalized_label": "drive new customer acquisition",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_617b70118c94fa55e06d",
+        "source_sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5"
+      },
+      {
+        "expectation_id": "exp_a314cf8531f63bf6fa8d",
+        "identity_id": "idn_43e1f0cbb208b212c3e3",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_202b5aeaabd99c9f4d78",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Own highly analytical and consultative sales cycles to win business",
+        "normalized_label": "own highly analytical and consultative sales cycles to win business",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_617b70118c94fa55e06d",
+        "source_sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5"
+      },
+      {
+        "expectation_id": "exp_235e1d5af7ed93dfd10f",
+        "identity_id": "idn_1518441124f614d2b471",
+        "identity_method": "source-literal-identity/1",
+        "kind": "capability",
+        "relationship_id": "edge_cdd608c1b4adbb78316f",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "understand their business and technical requirements",
+        "normalized_label": "understand their business and technical requirements",
+        "dimension": "capability",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_617b70118c94fa55e06d",
+        "source_sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5"
+      },
+      {
+        "expectation_id": "exp_8c6e37420d57971b1bdb",
+        "identity_id": "idn_18746c6888423c3cb392",
+        "identity_method": "source-literal-identity/1",
+        "kind": "capability",
+        "relationship_id": "edge_da97f4f62e1ca0b10e80",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "world-class interpersonal and communication skills",
+        "normalized_label": "world-class interpersonal and communication skills",
+        "dimension": "capability",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_617b70118c94fa55e06d",
+        "source_sha256": "e1d5a47abc6cab0857360274c3d9555a2733cad8098ca85de602cb4dd0aca2d5"
+      }
+    ],
+    "dedup_key": "c83151e9feb29535be9d83db",
+    "admission_reason": "Source text describes quota-carrying new customer acquisition and consultative sales cycles, matching Account Executive closing work."
+  },
+  {
+    "id": "pst_e4c2e81d9a69099304db",
+    "occupation_slug": "account-executive",
+    "variant": null,
+    "employer": "Verkada",
+    "title": "Enterprise Account Executive (Florida - ED)",
+    "location": "Florida, United States",
+    "url": "https://job-boards.greenhouse.io/verkada/jobs/5248108007",
+    "posted_at": "2026-09-30T08:00:21-04:00",
+    "source_id": "src_9150d237392e5ff8a75b",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit individual-contributor/non-manager statement and no direct-report people-management duties stated.",
+    "work_level_evidence": {
+      "source_id": "src_9150d237392e5ff8a75b",
+      "source_sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f",
+      "quote": null,
+      "reason": "No explicit individual-contributor/non-manager statement and no direct-report people-management duties stated.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_9150d237392e5ff8a75b",
+      "source_sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [
+        "experience driving new business acquisition in the K-12 education sector"
+      ],
+      "status": "present",
+      "source_id": "src_9150d237392e5ff8a75b",
+      "source_sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f",
+      "quotes": [
+        "experience driving new business acquisition in the K-12 education sector"
+      ],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": null
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_9150d237392e5ff8a75b",
+        "source_sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": "K-12 education",
+        "status": "present",
+        "source_id": "src_9150d237392e5ff8a75b",
+        "source_sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f",
+        "quote": "experience driving new business acquisition in the K-12 education sector",
+        "method": "literal-classification-phrase/1"
+      },
+      "sales_segment": {
+        "value": "enterprise",
+        "status": "present",
+        "source_id": "src_9150d237392e5ff8a75b",
+        "source_sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f",
+        "quote": "Enterprise Account Executive",
+        "method": "literal-classification-phrase/1"
+      },
+      "work_context": {
+        "value": "field sales",
+        "status": "present",
+        "source_id": "src_9150d237392e5ff8a75b",
+        "source_sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f",
+        "quote": "Public Sector Field Sales team",
+        "method": "literal-classification-phrase/1"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_9150d237392e5ff8a75b",
+        "source_sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": "rapidly growing start-up",
+        "status": "present",
+        "source_id": "src_9150d237392e5ff8a75b",
+        "source_sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f",
+        "quote": "rapidly growing start-up",
+        "method": "literal-classification-phrase/1"
+      },
+      "geography": {
+        "value": "Florida, United States",
+        "status": "present",
+        "source_id": "src_9150d237392e5ff8a75b",
+        "source_sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f",
+        "quote": "Florida, United States",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_b7cf965b82423c4a9d81",
+        "identity_id": "idn_48e0719aa8807d12acde",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_b55faf9f0d1cdc56d767",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "experience driving new business acquisition in the K-12 education sector",
+        "normalized_label": "experience driving new business acquisition in the k-12 education sector",
+        "dimension": "experience",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_9150d237392e5ff8a75b",
+        "source_sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f"
+      },
+      {
+        "expectation_id": "exp_fedec9dce81c72668be3",
+        "identity_id": "idn_641c243c1aec6e13a636",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_ee9a05a91461bc80ee74",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Develop and Implement a comprehensive te",
+        "normalized_label": "develop and implement a comprehensive te",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_9150d237392e5ff8a75b",
+        "source_sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f"
+      },
+      {
+        "expectation_id": "exp_e8f9262e93c2760bcc8c",
+        "identity_id": "idn_a85911894049eb818fd9",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_36e8cda5815929a56c73",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Devise a comprehensive customer acquisition strategy",
+        "normalized_label": "devise a comprehensive customer acquisition strategy",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_9150d237392e5ff8a75b",
+        "source_sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f"
+      },
+      {
+        "expectation_id": "exp_9bba85be30a80f1e7f2e",
+        "identity_id": "idn_2ae7ad8f9554515fe0e8",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_0f6bb00837f7e34b1ce4",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "partner with Verkada’s channel partner sales organization",
+        "normalized_label": "partner with verkada’s channel partner sales organization",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_9150d237392e5ff8a75b",
+        "source_sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f"
+      }
+    ],
+    "dedup_key": "6edf48c5d896152e0dc53eda",
+    "admission_reason": "Source describes new business acquisition, territory sales strategy, customer acquisition strategy, and channel partner deal registrations, which are quota-carrying closing sales duties."
+  },
+  {
+    "id": "pst_a95279234d5360c7de55",
+    "occupation_slug": "forward-deployed-engineer",
+    "variant": null,
+    "employer": "Stripe",
+    "title": "Forward Deployed Engineer, Privy",
+    "location": "New York Privy HQ",
+    "url": "https://stripe.com/jobs/search?gh_jid=7230452",
+    "posted_at": "2026-09-25T16:44:34-04:00",
+    "source_id": "src_3d6b1f46d7b18e856b93",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit individual-contributor/non-manager statement and no direct-report evidence.",
+    "work_level_evidence": {
+      "source_id": "src_3d6b1f46d7b18e856b93",
+      "source_sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f",
+      "quote": null,
+      "reason": "No explicit individual-contributor/non-manager statement and no direct-report evidence.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_3d6b1f46d7b18e856b93",
+      "source_sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [],
+      "status": "unknown",
+      "source_id": "src_3d6b1f46d7b18e856b93",
+      "source_sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f",
+      "quotes": [],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": "no verified years/experience wording in the posting"
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_3d6b1f46d7b18e856b93",
+        "source_sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_3d6b1f46d7b18e856b93",
+        "source_sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "sales_segment": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_3d6b1f46d7b18e856b93",
+        "source_sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "work_context": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_3d6b1f46d7b18e856b93",
+        "source_sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_3d6b1f46d7b18e856b93",
+        "source_sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_3d6b1f46d7b18e856b93",
+        "source_sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "New York Privy HQ",
+        "status": "present",
+        "source_id": "src_3d6b1f46d7b18e856b93",
+        "source_sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f",
+        "quote": "New York Privy HQ",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_dbb37381f81c7b59d1e9",
+        "identity_id": "idn_177f0c4c1854802c93a1",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_562a76657cc74c1a165d",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Work directly with customers to understand their technical and operational objectives, scope requirements, and prototype and propose software solutions",
+        "normalized_label": "work directly with customers to understand their technical and operational objectives, scope requirements, and prototype and propose software solutions",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_3d6b1f46d7b18e856b93",
+        "source_sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f"
+      },
+      {
+        "expectation_id": "exp_d9ae0009baaa8b27f009",
+        "identity_id": "idn_9fc09a328e2f65eb4af0",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_39a1f082530f853d8c18",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Design, code, and launch features that improve and innovate on Privy’s core product using tools like TypeScript , React , and Next.js",
+        "normalized_label": "design, code, and launch features that improve and innovate on privy’s core product using tools like typescript , react , and next.js",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_3d6b1f46d7b18e856b93",
+        "source_sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f"
+      },
+      {
+        "expectation_id": "exp_e74f88e144e24e12fa7b",
+        "identity_id": "idn_d416e4231491f122ca56",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_ea4fa146997acd59caeb",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Drive product deployments, including configuration, testing, and troubleshooting",
+        "normalized_label": "drive product deployments, including configuration, testing, and troubleshooting",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_3d6b1f46d7b18e856b93",
+        "source_sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f"
+      },
+      {
+        "expectation_id": "exp_922a0e2e175d3d08860c",
+        "identity_id": "idn_0da701edb2c0e8a7449a",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_fee1e1fe4bdc94cbcb11",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Dive deep into customer codebases",
+        "normalized_label": "dive deep into customer codebases",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_3d6b1f46d7b18e856b93",
+        "source_sha256": "edfb0b1a9036de7651218f4a18221d3771f9e568ec955d473c2f1cc96e026e7f"
+      }
+    ],
+    "dedup_key": "da58f07367ace66ebfe7e129",
+    "admission_reason": "Source describes customer-facing technical ownership: working directly with customers to scope requirements and designing, coding, and deploying software features for customer needs."
+  },
+  {
+    "id": "pst_e594fc783cbe89829d31",
+    "occupation_slug": "forward-deployed-engineer",
+    "variant": null,
+    "employer": "Databricks",
+    "title": "Sr. Forward Deployed Engineer (FDE) - Public Sector",
+    "location": "Alabama; Remote - Virginia; Remote - Washington D.C.",
+    "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8657488002",
+    "posted_at": "2026-09-25T12:04:25-04:00",
+    "source_id": "src_c6c45f5305645e2c983b",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit individual-contributor/non-manager statement and no direct-report evidence.",
+    "work_level_evidence": {
+      "source_id": "src_c6c45f5305645e2c983b",
+      "source_sha256": "69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2",
+      "quote": null,
+      "reason": "No explicit individual-contributor/non-manager statement and no direct-report evidence.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_c6c45f5305645e2c983b",
+      "source_sha256": "69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [
+        "6+ years experience in data engineering, data platforms & analytics, or software engineering"
+      ],
+      "status": "present",
+      "source_id": "src_c6c45f5305645e2c983b",
+      "source_sha256": "69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2",
+      "quotes": [
+        "6+ years experience in data engineering, data platforms & analytics, or software engineering"
+      ],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": null
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_c6c45f5305645e2c983b",
+        "source_sha256": "69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": "federal government",
+        "status": "present",
+        "source_id": "src_c6c45f5305645e2c983b",
+        "source_sha256": "69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2",
+        "quote": "work with federal government customers",
+        "method": "literal-classification-phrase/1"
+      },
+      "sales_segment": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_c6c45f5305645e2c983b",
+        "source_sha256": "69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "work_context": {
+        "value": "customer-facing",
+        "status": "present",
+        "source_id": "src_c6c45f5305645e2c983b",
+        "source_sha256": "69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2",
+        "quote": "This is a hands-on, customer-facing role",
+        "method": "literal-classification-phrase/1"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_c6c45f5305645e2c983b",
+        "source_sha256": "69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_c6c45f5305645e2c983b",
+        "source_sha256": "69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "Alabama; Remote - Virginia; Remote - Washington D.C.",
+        "status": "present",
+        "source_id": "src_c6c45f5305645e2c983b",
+        "source_sha256": "69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2",
+        "quote": "Alabama; Remote - Virginia; Remote - Washington D.C.",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_86c927e0020227cc11be",
+        "identity_id": "idn_ffc48ae4339aa100654d",
+        "identity_method": "source-literal-identity/1",
+        "kind": "capability",
+        "relationship_id": "edge_cccd79295328c003e7a6",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Fluency in writing code in Python, Scala, JavaScript/TypeScript, and modern frameworks",
+        "normalized_label": "fluency in writing code in python, scala, javascript/typescript, and modern frameworks",
+        "dimension": "capability",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_c6c45f5305645e2c983b",
+        "source_sha256": "69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2"
+      },
+      {
+        "expectation_id": "exp_2c24478c3859fd0fbace",
+        "identity_id": "idn_c876cdebb3de96ad9e61",
+        "identity_method": "source-literal-identity/1",
+        "kind": "knowledge",
+        "relationship_id": "edge_d46aa8bdd1140533c37b",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Working knowledge of two or more common Cloud ecosystems (AWS, Azure, GCP)",
+        "normalized_label": "working knowledge of two or more common cloud ecosystems (aws, azure, gcp)",
+        "dimension": "knowledge",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_c6c45f5305645e2c983b",
+        "source_sha256": "69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2"
+      },
+      {
+        "expectation_id": "exp_002d2af3fd561ce81a30",
+        "identity_id": "idn_8a87a4326f5388d97bfd",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_3c6ba4bd0c9282a3b7c3",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Deep experience with distributed computing with Apache Spark™",
+        "normalized_label": "deep experience with distributed computing with apache spark™",
+        "dimension": "experience",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_c6c45f5305645e2c983b",
+        "source_sha256": "69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2"
+      },
+      {
+        "expectation_id": "exp_a0f2627c7615360a42d4",
+        "identity_id": "idn_23f3ec2865da96168dd9",
+        "identity_method": "source-literal-identity/1",
+        "kind": "tool",
+        "relationship_id": "edge_8e2c4ed8b3221d90cb59",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Familiarity with CI/CD for produc",
+        "normalized_label": "familiarity with ci/cd for produc",
+        "dimension": "tool",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_c6c45f5305645e2c983b",
+        "source_sha256": "69fbb1e71484f7d15d0c429b0ad1ee929c4371e7b36066205898add61fc498a2"
+      }
+    ],
+    "dedup_key": "3d3afe13c27bbf828dd47a2f",
+    "admission_reason": "Source describes customer-facing forward-deployed engineering: building and productionizing customer solutions, owning architecture, and implementing end-to-end systems."
+  },
+  {
+    "id": "pst_f8b5ae02dcbc5071b5e4",
+    "occupation_slug": "forward-deployed-engineer",
+    "variant": null,
+    "employer": "MongoDB",
+    "title": "Senior Forward Deployed Engineer",
+    "location": "United States",
+    "url": "https://www.mongodb.com/careers/job/?gh_jid=8094523",
+    "posted_at": "2026-09-24T16:26:44-04:00",
+    "source_id": "src_545204355456ab64be3a",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit individual-contributor/non-manager statement and no direct-report evidence.",
+    "work_level_evidence": {
+      "source_id": "src_545204355456ab64be3a",
+      "source_sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6",
+      "quote": null,
+      "reason": "No explicit individual-contributor/non-manager statement and no direct-report evidence.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_545204355456ab64be3a",
+      "source_sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [
+        "5 - 8 years of engineering experience required"
+      ],
+      "status": "present",
+      "source_id": "src_545204355456ab64be3a",
+      "source_sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6",
+      "quotes": [
+        "5 - 8 years of engineering experience required"
+      ],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": null
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_545204355456ab64be3a",
+        "source_sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_545204355456ab64be3a",
+        "source_sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "sales_segment": {
+        "value": "enterprise",
+        "status": "present",
+        "source_id": "src_545204355456ab64be3a",
+        "source_sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6",
+        "quote": "enterprise customer environments",
+        "method": "literal-classification-phrase/1"
+      },
+      "work_context": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_545204355456ab64be3a",
+        "source_sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_545204355456ab64be3a",
+        "source_sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_545204355456ab64be3a",
+        "source_sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "United States",
+        "status": "present",
+        "source_id": "src_545204355456ab64be3a",
+        "source_sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6",
+        "quote": "United States",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_c69ca2838e1119c3ba88",
+        "identity_id": "idn_1def4acfce3aca9e923a",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_1dfb04aadf4339a1649d",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "5 - 8 years of engineering experience required",
+        "normalized_label": "5 - 8 years of engineering experience required",
+        "dimension": "experience",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_545204355456ab64be3a",
+        "source_sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6"
+      },
+      {
+        "expectation_id": "exp_f625eaee392adac2367b",
+        "identity_id": "idn_1bc30d184a2366d81d24",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_a9759eec350df29ffe56",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Hands-on production engineering experience, including writing code, debugging failures, and implementing fixes directly",
+        "normalized_label": "hands-on production engineering experience, including writing code, debugging failures, and implementing fixes directly",
+        "dimension": "experience",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_545204355456ab64be3a",
+        "source_sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6"
+      },
+      {
+        "expectation_id": "exp_c5bbf5231a4fc07c7588",
+        "identity_id": "idn_3f8fee1d27b8f4ef9906",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_253139d92c19c99575a1",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Experience with developing and deploying software within enterprise environments",
+        "normalized_label": "experience with developing and deploying software within enterprise environments",
+        "dimension": "experience",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_545204355456ab64be3a",
+        "source_sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6"
+      },
+      {
+        "expectation_id": "exp_62595de605d216da0998",
+        "identity_id": "idn_8718643281ffcc9147e8",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_d8b5eb90c363478288c8",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Experience building integrations across existing systems",
+        "normalized_label": "experience building integrations across existing systems",
+        "dimension": "experience",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_545204355456ab64be3a",
+        "source_sha256": "2794cee7b5bd2732c895bef6b7f63d97e5cd28551124f890ad8e0c0a38da00e6"
+      }
+    ],
+    "dedup_key": "4f9082e0ca94c9a0d9bffb7d",
+    "admission_reason": "Source describes customer-specific technical ownership plus building integrations and writing production code in customer environments."
+  },
+  {
+    "id": "pst_5ab2ccabe55798e6957c",
+    "occupation_slug": "forward-deployed-engineer",
+    "variant": null,
+    "employer": "Asana",
+    "title": "Forward Deployed Engineer, Command by Asana",
+    "location": "San Francisco",
+    "url": "https://www.asana.com/jobs/apply/8031595?gh_jid=8031595",
+    "posted_at": "2026-09-15T13:57:31-04:00",
+    "source_id": "src_d8920fcd13ab0c04720b",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit individual-contributor or people-manager statement in the supplied excerpt.",
+    "work_level_evidence": {
+      "source_id": "src_d8920fcd13ab0c04720b",
+      "source_sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832",
+      "quote": null,
+      "reason": "No explicit individual-contributor or people-manager statement in the supplied excerpt.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_d8920fcd13ab0c04720b",
+      "source_sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [],
+      "status": "unknown",
+      "source_id": "src_d8920fcd13ab0c04720b",
+      "source_sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832",
+      "quotes": [],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": "no verified years/experience wording in the posting"
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_d8920fcd13ab0c04720b",
+        "source_sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_d8920fcd13ab0c04720b",
+        "source_sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "sales_segment": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_d8920fcd13ab0c04720b",
+        "source_sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "work_context": {
+        "value": "office-centric hybrid schedule",
+        "status": "present",
+        "source_id": "src_d8920fcd13ab0c04720b",
+        "source_sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832",
+        "quote": "This role is based in our San Francisco or New York City office with an office-centric hybrid schedule.",
+        "method": "literal-classification-phrase/1"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_d8920fcd13ab0c04720b",
+        "source_sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_d8920fcd13ab0c04720b",
+        "source_sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "San Francisco",
+        "status": "present",
+        "source_id": "src_d8920fcd13ab0c04720b",
+        "source_sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832",
+        "quote": "San Francisco",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_84e0e5529ea42be61dbb",
+        "identity_id": "idn_65cf13f7b2816e53bf15",
+        "identity_method": "source-literal-identity/1",
+        "kind": "capability",
+        "relationship_id": "edge_014308769e96368074fe",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "deeply technical, customer-facing",
+        "normalized_label": "deeply technical, customer-facing",
+        "dimension": "capability",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_d8920fcd13ab0c04720b",
+        "source_sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832"
+      },
+      {
+        "expectation_id": "exp_6bb4f34aef8998483fdd",
+        "identity_id": "idn_3cf100d1e4d6f3976a72",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_99b02ee16c348644177c",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "work directly with customers",
+        "normalized_label": "work directly with customers",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_d8920fcd13ab0c04720b",
+        "source_sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832"
+      },
+      {
+        "expectation_id": "exp_e617863f4c2709eaf563",
+        "identity_id": "idn_2e2b1080d6831e84fdda",
+        "identity_method": "source-literal-identity/1",
+        "kind": "capability",
+        "relationship_id": "edge_4cc7d938a677a4cee83f",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "move quickly from insight to implementation",
+        "normalized_label": "move quickly from insight to implementation",
+        "dimension": "capability",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_d8920fcd13ab0c04720b",
+        "source_sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832"
+      },
+      {
+        "expectation_id": "exp_60b9dcdb42fe2367068a",
+        "identity_id": "idn_ff6aeadecfd12781209c",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_d0ee010b95048d85c521",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "bring real-world learning back into the product",
+        "normalized_label": "bring real-world learning back into the product",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_d8920fcd13ab0c04720b",
+        "source_sha256": "0dea9a04a86a51a837af1971234ad65941e93d1f074ae86aa5b5a5d22b6d8832"
+      }
+    ],
+    "dedup_key": "7cf53ba1465e666d299e98a0",
+    "admission_reason": "Source describes a customer-facing engineer working directly with customers and moving from insight to implementation, matching forward-deployed engineering."
+  },
+  {
+    "id": "pst_1569c2eaf39ea7d40def",
+    "occupation_slug": "forward-deployed-engineer",
+    "variant": null,
+    "employer": "Figma",
+    "title": "Forward Deployed Engineer",
+    "location": "San Francisco, CA • New York, NY • United States",
+    "url": "https://boards.greenhouse.io/figma/jobs/6158162004?gh_jid=6158162004",
+    "posted_at": "2026-08-27T13:21:25-04:00",
+    "source_id": "src_85874711b8762d616f17",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit individual-contributor/non-manager statement and no direct-report evidence.",
+    "work_level_evidence": {
+      "source_id": "src_85874711b8762d616f17",
+      "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+      "quote": null,
+      "reason": "No explicit individual-contributor/non-manager statement and no direct-report evidence.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_85874711b8762d616f17",
+      "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [],
+      "status": "unknown",
+      "source_id": "src_85874711b8762d616f17",
+      "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+      "quotes": [],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": "no verified years/experience wording in the posting"
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_85874711b8762d616f17",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_85874711b8762d616f17",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "sales_segment": {
+        "value": "enterprise",
+        "status": "present",
+        "source_id": "src_85874711b8762d616f17",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "quote": "Make an enterprise design system agent-ready",
+        "method": "literal-classification-phrase/1"
+      },
+      "work_context": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_85874711b8762d616f17",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_85874711b8762d616f17",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_85874711b8762d616f17",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "San Francisco, CA • New York, NY • United States",
+        "status": "present",
+        "source_id": "src_85874711b8762d616f17",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "quote": "San Francisco, CA • New York, NY • United States",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_bb81c8ff9a9d51a9bcde",
+        "identity_id": "idn_be6664f6e17f79b8b69a",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_f6d83b6b14c5cb6d3bb5",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Get Make Local, Code Layers, and our newest products working in a customer’s real environment, writing code, config, agent skills, and guideline files against their systems and ours.",
+        "normalized_label": "get make local, code layers, and our newest products working in a customer’s real environment, writing code, config, agent skills, and guideline files against their systems and ours.",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_85874711b8762d616f17",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea"
+      },
+      {
+        "expectation_id": "exp_2a15127f52c6323eba0d",
+        "identity_id": "idn_279b15bf838c33c82530",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_264112e5ee1ec76baa1b",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Run technical discovery: understand a customer's dev environment, toolchain, and constraints",
+        "normalized_label": "run technical discovery: understand a customer's dev environment, toolchain, and constraints",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_85874711b8762d616f17",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea"
+      },
+      {
+        "expectation_id": "exp_85f409bf1e1f266df29e",
+        "identity_id": "idn_c3bef009721a4b3f9206",
+        "identity_method": "source-literal-identity/1",
+        "kind": "capability",
+        "relationship_id": "edge_f9a0a69d92eb61572176",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Comfort owning ambiguous technical problems end to end",
+        "normalized_label": "comfort owning ambiguous technical problems end to end",
+        "dimension": "capability",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_85874711b8762d616f17",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea"
+      },
+      {
+        "expectation_id": "exp_68eee845d85f00be02f6",
+        "identity_id": "idn_5eaacbddc555304a7335",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_469e1e92bf4efc9580c4",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Background in forward-deployed engineering, solutions engineering, professional services, developer experience, or a similar customer-f",
+        "normalized_label": "background in forward-deployed engineering, solutions engineering, professional services, developer experience, or a similar customer-f",
+        "dimension": "experience",
+        "basis": "employer_preference",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_85874711b8762d616f17",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea"
+      }
+    ],
+    "dedup_key": "bf7ed583f9d0873d973f7c59",
+    "admission_reason": "Source describes customer-facing engineering work: getting products working in a customer's real environment, writing code/config, running technical discovery, and turning field learning into product improvements."
+  },
+  {
+    "id": "pst_c1701355b80555184b9c",
+    "occupation_slug": "growth-manager",
+    "variant": "sales-account-executive",
+    "employer": "Instacart",
+    "title": "Activation Sales Development Representative I",
+    "location": "United States - Remote",
+    "url": "https://instacart.careers/job/?gh_jid=7144697",
+    "posted_at": "2026-08-24T13:15:00-04:00",
+    "source_id": "src_8a68c2f36c5ee46519aa",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit individual-contributor/non-manager statement and no direct-report supervision stated.",
+    "work_level_evidence": {
+      "source_id": "src_8a68c2f36c5ee46519aa",
+      "source_sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d",
+      "quote": null,
+      "reason": "No explicit individual-contributor/non-manager statement and no direct-report supervision stated.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_8a68c2f36c5ee46519aa",
+      "source_sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [
+        "Previous experience in a sales or business development role, preferably in the advertising industry."
+      ],
+      "status": "present",
+      "source_id": "src_8a68c2f36c5ee46519aa",
+      "source_sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d",
+      "quotes": [
+        "Previous experience in a sales or business development role, preferably in the advertising industry."
+      ],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": null
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": "grocery delivery",
+        "status": "present",
+        "source_id": "src_8a68c2f36c5ee46519aa",
+        "source_sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d",
+        "quote": "Where others see a simple need for grocery delivery, we see exciting complexity and endless opportunity to serve the varied needs of our community.",
+        "method": "literal-classification-phrase/1"
+      },
+      "customer_industry": {
+        "value": "advertising",
+        "status": "present",
+        "source_id": "src_8a68c2f36c5ee46519aa",
+        "source_sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d",
+        "quote": "preferably in the advertising industry",
+        "method": "literal-classification-phrase/1"
+      },
+      "sales_segment": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_8a68c2f36c5ee46519aa",
+        "source_sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "work_context": {
+        "value": "remote",
+        "status": "present",
+        "source_id": "src_8a68c2f36c5ee46519aa",
+        "source_sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d",
+        "quote": "United States - Remote",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_8a68c2f36c5ee46519aa",
+        "source_sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_8a68c2f36c5ee46519aa",
+        "source_sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "United States - Remote",
+        "status": "present",
+        "source_id": "src_8a68c2f36c5ee46519aa",
+        "source_sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d",
+        "quote": "United States - Remote",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_d6ba1bd08000599faada",
+        "identity_id": "idn_578a6e6508d82a04b109",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_1e19ff112b4a4853d437",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Previous experience in a sales or business development role",
+        "normalized_label": "previous experience in a sales or business development role",
+        "dimension": "experience",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_8a68c2f36c5ee46519aa",
+        "source_sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d"
+      },
+      {
+        "expectation_id": "exp_f91387fe17af88d1f6b4",
+        "identity_id": "idn_04dd2ef6ec8eb4ad5bb4",
+        "identity_method": "source-literal-identity/1",
+        "kind": "capability",
+        "relationship_id": "edge_688d4192af411aaa9d3b",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Strong communication skills, both written and verbal",
+        "normalized_label": "strong communication skills, both written and verbal",
+        "dimension": "capability",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_8a68c2f36c5ee46519aa",
+        "source_sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d"
+      },
+      {
+        "expectation_id": "exp_5dd1efc6008f41e5575f",
+        "identity_id": "idn_cd1e346a8e55cd10f437",
+        "identity_method": "source-literal-identity/1",
+        "kind": "demonstration",
+        "relationship_id": "edge_cba8209214c947226d27",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Proven track record of meeting or exceeding sales targets and KPIs",
+        "normalized_label": "proven track record of meeting or exceeding sales targets and kpis",
+        "dimension": "demonstration",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_8a68c2f36c5ee46519aa",
+        "source_sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d"
+      },
+      {
+        "expectation_id": "exp_d3e15ae100e5b83e21ff",
+        "identity_id": "idn_5f315a70fda4fb68beed",
+        "identity_method": "source-literal-identity/1",
+        "kind": "contextual_expectation",
+        "relationship_id": "edge_23c33ea2be6cb977f50e",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Ability to adapt to a fast-paced",
+        "normalized_label": "ability to adapt to a fast-paced",
+        "dimension": "contextual_expectation",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_8a68c2f36c5ee46519aa",
+        "source_sha256": "4c5dd25f63dd85644c5537f40c8f6c5790e84158881d637c343a0fe619179e8d"
+      }
+    ],
+    "dedup_key": "e194045c9495262260dc708d",
+    "admission_reason": "Duties center on generating new business opportunities, managing leads through the sales pipeline, setting meetings, and tracking progress toward sales goals."
+  },
+  {
+    "id": "pst_1eec9107f6c5e702fae0",
+    "occupation_slug": "growth-manager",
+    "variant": "product-growth",
+    "employer": "Figma",
+    "title": "Product Manager, AI Growth",
+    "location": "San Francisco, CA • New York, NY • United States",
+    "url": "https://boards.greenhouse.io/figma/jobs/5989185004?gh_jid=5989185004",
+    "posted_at": "2026-07-22T05:37:08-04:00",
+    "source_id": "src_eb7805d17c70d0cd5e4a",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit individual-contributor or non-manager statement; 'Lead a fast-executing, impact-driven team' is ambiguous and does not establish direct reports.",
+    "work_level_evidence": {
+      "source_id": "src_eb7805d17c70d0cd5e4a",
+      "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+      "quote": null,
+      "reason": "No explicit individual-contributor or non-manager statement; 'Lead a fast-executing, impact-driven team' is ambiguous and does not establish direct reports.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "senior_strategic_ic",
+    "responsibility_evidence": {
+      "source_id": "src_eb7805d17c70d0cd5e4a",
+      "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+      "quote": "Shape Figma’s growth strategy as our business and product evolve.",
+      "reason": "Explicit strategy, cross-functional collaboration with leadership, and leading major growth initiatives indicate senior strategic scope.",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [
+        "7+ years of product management experience"
+      ],
+      "status": "present",
+      "source_id": "src_eb7805d17c70d0cd5e4a",
+      "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+      "quotes": [
+        "7+ years of product management experience"
+      ],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": null
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_eb7805d17c70d0cd5e4a",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_eb7805d17c70d0cd5e4a",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "sales_segment": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_eb7805d17c70d0cd5e4a",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "work_context": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_eb7805d17c70d0cd5e4a",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_eb7805d17c70d0cd5e4a",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_eb7805d17c70d0cd5e4a",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "San Francisco, CA • New York, NY • United States",
+        "status": "present",
+        "source_id": "src_eb7805d17c70d0cd5e4a",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea",
+        "quote": "San Francisco, CA • New York, NY • United States",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_f9e5816f0bb06f5c190a",
+        "identity_id": "idn_fe65fa6e3402c007379e",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_2d67433a188a39ab7d7c",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "7+ years of product management experience",
+        "normalized_label": "7+ years of product management experience",
+        "dimension": "experience",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_eb7805d17c70d0cd5e4a",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea"
+      },
+      {
+        "expectation_id": "exp_924f6e2c84e5fd104e41",
+        "identity_id": "idn_aba9986a12a5314be445",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_47a7b5cd758c364c8b68",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Experience leading major product or growth initiatives across user-facing products",
+        "normalized_label": "experience leading major product or growth initiatives across user-facing products",
+        "dimension": "experience",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_eb7805d17c70d0cd5e4a",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea"
+      },
+      {
+        "expectation_id": "exp_c511e9616ac4b2ebd630",
+        "identity_id": "idn_3d27d5614d7c40cea59f",
+        "identity_method": "source-literal-identity/1",
+        "kind": "demonstration",
+        "relationship_id": "edge_7b4f91c63b5469125f94",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Track record of delivering impact through data-driven experimentation and strategic bets",
+        "normalized_label": "track record of delivering impact through data-driven experimentation and strategic bets",
+        "dimension": "demonstration",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_eb7805d17c70d0cd5e4a",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea"
+      },
+      {
+        "expectation_id": "exp_d82cfaff2f680d65e2d9",
+        "identity_id": "idn_b797a4fa8db9394281d1",
+        "identity_method": "source-literal-identity/1",
+        "kind": "knowledge",
+        "relationship_id": "edge_a05d00b334697f1b2d9a",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Familiarity with current AI-powered product development and a POV on how our industry will evolve",
+        "normalized_label": "familiarity with current ai-powered product development and a pov on how our industry will evolve",
+        "dimension": "knowledge",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_eb7805d17c70d0cd5e4a",
+        "source_sha256": "d2451377ab197cd250820c0957de22209b2b280b801b72c3a77ab826c0c4eaea"
+      }
+    ],
+    "dedup_key": "5100869e45f2160aa6a8ba00",
+    "admission_reason": "Duties center on driving adoption, growth strategy, and data-driven experimentation for AI products, fitting product-growth."
+  },
+  {
+    "id": "pst_fe5ffc5ee871550b35ed",
+    "occupation_slug": "growth-manager",
+    "variant": "growth-marketing",
+    "employer": "Chime",
+    "title": "Associate Creative Director, Growth Marketing",
+    "location": "San Francisco, CA, USA",
+    "url": "https://boards.greenhouse.io/chime/jobs/8684363002?gh_jid=8684363002",
+    "posted_at": "2026-10-01T18:59:02-04:00",
+    "source_id": "src_91c1cff4658d73f9ced4",
+    "work_level": "unknown",
+    "work_level_reason": "people-management responsibilities not established by verified direct-report or staff-ownership wording",
+    "work_level_evidence": {
+      "source_id": "src_91c1cff4658d73f9ced4",
+      "source_sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5",
+      "quote": null,
+      "reason": "people-management responsibilities not established by verified direct-report or staff-ownership wording",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_91c1cff4658d73f9ced4",
+      "source_sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [
+        "Experience managing or directing external agency, freelance, or vendor creative partners"
+      ],
+      "status": "present",
+      "source_id": "src_91c1cff4658d73f9ced4",
+      "source_sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5",
+      "quotes": [
+        "Experience managing or directing external agency, freelance, or vendor creative partners"
+      ],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": null
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_91c1cff4658d73f9ced4",
+        "source_sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_91c1cff4658d73f9ced4",
+        "source_sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "sales_segment": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_91c1cff4658d73f9ced4",
+        "source_sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "work_context": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_91c1cff4658d73f9ced4",
+        "source_sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_91c1cff4658d73f9ced4",
+        "source_sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_91c1cff4658d73f9ced4",
+        "source_sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "San Francisco, CA, USA",
+        "status": "present",
+        "source_id": "src_91c1cff4658d73f9ced4",
+        "source_sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5",
+        "quote": "San Francisco, CA, USA",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_7698974abda8ccef6071",
+        "identity_id": "idn_bfce5c2517fcfb23bd33",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_95d59bbea066fa640774",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Give effective creative direction and feedback across three distinct disciplines",
+        "normalized_label": "give effective creative direction and feedback across three distinct disciplines",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_91c1cff4658d73f9ced4",
+        "source_sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5"
+      },
+      {
+        "expectation_id": "exp_fd7b8cc43e72d129cb75",
+        "identity_id": "idn_c4ac7079ebf550f9ce05",
+        "identity_method": "source-literal-identity/1",
+        "kind": "capability",
+        "relationship_id": "edge_ab748a24bab90ddf2a4b",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "AI-native fluency: hands-on comfort prompting and directing AI tools",
+        "normalized_label": "ai-native fluency: hands-on comfort prompting and directing ai tools",
+        "dimension": "capability",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_91c1cff4658d73f9ced4",
+        "source_sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5"
+      },
+      {
+        "expectation_id": "exp_d808772337a3a5a380bc",
+        "identity_id": "idn_a5532be2be2d65450bc1",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_931dde47e5a311fedb0c",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Experience managing or directing external agency, freelance, or vendor creative partners",
+        "normalized_label": "experience managing or directing external agency, freelance, or vendor creative partners",
+        "dimension": "experience",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_91c1cff4658d73f9ced4",
+        "source_sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5"
+      },
+      {
+        "expectation_id": "exp_a4106b1af1cfe6632608",
+        "identity_id": "idn_c49cb347a14965a327b3",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_87b82ae987bfe5e028f3",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Experience across print, in addition to Meta, TikTok, YouTube, Mobile, and Google",
+        "normalized_label": "experience across print, in addition to meta, tiktok, youtube, mobile, and google",
+        "dimension": "experience",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_91c1cff4658d73f9ced4",
+        "source_sha256": "65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5"
+      }
+    ],
+    "dedup_key": "feec93b2d9dd8777f41114f9",
+    "admission_reason": "Directs performance creative for growth marketing channels and drives performance improvements."
+  },
+  {
+    "id": "pst_1adaaa9dc655ca067184",
+    "occupation_slug": "growth-manager",
+    "variant": "growth-marketing",
+    "employer": "Databricks",
+    "title": "Principal Demand Generation Manager, Campaign Development",
+    "location": "United States",
+    "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8407917002",
+    "posted_at": "2026-10-01T16:46:34-04:00",
+    "source_id": "src_5df0b5d3247d35d0d459",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit IC or direct-report statement; reports to a Senior Director.",
+    "work_level_evidence": {
+      "source_id": "src_5df0b5d3247d35d0d459",
+      "source_sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf",
+      "quote": null,
+      "reason": "No explicit IC or direct-report statement; reports to a Senior Director.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_5df0b5d3247d35d0d459",
+      "source_sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [],
+      "status": "unknown",
+      "source_id": "src_5df0b5d3247d35d0d459",
+      "source_sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf",
+      "quotes": [],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": "no verified years/experience wording in the posting"
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_5df0b5d3247d35d0d459",
+        "source_sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_5df0b5d3247d35d0d459",
+        "source_sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "sales_segment": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_5df0b5d3247d35d0d459",
+        "source_sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "work_context": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_5df0b5d3247d35d0d459",
+        "source_sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_5df0b5d3247d35d0d459",
+        "source_sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_5df0b5d3247d35d0d459",
+        "source_sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "United States",
+        "status": "present",
+        "source_id": "src_5df0b5d3247d35d0d459",
+        "source_sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf",
+        "quote": "United States",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_751f0022586660d7a82b",
+        "identity_id": "idn_474dbb192079b35e629d",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_2042796c8ea76a2ff8ed",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "leads how Databricks plans and scales integrated marketing campaigns across the organization",
+        "normalized_label": "leads how databricks plans and scales integrated marketing campaigns across the organization",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_5df0b5d3247d35d0d459",
+        "source_sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf"
+      },
+      {
+        "expectation_id": "exp_c34df5c6911ed6165097",
+        "identity_id": "idn_363e9512ed8e8bb98413",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_3a61c3d0325775265281",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "defines the campaign framework and strategic guidance",
+        "normalized_label": "defines the campaign framework and strategic guidance",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_5df0b5d3247d35d0d459",
+        "source_sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf"
+      },
+      {
+        "expectation_id": "exp_54bbbfdc1714e320f408",
+        "identity_id": "idn_24b08e9df23be2b52aab",
+        "identity_method": "source-literal-identity/1",
+        "kind": "capability",
+        "relationship_id": "edge_0b68096b7454be16693a",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "translates business needs into business requirements for campaign operations and planning tools",
+        "normalized_label": "translates business needs into business requirements for campaign operations and planning tools",
+        "dimension": "capability",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_5df0b5d3247d35d0d459",
+        "source_sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf"
+      },
+      {
+        "expectation_id": "exp_eefd494c22a194cab88c",
+        "identity_id": "idn_574c008fbf5b59e3fb62",
+        "identity_method": "source-literal-identity/1",
+        "kind": "contextual_expectation",
+        "relationship_id": "edge_32c7fa8996e832ffc21c",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "uniting cross-functional stakeholders",
+        "normalized_label": "uniting cross-functional stakeholders",
+        "dimension": "contextual_expectation",
+        "basis": "emergent_signal",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_5df0b5d3247d35d0d459",
+        "source_sha256": "db65302e52b058d08858f1f0c05784f18b0915db3fe86f451d7a9311ea0888bf"
+      }
+    ],
+    "dedup_key": "c02384c02c0ee9a02e233623",
+    "admission_reason": "Leads integrated demand generation campaign planning and scaling across the organization."
+  },
+  {
+    "id": "pst_dad350406afbe3d18182",
+    "occupation_slug": "hr-generalist",
+    "variant": null,
+    "employer": "SpaceX",
+    "title": "HR Generalist",
+    "location": "Hawthorne, CA",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8505413002?gh_jid=8505413002",
+    "posted_at": "2026-09-29T17:52:51-04:00",
+    "source_id": "src_1e69e09fba29339b08f0",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit individual-contributor/non-manager statement and no direct-report supervision stated.",
+    "work_level_evidence": {
+      "source_id": "src_1e69e09fba29339b08f0",
+      "source_sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+      "quote": null,
+      "reason": "No explicit individual-contributor/non-manager statement and no direct-report supervision stated.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_1e69e09fba29339b08f0",
+      "source_sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [
+        "6+ months as a SpaceX HR Coordinator or 1+ years of professional human resources experience"
+      ],
+      "status": "present",
+      "source_id": "src_1e69e09fba29339b08f0",
+      "source_sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+      "quotes": [
+        "6+ months as a SpaceX HR Coordinator or 1+ years of professional human resources experience"
+      ],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": null
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_1e69e09fba29339b08f0",
+        "source_sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_1e69e09fba29339b08f0",
+        "source_sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "sales_segment": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_1e69e09fba29339b08f0",
+        "source_sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "work_context": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_1e69e09fba29339b08f0",
+        "source_sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_1e69e09fba29339b08f0",
+        "source_sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_1e69e09fba29339b08f0",
+        "source_sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "Hawthorne, CA",
+        "status": "present",
+        "source_id": "src_1e69e09fba29339b08f0",
+        "source_sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671",
+        "quote": "Hawthorne, CA",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_5a89944dc44ae368d4ef",
+        "identity_id": "idn_a79bf5087f8bfd1616d7",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_417df5807787b7e03b4b",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Counsel a small client group (150-200 employees)",
+        "normalized_label": "counsel a small client group (150-200 employees)",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_1e69e09fba29339b08f0",
+        "source_sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671"
+      },
+      {
+        "expectation_id": "exp_229558159c703667d7bf",
+        "identity_id": "idn_1058442469fb6a30686b",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_2c4cb439d217d6a5fbba",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Respond to day-to-day employee inquiries, questions and complaints",
+        "normalized_label": "respond to day-to-day employee inquiries, questions and complaints",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_1e69e09fba29339b08f0",
+        "source_sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671"
+      },
+      {
+        "expectation_id": "exp_7ea10a59394dfa8c4246",
+        "identity_id": "idn_247eddcdd47b319816b7",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_cb551f61a6b2b9c6fb03",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Experience independently handling employee relations issues",
+        "normalized_label": "experience independently handling employee relations issues",
+        "dimension": "experience",
+        "basis": "employer_preference",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_1e69e09fba29339b08f0",
+        "source_sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671"
+      },
+      {
+        "expectation_id": "exp_4f5b6f237717c12ddbea",
+        "identity_id": "idn_99afeb79adb2237047b8",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_64039d4db16337c46577",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Experience in an engineering, production or manufacturing environment supporting an exempt and hourly workforce",
+        "normalized_label": "experience in an engineering, production or manufacturing environment supporting an exempt and hourly workforce",
+        "dimension": "experience",
+        "basis": "employer_preference",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_1e69e09fba29339b08f0",
+        "source_sha256": "f97a3ef03e52fbc83a0aa12a1a1e9283fbae2e66f5e3e006ea19ba528b459671"
+      }
+    ],
+    "dedup_key": "0f556d03efbac0c5b485a50f",
+    "admission_reason": "Source text describes HR generalist duties: employee inquiries, policies, employee relations, transfers, promotions, exit interviews, performance management."
+  },
+  {
+    "id": "pst_354765bc45c6b66a49f0",
+    "occupation_slug": "hr-generalist",
+    "variant": null,
+    "employer": "SpaceX",
+    "title": "HR Generalist",
+    "location": "Redmond, WA",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8788674002?gh_jid=8788674002",
+    "posted_at": "2026-09-29T17:52:51-04:00",
+    "source_id": "src_5cacda542a6ad762a1df",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit individual-contributor/non-manager statement and no direct-report supervision stated.",
+    "work_level_evidence": {
+      "source_id": "src_5cacda542a6ad762a1df",
+      "source_sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682",
+      "quote": null,
+      "reason": "No explicit individual-contributor/non-manager statement and no direct-report supervision stated.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_5cacda542a6ad762a1df",
+      "source_sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [
+        "6+ months as a SpaceX HR Coordinator or 1+ years of professional human resources experience"
+      ],
+      "status": "present",
+      "source_id": "src_5cacda542a6ad762a1df",
+      "source_sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682",
+      "quotes": [
+        "6+ months as a SpaceX HR Coordinator or 1+ years of professional human resources experience"
+      ],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": null
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_5cacda542a6ad762a1df",
+        "source_sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_5cacda542a6ad762a1df",
+        "source_sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "sales_segment": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_5cacda542a6ad762a1df",
+        "source_sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "work_context": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_5cacda542a6ad762a1df",
+        "source_sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_5cacda542a6ad762a1df",
+        "source_sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_5cacda542a6ad762a1df",
+        "source_sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "Redmond, WA",
+        "status": "present",
+        "source_id": "src_5cacda542a6ad762a1df",
+        "source_sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682",
+        "quote": "Redmond, WA",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_d9a55e70e45774ab7353",
+        "identity_id": "idn_439a2f234ef19ce003f6",
+        "identity_method": "source-literal-identity/1",
+        "kind": "credential",
+        "relationship_id": "edge_5d612f5cbef3c33a4352",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Bachelor’s degree",
+        "normalized_label": "bachelor’s degree",
+        "dimension": "credential",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_5cacda542a6ad762a1df",
+        "source_sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682"
+      },
+      {
+        "expectation_id": "exp_65d3afce6f2fe1699a4f",
+        "identity_id": "idn_69ebd88c32b7771ddf58",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_4cb492deb3a8e8f79d9e",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "1+ years of professional human resources experience",
+        "normalized_label": "1+ years of professional human resources experience",
+        "dimension": "experience",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_5cacda542a6ad762a1df",
+        "source_sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682"
+      },
+      {
+        "expectation_id": "exp_7ea10a59394dfa8c4246",
+        "identity_id": "idn_247eddcdd47b319816b7",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_9b6802ca92578909a370",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Experience independently handling employee relations issues",
+        "normalized_label": "experience independently handling employee relations issues",
+        "dimension": "experience",
+        "basis": "employer_preference",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_5cacda542a6ad762a1df",
+        "source_sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682"
+      },
+      {
+        "expectation_id": "exp_2b2923528bfe1f9962f7",
+        "identity_id": "idn_57ed431e59beb3bbe0ce",
+        "identity_method": "source-literal-identity/1",
+        "kind": "contextual_expectation",
+        "relationship_id": "edge_ea1ebcb052dce488c845",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Experience in an engineering, production or manufacturing environment supporting an exempt and hourly workforce",
+        "normalized_label": "experience in an engineering, production or manufacturing environment supporting an exempt and hourly workforce",
+        "dimension": "contextual_expectation",
+        "basis": "employer_preference",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_5cacda542a6ad762a1df",
+        "source_sha256": "f450517606a685015fb0ce8cee604e4b7ea68db80b593b649c739296711ff682"
+      }
+    ],
+    "dedup_key": "8c8a03fb3aaa8a0a26eb04dc",
+    "admission_reason": "Duties cover HR policies, employee inquiries, transfers, promotions, exit interviews, employee relations, performance management, and HR guidance."
+  },
+  {
+    "id": "pst_599c9c1c370a56aca970",
+    "occupation_slug": "hr-generalist",
+    "variant": null,
+    "employer": "Justworks",
+    "title": "Senior HR Consultant",
+    "location": "New York, New York",
+    "url": "https://boards.greenhouse.io/justworks/jobs/8240391?gh_jid=8240391",
+    "posted_at": "2026-09-30T09:17:10-04:00",
+    "source_id": "src_923a212a2be514d7551a",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit IC/non-manager statement; coaching/mentoring peers is not verified direct-report management.",
+    "work_level_evidence": {
+      "source_id": "src_923a212a2be514d7551a",
+      "source_sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf",
+      "quote": null,
+      "reason": "No explicit IC/non-manager statement; coaching/mentoring peers is not verified direct-report management.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_923a212a2be514d7551a",
+      "source_sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [
+        "Minimum of 7 years experience at the HR Generalist, HR Business Partner, HR Manager, or Employee Relations Manager level"
+      ],
+      "status": "present",
+      "source_id": "src_923a212a2be514d7551a",
+      "source_sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf",
+      "quotes": [
+        "Minimum of 7 years experience at the HR Generalist, HR Business Partner, HR Manager, or Employee Relations Manager level"
+      ],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": null
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_923a212a2be514d7551a",
+        "source_sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_923a212a2be514d7551a",
+        "source_sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "sales_segment": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_923a212a2be514d7551a",
+        "source_sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "work_context": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_923a212a2be514d7551a",
+        "source_sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_923a212a2be514d7551a",
+        "source_sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_923a212a2be514d7551a",
+        "source_sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "New York, New York",
+        "status": "present",
+        "source_id": "src_923a212a2be514d7551a",
+        "source_sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf",
+        "quote": "New York, New York",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_ace2f925601cb274d12b",
+        "identity_id": "idn_b0500035503300846272",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_d69c06c3e2243bb73840",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Experience handing compliance across multiple US states",
+        "normalized_label": "experience handing compliance across multiple us states",
+        "dimension": "experience",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_923a212a2be514d7551a",
+        "source_sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf"
+      },
+      {
+        "expectation_id": "exp_ad93c073662d77918442",
+        "identity_id": "idn_44dda7012376611352c5",
+        "identity_method": "source-literal-identity/1",
+        "kind": "credential",
+        "relationship_id": "edge_2308edb3518c2ca40add",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "At least 1 of the following HR certifications: PHR, SPHR, SHRM-CP, or SHRM-SCP",
+        "normalized_label": "at least 1 of the following hr certifications: phr, sphr, shrm-cp, or shrm-scp",
+        "dimension": "credential",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_923a212a2be514d7551a",
+        "source_sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf"
+      },
+      {
+        "expectation_id": "exp_d431fbee85c46392cabe",
+        "identity_id": "idn_7dbe00ddd074e657242b",
+        "identity_method": "source-literal-identity/1",
+        "kind": "task",
+        "relationship_id": "edge_48ef026f33341d95af53",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Coach and mentor fellow HR Consultants",
+        "normalized_label": "coach and mentor fellow hr consultants",
+        "dimension": "task",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_923a212a2be514d7551a",
+        "source_sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf"
+      },
+      {
+        "expectation_id": "exp_2429d1c7762a26d5c55a",
+        "identity_id": "idn_ad4b9203be52ab68a9dd",
+        "identity_method": "source-literal-identity/1",
+        "kind": "capability",
+        "relationship_id": "edge_95b62c85841d7cd05ab5",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Explain complicated compliance and HR concepts in simple, user-friendly terms",
+        "normalized_label": "explain complicated compliance and hr concepts in simple, user-friendly terms",
+        "dimension": "capability",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_923a212a2be514d7551a",
+        "source_sha256": "0212bb3b1d2b8affa21cbd002a39eb0bb0e1d752717fa7be7d23041927b305bf"
+      }
+    ],
+    "dedup_key": "bee627a17f105b9b59569465",
+    "admission_reason": "Duties include HR consulting, compliance, employee relations, and HR content/tools; qualifications explicitly reference HR Generalist level."
+  },
+  {
+    "id": "pst_c2c9f9de25fda82b8aba",
+    "occupation_slug": "hr-generalist",
+    "variant": null,
+    "employer": "SpaceX",
+    "title": "HR Business Partner (Employee Relations)",
+    "location": "Hawthorne, CA",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8581427002?gh_jid=8581427002",
+    "posted_at": "2026-09-29T17:52:51-04:00",
+    "source_id": "src_75ecd226be1b97d245f5",
+    "work_level": "unknown",
+    "work_level_reason": "No explicit individual-contributor or people-manager statement; no direct-report duties stated.",
+    "work_level_evidence": {
+      "source_id": "src_75ecd226be1b97d245f5",
+      "source_sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce",
+      "quote": null,
+      "reason": "No explicit individual-contributor or people-manager statement; no direct-report duties stated.",
+      "method": "source-verified-work-level-classification/3"
+    },
+    "responsibility_band": "unknown",
+    "responsibility_evidence": {
+      "source_id": "src_75ecd226be1b97d245f5",
+      "source_sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce",
+      "quote": null,
+      "reason": "not established by verified responsibility wording",
+      "method": "agent-classification+responsibility-signal-verifier/2"
+    },
+    "advertised_experience": {
+      "value": [
+        "2+ years of human resources experience"
+      ],
+      "status": "present",
+      "source_id": "src_75ecd226be1b97d245f5",
+      "source_sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce",
+      "quotes": [
+        "2+ years of human resources experience"
+      ],
+      "method": "verbatim-advertised-wording/1",
+      "unknown_reason": null
+    },
+    "context_dimensions": {
+      "employer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_75ecd226be1b97d245f5",
+        "source_sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "customer_industry": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_75ecd226be1b97d245f5",
+        "source_sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "sales_segment": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_75ecd226be1b97d245f5",
+        "source_sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "work_context": {
+        "value": "engineering, production or manufacturing environment supporting an exempt and hourly workforce",
+        "status": "present",
+        "source_id": "src_75ecd226be1b97d245f5",
+        "source_sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce",
+        "quote": "Experience in an engineering, production or manufacturing environment supporting an exempt and hourly workforce",
+        "method": "literal-classification-phrase/1"
+      },
+      "employer_size": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_75ecd226be1b97d245f5",
+        "source_sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "employer_stage": {
+        "value": null,
+        "status": "unknown",
+        "source_id": "src_75ecd226be1b97d245f5",
+        "source_sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce",
+        "quote": null,
+        "method": "literal-classification-phrase/1",
+        "unknown_reason": "not established by a verified source phrase"
+      },
+      "geography": {
+        "value": "Hawthorne, CA",
+        "status": "present",
+        "source_id": "src_75ecd226be1b97d245f5",
+        "source_sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce",
+        "quote": "Hawthorne, CA",
+        "source_field": "job_board_location",
+        "method": "explicit-location-label/1",
+        "unknown_reason": null
+      }
+    },
+    "expectations": [
+      {
+        "expectation_id": "exp_d4445101640ea4559347",
+        "identity_id": "idn_a45fb066abf000c96bd1",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_12e25bdf1bba515dd49c",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "2+ years of human resources experience",
+        "normalized_label": "2+ years of human resources experience",
+        "dimension": "experience",
+        "basis": "employer_requirement",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_75ecd226be1b97d245f5",
+        "source_sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce"
+      },
+      {
+        "expectation_id": "exp_1060461cd221d61e41d6",
+        "identity_id": "idn_247eddcdd47b319816b7",
+        "identity_method": "source-literal-identity/1",
+        "kind": "experience",
+        "relationship_id": "edge_579ea51cd88e8a0d3380",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Experience independently handling employee relations issues",
+        "normalized_label": "experience independently handling employee relations issues",
+        "dimension": "experience",
+        "basis": "emergent_signal",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_75ecd226be1b97d245f5",
+        "source_sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce"
+      },
+      {
+        "expectation_id": "exp_258e46cffd4e09e594a6",
+        "identity_id": "idn_0b1d52068d3e2bcd4ab3",
+        "identity_method": "source-literal-identity/1",
+        "kind": "tool",
+        "relationship_id": "edge_2d89f5bb9fd79e5ec33c",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Familiarity with Greenhouse, UltiPro, and/or Workday",
+        "normalized_label": "familiarity with greenhouse, ultipro, and/or workday",
+        "dimension": "tool",
+        "basis": "emergent_signal",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_75ecd226be1b97d245f5",
+        "source_sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce"
+      },
+      {
+        "expectation_id": "exp_5af63fcc97a2ff6fd23b",
+        "identity_id": "idn_b869c57f703fe7466f45",
+        "identity_method": "source-literal-identity/1",
+        "kind": "demonstration",
+        "relationship_id": "edge_f4a8ef30c2e02e043f23",
+        "relationship_method": "posting-source-expectation/1",
+        "source_wording": "Demonstrated success at building effective relationships",
+        "normalized_label": "demonstrated success at building effective relationships",
+        "dimension": "demonstration",
+        "basis": "emergent_signal",
+        "proficiency": "not_stated",
+        "proficiency_quote": null,
+        "mapping_method": "exact-normalized-label/2",
+        "source_id": "src_75ecd226be1b97d245f5",
+        "source_sha256": "273ac964b421f38573bb66d5526773aef6f3203ee084c8de6011f304b1c325ce"
+      }
+    ],
+    "dedup_key": "d83b6766a139d20367deecc7",
+    "admission_reason": "Source text describes core HR generalist duties: employee relations, performance management, benefits coordination, policies, promotions, exit interviews, and HRIS tools."
+  }
+]

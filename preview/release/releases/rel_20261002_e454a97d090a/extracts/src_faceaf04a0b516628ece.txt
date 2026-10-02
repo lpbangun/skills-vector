@@ -1,0 +1,28 @@
+# source src_faceaf04a0b516628ece
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_3a9d3f51ced93e38fcc0
+# url https://boards-api.greenhouse.io/v1/boards/datadog/jobs/1497543
+# publisher Datadog
+# retrieved_at 2026-10-02T08:14:29Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11 raw_bytes 10724
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=5c6babed855e8fa3877a96ae:posting-excerpt employer=Datadog title=Commercial Account Executive - Boston location=Boston, Massachusetts, USA variant= url=https://careers.datadoghq.com/detail/1497543/?gh_jid=1497543
+strategically engaging and closing net-new customers across small to midsize markets
+# posting id=5c6babed855e8fa3877a96ae:context:sales_segment employer=Datadog title=Commercial Account Executive - Boston location=Boston, Massachusetts, USA variant= url=https://careers.datadoghq.com/detail/1497543/?gh_jid=1497543
+closing net-new customers across small to midsize markets
+# posting id=5c6babed855e8fa3877a96ae:context:work_context employer=Datadog title=Commercial Account Executive - Boston location=Boston, Massachusetts, USA variant= url=https://careers.datadoghq.com/detail/1497543/?gh_jid=1497543
+We operate as a hybrid workplace
+# posting id=5c6babed855e8fa3877a96ae:expectation:exp_1d0058d92ae1493e82ae employer=Datadog title=Commercial Account Executive - Boston location=Boston, Massachusetts, USA variant= url=https://careers.datadoghq.com/detail/1497543/?gh_jid=1497543
+Focus on net-new logo acquisition via outbound activity
+# posting id=5c6babed855e8fa3877a96ae:expectation:exp_f97ffc75e84bb18a9bf8 employer=Datadog title=Commercial Account Executive - Boston location=Boston, Massachusetts, USA variant= url=https://careers.datadoghq.com/detail/1497543/?gh_jid=1497543
+Manage the full sales cycle, including technical demonstrations and negotiation
+# posting id=5c6babed855e8fa3877a96ae:expectation:exp_d8647b6d75a2d0a3ff64 employer=Datadog title=Commercial Account Executive - Boston location=Boston, Massachusetts, USA variant= url=https://careers.datadoghq.com/detail/1497543/?gh_jid=1497543
+Strategically prospect into Chief Technology Officers, Engineering/IT Leaders, and technical end-users
+# posting id=5c6babed855e8fa3877a96ae:expectation:exp_52c9ceb6fe289e7f61aa employer=Datadog title=Commercial Account Executive - Boston location=Boston, Massachusetts, USA variant= url=https://careers.datadoghq.com/detail/1497543/?gh_jid=1497543
+Comfortable operating in a highly technical, fast paced environment
+# posting id=claim:clm_a0e7fa0114f20dd6e714 employer= title= location= variant= url=
+Manage the full sales cycle, including technical demonstrations and
+# posting id=claim:clm_2d6ef3a556173cec2e10 employer= title= location= variant= url=
+Focus on net-new logo acquisition via outbound activity

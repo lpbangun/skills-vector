@@ -1,0 +1,231 @@
+[
+  {
+    "id": "req_8430866b87c7b34a8360",
+    "occupation_slug": "account-executive",
+    "label": "Enterprise prospecting practice",
+    "learning_outcome": "Build and execute a prospecting approach for large enterprise accounts.",
+    "rationale": "Prospecting into large Fortune 1000 companies and driving new customer acquisition appear as employer requirements in the sampled postings.",
+    "uncertainty": "Based on a small sample of five postings; no market-wide prevalence, proficiency, or hiring outcome is established.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Prospect into large Fortune 1000 companies while running an efficient",
+      "Drive new customer acquisition"
+    ],
+    "evidence_claim_ids": [
+      "clm_a2f24e988ef2437d6a51"
+    ],
+    "evidence_rationale": "The only recorded advertised_demand claim about prospecting and acquisition into large enterprise accounts directly supports building an enterprise prospecting approach.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_6c4c81e4bf29c428007f",
+    "occupation_slug": "account-executive",
+    "label": "Consultative sales cycle ownership",
+    "learning_outcome": "Practice owning analytical and consultative sales cycles end to end.",
+    "rationale": "Owning highly analytical and consultative sales cycles appears as an employer requirement in the sampled postings.",
+    "uncertainty": "Based on a small sample of five postings; no market-wide prevalence, proficiency, or hiring outcome is established.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Own highly analytical and consultative sales cycles"
+    ],
+    "evidence_claim_ids": [
+      "clm_c72a602f78fccab8f660"
+    ],
+    "evidence_rationale": "The recorded claim about owning highly analytical and consultative sales cycles matches this priority's outcome of owning consultative sales cycles end to end.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_43331f25a2b0794a4b79",
+    "occupation_slug": "account-executive",
+    "label": "Sales communication skills",
+    "learning_outcome": "Develop communication, organizational, and presentation skills for sales conversations.",
+    "rationale": "Strong communication, organizational and presentation skills appear as a capability expectation in the sampled postings.",
+    "uncertainty": "Based on a small sample of five postings; no market-wide prevalence, proficiency, or hiring outcome is established.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Strong communication, organizational and presentation skills"
+    ],
+    "evidence_claim_ids": [
+      "clm_37e50fd433e8435a0509"
+    ],
+    "evidence_rationale": "The recorded claim naming strong communication, organizational and presentation skills directly supports developing those skills for sales conversations.",
+    "model_order": 2,
+    "priority": 3
+  },
+  {
+    "id": "req_cf5c0c1a88a95766161e",
+    "occupation_slug": "forward-deployed-engineer",
+    "label": "Customer-facing technical delivery",
+    "learning_outcome": "Practice translating customer technical needs into working software solutions in direct customer settings.",
+    "rationale": "Multiple sampled postings describe direct customer work and technical ownership of engagements.",
+    "uncertainty": "Sample is small and titles were not used to establish responsibility; no proficiency or prevalence is implied.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "work directly with customers",
+      "Work directly with customers to understand their technical and"
+    ],
+    "evidence_claim_ids": [
+      "clm_848ca47bc6989b5074fc",
+      "clm_85266e2d0acaee048e3a"
+    ],
+    "evidence_rationale": "Both advertised-demand claims describe direct customer engagement and technical ownership of customer engagements, which is exactly the customer-facing delivery work this priority targets.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_97d91ac0225950711b41",
+    "occupation_slug": "forward-deployed-engineer",
+    "label": "Multi-language and cloud tooling",
+    "learning_outcome": "Build familiarity with writing code across several languages and working with common cloud ecosystems.",
+    "rationale": "One sampled posting lists multiple programming languages and working knowledge of cloud ecosystems.",
+    "uncertainty": "Based on a single posting; no proficiency level or market-wide demand is inferred.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Fluency in writing code in Python, Scala, JavaScript/TypeScript, and",
+      "Working knowledge of two or more common Cloud ecosystems (AWS, Azure,"
+    ],
+    "evidence_claim_ids": [
+      "clm_3ff5bf32b43175972d1b",
+      "clm_3394abdeac967cb378a8"
+    ],
+    "evidence_rationale": "The multi-language coding and cloud ecosystem familiarity claims directly support the combined multi-language and cloud tooling outcome.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_005509f441913f857a90",
+    "occupation_slug": "growth-manager",
+    "label": "Lifecycle and performance marketing execution",
+    "learning_outcome": "Plan and execute lifecycle journeys and global performance marketing campaigns, including user acquisition and day-to-day campaign operations.",
+    "rationale": "Two admitted growth-marketing postings list owning lifecycle journey strategy and driving global user acquisition and performance marketing execution as employer requirements.",
+    "uncertainty": "Based on a small sample of three admitted postings; work level and responsibility band are unknown for both growth-marketing postings, and no proficiency level is stated.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": "growth-marketing",
+    "search_terms": [
+      "Own the strategy of lifecycle journeys and campaigns for your product",
+      "drive Duolingo’s global user acquisition campaigns across multiple",
+      "Own day-to-day execution of global performance marketing campaigns"
+    ],
+    "evidence_claim_ids": [
+      "clm_4fc22bd6a972b5493da2",
+      "clm_981dbcb07254b1e1b0a7"
+    ],
+    "evidence_rationale": "Both growth-marketing variant claims cover lifecycle journey/campaign strategy ownership and global user acquisition campaign execution, matching this priority's outcome.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_117faa76d853d6d37319",
+    "occupation_slug": "growth-manager",
+    "label": "AI product knowledge",
+    "learning_outcome": "Build familiarity with current AI-powered product development practices.",
+    "rationale": "One admitted product-growth posting lists familiarity with current AI-powered product development as an employer requirement.",
+    "uncertainty": "Single posting; the expectation is stated as familiarity, and no proficiency level or depth is specified.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": "product-growth",
+    "search_terms": [
+      "Familiarity with current AI-powered product development"
+    ],
+    "evidence_claim_ids": [
+      "clm_d700319a73fd6a9d2136"
+    ],
+    "evidence_rationale": "The product-growth variant claim records advertised familiarity with current AI-powered product development, directly supporting this priority.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_fdda9b7cba9a0dbced37",
+    "occupation_slug": "growth-manager",
+    "label": "Market research foundations",
+    "learning_outcome": "Research market conditions and gather information to assess potential sales or plan marketing and advertising campaigns.",
+    "rationale": "The official foundation passage describes researching market conditions and gathering information to determine potential sales or plan campaigns.",
+    "uncertainty": "Official foundation description of an occupation, not an observed requirement in the admitted postings; no proficiency level is stated.",
+    "confidence": "low",
+    "basis": "foundation",
+    "variant": null,
+    "search_terms": [
+      "Research conditions in local, regional, national, or online markets. Gather information to determine potential sales of a product or service, or plan a marketing or advertising campaign."
+    ],
+    "evidence_claim_ids": [
+      "clm_ca14a9fc096dc25c5f09"
+    ],
+    "evidence_rationale": "The foundation claim describes researching market conditions and gathering information to determine potential sales or plan campaigns, matching this priority's outcome.",
+    "model_order": 2,
+    "priority": 3
+  },
+  {
+    "id": "req_591125ad684f0e1e6dc7",
+    "occupation_slug": "hr-generalist",
+    "label": "Employee relations case handling",
+    "learning_outcome": "Practice responding to routine employee inquiries, questions, and complaints with appropriate guidance and documentation.",
+    "rationale": "This task appears across multiple admitted postings, including a preference for independently handling employee relations issues.",
+    "uncertainty": "Sample is small and work level, responsibility band, and proficiency expectations are unknown; no market-wide inference is made.",
+    "confidence": "bounded",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Respond to day-to-day employee inquiries, questions and complaints",
+      "Experience independently handling employee relations issues"
+    ],
+    "evidence_claim_ids": [
+      "clm_52df0db4e3aaa96d4066"
+    ],
+    "evidence_rationale": "The employee inquiries and complaints demand claim directly describes the day-to-day employee support this priority targets.",
+    "model_order": 0,
+    "priority": 1
+  },
+  {
+    "id": "req_b5f469ef54c0c6478874",
+    "occupation_slug": "hr-generalist",
+    "label": "Multi-state HR compliance",
+    "learning_outcome": "Build working knowledge of compliance obligations that differ across US states.",
+    "rationale": "One admitted posting requires experience handling compliance across multiple US states.",
+    "uncertainty": "Based on a single posting; specific states, depth, and proficiency level are not stated.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "Experience handing compliance across multiple US states"
+    ],
+    "evidence_claim_ids": [
+      "clm_1e0bab92f90737d30aee"
+    ],
+    "evidence_rationale": "The multi-state compliance experience claim is the only recorded evidence of US state compliance obligations.",
+    "model_order": 1,
+    "priority": 2
+  },
+  {
+    "id": "req_c64afd2e47a932469007",
+    "occupation_slug": "hr-generalist",
+    "label": "HR certification preparation",
+    "learning_outcome": "Prepare for an entry-level HR certification such as PHR, SHRM-CP, or equivalent listed credential.",
+    "rationale": "One admitted posting requires at least one of the listed HR certifications.",
+    "uncertainty": "Credential requirement appears in one posting only; no claim about its general value or employer preference is made.",
+    "confidence": "low",
+    "basis": "advertised_demand",
+    "variant": null,
+    "search_terms": [
+      "At least 1 of the following HR certifications: PHR, SPHR, SHRM-CP, or"
+    ],
+    "evidence_claim_ids": [
+      "clm_60652023913caea0ac29"
+    ],
+    "evidence_rationale": "The HR certification credential claim names the PHR, SPHR, and SHRM-CP credentials this priority prepares for.",
+    "model_order": 2,
+    "priority": 3
+  }
+]

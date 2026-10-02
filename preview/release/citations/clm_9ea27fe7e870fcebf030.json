@@ -1,0 +1,61 @@
+{
+  "citation_schema": "market-citation/1",
+  "claim_id": "clm_9ea27fe7e870fcebf030",
+  "release_id": "rel_20261002_5b1191c61ea0",
+  "occupation_slug": "account-executive",
+  "claim_type": "advertised_demand",
+  "statement": "New customer acquisition: net-new logo acquisition — recorded in 3 of 5 admitted Account Executive postings (no variant split for this role) from 3 of 5 employers in the 2026-10-02 US sample.",
+  "quote": "Focus on net-new logo acquisition via outbound activity",
+  "variant": null,
+  "scope": {
+    "geography": "United States (onsite, hybrid, field or US-remote roles located in the US)",
+    "responsibility_scope": "all advertised responsibility bands; classify IC/people-management separately and do not filter from title or years"
+  },
+  "sources": [
+    {
+      "id": "src_ffdd79667343ef520c72",
+      "url": "https://boards-api.greenhouse.io/v1/boards/twilio/jobs?content=true",
+      "publisher": "Twilio",
+      "source_type": "job-board",
+      "retrieval_kind": "listing",
+      "parent_source_id": "",
+      "retrieved_at": "2026-10-02T03:29:45Z",
+      "sha256": "e031b87292d9084eac3643bcfd366ec0e7703ff50ccc7b5b2f43facb666a6139",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_e65cf5361334c8156860",
+      "url": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs/1497543",
+      "publisher": "Datadog",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_253eecae997f7e14e62d",
+      "retrieved_at": "2026-10-02T03:29:51Z",
+      "sha256": "f6f92ba25d0b7029eeed0cd2bba2788a6e80faf8da071a396bac8691947d2b11",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    },
+    {
+      "id": "src_41313476329f31881e3f",
+      "url": "https://boards-api.greenhouse.io/v1/boards/verkada/jobs/5248108007",
+      "publisher": "Verkada",
+      "source_type": "job-posting-detail",
+      "retrieval_kind": "detail",
+      "parent_source_id": "src_e6c8dd63287c6a5efcf7",
+      "retrieved_at": "2026-10-02T03:29:52Z",
+      "sha256": "3d0ea6694061d4a515addfa68b0d1cdf40d47f2568ea0208dc97d5a69723227f",
+      "rights": "Public employer job posting via public job-board API; short excerpts published with employer attribution",
+      "inclusion": true
+    }
+  ],
+  "asserted_at": "2026-10-02T03:30:58Z",
+  "published_at": "2026-10-02T04:39:32Z",
+  "citation_path": "/release/citations/clm_9ea27fe7e870fcebf030.json",
+  "attribution": "agent-authored synthesis over admitted public postings",
+  "labels": [
+    "agent-authored synthesis over admitted public evidence; not practitioner validation",
+    "posting frequency is not importance, proficiency, hires or employability"
+  ],
+  "content_sha256": "bc23e56885f2af23dec29727ecdc6e259e7ef77467b9dae2bc307f443f7606d0"
+}

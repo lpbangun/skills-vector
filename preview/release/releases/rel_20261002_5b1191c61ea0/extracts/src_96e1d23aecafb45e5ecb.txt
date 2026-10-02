@@ -1,0 +1,19 @@
+# source src_96e1d23aecafb45e5ecb
+# source_type job-board
+# retrieval_kind listing
+# url https://boards-api.greenhouse.io/v1/boards/chime/jobs?content=true
+# publisher Chime
+# retrieved_at 2026-10-02T02:23:02Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 65da48e9a299d51f03ece6052c81a9049be3283cf47cb08481ceb12b755f52e5 raw_bytes 1095513
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=feec93b2d9dd8777f41114f9:posting-excerpt employer=Chime title=Associate Creative Director, Growth Marketing location=San Francisco, CA, USA variant=growth-marketing url=https://boards.greenhouse.io/chime/jobs/8684363002?gh_jid=8684363002
+guide a team of designers, copywriters, and video editors in producing original creative based on insights, learnings, and strategic briefs
+# posting id=feec93b2d9dd8777f41114f9:experience:0 employer=Chime title=Associate Creative Director, Growth Marketing location=San Francisco, CA, USA variant=growth-marketing url=https://boards.greenhouse.io/chime/jobs/8684363002?gh_jid=8684363002
+Experience managing or directing external agency, freelance, or vendor creative partners
+# posting id=feec93b2d9dd8777f41114f9:expectation:exp_2f6b82be1f806e0eb1ee employer=Chime title=Associate Creative Director, Growth Marketing location=San Francisco, CA, USA variant=growth-marketing url=https://boards.greenhouse.io/chime/jobs/8684363002?gh_jid=8684363002
+AI-native fluency: hands-on comfort prompting and directing AI tools
+# posting id=feec93b2d9dd8777f41114f9:expectation:exp_ae7baf321201172383e8 employer=Chime title=Associate Creative Director, Growth Marketing location=San Francisco, CA, USA variant=growth-marketing url=https://boards.greenhouse.io/chime/jobs/8684363002?gh_jid=8684363002
+Experience across print, in addition to Meta, TikTok, YouTube, Mobile, and Google
+# posting id=claim:clm_59213faa0c34502a9da2 employer= title= location= variant= url=
+AI-native fluency: hands-on comfort prompting and directing AI tools

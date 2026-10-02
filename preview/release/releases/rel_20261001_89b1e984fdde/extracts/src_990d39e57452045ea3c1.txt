@@ -1,0 +1,12 @@
+# source src_990d39e57452045ea3c1
+# source_type job-posting-detail
+# retrieval_kind detail
+# parent_source_id src_9be49b446458b786b23d
+# url https://boards-api.greenhouse.io/v1/boards/stripe/jobs/8238098
+# publisher Stripe
+# retrieved_at 2026-09-30T23:25:29Z
+# rights Public employer job posting via public job-board API; short excerpts published with employer attribution
+# raw_sha256 5ec6a9aef9eb8faae9935fd0c308eaafaa4cc4eb4d3762fc72d12b090913290f raw_bytes 9100
+# extract_policy verified short excerpt spans only; full raw text retained in the external evidence root
+# posting id=f5c6ca3df091cb14346a23dd employer=Stripe title=Account Executive, Product - Issuing & Treasury (Hunter) location=US-San Francisco, US-New York, US-Remote variant=sales-account-executive url=https://stripe.com/jobs/search?gh_jid=8238098
+lead complex expansion opportunities from initial discovery through activation and revenue realization
