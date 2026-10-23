@@ -5,7 +5,7 @@
   "status": "established",
   "publication": "standard",
   "data_kind": "research",
-  "release_id": "role_research_c5c1bf7bde401bdd",
+  "release_id": "role_research_e647b3e2dce649d4",
   "aliases": [
     "account executive",
     "sales executive",
@@ -62,7 +62,7 @@
       {
         "id": "account-executive.L1",
         "level": 1,
-        "name": "Sales L1",
+        "name": "L1",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Guided. Not a population hiring standard.",
@@ -79,7 +79,7 @@
       {
         "id": "account-executive.L2",
         "level": 2,
-        "name": "Sales L2",
+        "name": "L2",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Independent. Not a population hiring standard.",
@@ -96,7 +96,7 @@
       {
         "id": "account-executive.L3",
         "level": 3,
-        "name": "Sales L3",
+        "name": "L3",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Complex delivery. Not a population hiring standard.",
@@ -113,7 +113,7 @@
       {
         "id": "account-executive.L4",
         "level": 4,
-        "name": "Sales L4",
+        "name": "L4",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Strategic. Not a population hiring standard.",
@@ -130,7 +130,7 @@
       {
         "id": "account-executive.L5",
         "level": 5,
-        "name": "Sales L5",
+        "name": "L5",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Organization-wide. Not a population hiring standard.",
@@ -200,13 +200,15 @@
         ],
         "forecast": {
           "id": "forecast.account-executive.skill.onet.41-4012.00.local-task.demonstration",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -262,13 +264,15 @@
         ],
         "forecast": {
           "id": "forecast.account-executive.skill.onet.41-4012.00.local-task.negotiation",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -324,20 +328,22 @@
         ],
         "forecast": {
           "id": "forecast.account-executive.skill.onet.41-4012.00.local-task.prospecting",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.4,
-          "base_rate": 0.4,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
       {
-        "id": "skill.onet.41-4012.00.local-task.records",
-        "short_label": "Sales records",
-        "label": "Sales records",
+        "id": "skill.posting.23a1b42043fe07b8",
+        "short_label": "Leverage Salesfor…",
+        "label": "Leverage Salesforce (our CRM) to manage all sales activities",
         "status": "early",
         "first_level": null,
         "share_by_level": [
@@ -348,15 +354,14 @@
           null
         ],
         "source_links": [
-          "P",
-          "O"
+          "P"
         ],
         "windows": [
           {
             "window": "2026-Q4",
-            "share": 0.4,
-            "employers": 2,
-            "max_employer_share": 0.5,
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
             "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
             "levels": [
               "unassigned"
@@ -370,29 +375,22 @@
             "source_kind": "postings",
             "family": "P",
             "timing": "coincident",
-            "reading": "2/5 admitted role postings record this node in their published expectation excerpts; 2 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
-            "direction": "presence",
-            "as_of": null
-          },
-          {
-            "source": "O*NET local task anchor",
-            "source_kind": "onet_ratings",
-            "family": "O",
-            "timing": "lagging",
-            "reading": "onet:41-4012.00:local-task:records; local natural key, not an official task database ID. https://www.onetonline.org/link/summary/41-4012.00; published source src_3d355c8e4edbd6e5043e. Perform administrative duties, such as preparing sales budgets and reports, keeping sales records, and filing expense account reports.",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
             "direction": "presence",
             "as_of": null
           }
         ],
         "forecast": {
-          "id": "forecast.account-executive.skill.onet.41-4012.00.local-task.records",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.4,
-          "base_rate": 0.4,
+          "id": "forecast.account-executive.skill.posting.23a1b42043fe07b8",
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -438,13 +436,15 @@
         ],
         "forecast": {
           "id": "forecast.account-executive.skill.posting.6119381771c8dfac",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -490,13 +490,69 @@
         ],
         "forecast": {
           "id": "forecast.account-executive.skill.posting.6a1ecf85fcb37bb0",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.809e5f0e82e5bc2c",
+        "short_label": "Ensure high forec…",
+        "label": "Ensure high forecasting accuracy and consistency",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.account-executive.skill.posting.809e5f0e82e5bc2c",
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -542,13 +598,15 @@
         ],
         "forecast": {
           "id": "forecast.account-executive.skill.posting.b3ec611af7aa51e0",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -594,13 +652,15 @@
         ],
         "forecast": {
           "id": "forecast.account-executive.skill.posting.bbb2e34dbe68a903",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -646,13 +706,15 @@
         ],
         "forecast": {
           "id": "forecast.account-executive.skill.posting.d48a1e646d7ae7fa",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -698,13 +760,15 @@
         ],
         "forecast": {
           "id": "forecast.account-executive.skill.posting.dd1ffdcb4b08bac8",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -750,13 +814,15 @@
         ],
         "forecast": {
           "id": "forecast.account-executive.skill.posting.f40c8a76af69e6f7",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       }
@@ -1063,13 +1129,13 @@
   "observations": [],
   "limits": [
     "Research projection of published release rel_20261002_cbdc6e8d5c4f; source counts are a bounded admitted sample, not market prevalence.",
-    "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand; baseline forecasts assume the same admission and excerpt-selection process.",
+    "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand and is not a future probability.",
     "One selected snapshot only. Retrieval dates bin observed mentions; repeated releases are not independent windows. No comparable temporal history is asserted, so all current statuses are early.",
     "Null first_level means no observed assigned level; null share_by_level means no assigned denominator, not zero demand. Measurement strata explicitly include unassigned postings.",
     "Level names are a declared algorithmic scope rubric, not observed role progression. Titles and tenure never assign levels. Missing level expectations remain empty; no carry-over or first-introduction claim is inferred.",
     "O*NET task excerpts are attributed to O*NET OnLine, U.S. Department of Labor, CC BY 4.0, as recorded in the published sources; agent-authored alignments are not official or human-adjudicated equivalence.",
     "Backbone local-task keys identify exact O*NET task text within its SOC summary, not official task database element IDs; unmapped phrases remain posting-led literal identities.",
     "Unverified employer sectors are excluded, not guessed. Sector profiles need 30 postings and 8 employers. Official industry shares, wages and credential catalogs were not imported; any credential/knowledge text is a literal posting mention.",
-    "Forecast probabilities equal current role-wide mention fractions as an explicit uncalibrated persistence baseline, not researched trend probabilities. No temporal base-rate archive, ledger, resolution or backtest exists (M5 pending)."
+    "No forecast probability or base rate is available: basis is none and both values are null. Current excerpt mention fractions are measurements, not future probabilities. No historical base-rate archive, ledger, resolution or backtest exists (M5 pending)."
   ]
 }

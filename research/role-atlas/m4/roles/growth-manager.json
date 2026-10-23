@@ -5,7 +5,7 @@
   "status": "emerging",
   "publication": "experimental",
   "data_kind": "research",
-  "release_id": "role_research_c5c1bf7bde401bdd",
+  "release_id": "role_research_e647b3e2dce649d4",
   "aliases": [
     "growth manager",
     "growth marketing",
@@ -60,7 +60,7 @@
       {
         "id": "growth-manager.L1",
         "level": 1,
-        "name": "Growth L1",
+        "name": "L1",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Guided. Not a population hiring standard.",
@@ -97,7 +97,7 @@
             "label": "run and optimize mobile install campaigns across major platforms",
             "introduced_at": null,
             "basis": "advertised_demand",
-            "cite": "/v1/expectations/exp.growth-manager.0e67df6647e68fba@role_research_c5c1bf7bde401bdd",
+            "cite": "/v1/expectations/exp.growth-manager.0e67df6647e68fba@role_research_e647b3e2dce649d4",
             "timing": "coincident"
           },
           {
@@ -105,7 +105,7 @@
             "label": "drive Duolingo’s global user acquisition campaigns across multiple channels",
             "introduced_at": null,
             "basis": "advertised_demand",
-            "cite": "/v1/expectations/exp.growth-manager.45c532869924a99d@role_research_c5c1bf7bde401bdd",
+            "cite": "/v1/expectations/exp.growth-manager.45c532869924a99d@role_research_e647b3e2dce649d4",
             "timing": "coincident"
           },
           {
@@ -113,7 +113,7 @@
             "label": "Own day-to-day execution of global performance marketing campaigns",
             "introduced_at": null,
             "basis": "advertised_demand",
-            "cite": "/v1/expectations/exp.growth-manager.65815f1ac5d83137@role_research_c5c1bf7bde401bdd",
+            "cite": "/v1/expectations/exp.growth-manager.65815f1ac5d83137@role_research_e647b3e2dce649d4",
             "timing": "coincident"
           }
         ]
@@ -121,7 +121,7 @@
       {
         "id": "growth-manager.L3",
         "level": 3,
-        "name": "Growth L3",
+        "name": "L3",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Complex delivery. Not a population hiring standard.",
@@ -158,7 +158,7 @@
             "label": "Familiarity with current AI-powered product development and a POV on how our industry will evolve",
             "introduced_at": null,
             "basis": "advertised_demand",
-            "cite": "/v1/expectations/exp.growth-manager.eab9b93c31741e7f@role_research_c5c1bf7bde401bdd",
+            "cite": "/v1/expectations/exp.growth-manager.eab9b93c31741e7f@role_research_e647b3e2dce649d4",
             "timing": "coincident"
           }
         ]
@@ -166,7 +166,7 @@
       {
         "id": "growth-manager.L5",
         "level": 5,
-        "name": "Growth L5",
+        "name": "L5",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Organization-wide. Not a population hiring standard.",
@@ -238,13 +238,15 @@
         ],
         "forecast": {
           "id": "forecast.growth-manager.skill.onet.11-2021.00.local-task.campaign",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.25,
-          "base_rate": 0.25,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -292,13 +294,15 @@
         ],
         "forecast": {
           "id": "forecast.growth-manager.skill.posting.6de6bb6568e5295c",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.25,
-          "base_rate": 0.25,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -346,13 +350,15 @@
         ],
         "forecast": {
           "id": "forecast.growth-manager.skill.posting.6efb452d78298ea0",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.25,
-          "base_rate": 0.25,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -400,13 +406,15 @@
         ],
         "forecast": {
           "id": "forecast.growth-manager.skill.posting.6fbe3946aad530a8",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.25,
-          "base_rate": 0.25,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -454,13 +462,15 @@
         ],
         "forecast": {
           "id": "forecast.growth-manager.skill.posting.7a11ae9c98bddac9",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.25,
-          "base_rate": 0.25,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       }
@@ -767,13 +777,13 @@
   "observations": [],
   "limits": [
     "Research projection of published release rel_20261002_cbdc6e8d5c4f; source counts are a bounded admitted sample, not market prevalence.",
-    "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand; baseline forecasts assume the same admission and excerpt-selection process.",
+    "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand and is not a future probability.",
     "One selected snapshot only. Retrieval dates bin observed mentions; repeated releases are not independent windows. No comparable temporal history is asserted, so all current statuses are early.",
     "Null first_level means no observed assigned level; null share_by_level means no assigned denominator, not zero demand. Measurement strata explicitly include unassigned postings.",
     "Level names are a declared algorithmic scope rubric, not observed role progression. Titles and tenure never assign levels. Missing level expectations remain empty; no carry-over or first-introduction claim is inferred.",
     "O*NET task excerpts are attributed to O*NET OnLine, U.S. Department of Labor, CC BY 4.0, as recorded in the published sources; agent-authored alignments are not official or human-adjudicated equivalence.",
     "Backbone local-task keys identify exact O*NET task text within its SOC summary, not official task database element IDs; unmapped phrases remain posting-led literal identities.",
     "Unverified employer sectors are excluded, not guessed. Sector profiles need 30 postings and 8 employers. Official industry shares, wages and credential catalogs were not imported; any credential/knowledge text is a literal posting mention.",
-    "Forecast probabilities equal current role-wide mention fractions as an explicit uncalibrated persistence baseline, not researched trend probabilities. No temporal base-rate archive, ledger, resolution or backtest exists (M5 pending)."
+    "No forecast probability or base rate is available: basis is none and both values are null. Current excerpt mention fractions are measurements, not future probabilities. No historical base-rate archive, ledger, resolution or backtest exists (M5 pending)."
   ]
 }

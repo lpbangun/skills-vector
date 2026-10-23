@@ -192,12 +192,14 @@ class Measurement(Model):
 class Forecast(Model):
     id: str
     claim: str
-    probability: float
-    base_rate: float
+    probability: float | None
+    base_rate: float | None
     horizon_quarters: Literal[4]
     created: str
     resolves: str
     scored_against: str
+    basis: Literal["backtest", "fixture", "none"]
+    reason: str | None = None
 
 
 @dataclass

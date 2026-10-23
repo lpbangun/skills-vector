@@ -757,3 +757,157 @@ Artifacts: `/tmp/role-atlas-m4-final/` and its `results.json`.
 
 No paid/model calls, secrets, input-release writes or unrelated refactors. M4 is
 complete for review. Stop here; **M5 has not started**.
+
+## M4 review round 1 replies
+
+1. **Must 1 — sample fractions presented as forecasts: fixed.** The previous
+   M4 sample-persistence policy was wrong; its discussion above is superseded.
+   Current mention fractions are measurements, not future probabilities or
+   historical base rates. Every regenerated research forecast now has
+   `basis: "none"`, `probability: null`, `base_rate: null`, and a nonempty reason:
+   “One observed window; no historical base rate or backtest archive.” Claim,
+   four-quarter horizon, created/resolves and scoring target remain, without a
+   prediction or invented numeric base rate. No M5 ledger/backtest was added.
+
+   The schema/models require `basis` (`backtest`, `fixture`, `none`). Numeric
+   probabilities/base rates are required and bounded to 0–1 for backtest/fixture;
+   none requires nulls and a nonempty reason. Tests accept/reject each basis,
+   missing fields, unsupported bases and blank reasons. Fixtures were rebuilt
+   with `basis: "fixture"`, preserving their illustrative numeric values. API/MCP
+   responses preserve nulls; shifts sort absent probabilities after available
+   ones, without substituting zero (including a numeric-zero regression test).
+
+   All forecast cells are now compact, one line; none displays **No forecast yet**
+   with no percentage or claim in the row/ARIA forecast text. Claim and reason
+   appear in the detail panel, without a big number. The checker asserts this
+   for every skill, as well as numeric percentages for fixture forecasts.
+
+2. **Should 1 — detail overflow: fixed.** Evidence spans use
+   `overflow-wrap: anywhere` and `min-width: 0`; the panel inherits token wrapping.
+   The checker verifies every descendant's bounds and each rendered text range
+   inside the panel, not just page overflow. A deliberate no-wrap regression
+   probe must be rejected. Long O*NET URLs and source ids now wrap inside the
+   border at desktop and mobile sizes.
+
+3. **Should 2 — nonexistent top-level comparison: fixed.** When either compared
+   level has no assigned sample, the strip and graph summary state the missing
+   comparison and actual assigned/total counts. AE says “Not enough level-assigned
+   postings to compare levels: 0 of 5 postings have a level.” No hypothetical
+   “Sales L3” comparison is shown. Generated levels with no observed titles are
+   named only L1–L5; the reader also enforces that display rule. The checker
+   compares this text to API counts and checks the missing-comparison graph state.
+
+4. **Should 3 — mapping rationale/confidence: fixed.** All role/anchor, backbone
+   and phrase rows in `skills.json` have nonempty rationale and qualitative
+   confidence (`exact`, `close`, `loose`). These describe the particular relation,
+   not a probability or human adjudication. All 21 phrase alignments were reviewed:
+   **14 close, 7 loose**. Only exact/close phrase *and* backbone relations can
+   create an O-family skill link. Loose rows retain their literal posting-led
+   identity; audit links preserve the proposed target, confidence and rationale
+   without asserting that target as a verified match.
+
+   “Ensure high forecasting accuracy and consistency” is loose: forecasting
+   quality is not record keeping. CRM use, language fluency, HR implementation,
+   nonspecific counseling, and HR-system configuration/reporting also do not
+   establish the previously proposed tasks and remain posting-led. Tests cover
+   exact/close promotion, loose non-promotion, bad/missing rationale/confidence,
+   and specifically prove the real forecasting-accuracy phrase has P only, no O.
+
+### Note — missing scope signals (no triage changes)
+
+There are still **15 of 19 unassigned**. Three recurring missing-signal patterns
+in those 15, counted from published expectations plus audit weak fields (counts
+**overlap**, not a partition):
+
+| Pattern | Postings | What the extractor would need to retain |
+| --- | ---: | --- |
+| Task/capability descriptions without a leveling ownership boundary | 12 | Current-duty quotes establishing guidance/autonomy, end-to-end accountability, decision rights and deliverable scope; demos, implementation, communication or tool ability alone do not establish these. |
+| Advertised experience/tenure blocks, but no current scope signal | 12 | Current responsibilities rather than years or past qualifications; title/tenure remain weak and cannot fill the gap. |
+| Ownership/management language appears only as prior-experience wording | 4 | Current accountability and its boundary; distinguish employee/direct-report authority from vendor coordination or prior independent work. Three SpaceX HR excerpts and Chime's external-creative-partner experience illustrate this gap. |
+
+The last count checks source wording beginning “Experience independently”,
+“Experience leading”, “Experience managing” or “Experience directing”; the second
+checks a nonempty audit `weak_signals.advertised_experience`; the first checks
+at least one task/capability expectation, with no accepted current scope signal.
+These are evidence-capture needs, not permission to assign a level from weak
+wording. No new extraction, model call or triage relaxation was introduced.
+
+### Proposed C4 wording — for the reviewer to commit
+
+`STANDARDS.md` was **not edited**. Proposed replacement of the forecast bullets
+under C4 (all other C4 bullets stay unchanged):
+
+> Validation rejects:
+> - a non-core skill without a forecast object;
+> - a forecast without claim, horizon_quarters, created, resolves or scored_against,
+>   or whose horizon is not 4 quarters (resolves must be four quarters after created);
+> - a forecast without basis, or with basis outside backtest | fixture | none;
+> - basis backtest (historical-archive base rate) or fixture (illustrative) unless
+>   probability and base_rate are both present, numeric and within 0–1;
+> - basis none unless probability and base_rate are both present and null, and
+>   reason is a nonempty, non-whitespace string.
+
+### Regenerated results
+
+Output id: **`role_research_e647b3e2dce649d4`**. Same published input snapshot,
+window, posting assignments and sector exclusions. Loose mappings no longer merge
+unrelated phrases, so observed skill/pair counts change:
+
+| Role | Postings / unassigned | Early skills | O-linked / posting-led skills | Edges kept / dropped | Sectors with / without profiles |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Account Executive | 5 / 5 | 12 | 3 / 9 | 0 / 12 | 0 / 20 |
+| Forward Deployed Engineer | 5 / 3 | 11 | 2 / 9 | 0 / 14 | 0 / 20 |
+| Growth Manager | 4 / 2 | 5 | 1 / 4 | 0 / 1 | 0 / 20 |
+| HR Generalist | 5 / 5 | 10 | 2 / 8 | 0 / 10 | 0 / 20 |
+
+All **38** research skills are early, and every forecast is none with both numeric
+fields null. No core/rising/fading status or populated sector was manufactured.
+
+### Exact commands and final results
+
+```sh
+.venv/bin/python scripts/build_role_atlas_fixtures.py
+.venv/bin/python -m unittest discover -s tests -p test_role_atlas.py
+.venv/bin/python -m unittest discover -s tests -p test_role_atlas_pipeline.py
+.venv/bin/python -m skills_vector.market.role_pipeline --output research/role-atlas/m4
+.venv/bin/python -m skills_vector.market.role_pipeline --output /tmp/role-atlas-m4-r1-rebuild
+diff -qr research/role-atlas/m4 /tmp/role-atlas-m4-r1-rebuild
+.venv/bin/python -m unittest discover -s tests
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m4-r1-research --role-atlas-root research/role-atlas/m4/roles
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m4-r1-fixtures --role-atlas-fixtures
+bash scripts/assemble_vercel.sh
+uv lock --check --offline
+node --check preview/role-atlas.js
+.venv/bin/python -m compileall -q src/skills_vector/market/role_pipeline.py src/skills_vector/market/role_atlas.py scripts/check_role_atlas.py tests/test_role_atlas_pipeline.py tests/test_role_atlas.py
+git diff --check
+git diff HEAD --exit-code -- preview/release/ docs/role-atlas/STANDARDS.md
+```
+
+Final runs exited **0**. Contract: **37 tests OK**; pipeline: **14 tests OK**.
+Full suite: **200 tests in 32.467s, OK (skipped=2)**, same two pre-existing skips.
+All five generated files match the independent rebuild byte-for-byte; repeat
+builds also match. Research REST/MCP parity and pinned citations pass.
+
+Both browser selections passed **1280 light, 1280 dark, 390 light**, visiting
+every role/tab plus Connections, with no console/page/overflow errors:
+
+| Selection | Screenshots per case | Total | Errors |
+| --- | ---: | ---: | --- |
+| Research (four roles) | 24 | 72 | none |
+| Fixtures (three roles) | 18 | 54 | none |
+
+The checker uses explicit local Chromium
+`~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome`. Initial browser
+checking exposed a local variable shadowing the new missing-comparison helper;
+that was fixed before the successful full sweeps. Assembly: **551 files**; lock:
+**61 packages resolved**; syntax/compilation/diff checks clean. A Git-blob hash
+comparison also confirmed all **533** published files unchanged.
+
+Opened `/tmp/role-atlas-m4-r1-research/app/1280-light/account-executive-map.png`:
+confirmed every forecast cell is one-line “No forecast yet”, no forecast
+percentage, the claim/reason are in the detail panel, and long evidence URLs wrap
+inside its border. Both selections' `results.json` and screenshots are saved
+under the paths in the commands above.
+
+No STANDARDS edits, paid/model calls, secrets, original-release writes or M5 work.
+Stop here for review.

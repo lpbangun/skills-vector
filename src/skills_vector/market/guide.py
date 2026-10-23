@@ -337,8 +337,10 @@ denominators are null, not L1 or zero demand. Measurement strata may explicitly
 include `"unassigned"` alongside numeric levels. Level titles/expectations can
 be empty; `introduced_at: null` asserts neither introduction nor carry-over.
 Do not infer a career level from these absences. Current one-snapshot research
-forecasts are explicitly uncalibrated sample-persistence baselines, not measured
-four-quarter transition probabilities or a resolved forecast ledger.
+forecast objects have `basis: "none"`, null `probability` and `base_rate`, and an
+explicit reason. They preserve a dated claim for future evaluation, not a forecast
+percentage. Numeric probabilities/base rates require `basis: "backtest"` (historical
+archive) or `basis: "fixture"` (illustrative); both numbers must be in 0–1.
 
 Expectation citation ids are `id@release`, exactly as returned in level `cite`
 paths. They resolve to the stored expectation and all its role/level occurrences.
@@ -350,8 +352,8 @@ invent citations from those counts. The shifts read returns two distinct collect
 `current` includes every rising, early or fading skill whose latest measured window
 is after `since`, even with only one stored snapshot. Each item retains comparable
 windows with shares/employers, evidence families/directions, dispute text, forecast
-and a pinned skill citation. It is sorted rising → early → fading, then probability
-descending. Core skills are excluded. `state_changes` compares stored release
+and a pinned skill citation. It is sorted rising → early → fading, then available probability
+descending, with unavailable forecasts last within a status and ties ordered by ids. Core skills are excluded. `state_changes` compares stored release
 snapshots and reports `history_status` and `history_note`; a single fixture snapshot
 has no asserted state transitions, but still answers which skills are changing now.
 `since` is an exclusive window boundary; `release` is the inclusive upper pin.

@@ -638,12 +638,12 @@
           "pattern": "\\S"
         },
         "probability": {
-          "type": "number",
+          "type": ["number", "null"],
           "minimum": 0,
           "maximum": 1
         },
         "base_rate": {
-          "type": "number",
+          "type": ["number", "null"],
           "minimum": 0,
           "maximum": 1
         },
@@ -664,7 +664,9 @@
           "type": "string",
           "minLength": 1,
           "pattern": "\\S"
-        }
+        },
+        "basis": {"enum": ["backtest", "fixture", "none"]},
+        "reason": {"anyOf": [{"type": "string", "minLength": 1, "pattern": "\\S"}, {"type": "null"}]}
       },
       "required": [
         "id",
@@ -674,9 +676,18 @@
         "horizon_quarters",
         "created",
         "resolves",
-        "scored_against"
+        "scored_against",
+        "basis"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "allOf": [{
+        "if": {"properties": {"basis": {"const": "none"}}, "required": ["basis"]},
+        "then": {
+          "properties": {"probability": {"type": "null"}, "base_rate": {"type": "null"}, "reason": {"type": "string", "minLength": 1, "pattern": "\\S"}},
+          "required": ["reason"]
+        },
+        "else": {"properties": {"probability": {"type": "number"}, "base_rate": {"type": "number"}}}
+      }]
     },
     "Skill": {
       "type": "object",

@@ -506,7 +506,9 @@
           "horizon_quarters": 4,
           "created": "2026-Q3",
           "resolves": "2027-Q3",
-          "scored_against": "stratified posting sample"
+          "scored_against": "stratified posting sample",
+          "basis": "fixture",
+          "reason": null
         },
         "disputed": null
       },
@@ -810,7 +812,9 @@
           "horizon_quarters": 4,
           "created": "2026-Q3",
           "resolves": "2027-Q3",
-          "scored_against": "stratified posting sample"
+          "scored_against": "stratified posting sample",
+          "basis": "fixture",
+          "reason": null
         },
         "disputed": null
       },
@@ -941,7 +945,9 @@
           "horizon_quarters": 4,
           "created": "2026-Q3",
           "resolves": "2027-Q3",
-          "scored_against": "stratified posting sample"
+          "scored_against": "stratified posting sample",
+          "basis": "fixture",
+          "reason": null
         },
         "disputed": null
       },

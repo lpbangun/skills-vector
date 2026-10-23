@@ -50,6 +50,11 @@ def normalized(value: str) -> str:
     return " ".join(value.casefold().split())
 
 
+def validate_alignment(row: dict) -> None:
+    require(row.get("confidence") in ("exact", "close", "loose"), "mapping confidence must be exact, close or loose")
+    require(isinstance(row.get("rationale"), str) and bool(row["rationale"].strip()), "mapping needs a nonempty rationale")
+
+
 def within(root: Path, name: str) -> Path:
     path = (root / name).resolve()
     require(path.is_relative_to(root.resolve()) and path.is_file(), f"unsafe/missing input: {name}")
@@ -200,8 +205,11 @@ class EvidenceInputs:
         require(skills["schema"] == "role-atlas-mappings/1", "unsupported mapping schema")
         require(skills["release_id"] == selected, "mapping review is pinned to another release")
         require(set(skills["roles"]) == set(occupations), "role mapping must cover the published roles exactly")
+        for role in skills["roles"].values():
+            validate_alignment(role)
         nodes = {}
         for node in skills["backbone"]:
+            validate_alignment(node)
             sid = node["source_id"]
             require(node["id"] not in nodes, "duplicate backbone id")
             require(node["role"] in occupations and sid in extracts and node["source_note"].strip(), "missing backbone provenance")
@@ -213,6 +221,7 @@ class EvidenceInputs:
             nodes[node["id"]] = node
         seen_phrases = set()
         for row in skills["phrases"]:
+            validate_alignment(row)
             key = (row["role"], normalized(row["phrase"]))
             require(key not in seen_phrases and row["source_note"].strip(), "ambiguous/unreviewed phrase mapping")
             require(row["backbone_id"] in nodes and nodes[row["backbone_id"]]["role"] == row["role"], "unknown or cross-role backbone id")
@@ -244,7 +253,7 @@ class EvidenceInputs:
         release = "role_research_" + digest(canonical({"recipe": RECIPE, "inputs": self.hashes, "cadence": cadence}))[:16]
         records, role_reports = [], {}
         node_by_id = {node["id"]: node for node in self.skills["backbone"]}
-        phrase_map = {(row["role"], normalized(row["phrase"])): row["backbone_id"] for row in self.skills["phrases"]}
+        phrase_map = {(row["role"], normalized(row["phrase"])): row for row in self.skills["phrases"]}
         for slug, occupation in sorted(self.occupations.items()):
             config = self.skills["roles"][slug]
             all_rows = sorted((p for p in self.postings if p["occupation_slug"] == slug), key=lambda p: p["dedup_key"])
@@ -266,8 +275,12 @@ class EvidenceInputs:
                     if expected["dimension"] not in SKILL_DIMENSIONS:
                         excluded[expected["dimension"]] += 1
                         continue
-                    backbone_id = phrase_map.get((slug, normalized(expected["source_wording"])))
-                    node = node_by_id.get(backbone_id)
+                    alignment = phrase_map.get((slug, normalized(expected["source_wording"])))
+                    proposed_id = alignment["backbone_id"] if alignment else None
+                    node = node_by_id.get(proposed_id)
+                    if not alignment or alignment["confidence"] == "loose" or node["confidence"] == "loose":
+                        node = None
+                    backbone_id = node["id"] if node else None
                     key = "skill." + (backbone_id.replace(":", ".") if node else "posting." + digest((expected["dimension"] + "|" + normalized(expected["source_wording"])).encode())[:16])
                     if node:
                         label, short = node["short_label"], node["short_label"]
@@ -276,7 +289,9 @@ class EvidenceInputs:
                         short = label if len(label) <= 18 else label[:17].rstrip() + "…"
                     skill_data[key] = {"label": label, "short_label": short, "node": node}
                     mentions[key].add(posting["dedup_key"])
-                    linked.append({"skill": key, "backbone_id": backbone_id, "phrase": expected["source_wording"], "source_id": posting["source_id"], "expectation_id": expected["expectation_id"]})
+                    linked.append({"skill": key, "backbone_id": backbone_id, "proposed_backbone_id": proposed_id,
+                                   "mapping_confidence": alignment["confidence"] if alignment else None,
+                                   "mapping_rationale": alignment["rationale"] if alignment else None, "phrase": expected["source_wording"], "source_id": posting["source_id"], "expectation_id": expected["expectation_id"]})
                 posting_audit.append({"posting_id": posting["dedup_key"], "source_id": posting["source_id"], "employer": posting["employer"],
                                       "level": decision.level, "reason": decision.reason, "strong_signals": decision.strong,
                                       "weak_signals": decision.weak, "skill_links": sorted(linked, key=lambda x: (x["skill"], x["phrase"]))})
@@ -298,8 +313,9 @@ class EvidenceInputs:
                     evidence.append(signal("onet_ratings", "O*NET local task anchor", f"{node['id']}; local natural key, not an official task database ID. {self.sources[node['source_id']]['url']}; published source {node['source_id']}. {node['quote']}"))
                 shares = [100 * sum(p["dedup_key"] in ids for p in level_rows[level]) / len(level_rows[level]) if level_rows[level] else None for level in range(1, 6)]
                 observed = [level for level in range(1, 6) if shares[level - 1] is not None and shares[level - 1] > 0]
-                forecast = {"id": "forecast." + slug + "." + key, "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-                            "probability": share, "base_rate": share, "horizon_quarters": 4, "created": current,
+                forecast = {"id": "forecast." + slug + "." + key, "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+                            "basis": "none", "reason": "One observed window; no historical base rate or backtest archive.",
+                            "probability": None, "base_rate": None, "horizon_quarters": 4, "created": current,
                             "resolves": str(int(current[:4]) + 1) + current[4:], "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"}
                 skills.append({"id": key, "label": data["label"], "short_label": data["short_label"], "status": derive_status([measurement], [Signal(**s) for s in evidence]),
                                "first_level": min(observed) if observed else None, "share_by_level": shares, "source_links": ["P", "O"] if data["node"] else ["P"],
@@ -316,7 +332,7 @@ class EvidenceInputs:
                         eid = "exp." + slug + "." + digest(normalized(expected["source_wording"]).encode())[:16]
                         expectations[eid] = {"id": eid, "label": expected["source_wording"], "introduced_at": None,
                                              "basis": "advertised_demand", "cite": f"/v1/expectations/{eid}@{release}", "timing": "coincident"}
-                ladder.append({"id": slug + f".L{level}", "level": level, "name": config["category"].capitalize() + f" L{level}",
+                ladder.append({"id": slug + f".L{level}", "level": level, "name": config["category"].capitalize() + f" L{level}" if selected else f"L{level}",
                                "typical_titles": sorted({p["title"] for p in selected}),
                                "years_wording": "; ".join(sorted({wording for p in selected for wording in p.get("advertised_experience", {}).get("value", [])})) or "Not recorded",
                                "scope": "Declared algorithmic scope rubric: " + name + ". Not a population hiring standard.",
@@ -346,14 +362,14 @@ class EvidenceInputs:
                               "long_run_bar": signal("onet_ratings", "O*NET local task anchor", "Local task alignment is presence only; no numeric proficiency rating or level rating was supplied.")}},
                 "industries": industries, "observations": [], "limits": [
                     "Research projection of published release " + self.release_id + "; source counts are a bounded admitted sample, not market prevalence.",
-                    "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand; baseline forecasts assume the same admission and excerpt-selection process.",
+                    "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand and is not a future probability.",
                     "One selected snapshot only. Retrieval dates bin observed mentions; repeated releases are not independent windows. No comparable temporal history is asserted, so all current statuses are early.",
                     "Null first_level means no observed assigned level; null share_by_level means no assigned denominator, not zero demand. Measurement strata explicitly include unassigned postings.",
                     "Level names are a declared algorithmic scope rubric, not observed role progression. Titles and tenure never assign levels. Missing level expectations remain empty; no carry-over or first-introduction claim is inferred.",
                     "O*NET task excerpts are attributed to O*NET OnLine, U.S. Department of Labor, CC BY 4.0, as recorded in the published sources; agent-authored alignments are not official or human-adjudicated equivalence.",
                     "Backbone local-task keys identify exact O*NET task text within its SOC summary, not official task database element IDs; unmapped phrases remain posting-led literal identities.",
                     "Unverified employer sectors are excluded, not guessed. Sector profiles need 30 postings and 8 employers. Official industry shares, wages and credential catalogs were not imported; any credential/knowledge text is a literal posting mention.",
-                    "Forecast probabilities equal current role-wide mention fractions as an explicit uncalibrated persistence baseline, not researched trend probabilities. No temporal base-rate archive, ledger, resolution or backtest exists (M5 pending)."]})
+                    "No forecast probability or base rate is available: basis is none and both values are null. Current excerpt mention fractions are measurements, not future probabilities. No historical base-rate archive, ledger, resolution or backtest exists (M5 pending)."]})
             records.append(record)
             role_reports[slug] = {"postings_in": len(all_rows), "current_postings": len(rows), "window": current,
                 "other_window_postings_not_compared": len(all_rows) - len(rows),

@@ -1,9 +1,9 @@
 {
   "input_hashes": {
-    "contract.py": "6845fb8b3a8d0938b040d59b7dd650e9ab53318e97046f1a79d760f395660fa2",
+    "contract.py": "f309e794f73ed35d8ec14e88a93d7ee913ca292350c303cf7039cfb7705f3be7",
     "mappings/employers.json": "068c94aa9db1855fcf22bf0be22d2c280cbf3a3114d451de9b0be7424d271138",
-    "mappings/skills.json": "bbaf3dc5e026af31a6521297bda3199e5e3df31e96f1e4a75ace0d169c69a45b",
-    "recipe.py": "2bf92098a83630bc11e632f05ed52bdcd717cd3e4a76a5647ab8f6cb0eefeb5b",
+    "mappings/skills.json": "b9b22e6e149036b0ad5034d64db5308cc7aed31cb4fa4e85261d11925b460908",
+    "recipe.py": "d89d3846b180c58b42650fbcc45d1be4821ef2e2e956cf1e3d227bebe474eee1",
     "release/candidate.json": "f94f7be9a42a12d93eea1126c52b16b26dac32ec43d62dd9e06d22c6c5ee445a",
     "release/changes.json": "4a7c85af272debe5fa5e8af412afcb6f73221f6886a08fbfa494ad0cc1f4b542",
     "release/claims.json": "4a47f95792e9c553a5ad8cb3249d29e6c50af769aab1f077016f162e1eeed2bd",
@@ -51,14 +51,14 @@
     "release/postings.json": "56f5c572d5a2b0ac699ccf40711d6263446b10ddafb91ee7942f6f4c3710895e",
     "release/requirements.json": "9e99f1d8d34e73d8430ea78af16769b08e99d9beda19d65dd8167ed4fba97a86",
     "release/sources.json": "31e7875a763f4d3dd915a56453472dd6c2470a86eed0a0ac4600a679153e065b",
-    "schema.json": "65c3804b662421d047459873c9fb91891943b8cdd4470b70d5e0a7e673e85fc5"
+    "schema.json": "34845fe8a3fcc4db4bd6eb03302142fd811ffab82e79e9f8a627260e5596d403"
   },
   "input_release_id": "rel_20261002_cbdc6e8d5c4f",
   "recipe": "role-evidence/1",
-  "release_id": "role_research_c5c1bf7bde401bdd",
+  "release_id": "role_research_e647b3e2dce649d4",
   "roles": {
     "account-executive": {
-      "backbone_linked_skills": 4,
+      "backbone_linked_skills": 3,
       "current_postings": 5,
       "dropped_edges": [
         {
@@ -75,13 +75,13 @@
         },
         {
           "a": "skill.onet.41-4012.00.local-task.demonstration",
-          "b": "skill.onet.41-4012.00.local-task.records",
+          "b": "skill.posting.23a1b42043fe07b8",
           "employers": 1,
           "failed_floors": [
             "postings",
             "employers"
           ],
-          "lift": 2.5,
+          "lift": 5.0,
           "postings": 1,
           "timing": "coincident"
         },
@@ -99,26 +99,25 @@
         },
         {
           "a": "skill.onet.41-4012.00.local-task.negotiation",
-          "b": "skill.onet.41-4012.00.local-task.records",
+          "b": "skill.posting.809e5f0e82e5bc2c",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.41-4012.00.local-task.prospecting",
+          "b": "skill.posting.23a1b42043fe07b8",
           "employers": 1,
           "failed_floors": [
             "postings",
             "employers"
           ],
           "lift": 2.5,
-          "postings": 1,
-          "timing": "coincident"
-        },
-        {
-          "a": "skill.onet.41-4012.00.local-task.prospecting",
-          "b": "skill.onet.41-4012.00.local-task.records",
-          "employers": 1,
-          "failed_floors": [
-            "lift",
-            "postings",
-            "employers"
-          ],
-          "lift": 1.25,
           "postings": 1,
           "timing": "coincident"
         },
@@ -147,14 +146,14 @@
           "timing": "coincident"
         },
         {
-          "a": "skill.onet.41-4012.00.local-task.records",
+          "a": "skill.posting.23a1b42043fe07b8",
           "b": "skill.posting.dd1ffdcb4b08bac8",
           "employers": 1,
           "failed_floors": [
             "postings",
             "employers"
           ],
-          "lift": 2.5,
+          "lift": 5.0,
           "postings": 1,
           "timing": "coincident"
         },
@@ -209,7 +208,7 @@
       ],
       "edge_floor_failures": {
         "employers": 12,
-        "lift": 1,
+        "lift": 0,
         "postings": 12
       },
       "edges_dropped": 12,
@@ -220,7 +219,7 @@
         "experience": 5
       },
       "other_window_postings_not_compared": 0,
-      "posting_led_skills": 7,
+      "posting_led_skills": 9,
       "postings": [
         {
           "employer": "Datadog",
@@ -231,15 +230,21 @@
             {
               "backbone_id": "onet:41-4012.00:local-task:negotiation",
               "expectation_id": "exp_0d94f071e153a8e4daa5",
+              "mapping_confidence": "close",
+              "mapping_rationale": "Negotiating price and business terms directly aligns to negotiating contract/payment details; no broader sales proficiency is asserted.",
               "phrase": "Negotiate favorable pricing and business terms",
+              "proposed_backbone_id": "onet:41-4012.00:local-task:negotiation",
               "skill": "skill.onet.41-4012.00.local-task.negotiation",
               "source_id": "src_73b0452f4c687bbded4c"
             },
             {
-              "backbone_id": "onet:41-4012.00:local-task:records",
+              "backbone_id": null,
               "expectation_id": "exp_9f2162a5e898f127929c",
+              "mapping_confidence": "loose",
+              "mapping_rationale": "Forecast accuracy and consistency concern prediction quality, not keeping sales records. Retain the literal posting phrase without an O-family link.",
               "phrase": "Ensure high forecasting accuracy and consistency",
-              "skill": "skill.onet.41-4012.00.local-task.records",
+              "proposed_backbone_id": "onet:41-4012.00:local-task:records",
+              "skill": "skill.posting.809e5f0e82e5bc2c",
               "source_id": "src_73b0452f4c687bbded4c"
             }
           ],
@@ -261,21 +266,30 @@
             {
               "backbone_id": null,
               "expectation_id": "exp_28ed3872275f17bbdd15",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "Analytical ability to manage complex pricing and cost considerations",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.6a1ecf85fcb37bb0",
               "source_id": "src_6098b7029cbc74dc882c"
             },
             {
               "backbone_id": null,
               "expectation_id": "exp_bfae533d3af2772444ca",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "Ability to understand complex technical ecosystems and build great relationships with technical customers",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.bbb2e34dbe68a903",
               "source_id": "src_6098b7029cbc74dc882c"
             },
             {
               "backbone_id": null,
               "expectation_id": "exp_02ee0f5c2d511d4fa887",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "Ability to drive and close upsell opportunities for additional Stripe products in long-term, consultative engagements",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.f40c8a76af69e6f7",
               "source_id": "src_6098b7029cbc74dc882c"
             }
@@ -298,14 +312,20 @@
             {
               "backbone_id": null,
               "expectation_id": "exp_38257cc3e55e9a6a522b",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "Experience in Salesforce is a plus",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.6119381771c8dfac",
               "source_id": "src_9474d748372eef14060d"
             },
             {
               "backbone_id": null,
               "expectation_id": "exp_75bd6317fa8826bc12a1",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "Highly effective communication skills",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.b3ec611af7aa51e0",
               "source_id": "src_9474d748372eef14060d"
             }
@@ -328,14 +348,20 @@
             {
               "backbone_id": "onet:41-4012.00:local-task:prospecting",
               "expectation_id": "exp_be4935d176bc364f5695",
+              "mapping_confidence": "close",
+              "mapping_rationale": "The pipeline-generation component aligns to identifying prospective customers. Sales-target attainment is not attributed to the O*NET task.",
               "phrase": "generating your own pipeline and hitting sales targets",
+              "proposed_backbone_id": "onet:41-4012.00:local-task:prospecting",
               "skill": "skill.onet.41-4012.00.local-task.prospecting",
               "source_id": "src_3fe01ef9bfa3c8e6402e"
             },
             {
               "backbone_id": null,
               "expectation_id": "exp_a875ef953827f0d64cef",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "Ability to articulate the business value of complex enterprise technology",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.d48a1e646d7ae7fa",
               "source_id": "src_3fe01ef9bfa3c8e6402e"
             }
@@ -358,28 +384,40 @@
             {
               "backbone_id": "onet:41-4012.00:local-task:demonstration",
               "expectation_id": "exp_87bae35eb78ede2a8153",
+              "mapping_confidence": "close",
+              "mapping_rationale": "Conducting product demos aligns to demonstrating products to prospective customers; solution design is not treated as an exact synonym.",
               "phrase": "Conduct demos and develop a solution",
+              "proposed_backbone_id": "onet:41-4012.00:local-task:demonstration",
               "skill": "skill.onet.41-4012.00.local-task.demonstration",
               "source_id": "src_2ef617516a5da8524028"
             },
             {
               "backbone_id": "onet:41-4012.00:local-task:prospecting",
               "expectation_id": "exp_d760be0e164ba8a3c9df",
+              "mapping_confidence": "close",
+              "mapping_rationale": "The explicit prospecting component aligns to identifying prospective customers, without asserting all listed sourcing methods.",
               "phrase": "prospect, build relationships, and sign up new restaurateurs",
+              "proposed_backbone_id": "onet:41-4012.00:local-task:prospecting",
               "skill": "skill.onet.41-4012.00.local-task.prospecting",
               "source_id": "src_2ef617516a5da8524028"
             },
             {
-              "backbone_id": "onet:41-4012.00:local-task:records",
+              "backbone_id": null,
               "expectation_id": "exp_dbd425d1a0bd9e9d2d27",
+              "mapping_confidence": "loose",
+              "mapping_rationale": "Using a CRM to manage activities does not establish the specific record-keeping duties in this task. Keep this tool/workflow mention posting-led.",
               "phrase": "Leverage Salesforce (our CRM) to manage all sales activities",
-              "skill": "skill.onet.41-4012.00.local-task.records",
+              "proposed_backbone_id": "onet:41-4012.00:local-task:records",
+              "skill": "skill.posting.23a1b42043fe07b8",
               "source_id": "src_2ef617516a5da8524028"
             },
             {
               "backbone_id": null,
               "expectation_id": "exp_d10def6af0b129870963",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "Strong communication, organizational and presentation skills with the ability to sell and negotiate at all decision-making levels",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.dd1ffdcb4b08bac8",
               "source_id": "src_2ef617516a5da8524028"
             }
@@ -408,7 +446,7 @@
       "sectors_without_profiles": 20,
       "skills_by_status": {
         "core": 0,
-        "early": 11,
+        "early": 12,
         "fading": 0,
         "rising": 0
       },
@@ -426,7 +464,7 @@
             "postings",
             "employers"
           ],
-          "lift": 1.6666666666666667,
+          "lift": 2.5,
           "postings": 2,
           "timing": "coincident"
         },
@@ -462,31 +500,7 @@
             "postings",
             "employers"
           ],
-          "lift": 1.6666666666666667,
-          "postings": 1,
-          "timing": "coincident"
-        },
-        {
-          "a": "skill.onet.15-1252.00.local-task.software",
-          "b": "skill.posting.698a76d2c0a8aa7e",
-          "employers": 1,
-          "failed_floors": [
-            "postings",
-            "employers"
-          ],
-          "lift": 1.6666666666666667,
-          "postings": 1,
-          "timing": "coincident"
-        },
-        {
-          "a": "skill.onet.15-1252.00.local-task.software",
-          "b": "skill.posting.bccc29a4aa9bbd03",
-          "employers": 1,
-          "failed_floors": [
-            "postings",
-            "employers"
-          ],
-          "lift": 1.6666666666666667,
+          "lift": 2.5,
           "postings": 1,
           "timing": "coincident"
         },
@@ -498,7 +512,7 @@
             "postings",
             "employers"
           ],
-          "lift": 1.6666666666666667,
+          "lift": 2.5,
           "postings": 1,
           "timing": "coincident"
         },
@@ -575,8 +589,32 @@
           "timing": "coincident"
         },
         {
+          "a": "skill.posting.698a76d2c0a8aa7e",
+          "b": "skill.posting.e58f82058d83f87a",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
           "a": "skill.posting.a9bbcdade7a3ccde",
           "b": "skill.posting.b26ed103c6093610",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.bccc29a4aa9bbd03",
+          "b": "skill.posting.e58f82058d83f87a",
           "employers": 1,
           "failed_floors": [
             "postings",
@@ -598,7 +636,7 @@
         "experience": 6
       },
       "other_window_postings_not_compared": 0,
-      "posting_led_skills": 8,
+      "posting_led_skills": 9,
       "postings": [
         {
           "employer": "Databricks",
@@ -607,24 +645,33 @@
           "reason": "source_verified_scope_and_ownership",
           "skill_links": [
             {
-              "backbone_id": "onet:15-1252.00:local-task:software",
-              "expectation_id": "exp_86c927e0020227cc11be",
-              "phrase": "Fluency in writing code in Python, Scala, JavaScript/TypeScript, and modern frameworks",
-              "skill": "skill.onet.15-1252.00.local-task.software",
-              "source_id": "src_2b15a14ab97190e211f7"
-            },
-            {
               "backbone_id": null,
               "expectation_id": "exp_b5c5fbc7354bbacffc3b",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "Familiarity with CI/CD for produc",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.698a76d2c0a8aa7e",
               "source_id": "src_2b15a14ab97190e211f7"
             },
             {
               "backbone_id": null,
               "expectation_id": "exp_2c24478c3859fd0fbace",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "Working knowledge of two or more common Cloud ecosystems (AWS, Azure, GCP)",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.bccc29a4aa9bbd03",
+              "source_id": "src_2b15a14ab97190e211f7"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_86c927e0020227cc11be",
+              "mapping_confidence": "loose",
+              "mapping_rationale": "Language/framework fluency is a capability requirement, not evidence of the specific software-systems development task. Keep it posting-led.",
+              "phrase": "Fluency in writing code in Python, Scala, JavaScript/TypeScript, and modern frameworks",
+              "proposed_backbone_id": "onet:15-1252.00:local-task:software",
+              "skill": "skill.posting.e58f82058d83f87a",
               "source_id": "src_2b15a14ab97190e211f7"
             }
           ],
@@ -669,28 +716,40 @@
             {
               "backbone_id": null,
               "expectation_id": "exp_6bb4f34aef8998483fdd",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "work directly with customers",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.0e821edd5c69e5a1",
               "source_id": "src_e35af9278335d5045c77"
             },
             {
               "backbone_id": null,
               "expectation_id": "exp_84e0e5529ea42be61dbb",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "deeply technical, customer-facing",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.288a95450eb4e7f0",
               "source_id": "src_e35af9278335d5045c77"
             },
             {
               "backbone_id": null,
               "expectation_id": "exp_c4dc73e239480237d7a3",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "move quickly from insight to implementation",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.a9bbcdade7a3ccde",
               "source_id": "src_e35af9278335d5045c77"
             },
             {
               "backbone_id": null,
               "expectation_id": "exp_60b9dcdb42fe2367068a",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "bring real-world learning back into the product",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.b26ed103c6093610",
               "source_id": "src_e35af9278335d5045c77"
             }
@@ -711,21 +770,30 @@
             {
               "backbone_id": "onet:15-1252.00:local-task:discovery",
               "expectation_id": "exp_2a15127f52c6323eba0d",
+              "mapping_confidence": "close",
+              "mapping_rationale": "Technical discovery of environments and constraints aligns to analyzing software requirements; no claim of full task equivalence is made.",
               "phrase": "Run technical discovery: understand a customer's dev environment, toolchain, and constraints",
+              "proposed_backbone_id": "onet:15-1252.00:local-task:discovery",
               "skill": "skill.onet.15-1252.00.local-task.discovery",
               "source_id": "src_140307f829bfdb285349"
             },
             {
               "backbone_id": "onet:15-1252.00:local-task:software",
               "expectation_id": "exp_afcf8bd0d641cb76f8bc",
+              "mapping_confidence": "close",
+              "mapping_rationale": "The explicit code-writing component supports software modification. Config, agent skills and guideline files are not asserted to be official O*NET concepts.",
               "phrase": "writing code, config, agent skills, and guideline files against their systems and ours",
+              "proposed_backbone_id": "onet:15-1252.00:local-task:software",
               "skill": "skill.onet.15-1252.00.local-task.software",
               "source_id": "src_140307f829bfdb285349"
             },
             {
               "backbone_id": null,
               "expectation_id": "exp_85f409bf1e1f266df29e",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "Comfort owning ambiguous technical problems end to end",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.632a7fc335c2e63e",
               "source_id": "src_140307f829bfdb285349"
             }
@@ -755,28 +823,40 @@
             {
               "backbone_id": "onet:15-1252.00:local-task:discovery",
               "expectation_id": "exp_7bbf5dcf442f19fe0b52",
+              "mapping_confidence": "close",
+              "mapping_rationale": "Understanding customer technical objectives is a bounded user-needs analysis activity; feasibility within time and cost is not independently established.",
               "phrase": "Work directly with customers to understand their technical and operational objectives",
+              "proposed_backbone_id": "onet:15-1252.00:local-task:discovery",
               "skill": "skill.onet.15-1252.00.local-task.discovery",
               "source_id": "src_6413b1c5f80546a23d4d"
             },
             {
               "backbone_id": "onet:15-1252.00:local-task:software",
               "expectation_id": "exp_059e741574790bc954cc",
+              "mapping_confidence": "close",
+              "mapping_rationale": "Designing and coding features directly supports software development/modification; launch duties add scope not asserted by the task alignment.",
               "phrase": "Design, code, and launch features",
+              "proposed_backbone_id": "onet:15-1252.00:local-task:software",
               "skill": "skill.onet.15-1252.00.local-task.software",
               "source_id": "src_6413b1c5f80546a23d4d"
             },
             {
               "backbone_id": "onet:15-1252.00:local-task:software",
               "expectation_id": "exp_d4b2e99660d678806ff8",
+              "mapping_confidence": "close",
+              "mapping_rationale": "Prototyping and proposing software solutions is a bounded software-design activity; this does not establish the task's scientific-modeling requirements.",
               "phrase": "prototype and propose software solutions",
+              "proposed_backbone_id": "onet:15-1252.00:local-task:software",
               "skill": "skill.onet.15-1252.00.local-task.software",
               "source_id": "src_6413b1c5f80546a23d4d"
             },
             {
               "backbone_id": null,
               "expectation_id": "exp_d392071a149d7d3d7615",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "using tools like TypeScript , React , and Next.js",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.c26b5fd3ad218c8c",
               "source_id": "src_6413b1c5f80546a23d4d"
             }
@@ -803,7 +883,7 @@
       "sectors_without_profiles": 20,
       "skills_by_status": {
         "core": 0,
-        "early": 10,
+        "early": 11,
         "fading": 0,
         "rising": 0
       },
@@ -850,21 +930,30 @@
             {
               "backbone_id": "onet:11-2021.00:local-task:campaign",
               "expectation_id": "exp_2f07bb431bdf072d441a",
+              "mapping_confidence": "close",
+              "mapping_rationale": "Owning day-to-day campaign execution supports coordinating marketing activities, without implying marketing policy authority.",
               "phrase": "Own day-to-day execution of global performance marketing campaigns",
+              "proposed_backbone_id": "onet:11-2021.00:local-task:campaign",
               "skill": "skill.onet.11-2021.00.local-task.campaign",
               "source_id": "src_1ed341a8573851cfd6b0"
             },
             {
               "backbone_id": "onet:11-2021.00:local-task:campaign",
               "expectation_id": "exp_2871dae65f6be77b9f83",
+              "mapping_confidence": "close",
+              "mapping_rationale": "Driving acquisition campaigns is a concrete marketing-activity coordination component; policy authority and the entire manager task are not inferred.",
               "phrase": "drive Duolingo’s global user acquisition campaigns across multiple channels",
+              "proposed_backbone_id": "onet:11-2021.00:local-task:campaign",
               "skill": "skill.onet.11-2021.00.local-task.campaign",
               "source_id": "src_1ed341a8573851cfd6b0"
             },
             {
               "backbone_id": "onet:11-2021.00:local-task:campaign",
               "expectation_id": "exp_31cd65f947b87fab902e",
+              "mapping_confidence": "close",
+              "mapping_rationale": "Running and optimizing mobile campaigns is a concrete marketing activity; this is a bounded alignment, not whole-role managerial equivalence.",
               "phrase": "run and optimize mobile install campaigns across major platforms",
+              "proposed_backbone_id": "onet:11-2021.00:local-task:campaign",
               "skill": "skill.onet.11-2021.00.local-task.campaign",
               "source_id": "src_1ed341a8573851cfd6b0"
             }
@@ -890,7 +979,10 @@
             {
               "backbone_id": null,
               "expectation_id": "exp_d82cfaff2f680d65e2d9",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "Familiarity with current AI-powered product development and a POV on how our industry will evolve",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.6fbe3946aad530a8",
               "source_id": "src_f793b4b4dbf42ae0efb2"
             }
@@ -918,7 +1010,10 @@
             {
               "backbone_id": null,
               "expectation_id": "exp_3fd43ba7f7d082ad1800",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "Strong communication skills, both written and verbal",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.6de6bb6568e5295c",
               "source_id": "src_6076d691fd591ccffd48"
             }
@@ -941,14 +1036,20 @@
             {
               "backbone_id": null,
               "expectation_id": "exp_57fe0bc3bc9f2906286b",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "guide a team of designers, copywriters, and video editors",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.6efb452d78298ea0",
               "source_id": "src_faf73f88dbaba0d70efb"
             },
             {
               "backbone_id": null,
               "expectation_id": "exp_fd7b8cc43e72d129cb75",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "AI-native fluency: hands-on comfort prompting and directing AI tools",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.7a11ae9c98bddac9",
               "source_id": "src_faf73f88dbaba0d70efb"
             }
@@ -986,36 +1087,12 @@
       "window": "2026-Q4"
     },
     "hr-generalist": {
-      "backbone_linked_skills": 3,
+      "backbone_linked_skills": 2,
       "current_postings": 5,
       "dropped_edges": [
         {
           "a": "skill.onet.13-1071.00.local-task.policy",
-          "b": "skill.onet.13-1071.00.local-task.relations",
-          "employers": 1,
-          "failed_floors": [
-            "postings",
-            "employers"
-          ],
-          "lift": 2.5,
-          "postings": 1,
-          "timing": "coincident"
-        },
-        {
-          "a": "skill.onet.13-1071.00.local-task.policy",
           "b": "skill.posting.1141ba92a2f02faf",
-          "employers": 1,
-          "failed_floors": [
-            "postings",
-            "employers"
-          ],
-          "lift": 2.5,
-          "postings": 1,
-          "timing": "coincident"
-        },
-        {
-          "a": "skill.onet.13-1071.00.local-task.records",
-          "b": "skill.posting.07b515ec149b8821",
           "employers": 1,
           "failed_floors": [
             "postings",
@@ -1026,8 +1103,44 @@
           "timing": "coincident"
         },
         {
-          "a": "skill.onet.13-1071.00.local-task.records",
-          "b": "skill.posting.d512b42afab4c153",
+          "a": "skill.onet.13-1071.00.local-task.relations",
+          "b": "skill.posting.3b6067a131aea9af",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.13-1071.00.local-task.relations",
+          "b": "skill.posting.8e391b2f8801a9ce",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.07b515ec149b8821",
+          "b": "skill.posting.394c013b8f8a6c2c",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.07b515ec149b8821",
+          "b": "skill.posting.a0893eef516298e0",
           "employers": 1,
           "failed_floors": [
             "postings",
@@ -1048,14 +1161,62 @@
           "lift": 5.0,
           "postings": 1,
           "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.394c013b8f8a6c2c",
+          "b": "skill.posting.a0893eef516298e0",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.394c013b8f8a6c2c",
+          "b": "skill.posting.d512b42afab4c153",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.3b6067a131aea9af",
+          "b": "skill.posting.8e391b2f8801a9ce",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.a0893eef516298e0",
+          "b": "skill.posting.d512b42afab4c153",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
         }
       ],
       "edge_floor_failures": {
-        "employers": 5,
+        "employers": 10,
         "lift": 0,
-        "postings": 5
+        "postings": 10
       },
-      "edges_dropped": 5,
+      "edges_dropped": 10,
       "edges_kept": 0,
       "excluded_non_skill_mentions": {
         "contextual_expectation": 1,
@@ -1064,7 +1225,7 @@
         "experience": 6
       },
       "other_window_postings_not_compared": 0,
-      "posting_led_skills": 4,
+      "posting_led_skills": 8,
       "postings": [
         {
           "employer": "SpaceX",
@@ -1073,24 +1234,33 @@
           "reason": "no_current_scope_or_ownership_signal",
           "skill_links": [
             {
-              "backbone_id": "onet:13-1071.00:local-task:policy",
-              "expectation_id": "exp_a6e454e5cf951fd00616",
-              "phrase": "implementation of human resources policies, programs, and processes",
-              "skill": "skill.onet.13-1071.00.local-task.policy",
-              "source_id": "src_bb83224100d7cd1745fb"
-            },
-            {
-              "backbone_id": "onet:13-1071.00:local-task:relations",
-              "expectation_id": "exp_5a89944dc44ae368d4ef",
-              "phrase": "Counsel a small client group (150-200 employees)",
-              "skill": "skill.onet.13-1071.00.local-task.relations",
-              "source_id": "src_bb83224100d7cd1745fb"
-            },
-            {
               "backbone_id": "onet:13-1071.00:local-task:relations",
               "expectation_id": "exp_229558159c703667d7bf",
+              "mapping_confidence": "close",
+              "mapping_rationale": "Responding to employee complaints closely aligns to addressing employee-relations concerns. Other inquiry types are not asserted equivalent.",
               "phrase": "Respond to day-to-day employee inquiries, questions and complaints",
+              "proposed_backbone_id": "onet:13-1071.00:local-task:relations",
               "skill": "skill.onet.13-1071.00.local-task.relations",
+              "source_id": "src_bb83224100d7cd1745fb"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_5a89944dc44ae368d4ef",
+              "mapping_confidence": "loose",
+              "mapping_rationale": "Counseling a client group does not specify employee-relations problems or complaints. Client-group size alone cannot establish this task.",
+              "phrase": "Counsel a small client group (150-200 employees)",
+              "proposed_backbone_id": "onet:13-1071.00:local-task:relations",
+              "skill": "skill.posting.3b6067a131aea9af",
+              "source_id": "src_bb83224100d7cd1745fb"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_a6e454e5cf951fd00616",
+              "mapping_confidence": "loose",
+              "mapping_rationale": "Implementing HR programs/processes is not the same activity as interpreting and explaining HR policies. Keep implementation posting-led.",
+              "phrase": "implementation of human resources policies, programs, and processes",
+              "proposed_backbone_id": "onet:13-1071.00:local-task:policy",
+              "skill": "skill.posting.8e391b2f8801a9ce",
               "source_id": "src_bb83224100d7cd1745fb"
             }
           ],
@@ -1110,30 +1280,42 @@
           "reason": "no_current_scope_or_ownership_signal",
           "skill_links": [
             {
-              "backbone_id": "onet:13-1071.00:local-task:records",
-              "expectation_id": "exp_c468a82ad944f8c0679f",
-              "phrase": "Build, maintain, and troubleshoot Workday reports, dashboards, and calculated fields",
-              "skill": "skill.onet.13-1071.00.local-task.records",
-              "source_id": "src_e427ebf38b2d67d898f7"
-            },
-            {
-              "backbone_id": "onet:13-1071.00:local-task:records",
-              "expectation_id": "exp_0adef5d31d5e38633e51",
-              "phrase": "Configure and maintain Workday Core HCM",
-              "skill": "skill.onet.13-1071.00.local-task.records",
-              "source_id": "src_e427ebf38b2d67d898f7"
-            },
-            {
               "backbone_id": null,
               "expectation_id": "exp_c8872e6541fd46d5c947",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "Manage the HRIS support ticket queue",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.07b515ec149b8821",
               "source_id": "src_e427ebf38b2d67d898f7"
             },
             {
               "backbone_id": null,
+              "expectation_id": "exp_0adef5d31d5e38633e51",
+              "mapping_confidence": "loose",
+              "mapping_rationale": "Configuring an HR system does not establish maintenance of employment records. Keep the Workday configuration task posting-led.",
+              "phrase": "Configure and maintain Workday Core HCM",
+              "proposed_backbone_id": "onet:13-1071.00:local-task:records",
+              "skill": "skill.posting.394c013b8f8a6c2c",
+              "source_id": "src_e427ebf38b2d67d898f7"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_c468a82ad944f8c0679f",
+              "mapping_confidence": "loose",
+              "mapping_rationale": "Building dashboards and calculated fields is reporting/system work, not necessarily maintaining employment event records. Keep it posting-led.",
+              "phrase": "Build, maintain, and troubleshoot Workday reports, dashboards, and calculated fields",
+              "proposed_backbone_id": "onet:13-1071.00:local-task:records",
+              "skill": "skill.posting.a0893eef516298e0",
+              "source_id": "src_e427ebf38b2d67d898f7"
+            },
+            {
+              "backbone_id": null,
               "expectation_id": "exp_5712e34b1ce55fbb4683",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "Create, execute, and troubleshoot Enterprise Interface Builder (EIB) integrations",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.d512b42afab4c153",
               "source_id": "src_e427ebf38b2d67d898f7"
             }
@@ -1169,14 +1351,20 @@
             {
               "backbone_id": "onet:13-1071.00:local-task:policy",
               "expectation_id": "exp_2429d1c7762a26d5c55a",
+              "mapping_confidence": "close",
+              "mapping_rationale": "Explaining HR/compliance concepts closely aligns to explaining HR policies and regulations; no exhaustive policy expertise is inferred.",
               "phrase": "Explain complicated compliance and HR concepts in simple, user-friendly terms",
+              "proposed_backbone_id": "onet:13-1071.00:local-task:policy",
               "skill": "skill.onet.13-1071.00.local-task.policy",
               "source_id": "src_446100506f5f4b8c8026"
             },
             {
               "backbone_id": null,
               "expectation_id": "exp_d431fbee85c46392cabe",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "Coach and mentor fellow HR Consultants",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.1141ba92a2f02faf",
               "source_id": "src_446100506f5f4b8c8026"
             }
@@ -1199,7 +1387,10 @@
             {
               "backbone_id": null,
               "expectation_id": "exp_d7038d4b3014fdee4dea",
+              "mapping_confidence": null,
+              "mapping_rationale": null,
               "phrase": "Familiarity with Greenhouse, UltiPro, and/or Workday",
+              "proposed_backbone_id": null,
               "skill": "skill.posting.08aed99431cd830f",
               "source_id": "src_9b15265c573be6162aac"
             }
@@ -1228,7 +1419,7 @@
       "sectors_without_profiles": 20,
       "skills_by_status": {
         "core": 0,
-        "early": 7,
+        "early": 10,
         "fading": 0,
         "rising": 0
       },

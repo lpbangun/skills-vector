@@ -218,7 +218,9 @@ class RoleAtlasReads:
                                         "evidence": skill["evidence"], "forecast": skill["forecast"]})
         changes.sort(key=lambda item: (release_keys[item["release_id"]], item["role_id"], item["skill_id"]))
         order = {"rising": 0, "early": 1, "fading": 2}
-        current.sort(key=lambda item: (order[item["status"]], -item["forecast"]["probability"], item["role_id"], item["skill_id"]))
+        current.sort(key=lambda item: (order[item["status"]], item["forecast"]["probability"] is None,
+                                       -item["forecast"]["probability"] if item["forecast"]["probability"] is not None else 0,
+                                       item["role_id"], item["skill_id"]))
         return {"since": since, "current": current, "state_changes": changes, "uncompared_roles": uncompared,
                 "history_status": "not_recorded" if len(uncompared) == len(records) else "partial" if uncompared else "available",
                 "history_note": "State changes compare stored role/2 release snapshots, not inferred historical non-posting signals. A single snapshot cannot establish a change."}

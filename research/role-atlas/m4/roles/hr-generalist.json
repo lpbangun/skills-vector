@@ -5,7 +5,7 @@
   "status": "established",
   "publication": "standard",
   "data_kind": "research",
-  "release_id": "role_research_c5c1bf7bde401bdd",
+  "release_id": "role_research_e647b3e2dce649d4",
   "aliases": [
     "hr generalist",
     "people operations",
@@ -61,7 +61,7 @@
       {
         "id": "hr-generalist.L1",
         "level": 1,
-        "name": "Hr L1",
+        "name": "L1",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Guided. Not a population hiring standard.",
@@ -78,7 +78,7 @@
       {
         "id": "hr-generalist.L2",
         "level": 2,
-        "name": "Hr L2",
+        "name": "L2",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Independent. Not a population hiring standard.",
@@ -95,7 +95,7 @@
       {
         "id": "hr-generalist.L3",
         "level": 3,
-        "name": "Hr L3",
+        "name": "L3",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Complex delivery. Not a population hiring standard.",
@@ -112,7 +112,7 @@
       {
         "id": "hr-generalist.L4",
         "level": 4,
-        "name": "Hr L4",
+        "name": "L4",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Strategic. Not a population hiring standard.",
@@ -129,7 +129,7 @@
       {
         "id": "hr-generalist.L5",
         "level": 5,
-        "name": "Hr L5",
+        "name": "L5",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Organization-wide. Not a population hiring standard.",
@@ -151,68 +151,6 @@
         "id": "skill.onet.13-1071.00.local-task.policy",
         "short_label": "HR policies",
         "label": "HR policies",
-        "status": "early",
-        "first_level": null,
-        "share_by_level": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "source_links": [
-          "P",
-          "O"
-        ],
-        "windows": [
-          {
-            "window": "2026-Q4",
-            "share": 0.4,
-            "employers": 2,
-            "max_employer_share": 0.5,
-            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
-            "levels": [
-              "unassigned"
-            ],
-            "timing": "coincident"
-          }
-        ],
-        "evidence": [
-          {
-            "source": "Published job postings",
-            "source_kind": "postings",
-            "family": "P",
-            "timing": "coincident",
-            "reading": "2/5 admitted role postings record this node in their published expectation excerpts; 2 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
-            "direction": "presence",
-            "as_of": null
-          },
-          {
-            "source": "O*NET local task anchor",
-            "source_kind": "onet_ratings",
-            "family": "O",
-            "timing": "lagging",
-            "reading": "onet:13-1071.00:local-task:policy; local natural key, not an official task database ID. https://www.onetonline.org/link/summary/13-1071.00; published source src_c0c36636b26209c07cf2. Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
-            "direction": "presence",
-            "as_of": null
-          }
-        ],
-        "forecast": {
-          "id": "forecast.hr-generalist.skill.onet.13-1071.00.local-task.policy",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.4,
-          "base_rate": 0.4,
-          "horizon_quarters": 4,
-          "created": "2026-Q4",
-          "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
-        },
-        "disputed": null
-      },
-      {
-        "id": "skill.onet.13-1071.00.local-task.records",
-        "short_label": "HR records",
-        "label": "HR records",
         "status": "early",
         "first_level": null,
         "share_by_level": [
@@ -254,20 +192,22 @@
             "source_kind": "onet_ratings",
             "family": "O",
             "timing": "lagging",
-            "reading": "onet:13-1071.00:local-task:records; local natural key, not an official task database ID. https://www.onetonline.org/link/summary/13-1071.00; published source src_c0c36636b26209c07cf2. Prepare or maintain employment records related to events, such as hiring, termination, leaves, transfers, or promotions, using human resources management system software.",
+            "reading": "onet:13-1071.00:local-task:policy; local natural key, not an official task database ID. https://www.onetonline.org/link/summary/13-1071.00; published source src_c0c36636b26209c07cf2. Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
             "direction": "presence",
             "as_of": null
           }
         ],
         "forecast": {
-          "id": "forecast.hr-generalist.skill.onet.13-1071.00.local-task.records",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "id": "forecast.hr-generalist.skill.onet.13-1071.00.local-task.policy",
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -323,13 +263,15 @@
         ],
         "forecast": {
           "id": "forecast.hr-generalist.skill.onet.13-1071.00.local-task.relations",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -375,13 +317,15 @@
         ],
         "forecast": {
           "id": "forecast.hr-generalist.skill.posting.07b515ec149b8821",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -427,13 +371,15 @@
         ],
         "forecast": {
           "id": "forecast.hr-generalist.skill.posting.08aed99431cd830f",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -479,13 +425,231 @@
         ],
         "forecast": {
           "id": "forecast.hr-generalist.skill.posting.1141ba92a2f02faf",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.394c013b8f8a6c2c",
+        "short_label": "Configure and mai…",
+        "label": "Configure and maintain Workday Core HCM",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.hr-generalist.skill.posting.394c013b8f8a6c2c",
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.3b6067a131aea9af",
+        "short_label": "Counsel a small c…",
+        "label": "Counsel a small client group (150-200 employees)",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.hr-generalist.skill.posting.3b6067a131aea9af",
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.8e391b2f8801a9ce",
+        "short_label": "implementation of…",
+        "label": "implementation of human resources policies, programs, and processes",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.hr-generalist.skill.posting.8e391b2f8801a9ce",
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.a0893eef516298e0",
+        "short_label": "Build, maintain,…",
+        "label": "Build, maintain, and troubleshoot Workday reports, dashboards, and calculated fields",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.hr-generalist.skill.posting.a0893eef516298e0",
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -531,13 +695,15 @@
         ],
         "forecast": {
           "id": "forecast.hr-generalist.skill.posting.d512b42afab4c153",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       }
@@ -844,13 +1010,13 @@
   "observations": [],
   "limits": [
     "Research projection of published release rel_20261002_cbdc6e8d5c4f; source counts are a bounded admitted sample, not market prevalence.",
-    "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand; baseline forecasts assume the same admission and excerpt-selection process.",
+    "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand and is not a future probability.",
     "One selected snapshot only. Retrieval dates bin observed mentions; repeated releases are not independent windows. No comparable temporal history is asserted, so all current statuses are early.",
     "Null first_level means no observed assigned level; null share_by_level means no assigned denominator, not zero demand. Measurement strata explicitly include unassigned postings.",
     "Level names are a declared algorithmic scope rubric, not observed role progression. Titles and tenure never assign levels. Missing level expectations remain empty; no carry-over or first-introduction claim is inferred.",
     "O*NET task excerpts are attributed to O*NET OnLine, U.S. Department of Labor, CC BY 4.0, as recorded in the published sources; agent-authored alignments are not official or human-adjudicated equivalence.",
     "Backbone local-task keys identify exact O*NET task text within its SOC summary, not official task database element IDs; unmapped phrases remain posting-led literal identities.",
     "Unverified employer sectors are excluded, not guessed. Sector profiles need 30 postings and 8 employers. Official industry shares, wages and credential catalogs were not imported; any credential/knowledge text is a literal posting mention.",
-    "Forecast probabilities equal current role-wide mention fractions as an explicit uncalibrated persistence baseline, not researched trend probabilities. No temporal base-rate archive, ledger, resolution or backtest exists (M5 pending)."
+    "No forecast probability or base rate is available: basis is none and both values are null. Current excerpt mention fractions are measurements, not future probabilities. No historical base-rate archive, ledger, resolution or backtest exists (M5 pending)."
   ]
 }

@@ -90,6 +90,7 @@ def build_records(snapshot: dict) -> list[RoleRecord]:
                 "id": f"forecast.{role_id}.{key}", "claim": call[0], "probability": call[1] / 100,
                 "base_rate": call[2] / 100, "horizon_quarters": 4, "created": current,
                 "resolves": call[3], "scored_against": "stratified posting sample",
+                "basis": "fixture", "reason": None,
             }
             skills.append({"id": "skill." + key, "short_label": short, "label": label,
                            "status": extra.get("status", "core"), "first_level": first,

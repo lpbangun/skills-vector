@@ -19,6 +19,16 @@ locally inspected mapping revision. No URLs are fetched by the producer.
   producer verifies all of these locally. Phrases match complete normalized
   source wording, never a substring/embedding/LLM guess.
 
+Every role/anchor, backbone and phrase-alignment row records a `rationale` and
+qualitative `confidence` (`exact`, `close`, `loose`). These describe that specific
+relation, not a probability or human adjudication. Only exact/close phrase and
+backbone relations may contribute an O-family skill link. Loose phrase relations
+remain separate posting-led identities; the audit retains the proposed target,
+confidence and rationale without asserting the target as a verified link.
+Forecast accuracy is not record keeping; CRM use, language fluency, HR program
+implementation, nonspecific counseling, and HR-system configuration/reporting
+also do not establish their previously proposed O*NET duties. They stay loose.
+
 ## Backbone identity and limits
 
 The published O*NET summary excerpts contain SOC occupation codes and task text,

@@ -334,7 +334,7 @@ footer { border-top: 1px solid var(--rule); padding-top: 1rem; color: var(--grap
 .pips i.on { background: var(--ink-mid); color: var(--surface); }
 .pips.ev i { border: 1px solid var(--rule-soft); background: none; }
 .pips.ev i.on { background: var(--present); border-color: var(--present); color: var(--surface); }
-.call { font-family: var(--font-mono); font-size: 0.72rem; color: var(--graphite); }
+.call { white-space: nowrap; font-family: var(--font-mono); font-size: 0.72rem; color: var(--graphite); }
 .call strong { color: var(--ink); font-weight: 500; }
 @media (max-width: 640px) {
   .cols { display: none; }
@@ -344,6 +344,7 @@ footer { border-top: 1px solid var(--rule); padding-top: 1rem; color: var(--grap
 }
 .sig { list-style: none; margin: 0; padding: 0; display: grid; }
 .sig li { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 0.6rem; padding: 0.45rem 0; border-top: 1px solid var(--rule-soft); font-size: 0.85rem; }
+.sig li > span { min-width: 0; overflow-wrap: anywhere; }
 .sig li .src { display: grid; gap: 0.2rem; align-content: start; font-weight: 500; }
 @media (max-width: 480px) { .sig li { grid-template-columns: minmax(0, 1fr); } }
 .tm { font-family: var(--font-mono); font-size: 0.64rem; padding: 0.05rem 0.35rem; border: 1px solid currentColor; width: fit-content; white-space: nowrap; }
@@ -388,7 +389,7 @@ details.more > :not(summary) { margin: 0.9rem; }
 [hidden] { display: none !important; }
 main { display: grid; gap: 2.75rem; min-width: 0; }
 section, .wrap, .map-wrap > *, .graph-wrap > *, .ind > * { min-width: 0; }
-#skillPanel { position: sticky; top: 1rem; }
+#skillPanel { overflow-wrap: anywhere; position: sticky; top: 1rem; }
 @media (max-width: 940px) { #skillPanel { position: static; } }
 .btn, .linkbtn, .checks label { min-height: 44px; }
 .linkbtn { min-width: 44px; }

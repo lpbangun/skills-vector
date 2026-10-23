@@ -5,7 +5,7 @@
   "status": "emerging",
   "publication": "experimental",
   "data_kind": "research",
-  "release_id": "role_research_c5c1bf7bde401bdd",
+  "release_id": "role_research_e647b3e2dce649d4",
   "aliases": [
     "FDE",
     "forward-deployed engineer",
@@ -60,7 +60,7 @@
       {
         "id": "forward-deployed-engineer.L1",
         "level": 1,
-        "name": "Engineering L1",
+        "name": "L1",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Guided. Not a population hiring standard.",
@@ -77,7 +77,7 @@
       {
         "id": "forward-deployed-engineer.L2",
         "level": 2,
-        "name": "Engineering L2",
+        "name": "L2",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Independent. Not a population hiring standard.",
@@ -94,7 +94,7 @@
       {
         "id": "forward-deployed-engineer.L3",
         "level": 3,
-        "name": "Engineering L3",
+        "name": "L3",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Complex delivery. Not a population hiring standard.",
@@ -132,7 +132,7 @@
             "label": "Familiarity with CI/CD for produc",
             "introduced_at": null,
             "basis": "advertised_demand",
-            "cite": "/v1/expectations/exp.forward-deployed-engineer.01495a684f89a021@role_research_c5c1bf7bde401bdd",
+            "cite": "/v1/expectations/exp.forward-deployed-engineer.01495a684f89a021@role_research_e647b3e2dce649d4",
             "timing": "coincident"
           },
           {
@@ -140,7 +140,7 @@
             "label": "writing code, config, agent skills, and guideline files against their systems and ours",
             "introduced_at": null,
             "basis": "advertised_demand",
-            "cite": "/v1/expectations/exp.forward-deployed-engineer.80267ea3383f6180@role_research_c5c1bf7bde401bdd",
+            "cite": "/v1/expectations/exp.forward-deployed-engineer.80267ea3383f6180@role_research_e647b3e2dce649d4",
             "timing": "coincident"
           },
           {
@@ -148,7 +148,7 @@
             "label": "Working knowledge of two or more common Cloud ecosystems (AWS, Azure, GCP)",
             "introduced_at": null,
             "basis": "advertised_demand",
-            "cite": "/v1/expectations/exp.forward-deployed-engineer.c860bb9cee9fa1bd@role_research_c5c1bf7bde401bdd",
+            "cite": "/v1/expectations/exp.forward-deployed-engineer.c860bb9cee9fa1bd@role_research_e647b3e2dce649d4",
             "timing": "coincident"
           },
           {
@@ -156,7 +156,7 @@
             "label": "Run technical discovery: understand a customer's dev environment, toolchain, and constraints",
             "introduced_at": null,
             "basis": "advertised_demand",
-            "cite": "/v1/expectations/exp.forward-deployed-engineer.de658da5b70d1280@role_research_c5c1bf7bde401bdd",
+            "cite": "/v1/expectations/exp.forward-deployed-engineer.de658da5b70d1280@role_research_e647b3e2dce649d4",
             "timing": "coincident"
           },
           {
@@ -164,7 +164,7 @@
             "label": "Fluency in writing code in Python, Scala, JavaScript/TypeScript, and modern frameworks",
             "introduced_at": null,
             "basis": "advertised_demand",
-            "cite": "/v1/expectations/exp.forward-deployed-engineer.eeb7c2cf10e564ae@role_research_c5c1bf7bde401bdd",
+            "cite": "/v1/expectations/exp.forward-deployed-engineer.eeb7c2cf10e564ae@role_research_e647b3e2dce649d4",
             "timing": "coincident"
           },
           {
@@ -172,7 +172,7 @@
             "label": "Comfort owning ambiguous technical problems end to end",
             "introduced_at": null,
             "basis": "advertised_demand",
-            "cite": "/v1/expectations/exp.forward-deployed-engineer.fb7ae13ac3fb0bfb@role_research_c5c1bf7bde401bdd",
+            "cite": "/v1/expectations/exp.forward-deployed-engineer.fb7ae13ac3fb0bfb@role_research_e647b3e2dce649d4",
             "timing": "coincident"
           }
         ]
@@ -180,7 +180,7 @@
       {
         "id": "forward-deployed-engineer.L5",
         "level": 5,
-        "name": "Engineering L5",
+        "name": "L5",
         "typical_titles": [],
         "years_wording": "Not recorded",
         "scope": "Declared algorithmic scope rubric: Organization-wide. Not a population hiring standard.",
@@ -251,13 +251,15 @@
         ],
         "forecast": {
           "id": "forecast.forward-deployed-engineer.skill.onet.15-1252.00.local-task.discovery",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.4,
-          "base_rate": 0.4,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -271,7 +273,7 @@
           null,
           null,
           null,
-          100.0,
+          50.0,
           null
         ],
         "source_links": [
@@ -281,9 +283,9 @@
         "windows": [
           {
             "window": "2026-Q4",
-            "share": 0.6,
-            "employers": 3,
-            "max_employer_share": 0.3333333333333333,
+            "share": 0.4,
+            "employers": 2,
+            "max_employer_share": 0.5,
             "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
             "levels": [
               4,
@@ -298,7 +300,7 @@
             "source_kind": "postings",
             "family": "P",
             "timing": "coincident",
-            "reading": "3/5 admitted role postings record this node in their published expectation excerpts; 3 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "reading": "2/5 admitted role postings record this node in their published expectation excerpts; 2 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
             "direction": "presence",
             "as_of": null
           },
@@ -314,13 +316,15 @@
         ],
         "forecast": {
           "id": "forecast.forward-deployed-engineer.skill.onet.15-1252.00.local-task.software",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.6,
-          "base_rate": 0.6,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -367,13 +371,15 @@
         ],
         "forecast": {
           "id": "forecast.forward-deployed-engineer.skill.posting.0e821edd5c69e5a1",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -420,13 +426,15 @@
         ],
         "forecast": {
           "id": "forecast.forward-deployed-engineer.skill.posting.288a95450eb4e7f0",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -473,13 +481,15 @@
         ],
         "forecast": {
           "id": "forecast.forward-deployed-engineer.skill.posting.632a7fc335c2e63e",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -526,13 +536,15 @@
         ],
         "forecast": {
           "id": "forecast.forward-deployed-engineer.skill.posting.698a76d2c0a8aa7e",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -579,13 +591,15 @@
         ],
         "forecast": {
           "id": "forecast.forward-deployed-engineer.skill.posting.a9bbcdade7a3ccde",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -632,13 +646,15 @@
         ],
         "forecast": {
           "id": "forecast.forward-deployed-engineer.skill.posting.b26ed103c6093610",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -685,13 +701,15 @@
         ],
         "forecast": {
           "id": "forecast.forward-deployed-engineer.skill.posting.bccc29a4aa9bbd03",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       },
@@ -738,13 +756,70 @@
         ],
         "forecast": {
           "id": "forecast.forward-deployed-engineer.skill.posting.c26b5fd3ad218c8c",
-          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-          "probability": 0.2,
-          "base_rate": 0.2,
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
           "horizon_quarters": 4,
           "created": "2026-Q4",
           "resolves": "2027-Q4",
-          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.e58f82058d83f87a",
+        "short_label": "Fluency in writin…",
+        "label": "Fluency in writing code in Python, Scala, JavaScript/TypeScript, and modern frameworks",
+        "status": "early",
+        "first_level": 4,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          50.0,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              4,
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.forward-deployed-engineer.skill.posting.e58f82058d83f87a",
+          "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": null,
+          "base_rate": null,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists",
+          "basis": "none",
+          "reason": "One observed window; no historical base rate or backtest archive."
         },
         "disputed": null
       }
@@ -1051,13 +1126,13 @@
   "observations": [],
   "limits": [
     "Research projection of published release rel_20261002_cbdc6e8d5c4f; source counts are a bounded admitted sample, not market prevalence.",
-    "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand; baseline forecasts assume the same admission and excerpt-selection process.",
+    "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand and is not a future probability.",
     "One selected snapshot only. Retrieval dates bin observed mentions; repeated releases are not independent windows. No comparable temporal history is asserted, so all current statuses are early.",
     "Null first_level means no observed assigned level; null share_by_level means no assigned denominator, not zero demand. Measurement strata explicitly include unassigned postings.",
     "Level names are a declared algorithmic scope rubric, not observed role progression. Titles and tenure never assign levels. Missing level expectations remain empty; no carry-over or first-introduction claim is inferred.",
     "O*NET task excerpts are attributed to O*NET OnLine, U.S. Department of Labor, CC BY 4.0, as recorded in the published sources; agent-authored alignments are not official or human-adjudicated equivalence.",
     "Backbone local-task keys identify exact O*NET task text within its SOC summary, not official task database element IDs; unmapped phrases remain posting-led literal identities.",
     "Unverified employer sectors are excluded, not guessed. Sector profiles need 30 postings and 8 employers. Official industry shares, wages and credential catalogs were not imported; any credential/knowledge text is a literal posting mention.",
-    "Forecast probabilities equal current role-wide mention fractions as an explicit uncalibrated persistence baseline, not researched trend probabilities. No temporal base-rate archive, ledger, resolution or backtest exists (M5 pending)."
+    "No forecast probability or base rate is available: basis is none and both values are null. Current excerpt mention fractions are measurements, not future probabilities. No historical base-rate archive, ledger, resolution or backtest exists (M5 pending)."
   ]
 }

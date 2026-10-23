@@ -37,7 +37,7 @@
         window: { current: raw.demand_window.id, previous: raw.demand_window.compared_to,
           postings: raw.demand_window.postings, employers: raw.demand_window.employers },
         levels: raw.ladder.levels.map(function (level) {
-          return { L: level.level, name: level.name, titles: level.typical_titles, years: level.years_wording,
+          return { L: level.level, name: level.typical_titles.length ? level.name : "L" + level.level, titles: level.typical_titles, years: level.years_wording,
             scope: level.scope, owns: level.owns, stepUp: level.step_up, n: level.evidence.postings, e: level.evidence.employers,
             exp: level.expectations.map(function (item) { return [item.label, item.introduced_at === null ? "unknown" : item.introduced_at === level.level ? "new" : "carry"]; }) };
         }),
@@ -94,7 +94,7 @@
         sh: skill.share_by_level, src: skill.source_links, status: skill.status,
         sig: skill.evidence.map(function (item) { return [item.source_kind + ":" + item.source, item.reading, item.direction, item.family]; }),
         fams: fams, official: hasOfficial(skill), disputed: skill.disputed,
-        call: skill.forecast ? [skill.forecast.claim, percentage(skill.forecast.probability), percentage(skill.forecast.base_rate), skill.forecast.resolves] : null };
+        call: skill.forecast };
     });
   }
 
@@ -141,9 +141,11 @@
       '<div><div class="label">Evidence</div><ul class="sig">' + original.evidence.map(function (signal) {
         return '<li><span class="src">' + esc(signal.source) + timingTag(signal.timing, signal.as_of) + '</span><span>' + esc(signal.reading) + ' <span class="mono">' + esc(signal.family + " · " + signal.direction) + '</span></span></li>';
       }).join('') + '</ul></div>' +
-      (forecast ? '<div class="forecast"><span class="label">Forecast · resolves ' + esc(forecast.resolves) + '</span><span><span class="p">' + percentage(forecast.probability) + '%</span> ' + (raw.data_kind === "fixture" ? "likely: " : "unscored estimate: ") + esc(forecast.claim) + '.</span>' +
-        '<small>Base rate: ' + percentage(forecast.base_rate) + '%. Horizon: ' + forecast.horizon_quarters + ' quarters. Scored against ' + esc(forecast.scored_against) + '.' +
-        (raw.data_kind === "fixture" ? ' Both rates are illustrative; no backtest result is claimed.' : '') + '</small></div>' :
+      (forecast ? '<div class="forecast">' + (forecast.basis === "none"
+        ? '<span class="label">No forecast yet</span><p class="forecast-reason">' + esc(forecast.reason) + '</p><p>' + esc(forecast.claim) + '</p>'
+        : '<span class="label">Forecast · resolves ' + esc(forecast.resolves) + '</span><span><span class="p">' + percentage(forecast.probability) + '%</span> likely: ' + esc(forecast.claim) + '.</span><small>Base rate: ' + percentage(forecast.base_rate) + '%.' +
+          (forecast.basis === "fixture" ? ' Both rates are illustrative; no backtest result is claimed.' : ' Basis: historical backtest.') + '</small>') +
+        '<small>Horizon: ' + forecast.horizon_quarters + ' quarters. Resolves ' + esc(forecast.resolves) + '. Scored against ' + esc(forecast.scored_against) + '.</small></div>' :
         '<div class="forecast"><span class="label">No forecast</span><small>Core skills are re-checked each window. A qualifying drop moves a skill to fading.</small></div>') +
       '<div><div class="label">Share of postings by level</div><div class="bars">' + role().levels.map(function (level) {
         var share = k.sh[level.L - 1]; return '<div class="win"><span>L' + level.L + '</span><span class="track"><span class="bar cur" style="width:' + (share === null ? 0 : share) + '%"></span></span><span>' + shareLabel(share) + '</span></div>';
@@ -336,7 +338,7 @@
 
   function renderGap() {
     var l = level(), items = gapItems();
-    $("gapTarget").textContent = "L" + l.L + " · " + l.name;
+    $("gapTarget").textContent = levelTitle(l.L);
     $("checks").innerHTML = items.map(function (it) {
       var tag = it.kind === "shift" ? '<span class="chip st-' + it.state + '">' + STATUS[it.status][0] + "</span>" : '<span class="lvl">L' + it.L + "</span>";
       return '<label><input type="checkbox" id="have-' + esc(it.id) + '" data-id="' + esc(it.id) + '"' + (state.have[it.id] ? " checked" : "") + "><span>" + esc(it.label) + "</span>" + tag + "</label>";
@@ -365,6 +367,12 @@
   function topLevel() { var lv = role().levels; return lv[lv.length - 1].L; }
   function separatesTop(n) { var g = GRAPH[state.role], t = topLevel(); return comparableShares(n.sh[t - 1], n.sh[g.mid - 1]) && n.sh[t - 1] - n.sh[g.mid - 1] >= 20 && n.sh[t - 1] >= 40; }
   function levelName(L) { return role().levels.filter(function (l) { return l.L === L; })[0].name; }
+  function levelTitle(L) { var name = levelName(L); return name === "L" + L ? name : "L" + L + " · " + name; }
+  function missingComparison() { var g = GRAPH[state.role]; return !role().levels.find(function (l) { return l.L === g.mid; }).n || !role().levels.find(function (l) { return l.L === topLevel(); }).n; }
+  function comparisonReason() {
+    var assigned = role().levels.reduce(function (sum, l) { return sum + l.n; }, 0);
+    return "Not enough level-assigned postings to compare levels: " + assigned + " of " + role().window.postings + " postings have a level.";
+  }
   var SRC = { P: "Postings", O: "O*NET", Ee: "ESCO essential", Eo: "ESCO optional" };
 
   function renderGraphControls() {
@@ -480,12 +488,14 @@
         }).join("") + "</ul>" : '<p class="empty">No pair above the threshold.</p>') + "</div>" +
         (on.length || leads.length ? '<dl class="kv">' + (on.length ? "<dt>Builds on</dt><dd>" + esc(on.join(", ")) + "</dd>" : "") + (leads.length ? "<dt>Leads to</dt><dd>" + esc(leads.join(", ")) + "</dd>" : "") + "</dl>" : "") +
         '<button type="button" class="linkbtn" id="clearNode">Back to the summary</button>';
+    } else if (state.lens === "top" && missingComparison()) {
+      html = '<div class="label">Top level adds</div><p class="empty">' + esc(comparisonReason()) + "</p>";
     } else if (state.lens === "top") {
       var mid = g.mid, sep = nodes.filter(separatesTop).sort(function (a, b) { return (b.sh[t - 1] - b.sh[mid - 1]) - (a.sh[t - 1] - a.sh[mid - 1]); });
       var drop = nodes.filter(function (x) { return comparableShares(x.sh[mid - 1], x.sh[t - 1]) && x.sh[mid - 1] - x.sh[t - 1] >= 15; });
       var carry = nodes.filter(function (x) { return !separatesTop(x) && drop.indexOf(x) < 0 && x.sh[t - 1] >= 30 && x.sh[mid - 1] >= 30; });
-      var missingComparison = nodes.some(function (x) { return !comparableShares(x.sh[t - 1], x.sh[mid - 1]); });
-      html = (missingComparison ? '<p class="empty">No measured comparison for some skills: missing assigned level samples are not zero demand.</p>' : "") + '<div style="display:grid; gap:0.35rem"><div class="label">Top level adds</div><h3>What L' + t + " · " + esc(levelName(t)) + " asks for that L" + mid + " · " + esc(levelName(mid)) + " does not</h3></div>" +
+      var missingShares = nodes.some(function (x) { return !comparableShares(x.sh[t - 1], x.sh[mid - 1]); });
+      html = (missingShares ? '<p class="empty">No measured comparison for some skills: missing assigned level samples are not zero demand.</p>' : "") + '<div style="display:grid; gap:0.35rem"><div class="label">Top level adds</div><h3>What L' + t + " · " + esc(levelName(t)) + " asks for that L" + mid + " · " + esc(levelName(mid)) + " does not</h3></div>" +
         '<div style="display:grid; gap:0.3rem"><div class="label">Separates the top · share at L' + t + " vs L" + mid + '</div><ul class="pairs">' +
         sep.map(function (x) { return "<li><span>" + esc(x.label) + '</span><span class="mono">' + x.sh[t - 1] + "% vs " + x.sh[mid - 1] + "%</span></li>"; }).join("") + "</ul></div>" +
         '<div style="display:grid; gap:0.3rem"><div class="label">Carried from L' + mid + '</div><ul class="pairs">' +
@@ -495,7 +505,7 @@
         '<p class="caveat">This shows what employers ask of the top level, not what makes someone excellent at it. Saying more needs practitioner review and O*NET level ratings.</p>';
     } else {
       var i = state.level - 1, most = nodes.filter(function (x) { return x.sh[i] > 0; }).sort(function (a, b) { return b.sh[i] - a.sh[i]; }).slice(0, 6);
-      html = '<div style="display:grid; gap:0.35rem"><div class="label">Most asked at this level</div><h3>L' + state.level + " · " + esc(levelName(state.level)) + "</h3></div>" +
+      html = '<div style="display:grid; gap:0.35rem"><div class="label">Most asked at this level</div><h3>' + esc(levelTitle(state.level)) + "</h3></div>" +
         (most.length ? shareList(most, i) : '<p class="empty">No measured skill shares at this level. A missing assigned sample is not zero demand.</p>') +
         '<p class="muted" style="font-size:0.84rem">Select a skill in the graph to see its share at every level, what it is asked together with, and what it builds on.</p>';
     }
@@ -562,6 +572,10 @@
 
   function renderTopLine(list) {
     var g = GRAPH[state.role], t = topLevel();
+    if (missingComparison()) {
+      $("topLine").innerHTML = '<span class="label">Top level adds</span><span>' + esc(comparisonReason()) + "</span>";
+      return;
+    }
     var sep = list.filter(function (k) { return comparableShares(k.sh[t - 1], k.sh[g.mid - 1]) && k.sh[t - 1] - k.sh[g.mid - 1] >= 20 && k.sh[t - 1] >= 40; })
       .sort(function (a, b) { return (b.sh[t - 1] - b.sh[g.mid - 1]) - (a.sh[t - 1] - a.sh[g.mid - 1]); });
     $("topLine").innerHTML = '<span class="label">What the top level adds</span><span>Compared with L' + g.mid + " · " + esc(levelName(g.mid)) + ", postings for L" + t + " · " + esc(levelName(t)) + " add: " +
@@ -589,10 +603,10 @@
         rows.map(function (k) {
           var pips = r.levels.map(function (l) { return '<i class="' + (neededAt(k, l.L) ? "on" : "") + '">' + (k.sh[l.L - 1] === null ? "?" : l.L) + "</i>"; }).join("");
           var ev = ["P", "O", "M"].map(function (f) { return '<i class="' + (k.fams[f] ? "on" : "") + '">' + f + "</i>"; }).join("");
-          var call = k.call ? "<strong>" + k.call[1] + "%</strong> · " + esc(k.call[0].replace("Asked in ", "")) : (st === "core" ? "–" : "");
+          var call = k.call ? (k.call.basis === "none" ? "No forecast yet" : "<strong>" + percentage(k.call.probability) + "%</strong> · " + esc(k.call.resolves)) : "–";
           var lvls = r.levels.filter(function (l) { return neededAt(k, l.L); }).map(function (l) { return "L" + l.L; }).join(", ") || (k.sh.some(function (v) { return v === null; }) ? "no measured assigned coverage" : "none above 15%");
           var evTxt = ["P", "O", "M"].filter(function (f) { return k.fams[f]; }).map(function (f) { return { P: "postings", O: "official map", M: "market trend" }[f]; }).join(", ");
-          return '<button type="button" class="srow" data-skill="' + esc(k.id) + '" aria-pressed="' + (state.skill === k.id) + '" aria-label="' + esc(k.label + ". " + STATUS[st][0] + ". Needed at " + lvls + ". Evidence: " + evTxt + "." + (k.disputed ? " Disputed: " + k.disputed + "." : "") + (k.call ? " Forecast " + k.call[1] + "%: " + k.call[0] + "." : "")) + '">' +
+          return '<button type="button" class="srow" data-skill="' + esc(k.id) + '" aria-pressed="' + (state.skill === k.id) + '" aria-label="' + esc(k.label + ". " + STATUS[st][0] + ". Needed at " + lvls + ". Evidence: " + evTxt + "." + (k.disputed ? " Disputed: " + k.disputed + "." : "") + (k.call ? k.call.basis === "none" ? " No forecast yet." : " Forecast " + percentage(k.call.probability) + "%: " + k.call.claim + "." : "")) + '">' +
             "<span>" + esc(k.label) + (k.disputed ? '<span class="flag">disputed</span>' : "") + (!k.official && st === "core" ? '<span class="flag gap">not in official maps yet</span>' : "") + "</span>" +
             '<span class="pips" aria-hidden="true">' + pips + '</span><span class="pips ev" aria-hidden="true">' + ev + '</span><span class="call" aria-hidden="true">' + call + "</span></button>";
         }).join("") + "</div>";

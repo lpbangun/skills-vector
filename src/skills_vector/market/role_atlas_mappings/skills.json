@@ -12,7 +12,9 @@
       "source_id": "src_3d355c8e4edbd6e5043e",
       "status": "established",
       "category": "sales",
-      "source_note": "Local published O*NET summary is a task comparison anchor, not proof of whole-role equivalence. Level names are scope-rubric labels, not observed hiring standards."
+      "source_note": "Local published O*NET summary is a task comparison anchor, not proof of whole-role equivalence. Level names are scope-rubric labels, not observed hiring standards.",
+      "confidence": "loose",
+      "rationale": "This is an occupation/task comparison anchor, not whole-role equivalence. Role and scope boundaries remain those of the published sample."
     },
     "forward-deployed-engineer": {
       "anchor": {
@@ -24,7 +26,9 @@
       "source_id": "src_e933e580d83319da7e23",
       "status": "emerging",
       "category": "engineering",
-      "source_note": "Local published O*NET summary is a task comparison anchor, not proof of whole-role equivalence. Level names are scope-rubric labels, not observed hiring standards."
+      "source_note": "Local published O*NET summary is a task comparison anchor, not proof of whole-role equivalence. Level names are scope-rubric labels, not observed hiring standards.",
+      "confidence": "loose",
+      "rationale": "This is an occupation/task comparison anchor, not whole-role equivalence. Role and scope boundaries remain those of the published sample."
     },
     "growth-manager": {
       "anchor": {
@@ -36,7 +40,9 @@
       "source_id": "src_e815e32b3bd8b5f52366",
       "status": "emerging",
       "category": "growth",
-      "source_note": "Local published O*NET summary is a task comparison anchor, not proof of whole-role equivalence. Level names are scope-rubric labels, not observed hiring standards."
+      "source_note": "Local published O*NET summary is a task comparison anchor, not proof of whole-role equivalence. Level names are scope-rubric labels, not observed hiring standards.",
+      "confidence": "loose",
+      "rationale": "This is an occupation/task comparison anchor, not whole-role equivalence. Role and scope boundaries remain those of the published sample."
     },
     "hr-generalist": {
       "anchor": {
@@ -48,7 +54,9 @@
       "source_id": "src_c0c36636b26209c07cf2",
       "status": "established",
       "category": "HR",
-      "source_note": "Local published O*NET summary is a task comparison anchor, not proof of whole-role equivalence. Level names are scope-rubric labels, not observed hiring standards."
+      "source_note": "Local published O*NET summary is a task comparison anchor, not proof of whole-role equivalence. Level names are scope-rubric labels, not observed hiring standards.",
+      "confidence": "close",
+      "rationale": "This is an occupation/task comparison anchor, not whole-role equivalence. Role and scope boundaries remain those of the published sample."
     }
   },
   "backbone": [
@@ -59,7 +67,9 @@
       "source_id": "src_3d355c8e4edbd6e5043e",
       "extract_sha256": "96df07af83f8d7eb929e7e5a2bdb06fccf46e28658b3514020812aa517298a6d",
       "quote": "Negotiate details of contracts and payments.",
-      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID."
+      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID.",
+      "confidence": "exact",
+      "rationale": "This local natural key identifies the exact quoted O*NET task in its hash-verified SOC summary. It is not an assertion that any posting phrase is an exact synonym."
     },
     {
       "id": "onet:41-4012.00:local-task:prospecting",
@@ -68,7 +78,9 @@
       "source_id": "src_3d355c8e4edbd6e5043e",
       "extract_sha256": "96df07af83f8d7eb929e7e5a2bdb06fccf46e28658b3514020812aa517298a6d",
       "quote": "Identify prospective customers by using business directories, following leads from existing clients, participating in organizations and clubs, and attending trade shows and conferences.",
-      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID."
+      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID.",
+      "confidence": "exact",
+      "rationale": "This local natural key identifies the exact quoted O*NET task in its hash-verified SOC summary. It is not an assertion that any posting phrase is an exact synonym."
     },
     {
       "id": "onet:41-4012.00:local-task:demonstration",
@@ -77,7 +89,9 @@
       "source_id": "src_3d355c8e4edbd6e5043e",
       "extract_sha256": "96df07af83f8d7eb929e7e5a2bdb06fccf46e28658b3514020812aa517298a6d",
       "quote": "Contact regular and prospective customers to demonstrate products, explain product features, and solicit orders.",
-      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID."
+      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID.",
+      "confidence": "exact",
+      "rationale": "This local natural key identifies the exact quoted O*NET task in its hash-verified SOC summary. It is not an assertion that any posting phrase is an exact synonym."
     },
     {
       "id": "onet:41-4012.00:local-task:records",
@@ -86,7 +100,9 @@
       "source_id": "src_3d355c8e4edbd6e5043e",
       "extract_sha256": "96df07af83f8d7eb929e7e5a2bdb06fccf46e28658b3514020812aa517298a6d",
       "quote": "Perform administrative duties, such as preparing sales budgets and reports, keeping sales records, and filing expense account reports.",
-      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID."
+      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID.",
+      "confidence": "exact",
+      "rationale": "This local natural key identifies the exact quoted O*NET task in its hash-verified SOC summary. It is not an assertion that any posting phrase is an exact synonym."
     },
     {
       "id": "onet:15-1252.00:local-task:software",
@@ -95,7 +111,9 @@
       "source_id": "src_e933e580d83319da7e23",
       "extract_sha256": "4308885c507f7bc5a5be9e161eec16982d17563b5a7defa183d9f875a098ebfd",
       "quote": "Design, develop and modify software systems, using scientific analysis and mathematical models to predict and measure outcomes and consequences of design.",
-      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID."
+      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID.",
+      "confidence": "exact",
+      "rationale": "This local natural key identifies the exact quoted O*NET task in its hash-verified SOC summary. It is not an assertion that any posting phrase is an exact synonym."
     },
     {
       "id": "onet:15-1252.00:local-task:discovery",
@@ -104,7 +122,9 @@
       "source_id": "src_e933e580d83319da7e23",
       "extract_sha256": "4308885c507f7bc5a5be9e161eec16982d17563b5a7defa183d9f875a098ebfd",
       "quote": "Analyze user needs and software requirements to determine feasibility of design within time and cost constraints.",
-      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID."
+      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID.",
+      "confidence": "exact",
+      "rationale": "This local natural key identifies the exact quoted O*NET task in its hash-verified SOC summary. It is not an assertion that any posting phrase is an exact synonym."
     },
     {
       "id": "onet:13-1071.00:local-task:policy",
@@ -113,7 +133,9 @@
       "source_id": "src_c0c36636b26209c07cf2",
       "extract_sha256": "30ee821f01c323fb437bc56ad753d906db5c952b3b0feca7febcf5fe7319f045",
       "quote": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
-      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID."
+      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID.",
+      "confidence": "exact",
+      "rationale": "This local natural key identifies the exact quoted O*NET task in its hash-verified SOC summary. It is not an assertion that any posting phrase is an exact synonym."
     },
     {
       "id": "onet:13-1071.00:local-task:relations",
@@ -122,7 +144,9 @@
       "source_id": "src_c0c36636b26209c07cf2",
       "extract_sha256": "30ee821f01c323fb437bc56ad753d906db5c952b3b0feca7febcf5fe7319f045",
       "quote": "Address employee relations issues, such as harassment allegations, work complaints, or other employee concerns.",
-      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID."
+      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID.",
+      "confidence": "exact",
+      "rationale": "This local natural key identifies the exact quoted O*NET task in its hash-verified SOC summary. It is not an assertion that any posting phrase is an exact synonym."
     },
     {
       "id": "onet:13-1071.00:local-task:records",
@@ -131,7 +155,9 @@
       "source_id": "src_c0c36636b26209c07cf2",
       "extract_sha256": "30ee821f01c323fb437bc56ad753d906db5c952b3b0feca7febcf5fe7319f045",
       "quote": "Prepare or maintain employment records related to events, such as hiring, termination, leaves, transfers, or promotions, using human resources management system software.",
-      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID."
+      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID.",
+      "confidence": "exact",
+      "rationale": "This local natural key identifies the exact quoted O*NET task in its hash-verified SOC summary. It is not an assertion that any posting phrase is an exact synonym."
     },
     {
       "id": "onet:11-2021.00:local-task:campaign",
@@ -140,7 +166,9 @@
       "source_id": "src_e815e32b3bd8b5f52366",
       "extract_sha256": "07a369aacfbd6485e87a9e9afb3b883f3221d8347d9c4a84f64f3130a3cd031e",
       "quote": "Formulate, direct, or coordinate marketing activities or policies to promote products or services, working with advertising or promotion managers.",
-      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID."
+      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID.",
+      "confidence": "exact",
+      "rationale": "This local natural key identifies the exact quoted O*NET task in its hash-verified SOC summary. It is not an assertion that any posting phrase is an exact synonym."
     },
     {
       "id": "onet:11-2021.00:local-task:strategy",
@@ -149,7 +177,9 @@
       "source_id": "src_e815e32b3bd8b5f52366",
       "extract_sha256": "07a369aacfbd6485e87a9e9afb3b883f3221d8347d9c4a84f64f3130a3cd031e",
       "quote": "Identify, develop, or evaluate marketing strategy, based on knowledge of establishment objectives, market characteristics, and cost and markup factors.",
-      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID."
+      "source_note": "Agent-authored offline task-level alignment, inspected against this exact local O*NET excerpt; not human-adjudicated synonym equivalence. local-task is a project natural key, not an official task database element ID.",
+      "confidence": "exact",
+      "rationale": "This local natural key identifies the exact quoted O*NET task in its hash-verified SOC summary. It is not an assertion that any posting phrase is an exact synonym."
     }
   ],
   "phrases": [
@@ -157,127 +187,169 @@
       "role": "account-executive",
       "phrase": "Negotiate favorable pricing and business terms",
       "backbone_id": "onet:41-4012.00:local-task:negotiation",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "close",
+      "rationale": "Negotiating price and business terms directly aligns to negotiating contract/payment details; no broader sales proficiency is asserted."
     },
     {
       "role": "account-executive",
       "phrase": "generating your own pipeline and hitting sales targets",
       "backbone_id": "onet:41-4012.00:local-task:prospecting",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "close",
+      "rationale": "The pipeline-generation component aligns to identifying prospective customers. Sales-target attainment is not attributed to the O*NET task."
     },
     {
       "role": "account-executive",
       "phrase": "prospect, build relationships, and sign up new restaurateurs",
       "backbone_id": "onet:41-4012.00:local-task:prospecting",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "close",
+      "rationale": "The explicit prospecting component aligns to identifying prospective customers, without asserting all listed sourcing methods."
     },
     {
       "role": "account-executive",
       "phrase": "Conduct demos and develop a solution",
       "backbone_id": "onet:41-4012.00:local-task:demonstration",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "close",
+      "rationale": "Conducting product demos aligns to demonstrating products to prospective customers; solution design is not treated as an exact synonym."
     },
     {
       "role": "account-executive",
       "phrase": "Ensure high forecasting accuracy and consistency",
       "backbone_id": "onet:41-4012.00:local-task:records",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "loose",
+      "rationale": "Forecast accuracy and consistency concern prediction quality, not keeping sales records. Retain the literal posting phrase without an O-family link."
     },
     {
       "role": "account-executive",
       "phrase": "Leverage Salesforce (our CRM) to manage all sales activities",
       "backbone_id": "onet:41-4012.00:local-task:records",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "loose",
+      "rationale": "Using a CRM to manage activities does not establish the specific record-keeping duties in this task. Keep this tool/workflow mention posting-led."
     },
     {
       "role": "forward-deployed-engineer",
       "phrase": "prototype and propose software solutions",
       "backbone_id": "onet:15-1252.00:local-task:software",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "close",
+      "rationale": "Prototyping and proposing software solutions is a bounded software-design activity; this does not establish the task's scientific-modeling requirements."
     },
     {
       "role": "forward-deployed-engineer",
       "phrase": "Design, code, and launch features",
       "backbone_id": "onet:15-1252.00:local-task:software",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "close",
+      "rationale": "Designing and coding features directly supports software development/modification; launch duties add scope not asserted by the task alignment."
     },
     {
       "role": "forward-deployed-engineer",
       "phrase": "Fluency in writing code in Python, Scala, JavaScript/TypeScript, and modern frameworks",
       "backbone_id": "onet:15-1252.00:local-task:software",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "loose",
+      "rationale": "Language/framework fluency is a capability requirement, not evidence of the specific software-systems development task. Keep it posting-led."
     },
     {
       "role": "forward-deployed-engineer",
       "phrase": "writing code, config, agent skills, and guideline files against their systems and ours",
       "backbone_id": "onet:15-1252.00:local-task:software",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "close",
+      "rationale": "The explicit code-writing component supports software modification. Config, agent skills and guideline files are not asserted to be official O*NET concepts."
     },
     {
       "role": "forward-deployed-engineer",
       "phrase": "Work directly with customers to understand their technical and operational objectives",
       "backbone_id": "onet:15-1252.00:local-task:discovery",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "close",
+      "rationale": "Understanding customer technical objectives is a bounded user-needs analysis activity; feasibility within time and cost is not independently established."
     },
     {
       "role": "forward-deployed-engineer",
       "phrase": "Run technical discovery: understand a customer's dev environment, toolchain, and constraints",
       "backbone_id": "onet:15-1252.00:local-task:discovery",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "close",
+      "rationale": "Technical discovery of environments and constraints aligns to analyzing software requirements; no claim of full task equivalence is made."
     },
     {
       "role": "hr-generalist",
       "phrase": "implementation of human resources policies, programs, and processes",
       "backbone_id": "onet:13-1071.00:local-task:policy",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "loose",
+      "rationale": "Implementing HR programs/processes is not the same activity as interpreting and explaining HR policies. Keep implementation posting-led."
     },
     {
       "role": "hr-generalist",
       "phrase": "Explain complicated compliance and HR concepts in simple, user-friendly terms",
       "backbone_id": "onet:13-1071.00:local-task:policy",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "close",
+      "rationale": "Explaining HR/compliance concepts closely aligns to explaining HR policies and regulations; no exhaustive policy expertise is inferred."
     },
     {
       "role": "hr-generalist",
       "phrase": "Respond to day-to-day employee inquiries, questions and complaints",
       "backbone_id": "onet:13-1071.00:local-task:relations",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "close",
+      "rationale": "Responding to employee complaints closely aligns to addressing employee-relations concerns. Other inquiry types are not asserted equivalent."
     },
     {
       "role": "hr-generalist",
       "phrase": "Counsel a small client group (150-200 employees)",
       "backbone_id": "onet:13-1071.00:local-task:relations",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "loose",
+      "rationale": "Counseling a client group does not specify employee-relations problems or complaints. Client-group size alone cannot establish this task."
     },
     {
       "role": "hr-generalist",
       "phrase": "Configure and maintain Workday Core HCM",
       "backbone_id": "onet:13-1071.00:local-task:records",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "loose",
+      "rationale": "Configuring an HR system does not establish maintenance of employment records. Keep the Workday configuration task posting-led."
     },
     {
       "role": "hr-generalist",
       "phrase": "Build, maintain, and troubleshoot Workday reports, dashboards, and calculated fields",
       "backbone_id": "onet:13-1071.00:local-task:records",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "loose",
+      "rationale": "Building dashboards and calculated fields is reporting/system work, not necessarily maintaining employment event records. Keep it posting-led."
     },
     {
       "role": "growth-manager",
       "phrase": "drive Duolingo’s global user acquisition campaigns across multiple channels",
       "backbone_id": "onet:11-2021.00:local-task:campaign",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "close",
+      "rationale": "Driving acquisition campaigns is a concrete marketing-activity coordination component; policy authority and the entire manager task are not inferred."
     },
     {
       "role": "growth-manager",
       "phrase": "Own day-to-day execution of global performance marketing campaigns",
       "backbone_id": "onet:11-2021.00:local-task:campaign",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "close",
+      "rationale": "Owning day-to-day campaign execution supports coordinating marketing activities, without implying marketing policy authority."
     },
     {
       "role": "growth-manager",
       "phrase": "run and optimize mobile install campaigns across major platforms",
       "backbone_id": "onet:11-2021.00:local-task:campaign",
-      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node."
+      "source_note": "Agent-authored, locally inspected bounded task alignment only; not human-adjudicated synonym or whole-role equivalence. Count each posting once per backbone node.",
+      "confidence": "close",
+      "rationale": "Running and optimizing mobile campaigns is a concrete marketing activity; this is a bounded alignment, not whole-role managerial equivalence."
     }
   ],
   "sectors": {

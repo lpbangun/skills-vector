@@ -247,6 +247,33 @@ class RoleContractTests(unittest.TestCase):
             self.skill(payload)["forecast"]["probability"] = value
             self.reject(payload)
 
+    def test_forecast_bases_require_real_numbers_or_explicit_absence(self) -> None:
+        for basis in ("fixture", "backtest", "none"):
+            payload = copy.deepcopy(self.payload)
+            forecast = self.skill(payload)["forecast"]
+            forecast["basis"] = basis
+            if basis == "none":
+                forecast.update(probability=None, base_rate=None, reason="One window; no historical base rate.")
+            rebuilt = RoleRecord.from_dict(payload)
+            self.assertEqual(self.skill(rebuilt.to_dict())["forecast"], forecast)
+            self.assertEqual(RoleRecord.from_json(rebuilt.to_json()), rebuilt)
+            for field in ("probability", "base_rate"):
+                bad = copy.deepcopy(payload)
+                self.skill(bad)["forecast"][field] = 0.2 if basis == "none" else None
+                self.reject(bad)
+        for reason in (None, "", " "):
+            payload = copy.deepcopy(self.payload)
+            self.skill(payload)["forecast"].update(basis="none", probability=None, base_rate=None, reason=reason)
+            self.reject(payload)
+        for field in ("basis", "reason"):
+            payload = copy.deepcopy(self.payload)
+            self.skill(payload)["forecast"].update(basis="none", probability=None, base_rate=None, reason="No archive")
+            del self.skill(payload)["forecast"][field]
+            self.reject(payload)
+        payload = copy.deepcopy(self.payload)
+        self.skill(payload)["forecast"]["basis"] = "sample_fraction"
+        self.reject(payload)
+
     def test_status_cannot_be_asserted_against_the_rules(self) -> None:
         for key in ("prosp", "aires", "consumption", "coldcall"):
             payload = copy.deepcopy(self.payload)

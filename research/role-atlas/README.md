@@ -46,7 +46,7 @@ M4 does not copy prototype numbers. `first_level: null` means unassigned; null
 `share_by_level` cells mean no assigned denominator, not zero demand. Measurement
 strata can explicitly include `unassigned`. Empty level expectations/titles are
 valid; `introduced_at: null` does not claim introduction or carry-over. Existing
-fixture records remain unchanged; status, edge and sector floors are unchanged.
+fixture measurements remain unchanged and forecasts explicitly use `basis: fixture`; status, edge and sector floors are unchanged.
 The reader shows unresolved nodes separately, missing samples as `?`/dashes, and
 empty gap comparisons as insufficient evidence rather than "nothing missing".
 
@@ -55,14 +55,12 @@ Unverified employer mappings contribute to no sector: all 20 broad sectors remai
 visible with null profiles and actual zero verified counts. No employer count,
 previous window, official wage, proficiency rating or sector share is padded.
 
-The role/2 contract requires a four-quarter forecast on every non-core skill.
-To satisfy that without inventing calibrated probabilities, M4 explicitly emits
-an **uncalibrated sample-persistence baseline**: probability and base_rate both
-equal the observed current role-wide **recorded expectation-excerpt** mention
-fraction. Non-matches are not verified absence from full posting text; the source
-excerpts are not exhaustive. The future event assumes the same admission and
-excerpt-selection process. This is a declared
-assumption about a future same-recipe sampled posting, not a measured four-quarter
-transition rate, market probability, trend finding or learned forecast. The UI
-calls it an unscored estimate. There is no forecast ledger, resolution, historical
-base-rate archive or backtest. Those are M5, not implemented here.
+Every non-core skill carries a dated four-quarter forecast object, but the
+current pipeline cannot forecast: `basis: none`, `probability: null`,
+`base_rate: null`, with a reason stating the missing historical archive. Claim,
+horizon, creation/resolve window and scoring target are preserved for M5. Current
+recorded mention fractions are measurements, never substitutes for probabilities.
+The UI says **No forecast yet**, with the reason and claim in the detail panel.
+Only `basis: backtest` or `basis: fixture` permits numeric probabilities/base rates;
+these are required and bounded to 0–1. There is no ledger, archive, resolution or
+backtest implementation here; those remain M5.

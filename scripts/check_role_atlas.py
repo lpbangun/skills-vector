@@ -62,6 +62,19 @@ def assert_view(page, label: str) -> None:
         require(target["height"] >= 43.9 and target["width"] >= 43.9, f"{label}: target below 44px: {target}")
 
 
+def assert_detail_fit(page) -> None:
+    overflow = page.locator("#skillPanel").evaluate("""panel => {
+        const p = panel.getBoundingClientRect(), bad = [];
+        const check = (r, label) => { if (r.width && (r.left < p.left - 0.5 || r.right > p.right + 0.5)) bad.push(label); };
+        panel.querySelectorAll("*").forEach(node => check(node.getBoundingClientRect(), node.tagName));
+        const walker = document.createTreeWalker(panel, NodeFilter.SHOW_TEXT);
+        while (walker.nextNode()) { const range = document.createRange(); range.selectNodeContents(walker.currentNode);
+            [...range.getClientRects()].forEach(rect => check(rect, walker.currentNode.textContent.slice(0, 80))); }
+        return bad;
+    }""")
+    require(not overflow, f"detail panel overflow: {overflow}")
+
+
 def timing_label(source: dict) -> str:
     return source["timing"] + (" · rated " + source["as_of"][:4] if source.get("as_of") else "")
 
@@ -118,8 +131,18 @@ def exercise_map(page, record: dict, output: Path, role: str) -> None:
         require("Evidence:" in row.get_attribute("aria-label"), "map row lacks spoken evidence families")
         row.click()
         require(page.locator("#skillPanel h3").inner_text() == skill["label"], "skill detail mismatch")
-        if skill["forecast"]:
+        forecast = skill["forecast"]
+        cell = row.locator(".call")
+        if forecast and forecast["basis"] == "none":
+            require(cell.inner_text() == "No forecast yet" and "%" not in cell.inner_text(), "unavailable forecast cell showed a probability/claim")
+            require(page.locator("#skillPanel .forecast .p").count() == 0, "unavailable forecast had a big percentage")
+            require(forecast["reason"] in page.locator("#skillPanel .forecast").inner_text(), "missing no-forecast reason")
+            require(forecast["claim"] in page.locator("#skillPanel .forecast").inner_text(), "claim missing from detail")
+        elif forecast:
             require("Base rate:" in page.locator("#skillPanel").inner_text(), "missing forecast base rate")
+            require("%" in cell.inner_text(), "numeric forecast lost its percentage")
+        require(cell.evaluate("node => node.getBoundingClientRect().height <= parseFloat(getComputedStyle(node).lineHeight) + 1 && node.scrollWidth <= node.clientWidth + 1"), "forecast cell is not one line")
+        assert_detail_fit(page)
         tags = page.locator("#skillPanel .sig .tm").all_inner_texts()
         require([tag.casefold() for tag in tags] == [timing_label(source) for source in skill["evidence"]], "source timing/as-of mismatch")
         if skill["status"] == "rising":
@@ -133,6 +156,11 @@ def exercise_map(page, record: dict, output: Path, role: str) -> None:
                     or (skill["status"] == "fading" and skill["share_by_level"][number - 1] > 0))}
         require(set(page.locator("#map .srow").evaluate_all("nodes => nodes.map(n => n.dataset.skill)")) == expected,
                 "needed-at filter does not match API shares")
+    compared = record["skill_map"]["top_level_adds"]
+    if any(level["evidence"]["postings"] == 0 for level in record["ladder"]["levels"] if level["level"] in (compared["top_level"], compared["core_level"])):
+        assigned = sum(level["evidence"]["postings"] for level in record["ladder"]["levels"])
+        expected = f"Not enough level-assigned postings to compare levels: {assigned} of {record['demand_window']['postings']} postings have a level."
+        require(expected in page.locator("#topLine").inner_text(), "missing comparison used placeholder titles")
     page.locator('#mapLevel [data-mlevel="0"]').click()
     page.keyboard.press("Tab")
     page.locator("#map .srow").first.focus()
@@ -168,7 +196,9 @@ def exercise_map(page, record: dict, output: Path, role: str) -> None:
     require(page.locator("#graph .g-ring").count() == len(record["skill_map"]["top_level_adds"]["skills"]), "wrong top-level highlights")
     top = record["skill_map"]["top_level_adds"]
     if any(skill["share_by_level"][top["top_level"] - 1] is None or skill["share_by_level"][top["core_level"] - 1] is None for skill in skills.values()):
-        require("No measured comparison" in page.locator("#graphPanel").inner_text(), "missing level samples implied a measured comparison")
+        compared = [level for level in record["ladder"]["levels"] if level["level"] in (top["top_level"], top["core_level"])]
+        expected = "Not enough level-assigned postings" if any(level["evidence"]["postings"] == 0 for level in compared) else "No measured comparison"
+        require(expected in page.locator("#graphPanel").inner_text(), "missing level samples implied a measured comparison")
     page.locator('[data-edges="builds"]').click()
     require(page.locator("#graph .g-edge.build").count() == len(record["skill_map"]["builds_on"]), "wrong builds-on edges")
     page.locator('[data-lens="level"]').click()
@@ -183,7 +213,8 @@ def exercise_tab(page, tab: str, record: dict, requests: list[str]) -> None:
         require(page.locator("#stairs .nm").first.evaluate("node => getComputedStyle(node).hyphens === 'auto' && node.closest('[lang]').lang === 'en'"), "ladder hyphenation needs English language metadata")
         for level in record["ladder"]["levels"]:
             page.locator(f'#stairs [data-level="{level["level"]}"]').click()
-            require(page.locator("#sheet h3").inner_text() == level["name"], "level title mismatch")
+            expected_name = level["name"] if level["typical_titles"] else "L" + str(level["level"])
+            require(page.locator("#sheet h3").inner_text() == expected_name, "level title mismatch")
             require(level["owns"] in page.locator("#sheet").inner_text(), "missing level ownership")
         target = record["ladder"]["levels"][min(2, len(record["ladder"]["levels"]) - 1)]["level"]
         page.locator(f'#stairs [data-level="{target}"]').click()
@@ -337,6 +368,17 @@ def check_failure_states(browser, base: str) -> None:
         page.locator("#retryLoad").click()
         page.wait_for_function("document.querySelector('#app').dataset.ready === 'true'")
 
+        style = page.add_style_tag(content="#skillPanel .sig li > span:last-child { white-space: nowrap; }")
+        try:
+            try:
+                assert_detail_fit(page)
+            except AssertionError as error:
+                require("detail panel overflow" in str(error), "wrong overflow rejection")
+            else:
+                raise AssertionError("overflow gate accepted unwrapped evidence text")
+        finally:
+            style.evaluate("node => node.remove()")
+        assert_detail_fit(page)
         page.locator('[data-mode="conn"]').click()
         page.evaluate("document.fonts.ready")
         assert_graph_fit(page)

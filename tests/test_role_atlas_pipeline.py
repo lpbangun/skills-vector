@@ -53,6 +53,10 @@ def synthetic_tree(root: Path) -> tuple[Path, Path]:
         "backbone": [{"id": node, "role": "example", "source_id": "onet", "extract_sha256": source_rows[1]["extract_sha256"], "quote": policy, "short_label": "HR policies", "source_note": "Synthetic test; exact real O*NET task text, no equivalence claim."}],
         "phrases": [{"role": "example", "phrase": task, "backbone_id": node, "source_note": "Synthetic test of a reviewed task alignment."}], "sectors": {"51": "Information"}})
     save(maps / "employers.json", [{"employer": "Acme", "status": "verified", "naics": "51", "source_id": "job", "quote": company, "source_note": "Synthetic test: explicit primary employer NAICS statement."}])
+    mapping = json.loads((maps / "skills.json").read_text())
+    for row in [*mapping["roles"].values(), *mapping["backbone"], *mapping["phrases"]]:
+        row.update(confidence="close", rationale="Synthetic bounded task alignment for validation tests.")
+    save(maps / "skills.json", mapping)
     return published, maps
 
 
@@ -122,8 +126,8 @@ class PipelineTests(unittest.TestCase):
         cls.records, cls.audit = cls.inputs.build()
 
     def test_actual_counts_no_invented_level_history_or_sectors(self):
-        expected = {"account-executive": (5, 5, 11, 12), "forward-deployed-engineer": (5, 3, 10, 14),
-                    "growth-manager": (4, 2, 5, 1), "hr-generalist": (5, 5, 7, 5)}
+        expected = {"account-executive": (5, 5, 12, 12), "forward-deployed-engineer": (5, 3, 11, 14),
+                    "growth-manager": (4, 2, 5, 1), "hr-generalist": (5, 5, 10, 10)}
         for record in self.records:
             key = record.id.removeprefix("role.")
             n, unassigned, skills, dropped = expected[key]
@@ -141,11 +145,20 @@ class PipelineTests(unittest.TestCase):
             for skill in record.skill_map.skills:
                 self.assertEqual(len(skill.windows), 1)
                 self.assertIn("unassigned", skill.windows[0].levels)
-                self.assertEqual(skill.forecast.probability, skill.forecast.base_rate)
-                self.assertIn("Uncalibrated sample-persistence baseline", skill.forecast.claim)
+                self.assertEqual(skill.forecast.basis, "none")
+                self.assertIsNone(skill.forecast.probability)
+                self.assertIsNone(skill.forecast.base_rate)
+                self.assertIn("no historical base rate", skill.forecast.reason)
                 self.assertIn("published expectation excerpts", skill.forecast.claim)
                 self.assertIn("published expectation excerpts", skill.evidence[0].reading)
             self.assertEqual(RoleRecord.from_json(record.to_json()), record)
+        links = [link for p in self.audit["roles"]["account-executive"]["postings"] for link in p["skill_links"]]
+        accuracy = next(link for link in links if link["phrase"] == "Ensure high forecasting accuracy and consistency")
+        self.assertEqual(accuracy["mapping_confidence"], "loose")
+        self.assertIsNone(accuracy["backbone_id"])
+        skill = next(s for s in self.records[0].skill_map.skills if s.id == accuracy["skill"])
+        self.assertEqual(skill.source_links, ["P"])
+        self.assertEqual([source.family for source in skill.evidence], ["P"])
         self.assertEqual(self.audit["roles"]["forward-deployed-engineer"]["postings_per_level"]["L4"], 2)
         self.assertEqual(self.audit["roles"]["growth-manager"]["postings_per_level"]["L2"], 1)
         self.assertEqual(self.audit["roles"]["growth-manager"]["postings_per_level"]["L4"], 1)
@@ -213,6 +226,20 @@ class PipelineTests(unittest.TestCase):
                                 self.assertNotIn("presentation", response.json())
         anyio.run(exercise)
 
+    def test_shifts_sort_unavailable_after_numeric_without_inventing_zero(self):
+        with tempfile.TemporaryDirectory() as d:
+            output = Path(d) / "out"
+            self.inputs.write(output)
+            path = output / "roles/account-executive.json"
+            payload = json.loads(path.read_text())
+            numeric = payload["skill_map"]["skills"][0]
+            numeric["forecast"].update(basis="backtest", probability=0, base_rate=0, reason=None)
+            path.write_bytes(canonical(payload))
+            items = RoleAtlasReads.configured(output / "roles").shifts("2026-Q3")["current"]
+            self.assertEqual(items[0]["skill_id"], numeric["id"])
+            self.assertEqual(items[0]["forecast"]["probability"], 0)
+            self.assertTrue(all(item["forecast"]["probability"] is None for item in items[1:]))
+
     def test_unknown_levels_missing_denominators_and_empty_expectations(self):
         payload = self.records[0].to_dict()
         self.assertTrue(all(s["first_level"] is None for s in payload["skill_map"]["skills"]))
@@ -261,6 +288,9 @@ class PipelineTests(unittest.TestCase):
             ("maps/skills.json", lambda v: v["backbone"][0].update(quote="Invented official task"), "backbone quote"),
             ("maps/skills.json", lambda v: v["phrases"].append(v["phrases"][0]), "ambiguous"),
             ("maps/skills.json", lambda v: v["phrases"][0].update(backbone_id="unknown"), "backbone id"),
+            ("maps/skills.json", lambda v: v["phrases"][0].update(confidence="guessed"), "confidence"),
+            ("maps/skills.json", lambda v: v["phrases"][0].pop("rationale"), "rationale"),
+            ("maps/skills.json", lambda v: v["backbone"][0].update(rationale=" "), "rationale"),
             ("maps/skills.json", lambda v: v.update(release_id="different"), "another release"),
             ("published/current.json", lambda v: v.update(current="unpublished"), "published index"),
             ("published/releases/unit/postings.json", lambda v: v.append(v[0]), "duplicate admitted"),
@@ -295,6 +325,24 @@ class PipelineTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "unsafe output"):
                 EvidenceInputs.read(published, maps).write(output)
             self.assertEqual(before, {str(p.relative_to(published)): p.read_bytes() for p in published.rglob("*") if p.is_file()})
+
+    def test_mapping_confidence_controls_official_links_not_posting_counts(self):
+        for confidence in ("exact", "close", "loose"):
+            with self.subTest(confidence=confidence), tempfile.TemporaryDirectory() as d:
+                published, maps = synthetic_tree(Path(d))
+                path = maps / "skills.json"
+                mapping = json.loads(path.read_text())
+                mapping["phrases"][0]["confidence"] = confidence
+                path.write_bytes(canonical(mapping))
+                records, audit = EvidenceInputs.read(published, maps).build()
+                skill = records[0].skill_map.skills[0]
+                self.assertEqual(skill.windows[0].share, 1)
+                self.assertEqual(skill.source_links, ["P"] if confidence == "loose" else ["P", "O"])
+                self.assertEqual([s.family for s in skill.evidence], ["P"] if confidence == "loose" else ["P", "O"])
+                link = audit["roles"]["example"]["postings"][0]["skill_links"][0]
+                self.assertEqual(link["mapping_confidence"], confidence)
+                self.assertEqual(link["backbone_id"] is None, confidence == "loose")
+                self.assertIsNotNone(link["proposed_backbone_id"])
 
     def test_extract_hash_and_traversal_are_rejected(self):
         with tempfile.TemporaryDirectory() as d:

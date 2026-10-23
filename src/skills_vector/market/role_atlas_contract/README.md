@@ -34,7 +34,14 @@ builder reads or writes `preview/release/`.
 
 Skill `share_by_level` preserves the prototype's **0–100 percentages**. Window
 measurements, industry skill/certification shares, employer concentration,
-probabilities and base rates use **0–1 fractions**.
+numeric probabilities and base rates use **0–1 fractions**.
+
+Every forecast declares `basis`: `fixture` (illustrative) or `backtest` (historical
+archive) requires both numeric probability and base_rate. `none` requires both to
+be null and a nonempty `reason`. A non-core skill still needs the dated forecast
+object: claim, horizon (4 quarters), created, resolves and scored_against are
+retained even when no forecast can be made. No current sample fraction is a
+substitute for a forecast probability or a historical base rate.
 
 Status uses chronological windows with identical level scope, cadence and
 `comparison_group`. The latest comparable pair supplies change; the current
