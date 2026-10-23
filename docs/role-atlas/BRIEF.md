@@ -32,7 +32,7 @@ It also shows the evidence behind each answer.
 - **Forecasts:** horizon is 4 quarters. Each forecast states a claim, probability, base rate, resolve window, and what it is scored against. People see the percentage.
 - **Asked-together edges:** lift ≥1.5, ≥25 postings together, ≥8 employers.
 - **Sector profile floor:** ≥30 postings from ≥8 employers in the window.
-- **Emerging roles:** a role with only a partial O*NET anchor is published with `publication: "experimental"` and shown as experimental.
+- **Emerging roles:** a role whose status is `emerging` (no O*NET occupation matches the title) is published with `publication: "experimental"` and shown as experimental. An established role with a partial anchor (for example Account Executive) stays `standard`; its anchor shows `fit: partial`.
 - **Levels:** role-specific names on a shared L1–L5 scale. Management is a linked role, not a level.
 - **Still open:** window length (monthly vs quarterly). Keep it a config value; default to quarterly.
 

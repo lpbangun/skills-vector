@@ -28,7 +28,8 @@ A milestone passes only when every item applicable to it is true. Reviews quote 
   - a forecast whose horizon is not 4 quarters, or with no base rate, or with probability outside 0–1;
   - edges below the threshold;
   - a sector profile below the floor (it must instead be `profile: null` with a reason);
-  - a partial-anchor role not marked experimental;
+  - an `emerging` role not marked experimental, or a non-emerging role marked experimental;
+  - a `rising` status whose only non-posting signals do not point up (`direction` must be `up`; presence in a map is not confirmation of a rise);
   - any signal without a timing class.
 - **C5** The fixture catalog covers the three prototype roles, with numbers matching `design-concepts/role-atlas.html`. Every record says `data_kind: "fixture"`. Nothing fixture is written under `preview/release/`.
 
