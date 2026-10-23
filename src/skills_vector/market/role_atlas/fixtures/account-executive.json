@@ -1,0 +1,2171 @@
+{
+  "schema": "skills-vector.role/2",
+  "id": "role.account-executive",
+  "label": "Account Executive",
+  "status": "established",
+  "publication": "experimental",
+  "data_kind": "fixture",
+  "release_id": "fixture_role_atlas_2026q3",
+  "aliases": [
+    "AE",
+    "Account Executive",
+    "Commercial AE",
+    "Enterprise AE"
+  ],
+  "anchors": [
+    {
+      "system": "O*NET-SOC",
+      "code": "41-4011.00",
+      "title": "Sales Representatives, Wholesale and Manufacturing, Technical and Scientific Products",
+      "fit": "partial"
+    }
+  ],
+  "foundation": {
+    "median_pay": "$98k",
+    "pay_note": "median annual pay",
+    "employment": "~330k",
+    "employment_note": "U.S. jobs in anchor code",
+    "outlook_10y": "+3%",
+    "outlook_note": "10-year projection",
+    "core_tasks": [
+      "Identify prospective customers and qualify leads",
+      "Negotiate prices and terms of sale",
+      "Prepare and present proposals to buyers",
+      "Maintain records of accounts and pipeline"
+    ],
+    "sources": [
+      {
+        "source": "O*NET ratings and tasks",
+        "family": "O",
+        "timing": "lagging",
+        "reading": "Anchor tasks rated 2021.",
+        "agrees": false
+      },
+      {
+        "source": "BLS wages and employment",
+        "family": "context",
+        "timing": "lagging",
+        "reading": "Anchor-code statistics, not title-specific estimates.",
+        "agrees": false
+      },
+      {
+        "source": "BLS employment projections",
+        "family": "context",
+        "timing": "long-term",
+        "reading": "Ten-year headcount outlook, not skill demand.",
+        "agrees": false
+      }
+    ]
+  },
+  "demand_window": {
+    "id": "2026-Q3",
+    "compared_to": "2026-Q2",
+    "postings": 412,
+    "employers": 61,
+    "max_employer_share": 0.2,
+    "timing": "coincident",
+    "window_length": "quarterly"
+  },
+  "ladder": {
+    "scale": "shared L1-L5",
+    "track": "individual_contributor",
+    "linked_roles": [
+      {
+        "from_level": 3,
+        "role": "sales-manager",
+        "relation": "people_management_track",
+        "note": "Separate linked role. Owns hiring and coaching of AEs. Not part of this IC ladder."
+      }
+    ],
+    "levels": [
+      {
+        "id": "account-executive.L1",
+        "level": 1,
+        "name": "Sales Development Rep",
+        "typical_titles": [
+          "SDR",
+          "BDR",
+          "Sales Development Representative"
+        ],
+        "years_wording": "0–2 years",
+        "scope": "Outbound prospecting and qualifying. Quota is meetings booked, not revenue.",
+        "owns": "A meetings target and a list of target accounts.",
+        "step_up": "Entry level for this ladder.",
+        "evidence": {
+          "postings": 88,
+          "employers": 34,
+          "window": "2026-Q3",
+          "timing": "coincident"
+        },
+        "expectations": [
+          {
+            "id": "exp.prospecting-cadences-across-email-phone-and-social",
+            "label": "Prospecting cadences across email, phone and social",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.prospecting-cadences-across-email-phone-and-social@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.crm-hygiene-and-activity-logging",
+            "label": "CRM hygiene and activity logging",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.crm-hygiene-and-activity-logging@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.basic-discovery-and-qualification-questions",
+            "label": "Basic discovery and qualification questions",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.basic-discovery-and-qualification-questions@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.handling-first-call-objections",
+            "label": "Handling first-call objections",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.handling-first-call-objections@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          }
+        ]
+      },
+      {
+        "id": "account-executive.L2",
+        "level": 2,
+        "name": "SMB / Associate AE",
+        "typical_titles": [
+          "Associate AE",
+          "SMB Account Executive",
+          "Commercial AE I"
+        ],
+        "years_wording": "1–3 years",
+        "scope": "Full cycle on small, fast deals. High volume, short cycles, one or two buyers.",
+        "owns": "A revenue quota on transactional deals.",
+        "step_up": "Closes revenue instead of handing meetings off. Runs demos and pricing conversations alone.",
+        "evidence": {
+          "postings": 104,
+          "employers": 41,
+          "window": "2026-Q3",
+          "timing": "coincident"
+        },
+        "expectations": [
+          {
+            "id": "exp.full-cycle-selling-on-short-deals",
+            "label": "Full-cycle selling on short deals",
+            "introduced_at": 2,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.full-cycle-selling-on-short-deals@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.product-demos-tailored-to-one-buyer",
+            "label": "Product demos tailored to one buyer",
+            "introduced_at": 2,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.product-demos-tailored-to-one-buyer@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.pipeline-management-and-weekly-forecast",
+            "label": "Pipeline management and weekly forecast",
+            "introduced_at": 2,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.pipeline-management-and-weekly-forecast@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.prospecting-cadences-across-email-phone-and-social",
+            "label": "Prospecting cadences across email, phone and social",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.prospecting-cadences-across-email-phone-and-social@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          }
+        ]
+      },
+      {
+        "id": "account-executive.L3",
+        "level": 3,
+        "name": "Mid-Market AE",
+        "typical_titles": [
+          "Account Executive",
+          "Mid-Market AE",
+          "Commercial AE"
+        ],
+        "years_wording": "3–5 years",
+        "scope": "Book of named accounts. Several stakeholders per deal, 30 to 90 day cycles.",
+        "owns": "A book of business and a new-business quota.",
+        "step_up": "Sells to a buying group, not one buyer. Builds the business case and forecasts by deal stage.",
+        "evidence": {
+          "postings": 121,
+          "employers": 48,
+          "window": "2026-Q3",
+          "timing": "coincident"
+        },
+        "expectations": [
+          {
+            "id": "exp.structured-qualification-meddicc-or-similar",
+            "label": "Structured qualification (MEDDICC or similar)",
+            "introduced_at": 3,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.structured-qualification-meddicc-or-similar@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.multi-threading-across-a-buying-group",
+            "label": "Multi-threading across a buying group",
+            "introduced_at": 3,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.multi-threading-across-a-buying-group@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.roi-and-business-case-building-with-finance-buyers",
+            "label": "ROI and business-case building with finance buyers",
+            "introduced_at": 3,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.roi-and-business-case-building-with-finance-buyers@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.mutual-action-plans-and-stage-accurate-forecasting",
+            "label": "Mutual action plans and stage-accurate forecasting",
+            "introduced_at": 3,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.mutual-action-plans-and-stage-accurate-forecasting@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.full-cycle-selling-on-short-deals",
+            "label": "Full-cycle selling on short deals",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.full-cycle-selling-on-short-deals@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          }
+        ]
+      },
+      {
+        "id": "account-executive.L4",
+        "level": 4,
+        "name": "Enterprise AE",
+        "typical_titles": [
+          "Enterprise Account Executive",
+          "Senior AE"
+        ],
+        "years_wording": "5–8+ years",
+        "scope": "Large accounts with procurement, security and legal review. 6 to 12 month cycles.",
+        "owns": "A seven-figure quota across a small set of large accounts.",
+        "step_up": "Runs a deal team of SEs, partners and execs. Navigates procurement and legal, not only the buyer.",
+        "evidence": {
+          "postings": 74,
+          "employers": 33,
+          "window": "2026-Q3",
+          "timing": "coincident"
+        },
+        "expectations": [
+          {
+            "id": "exp.strategic-account-planning",
+            "label": "Strategic account planning",
+            "introduced_at": 4,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.strategic-account-planning@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.executive-alignment-and-sponsorship",
+            "label": "Executive alignment and sponsorship",
+            "introduced_at": 4,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.executive-alignment-and-sponsorship@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.procurement-security-and-legal-navigation",
+            "label": "Procurement, security and legal navigation",
+            "introduced_at": 4,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.procurement-security-and-legal-navigation@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.orchestrating-ses-partners-and-internal-execs",
+            "label": "Orchestrating SEs, partners and internal execs",
+            "introduced_at": 4,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.orchestrating-ses-partners-and-internal-execs@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.multi-threading-across-a-buying-group",
+            "label": "Multi-threading across a buying group",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.multi-threading-across-a-buying-group@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          }
+        ]
+      },
+      {
+        "id": "account-executive.L5",
+        "level": 5,
+        "name": "Strategic AE",
+        "typical_titles": [
+          "Strategic Account Executive",
+          "Named Strategic AE"
+        ],
+        "years_wording": "8+ years",
+        "scope": "A handful of the company's largest accounts. Multi-year, multi-product agreements.",
+        "owns": "Long-term account strategy for named strategic customers.",
+        "step_up": "Shapes multi-year account strategy and complex deal structures. Builds internal coalitions to win.",
+        "evidence": {
+          "postings": 25,
+          "employers": 14,
+          "window": "2026-Q3",
+          "timing": "coincident"
+        },
+        "expectations": [
+          {
+            "id": "exp.multi-year-multi-product-deal-structuring",
+            "label": "Multi-year, multi-product deal structuring",
+            "introduced_at": 5,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.multi-year-multi-product-deal-structuring@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.c-level-relationships-at-customer-and-internally",
+            "label": "C-level relationships at customer and internally",
+            "introduced_at": 5,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.c-level-relationships-at-customer-and-internally@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.territory-and-account-portfolio-strategy",
+            "label": "Territory and account-portfolio strategy",
+            "introduced_at": 5,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.territory-and-account-portfolio-strategy@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.executive-alignment-and-sponsorship",
+            "label": "Executive alignment and sponsorship",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.executive-alignment-and-sponsorship@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          }
+        ]
+      }
+    ]
+  },
+  "skill_map": {
+    "skills": [
+      {
+        "id": "skill.prosp",
+        "short_label": "Prospecting cadences",
+        "label": "Prospecting cadences across email, phone and social",
+        "status": "core",
+        "first_level": 1,
+        "share_by_level": [
+          78,
+          52,
+          30,
+          12,
+          5
+        ],
+        "source_links": [
+          "P",
+          "O",
+          "Ee"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.78,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.78,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 78% of L1 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "In the O*NET record for 41-4011.00 (rated 2021).",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as essential for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.coldcall",
+        "short_label": "Cold-call volume",
+        "label": "Daily cold-call volume targets",
+        "status": "fading",
+        "first_level": 1,
+        "share_by_level": [
+          24,
+          9,
+          2,
+          0,
+          0
+        ],
+        "source_links": [
+          "P",
+          "O"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.20666666666666667,
+            "employers": 15,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.10679611650485436,
+            "employers": 18,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Down from 21% to 11% of L1–L2 postings across 18 employers.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "Still listed in O*NET tasks for the anchor code (rated 2021). Official maps lag.",
+            "agrees": false
+          }
+        ],
+        "forecast": {
+          "id": "forecast.account-executive.coldcall",
+          "claim": "Asked in under 8% of L1–L2 postings by 2027-Q3",
+          "probability": 0.6,
+          "base_rate": 0.55,
+          "horizon_quarters": 4,
+          "created": "2026-Q3",
+          "resolves": "2027-Q3",
+          "scored_against": "stratified posting sample"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.selfsrc",
+        "short_label": "Self-sourced pipeline",
+        "label": "Sourcing your own pipeline without SDR support",
+        "status": "early",
+        "first_level": 2,
+        "share_by_level": [
+          0,
+          38,
+          31,
+          14,
+          6
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.16,
+            "employers": 12,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.24514563106796117,
+            "employers": 29,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Up from 16% to 25% of L2–L3 postings across 29 employers.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "Not in the O*NET record. No sector series tracks it.",
+            "agrees": false
+          }
+        ],
+        "forecast": {
+          "id": "forecast.account-executive.selfsrc",
+          "claim": "Asked in 30%+ of L2–L3 postings by 2027-Q3",
+          "probability": 0.55,
+          "base_rate": 0.41,
+          "horizon_quarters": 4,
+          "created": "2026-Q3",
+          "resolves": "2027-Q3",
+          "scored_against": "stratified posting sample"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.disc",
+        "short_label": "Discovery questions",
+        "label": "Basic discovery and qualification questions",
+        "status": "core",
+        "first_level": 1,
+        "share_by_level": [
+          70,
+          66,
+          58,
+          44,
+          30
+        ],
+        "source_links": [
+          "P",
+          "O",
+          "Ee"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.7,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.7,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 70% of L1 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "In the O*NET record for 41-4011.00 (rated 2021).",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as essential for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.forecast",
+        "short_label": "Pipeline forecast",
+        "label": "Pipeline management and weekly forecast",
+        "status": "core",
+        "first_level": 2,
+        "share_by_level": [
+          0,
+          40,
+          52,
+          50,
+          40
+        ],
+        "source_links": [
+          "P",
+          "Eo"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.52,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.52,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 52% of L3 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as optional for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.fullcycle",
+        "short_label": "Full-cycle closing",
+        "label": "Full-cycle selling on short deals",
+        "status": "core",
+        "first_level": 2,
+        "share_by_level": [
+          3,
+          72,
+          60,
+          41,
+          22
+        ],
+        "source_links": [
+          "P",
+          "O",
+          "Ee"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.72,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.72,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 72% of L2 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "In the O*NET record for 41-4011.00 (rated 2021).",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as essential for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.demo",
+        "short_label": "Tailored demos",
+        "label": "Product demos tailored to one buyer",
+        "status": "core",
+        "first_level": 2,
+        "share_by_level": [
+          2,
+          48,
+          40,
+          22,
+          10
+        ],
+        "source_links": [
+          "P",
+          "Eo"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.48,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.48,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 48% of L2 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as optional for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.meddicc",
+        "short_label": "MEDDICC qualifying",
+        "label": "Structured qualification (MEDDICC or similar)",
+        "status": "core",
+        "first_level": 3,
+        "share_by_level": [
+          0,
+          8,
+          46,
+          52,
+          38
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.52,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4,
+              5
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.52,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4,
+              5
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 52% of L4 postings, steady across two windows.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.multithread",
+        "short_label": "Multi-threading",
+        "label": "Multi-threading across a buying group",
+        "status": "core",
+        "first_level": 3,
+        "share_by_level": [
+          0,
+          6,
+          44,
+          61,
+          55
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.61,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4,
+              5
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.61,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4,
+              5
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 61% of L4 postings, steady across two windows.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.roi",
+        "short_label": "ROI business cases",
+        "label": "ROI and business-case building with finance buyers",
+        "status": "core",
+        "first_level": 3,
+        "share_by_level": [
+          0,
+          4,
+          35,
+          49,
+          47
+        ],
+        "source_links": [
+          "P",
+          "Eo"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.49,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4,
+              5
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.49,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4,
+              5
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 49% of L4 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as optional for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.consumption",
+        "short_label": "Consumption pricing",
+        "label": "Usage-based and consumption pricing deals",
+        "status": "early",
+        "first_level": 3,
+        "share_by_level": [
+          0,
+          0,
+          3,
+          6,
+          9
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.013333333333333334,
+            "employers": 2,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4,
+              5
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.0412621359223301,
+            "employers": 7,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4,
+              5
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "New phrasing in postings",
+            "family": "P",
+            "timing": "leading",
+            "reading": "From 1% to 4% of postings, at 7 employers. Below the 8-employer floor.",
+            "agrees": false
+          }
+        ],
+        "forecast": {
+          "id": "forecast.account-executive.consumption",
+          "claim": "Asked in 10%+ of L3–L5 postings by 2027-Q3",
+          "probability": 0.35,
+          "base_rate": 0.31,
+          "horizon_quarters": 4,
+          "created": "2026-Q3",
+          "resolves": "2027-Q3",
+          "scored_against": "stratified posting sample"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.procure",
+        "short_label": "Procurement and legal",
+        "label": "Procurement, security and legal navigation",
+        "status": "core",
+        "first_level": 4,
+        "share_by_level": [
+          0,
+          0,
+          5,
+          52,
+          49
+        ],
+        "source_links": [
+          "P",
+          "O"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.52,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              4,
+              5
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.52,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              4,
+              5
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 52% of L4 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "In the O*NET record for 41-4011.00 (rated 2021).",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.acctplan",
+        "short_label": "Strategic account plans",
+        "label": "Strategic account planning",
+        "status": "core",
+        "first_level": 4,
+        "share_by_level": [
+          0,
+          0,
+          9,
+          58,
+          66
+        ],
+        "source_links": [
+          "P",
+          "Ee"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.66,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              4,
+              5
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.66,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              4,
+              5
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 66% of L5 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as essential for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.exec",
+        "short_label": "Executive alignment",
+        "label": "Executive alignment and sponsorship",
+        "status": "core",
+        "first_level": 4,
+        "share_by_level": [
+          0,
+          0,
+          6,
+          47,
+          71
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.71,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              4,
+              5
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.71,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              4,
+              5
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 71% of L5 postings, steady across two windows.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.dealstruct",
+        "short_label": "Multi-year deals",
+        "label": "Multi-year, multi-product deal structuring",
+        "status": "core",
+        "first_level": 5,
+        "share_by_level": [
+          0,
+          0,
+          0,
+          12,
+          64
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.64,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              5
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.64,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              5
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 64% of L5 postings, steady across two windows.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.aires",
+        "short_label": "AI account research",
+        "label": "AI-assisted prospecting and account research",
+        "status": "rising",
+        "first_level": 1,
+        "share_by_level": [
+          22,
+          25,
+          21,
+          10,
+          4
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.06,
+            "employers": 6,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.1407766990291262,
+            "employers": 23,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Up from 6% to 14% of L1–L3 postings between 2026-Q2 and Q3, across 23 employers.",
+            "agrees": false
+          },
+          {
+            "source": "Indeed Hiring Lab",
+            "family": "M",
+            "timing": "coincident",
+            "reading": "AI mentions in U.S. sales postings rising in the sector series.",
+            "agrees": true
+          },
+          {
+            "source": "Anthropic Economic Index",
+            "family": "M",
+            "timing": "coincident",
+            "reading": "Research and drafting tasks for sales occupations show heavy AI use.",
+            "agrees": true
+          }
+        ],
+        "forecast": {
+          "id": "forecast.account-executive.aires",
+          "claim": "Asked in 20%+ of L1–L3 postings by 2027-Q3",
+          "probability": 0.72,
+          "base_rate": 0.62,
+          "horizon_quarters": 4,
+          "created": "2026-Q3",
+          "resolves": "2027-Q3",
+          "scored_against": "stratified posting sample"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.crm",
+        "short_label": "CRM hygiene",
+        "label": "CRM hygiene and activity logging",
+        "status": "core",
+        "first_level": 1,
+        "share_by_level": [
+          64,
+          55,
+          48,
+          40,
+          31
+        ],
+        "source_links": [
+          "P",
+          "O",
+          "Eo"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.64,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.64,
+            "employers": 61,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 64% of L1 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "In the O*NET record for 41-4011.00 (rated 2021).",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as optional for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      }
+    ],
+    "asked_together": [
+      {
+        "a": "skill.prosp",
+        "b": "skill.selfsrc",
+        "lift": 2.1,
+        "postings": 61,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.prosp",
+        "b": "skill.aires",
+        "lift": 1.8,
+        "postings": 44,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.disc",
+        "b": "skill.meddicc",
+        "lift": 1.6,
+        "postings": 52,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.meddicc",
+        "b": "skill.multithread",
+        "lift": 2.4,
+        "postings": 71,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.multithread",
+        "b": "skill.exec",
+        "lift": 2,
+        "postings": 38,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.roi",
+        "b": "skill.procure",
+        "lift": 1.7,
+        "postings": 33,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.roi",
+        "b": "skill.meddicc",
+        "lift": 1.5,
+        "postings": 40,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.acctplan",
+        "b": "skill.exec",
+        "lift": 2.6,
+        "postings": 41,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.fullcycle",
+        "b": "skill.demo",
+        "lift": 1.9,
+        "postings": 63,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.fullcycle",
+        "b": "skill.forecast",
+        "lift": 1.7,
+        "postings": 58,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.crm",
+        "b": "skill.forecast",
+        "lift": 1.5,
+        "postings": 66,
+        "employers": 8,
+        "timing": "coincident"
+      }
+    ],
+    "builds_on": [
+      {
+        "a": "skill.disc",
+        "b": "skill.meddicc"
+      },
+      {
+        "a": "skill.fullcycle",
+        "b": "skill.multithread"
+      },
+      {
+        "a": "skill.multithread",
+        "b": "skill.exec"
+      },
+      {
+        "a": "skill.roi",
+        "b": "skill.dealstruct"
+      },
+      {
+        "a": "skill.acctplan",
+        "b": "skill.dealstruct"
+      },
+      {
+        "a": "skill.prosp",
+        "b": "skill.selfsrc"
+      },
+      {
+        "a": "skill.demo",
+        "b": "skill.roi"
+      }
+    ],
+    "top_level_adds": {
+      "top_level": 5,
+      "core_level": 3,
+      "skills": [
+        "skill.procure",
+        "skill.acctplan",
+        "skill.exec",
+        "skill.dealstruct"
+      ],
+      "long_run_bar": {
+        "source": "O*NET level ratings",
+        "family": "O",
+        "timing": "lagging",
+        "reading": "The durable proficiency bar, not current posting demand.",
+        "agrees": false
+      }
+    }
+  },
+  "industries": [
+    {
+      "naics": "51",
+      "label": "Information",
+      "naics_title": "Information",
+      "sub_industries": "Software publishers, data and cloud services",
+      "evidence": {
+        "postings": 196,
+        "employers": 28,
+        "window": "2026-Q3",
+        "timing": "coincident"
+      },
+      "profile": {
+        "share_of_occupation_jobs": "12%",
+        "median_pay": "$112k",
+        "how_it_differs": "Selling method and AI tooling dominate. Credentials barely appear; employers screen on quota history instead.",
+        "distinct_duties": [
+          "Run trials and proofs of concept with the buyer's team",
+          "Price seat, usage and platform tiers",
+          "Hand accounts to customer success at signature"
+        ],
+        "certifications": [
+          {
+            "name": "MEDDICC practitioner training",
+            "issuer": "MEDDICC",
+            "asked_as": "preferred",
+            "posting_share": 0.04,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          }
+        ],
+        "domain_knowledge": [
+          "ARR, NRR and churn",
+          "SOC 2 security reviews",
+          "Product-led trials"
+        ],
+        "skill_shares": [
+          {
+            "skill": "skill.meddicc",
+            "share": 0.52,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.multithread",
+            "share": 0.48,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.procure",
+            "share": 0.4,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.demo",
+            "share": 0.44,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.selfsrc",
+            "share": 0.36,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.aires",
+            "share": 0.31,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.consumption",
+            "share": 0.12,
+            "timing": "coincident"
+          }
+        ],
+        "sources": [
+          {
+            "source": "BLS occupation-by-industry matrix",
+            "family": "context",
+            "timing": "lagging",
+            "reading": "Employment share for the anchor occupation.",
+            "agrees": false
+          },
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Duties, credentials and skill shares in this sector.",
+            "agrees": false
+          },
+          {
+            "source": "CareerOneStop",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "Certification Finder matches by O*NET and NAICS.",
+            "agrees": false
+          }
+        ]
+      },
+      "reason": null
+    },
+    {
+      "naics": "52",
+      "label": "Finance and insurance",
+      "naics_title": "Finance and insurance",
+      "sub_industries": "Banks, brokerages, insurers, fintech",
+      "evidence": {
+        "postings": 63,
+        "employers": 12,
+        "window": "2026-Q3",
+        "timing": "coincident"
+      },
+      "profile": {
+        "share_of_occupation_jobs": "9%",
+        "median_pay": "$118k",
+        "how_it_differs": "Regulated products need licences. Compliance review shapes how deals are run and documented.",
+        "distinct_duties": [
+          "Sell into buyers with compliance approval chains",
+          "Document suitability and disclosures",
+          "Coordinate regulated terms with legal"
+        ],
+        "certifications": [
+          {
+            "name": "Securities Industry Essentials (SIE)",
+            "issuer": "FINRA",
+            "asked_as": "required",
+            "posting_share": 0.38,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          },
+          {
+            "name": "Series 7 and Series 63",
+            "issuer": "FINRA / NASAA",
+            "asked_as": "required",
+            "posting_share": 0.31,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          },
+          {
+            "name": "CFP certification",
+            "issuer": "CFP Board",
+            "asked_as": "preferred",
+            "posting_share": 0.06,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          }
+        ],
+        "domain_knowledge": [
+          "SEC and FINRA rules",
+          "Bank vendor-risk reviews",
+          "Suitability standards"
+        ],
+        "skill_shares": [
+          {
+            "skill": "skill.meddicc",
+            "share": 0.3,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.multithread",
+            "share": 0.44,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.procure",
+            "share": 0.58,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.demo",
+            "share": 0.2,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.selfsrc",
+            "share": 0.18,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.aires",
+            "share": 0.12,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.consumption",
+            "share": 0.02,
+            "timing": "coincident"
+          }
+        ],
+        "sources": [
+          {
+            "source": "BLS occupation-by-industry matrix",
+            "family": "context",
+            "timing": "lagging",
+            "reading": "Employment share for the anchor occupation.",
+            "agrees": false
+          },
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Duties, credentials and skill shares in this sector.",
+            "agrees": false
+          },
+          {
+            "source": "CareerOneStop",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "Certification Finder matches by O*NET and NAICS.",
+            "agrees": false
+          }
+        ]
+      },
+      "reason": null
+    },
+    {
+      "naics": "31–33",
+      "label": "Manufacturing",
+      "naics_title": "Manufacturing",
+      "sub_industries": "Machinery, medical devices, electronics",
+      "evidence": {
+        "postings": 112,
+        "employers": 24,
+        "window": "2026-Q3",
+        "timing": "coincident"
+      },
+      "profile": {
+        "share_of_occupation_jobs": "21%",
+        "median_pay": "$96k",
+        "how_it_differs": "Technical deals, often through distributors. Medical-device makers add hospital access rules, which is where most credential asks come from.",
+        "distinct_duties": [
+          "Quote configured products with engineering",
+          "Manage distributor and channel partners",
+          "Support cases in hospitals (medical devices)"
+        ],
+        "certifications": [
+          {
+            "name": "Engineering degree or technical certificate",
+            "issuer": "Accredited programs",
+            "asked_as": "preferred",
+            "posting_share": 0.29,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          },
+          {
+            "name": "Hospital vendor credentialing",
+            "issuer": "Hospital credentialing programs",
+            "asked_as": "required",
+            "posting_share": 0.24,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          },
+          {
+            "name": "OSHA 10-hour",
+            "issuer": "OSHA outreach trainers",
+            "asked_as": "common",
+            "posting_share": 0.09,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          }
+        ],
+        "domain_knowledge": [
+          "Reading specs and drawings",
+          "FDA device rules (medical devices)",
+          "Channel margins"
+        ],
+        "skill_shares": [
+          {
+            "skill": "skill.meddicc",
+            "share": 0.24,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.multithread",
+            "share": 0.33,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.procure",
+            "share": 0.38,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.demo",
+            "share": 0.4,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.selfsrc",
+            "share": 0.25,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.aires",
+            "share": 0.08,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.consumption",
+            "share": 0.01,
+            "timing": "coincident"
+          }
+        ],
+        "sources": [
+          {
+            "source": "BLS occupation-by-industry matrix",
+            "family": "context",
+            "timing": "lagging",
+            "reading": "Employment share for the anchor occupation.",
+            "agrees": false
+          },
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Duties, credentials and skill shares in this sector.",
+            "agrees": false
+          },
+          {
+            "source": "CareerOneStop",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "Certification Finder matches by O*NET and NAICS.",
+            "agrees": false
+          }
+        ]
+      },
+      "reason": null
+    },
+    {
+      "naics": "42",
+      "label": "Wholesale trade",
+      "naics_title": "Wholesale trade",
+      "sub_industries": "Industrial, medical and IT distributors",
+      "evidence": {
+        "postings": 58,
+        "employers": 16,
+        "window": "2026-Q3",
+        "timing": "coincident"
+      },
+      "profile": {
+        "share_of_occupation_jobs": "31%",
+        "median_pay": "$84k",
+        "how_it_differs": "Territory selling of a broad catalog to repeat buyers. Relationships and product range matter more than structured deal methods.",
+        "distinct_duties": [
+          "Manage a territory of repeat accounts",
+          "Negotiate volume pricing and rebates",
+          "Coordinate stock and delivery with operations"
+        ],
+        "certifications": [
+          {
+            "name": "Product-line certifications",
+            "issuer": "Manufacturers",
+            "asked_as": "common",
+            "posting_share": 0.14,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          },
+          {
+            "name": "Certified Sales Professional",
+            "issuer": "NASP",
+            "asked_as": "preferred",
+            "posting_share": 0.05,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          }
+        ],
+        "domain_knowledge": [
+          "Distributor pricing",
+          "ERP order systems",
+          "Rebate programs"
+        ],
+        "skill_shares": [
+          {
+            "skill": "skill.meddicc",
+            "share": 0.08,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.multithread",
+            "share": 0.12,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.procure",
+            "share": 0.15,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.demo",
+            "share": 0.29,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.selfsrc",
+            "share": 0.41,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.aires",
+            "share": 0.06,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.consumption",
+            "share": 0.0,
+            "timing": "coincident"
+          }
+        ],
+        "sources": [
+          {
+            "source": "BLS occupation-by-industry matrix",
+            "family": "context",
+            "timing": "lagging",
+            "reading": "Employment share for the anchor occupation.",
+            "agrees": false
+          },
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Duties, credentials and skill shares in this sector.",
+            "agrees": false
+          },
+          {
+            "source": "CareerOneStop",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "Certification Finder matches by O*NET and NAICS.",
+            "agrees": false
+          }
+        ]
+      },
+      "reason": null
+    }
+  ],
+  "observations": [
+    {
+      "id": "observation.ai-prospecting",
+      "label": "AI-assisted prospecting and account research",
+      "levels": [
+        1,
+        2,
+        3
+      ],
+      "windows": [
+        {
+          "id": "2026-Q2",
+          "mentions": 9,
+          "postings": 150,
+          "employers": 6,
+          "timing": "coincident"
+        },
+        {
+          "id": "2026-Q3",
+          "mentions": 58,
+          "postings": 412,
+          "employers": 23,
+          "timing": "coincident"
+        }
+      ],
+      "note": "Named tools vary. The stable expectation is using AI to prepare account research and outreach."
+    },
+    {
+      "id": "observation.self-sourced",
+      "label": "AEs expected to source their own pipeline",
+      "levels": [
+        2,
+        3
+      ],
+      "windows": [
+        {
+          "id": "2026-Q2",
+          "mentions": 24,
+          "postings": 150,
+          "employers": 12,
+          "timing": "coincident"
+        },
+        {
+          "id": "2026-Q3",
+          "mentions": 101,
+          "postings": 412,
+          "employers": 29,
+          "timing": "coincident"
+        }
+      ],
+      "note": "Fewer postings promise dedicated SDR support at L2 and L3."
+    },
+    {
+      "id": "observation.consumption",
+      "label": "Usage-based and consumption pricing deals",
+      "levels": [
+        3,
+        4,
+        5
+      ],
+      "windows": [
+        {
+          "id": "2026-Q2",
+          "mentions": 2,
+          "postings": 150,
+          "employers": 2,
+          "timing": "coincident"
+        },
+        {
+          "id": "2026-Q3",
+          "mentions": 17,
+          "postings": 412,
+          "employers": 7,
+          "timing": "coincident"
+        }
+      ],
+      "note": "Below the growing threshold: only 7 employers so far."
+    },
+    {
+      "id": "observation.call-volume",
+      "label": "Daily cold-call volume targets",
+      "levels": [
+        1,
+        2
+      ],
+      "windows": [
+        {
+          "id": "2026-Q2",
+          "mentions": 31,
+          "postings": 150,
+          "employers": 15,
+          "timing": "coincident"
+        },
+        {
+          "id": "2026-Q3",
+          "mentions": 44,
+          "postings": 412,
+          "employers": 18,
+          "timing": "coincident"
+        }
+      ],
+      "note": "Still common at L1, but a smaller share than the earlier window."
+    }
+  ],
+  "limits": [
+    "Fixture data from the illustrative Role Atlas prototype; not research findings.",
+    "Core measurement windows repeat the prototype's steady peak share, using the role-wide employer count as an illustrative assumption, not measured level-specific employer coverage.",
+    "The prototype omits edge employer counts: eight is an explicit fixture-only assumption, not an observation.",
+    "Window employer concentration is the prototype's illustrative 20% cap, not measured employer allocation.",
+    "Counts describe the admitted sample in each window, not the whole market.",
+    "Posting frequency is not importance, proficiency or hiring likelihood.",
+    "Industry splits are only as wide as the employers sampled in each industry.",
+    "Forecast probabilities and base rates are illustrative; no backtest has been run."
+  ]
+}

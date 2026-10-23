@@ -1,0 +1,1687 @@
+{
+  "schema": "skills-vector.role/2",
+  "id": "role.hr-generalist",
+  "label": "HR Generalist",
+  "status": "established",
+  "publication": "standard",
+  "data_kind": "fixture",
+  "release_id": "fixture_role_atlas_2026q3",
+  "aliases": [
+    "HR Generalist",
+    "People Generalist",
+    "HR Business Partner"
+  ],
+  "anchors": [
+    {
+      "system": "O*NET-SOC",
+      "code": "13-1071.00",
+      "title": "Human Resources Specialists",
+      "fit": "close"
+    }
+  ],
+  "foundation": {
+    "median_pay": "$72k",
+    "pay_note": "median annual pay",
+    "employment": "~900k",
+    "employment_note": "U.S. jobs in anchor code",
+    "outlook_10y": "+6%",
+    "outlook_note": "10-year projection",
+    "core_tasks": [
+      "Interpret and explain HR policies",
+      "Maintain employee records and HRIS data",
+      "Advise managers on employee relations",
+      "Coordinate onboarding and benefits enrollment"
+    ],
+    "sources": [
+      {
+        "source": "O*NET ratings and tasks",
+        "family": "O",
+        "timing": "lagging",
+        "reading": "Anchor tasks rated 2023.",
+        "agrees": false
+      },
+      {
+        "source": "BLS wages and employment",
+        "family": "context",
+        "timing": "lagging",
+        "reading": "Anchor-code statistics, not title-specific estimates.",
+        "agrees": false
+      },
+      {
+        "source": "BLS employment projections",
+        "family": "context",
+        "timing": "long-term",
+        "reading": "Ten-year headcount outlook, not skill demand.",
+        "agrees": false
+      }
+    ]
+  },
+  "demand_window": {
+    "id": "2026-Q3",
+    "compared_to": "2026-Q2",
+    "postings": 288,
+    "employers": 74,
+    "max_employer_share": 0.2,
+    "timing": "coincident",
+    "window_length": "quarterly"
+  },
+  "ladder": {
+    "scale": "shared L1-L5",
+    "track": "individual_contributor",
+    "linked_roles": [
+      {
+        "from_level": 3,
+        "role": "hr-manager",
+        "relation": "people_management_track",
+        "note": "Separate linked role. Owns an HR team and its hiring."
+      }
+    ],
+    "levels": [
+      {
+        "id": "hr-generalist.L1",
+        "level": 1,
+        "name": "HR Coordinator",
+        "typical_titles": [
+          "HR Coordinator",
+          "People Operations Coordinator"
+        ],
+        "years_wording": "0–2 years",
+        "scope": "Onboarding logistics, HRIS data entry and employee records.",
+        "owns": "Accuracy of records and onboarding steps.",
+        "step_up": "Entry level for this ladder.",
+        "evidence": {
+          "postings": 71,
+          "employers": 38,
+          "window": "2026-Q3",
+          "timing": "coincident"
+        },
+        "expectations": [
+          {
+            "id": "exp.hris-data-entry-and-audits",
+            "label": "HRIS data entry and audits",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.hris-data-entry-and-audits@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.onboarding-and-offboarding-coordination",
+            "label": "Onboarding and offboarding coordination",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.onboarding-and-offboarding-coordination@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.answering-routine-employee-questions",
+            "label": "Answering routine employee questions",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.answering-routine-employee-questions@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          }
+        ]
+      },
+      {
+        "id": "hr-generalist.L2",
+        "level": 2,
+        "name": "HR Generalist",
+        "typical_titles": [
+          "HR Generalist",
+          "People Generalist"
+        ],
+        "years_wording": "2–5 years",
+        "scope": "First line for employee relations, policy, leave and benefits administration.",
+        "owns": "Day-to-day HR for a site or employee group.",
+        "step_up": "Handles employee-relations cases and policy questions, not just transactions.",
+        "evidence": {
+          "postings": 109,
+          "employers": 52,
+          "window": "2026-Q3",
+          "timing": "coincident"
+        },
+        "expectations": [
+          {
+            "id": "exp.employee-relations-intake-and-documentation",
+            "label": "Employee-relations intake and documentation",
+            "introduced_at": 2,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.employee-relations-intake-and-documentation@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.leave-benefits-and-multi-state-compliance",
+            "label": "Leave, benefits and multi-state compliance",
+            "introduced_at": 2,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.leave-benefits-and-multi-state-compliance@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.policy-interpretation-for-managers",
+            "label": "Policy interpretation for managers",
+            "introduced_at": 2,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.policy-interpretation-for-managers@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.hris-data-entry-and-audits",
+            "label": "HRIS data entry and audits",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.hris-data-entry-and-audits@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          }
+        ]
+      },
+      {
+        "id": "hr-generalist.L3",
+        "level": 3,
+        "name": "Senior Generalist / HRBP",
+        "typical_titles": [
+          "Senior HR Generalist",
+          "HR Business Partner"
+        ],
+        "years_wording": "5–8 years",
+        "scope": "Partners with managers on performance, investigations and org change.",
+        "owns": "HR outcomes for a business unit.",
+        "step_up": "Advises leaders and runs investigations. Uses data to argue for changes.",
+        "evidence": {
+          "postings": 82,
+          "employers": 41,
+          "window": "2026-Q3",
+          "timing": "coincident"
+        },
+        "expectations": [
+          {
+            "id": "exp.workplace-investigations",
+            "label": "Workplace investigations",
+            "introduced_at": 3,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.workplace-investigations@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.performance-cycle-and-calibration-support",
+            "label": "Performance-cycle and calibration support",
+            "introduced_at": 3,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.performance-cycle-and-calibration-support@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.people-analytics-for-managers",
+            "label": "People analytics for managers",
+            "introduced_at": 3,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.people-analytics-for-managers@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.employee-relations-intake-and-documentation",
+            "label": "Employee-relations intake and documentation",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.employee-relations-intake-and-documentation@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          }
+        ]
+      },
+      {
+        "id": "hr-generalist.L4",
+        "level": 4,
+        "name": "Senior HRBP",
+        "typical_titles": [
+          "Senior HR Business Partner",
+          "Sr. People Partner"
+        ],
+        "years_wording": "8+ years",
+        "scope": "Advises executives on org design and workforce planning.",
+        "owns": "People strategy for a function.",
+        "step_up": "Shapes org design and workforce plans with executives, not only managers.",
+        "evidence": {
+          "postings": 26,
+          "employers": 17,
+          "window": "2026-Q3",
+          "timing": "coincident"
+        },
+        "expectations": [
+          {
+            "id": "exp.org-design-and-workforce-planning",
+            "label": "Org design and workforce planning",
+            "introduced_at": 4,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.org-design-and-workforce-planning@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.executive-coaching-and-advising",
+            "label": "Executive coaching and advising",
+            "introduced_at": 4,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.executive-coaching-and-advising@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.people-analytics-for-managers",
+            "label": "People analytics for managers",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.people-analytics-for-managers@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          }
+        ]
+      }
+    ]
+  },
+  "skill_map": {
+    "skills": [
+      {
+        "id": "skill.hris",
+        "short_label": "HRIS data and audits",
+        "label": "HRIS data entry and audits",
+        "status": "core",
+        "first_level": 1,
+        "share_by_level": [
+          80,
+          58,
+          36,
+          18
+        ],
+        "source_links": [
+          "P",
+          "O",
+          "Ee"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.8,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.8,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 80% of L1 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "In the O*NET record for 13-1071.00 (rated 2023).",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as essential for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.onboard",
+        "short_label": "Onboarding",
+        "label": "Onboarding and offboarding coordination",
+        "status": "core",
+        "first_level": 1,
+        "share_by_level": [
+          76,
+          44,
+          20,
+          8
+        ],
+        "source_links": [
+          "P",
+          "O",
+          "Ee"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.76,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.76,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 76% of L1 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "In the O*NET record for 13-1071.00 (rated 2023).",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as essential for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.hrauto",
+        "short_label": "HR workflow automation",
+        "label": "Automating HR workflows with AI tools in the HRIS",
+        "status": "rising",
+        "first_level": 1,
+        "share_by_level": [
+          18,
+          21,
+          17,
+          9
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.058333333333333334,
+            "employers": 6,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.1701388888888889,
+            "employers": 21,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Up from 6% to 17% of L1–L3 postings across 21 employers.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET Hot Technologies",
+            "family": "M",
+            "timing": "coincident",
+            "reading": "HRIS platforms with AI features listed as Hot Technologies.",
+            "agrees": true
+          },
+          {
+            "source": "Indeed Hiring Lab",
+            "family": "M",
+            "timing": "coincident",
+            "reading": "AI mentions in HR postings rising in the sector series.",
+            "agrees": true
+          }
+        ],
+        "forecast": {
+          "id": "forecast.hr-generalist.hrauto",
+          "claim": "Asked in 25%+ of L1–L3 postings by 2027-Q3",
+          "probability": 0.66,
+          "base_rate": 0.62,
+          "horizon_quarters": 4,
+          "created": "2026-Q3",
+          "resolves": "2027-Q3",
+          "scored_against": "stratified posting sample"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.er",
+        "short_label": "ER intake",
+        "label": "Employee-relations intake and documentation",
+        "status": "core",
+        "first_level": 2,
+        "share_by_level": [
+          8,
+          62,
+          58,
+          40
+        ],
+        "source_links": [
+          "P",
+          "O",
+          "Ee"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.62,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.62,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 62% of L2 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "In the O*NET record for 13-1071.00 (rated 2023).",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as essential for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.leave",
+        "short_label": "Leave and multi-state",
+        "label": "Leave, benefits and multi-state compliance",
+        "status": "core",
+        "first_level": 2,
+        "share_by_level": [
+          12,
+          66,
+          54,
+          31
+        ],
+        "source_links": [
+          "P",
+          "O",
+          "Ee"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.66,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.66,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 66% of L2 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "In the O*NET record for 13-1071.00 (rated 2023).",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as essential for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.policy",
+        "short_label": "Policy interpretation",
+        "label": "Policy interpretation for managers",
+        "status": "core",
+        "first_level": 2,
+        "share_by_level": [
+          6,
+          52,
+          57,
+          45
+        ],
+        "source_links": [
+          "P",
+          "O"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.57,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.57,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 57% of L3 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "In the O*NET record for 13-1071.00 (rated 2023).",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.analytics",
+        "short_label": "People analytics",
+        "label": "People analytics for managers",
+        "status": "rising",
+        "first_level": 2,
+        "share_by_level": [
+          2,
+          28,
+          46,
+          58
+        ],
+        "source_links": [
+          "P",
+          "Eo"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.09166666666666666,
+            "employers": 8,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.18055555555555555,
+            "employers": 26,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Up from 9% to 18% of L2–L3 postings across 26 employers.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "In the O*NET record for HR Specialists at low importance (rated 2023).",
+            "agrees": false
+          },
+          {
+            "source": "Indeed Hiring Lab",
+            "family": "M",
+            "timing": "coincident",
+            "reading": "Analytics mentions in HR postings rising in the sector series.",
+            "agrees": true
+          }
+        ],
+        "forecast": {
+          "id": "forecast.hr-generalist.analytics",
+          "claim": "Asked in 35%+ of L2 postings by 2027-Q3",
+          "probability": 0.6,
+          "base_rate": 0.62,
+          "horizon_quarters": 4,
+          "created": "2026-Q3",
+          "resolves": "2027-Q3",
+          "scored_against": "stratified posting sample"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.invest",
+        "short_label": "Investigations",
+        "label": "Workplace investigations",
+        "status": "core",
+        "first_level": 3,
+        "share_by_level": [
+          0,
+          10,
+          55,
+          48
+        ],
+        "source_links": [
+          "P",
+          "Eo"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.55,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.55,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 55% of L3 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as optional for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.aipolicy",
+        "short_label": "AI use policy",
+        "label": "Writing AI acceptable-use and data policies",
+        "status": "early",
+        "first_level": 3,
+        "share_by_level": [
+          0,
+          4,
+          9,
+          14
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.008333333333333333,
+            "employers": 1,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.04861111111111111,
+            "employers": 9,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "New phrasing in postings",
+            "family": "P",
+            "timing": "leading",
+            "reading": "From 1% to 5% of postings, at 9 employers. Only one source so far.",
+            "agrees": false
+          }
+        ],
+        "forecast": {
+          "id": "forecast.hr-generalist.aipolicy",
+          "claim": "Asked in 10%+ of L2–L4 postings by 2027-Q3",
+          "probability": 0.5,
+          "base_rate": 0.31,
+          "horizon_quarters": 4,
+          "created": "2026-Q3",
+          "resolves": "2027-Q3",
+          "scored_against": "stratified posting sample"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.perf",
+        "short_label": "Performance cycles",
+        "label": "Performance-cycle and calibration support",
+        "status": "core",
+        "first_level": 3,
+        "share_by_level": [
+          0,
+          12,
+          49,
+          52
+        ],
+        "source_links": [
+          "P",
+          "Eo"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.52,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.52,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 52% of L4 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as optional for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.coach",
+        "short_label": "Executive advising",
+        "label": "Executive coaching and advising",
+        "status": "core",
+        "first_level": 4,
+        "share_by_level": [
+          0,
+          0,
+          6,
+          59
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.59,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.59,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 59% of L4 postings, steady across two windows.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.orgdesign",
+        "short_label": "Workforce planning",
+        "label": "Org design and workforce planning",
+        "status": "core",
+        "first_level": 4,
+        "share_by_level": [
+          0,
+          0,
+          8,
+          67
+        ],
+        "source_links": [
+          "P",
+          "Ee"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.67,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.67,
+            "employers": 74,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 67% of L4 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as essential for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      }
+    ],
+    "asked_together": [
+      {
+        "a": "skill.hris",
+        "b": "skill.hrauto",
+        "lift": 2.2,
+        "postings": 40,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.hris",
+        "b": "skill.onboard",
+        "lift": 1.8,
+        "postings": 88,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.er",
+        "b": "skill.invest",
+        "lift": 2.4,
+        "postings": 46,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.er",
+        "b": "skill.policy",
+        "lift": 1.7,
+        "postings": 61,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.leave",
+        "b": "skill.policy",
+        "lift": 1.9,
+        "postings": 57,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.analytics",
+        "b": "skill.perf",
+        "lift": 1.8,
+        "postings": 34,
+        "employers": 8,
+        "timing": "coincident"
+      }
+    ],
+    "builds_on": [
+      {
+        "a": "skill.er",
+        "b": "skill.invest"
+      },
+      {
+        "a": "skill.analytics",
+        "b": "skill.orgdesign"
+      },
+      {
+        "a": "skill.policy",
+        "b": "skill.aipolicy"
+      },
+      {
+        "a": "skill.perf",
+        "b": "skill.coach"
+      },
+      {
+        "a": "skill.hris",
+        "b": "skill.hrauto"
+      }
+    ],
+    "top_level_adds": {
+      "top_level": 4,
+      "core_level": 2,
+      "skills": [
+        "skill.analytics",
+        "skill.invest",
+        "skill.perf",
+        "skill.coach",
+        "skill.orgdesign"
+      ],
+      "long_run_bar": {
+        "source": "O*NET level ratings",
+        "family": "O",
+        "timing": "lagging",
+        "reading": "The durable proficiency bar, not current posting demand.",
+        "agrees": false
+      }
+    }
+  },
+  "industries": [
+    {
+      "naics": "51",
+      "label": "Information",
+      "naics_title": "Information",
+      "sub_industries": "Software, media and telecom",
+      "evidence": {
+        "postings": 92,
+        "employers": 31,
+        "window": "2026-Q3",
+        "timing": "coincident"
+      },
+      "profile": {
+        "share_of_occupation_jobs": "7%",
+        "median_pay": "$84k",
+        "how_it_differs": "Fast hiring and frequent reorganizations. Certifications are optional and analytics are asked for early.",
+        "distinct_duties": [
+          "Support fast hiring and frequent reorganizations",
+          "Administer equity and remote-work policies",
+          "Run engagement surveys"
+        ],
+        "certifications": [
+          {
+            "name": "SHRM-CP",
+            "issuer": "SHRM",
+            "asked_as": "preferred",
+            "posting_share": 0.18,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          },
+          {
+            "name": "PHR",
+            "issuer": "HRCI",
+            "asked_as": "preferred",
+            "posting_share": 0.11,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          }
+        ],
+        "domain_knowledge": [
+          "Equity programs",
+          "Multi-state remote employment"
+        ],
+        "skill_shares": [
+          {
+            "skill": "skill.er",
+            "share": 0.55,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.leave",
+            "share": 0.58,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.invest",
+            "share": 0.31,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.analytics",
+            "share": 0.49,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.hrauto",
+            "share": 0.33,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.aipolicy",
+            "share": 0.11,
+            "timing": "coincident"
+          }
+        ],
+        "sources": [
+          {
+            "source": "BLS occupation-by-industry matrix",
+            "family": "context",
+            "timing": "lagging",
+            "reading": "Employment share for the anchor occupation.",
+            "agrees": false
+          },
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Duties, credentials and skill shares in this sector.",
+            "agrees": false
+          },
+          {
+            "source": "CareerOneStop",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "Certification Finder matches by O*NET and NAICS.",
+            "agrees": false
+          }
+        ]
+      },
+      "reason": null
+    },
+    {
+      "naics": "62",
+      "label": "Health care",
+      "naics_title": "Health care and social assistance",
+      "sub_industries": "Hospitals, clinics, long-term care",
+      "evidence": {
+        "postings": 81,
+        "employers": 22,
+        "window": "2026-Q3",
+        "timing": "coincident"
+      },
+      "profile": {
+        "share_of_occupation_jobs": "13%",
+        "median_pay": "$70k",
+        "how_it_differs": "Licences and shifts drive the work. HR tracks clinical credentials and often works with unions.",
+        "distinct_duties": [
+          "Track clinical licences and credential renewals",
+          "Staff around-the-clock shift schedules",
+          "Support collective-bargaining processes"
+        ],
+        "certifications": [
+          {
+            "name": "SHRM-CP or PHR",
+            "issuer": "SHRM / HRCI",
+            "asked_as": "preferred",
+            "posting_share": 0.39,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          },
+          {
+            "name": "HIPAA training",
+            "issuer": "Employer",
+            "asked_as": "required",
+            "posting_share": 0.27,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          }
+        ],
+        "domain_knowledge": [
+          "Joint Commission standards",
+          "Licence verification",
+          "Union contracts"
+        ],
+        "skill_shares": [
+          {
+            "skill": "skill.er",
+            "share": 0.61,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.leave",
+            "share": 0.66,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.invest",
+            "share": 0.44,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.analytics",
+            "share": 0.22,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.hrauto",
+            "share": 0.12,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.aipolicy",
+            "share": 0.04,
+            "timing": "coincident"
+          }
+        ],
+        "sources": [
+          {
+            "source": "BLS occupation-by-industry matrix",
+            "family": "context",
+            "timing": "lagging",
+            "reading": "Employment share for the anchor occupation.",
+            "agrees": false
+          },
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Duties, credentials and skill shares in this sector.",
+            "agrees": false
+          },
+          {
+            "source": "CareerOneStop",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "Certification Finder matches by O*NET and NAICS.",
+            "agrees": false
+          }
+        ]
+      },
+      "reason": null
+    },
+    {
+      "naics": "31–33",
+      "label": "Manufacturing",
+      "naics_title": "Manufacturing",
+      "sub_industries": "Plants and industrial sites",
+      "evidence": {
+        "postings": 64,
+        "employers": 15,
+        "window": "2026-Q3",
+        "timing": "coincident"
+      },
+      "profile": {
+        "share_of_occupation_jobs": "11%",
+        "median_pay": "$68k",
+        "how_it_differs": "An hourly, on-site workforce. Safety and attendance processes take a large share of the job.",
+        "distinct_duties": [
+          "Run safety and incident-report processes",
+          "Manage attendance and overtime for hourly staff",
+          "Support plant labour relations"
+        ],
+        "certifications": [
+          {
+            "name": "PHR",
+            "issuer": "HRCI",
+            "asked_as": "preferred",
+            "posting_share": 0.24,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          },
+          {
+            "name": "OSHA 30-hour",
+            "issuer": "OSHA outreach trainers",
+            "asked_as": "preferred",
+            "posting_share": 0.21,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          }
+        ],
+        "domain_knowledge": [
+          "FLSA overtime",
+          "Workers' compensation",
+          "Shift scheduling"
+        ],
+        "skill_shares": [
+          {
+            "skill": "skill.er",
+            "share": 0.63,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.leave",
+            "share": 0.49,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.invest",
+            "share": 0.47,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.analytics",
+            "share": 0.18,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.hrauto",
+            "share": 0.09,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.aipolicy",
+            "share": 0.02,
+            "timing": "coincident"
+          }
+        ],
+        "sources": [
+          {
+            "source": "BLS occupation-by-industry matrix",
+            "family": "context",
+            "timing": "lagging",
+            "reading": "Employment share for the anchor occupation.",
+            "agrees": false
+          },
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Duties, credentials and skill shares in this sector.",
+            "agrees": false
+          },
+          {
+            "source": "CareerOneStop",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "Certification Finder matches by O*NET and NAICS.",
+            "agrees": false
+          }
+        ]
+      },
+      "reason": null
+    },
+    {
+      "naics": "92",
+      "label": "Public administration",
+      "naics_title": "Public administration",
+      "sub_industries": "State, county and city government",
+      "evidence": {
+        "postings": 51,
+        "employers": 14,
+        "window": "2026-Q3",
+        "timing": "coincident"
+      },
+      "profile": {
+        "share_of_occupation_jobs": "9%",
+        "median_pay": "$66k",
+        "how_it_differs": "Rules-based hiring. Civil-service exams, union grievance steps and public-records law shape every process.",
+        "distinct_duties": [
+          "Run civil-service exams and eligibility lists",
+          "Apply union contracts and grievance steps",
+          "Follow open-hiring and public-records rules"
+        ],
+        "certifications": [
+          {
+            "name": "SHRM-CP",
+            "issuer": "SHRM",
+            "asked_as": "preferred",
+            "posting_share": 0.19,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          },
+          {
+            "name": "IPMA-HR CP or SCP",
+            "issuer": "IPMA-HR",
+            "asked_as": "preferred",
+            "posting_share": 0.14,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          }
+        ],
+        "domain_knowledge": [
+          "Civil service rules",
+          "Public pensions",
+          "Grievance procedures"
+        ],
+        "skill_shares": [
+          {
+            "skill": "skill.er",
+            "share": 0.7,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.leave",
+            "share": 0.52,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.invest",
+            "share": 0.52,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.analytics",
+            "share": 0.14,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.hrauto",
+            "share": 0.06,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.aipolicy",
+            "share": 0.03,
+            "timing": "coincident"
+          }
+        ],
+        "sources": [
+          {
+            "source": "BLS occupation-by-industry matrix",
+            "family": "context",
+            "timing": "lagging",
+            "reading": "Employment share for the anchor occupation.",
+            "agrees": false
+          },
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Duties, credentials and skill shares in this sector.",
+            "agrees": false
+          },
+          {
+            "source": "CareerOneStop",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "Certification Finder matches by O*NET and NAICS.",
+            "agrees": false
+          }
+        ]
+      },
+      "reason": null
+    }
+  ],
+  "observations": [
+    {
+      "id": "observation.hr-automation",
+      "label": "Automating HR workflows with AI tools in the HRIS",
+      "levels": [
+        1,
+        2,
+        3
+      ],
+      "windows": [
+        {
+          "id": "2026-Q2",
+          "mentions": 7,
+          "postings": 120,
+          "employers": 6,
+          "timing": "coincident"
+        },
+        {
+          "id": "2026-Q3",
+          "mentions": 49,
+          "postings": 288,
+          "employers": 21,
+          "timing": "coincident"
+        }
+      ],
+      "note": "Most mentions are inside Workday or Rippling workflows."
+    },
+    {
+      "id": "observation.ai-policy",
+      "label": "Writing AI acceptable-use and data policies",
+      "levels": [
+        2,
+        3,
+        4
+      ],
+      "windows": [
+        {
+          "id": "2026-Q2",
+          "mentions": 1,
+          "postings": 120,
+          "employers": 1,
+          "timing": "coincident"
+        },
+        {
+          "id": "2026-Q3",
+          "mentions": 14,
+          "postings": 288,
+          "employers": 9,
+          "timing": "coincident"
+        }
+      ],
+      "note": "New phrasing. Not yet at the growing threshold."
+    },
+    {
+      "id": "observation.analytics-gen",
+      "label": "People analytics expected at generalist level",
+      "levels": [
+        2,
+        3
+      ],
+      "windows": [
+        {
+          "id": "2026-Q2",
+          "mentions": 11,
+          "postings": 120,
+          "employers": 8,
+          "timing": "coincident"
+        },
+        {
+          "id": "2026-Q3",
+          "mentions": 52,
+          "postings": 288,
+          "employers": 26,
+          "timing": "coincident"
+        }
+      ],
+      "note": "Previously concentrated at L3 and above."
+    },
+    {
+      "id": "observation.multistate",
+      "label": "Multi-state compliance for remote employees",
+      "levels": [
+        2,
+        3
+      ],
+      "windows": [
+        {
+          "id": "2026-Q2",
+          "mentions": 38,
+          "postings": 120,
+          "employers": 29,
+          "timing": "coincident"
+        },
+        {
+          "id": "2026-Q3",
+          "mentions": 93,
+          "postings": 288,
+          "employers": 55,
+          "timing": "coincident"
+        }
+      ],
+      "note": "Stable share across both windows."
+    }
+  ],
+  "limits": [
+    "Fixture data from the illustrative Role Atlas prototype; not research findings.",
+    "Core measurement windows repeat the prototype's steady peak share, using the role-wide employer count as an illustrative assumption, not measured level-specific employer coverage.",
+    "The prototype omits edge employer counts: eight is an explicit fixture-only assumption, not an observation.",
+    "Window employer concentration is the prototype's illustrative 20% cap, not measured employer allocation.",
+    "Counts describe the admitted sample in each window, not the whole market.",
+    "Posting frequency is not importance, proficiency or hiring likelihood.",
+    "Industry splits are only as wide as the employers sampled in each industry.",
+    "Forecast probabilities and base rates are illustrative; no backtest has been run."
+  ]
+}

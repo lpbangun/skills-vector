@@ -1,0 +1,1257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:skills-vector:role:2",
+  "title": "skills-vector.role/2",
+  "description": "Role Atlas contract. Evidence arithmetic, comparability and referential integrity are enforced by the companion Python validator.",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "skills-vector.role/2"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^role\\.[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "status": {
+      "enum": [
+        "established",
+        "emerging"
+      ]
+    },
+    "publication": {
+      "enum": [
+        "standard",
+        "experimental"
+      ]
+    },
+    "data_kind": {
+      "enum": [
+        "fixture",
+        "research"
+      ]
+    },
+    "release_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 1
+    },
+    "anchors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Anchor"
+      },
+      "minItems": 1
+    },
+    "foundation": {
+      "$ref": "#/$defs/Foundation"
+    },
+    "demand_window": {
+      "$ref": "#/$defs/DemandWindow"
+    },
+    "ladder": {
+      "$ref": "#/$defs/Ladder"
+    },
+    "skill_map": {
+      "$ref": "#/$defs/SkillMap"
+    },
+    "industries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Industry"
+      },
+      "minItems": 0
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Observation"
+      },
+      "minItems": 0
+    },
+    "limits": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema",
+    "id",
+    "label",
+    "status",
+    "publication",
+    "data_kind",
+    "release_id",
+    "aliases",
+    "anchors",
+    "foundation",
+    "demand_window",
+    "ladder",
+    "skill_map",
+    "industries",
+    "observations",
+    "limits"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "anyOf": [
+          {
+            "properties": {
+              "anchors": {
+                "contains": {
+                  "properties": {
+                    "fit": {
+                      "const": "partial"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "status": {
+                "const": "emerging"
+              }
+            }
+          }
+        ]
+      },
+      "then": {
+        "properties": {
+          "publication": {
+            "const": "experimental"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "Anchor": {
+      "type": "object",
+      "properties": {
+        "system": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "code": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "fit": {
+          "enum": [
+            "close",
+            "partial",
+            "exact"
+          ]
+        }
+      },
+      "required": [
+        "system",
+        "code",
+        "title",
+        "fit"
+      ],
+      "additionalProperties": false
+    },
+    "Signal": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "family": {
+          "enum": [
+            "P",
+            "O",
+            "M",
+            "context"
+          ]
+        },
+        "timing": {
+          "enum": [
+            "leading",
+            "coincident",
+            "lagging",
+            "long-term"
+          ]
+        },
+        "reading": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "agrees": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "source",
+        "family",
+        "timing",
+        "reading",
+        "agrees"
+      ],
+      "additionalProperties": false
+    },
+    "Foundation": {
+      "type": "object",
+      "properties": {
+        "median_pay": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "pay_note": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "employment": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "employment_note": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "outlook_10y": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "outlook_note": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "core_tasks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Signal"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "median_pay",
+        "pay_note",
+        "employment",
+        "employment_note",
+        "outlook_10y",
+        "outlook_note",
+        "core_tasks",
+        "sources"
+      ],
+      "additionalProperties": false
+    },
+    "EvidenceCounts": {
+      "type": "object",
+      "properties": {
+        "postings": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "employers": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "window": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[0-9]{4}-(Q[1-4]|0[1-9]|1[0-2])$"
+        },
+        "timing": {
+          "const": "coincident"
+        }
+      },
+      "required": [
+        "postings",
+        "employers",
+        "window",
+        "timing"
+      ],
+      "additionalProperties": false
+    },
+    "DemandWindow": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[0-9]{4}-(Q[1-4]|0[1-9]|1[0-2])$"
+        },
+        "compared_to": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[0-9]{4}-(Q[1-4]|0[1-9]|1[0-2])$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "postings": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "employers": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_employer_share": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "timing": {
+          "const": "coincident"
+        },
+        "window_length": {
+          "enum": [
+            "quarterly",
+            "monthly"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "compared_to",
+        "postings",
+        "employers",
+        "max_employer_share",
+        "timing",
+        "window_length"
+      ],
+      "additionalProperties": false
+    },
+    "Expectation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "introduced_at": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            },
+            {
+              "const": "earlier"
+            }
+          ]
+        },
+        "basis": {
+          "const": "advertised_demand"
+        },
+        "cite": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "timing": {
+          "const": "coincident"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "introduced_at",
+        "basis",
+        "cite",
+        "timing"
+      ],
+      "additionalProperties": false
+    },
+    "Level": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "typical_titles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1
+        },
+        "years_wording": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "owns": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "step_up": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "evidence": {
+          "$ref": "#/$defs/EvidenceCounts"
+        },
+        "expectations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Expectation"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "level",
+        "name",
+        "typical_titles",
+        "years_wording",
+        "scope",
+        "owns",
+        "step_up",
+        "evidence",
+        "expectations"
+      ],
+      "additionalProperties": false
+    },
+    "LinkedRole": {
+      "type": "object",
+      "properties": {
+        "from_level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "relation": {
+          "const": "people_management_track"
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "from_level",
+        "role",
+        "relation",
+        "note"
+      ],
+      "additionalProperties": false
+    },
+    "Ladder": {
+      "type": "object",
+      "properties": {
+        "scale": {
+          "const": "shared L1-L5"
+        },
+        "track": {
+          "const": "individual_contributor"
+        },
+        "linked_roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LinkedRole"
+          },
+          "minItems": 0
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Level"
+          },
+          "minItems": 1,
+          "maxItems": 5
+        }
+      },
+      "required": [
+        "scale",
+        "track",
+        "linked_roles",
+        "levels"
+      ],
+      "additionalProperties": false
+    },
+    "Measurement": {
+      "type": "object",
+      "properties": {
+        "window": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[0-9]{4}-(Q[1-4]|0[1-9]|1[0-2])$"
+        },
+        "share": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "employers": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_employer_share": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "comparison_group": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "timing": {
+          "const": "coincident"
+        }
+      },
+      "required": [
+        "window",
+        "share",
+        "employers",
+        "max_employer_share",
+        "comparison_group",
+        "levels",
+        "timing"
+      ],
+      "additionalProperties": false
+    },
+    "Forecast": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "claim": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "probability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "base_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "horizon_quarters": {
+          "const": 4
+        },
+        "created": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[0-9]{4}-(Q[1-4]|0[1-9]|1[0-2])$"
+        },
+        "resolves": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[0-9]{4}-(Q[1-4]|0[1-9]|1[0-2])$"
+        },
+        "scored_against": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "id",
+        "claim",
+        "probability",
+        "base_rate",
+        "horizon_quarters",
+        "created",
+        "resolves",
+        "scored_against"
+      ],
+      "additionalProperties": false
+    },
+    "Skill": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "short_label": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "status": {
+          "enum": [
+            "core",
+            "rising",
+            "early",
+            "fading"
+          ]
+        },
+        "first_level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "share_by_level": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "minItems": 1,
+          "maxItems": 5
+        },
+        "source_links": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "P",
+              "O",
+              "Ee",
+              "Eo"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "windows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Measurement"
+          },
+          "minItems": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Signal"
+          },
+          "minItems": 1
+        },
+        "forecast": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Forecast"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "disputed": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "short_label",
+        "label",
+        "status",
+        "first_level",
+        "share_by_level",
+        "source_links",
+        "windows",
+        "evidence",
+        "forecast",
+        "disputed"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "rising",
+                  "early",
+                  "fading"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "forecast": {
+                "$ref": "#/$defs/Forecast"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "AskedTogether": {
+      "type": "object",
+      "properties": {
+        "a": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "b": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "lift": {
+          "type": "number",
+          "minimum": 1.5
+        },
+        "postings": {
+          "type": "integer",
+          "minimum": 25
+        },
+        "employers": {
+          "type": "integer",
+          "minimum": 8
+        },
+        "timing": {
+          "const": "coincident"
+        }
+      },
+      "required": [
+        "a",
+        "b",
+        "lift",
+        "postings",
+        "employers",
+        "timing"
+      ],
+      "additionalProperties": false
+    },
+    "BuildsOn": {
+      "type": "object",
+      "properties": {
+        "a": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "b": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "a",
+        "b"
+      ],
+      "additionalProperties": false
+    },
+    "TopLevelAdds": {
+      "type": "object",
+      "properties": {
+        "top_level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "core_level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "long_run_bar": {
+          "$ref": "#/$defs/Signal"
+        }
+      },
+      "required": [
+        "top_level",
+        "core_level",
+        "skills",
+        "long_run_bar"
+      ],
+      "additionalProperties": false
+    },
+    "SkillMap": {
+      "type": "object",
+      "properties": {
+        "skills": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Skill"
+          },
+          "minItems": 1
+        },
+        "asked_together": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AskedTogether"
+          },
+          "minItems": 0
+        },
+        "builds_on": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BuildsOn"
+          },
+          "minItems": 0
+        },
+        "top_level_adds": {
+          "$ref": "#/$defs/TopLevelAdds"
+        }
+      },
+      "required": [
+        "skills",
+        "asked_together",
+        "builds_on",
+        "top_level_adds"
+      ],
+      "additionalProperties": false
+    },
+    "Certification": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "issuer": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "asked_as": {
+          "enum": [
+            "required",
+            "preferred",
+            "common"
+          ]
+        },
+        "posting_share": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "timing": {
+          "const": "coincident"
+        }
+      },
+      "required": [
+        "name",
+        "issuer",
+        "asked_as",
+        "posting_share",
+        "source",
+        "timing"
+      ],
+      "additionalProperties": false
+    },
+    "SkillShare": {
+      "type": "object",
+      "properties": {
+        "skill": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "share": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "timing": {
+          "const": "coincident"
+        }
+      },
+      "required": [
+        "skill",
+        "share",
+        "timing"
+      ],
+      "additionalProperties": false
+    },
+    "SectorProfile": {
+      "type": "object",
+      "properties": {
+        "share_of_occupation_jobs": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "median_pay": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "how_it_differs": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "distinct_duties": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1
+        },
+        "certifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Certification"
+          },
+          "minItems": 0
+        },
+        "domain_knowledge": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1
+        },
+        "skill_shares": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SkillShare"
+          },
+          "minItems": 0
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Signal"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "share_of_occupation_jobs",
+        "median_pay",
+        "how_it_differs",
+        "distinct_duties",
+        "certifications",
+        "domain_knowledge",
+        "skill_shares",
+        "sources"
+      ],
+      "additionalProperties": false
+    },
+    "Industry": {
+      "type": "object",
+      "properties": {
+        "naics": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(11|21|22|23|31[–-]33|42|44[–-]45|48[–-]49|51|52|53|54|55|56|61|62|71|72|81|92)$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "naics_title": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "sub_industries": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "evidence": {
+          "$ref": "#/$defs/EvidenceCounts"
+        },
+        "profile": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SectorProfile"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "naics",
+        "label",
+        "naics_title",
+        "sub_industries",
+        "evidence",
+        "profile",
+        "reason"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "evidence": {
+                "anyOf": [
+                  {
+                    "properties": {
+                      "postings": {
+                        "maximum": 29
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "employers": {
+                        "maximum": 7
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "profile": {
+                "type": "null"
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "profile": {
+                "type": "null"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "reason": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "PostingWindow": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[0-9]{4}-(Q[1-4]|0[1-9]|1[0-2])$"
+        },
+        "mentions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "postings": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "employers": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timing": {
+          "const": "coincident"
+        }
+      },
+      "required": [
+        "id",
+        "mentions",
+        "postings",
+        "employers",
+        "timing"
+      ],
+      "additionalProperties": false
+    },
+    "Observation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "windows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PostingWindow"
+          },
+          "minItems": 1
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "levels",
+        "windows",
+        "note"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

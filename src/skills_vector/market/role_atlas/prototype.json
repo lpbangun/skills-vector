@@ -1,0 +1,2743 @@
+{
+  "data_kind": "fixture",
+  "source": "design-concepts/role-atlas.html",
+  "roles": {
+    "account-executive": {
+      "label": "Account Executive",
+      "status": "established",
+      "anchors": [
+        {
+          "system": "O*NET-SOC",
+          "code": "41-4011.00",
+          "title": "Sales Representatives, Wholesale and Manufacturing, Technical and Scientific Products",
+          "fit": "partial"
+        }
+      ],
+      "aliases": [
+        "AE",
+        "Account Executive",
+        "Commercial AE",
+        "Enterprise AE"
+      ],
+      "foundation": {
+        "wage": "$98k",
+        "wageNote": "median annual pay",
+        "employment": "~330k",
+        "employmentNote": "U.S. jobs in anchor code",
+        "outlook": "+3%",
+        "outlookNote": "10-year projection",
+        "tasks": [
+          "Identify prospective customers and qualify leads",
+          "Negotiate prices and terms of sale",
+          "Prepare and present proposals to buyers",
+          "Maintain records of accounts and pipeline"
+        ]
+      },
+      "window": {
+        "current": "2026-Q3",
+        "previous": "2026-Q2",
+        "postings": 412,
+        "employers": 61
+      },
+      "levels": [
+        {
+          "L": 1,
+          "name": "Sales Development Rep",
+          "titles": [
+            "SDR",
+            "BDR",
+            "Sales Development Representative"
+          ],
+          "years": "0–2 years",
+          "scope": "Outbound prospecting and qualifying. Quota is meetings booked, not revenue.",
+          "owns": "A meetings target and a list of target accounts.",
+          "stepUp": "Entry level for this ladder.",
+          "n": 88,
+          "e": 34,
+          "exp": [
+            [
+              "Prospecting cadences across email, phone and social",
+              "carry"
+            ],
+            [
+              "CRM hygiene and activity logging",
+              "carry"
+            ],
+            [
+              "Basic discovery and qualification questions",
+              "carry"
+            ],
+            [
+              "Handling first-call objections",
+              "carry"
+            ]
+          ]
+        },
+        {
+          "L": 2,
+          "name": "SMB / Associate AE",
+          "titles": [
+            "Associate AE",
+            "SMB Account Executive",
+            "Commercial AE I"
+          ],
+          "years": "1–3 years",
+          "scope": "Full cycle on small, fast deals. High volume, short cycles, one or two buyers.",
+          "owns": "A revenue quota on transactional deals.",
+          "stepUp": "Closes revenue instead of handing meetings off. Runs demos and pricing conversations alone.",
+          "n": 104,
+          "e": 41,
+          "exp": [
+            [
+              "Full-cycle selling on short deals",
+              "new"
+            ],
+            [
+              "Product demos tailored to one buyer",
+              "new"
+            ],
+            [
+              "Pipeline management and weekly forecast",
+              "new"
+            ],
+            [
+              "Prospecting cadences across email, phone and social",
+              "carry"
+            ]
+          ]
+        },
+        {
+          "L": 3,
+          "name": "Mid-Market AE",
+          "titles": [
+            "Account Executive",
+            "Mid-Market AE",
+            "Commercial AE"
+          ],
+          "years": "3–5 years",
+          "scope": "Book of named accounts. Several stakeholders per deal, 30 to 90 day cycles.",
+          "owns": "A book of business and a new-business quota.",
+          "stepUp": "Sells to a buying group, not one buyer. Builds the business case and forecasts by deal stage.",
+          "n": 121,
+          "e": 48,
+          "exp": [
+            [
+              "Structured qualification (MEDDICC or similar)",
+              "new"
+            ],
+            [
+              "Multi-threading across a buying group",
+              "new"
+            ],
+            [
+              "ROI and business-case building with finance buyers",
+              "new"
+            ],
+            [
+              "Mutual action plans and stage-accurate forecasting",
+              "new"
+            ],
+            [
+              "Full-cycle selling on short deals",
+              "carry"
+            ]
+          ]
+        },
+        {
+          "L": 4,
+          "name": "Enterprise AE",
+          "titles": [
+            "Enterprise Account Executive",
+            "Senior AE"
+          ],
+          "years": "5–8+ years",
+          "scope": "Large accounts with procurement, security and legal review. 6 to 12 month cycles.",
+          "owns": "A seven-figure quota across a small set of large accounts.",
+          "stepUp": "Runs a deal team of SEs, partners and execs. Navigates procurement and legal, not only the buyer.",
+          "n": 74,
+          "e": 33,
+          "exp": [
+            [
+              "Strategic account planning",
+              "new"
+            ],
+            [
+              "Executive alignment and sponsorship",
+              "new"
+            ],
+            [
+              "Procurement, security and legal navigation",
+              "new"
+            ],
+            [
+              "Orchestrating SEs, partners and internal execs",
+              "new"
+            ],
+            [
+              "Multi-threading across a buying group",
+              "carry"
+            ]
+          ]
+        },
+        {
+          "L": 5,
+          "name": "Strategic AE",
+          "titles": [
+            "Strategic Account Executive",
+            "Named Strategic AE"
+          ],
+          "years": "8+ years",
+          "scope": "A handful of the company's largest accounts. Multi-year, multi-product agreements.",
+          "owns": "Long-term account strategy for named strategic customers.",
+          "stepUp": "Shapes multi-year account strategy and complex deal structures. Builds internal coalitions to win.",
+          "n": 25,
+          "e": 14,
+          "exp": [
+            [
+              "Multi-year, multi-product deal structuring",
+              "new"
+            ],
+            [
+              "C-level relationships at customer and internally",
+              "new"
+            ],
+            [
+              "Territory and account-portfolio strategy",
+              "new"
+            ],
+            [
+              "Executive alignment and sponsorship",
+              "carry"
+            ]
+          ]
+        }
+      ],
+      "branch": {
+        "from": 3,
+        "label": "Sales Manager",
+        "note": "Separate linked role. Owns hiring and coaching of AEs. Not part of this IC ladder."
+      },
+      "shifts": [
+        {
+          "id": "ai-prospecting",
+          "label": "AI-assisted prospecting and account research",
+          "state": "growing",
+          "levels": [
+            1,
+            2,
+            3
+          ],
+          "prev": [
+            9,
+            150,
+            6
+          ],
+          "cur": [
+            58,
+            412,
+            23
+          ],
+          "note": "Named tools vary. The stable expectation is using AI to prepare account research and outreach."
+        },
+        {
+          "id": "self-sourced",
+          "label": "AEs expected to source their own pipeline",
+          "state": "growing",
+          "levels": [
+            2,
+            3
+          ],
+          "prev": [
+            24,
+            150,
+            12
+          ],
+          "cur": [
+            101,
+            412,
+            29
+          ],
+          "note": "Fewer postings promise dedicated SDR support at L2 and L3."
+        },
+        {
+          "id": "consumption",
+          "label": "Usage-based and consumption pricing deals",
+          "state": "emerging",
+          "levels": [
+            3,
+            4,
+            5
+          ],
+          "prev": [
+            2,
+            150,
+            2
+          ],
+          "cur": [
+            17,
+            412,
+            7
+          ],
+          "note": "Below the growing threshold: only 7 employers so far."
+        },
+        {
+          "id": "call-volume",
+          "label": "Daily cold-call volume targets",
+          "state": "fading",
+          "levels": [
+            1,
+            2
+          ],
+          "prev": [
+            31,
+            150,
+            15
+          ],
+          "cur": [
+            44,
+            412,
+            18
+          ],
+          "note": "Still common at L1, but a smaller share than the earlier window."
+        }
+      ]
+    },
+    "forward-deployed-engineer": {
+      "label": "Forward Deployed Engineer",
+      "status": "emerging",
+      "anchors": [
+        {
+          "system": "O*NET-SOC",
+          "code": "15-1252.00",
+          "title": "Software Developers",
+          "fit": "partial"
+        }
+      ],
+      "aliases": [
+        "FDE",
+        "Forward Deployed Engineer",
+        "Deployment Engineer",
+        "Forward Deployed Software Engineer"
+      ],
+      "foundation": {
+        "wage": "$133k",
+        "wageNote": "median for anchor code only",
+        "employment": "n/a",
+        "employmentNote": "no official count for this title",
+        "outlook": "+15%",
+        "outlookNote": "anchor code, not this title",
+        "tasks": [
+          "Modify software to meet customer needs",
+          "Analyze user needs and design solutions",
+          "Confer with customers on project status",
+          "Integrate systems and data sources"
+        ]
+      },
+      "window": {
+        "current": "2026-Q3",
+        "previous": "2026-Q2",
+        "postings": 96,
+        "employers": 31
+      },
+      "levels": [
+        {
+          "L": 1,
+          "name": "Associate FDE",
+          "titles": [
+            "Forward Deployed Engineer, New Grad",
+            "Associate Deployment Engineer"
+          ],
+          "years": "0–2 years",
+          "scope": "Builds integrations and workflows inside a customer deployment, guided by a senior FDE.",
+          "owns": "Assigned workstreams in one deployment.",
+          "stepUp": "Entry level for this ladder.",
+          "n": 14,
+          "e": 8,
+          "exp": [
+            [
+              "Production Python or TypeScript",
+              "carry"
+            ],
+            [
+              "Data integration and SQL",
+              "carry"
+            ],
+            [
+              "Working directly with customer users",
+              "carry"
+            ]
+          ]
+        },
+        {
+          "L": 2,
+          "name": "Forward Deployed Engineer",
+          "titles": [
+            "Forward Deployed Engineer",
+            "Forward Deployed Software Engineer"
+          ],
+          "years": "2–5 years",
+          "scope": "Owns a customer deployment end to end: scoping, building, shipping and adoption.",
+          "owns": "Outcomes of one or two customer deployments.",
+          "stepUp": "Scopes the work with the customer instead of receiving tasks. Accountable for adoption, not just delivery.",
+          "n": 47,
+          "e": 24,
+          "exp": [
+            [
+              "Scoping problems with non-technical customers",
+              "new"
+            ],
+            [
+              "Building LLM applications and agent workflows",
+              "new"
+            ],
+            [
+              "Shipping to production in customer environments",
+              "new"
+            ],
+            [
+              "Data integration and SQL",
+              "carry"
+            ]
+          ]
+        },
+        {
+          "L": 3,
+          "name": "Senior FDE",
+          "titles": [
+            "Senior Forward Deployed Engineer"
+          ],
+          "years": "5+ years",
+          "scope": "Leads multi-workstream deployments and feeds field patterns back into the product.",
+          "owns": "Technical win and delivery across a strategic account.",
+          "stepUp": "Turns one-off customer builds into reusable product features. Supports pre-sales technical evaluation.",
+          "n": 28,
+          "e": 16,
+          "exp": [
+            [
+              "Product feedback from field patterns",
+              "new"
+            ],
+            [
+              "Pre-sales technical evaluation",
+              "new"
+            ],
+            [
+              "Evaluation design for customer AI deployments",
+              "new"
+            ],
+            [
+              "Building LLM applications and agent workflows",
+              "carry"
+            ]
+          ]
+        },
+        {
+          "L": 4,
+          "name": "Staff FDE / Deployment Lead",
+          "titles": [
+            "Staff Forward Deployed Engineer",
+            "Deployment Strategist"
+          ],
+          "years": "8+ years",
+          "scope": "Sets deployment patterns across accounts and mentors other FDEs.",
+          "owns": "The deployment playbook and its quality bar.",
+          "stepUp": "Works across accounts. Defines how deployments are done rather than doing one.",
+          "n": 7,
+          "e": 5,
+          "exp": [
+            [
+              "Cross-account deployment architecture",
+              "new"
+            ],
+            [
+              "Mentoring and technical leadership",
+              "new"
+            ],
+            [
+              "Product feedback from field patterns",
+              "carry"
+            ]
+          ]
+        }
+      ],
+      "branch": {
+        "from": 3,
+        "label": "FDE Manager",
+        "note": "Separate linked role. Too few postings in this window to publish a ladder."
+      },
+      "shifts": [
+        {
+          "id": "title-spread",
+          "label": "Title spreading beyond AI labs to SaaS companies",
+          "state": "growing",
+          "levels": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "prev": [
+            21,
+            38,
+            9
+          ],
+          "cur": [
+            58,
+            96,
+            22
+          ],
+          "note": "Share here is postings from non-AI-lab employers. The role itself is the shift."
+        },
+        {
+          "id": "agents",
+          "label": "Building agent workflows for customers",
+          "state": "growing",
+          "levels": [
+            2,
+            3
+          ],
+          "prev": [
+            8,
+            38,
+            5
+          ],
+          "cur": [
+            41,
+            96,
+            17
+          ],
+          "note": "Replacing earlier 'data pipeline' framing at L2."
+        },
+        {
+          "id": "evals",
+          "label": "Designing evaluations for customer AI deployments",
+          "state": "emerging",
+          "levels": [
+            3,
+            4
+          ],
+          "prev": [
+            0,
+            38,
+            0
+          ],
+          "cur": [
+            9,
+            96,
+            6
+          ],
+          "note": "New phrasing this window. Below the growing threshold."
+        },
+        {
+          "id": "vs-se",
+          "label": "Overlap with Solutions Engineer",
+          "state": "contested",
+          "levels": [
+            2,
+            3
+          ],
+          "prev": [
+            6,
+            38,
+            4
+          ],
+          "cur": [
+            19,
+            96,
+            11
+          ],
+          "note": "Some employers use FDE for pre-sales SE work. Two readings are kept apart until resolved."
+        }
+      ]
+    },
+    "hr-generalist": {
+      "label": "HR Generalist",
+      "status": "established",
+      "anchors": [
+        {
+          "system": "O*NET-SOC",
+          "code": "13-1071.00",
+          "title": "Human Resources Specialists",
+          "fit": "close"
+        }
+      ],
+      "aliases": [
+        "HR Generalist",
+        "People Generalist",
+        "HR Business Partner"
+      ],
+      "foundation": {
+        "wage": "$72k",
+        "wageNote": "median annual pay",
+        "employment": "~900k",
+        "employmentNote": "U.S. jobs in anchor code",
+        "outlook": "+6%",
+        "outlookNote": "10-year projection",
+        "tasks": [
+          "Interpret and explain HR policies",
+          "Maintain employee records and HRIS data",
+          "Advise managers on employee relations",
+          "Coordinate onboarding and benefits enrollment"
+        ]
+      },
+      "window": {
+        "current": "2026-Q3",
+        "previous": "2026-Q2",
+        "postings": 288,
+        "employers": 74
+      },
+      "levels": [
+        {
+          "L": 1,
+          "name": "HR Coordinator",
+          "titles": [
+            "HR Coordinator",
+            "People Operations Coordinator"
+          ],
+          "years": "0–2 years",
+          "scope": "Onboarding logistics, HRIS data entry and employee records.",
+          "owns": "Accuracy of records and onboarding steps.",
+          "stepUp": "Entry level for this ladder.",
+          "n": 71,
+          "e": 38,
+          "exp": [
+            [
+              "HRIS data entry and audits",
+              "carry"
+            ],
+            [
+              "Onboarding and offboarding coordination",
+              "carry"
+            ],
+            [
+              "Answering routine employee questions",
+              "carry"
+            ]
+          ]
+        },
+        {
+          "L": 2,
+          "name": "HR Generalist",
+          "titles": [
+            "HR Generalist",
+            "People Generalist"
+          ],
+          "years": "2–5 years",
+          "scope": "First line for employee relations, policy, leave and benefits administration.",
+          "owns": "Day-to-day HR for a site or employee group.",
+          "stepUp": "Handles employee-relations cases and policy questions, not just transactions.",
+          "n": 109,
+          "e": 52,
+          "exp": [
+            [
+              "Employee-relations intake and documentation",
+              "new"
+            ],
+            [
+              "Leave, benefits and multi-state compliance",
+              "new"
+            ],
+            [
+              "Policy interpretation for managers",
+              "new"
+            ],
+            [
+              "HRIS data entry and audits",
+              "carry"
+            ]
+          ]
+        },
+        {
+          "L": 3,
+          "name": "Senior Generalist / HRBP",
+          "titles": [
+            "Senior HR Generalist",
+            "HR Business Partner"
+          ],
+          "years": "5–8 years",
+          "scope": "Partners with managers on performance, investigations and org change.",
+          "owns": "HR outcomes for a business unit.",
+          "stepUp": "Advises leaders and runs investigations. Uses data to argue for changes.",
+          "n": 82,
+          "e": 41,
+          "exp": [
+            [
+              "Workplace investigations",
+              "new"
+            ],
+            [
+              "Performance-cycle and calibration support",
+              "new"
+            ],
+            [
+              "People analytics for managers",
+              "new"
+            ],
+            [
+              "Employee-relations intake and documentation",
+              "carry"
+            ]
+          ]
+        },
+        {
+          "L": 4,
+          "name": "Senior HRBP",
+          "titles": [
+            "Senior HR Business Partner",
+            "Sr. People Partner"
+          ],
+          "years": "8+ years",
+          "scope": "Advises executives on org design and workforce planning.",
+          "owns": "People strategy for a function.",
+          "stepUp": "Shapes org design and workforce plans with executives, not only managers.",
+          "n": 26,
+          "e": 17,
+          "exp": [
+            [
+              "Org design and workforce planning",
+              "new"
+            ],
+            [
+              "Executive coaching and advising",
+              "new"
+            ],
+            [
+              "People analytics for managers",
+              "carry"
+            ]
+          ]
+        }
+      ],
+      "branch": {
+        "from": 3,
+        "label": "HR Manager",
+        "note": "Separate linked role. Owns an HR team and its hiring."
+      },
+      "shifts": [
+        {
+          "id": "hr-automation",
+          "label": "Automating HR workflows with AI tools in the HRIS",
+          "state": "growing",
+          "levels": [
+            1,
+            2,
+            3
+          ],
+          "prev": [
+            7,
+            120,
+            6
+          ],
+          "cur": [
+            49,
+            288,
+            21
+          ],
+          "note": "Most mentions are inside Workday or Rippling workflows."
+        },
+        {
+          "id": "ai-policy",
+          "label": "Writing AI acceptable-use and data policies",
+          "state": "emerging",
+          "levels": [
+            2,
+            3,
+            4
+          ],
+          "prev": [
+            1,
+            120,
+            1
+          ],
+          "cur": [
+            14,
+            288,
+            9
+          ],
+          "note": "New phrasing. Not yet at the growing threshold."
+        },
+        {
+          "id": "analytics-gen",
+          "label": "People analytics expected at generalist level",
+          "state": "growing",
+          "levels": [
+            2,
+            3
+          ],
+          "prev": [
+            11,
+            120,
+            8
+          ],
+          "cur": [
+            52,
+            288,
+            26
+          ],
+          "note": "Previously concentrated at L3 and above."
+        },
+        {
+          "id": "multistate",
+          "label": "Multi-state compliance for remote employees",
+          "state": "established",
+          "levels": [
+            2,
+            3
+          ],
+          "prev": [
+            38,
+            120,
+            29
+          ],
+          "cur": [
+            93,
+            288,
+            55
+          ],
+          "note": "Stable share across both windows."
+        }
+      ]
+    }
+  },
+  "graph": {
+    "account-executive": {
+      "mid": 3,
+      "families": [
+        [
+          "Pipeline",
+          0,
+          1
+        ],
+        [
+          "Deal craft",
+          2,
+          4
+        ],
+        [
+          "Account strategy",
+          5,
+          6
+        ],
+        [
+          "Tools and AI",
+          7,
+          8
+        ]
+      ],
+      "nodes": [
+        [
+          "prosp",
+          "Prospecting cadences",
+          "Prospecting cadences across email, phone and social",
+          1,
+          0,
+          "established",
+          [
+            78,
+            52,
+            30,
+            12,
+            5
+          ],
+          [
+            "P",
+            "O",
+            "Ee"
+          ]
+        ],
+        [
+          "coldcall",
+          "Cold-call volume",
+          "Daily cold-call volume targets",
+          1,
+          1,
+          "fading",
+          [
+            24,
+            9,
+            2,
+            0,
+            0
+          ],
+          [
+            "P",
+            "O"
+          ]
+        ],
+        [
+          "selfsrc",
+          "Self-sourced pipeline",
+          "Sourcing your own pipeline without SDR support",
+          2,
+          1,
+          "growing",
+          [
+            0,
+            38,
+            31,
+            14,
+            6
+          ],
+          [
+            "P"
+          ]
+        ],
+        [
+          "disc",
+          "Discovery questions",
+          "Basic discovery and qualification questions",
+          1,
+          2,
+          "established",
+          [
+            70,
+            66,
+            58,
+            44,
+            30
+          ],
+          [
+            "P",
+            "O",
+            "Ee"
+          ]
+        ],
+        [
+          "forecast",
+          "Pipeline forecast",
+          "Pipeline management and weekly forecast",
+          2,
+          2,
+          "established",
+          [
+            0,
+            40,
+            52,
+            50,
+            40
+          ],
+          [
+            "P",
+            "Eo"
+          ]
+        ],
+        [
+          "fullcycle",
+          "Full-cycle closing",
+          "Full-cycle selling on short deals",
+          2,
+          3,
+          "established",
+          [
+            3,
+            72,
+            60,
+            41,
+            22
+          ],
+          [
+            "P",
+            "O",
+            "Ee"
+          ]
+        ],
+        [
+          "demo",
+          "Tailored demos",
+          "Product demos tailored to one buyer",
+          2,
+          4,
+          "established",
+          [
+            2,
+            48,
+            40,
+            22,
+            10
+          ],
+          [
+            "P",
+            "Eo"
+          ]
+        ],
+        [
+          "meddicc",
+          "MEDDICC qualifying",
+          "Structured qualification (MEDDICC or similar)",
+          3,
+          2,
+          "established",
+          [
+            0,
+            8,
+            46,
+            52,
+            38
+          ],
+          [
+            "P"
+          ]
+        ],
+        [
+          "multithread",
+          "Multi-threading",
+          "Multi-threading across a buying group",
+          3,
+          3,
+          "established",
+          [
+            0,
+            6,
+            44,
+            61,
+            55
+          ],
+          [
+            "P"
+          ]
+        ],
+        [
+          "roi",
+          "ROI business cases",
+          "ROI and business-case building with finance buyers",
+          3,
+          4,
+          "established",
+          [
+            0,
+            4,
+            35,
+            49,
+            47
+          ],
+          [
+            "P",
+            "Eo"
+          ]
+        ],
+        [
+          "consumption",
+          "Consumption pricing",
+          "Usage-based and consumption pricing deals",
+          3,
+          5,
+          "emerging",
+          [
+            0,
+            0,
+            3,
+            6,
+            9
+          ],
+          [
+            "P"
+          ]
+        ],
+        [
+          "procure",
+          "Procurement and legal",
+          "Procurement, security and legal navigation",
+          4,
+          4,
+          "established",
+          [
+            0,
+            0,
+            5,
+            52,
+            49
+          ],
+          [
+            "P",
+            "O"
+          ]
+        ],
+        [
+          "acctplan",
+          "Strategic account plans",
+          "Strategic account planning",
+          4,
+          5,
+          "established",
+          [
+            0,
+            0,
+            9,
+            58,
+            66
+          ],
+          [
+            "P",
+            "Ee"
+          ]
+        ],
+        [
+          "exec",
+          "Executive alignment",
+          "Executive alignment and sponsorship",
+          4,
+          6,
+          "established",
+          [
+            0,
+            0,
+            6,
+            47,
+            71
+          ],
+          [
+            "P"
+          ]
+        ],
+        [
+          "dealstruct",
+          "Multi-year deals",
+          "Multi-year, multi-product deal structuring",
+          5,
+          5,
+          "established",
+          [
+            0,
+            0,
+            0,
+            12,
+            64
+          ],
+          [
+            "P"
+          ]
+        ],
+        [
+          "aires",
+          "AI account research",
+          "AI-assisted prospecting and account research",
+          1,
+          7,
+          "growing",
+          [
+            22,
+            25,
+            21,
+            10,
+            4
+          ],
+          [
+            "P"
+          ]
+        ],
+        [
+          "crm",
+          "CRM hygiene",
+          "CRM hygiene and activity logging",
+          1,
+          8,
+          "established",
+          [
+            64,
+            55,
+            48,
+            40,
+            31
+          ],
+          [
+            "P",
+            "O",
+            "Eo"
+          ]
+        ]
+      ],
+      "co": [
+        [
+          "prosp",
+          "selfsrc",
+          2.1,
+          61
+        ],
+        [
+          "prosp",
+          "aires",
+          1.8,
+          44
+        ],
+        [
+          "disc",
+          "meddicc",
+          1.6,
+          52
+        ],
+        [
+          "meddicc",
+          "multithread",
+          2.4,
+          71
+        ],
+        [
+          "multithread",
+          "exec",
+          2,
+          38
+        ],
+        [
+          "roi",
+          "procure",
+          1.7,
+          33
+        ],
+        [
+          "roi",
+          "meddicc",
+          1.5,
+          40
+        ],
+        [
+          "acctplan",
+          "exec",
+          2.6,
+          41
+        ],
+        [
+          "acctplan",
+          "dealstruct",
+          2.2,
+          22
+        ],
+        [
+          "exec",
+          "dealstruct",
+          1.9,
+          21
+        ],
+        [
+          "procure",
+          "dealstruct",
+          1.6,
+          20
+        ],
+        [
+          "fullcycle",
+          "demo",
+          1.9,
+          63
+        ],
+        [
+          "fullcycle",
+          "forecast",
+          1.7,
+          58
+        ],
+        [
+          "consumption",
+          "dealstruct",
+          1.8,
+          20
+        ],
+        [
+          "crm",
+          "forecast",
+          1.5,
+          66
+        ],
+        [
+          "aires",
+          "acctplan",
+          1.3,
+          24
+        ]
+      ],
+      "builds": [
+        [
+          "disc",
+          "meddicc"
+        ],
+        [
+          "fullcycle",
+          "multithread"
+        ],
+        [
+          "multithread",
+          "exec"
+        ],
+        [
+          "roi",
+          "dealstruct"
+        ],
+        [
+          "acctplan",
+          "dealstruct"
+        ],
+        [
+          "prosp",
+          "selfsrc"
+        ],
+        [
+          "demo",
+          "roi"
+        ]
+      ]
+    },
+    "forward-deployed-engineer": {
+      "mid": 2,
+      "families": [
+        [
+          "Engineering",
+          0,
+          1
+        ],
+        [
+          "Customer work",
+          2,
+          3
+        ],
+        [
+          "AI systems",
+          4,
+          5
+        ],
+        [
+          "Field leadership",
+          6,
+          6
+        ]
+      ],
+      "nodes": [
+        [
+          "py",
+          "Production Python / TS",
+          "Production Python or TypeScript",
+          1,
+          0,
+          "established",
+          [
+            84,
+            78,
+            70,
+            61
+          ],
+          [
+            "P",
+            "O",
+            "Ee"
+          ]
+        ],
+        [
+          "sql",
+          "Data integration, SQL",
+          "Data integration and SQL",
+          1,
+          1,
+          "established",
+          [
+            72,
+            66,
+            52,
+            40
+          ],
+          [
+            "P",
+            "O",
+            "Ee"
+          ]
+        ],
+        [
+          "custusers",
+          "Working with users",
+          "Working directly with customer users",
+          1,
+          2,
+          "established",
+          [
+            58,
+            61,
+            55,
+            44
+          ],
+          [
+            "P",
+            "O"
+          ]
+        ],
+        [
+          "prodship",
+          "Ship in customer envs",
+          "Shipping to production in customer environments",
+          2,
+          1,
+          "established",
+          [
+            12,
+            58,
+            62,
+            50
+          ],
+          [
+            "P"
+          ]
+        ],
+        [
+          "scoping",
+          "Scoping with customers",
+          "Scoping problems with non-technical customers",
+          2,
+          2,
+          "established",
+          [
+            10,
+            64,
+            70,
+            66
+          ],
+          [
+            "P",
+            "Eo"
+          ]
+        ],
+        [
+          "llmapps",
+          "LLM apps and agents",
+          "Building LLM applications and agent workflows",
+          2,
+          4,
+          "growing",
+          [
+            30,
+            55,
+            60,
+            52
+          ],
+          [
+            "P"
+          ]
+        ],
+        [
+          "presales",
+          "Pre-sales evaluation",
+          "Pre-sales technical evaluation",
+          3,
+          3,
+          "contested",
+          [
+            0,
+            18,
+            47,
+            40
+          ],
+          [
+            "P",
+            "Eo"
+          ]
+        ],
+        [
+          "evals",
+          "AI eval design",
+          "Evaluation design for customer AI deployments",
+          3,
+          5,
+          "emerging",
+          [
+            0,
+            6,
+            24,
+            35
+          ],
+          [
+            "P"
+          ]
+        ],
+        [
+          "feedback",
+          "Product feedback",
+          "Product feedback from field patterns",
+          3,
+          6,
+          "established",
+          [
+            0,
+            12,
+            52,
+            64
+          ],
+          [
+            "P"
+          ]
+        ],
+        [
+          "xarch",
+          "Cross-account patterns",
+          "Cross-account deployment architecture",
+          4,
+          0,
+          "established",
+          [
+            0,
+            0,
+            10,
+            71
+          ],
+          [
+            "P",
+            "O"
+          ]
+        ],
+        [
+          "mentor",
+          "Mentoring",
+          "Mentoring and technical leadership",
+          4,
+          6,
+          "established",
+          [
+            0,
+            2,
+            15,
+            68
+          ],
+          [
+            "P",
+            "Ee"
+          ]
+        ]
+      ],
+      "co": [
+        [
+          "py",
+          "llmapps",
+          1.6,
+          47
+        ],
+        [
+          "sql",
+          "prodship",
+          1.4,
+          51
+        ],
+        [
+          "scoping",
+          "custusers",
+          2,
+          49
+        ],
+        [
+          "scoping",
+          "presales",
+          1.9,
+          30
+        ],
+        [
+          "llmapps",
+          "evals",
+          2.5,
+          24
+        ],
+        [
+          "presales",
+          "feedback",
+          1.5,
+          21
+        ],
+        [
+          "feedback",
+          "xarch",
+          1.8,
+          20
+        ],
+        [
+          "xarch",
+          "mentor",
+          1.7,
+          20
+        ],
+        [
+          "prodship",
+          "xarch",
+          1.3,
+          20
+        ],
+        [
+          "llmapps",
+          "prodship",
+          1.6,
+          40
+        ]
+      ],
+      "builds": [
+        [
+          "custusers",
+          "scoping"
+        ],
+        [
+          "py",
+          "llmapps"
+        ],
+        [
+          "llmapps",
+          "evals"
+        ],
+        [
+          "scoping",
+          "presales"
+        ],
+        [
+          "feedback",
+          "xarch"
+        ],
+        [
+          "prodship",
+          "xarch"
+        ]
+      ]
+    },
+    "hr-generalist": {
+      "mid": 2,
+      "families": [
+        [
+          "Operations",
+          0,
+          2
+        ],
+        [
+          "Relations and compliance",
+          3,
+          5
+        ],
+        [
+          "Strategy and analytics",
+          6,
+          7
+        ]
+      ],
+      "nodes": [
+        [
+          "hris",
+          "HRIS data and audits",
+          "HRIS data entry and audits",
+          1,
+          0,
+          "established",
+          [
+            80,
+            58,
+            36,
+            18
+          ],
+          [
+            "P",
+            "O",
+            "Ee"
+          ]
+        ],
+        [
+          "onboard",
+          "Onboarding",
+          "Onboarding and offboarding coordination",
+          1,
+          1,
+          "established",
+          [
+            76,
+            44,
+            20,
+            8
+          ],
+          [
+            "P",
+            "O",
+            "Ee"
+          ]
+        ],
+        [
+          "hrauto",
+          "HR workflow automation",
+          "Automating HR workflows with AI tools in the HRIS",
+          1,
+          2,
+          "growing",
+          [
+            18,
+            21,
+            17,
+            9
+          ],
+          [
+            "P"
+          ]
+        ],
+        [
+          "er",
+          "ER intake",
+          "Employee-relations intake and documentation",
+          2,
+          3,
+          "established",
+          [
+            8,
+            62,
+            58,
+            40
+          ],
+          [
+            "P",
+            "O",
+            "Ee"
+          ]
+        ],
+        [
+          "leave",
+          "Leave and multi-state",
+          "Leave, benefits and multi-state compliance",
+          2,
+          4,
+          "established",
+          [
+            12,
+            66,
+            54,
+            31
+          ],
+          [
+            "P",
+            "O",
+            "Ee"
+          ]
+        ],
+        [
+          "policy",
+          "Policy interpretation",
+          "Policy interpretation for managers",
+          2,
+          5,
+          "established",
+          [
+            6,
+            52,
+            57,
+            45
+          ],
+          [
+            "P",
+            "O"
+          ]
+        ],
+        [
+          "analytics",
+          "People analytics",
+          "People analytics for managers",
+          2,
+          6,
+          "growing",
+          [
+            2,
+            28,
+            46,
+            58
+          ],
+          [
+            "P",
+            "Eo"
+          ]
+        ],
+        [
+          "invest",
+          "Investigations",
+          "Workplace investigations",
+          3,
+          3,
+          "established",
+          [
+            0,
+            10,
+            55,
+            48
+          ],
+          [
+            "P",
+            "Eo"
+          ]
+        ],
+        [
+          "aipolicy",
+          "AI use policy",
+          "Writing AI acceptable-use and data policies",
+          3,
+          5,
+          "emerging",
+          [
+            0,
+            4,
+            9,
+            14
+          ],
+          [
+            "P"
+          ]
+        ],
+        [
+          "perf",
+          "Performance cycles",
+          "Performance-cycle and calibration support",
+          3,
+          6,
+          "established",
+          [
+            0,
+            12,
+            49,
+            52
+          ],
+          [
+            "P",
+            "Eo"
+          ]
+        ],
+        [
+          "coach",
+          "Executive advising",
+          "Executive coaching and advising",
+          4,
+          6,
+          "established",
+          [
+            0,
+            0,
+            6,
+            59
+          ],
+          [
+            "P"
+          ]
+        ],
+        [
+          "orgdesign",
+          "Workforce planning",
+          "Org design and workforce planning",
+          4,
+          7,
+          "established",
+          [
+            0,
+            0,
+            8,
+            67
+          ],
+          [
+            "P",
+            "Ee"
+          ]
+        ]
+      ],
+      "co": [
+        [
+          "hris",
+          "hrauto",
+          2.2,
+          40
+        ],
+        [
+          "hris",
+          "onboard",
+          1.8,
+          88
+        ],
+        [
+          "er",
+          "invest",
+          2.4,
+          46
+        ],
+        [
+          "er",
+          "policy",
+          1.7,
+          61
+        ],
+        [
+          "leave",
+          "policy",
+          1.9,
+          57
+        ],
+        [
+          "invest",
+          "perf",
+          1.3,
+          22
+        ],
+        [
+          "analytics",
+          "perf",
+          1.8,
+          34
+        ],
+        [
+          "analytics",
+          "orgdesign",
+          2.1,
+          20
+        ],
+        [
+          "orgdesign",
+          "coach",
+          2.3,
+          20
+        ],
+        [
+          "policy",
+          "aipolicy",
+          1.6,
+          20
+        ],
+        [
+          "hrauto",
+          "analytics",
+          1.4,
+          21
+        ]
+      ],
+      "builds": [
+        [
+          "er",
+          "invest"
+        ],
+        [
+          "analytics",
+          "orgdesign"
+        ],
+        [
+          "policy",
+          "aipolicy"
+        ],
+        [
+          "perf",
+          "coach"
+        ],
+        [
+          "hris",
+          "hrauto"
+        ]
+      ]
+    }
+  },
+  "industry": {
+    "account-executive": {
+      "list": [
+        {
+          "key": "info",
+          "label": "Information",
+          "naics": "51",
+          "naicsTitle": "Information",
+          "sub": "Software publishers, data and cloud services",
+          "share": "12%",
+          "postings": 196,
+          "employers": 28,
+          "pay": "$112k",
+          "differs": "Selling method and AI tooling dominate. Credentials barely appear; employers screen on quota history instead.",
+          "duties": [
+            "Run trials and proofs of concept with the buyer's team",
+            "Price seat, usage and platform tiers",
+            "Hand accounts to customer success at signature"
+          ],
+          "certs": [
+            [
+              "MEDDICC practitioner training",
+              "MEDDICC",
+              "preferred",
+              4
+            ]
+          ],
+          "know": [
+            "ARR, NRR and churn",
+            "SOC 2 security reviews",
+            "Product-led trials"
+          ]
+        },
+        {
+          "key": "fin",
+          "label": "Finance and insurance",
+          "naics": "52",
+          "naicsTitle": "Finance and insurance",
+          "sub": "Banks, brokerages, insurers, fintech",
+          "share": "9%",
+          "postings": 63,
+          "employers": 12,
+          "pay": "$118k",
+          "differs": "Regulated products need licences. Compliance review shapes how deals are run and documented.",
+          "duties": [
+            "Sell into buyers with compliance approval chains",
+            "Document suitability and disclosures",
+            "Coordinate regulated terms with legal"
+          ],
+          "certs": [
+            [
+              "Securities Industry Essentials (SIE)",
+              "FINRA",
+              "required",
+              38
+            ],
+            [
+              "Series 7 and Series 63",
+              "FINRA / NASAA",
+              "required",
+              31
+            ],
+            [
+              "CFP certification",
+              "CFP Board",
+              "preferred",
+              6
+            ]
+          ],
+          "know": [
+            "SEC and FINRA rules",
+            "Bank vendor-risk reviews",
+            "Suitability standards"
+          ]
+        },
+        {
+          "key": "mfg",
+          "label": "Manufacturing",
+          "naics": "31–33",
+          "naicsTitle": "Manufacturing",
+          "sub": "Machinery, medical devices, electronics",
+          "share": "21%",
+          "postings": 112,
+          "employers": 24,
+          "pay": "$96k",
+          "differs": "Technical deals, often through distributors. Medical-device makers add hospital access rules, which is where most credential asks come from.",
+          "duties": [
+            "Quote configured products with engineering",
+            "Manage distributor and channel partners",
+            "Support cases in hospitals (medical devices)"
+          ],
+          "certs": [
+            [
+              "Engineering degree or technical certificate",
+              "Accredited programs",
+              "preferred",
+              29
+            ],
+            [
+              "Hospital vendor credentialing",
+              "Hospital credentialing programs",
+              "required",
+              24
+            ],
+            [
+              "OSHA 10-hour",
+              "OSHA outreach trainers",
+              "common",
+              9
+            ]
+          ],
+          "know": [
+            "Reading specs and drawings",
+            "FDA device rules (medical devices)",
+            "Channel margins"
+          ]
+        },
+        {
+          "key": "whl",
+          "label": "Wholesale trade",
+          "naics": "42",
+          "naicsTitle": "Wholesale trade",
+          "sub": "Industrial, medical and IT distributors",
+          "share": "31%",
+          "postings": 58,
+          "employers": 16,
+          "pay": "$84k",
+          "differs": "Territory selling of a broad catalog to repeat buyers. Relationships and product range matter more than structured deal methods.",
+          "duties": [
+            "Manage a territory of repeat accounts",
+            "Negotiate volume pricing and rebates",
+            "Coordinate stock and delivery with operations"
+          ],
+          "certs": [
+            [
+              "Product-line certifications",
+              "Manufacturers",
+              "common",
+              14
+            ],
+            [
+              "Certified Sales Professional",
+              "NASP",
+              "preferred",
+              5
+            ]
+          ],
+          "know": [
+            "Distributor pricing",
+            "ERP order systems",
+            "Rebate programs"
+          ]
+        }
+      ],
+      "heat": [
+        [
+          "meddicc",
+          [
+            52,
+            30,
+            24,
+            8
+          ]
+        ],
+        [
+          "multithread",
+          [
+            48,
+            44,
+            33,
+            12
+          ]
+        ],
+        [
+          "procure",
+          [
+            40,
+            58,
+            38,
+            15
+          ]
+        ],
+        [
+          "demo",
+          [
+            44,
+            20,
+            40,
+            29
+          ]
+        ],
+        [
+          "selfsrc",
+          [
+            36,
+            18,
+            25,
+            41
+          ]
+        ],
+        [
+          "aires",
+          [
+            31,
+            12,
+            8,
+            6
+          ]
+        ],
+        [
+          "consumption",
+          [
+            12,
+            2,
+            1,
+            0
+          ]
+        ]
+      ]
+    },
+    "forward-deployed-engineer": {
+      "list": [
+        {
+          "key": "info",
+          "label": "Information",
+          "naics": "51",
+          "naicsTitle": "Information",
+          "sub": "Software and data platform companies",
+          "share": "n/a",
+          "postings": 41,
+          "employers": 17,
+          "pay": "$165k",
+          "differs": "Closer to solutions engineering. More integration and pre-sales work, and vendor cloud certifications appear.",
+          "duties": [
+            "Integrate the product with customer data stacks",
+            "Customize workflows on the platform",
+            "Support the technical win in pre-sales"
+          ],
+          "certs": [
+            [
+              "AWS Certified Solutions Architect – Associate",
+              "AWS",
+              "preferred",
+              14
+            ],
+            [
+              "Snowflake or Databricks certification",
+              "Vendor",
+              "common",
+              9
+            ]
+          ],
+          "know": [
+            "Data warehouses",
+            "SSO and SCIM",
+            "Platform extension APIs"
+          ]
+        },
+        {
+          "key": "pro",
+          "label": "Professional and technical services",
+          "naics": "54",
+          "naicsTitle": "Professional, scientific and technical services",
+          "sub": "AI research labs, federal IT contractors, consultancies",
+          "share": "n/a",
+          "postings": 55,
+          "employers": 14,
+          "pay": "$178k",
+          "differs": "Mixes AI labs with federal contractors. Contractor roles add clearances and security certifications; lab roles add model evaluation.",
+          "duties": [
+            "Deploy models into customer workflows",
+            "Work on site with government users (contractors)",
+            "Report model gaps to research teams (labs)"
+          ],
+          "certs": [
+            [
+              "Active security clearance (Secret or TS/SCI)",
+              "U.S. government",
+              "required",
+              29
+            ],
+            [
+              "CompTIA Security+ (DoD 8140)",
+              "CompTIA",
+              "required",
+              17
+            ]
+          ],
+          "know": [
+            "Evals and fine-tuning trade-offs",
+            "FedRAMP and Authority to Operate",
+            "Air-gapped deployment"
+          ]
+        },
+        {
+          "key": "fin",
+          "label": "Finance and insurance",
+          "naics": "52",
+          "naicsTitle": "Finance and insurance",
+          "sub": "Banks and insurers",
+          "share": "n/a",
+          "postings": 12,
+          "employers": 5,
+          "pay": "n/a",
+          "thin": true
+        }
+      ],
+      "heat": [
+        [
+          "llmapps",
+          [
+            52,
+            64,
+            null
+          ]
+        ],
+        [
+          "evals",
+          [
+            14,
+            27,
+            null
+          ]
+        ],
+        [
+          "scoping",
+          [
+            68,
+            64,
+            null
+          ]
+        ],
+        [
+          "prodship",
+          [
+            61,
+            58,
+            null
+          ]
+        ],
+        [
+          "presales",
+          [
+            49,
+            10,
+            null
+          ]
+        ],
+        [
+          "feedback",
+          [
+            30,
+            36,
+            null
+          ]
+        ]
+      ]
+    },
+    "hr-generalist": {
+      "list": [
+        {
+          "key": "info",
+          "label": "Information",
+          "naics": "51",
+          "naicsTitle": "Information",
+          "sub": "Software, media and telecom",
+          "share": "7%",
+          "postings": 92,
+          "employers": 31,
+          "pay": "$84k",
+          "differs": "Fast hiring and frequent reorganizations. Certifications are optional and analytics are asked for early.",
+          "duties": [
+            "Support fast hiring and frequent reorganizations",
+            "Administer equity and remote-work policies",
+            "Run engagement surveys"
+          ],
+          "certs": [
+            [
+              "SHRM-CP",
+              "SHRM",
+              "preferred",
+              18
+            ],
+            [
+              "PHR",
+              "HRCI",
+              "preferred",
+              11
+            ]
+          ],
+          "know": [
+            "Equity programs",
+            "Multi-state remote employment"
+          ]
+        },
+        {
+          "key": "health",
+          "label": "Health care",
+          "naics": "62",
+          "naicsTitle": "Health care and social assistance",
+          "sub": "Hospitals, clinics, long-term care",
+          "share": "13%",
+          "postings": 81,
+          "employers": 22,
+          "pay": "$70k",
+          "differs": "Licences and shifts drive the work. HR tracks clinical credentials and often works with unions.",
+          "duties": [
+            "Track clinical licences and credential renewals",
+            "Staff around-the-clock shift schedules",
+            "Support collective-bargaining processes"
+          ],
+          "certs": [
+            [
+              "SHRM-CP or PHR",
+              "SHRM / HRCI",
+              "preferred",
+              39
+            ],
+            [
+              "HIPAA training",
+              "Employer",
+              "required",
+              27
+            ]
+          ],
+          "know": [
+            "Joint Commission standards",
+            "Licence verification",
+            "Union contracts"
+          ]
+        },
+        {
+          "key": "mfg",
+          "label": "Manufacturing",
+          "naics": "31–33",
+          "naicsTitle": "Manufacturing",
+          "sub": "Plants and industrial sites",
+          "share": "11%",
+          "postings": 64,
+          "employers": 15,
+          "pay": "$68k",
+          "differs": "An hourly, on-site workforce. Safety and attendance processes take a large share of the job.",
+          "duties": [
+            "Run safety and incident-report processes",
+            "Manage attendance and overtime for hourly staff",
+            "Support plant labour relations"
+          ],
+          "certs": [
+            [
+              "PHR",
+              "HRCI",
+              "preferred",
+              24
+            ],
+            [
+              "OSHA 30-hour",
+              "OSHA outreach trainers",
+              "preferred",
+              21
+            ]
+          ],
+          "know": [
+            "FLSA overtime",
+            "Workers' compensation",
+            "Shift scheduling"
+          ]
+        },
+        {
+          "key": "public",
+          "label": "Public administration",
+          "naics": "92",
+          "naicsTitle": "Public administration",
+          "sub": "State, county and city government",
+          "share": "9%",
+          "postings": 51,
+          "employers": 14,
+          "pay": "$66k",
+          "differs": "Rules-based hiring. Civil-service exams, union grievance steps and public-records law shape every process.",
+          "duties": [
+            "Run civil-service exams and eligibility lists",
+            "Apply union contracts and grievance steps",
+            "Follow open-hiring and public-records rules"
+          ],
+          "certs": [
+            [
+              "SHRM-CP",
+              "SHRM",
+              "preferred",
+              19
+            ],
+            [
+              "IPMA-HR CP or SCP",
+              "IPMA-HR",
+              "preferred",
+              14
+            ]
+          ],
+          "know": [
+            "Civil service rules",
+            "Public pensions",
+            "Grievance procedures"
+          ]
+        }
+      ],
+      "heat": [
+        [
+          "er",
+          [
+            55,
+            61,
+            63,
+            70
+          ]
+        ],
+        [
+          "leave",
+          [
+            58,
+            66,
+            49,
+            52
+          ]
+        ],
+        [
+          "invest",
+          [
+            31,
+            44,
+            47,
+            52
+          ]
+        ],
+        [
+          "analytics",
+          [
+            49,
+            22,
+            18,
+            14
+          ]
+        ],
+        [
+          "hrauto",
+          [
+            33,
+            12,
+            9,
+            6
+          ]
+        ],
+        [
+          "aipolicy",
+          [
+            11,
+            4,
+            2,
+            3
+          ]
+        ]
+      ]
+    }
+  },
+  "kinds": {
+    "posts": {
+      "name": "Job postings",
+      "fam": "P",
+      "tm": [
+        "now",
+        "coincident"
+      ]
+    },
+    "early": {
+      "name": "New phrasing in postings",
+      "fam": "P",
+      "tm": [
+        "lead",
+        "leading"
+      ]
+    },
+    "onet": {
+      "name": "O*NET ratings and tasks",
+      "fam": "O",
+      "tm": [
+        "lag",
+        "lagging"
+      ]
+    },
+    "emerg": {
+      "name": "O*NET Emerging Tasks",
+      "fam": "O",
+      "tm": [
+        "lead",
+        "leading"
+      ]
+    },
+    "esco": {
+      "name": "ESCO",
+      "fam": "O",
+      "tm": [
+        "lag",
+        "lagging"
+      ]
+    },
+    "hot": {
+      "name": "O*NET Hot Technologies",
+      "fam": "M",
+      "tm": [
+        "now",
+        "coincident"
+      ]
+    },
+    "sector": {
+      "name": "Indeed Hiring Lab",
+      "fam": "M",
+      "tm": [
+        "now",
+        "coincident"
+      ]
+    },
+    "aei": {
+      "name": "Anthropic Economic Index",
+      "fam": "M",
+      "tm": [
+        "now",
+        "coincident"
+      ]
+    }
+  },
+  "onet_year": {
+    "account-executive": 2021,
+    "forward-deployed-engineer": 2024,
+    "hr-generalist": 2023
+  },
+  "signals": {
+    "account-executive": {
+      "aires": {
+        "status": "rising",
+        "sig": [
+          [
+            "posts",
+            "Up from 6% to 14% of L1–L3 postings between 2026-Q2 and Q3, across 23 employers."
+          ],
+          [
+            "sector",
+            "AI mentions in U.S. sales postings rising in the sector series."
+          ],
+          [
+            "aei",
+            "Research and drafting tasks for sales occupations show heavy AI use."
+          ]
+        ],
+        "call": [
+          "Asked in 20%+ of L1–L3 postings by 2027-Q3",
+          72,
+          62,
+          "2027-Q3"
+        ]
+      },
+      "selfsrc": {
+        "status": "early",
+        "sig": [
+          [
+            "posts",
+            "Up from 16% to 25% of L2–L3 postings across 29 employers."
+          ],
+          [
+            "onet",
+            "Not in the O*NET record. No sector series tracks it."
+          ]
+        ],
+        "note": "Rising in postings, but no independent source confirms it, so it stays an early signal.",
+        "call": [
+          "Asked in 30%+ of L2–L3 postings by 2027-Q3",
+          55,
+          41,
+          "2027-Q3"
+        ]
+      },
+      "consumption": {
+        "status": "early",
+        "sig": [
+          [
+            "early",
+            "From 1% to 4% of postings, at 7 employers. Below the 8-employer floor."
+          ]
+        ],
+        "call": [
+          "Asked in 10%+ of L3–L5 postings by 2027-Q3",
+          35,
+          31,
+          "2027-Q3"
+        ]
+      },
+      "coldcall": {
+        "status": "fading",
+        "sig": [
+          [
+            "posts",
+            "Down from 21% to 11% of L1–L2 postings across 18 employers."
+          ],
+          [
+            "onet",
+            "Still listed in O*NET tasks for the anchor code (rated 2021). Official maps lag."
+          ]
+        ],
+        "call": [
+          "Asked in under 8% of L1–L2 postings by 2027-Q3",
+          60,
+          55,
+          "2027-Q3"
+        ]
+      }
+    },
+    "forward-deployed-engineer": {
+      "llmapps": {
+        "status": "rising",
+        "sig": [
+          [
+            "posts",
+            "Up from 21% to 43% of L2–L3 postings across 17 employers."
+          ],
+          [
+            "hot",
+            "LLM frameworks listed as Hot Technologies for Software Developers."
+          ],
+          [
+            "emerg",
+            "An emerging task for the anchor code mentions integrating AI models."
+          ],
+          [
+            "aei",
+            "Coding and integration tasks lead AI use in the index."
+          ]
+        ],
+        "call": [
+          "Asked in 50%+ of L2 postings by 2027-Q3",
+          80,
+          62,
+          "2027-Q3"
+        ]
+      },
+      "evals": {
+        "status": "early",
+        "sig": [
+          [
+            "early",
+            "From 0% to 9% of postings, at 6 employers."
+          ]
+        ],
+        "call": [
+          "Asked in 20%+ of L3–L4 postings by 2027-Q3",
+          45,
+          31,
+          "2027-Q3"
+        ]
+      },
+      "presales": {
+        "disputed": "Some employers use the FDE title for pre-sales solutions engineering. Both readings are kept apart."
+      }
+    },
+    "hr-generalist": {
+      "hrauto": {
+        "status": "rising",
+        "sig": [
+          [
+            "posts",
+            "Up from 6% to 17% of L1–L3 postings across 21 employers."
+          ],
+          [
+            "hot",
+            "HRIS platforms with AI features listed as Hot Technologies."
+          ],
+          [
+            "sector",
+            "AI mentions in HR postings rising in the sector series."
+          ]
+        ],
+        "call": [
+          "Asked in 25%+ of L1–L3 postings by 2027-Q3",
+          66,
+          62,
+          "2027-Q3"
+        ]
+      },
+      "analytics": {
+        "status": "rising",
+        "sig": [
+          [
+            "posts",
+            "Up from 9% to 18% of L2–L3 postings across 26 employers."
+          ],
+          [
+            "onet",
+            "In the O*NET record for HR Specialists at low importance (rated 2023)."
+          ],
+          [
+            "sector",
+            "Analytics mentions in HR postings rising in the sector series."
+          ]
+        ],
+        "call": [
+          "Asked in 35%+ of L2 postings by 2027-Q3",
+          60,
+          62,
+          "2027-Q3"
+        ]
+      },
+      "aipolicy": {
+        "status": "early",
+        "sig": [
+          [
+            "early",
+            "From 1% to 5% of postings, at 9 employers. Only one source so far."
+          ]
+        ],
+        "call": [
+          "Asked in 10%+ of L2–L4 postings by 2027-Q3",
+          50,
+          31,
+          "2027-Q3"
+        ]
+      }
+    }
+  }
+}

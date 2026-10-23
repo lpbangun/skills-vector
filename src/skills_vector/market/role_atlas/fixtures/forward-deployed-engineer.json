@@ -1,0 +1,1397 @@
+{
+  "schema": "skills-vector.role/2",
+  "id": "role.forward-deployed-engineer",
+  "label": "Forward Deployed Engineer",
+  "status": "emerging",
+  "publication": "experimental",
+  "data_kind": "fixture",
+  "release_id": "fixture_role_atlas_2026q3",
+  "aliases": [
+    "FDE",
+    "Forward Deployed Engineer",
+    "Deployment Engineer",
+    "Forward Deployed Software Engineer"
+  ],
+  "anchors": [
+    {
+      "system": "O*NET-SOC",
+      "code": "15-1252.00",
+      "title": "Software Developers",
+      "fit": "partial"
+    }
+  ],
+  "foundation": {
+    "median_pay": "$133k",
+    "pay_note": "median for anchor code only",
+    "employment": "n/a",
+    "employment_note": "no official count for this title",
+    "outlook_10y": "+15%",
+    "outlook_note": "anchor code, not this title",
+    "core_tasks": [
+      "Modify software to meet customer needs",
+      "Analyze user needs and design solutions",
+      "Confer with customers on project status",
+      "Integrate systems and data sources"
+    ],
+    "sources": [
+      {
+        "source": "O*NET ratings and tasks",
+        "family": "O",
+        "timing": "lagging",
+        "reading": "Anchor tasks rated 2024.",
+        "agrees": false
+      },
+      {
+        "source": "BLS wages and employment",
+        "family": "context",
+        "timing": "lagging",
+        "reading": "Anchor-code statistics, not title-specific estimates.",
+        "agrees": false
+      },
+      {
+        "source": "BLS employment projections",
+        "family": "context",
+        "timing": "long-term",
+        "reading": "Ten-year headcount outlook, not skill demand.",
+        "agrees": false
+      }
+    ]
+  },
+  "demand_window": {
+    "id": "2026-Q3",
+    "compared_to": "2026-Q2",
+    "postings": 96,
+    "employers": 31,
+    "max_employer_share": 0.2,
+    "timing": "coincident",
+    "window_length": "quarterly"
+  },
+  "ladder": {
+    "scale": "shared L1-L5",
+    "track": "individual_contributor",
+    "linked_roles": [
+      {
+        "from_level": 3,
+        "role": "fde-manager",
+        "relation": "people_management_track",
+        "note": "Separate linked role. Too few postings in this window to publish a ladder."
+      }
+    ],
+    "levels": [
+      {
+        "id": "forward-deployed-engineer.L1",
+        "level": 1,
+        "name": "Associate FDE",
+        "typical_titles": [
+          "Forward Deployed Engineer, New Grad",
+          "Associate Deployment Engineer"
+        ],
+        "years_wording": "0–2 years",
+        "scope": "Builds integrations and workflows inside a customer deployment, guided by a senior FDE.",
+        "owns": "Assigned workstreams in one deployment.",
+        "step_up": "Entry level for this ladder.",
+        "evidence": {
+          "postings": 14,
+          "employers": 8,
+          "window": "2026-Q3",
+          "timing": "coincident"
+        },
+        "expectations": [
+          {
+            "id": "exp.production-python-or-typescript",
+            "label": "Production Python or TypeScript",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.production-python-or-typescript@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.data-integration-and-sql",
+            "label": "Data integration and SQL",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.data-integration-and-sql@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.working-directly-with-customer-users",
+            "label": "Working directly with customer users",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.working-directly-with-customer-users@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          }
+        ]
+      },
+      {
+        "id": "forward-deployed-engineer.L2",
+        "level": 2,
+        "name": "Forward Deployed Engineer",
+        "typical_titles": [
+          "Forward Deployed Engineer",
+          "Forward Deployed Software Engineer"
+        ],
+        "years_wording": "2–5 years",
+        "scope": "Owns a customer deployment end to end: scoping, building, shipping and adoption.",
+        "owns": "Outcomes of one or two customer deployments.",
+        "step_up": "Scopes the work with the customer instead of receiving tasks. Accountable for adoption, not just delivery.",
+        "evidence": {
+          "postings": 47,
+          "employers": 24,
+          "window": "2026-Q3",
+          "timing": "coincident"
+        },
+        "expectations": [
+          {
+            "id": "exp.scoping-problems-with-non-technical-customers",
+            "label": "Scoping problems with non-technical customers",
+            "introduced_at": 2,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.scoping-problems-with-non-technical-customers@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.building-llm-applications-and-agent-workflows",
+            "label": "Building LLM applications and agent workflows",
+            "introduced_at": 2,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.building-llm-applications-and-agent-workflows@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.shipping-to-production-in-customer-environments",
+            "label": "Shipping to production in customer environments",
+            "introduced_at": 2,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.shipping-to-production-in-customer-environments@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.data-integration-and-sql",
+            "label": "Data integration and SQL",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.data-integration-and-sql@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          }
+        ]
+      },
+      {
+        "id": "forward-deployed-engineer.L3",
+        "level": 3,
+        "name": "Senior FDE",
+        "typical_titles": [
+          "Senior Forward Deployed Engineer"
+        ],
+        "years_wording": "5+ years",
+        "scope": "Leads multi-workstream deployments and feeds field patterns back into the product.",
+        "owns": "Technical win and delivery across a strategic account.",
+        "step_up": "Turns one-off customer builds into reusable product features. Supports pre-sales technical evaluation.",
+        "evidence": {
+          "postings": 28,
+          "employers": 16,
+          "window": "2026-Q3",
+          "timing": "coincident"
+        },
+        "expectations": [
+          {
+            "id": "exp.product-feedback-from-field-patterns",
+            "label": "Product feedback from field patterns",
+            "introduced_at": 3,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.product-feedback-from-field-patterns@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.pre-sales-technical-evaluation",
+            "label": "Pre-sales technical evaluation",
+            "introduced_at": 3,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.pre-sales-technical-evaluation@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.evaluation-design-for-customer-ai-deployments",
+            "label": "Evaluation design for customer AI deployments",
+            "introduced_at": 3,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.evaluation-design-for-customer-ai-deployments@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.building-llm-applications-and-agent-workflows",
+            "label": "Building LLM applications and agent workflows",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.building-llm-applications-and-agent-workflows@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          }
+        ]
+      },
+      {
+        "id": "forward-deployed-engineer.L4",
+        "level": 4,
+        "name": "Staff FDE / Deployment Lead",
+        "typical_titles": [
+          "Staff Forward Deployed Engineer",
+          "Deployment Strategist"
+        ],
+        "years_wording": "8+ years",
+        "scope": "Sets deployment patterns across accounts and mentors other FDEs.",
+        "owns": "The deployment playbook and its quality bar.",
+        "step_up": "Works across accounts. Defines how deployments are done rather than doing one.",
+        "evidence": {
+          "postings": 7,
+          "employers": 5,
+          "window": "2026-Q3",
+          "timing": "coincident"
+        },
+        "expectations": [
+          {
+            "id": "exp.cross-account-deployment-architecture",
+            "label": "Cross-account deployment architecture",
+            "introduced_at": 4,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.cross-account-deployment-architecture@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.mentoring-and-technical-leadership",
+            "label": "Mentoring and technical leadership",
+            "introduced_at": 4,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.mentoring-and-technical-leadership@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.product-feedback-from-field-patterns",
+            "label": "Product feedback from field patterns",
+            "introduced_at": "earlier",
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.product-feedback-from-field-patterns@fixture_role_atlas_2026q3",
+            "timing": "coincident"
+          }
+        ]
+      }
+    ]
+  },
+  "skill_map": {
+    "skills": [
+      {
+        "id": "skill.py",
+        "short_label": "Production Python / TS",
+        "label": "Production Python or TypeScript",
+        "status": "core",
+        "first_level": 1,
+        "share_by_level": [
+          84,
+          78,
+          70,
+          61
+        ],
+        "source_links": [
+          "P",
+          "O",
+          "Ee"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.84,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.84,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 84% of L1 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "In the O*NET record for 15-1252.00 (rated 2024).",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as essential for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.sql",
+        "short_label": "Data integration, SQL",
+        "label": "Data integration and SQL",
+        "status": "core",
+        "first_level": 1,
+        "share_by_level": [
+          72,
+          66,
+          52,
+          40
+        ],
+        "source_links": [
+          "P",
+          "O",
+          "Ee"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.72,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.72,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 72% of L1 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "In the O*NET record for 15-1252.00 (rated 2024).",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as essential for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.custusers",
+        "short_label": "Working with users",
+        "label": "Working directly with customer users",
+        "status": "core",
+        "first_level": 1,
+        "share_by_level": [
+          58,
+          61,
+          55,
+          44
+        ],
+        "source_links": [
+          "P",
+          "O"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.61,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.61,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 61% of L2 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "In the O*NET record for 15-1252.00 (rated 2024).",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.prodship",
+        "short_label": "Ship in customer envs",
+        "label": "Shipping to production in customer environments",
+        "status": "core",
+        "first_level": 2,
+        "share_by_level": [
+          12,
+          58,
+          62,
+          50
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.62,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.62,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 62% of L3 postings, steady across two windows.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.scoping",
+        "short_label": "Scoping with customers",
+        "label": "Scoping problems with non-technical customers",
+        "status": "core",
+        "first_level": 2,
+        "share_by_level": [
+          10,
+          64,
+          70,
+          66
+        ],
+        "source_links": [
+          "P",
+          "Eo"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.7,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.7,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3,
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 70% of L3 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as optional for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.llmapps",
+        "short_label": "LLM apps and agents",
+        "label": "Building LLM applications and agent workflows",
+        "status": "rising",
+        "first_level": 2,
+        "share_by_level": [
+          30,
+          55,
+          60,
+          52
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.21052631578947367,
+            "employers": 5,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.4270833333333333,
+            "employers": 17,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              2,
+              3
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Up from 21% to 43% of L2–L3 postings across 17 employers.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET Hot Technologies",
+            "family": "M",
+            "timing": "coincident",
+            "reading": "LLM frameworks listed as Hot Technologies for Software Developers.",
+            "agrees": true
+          },
+          {
+            "source": "O*NET Emerging Tasks",
+            "family": "O",
+            "timing": "leading",
+            "reading": "An emerging task for the anchor code mentions integrating AI models.",
+            "agrees": true
+          },
+          {
+            "source": "Anthropic Economic Index",
+            "family": "M",
+            "timing": "coincident",
+            "reading": "Coding and integration tasks lead AI use in the index.",
+            "agrees": true
+          }
+        ],
+        "forecast": {
+          "id": "forecast.forward-deployed-engineer.llmapps",
+          "claim": "Asked in 50%+ of L2 postings by 2027-Q3",
+          "probability": 0.8,
+          "base_rate": 0.62,
+          "horizon_quarters": 4,
+          "created": "2026-Q3",
+          "resolves": "2027-Q3",
+          "scored_against": "stratified posting sample"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.presales",
+        "short_label": "Pre-sales evaluation",
+        "label": "Pre-sales technical evaluation",
+        "status": "core",
+        "first_level": 3,
+        "share_by_level": [
+          0,
+          18,
+          47,
+          40
+        ],
+        "source_links": [
+          "P",
+          "Eo"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.47,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.47,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 47% of L3 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as optional for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": "Some employers use the FDE title for pre-sales solutions engineering. Both readings are kept apart."
+      },
+      {
+        "id": "skill.evals",
+        "short_label": "AI eval design",
+        "label": "Evaluation design for customer AI deployments",
+        "status": "early",
+        "first_level": 3,
+        "share_by_level": [
+          0,
+          6,
+          24,
+          35
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.0,
+            "employers": 0,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.09375,
+            "employers": 6,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "New phrasing in postings",
+            "family": "P",
+            "timing": "leading",
+            "reading": "From 0% to 9% of postings, at 6 employers.",
+            "agrees": false
+          }
+        ],
+        "forecast": {
+          "id": "forecast.forward-deployed-engineer.evals",
+          "claim": "Asked in 20%+ of L3–L4 postings by 2027-Q3",
+          "probability": 0.45,
+          "base_rate": 0.31,
+          "horizon_quarters": 4,
+          "created": "2026-Q3",
+          "resolves": "2027-Q3",
+          "scored_against": "stratified posting sample"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.feedback",
+        "short_label": "Product feedback",
+        "label": "Product feedback from field patterns",
+        "status": "core",
+        "first_level": 3,
+        "share_by_level": [
+          0,
+          12,
+          52,
+          64
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.64,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.64,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              3,
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 64% of L4 postings, steady across two windows.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.xarch",
+        "short_label": "Cross-account patterns",
+        "label": "Cross-account deployment architecture",
+        "status": "core",
+        "first_level": 4,
+        "share_by_level": [
+          0,
+          0,
+          10,
+          71
+        ],
+        "source_links": [
+          "P",
+          "O"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.71,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.71,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 71% of L4 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "O*NET ratings and tasks",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "In the O*NET record for 15-1252.00 (rated 2024).",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      },
+      {
+        "id": "skill.mentor",
+        "short_label": "Mentoring",
+        "label": "Mentoring and technical leadership",
+        "status": "core",
+        "first_level": 4,
+        "share_by_level": [
+          0,
+          2,
+          15,
+          68
+        ],
+        "source_links": [
+          "P",
+          "Ee"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q2",
+            "share": 0.68,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              4
+            ],
+            "timing": "coincident"
+          },
+          {
+            "window": "2026-Q3",
+            "share": 0.68,
+            "employers": 31,
+            "max_employer_share": 0.2,
+            "comparison_group": "fixture-prototype",
+            "levels": [
+              4
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Asked in 68% of L4 postings, steady across two windows.",
+            "agrees": false
+          },
+          {
+            "source": "ESCO",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "ESCO lists it as essential for the matched occupation.",
+            "agrees": false
+          }
+        ],
+        "forecast": null,
+        "disputed": null
+      }
+    ],
+    "asked_together": [
+      {
+        "a": "skill.py",
+        "b": "skill.llmapps",
+        "lift": 1.6,
+        "postings": 47,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.scoping",
+        "b": "skill.custusers",
+        "lift": 2,
+        "postings": 49,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.scoping",
+        "b": "skill.presales",
+        "lift": 1.9,
+        "postings": 30,
+        "employers": 8,
+        "timing": "coincident"
+      },
+      {
+        "a": "skill.llmapps",
+        "b": "skill.prodship",
+        "lift": 1.6,
+        "postings": 40,
+        "employers": 8,
+        "timing": "coincident"
+      }
+    ],
+    "builds_on": [
+      {
+        "a": "skill.custusers",
+        "b": "skill.scoping"
+      },
+      {
+        "a": "skill.py",
+        "b": "skill.llmapps"
+      },
+      {
+        "a": "skill.llmapps",
+        "b": "skill.evals"
+      },
+      {
+        "a": "skill.scoping",
+        "b": "skill.presales"
+      },
+      {
+        "a": "skill.feedback",
+        "b": "skill.xarch"
+      },
+      {
+        "a": "skill.prodship",
+        "b": "skill.xarch"
+      }
+    ],
+    "top_level_adds": {
+      "top_level": 4,
+      "core_level": 2,
+      "skills": [
+        "skill.presales",
+        "skill.feedback",
+        "skill.xarch",
+        "skill.mentor"
+      ],
+      "long_run_bar": {
+        "source": "O*NET level ratings",
+        "family": "O",
+        "timing": "lagging",
+        "reading": "The durable proficiency bar, not current posting demand.",
+        "agrees": false
+      }
+    }
+  },
+  "industries": [
+    {
+      "naics": "51",
+      "label": "Information",
+      "naics_title": "Information",
+      "sub_industries": "Software and data platform companies",
+      "evidence": {
+        "postings": 41,
+        "employers": 17,
+        "window": "2026-Q3",
+        "timing": "coincident"
+      },
+      "profile": {
+        "share_of_occupation_jobs": "n/a",
+        "median_pay": "$165k",
+        "how_it_differs": "Closer to solutions engineering. More integration and pre-sales work, and vendor cloud certifications appear.",
+        "distinct_duties": [
+          "Integrate the product with customer data stacks",
+          "Customize workflows on the platform",
+          "Support the technical win in pre-sales"
+        ],
+        "certifications": [
+          {
+            "name": "AWS Certified Solutions Architect – Associate",
+            "issuer": "AWS",
+            "asked_as": "preferred",
+            "posting_share": 0.14,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          },
+          {
+            "name": "Snowflake or Databricks certification",
+            "issuer": "Vendor",
+            "asked_as": "common",
+            "posting_share": 0.09,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          }
+        ],
+        "domain_knowledge": [
+          "Data warehouses",
+          "SSO and SCIM",
+          "Platform extension APIs"
+        ],
+        "skill_shares": [
+          {
+            "skill": "skill.llmapps",
+            "share": 0.52,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.evals",
+            "share": 0.14,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.scoping",
+            "share": 0.68,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.prodship",
+            "share": 0.61,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.presales",
+            "share": 0.49,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.feedback",
+            "share": 0.3,
+            "timing": "coincident"
+          }
+        ],
+        "sources": [
+          {
+            "source": "BLS occupation-by-industry matrix",
+            "family": "context",
+            "timing": "lagging",
+            "reading": "Employment share for the anchor occupation.",
+            "agrees": false
+          },
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Duties, credentials and skill shares in this sector.",
+            "agrees": false
+          },
+          {
+            "source": "CareerOneStop",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "Certification Finder matches by O*NET and NAICS.",
+            "agrees": false
+          }
+        ]
+      },
+      "reason": null
+    },
+    {
+      "naics": "54",
+      "label": "Professional and technical services",
+      "naics_title": "Professional, scientific and technical services",
+      "sub_industries": "AI research labs, federal IT contractors, consultancies",
+      "evidence": {
+        "postings": 55,
+        "employers": 14,
+        "window": "2026-Q3",
+        "timing": "coincident"
+      },
+      "profile": {
+        "share_of_occupation_jobs": "n/a",
+        "median_pay": "$178k",
+        "how_it_differs": "Mixes AI labs with federal contractors. Contractor roles add clearances and security certifications; lab roles add model evaluation.",
+        "distinct_duties": [
+          "Deploy models into customer workflows",
+          "Work on site with government users (contractors)",
+          "Report model gaps to research teams (labs)"
+        ],
+        "certifications": [
+          {
+            "name": "Active security clearance (Secret or TS/SCI)",
+            "issuer": "U.S. government",
+            "asked_as": "required",
+            "posting_share": 0.29,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          },
+          {
+            "name": "CompTIA Security+ (DoD 8140)",
+            "issuer": "CompTIA",
+            "asked_as": "required",
+            "posting_share": 0.17,
+            "source": "CareerOneStop",
+            "timing": "coincident"
+          }
+        ],
+        "domain_knowledge": [
+          "Evals and fine-tuning trade-offs",
+          "FedRAMP and Authority to Operate",
+          "Air-gapped deployment"
+        ],
+        "skill_shares": [
+          {
+            "skill": "skill.llmapps",
+            "share": 0.64,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.evals",
+            "share": 0.27,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.scoping",
+            "share": 0.64,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.prodship",
+            "share": 0.58,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.presales",
+            "share": 0.1,
+            "timing": "coincident"
+          },
+          {
+            "skill": "skill.feedback",
+            "share": 0.36,
+            "timing": "coincident"
+          }
+        ],
+        "sources": [
+          {
+            "source": "BLS occupation-by-industry matrix",
+            "family": "context",
+            "timing": "lagging",
+            "reading": "Employment share for the anchor occupation.",
+            "agrees": false
+          },
+          {
+            "source": "Job postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "Duties, credentials and skill shares in this sector.",
+            "agrees": false
+          },
+          {
+            "source": "CareerOneStop",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "Certification Finder matches by O*NET and NAICS.",
+            "agrees": false
+          }
+        ]
+      },
+      "reason": null
+    },
+    {
+      "naics": "52",
+      "label": "Finance and insurance",
+      "naics_title": "Finance and insurance",
+      "sub_industries": "Banks and insurers",
+      "evidence": {
+        "postings": 12,
+        "employers": 5,
+        "window": "2026-Q3",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "below 30 postings / 8 employers"
+    }
+  ],
+  "observations": [
+    {
+      "id": "observation.title-spread",
+      "label": "Title spreading beyond AI labs to SaaS companies",
+      "levels": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "windows": [
+        {
+          "id": "2026-Q2",
+          "mentions": 21,
+          "postings": 38,
+          "employers": 9,
+          "timing": "coincident"
+        },
+        {
+          "id": "2026-Q3",
+          "mentions": 58,
+          "postings": 96,
+          "employers": 22,
+          "timing": "coincident"
+        }
+      ],
+      "note": "Share here is postings from non-AI-lab employers. The role itself is the shift."
+    },
+    {
+      "id": "observation.agents",
+      "label": "Building agent workflows for customers",
+      "levels": [
+        2,
+        3
+      ],
+      "windows": [
+        {
+          "id": "2026-Q2",
+          "mentions": 8,
+          "postings": 38,
+          "employers": 5,
+          "timing": "coincident"
+        },
+        {
+          "id": "2026-Q3",
+          "mentions": 41,
+          "postings": 96,
+          "employers": 17,
+          "timing": "coincident"
+        }
+      ],
+      "note": "Replacing earlier 'data pipeline' framing at L2."
+    },
+    {
+      "id": "observation.evals",
+      "label": "Designing evaluations for customer AI deployments",
+      "levels": [
+        3,
+        4
+      ],
+      "windows": [
+        {
+          "id": "2026-Q2",
+          "mentions": 0,
+          "postings": 38,
+          "employers": 0,
+          "timing": "coincident"
+        },
+        {
+          "id": "2026-Q3",
+          "mentions": 9,
+          "postings": 96,
+          "employers": 6,
+          "timing": "coincident"
+        }
+      ],
+      "note": "New phrasing this window. Below the growing threshold."
+    },
+    {
+      "id": "observation.vs-se",
+      "label": "Overlap with Solutions Engineer",
+      "levels": [
+        2,
+        3
+      ],
+      "windows": [
+        {
+          "id": "2026-Q2",
+          "mentions": 6,
+          "postings": 38,
+          "employers": 4,
+          "timing": "coincident"
+        },
+        {
+          "id": "2026-Q3",
+          "mentions": 19,
+          "postings": 96,
+          "employers": 11,
+          "timing": "coincident"
+        }
+      ],
+      "note": "Some employers use FDE for pre-sales SE work. Two readings are kept apart until resolved."
+    }
+  ],
+  "limits": [
+    "Fixture data from the illustrative Role Atlas prototype; not research findings.",
+    "Core measurement windows repeat the prototype's steady peak share, using the role-wide employer count as an illustrative assumption, not measured level-specific employer coverage.",
+    "The prototype omits edge employer counts: eight is an explicit fixture-only assumption, not an observation.",
+    "Window employer concentration is the prototype's illustrative 20% cap, not measured employer allocation.",
+    "Counts describe the admitted sample in each window, not the whole market.",
+    "Posting frequency is not importance, proficiency or hiring likelihood.",
+    "Industry splits are only as wide as the employers sampled in each industry.",
+    "Forecast probabilities and base rates are illustrative; no backtest has been run."
+  ]
+}

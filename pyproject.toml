@@ -10,6 +10,7 @@ requires-python = ">=3.11"
 dependencies = [
   "langgraph>=1.0,<2",
   "mcp>=2.2,<3",
+  "jsonschema>=4.26,<5",
 ]
 
 [dependency-groups]
@@ -27,4 +28,4 @@ package-dir = {"" = "src"}
 where = ["src"]
 
 [tool.setuptools.package-data]
-skills_vector = ["fixtures/*.json", "fixtures/*.md"]
+skills_vector = ["fixtures/*.json", "fixtures/*.md", "market/role_atlas/*.json", "market/role_atlas/fixtures/*.json", "market/role_atlas/*.md"]
