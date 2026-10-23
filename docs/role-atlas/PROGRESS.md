@@ -304,3 +304,31 @@ before and after this correction (final result above).
   HTTP MCP shares its server's explicit role/2 selection.
 
 M2 complete; stop for review. M3 has not started.
+
+## M2 review round 1 replies
+
+1. **Must — current shifts: fixed.** `/v1/shifts` and MCP `list_shifts` now return
+   `current`: all non-core skills with a latest measurement after `since`, sorted
+   rising → early → fading, then probability descending. Each carries role/skill
+   ids, full/short labels, status, dispute flag, comparable measurements with
+   shares/employers, evidence families/directions, forecast, publication/data kind,
+   fixture caveat and a release-pinned skill `cite`. The citation endpoint/MCP
+   resolver now resolves skill ids as well as expectation ids, without inventing
+   posting excerpts. Existing historical transitions are unchanged under
+   `state_changes`, with the original history status/note and coverage fields.
+   The guide, schema descriptions and MCP descriptions document the distinction.
+   Tests assert nine fixture current items, AE AI account research rising, fading
+   inclusion, core exclusion, window boundaries, ordering, evidence/forecast values
+   and every current citation. SDK tests verify REST/MCP parity including skills;
+   historical transition tests still pass with their new collection name.
+
+Verification:
+- `.venv/bin/python -m unittest discover -s tests -p test_role_atlas_api_mcp.py`
+  — exit 0, 17 tests, OK.
+- `.venv/bin/python -m unittest discover -s tests` — exit 0, 178 tests in
+  27.455s, OK (the same 2 pre-existing skips).
+- `git diff --check` and `git diff --exit-code -- preview/release/` — exit 0.
+
+No new dependencies, external services, secrets, release edits or fabricated
+history. M3 has not started at this fix-up commit. Commit:
+`fix(role-atlas): expose current shifts alongside state changes`.

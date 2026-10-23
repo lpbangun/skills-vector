@@ -100,8 +100,41 @@ class RoleAtlasHttpTests(unittest.TestCase):
         self.assertEqual((sector["evidence"]["postings"], sector["evidence"]["employers"]), (12, 5))
         shifts = self.client.get("/v1/shifts?since=2026-07").json()
         self.assertEqual(shifts["history_status"], "not_recorded")
-        self.assertEqual(shifts["shifts"], [])
+        self.assertEqual(shifts["state_changes"], [])
         self.assertEqual(len(shifts["uncompared_roles"]), 3)
+
+    def test_current_shifts_answer_the_question_without_snapshot_history(self) -> None:
+        payload = self.client.get("/v1/shifts?since=2026-Q2").json()
+        current = payload["current"]
+        self.assertEqual(len(current), 9)
+        self.assertEqual({item["status"] for item in current}, {"rising", "early", "fading"})
+        self.assertNotIn("core", {item["status"] for item in current})
+        ai = next(item for item in current if item["role_id"] == "role.account-executive" and item["skill_id"] == "skill.aires")
+        self.assertEqual(ai["status"], "rising")
+        self.assertEqual(ai["short_label"], "AI account research")
+        self.assertEqual([window["window"] for window in ai["windows"]], ["2026-Q2", "2026-Q3"])
+        self.assertEqual([window["employers"] for window in ai["windows"]], [6, 23])
+        self.assertAlmostEqual(ai["windows"][-1]["share"], 58 / 412)
+        self.assertEqual(ai["forecast"]["probability"], 0.72)
+        self.assertEqual(ai["forecast"]["base_rate"], 0.62)
+        self.assertEqual(ai["forecast"]["resolves"], "2027-Q3")
+        self.assertIn("M", ai["evidence_families"])
+        self.assertTrue(any(item["family"] == "M" and item["direction"] == "up" for item in ai["evidence"]))
+        order = {"rising": 0, "early": 1, "fading": 2}
+        scores = [(order[item["status"]], -item["forecast"]["probability"]) for item in current]
+        self.assertEqual(scores, sorted(scores))
+        for item in current:
+            self.assertIn("disputed", item)
+            self.assertEqual(item["release_id"], FIXTURE_RELEASE)
+            cited = self.client.get(item["cite"])
+            self.assertEqual(cited.status_code, 200)
+            self.assertEqual(cited.json()["skill"]["id"], item["skill_id"])
+            self.assertEqual(cited.json()["citation_id"], item["skill_id"] + "@" + FIXTURE_RELEASE)
+            self.assertEqual(cited.json()["fixture_caveat"], FIXTURE_CAVEAT)
+        self.assertEqual(payload["state_changes"], [])
+        self.assertEqual(payload["history_status"], "not_recorded")
+        self.assertEqual(self.client.get("/v1/shifts?since=2026-Q3").json()["current"], [])
+        self.assertEqual(self.client.get("/v1/shifts?since=2026-Q4").json()["current"], [])
 
     def test_every_expectation_citation_resolves_without_inventing_quotes(self) -> None:
         for record in self.reads.catalog.list_roles():
@@ -222,22 +255,22 @@ class RoleAtlasPinTests(unittest.TestCase):
             payload = reads.shifts("2026-Q2")
             self.assertEqual(payload["history_status"], "partial")
             self.assertEqual(payload["uncompared_roles"], ["role.forward-deployed-engineer"])
-            self.assertEqual(len(payload["shifts"]), 1)
+            self.assertEqual(len(payload["state_changes"]), 1)
 
     def test_shifts_use_history_exclusive_since_and_inclusive_release_pin(self) -> None:
         response = self.client.get("/v1/shifts?since=2026-Q2&release=fixture_new")
         self.assertEqual(response.status_code, 200)
         payload = response.json()
         self.assertEqual(payload["history_status"], "available")
-        self.assertEqual(len(payload["shifts"]), 1)
-        change = payload["shifts"][0]
+        self.assertEqual(len(payload["state_changes"]), 1)
+        change = payload["state_changes"][0]
         self.assertEqual((change["skill_id"], change["previous_status"], change["status"], change["release_id"]),
                          ("skill.aires", "early", "rising", "fixture_new"))
         self.assertEqual(change["data_kind"], "fixture")
         self.assertEqual(change["fixture_caveat"], FIXTURE_CAVEAT)
-        self.assertEqual(self.client.get("/v1/shifts?since=2026-07&release=fixture_new").json()["shifts"], [])
-        self.assertEqual(self.client.get("/v1/shifts?since=2026-Q4").json()["shifts"], [])
-        changes = self.client.get("/v1/shifts?since=2026-Q2").json()["shifts"]
+        self.assertEqual(self.client.get("/v1/shifts?since=2026-07&release=fixture_new").json()["state_changes"], [])
+        self.assertEqual(self.client.get("/v1/shifts?since=2026-Q4").json()["state_changes"], [])
+        changes = self.client.get("/v1/shifts?since=2026-Q2").json()["state_changes"]
         self.assertEqual([(item["previous_status"], item["status"]) for item in changes], [("early", "rising"), ("rising", "early")])
         self.assertEqual(self.client.get("/v1/shifts?since=2026-Q1&release=fixture_old").json()["history_status"], "not_recorded")
 
@@ -275,6 +308,7 @@ class RoleAtlasMcpTests(unittest.TestCase):
             ("/v1/roles/account-executive/industries/31-33", "get_role_industry", {"role": "account-executive", "naics": "31-33"}),
             ("/v1/shifts?since=2026-Q2", "list_shifts", {"since": "2026-Q2"}),
             (f"/v1/expectations/{expectation_id}@{FIXTURE_RELEASE}", "get_expectation", {"expectation_id": expectation_id, "release_id": FIXTURE_RELEASE}),
+            (f"/v1/expectations/skill.aires@{FIXTURE_RELEASE}", "get_expectation", {"expectation_id": "skill.aires", "release_id": FIXTURE_RELEASE}),
             ("/v1/roles/missing", "get_role", {"role": "missing"}),
             ("/v1/roles/forward-deployed-engineer/levels/L5", "get_role_level", {"role": "forward-deployed-engineer", "level": "L5"}),
             ("/v1/roles/account-executive/industries/00", "get_role_industry", {"role": "account-executive", "naics": "00"}),
@@ -398,7 +432,8 @@ class RoleAtlasConfigTests(unittest.TestCase):
             self.assertIn(tool, agent_guide_markdown())
         guide = agent_guide_markdown(base_url="https://example.test")
         for phrase in ("skills-vector.role/2", "fixture_caveat", "publication: experimental", "SKILLS_VECTOR_ROLE_ATLAS_FIXTURES=1",
-                       "not_recorded", "no role/2 catalog by default", "https://example.test", "role-atlas-root"):
+                       "not_recorded", "no role/2 catalog by default", "https://example.test", "role-atlas-root",
+                       "current", "state_changes", "probability", "skill ids"):
             self.assertIn(phrase, guide)
 
 

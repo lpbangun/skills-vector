@@ -36,8 +36,8 @@ def api_schema(*, base_url: str = "") -> dict[str, Any]:
             {"path": "/v1/roles/{role}/levels/{L}", "params": ["release?"], "returns": "one level and expectations"},
             {"path": "/v1/roles/{role}/graph", "params": ["release?"], "returns": "skill map, evidence, forecasts and edges"},
             {"path": "/v1/roles/{role}/industries/{naics}", "params": ["release?"], "returns": "broad sector, including null thin profiles"},
-            {"path": "/v1/shifts", "params": ["since", "release?"], "returns": "stored state changes since YYYY-Qn or YYYY-MM, with history coverage"},
-            {"path": "/v1/expectations/{id}@{release}", "returns": "pinned expectation occurrences; missing posting/quote lineage explicitly marked not_recorded"},
+            {"path": "/v1/shifts", "params": ["since", "release?"], "returns": "current non-core measurements plus state_changes since YYYY-Qn or YYYY-MM, with history coverage"},
+            {"path": "/v1/expectations/{id}@{release}", "returns": "pinned expectation or skill occurrences; missing posting/quote lineage explicitly marked not_recorded"},
             {"path": "/api/health", "returns": "release pointer status and role slugs"},
             {"path": "/api/brief", "params": ["release?"], "returns": "four registered roles, publication state, and release metadata"},
             {"path": "/api/release", "params": ["release?"], "returns": "release metadata, scope, versions"},
@@ -289,7 +289,8 @@ of the legacy market releases. REST and MCP return identical JSON envelopes:
 Use this host (`{base}`) for these requests and `/api/mcp` for the tools. Optional
 REST pins use `?release=<release_id>`. Each success envelope carries `release_id`,
 `data_kind`, `fixture_caveat` and `limits`. The full schema-valid record is under
-`role`; other reads return `roles`, `level`, `graph`, `industry` or `shifts`.
+`role`; other reads return `roles`, `level`, `graph`, `industry`, or the shifts
+collections `current` and `state_changes`.
 Unknown role, level, sector, expectation or release returns a structured 404;
 invalid parameters return 400. No unknown pin silently falls back to current.
 Levels accept `L3` or `3`. NAICS ranges accept `31–33` or `31-33`.
@@ -327,11 +328,18 @@ Thin sectors remain visible with `profile: null` and a reason.
 
 Expectation citation ids are `id@release`, exactly as returned in level `cite`
 paths. They resolve to the stored expectation and all its role/level occurrences.
+Current shift items also carry a skill `cite` in that same endpoint namespace;
+`get_expectation` accepts skill ids and returns the pinned skill and occurrences.
 The current contract stores level evidence counts, not posting ids/quote excerpts:
 `postings` and `excerpts` are empty and `evidence_status` is `not_recorded`. Do not
-invent citations from those counts. The shifts read compares stored release
-snapshots and reports `history_status`; a single fixture snapshot yields no
-asserted state transitions, rather than inferring past non-posting confirmation.
+invent citations from those counts. The shifts read returns two distinct collections:
+`current` includes every rising, early or fading skill whose latest measured window
+is after `since`, even with only one stored snapshot. Each item retains comparable
+windows with shares/employers, evidence families/directions, dispute text, forecast
+and a pinned skill citation. It is sorted rising → early → fading, then probability
+descending. Core skills are excluded. `state_changes` compares stored release
+snapshots and reports `history_status` and `history_note`; a single fixture snapshot
+has no asserted state transitions, but still answers which skills are changing now.
 `since` is an exclusive window boundary; `release` is the inclusive upper pin.
 No person-specific gap or assessment data is accepted by these read-only tools.
 

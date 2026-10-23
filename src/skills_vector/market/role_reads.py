@@ -121,10 +121,16 @@ class RoleAtlasReads:
                     for record in records for level in record["ladder"]["levels"] for expectation in level["expectations"]
                     if expectation["id"] == params["expectation_id"]
                 ]
+                field = "expectation"
                 if not occurrences:
-                    raise RoleReadError("unknown_expectation", "Unknown expectation in the pinned release.")
+                    field = "skill"
+                    occurrences = [{"role_id": record["id"], "publication": record["publication"], "skill": skill}
+                                   for record in records for skill in record["skill_map"]["skills"]
+                                   if skill["id"] == params["expectation_id"]]
+                if not occurrences:
+                    raise RoleReadError("unknown_expectation", "Unknown expectation or skill in the pinned release.")
                 return {**payload, "citation_id": f"{params['expectation_id']}@{rid}",
-                        "expectation": occurrences[0]["expectation"], "occurrences": occurrences,
+                        field: occurrences[0][field], "occurrences": occurrences,
                         "postings": [], "excerpts": [], "evidence_status": "not_recorded",
                         "evidence_note": "The role/2 contract records level counts, not posting ids or quote excerpts. None are fabricated."}
             record = next((record for record in records if params["role"] in (record["id"], record["id"].removeprefix("role."))), None)
@@ -154,8 +160,24 @@ class RoleAtlasReads:
     def _shifts(self, records: list[dict], all_records: list[dict], release_keys: dict,
                 rid: str, since: str) -> dict[str, Any]:
         changes = []
+        current = []
         uncompared = []
         for record in records:
+            for skill in record["skill_map"]["skills"]:
+                latest = skill["windows"][-1]
+                if skill["status"] == "core" or _period(latest["window"]) <= _period(since):
+                    continue
+                windows = [window for window in skill["windows"]
+                           if window["comparison_group"] == latest["comparison_group"]
+                           and set(window["levels"]) == set(latest["levels"])
+                           and ("Q" in window["window"]) == ("Q" in latest["window"])]
+                current.append({"role_id": record["id"], "skill_id": skill["id"], "label": skill["label"],
+                                "short_label": skill["short_label"], "status": skill["status"], "disputed": skill["disputed"],
+                                "windows": windows, "evidence_families": sorted({item["family"] for item in skill["evidence"]}),
+                                "evidence": skill["evidence"], "forecast": skill["forecast"],
+                                "release_id": rid, "data_kind": record["data_kind"], "publication": record["publication"],
+                                "fixture_caveat": FIXTURE_CAVEAT if self.fixtures else None,
+                                "cite": f"/v1/expectations/{skill['id']}@{rid}"})
             history = sorted((item for item in all_records if item["id"] == record["id"]
                               and release_keys[item["release_id"]] <= release_keys[rid]),
                              key=lambda item: release_keys[item["release_id"]])
@@ -173,7 +195,9 @@ class RoleAtlasReads:
                                         "data_kind": after["data_kind"], "fixture_caveat": FIXTURE_CAVEAT if self.fixtures else None,
                                         "evidence": skill["evidence"], "forecast": skill["forecast"]})
         changes.sort(key=lambda item: (release_keys[item["release_id"]], item["role_id"], item["skill_id"]))
-        return {"since": since, "shifts": changes, "uncompared_roles": uncompared,
+        order = {"rising": 0, "early": 1, "fading": 2}
+        current.sort(key=lambda item: (order[item["status"]], -item["forecast"]["probability"], item["role_id"], item["skill_id"]))
+        return {"since": since, "current": current, "state_changes": changes, "uncompared_roles": uncompared,
                 "history_status": "not_recorded" if len(uncompared) == len(records) else "partial" if uncompared else "available",
                 "history_note": "State changes compare stored role/2 release snapshots, not inferred historical non-posting signals. A single snapshot cannot establish a change."}
 

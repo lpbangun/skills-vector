@@ -81,12 +81,12 @@ def create_mcp_server(store: CatalogStore, *, role_catalog: RoleAtlasReads | Non
 
     @server.tool(annotations=READ_ONLY)
     def list_shifts(since: str, release_id: str | None = None) -> dict[str, Any]:
-        """Read stored state changes after YYYY-Qn or YYYY-MM, through a pinned release."""
+        """Read current non-core measurements and stored state changes after a window, release-pinned."""
         return role_catalog.shifts(since, release_id)
 
     @server.tool(annotations=READ_ONLY)
     def get_expectation(expectation_id: str, release_id: str) -> dict[str, Any]:
-        """Resolve id@release to stored expectation occurrences; missing quotes are explicit."""
+        """Resolve expectation or skill id@release; missing posting quotes remain explicit."""
         return role_catalog.expectation(expectation_id, release_id)
 
     @server.tool(annotations=READ_ONLY)
