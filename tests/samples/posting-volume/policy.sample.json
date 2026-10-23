@@ -1,0 +1,64 @@
+{
+  "schema": "skills-vector.posting-policy/1",
+  "data_kind": "fixture",
+  "window_length": "quarterly",
+  "max_postings_per_role": 300,
+  "roles": {
+    "account-executive": [
+      "Account Executive"
+    ],
+    "forward-deployed-engineer": [
+      "Forward Deployed Engineer"
+    ],
+    "growth-manager": [
+      "Growth Manager"
+    ],
+    "hr-generalist": [
+      "HR Generalist"
+    ]
+  },
+  "boards": [
+    {
+      "ats": "greenhouse",
+      "token": "sample-employer-1",
+      "employer": "Sample employer 1",
+      "source_note": "Authored sample identity; no verified primary employer sector.",
+      "payload": "greenhouse-sample-employer-1.sample.json"
+    },
+    {
+      "ats": "lever",
+      "token": "sample-employer-2",
+      "employer": "Sample employer 2",
+      "source_note": "Authored sample identity; no verified primary employer sector.",
+      "payload": "lever-sample-employer-2.sample.json"
+    },
+    {
+      "ats": "ashby",
+      "token": "sample-employer-3",
+      "employer": "Sample employer 3",
+      "source_note": "Authored sample identity; no verified primary employer sector.",
+      "payload": "ashby-sample-employer-3.sample.json"
+    },
+    {
+      "ats": "greenhouse",
+      "token": "sample-employer-4",
+      "employer": "Sample employer 4",
+      "source_note": "Authored sample identity; no verified primary employer sector.",
+      "payload": "greenhouse-sample-employer-4.sample.json"
+    },
+    {
+      "ats": "lever",
+      "token": "sample-employer-5",
+      "employer": "Sample employer 5",
+      "source_note": "Authored sample identity; no verified primary employer sector.",
+      "payload": "lever-sample-employer-5.sample.json"
+    },
+    {
+      "ats": "ashby",
+      "token": "sample-employer-6",
+      "employer": "Sample employer 6",
+      "source_note": "Authored sample identity; no verified primary employer sector.",
+      "payload": "ashby-sample-employer-6.sample.json"
+    }
+  ]
+}

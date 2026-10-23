@@ -344,6 +344,15 @@ explicit reason. They preserve a dated claim for future evaluation, not a foreca
 percentage. Numeric probabilities/base rates require `basis: "backtest"` (historical
 archive) or `basis: "fixture"` (illustrative); both numbers must be in 0–1.
 
+M6 `market posting-volume capture|project` is a separate quarterly rules/1 lane.
+It reuses allowlisted public ATS parsing, US geography and dedup, with an independent
+500-posting ceiling and 20% per-employer cap. It never imports a model/provider or
+uses model-backed budgets. Capture is offline by default unless `--live` is explicit;
+Pi does not run live job-board retrieval. See `docs/role-atlas/POSTING_VOLUME.md`
+for native samples, exact operator commands, provenance and comparable-quarter rules.
+Role envelopes also carry `method`: every SOURCE_RULES kind, its canonical timing,
+family and use. This is policy, not a claim that all those sources were imported.
+
 M5 official-signal importers and forecast ledger are local operator CLI commands;
 see `docs/role-atlas/OFFICIAL_SIGNALS_AND_LEDGER.md`. They never fetch files or
 accept API keys. Select a ledger with `--role-atlas-ledger` (serve/MCP) or

@@ -19,3 +19,14 @@ RESEARCH_LIMITS: dict[str, int | bool] = {
     "max_run_seconds": 1800,
     "serialized_calls": True,
 }
+
+# Independent ceilings: never passed to the model-backed research lane.
+POSTING_VOLUME_LIMITS = {
+    "max_postings_per_role": 500,
+    "max_employer_share": 0.20,
+    "max_boards": 100,
+    "max_retrievals": 200,
+    "max_response_bytes": 16 * 1024 * 1024,
+    "retrieval_timeout_seconds": 20,
+    "max_retries": 2,
+}

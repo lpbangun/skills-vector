@@ -1175,3 +1175,246 @@ counts visible in receipts. Operators must review event semantics and preserve
 comparable samples. Ledger mutation is single-writer. No raw phrase normalization
 or new status/floor policy was introduced. M5 is complete for review; commit this
 milestone on `feat/role-atlas` and stop.
+
+## M6 — Posting volume, no-model extraction lane
+
+Read M5-r1, updated BRIEF (including M6 and settled quarterly windows), STANDARDS,
+and the approved source/design vocabulary. No live job-board retrieval was run.
+
+### First: the three M5-r1 carry-overs
+
+1. **Decisions removed.** No “For your review”, “Still open” or Decisions section
+   remains in the product; its unused CSS was also removed. Method states the settled quarterly policy and
+   four-quarter horizon, edge/sector thresholds, level-pip threshold and linked
+   management track; status thresholds remain in the Method rules table.
+2. **Canonical source-timing table.** Full-role API/MCP envelopes now carry
+   `method`, generated from every `SOURCE_RULES` kind with canonical timing,
+   family and purpose. Method renders all **11** kinds, independent of role or
+   selected skill, with an explicit policy/not-import-coverage disclaimer.
+   Per-skill readings and rating years stay in their detail panels. Fixtures
+   and research have the same canonical policy. No role/2 evidence is invented.
+3. **Plurals fixed.** Shared count nouns cover role heads, level evidence,
+   industry evidence and Method summaries. Legacy generated posting summaries
+   display “1 employer”; raw role JSON/quotes are not rewritten. Tests exercise
+   singular/plural, the 11-employer boundary, and leaving official source text
+   alone. Browser checks/crops confirmed “1 employer” on the research AE detail.
+
+### Built — V1–V4, P1–P5
+
+- New `market posting-volume capture|project` operator commands. Capture reuses
+  the existing public board parsers, US geography rule, dedup key and redirect
+  allowlist. Greenhouse entity-escaped HTML, Lever structured lists and Ashby
+  HTML/plain descriptions are exercised in checked-in native-format samples.
+  The other existing parsers remain available; incomplete/paginated lists are
+  excluded with coverage errors instead of silently becoming complete samples.
+- **V1:** No model/provider/agent/research-budget imports on this lane. A fresh
+  subprocess import guard exercises both capture and project through the real
+  `skills-vector market` entrypoint, asserts no banned modules loaded, and
+  proves its rejection guard. Narrow supporting change: legacy imports in
+  `skills_vector/cli.py` are lazy, after market dispatch. Legacy model-backed
+  behavior is tested unchanged; no budget or research-config file was edited.
+- Independent `POSTING_VOLUME_LIMITS` appended in `market/limits.py`: max **500**
+  admitted postings/role, 100 boards, 200 logical retrievals, 16 MiB/response,
+  20-second transport timeout and at most two infrastructure retries. The
+  original **RESEARCH_LIMITS AST is identical to HEAD**, including model-call
+  and posting ceilings. No paid search, model service or new host was added.
+- `rules/1` splits responsibilities, requirements and preferred sections from
+  headings/list structure, dropping company/benefits/legal/unknown sections
+  and recognizable boilerplate. Inline tags/entities are decoded, not
+  paraphrased. Paragraphs/line breaks within a bullet remain one quote.
+  Every posting records `extraction_method: rules/1`.
+- **V3:** Exact quote/start/end/source-hash spans in the saved visible
+  description; original native description and board bytes are separately
+  hashed. Projection verifies every indexed file, binds each description back
+  to its native row, replays extraction, and rejects rehashed forged quotes.
+  Visible text is not falsely claimed to include literal HTML markup/entities.
+- Dedup precedes deterministic round-robin allocation. The largest feasible
+  sample has **no employer above 20%** and never exceeds policy/hard ceilings.
+  Fewer than five employers cannot form a nonempty sample: output is zero,
+  not padding. Employer identities/aliases are explicitly operator-declared.
+  Coverage diagnostics include eligible postings whose sections were missed,
+  not just successful extractions.
+- Output: immutable per-quarter directories with manifest, file hashes, raw
+  board responses, native/visible descriptions and posting provenance. Output
+  cannot overlap inputs, fixtures or the published release tree. Raw real
+  corpora are external operator evidence, not public preview exports.
+- **P1/P2:** M4 `EvidenceInputs.from_snapshots` accepts one or more quarterly
+  captures plus the existing published foundation and checked-in mappings.
+  Snapshots are the additional input explicitly authorized by M6. Native
+  bodies, policy, mapping and recipe hashes determine output; no output path
+  or processing clock enters deterministic offline identity. Duplicate
+  quarters are rejected. Comparison groups include stable frame/policy,
+  complete-board set, extraction/normalization implementation and mappings;
+  changed frames cannot manufacture a trend. Empty samples are not zeros in
+  historical measurements. Current role/2 output retains comparable older
+  window measurements and an honest compared_to pin.
+- **P3:** All responsibility spans reach the existing ownership/scope rules.
+  Qualifications do not assign current levels. The patterns, management and
+  conflict rules are unchanged. Search whitespace alone is normalized while
+  original strong-signal quotes are retained. Titles/years remain weak.
+- Rules-lane-only `phrase-rules/1` lowercases and removes explicit experience/
+  ability/knowledge prefixes and plus/preferred suffixes. Original quote,
+  source, expectation id and normalized label remain traceable in audit links.
+  No synonym model, stemming or negation removal. Ambiguous/loose lexical
+  alignments cannot gain an O-link. Existing approved M4 labels are unchanged.
+- **P4/P5:** All status/edge/sector functions and floors are reused, not loosened.
+  Employer sectors default to explicit unverified/null rows with source notes;
+  reviewed primary-employer maps require local employer-bound evidence. No
+  customer/job-function sector inference. Every output passes M1 validation.
+  Fixture snapshots produce fixture roles; the research-shaped branch is also
+  tested in memory. Two quarters do not supply a four-quarter forecast
+  backtest: no numeric forecast, score or false upward O/M signal is created.
+
+### Sample results — not research findings
+
+Six checked-in native payloads contain **48 authored postings**, 12 per role.
+**V4: 42/48 (87.5%)** have responsibilities. The six intentional failures retain
+requirements/preferred evidence but lack responsibilities:
+
+| Role | Employer | Native posting id |
+| --- | --- | --- |
+| Account Executive | Sample employer 1 | `100001` |
+| Account Executive | Sample employer 5 | `sample-employer-5-account-executive-1` |
+| Forward Deployed Engineer | Sample employer 2 | `sample-employer-2-forward-deployed-engineer-1` |
+| Forward Deployed Engineer | Sample employer 6 | `sample-employer-6-forward-deployed-engineer-1` |
+| Growth Manager | Sample employer 3 | `sample-employer-3-growth-manager-1` |
+| HR Generalist | Sample employer 4 | `100307` |
+
+One additional HR posting, `sample-employer-6-hr-generalist-0`, deliberately
+contains conflicting L2/L4 ownership. Thus **41/48** get a scope assignment;
+**7** stay unassigned. This is constructed sample coverage, not an accuracy
+estimate or a claim about live job boards.
+
+| Role | L1/L2/L3/L4/L5/unassigned | Early skills | Profiles |
+| --- | --- | ---: | --- |
+| Account Executive | 0/6/4/0/0/2 | 7 | 0/20 |
+| Forward Deployed Engineer | 0/6/4/0/0/2 | 7 | 0/20 |
+| Growth Manager | 0/6/5/0/0/1 | 6 | 0/20 |
+| HR Generalist | 0/5/5/0/0/2 | 8 | 0/20 |
+
+Both sample quarters have six employers/role (max contribution 2/12), below
+core's ten-employer floor. All 28 skills correctly remain early, no edges
+survive, and all 80 profiles stay null. Projection id:
+**`role_fixture_50fdfb7ce3a75792`**.
+
+**V2 scale case:** deterministic expansion of those native templates to ten
+sample employers × thirty distinct posting ids per role gives **300/role**,
+**1,200/quarter**. Every employer contributes exactly **30 (10%)**, below 20%.
+Two physical current-quarter trees match byte-for-byte. The two-quarter
+projection has 5/5/4/5 core skills by role and one additional early HR skill;
+this synthetic case satisfies the unchanged floors. There are no rising
+skills or verified sector profiles, and these are not market findings.
+
+### Exact verification commands / results
+
+```sh
+.venv/bin/skills-vector market posting-volume capture --policy tests/samples/posting-volume/policy.sample.json --quarter 2026-Q3 --payload-root tests/samples/posting-volume --retrieved-at 2026-09-01T00:00:00Z --output /tmp/role-atlas-m6-final-snapshots > /tmp/role-atlas-m6-final-q3.json
+.venv/bin/skills-vector market posting-volume capture --policy tests/samples/posting-volume/policy.sample.json --quarter 2026-Q4 --payload-root tests/samples/posting-volume --retrieved-at 2026-10-15T00:00:00Z --output /tmp/role-atlas-m6-final-snapshots > /tmp/role-atlas-m6-final-q4.json
+.venv/bin/skills-vector market posting-volume project --snapshot /tmp/role-atlas-m6-final-snapshots/2026-Q3 --snapshot /tmp/role-atlas-m6-final-snapshots/2026-Q4 --output /tmp/role-atlas-m6-final-projection > /tmp/role-atlas-m6-final-projection.json
+.venv/bin/skills-vector market posting-volume project --snapshot /tmp/role-atlas-m6-final-snapshots/2026-Q3 --snapshot /tmp/role-atlas-m6-final-snapshots/2026-Q4 --output /tmp/role-atlas-m6-final-projection-rebuild > /tmp/role-atlas-m6-final-projection-rebuild.json
+diff -qr /tmp/role-atlas-m6-final-projection /tmp/role-atlas-m6-final-projection-rebuild
+.venv/bin/python -m unittest discover -s tests -p test_posting_volume.py
+.venv/bin/python -m unittest discover -s tests
+.venv/bin/skills-vector market forecast-ledger create --roles-root src/skills_vector/market/role_atlas_contract/fixtures --ledger /tmp/role-atlas-m6-fixture-ledger.json > /tmp/role-atlas-m6-fixture-ledger-summary.json
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m6-research --role-atlas-root research/role-atlas/m4/roles --role-atlas-ledger research/role-atlas/m5/ledger.json
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m6-fixtures --role-atlas-fixtures --role-atlas-ledger /tmp/role-atlas-m6-fixture-ledger.json
+bash scripts/assemble_vercel.sh
+uv lock --check --offline
+node --check preview/role-atlas.js
+.venv/bin/python -m compileall -q src/skills_vector/cli.py src/skills_vector/market/posting_volume.py src/skills_vector/market/posting_volume_inputs.py src/skills_vector/market/posting_volume_cli.py src/skills_vector/market/role_method.py src/skills_vector/market/role_pipeline.py tests/test_posting_volume.py scripts/check_role_atlas.py
+git diff --check
+git diff HEAD --exit-code -- preview/release/ research/role-atlas/m4/ research/role-atlas/m5/ src/skills_vector/market/budgeting.py src/skills_vector/market/research_config.py src/skills_vector/budget.py uv.lock docs/role-atlas/BRIEF.md docs/role-atlas/STANDARDS.md
+```
+
+Final verification exits **0**. Full suite: **237 tests in 145.727s, OK (skipped=2)**
+(final run concurrent with both browser sweeps; the preceding standalone run
+was 64.954s), the same two pre-existing skips; **16 new tests**, no new dependency. Focused lane
+suite passes (also included in the final full run). Initial checks caught a
+stale expected evidence phrase, two sample-test setup mistakes (protected output
+placement and unassigned total), and a double-escaped test newline. They were
+fixed without relaxing guards/rules before the final successful run.
+
+Both browser selections pass **1280 light, 1280 dark, 390 light**, all roles,
+tabs and Connections; explicit local Chromium 1243, no external requests.
+Research: **72 screenshots**, fixtures: **54**, every `errors` array empty.
+The checker now asserts all canonical source rows against the API and rejects
+stale Decisions scaffolding; rating dates remain checked in head/detail rather
+than incorrectly in the canonical table. Assembly **551 files**; offline lock
+**61 packages resolved**. Syntax/compilation/diff checks pass.
+
+The scale case is reproducible without a board request:
+
+```sh
+PYTHONPATH=tests:src .venv/bin/python - <<'PY'
+from pathlib import Path
+from test_posting_volume import stress_policy
+from skills_vector.market.posting_volume import write_snapshot
+from skills_vector.market.role_pipeline import EvidenceInputs
+from skills_vector.market.role_artifacts import read_json
+r=Path('/tmp/role-atlas-m6-300');p=r/'payloads';p.mkdir(parents=True,exist_ok=True)
+policy=stress_policy(p)
+for q,stamp in [('2026-Q3','2026-09-01T00:00:00Z'),('2026-Q4','2026-10-15T00:00:00Z')]:
+ write_snapshot(policy,r/'snapshots',q,payload_root=p,retrieved_at=stamp)
+write_snapshot(policy,r/'rebuild','2026-Q4',payload_root=p,retrieved_at='2026-10-15T00:00:00Z')
+a,b=r/'snapshots/2026-Q4',r/'rebuild/2026-Q4'
+assert {str(x.relative_to(a)):x.read_bytes() for x in a.rglob('*') if x.is_file()}=={str(x.relative_to(b)):x.read_bytes() for x in b.rglob('*') if x.is_file()}
+inputs=EvidenceInputs.from_snapshots([r/'snapshots/2026-Q3',r/'snapshots/2026-Q4'],Path('preview/release'))
+audit=inputs.write(r/'projection')
+for role,data in read_json(a/'manifest.json')['roles'].items():
+ print(role,'admitted',data['admitted'],'employers',len(data['employers']),'max employer',max(data['employers'].values()),'share',max(data['employers'].values())/data['admitted'],'statuses',audit['roles'][role]['skills_by_status'])
+print('1200 fixture postings per quarter; physical snapshot rebuild byte-identical.')
+PY
+```
+
+Exit **0**, actual counts/shares/statuses as above. Integrity proof:
+
+```sh
+.venv/bin/python - <<'PY'
+import ast,hashlib,subprocess
+from pathlib import Path
+p='src/skills_vector/market/limits.py'
+def limits(text):
+ return next(ast.dump(n.value,include_attributes=False) for n in ast.parse(text).body if isinstance(n,ast.AnnAssign) and getattr(n.target,'id',None)=='RESEARCH_LIMITS')
+assert limits(Path(p).read_text())==limits(subprocess.check_output(['git','show','HEAD:'+p]).decode())
+files=subprocess.check_output(['git','ls-files','-z','preview/release/']).decode().split('\0')[:-1]
+for name in files:
+ data=Path(name).read_bytes();actual=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+ assert actual==subprocess.check_output(['git','rev-parse','HEAD:'+name]).decode().strip(),name
+assert {str(p) for p in Path('preview/release').rglob('*') if p.is_file()}==set(files)
+print('RESEARCH_LIMITS unchanged; all',len(files),'published files/file set unchanged.')
+PY
+```
+
+Exit **0**: original limits unchanged; all **533** published files/file set
+unchanged. Approved M4/M5 data, model budget/config files, lock and standards
+are unchanged. The new operator policy is separate from model-backed policies.
+
+Also captured `/tmp/role-atlas-m6-method/` crops at all three cases, asserting
+11 canonical kinds, quarterly Method, no Decisions, and “1 employer” (not
+“1 employers”) on AE. Opened source table 1280 light/dark and AE detail 390 light:
+confirmed canonical purposes, correct timing/families, fitting/wrapping and an
+honest no-forecast state. Full screenshots/results remain under the checker
+paths above. These are UI checks, not newly retrieved research evidence.
+
+### Exact live operator command — documented only, NOT executed
+
+Starter roster and its source notes are checked in at
+`config/role-atlas-posting-volume.json`. Detailed workflow, formats, quoting,
+private raw evidence handling and limitations: `docs/role-atlas/POSTING_VOLUME.md`.
+The reviewer/user reviews that public employer roster and runs:
+
+```sh
+QUARTER=$(.venv/bin/python -c 'from datetime import datetime,UTC; d=datetime.now(UTC); print(f"{d.year}-Q{(d.month-1)//3+1}")')
+CAPTURE="$HOME/.local/share/skills-vector-evidence/role-atlas/capture-$(date -u +%Y%m%dT%H%M%SZ)"
+.venv/bin/skills-vector market posting-volume capture --policy config/role-atlas-posting-volume.json --quarter "$QUARTER" --live --output "$CAPTURE"
+```
+
+Pi did **not** run this or any live job-board retrieval. No paid/model calls,
+secrets, immutable release edits, push or deployment. No real new research
+corpus is claimed: only labeled samples were generated here. The 13-employer
+starter frame is biased and may not yield five eligible employers for every
+role; it needs operator review/expansion, not a relaxed cap. Rules are deliberately
+conservative and may miss unfamiliar headings. Employer aliases and primary
+sector evidence still require operator curation. Quarterly captures are stock
+observations, not counts of new hires/jobs. No forecast archive or calibration
+was fabricated. M6 is complete for review; commit on `feat/role-atlas` and stop.

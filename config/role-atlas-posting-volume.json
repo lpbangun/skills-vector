@@ -1,0 +1,106 @@
+{
+  "schema": "skills-vector.posting-policy/1",
+  "data_kind": "research",
+  "window_length": "quarterly",
+  "max_postings_per_role": 500,
+  "roles": {
+    "account-executive": [
+      "Account Executive"
+    ],
+    "forward-deployed-engineer": [
+      "Forward Deployed Engineer",
+      "Forward-Deployed Engineer"
+    ],
+    "growth-manager": [
+      "Growth Manager",
+      "Growth Marketing Manager",
+      "Product Growth Manager"
+    ],
+    "hr-generalist": [
+      "HR Generalist",
+      "Human Resources Generalist",
+      "HR Business Partner",
+      "Human Resources Business Partner"
+    ]
+  },
+  "boards": [
+    {
+      "ats": "greenhouse",
+      "token": "verkada",
+      "employer": "Verkada",
+      "source_note": "Employer and public board token recorded in local published rel_20261002_cbdc6e8d5c4f postings/sources. Starter roster, not a representative market frame. Primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "datadog",
+      "employer": "Datadog",
+      "source_note": "Employer and public board token recorded in local published rel_20261002_cbdc6e8d5c4f postings/sources. Starter roster, not a representative market frame. Primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "stripe",
+      "employer": "Stripe",
+      "source_note": "Employer and public board token recorded in local published rel_20261002_cbdc6e8d5c4f postings/sources. Starter roster, not a representative market frame. Primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "mongodb",
+      "employer": "MongoDB",
+      "source_note": "Employer and public board token recorded in local published rel_20261002_cbdc6e8d5c4f postings/sources. Starter roster, not a representative market frame. Primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "toast",
+      "employer": "Toast",
+      "source_note": "Employer and public board token recorded in local published rel_20261002_cbdc6e8d5c4f postings/sources. Starter roster, not a representative market frame. Primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "databricks",
+      "employer": "Databricks",
+      "source_note": "Employer and public board token recorded in local published rel_20261002_cbdc6e8d5c4f postings/sources. Starter roster, not a representative market frame. Primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "asana",
+      "employer": "Asana",
+      "source_note": "Employer and public board token recorded in local published rel_20261002_cbdc6e8d5c4f postings/sources. Starter roster, not a representative market frame. Primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "figma",
+      "employer": "Figma",
+      "source_note": "Employer and public board token recorded in local published rel_20261002_cbdc6e8d5c4f postings/sources. Starter roster, not a representative market frame. Primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "instacart",
+      "employer": "Instacart",
+      "source_note": "Employer and public board token recorded in local published rel_20261002_cbdc6e8d5c4f postings/sources. Starter roster, not a representative market frame. Primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "duolingo",
+      "employer": "Duolingo",
+      "source_note": "Employer and public board token recorded in local published rel_20261002_cbdc6e8d5c4f postings/sources. Starter roster, not a representative market frame. Primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "chime",
+      "employer": "Chime",
+      "source_note": "Employer and public board token recorded in local published rel_20261002_cbdc6e8d5c4f postings/sources. Starter roster, not a representative market frame. Primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "spacex",
+      "employer": "SpaceX",
+      "source_note": "Employer and public board token recorded in local published rel_20261002_cbdc6e8d5c4f postings/sources. Starter roster, not a representative market frame. Primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "justworks",
+      "employer": "Justworks",
+      "source_note": "Employer and public board token recorded in local published rel_20261002_cbdc6e8d5c4f postings/sources. Starter roster, not a representative market frame. Primary employer sector unverified."
+    }
+  ]
+}

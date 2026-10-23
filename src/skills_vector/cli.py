@@ -9,18 +9,12 @@ import sys
 from datetime import UTC, datetime
 from pathlib import Path
 
-from .assessment import assess
-from .budget import BudgetError, PINNED_MODELS
-from .catalog import CatalogStore
-from .config import Settings
-from .interpret import DeepInfraInterpreter
-from .occupational import HumanReview, OccupationId, ReviewDecision
-from .pipeline import ResearchPipeline, build_offline_pipeline, default_fixture_root
-from .publication import publish_release, rollback_release
 
 
 def build_research_pipeline(store: CatalogStore, settings: Settings, args) -> ResearchPipeline:
     """Select the offline or live interpreter. Live needs an explicit flag plus a key."""
+    from .interpret import DeepInfraInterpreter
+    from .pipeline import ResearchPipeline, build_offline_pipeline, default_fixture_root
     live = bool(getattr(args, "live", False) or getattr(args, "escalate_hard", False)) or settings.runtime in {
         "live",
         "deepinfra",
@@ -45,6 +39,9 @@ def build_research_pipeline(store: CatalogStore, settings: Settings, args) -> Re
 
 
 def build_parser() -> argparse.ArgumentParser:
+    from .budget import PINNED_MODELS
+    from .occupational import OccupationId, ReviewDecision
+
     parser = argparse.ArgumentParser(
         prog="skills-vector",
         description="Local occupational skills research and approved static exports.",
@@ -149,6 +146,13 @@ def main(argv: list[str] | None = None) -> int:
             "output_dir": str((args.output_dir or DEFAULT_OUTPUT_DIR).resolve()),
         }, ensure_ascii=False))
         return 0
+
+    from .assessment import assess
+    from .budget import BudgetError, PINNED_MODELS
+    from .catalog import CatalogStore
+    from .config import Settings
+    from .occupational import HumanReview, ReviewDecision
+    from .publication import publish_release, rollback_release
 
     settings = Settings.from_env()
     settings.database_path.parent.mkdir(parents=True, exist_ok=True)

@@ -332,6 +332,12 @@ def check_case(browser, base: str, out: Path, width: int, scheme: str, reference
                 tags = page.locator("#roleHead .tm").all_inner_texts()
                 require([tag.casefold() for tag in tags] == [timing_label(source) for source in head_sources] + [record["demand_window"]["timing"]], "role head lost the source rating year")
                 assert_track_record(page, base, role, record)
+                method = page.request.get(base + "/v1/roles/" + role + "?release=" + record["release_id"]).json()["method"]
+                require(page.locator("#sourceTable tr").count() == len(method["sources"]), "canonical source table is incomplete")
+                for source in method["sources"]:
+                    row = page.locator('#sourceTable tr[data-source-kind="' + source["source_kind"] + '"]')
+                    require(row.locator(".tm").inner_text() == source["timing"] and source["good_for"] in row.inner_text(), "canonical source metadata mismatch")
+                require(page.locator("#h-q").count() == 0 and "quarterly" in page.locator("#methodWindows").inner_text(), "stale Decisions scaffolding")
                 keyboard_tabs(page)
             for tab in TABS:
                 page.locator("#t-" + tab).click()
@@ -475,9 +481,7 @@ def check_failure_states(browser, base: str) -> None:
             expected = "lagging · rated 2018" if as_of else "lagging"
             require(page.locator("#roleHead .tm").first.inner_text().casefold() == expected, "source date was parsed from prose")
             record = current_record(page)
-            bar_source = record["skill_map"]["top_level_adds"]["long_run_bar"]["source"]
-            method_row = page.locator("#sourceTable tr").filter(has_text=bar_source)
-            require(method_row.locator(".tm").inner_text().casefold() == expected, "method lost the structured source year")
+            require(page.locator('#sourceTable tr[data-source-kind="onet_ratings"] .tm').inner_text().casefold() == "lagging", "canonical Method table inherited a skill rating date")
             rising = next((skill for skill in record["skill_map"]["skills"] if skill["status"] == "rising"), None)
             if rising:
                 ids = page.locator("#map .srow").evaluate_all("nodes => nodes.map(node => node.dataset.skill)")

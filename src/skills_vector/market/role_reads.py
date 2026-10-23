@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from .role_atlas import CONTRACT_ROOT, SCHEMA_VERSION, RoleCatalogStore, _period
+from .role_method import method_policy
 
 FIXTURE_CAVEAT = "Fixture data: illustrative prototype numbers and assumptions, not research findings. See limits."
 HTTP_STATUS = {
@@ -179,7 +180,7 @@ class RoleAtlasReads:
             if resource == "track_record":
                 return {**payload, "track_record": self._track_record([record])}
             if resource == "role":
-                return {**payload, "role": record, "track_record": self._track_record([record])}
+                return {**payload, "role": record, "track_record": self._track_record([record]), "method": method_policy()}
             if resource == "graph":
                 return {**payload, "graph": record["skill_map"]}
             if resource == "level":

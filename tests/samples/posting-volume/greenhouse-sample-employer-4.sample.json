@@ -1,0 +1,124 @@
+{
+  "jobs": [
+    {
+      "id": 100300,
+      "title": "Sample Account Executive",
+      "location": {
+        "name": "New York, NY"
+      },
+      "absolute_url": "https://boards.greenhouse.io/sample-employer-4/jobs/100300",
+      "updated_at": "2026-09-01T00:00:00Z",
+      "departments": [
+        {
+          "name": "Sample department"
+        }
+      ],
+      "content": "&lt;h2&gt;About the company&lt;/h2&gt;&lt;p&gt;SAMPLE DATA, not research. Sample employer 4. No verified primary employer sector.&lt;/p&gt;&lt;h2&gt;Responsibilities&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Independently handle day-to-day client work.&lt;/li&gt;&lt;li&gt;Prepare reports and explain results.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Requirements&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Experience with Salesforce.&lt;/li&gt;&lt;li&gt;Ability to communicate across teams.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Preferred qualifications&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Experience with SQL is a plus.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Benefits&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Paid time off and medical insurance.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Equal opportunity&lt;/h2&gt;&lt;p&gt;We are an equal opportunity employer.&lt;/p&gt;"
+    },
+    {
+      "id": 100301,
+      "title": "Sample Account Executive",
+      "location": {
+        "name": "New York, NY"
+      },
+      "absolute_url": "https://boards.greenhouse.io/sample-employer-4/jobs/100301",
+      "updated_at": "2026-09-01T00:00:00Z",
+      "departments": [
+        {
+          "name": "Sample department"
+        }
+      ],
+      "content": "&lt;h2&gt;About the company&lt;/h2&gt;&lt;p&gt;SAMPLE DATA, not research. Sample employer 4. No verified primary employer sector.&lt;/p&gt;&lt;h2&gt;Responsibilities&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Own end-to-end delivery of projects.&lt;/li&gt;&lt;li&gt;Coordinate implementation with client teams.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Requirements&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Experience with Salesforce.&lt;/li&gt;&lt;li&gt;Ability to communicate across teams.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Preferred qualifications&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Experience with SQL is a plus.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Benefits&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Paid time off and medical insurance.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Equal opportunity&lt;/h2&gt;&lt;p&gt;We are an equal opportunity employer.&lt;/p&gt;"
+    },
+    {
+      "id": 100302,
+      "title": "Sample Forward Deployed Engineer",
+      "location": {
+        "name": "New York, NY"
+      },
+      "absolute_url": "https://boards.greenhouse.io/sample-employer-4/jobs/100302",
+      "updated_at": "2026-09-01T00:00:00Z",
+      "departments": [
+        {
+          "name": "Sample department"
+        }
+      ],
+      "content": "&lt;h2&gt;About the company&lt;/h2&gt;&lt;p&gt;SAMPLE DATA, not research. Sample employer 4. No verified primary employer sector.&lt;/p&gt;&lt;h2&gt;Responsibilities&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Independently handle day-to-day client work.&lt;/li&gt;&lt;li&gt;Prepare reports and explain results.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Requirements&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Experience with Python.&lt;/li&gt;&lt;li&gt;Ability to communicate across teams.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Preferred qualifications&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Experience with SQL is a plus.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Benefits&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Paid time off and medical insurance.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Equal opportunity&lt;/h2&gt;&lt;p&gt;We are an equal opportunity employer.&lt;/p&gt;"
+    },
+    {
+      "id": 100303,
+      "title": "Sample Forward Deployed Engineer",
+      "location": {
+        "name": "New York, NY"
+      },
+      "absolute_url": "https://boards.greenhouse.io/sample-employer-4/jobs/100303",
+      "updated_at": "2026-09-01T00:00:00Z",
+      "departments": [
+        {
+          "name": "Sample department"
+        }
+      ],
+      "content": "&lt;h2&gt;About the company&lt;/h2&gt;&lt;p&gt;SAMPLE DATA, not research. Sample employer 4. No verified primary employer sector.&lt;/p&gt;&lt;h2&gt;Responsibilities&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Own end-to-end delivery of projects.&lt;/li&gt;&lt;li&gt;Coordinate implementation with client teams.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Requirements&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Experience with Python.&lt;/li&gt;&lt;li&gt;Ability to communicate across teams.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Preferred qualifications&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Experience with SQL is a plus.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Benefits&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Paid time off and medical insurance.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Equal opportunity&lt;/h2&gt;&lt;p&gt;We are an equal opportunity employer.&lt;/p&gt;"
+    },
+    {
+      "id": 100304,
+      "title": "Sample Growth Manager",
+      "location": {
+        "name": "New York, NY"
+      },
+      "absolute_url": "https://boards.greenhouse.io/sample-employer-4/jobs/100304",
+      "updated_at": "2026-09-01T00:00:00Z",
+      "departments": [
+        {
+          "name": "Sample department"
+        }
+      ],
+      "content": "&lt;h2&gt;About the company&lt;/h2&gt;&lt;p&gt;SAMPLE DATA, not research. Sample employer 4. No verified primary employer sector.&lt;/p&gt;&lt;h2&gt;Responsibilities&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Independently handle day-to-day client work.&lt;/li&gt;&lt;li&gt;Prepare reports and explain results.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Requirements&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Experience with SQL.&lt;/li&gt;&lt;li&gt;Ability to communicate across teams.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Preferred qualifications&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Experience with SQL is a plus.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Benefits&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Paid time off and medical insurance.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Equal opportunity&lt;/h2&gt;&lt;p&gt;We are an equal opportunity employer.&lt;/p&gt;"
+    },
+    {
+      "id": 100305,
+      "title": "Sample Growth Manager",
+      "location": {
+        "name": "New York, NY"
+      },
+      "absolute_url": "https://boards.greenhouse.io/sample-employer-4/jobs/100305",
+      "updated_at": "2026-09-01T00:00:00Z",
+      "departments": [
+        {
+          "name": "Sample department"
+        }
+      ],
+      "content": "&lt;h2&gt;About the company&lt;/h2&gt;&lt;p&gt;SAMPLE DATA, not research. Sample employer 4. No verified primary employer sector.&lt;/p&gt;&lt;h2&gt;Responsibilities&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Own end-to-end delivery of projects.&lt;/li&gt;&lt;li&gt;Coordinate implementation with client teams.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Requirements&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Experience with SQL.&lt;/li&gt;&lt;li&gt;Ability to communicate across teams.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Preferred qualifications&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Experience with SQL is a plus.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Benefits&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Paid time off and medical insurance.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Equal opportunity&lt;/h2&gt;&lt;p&gt;We are an equal opportunity employer.&lt;/p&gt;"
+    },
+    {
+      "id": 100306,
+      "title": "Sample HR Generalist",
+      "location": {
+        "name": "New York, NY"
+      },
+      "absolute_url": "https://boards.greenhouse.io/sample-employer-4/jobs/100306",
+      "updated_at": "2026-09-01T00:00:00Z",
+      "departments": [
+        {
+          "name": "Sample department"
+        }
+      ],
+      "content": "&lt;h2&gt;About the company&lt;/h2&gt;&lt;p&gt;SAMPLE DATA, not research. Sample employer 4. No verified primary employer sector.&lt;/p&gt;&lt;h2&gt;Responsibilities&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Independently handle day-to-day client work.&lt;/li&gt;&lt;li&gt;Prepare reports and explain results.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Requirements&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Experience with HRIS.&lt;/li&gt;&lt;li&gt;Ability to communicate across teams.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Preferred qualifications&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Experience with SQL is a plus.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Benefits&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Paid time off and medical insurance.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Equal opportunity&lt;/h2&gt;&lt;p&gt;We are an equal opportunity employer.&lt;/p&gt;"
+    },
+    {
+      "id": 100307,
+      "title": "Sample HR Generalist",
+      "location": {
+        "name": "New York, NY"
+      },
+      "absolute_url": "https://boards.greenhouse.io/sample-employer-4/jobs/100307",
+      "updated_at": "2026-09-01T00:00:00Z",
+      "departments": [
+        {
+          "name": "Sample department"
+        }
+      ],
+      "content": "&lt;h2&gt;About the company&lt;/h2&gt;&lt;p&gt;SAMPLE DATA, not research. Sample employer 4. No verified primary employer sector.&lt;/p&gt;&lt;h2&gt;Requirements&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Experience with HRIS.&lt;/li&gt;&lt;li&gt;Ability to communicate across teams.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Preferred qualifications&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Experience with SQL is a plus.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Benefits&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Paid time off and medical insurance.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Equal opportunity&lt;/h2&gt;&lt;p&gt;We are an equal opportunity employer.&lt;/p&gt;"
+    }
+  ]
+}

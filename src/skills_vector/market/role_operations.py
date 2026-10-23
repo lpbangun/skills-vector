@@ -10,6 +10,8 @@ from .role_signals import KINDS, import_signals, merge_signals
 
 
 def add_operator_commands(sub) -> None:
+    from .posting_volume_cli import add_volume_commands
+    add_volume_commands(sub)
     signals = sub.add_parser("signals", help="import/merge already-downloaded official files; never downloads")
     actions = signals.add_subparsers(dest="signals_action", required=True)
     importer = actions.add_parser("import", help="read one local upstream table/JSON response")
@@ -44,6 +46,9 @@ def add_operator_commands(sub) -> None:
 
 
 def run_operator_command(args) -> dict:
+    if args.market_command == "posting-volume":
+        from .posting_volume_cli import run_volume
+        return run_volume(args)
     if args.market_command == "forecast-ledger":
         return run_ledger(args)
     if args.signals_action == "import":

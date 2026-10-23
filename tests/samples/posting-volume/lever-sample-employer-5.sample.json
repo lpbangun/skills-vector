@@ -1,0 +1,254 @@
+[
+  {
+    "id": "sample-employer-5-account-executive-0",
+    "text": "Sample Account Executive",
+    "categories": {
+      "location": "Austin, TX",
+      "team": "Sample team"
+    },
+    "hostedUrl": "https://jobs.lever.co/sample-employer-5/sample-employer-5-account-executive-0",
+    "applyUrl": "https://jobs.lever.co/sample-employer-5/sample-employer-5-account-executive-0/apply",
+    "createdAt": 1788220800000,
+    "description": "<h2>About the company</h2><p>SAMPLE DATA, not research. Sample employer 5. No verified primary employer sector.</p>",
+    "descriptionPlain": "SAMPLE DATA, not research.",
+    "lists": [
+      {
+        "text": "Responsibilities",
+        "content": "<ul><li>Independently handle day-to-day client work.</li><li>Prepare reports and explain results.</li></ul>"
+      },
+      {
+        "text": "Requirements",
+        "content": "<ul><li>Experience with Salesforce.</li><li>Ability to communicate across teams.</li></ul>"
+      },
+      {
+        "text": "Preferred qualifications",
+        "content": "<ul><li>Experience with SQL is a plus.</li></ul>"
+      },
+      {
+        "text": "Benefits",
+        "content": "<ul><li>Paid time off and medical insurance.</li></ul>"
+      }
+    ],
+    "additional": "<p>We are an equal opportunity employer.</p>"
+  },
+  {
+    "id": "sample-employer-5-account-executive-1",
+    "text": "Sample Account Executive",
+    "categories": {
+      "location": "Austin, TX",
+      "team": "Sample team"
+    },
+    "hostedUrl": "https://jobs.lever.co/sample-employer-5/sample-employer-5-account-executive-1",
+    "applyUrl": "https://jobs.lever.co/sample-employer-5/sample-employer-5-account-executive-1/apply",
+    "createdAt": 1788220800000,
+    "description": "<h2>About the company</h2><p>SAMPLE DATA, not research. Sample employer 5. No verified primary employer sector.</p>",
+    "descriptionPlain": "SAMPLE DATA, not research.",
+    "lists": [
+      {
+        "text": "Requirements",
+        "content": "<ul><li>Experience with Salesforce.</li><li>Ability to communicate across teams.</li></ul>"
+      },
+      {
+        "text": "Preferred qualifications",
+        "content": "<ul><li>Experience with SQL is a plus.</li></ul>"
+      },
+      {
+        "text": "Benefits",
+        "content": "<ul><li>Paid time off and medical insurance.</li></ul>"
+      }
+    ],
+    "additional": "<p>We are an equal opportunity employer.</p>"
+  },
+  {
+    "id": "sample-employer-5-forward-deployed-engineer-0",
+    "text": "Sample Forward Deployed Engineer",
+    "categories": {
+      "location": "Austin, TX",
+      "team": "Sample team"
+    },
+    "hostedUrl": "https://jobs.lever.co/sample-employer-5/sample-employer-5-forward-deployed-engineer-0",
+    "applyUrl": "https://jobs.lever.co/sample-employer-5/sample-employer-5-forward-deployed-engineer-0/apply",
+    "createdAt": 1788220800000,
+    "description": "<h2>About the company</h2><p>SAMPLE DATA, not research. Sample employer 5. No verified primary employer sector.</p>",
+    "descriptionPlain": "SAMPLE DATA, not research.",
+    "lists": [
+      {
+        "text": "Responsibilities",
+        "content": "<ul><li>Independently handle day-to-day client work.</li><li>Prepare reports and explain results.</li></ul>"
+      },
+      {
+        "text": "Requirements",
+        "content": "<ul><li>Experience with Python.</li><li>Ability to communicate across teams.</li></ul>"
+      },
+      {
+        "text": "Preferred qualifications",
+        "content": "<ul><li>Experience with SQL is a plus.</li></ul>"
+      },
+      {
+        "text": "Benefits",
+        "content": "<ul><li>Paid time off and medical insurance.</li></ul>"
+      }
+    ],
+    "additional": "<p>We are an equal opportunity employer.</p>"
+  },
+  {
+    "id": "sample-employer-5-forward-deployed-engineer-1",
+    "text": "Sample Forward Deployed Engineer",
+    "categories": {
+      "location": "Austin, TX",
+      "team": "Sample team"
+    },
+    "hostedUrl": "https://jobs.lever.co/sample-employer-5/sample-employer-5-forward-deployed-engineer-1",
+    "applyUrl": "https://jobs.lever.co/sample-employer-5/sample-employer-5-forward-deployed-engineer-1/apply",
+    "createdAt": 1788220800000,
+    "description": "<h2>About the company</h2><p>SAMPLE DATA, not research. Sample employer 5. No verified primary employer sector.</p>",
+    "descriptionPlain": "SAMPLE DATA, not research.",
+    "lists": [
+      {
+        "text": "Responsibilities",
+        "content": "<ul><li>Own end-to-end delivery of projects.</li><li>Coordinate implementation with client teams.</li></ul>"
+      },
+      {
+        "text": "Requirements",
+        "content": "<ul><li>Experience with Python.</li><li>Ability to communicate across teams.</li></ul>"
+      },
+      {
+        "text": "Preferred qualifications",
+        "content": "<ul><li>Experience with SQL is a plus.</li></ul>"
+      },
+      {
+        "text": "Benefits",
+        "content": "<ul><li>Paid time off and medical insurance.</li></ul>"
+      }
+    ],
+    "additional": "<p>We are an equal opportunity employer.</p>"
+  },
+  {
+    "id": "sample-employer-5-growth-manager-0",
+    "text": "Sample Growth Manager",
+    "categories": {
+      "location": "Austin, TX",
+      "team": "Sample team"
+    },
+    "hostedUrl": "https://jobs.lever.co/sample-employer-5/sample-employer-5-growth-manager-0",
+    "applyUrl": "https://jobs.lever.co/sample-employer-5/sample-employer-5-growth-manager-0/apply",
+    "createdAt": 1788220800000,
+    "description": "<h2>About the company</h2><p>SAMPLE DATA, not research. Sample employer 5. No verified primary employer sector.</p>",
+    "descriptionPlain": "SAMPLE DATA, not research.",
+    "lists": [
+      {
+        "text": "Responsibilities",
+        "content": "<ul><li>Independently handle day-to-day client work.</li><li>Prepare reports and explain results.</li></ul>"
+      },
+      {
+        "text": "Requirements",
+        "content": "<ul><li>Experience with SQL.</li><li>Ability to communicate across teams.</li></ul>"
+      },
+      {
+        "text": "Preferred qualifications",
+        "content": "<ul><li>Experience with SQL is a plus.</li></ul>"
+      },
+      {
+        "text": "Benefits",
+        "content": "<ul><li>Paid time off and medical insurance.</li></ul>"
+      }
+    ],
+    "additional": "<p>We are an equal opportunity employer.</p>"
+  },
+  {
+    "id": "sample-employer-5-growth-manager-1",
+    "text": "Sample Growth Manager",
+    "categories": {
+      "location": "Austin, TX",
+      "team": "Sample team"
+    },
+    "hostedUrl": "https://jobs.lever.co/sample-employer-5/sample-employer-5-growth-manager-1",
+    "applyUrl": "https://jobs.lever.co/sample-employer-5/sample-employer-5-growth-manager-1/apply",
+    "createdAt": 1788220800000,
+    "description": "<h2>About the company</h2><p>SAMPLE DATA, not research. Sample employer 5. No verified primary employer sector.</p>",
+    "descriptionPlain": "SAMPLE DATA, not research.",
+    "lists": [
+      {
+        "text": "Responsibilities",
+        "content": "<ul><li>Own end-to-end delivery of projects.</li><li>Coordinate implementation with client teams.</li></ul>"
+      },
+      {
+        "text": "Requirements",
+        "content": "<ul><li>Experience with SQL.</li><li>Ability to communicate across teams.</li></ul>"
+      },
+      {
+        "text": "Preferred qualifications",
+        "content": "<ul><li>Experience with SQL is a plus.</li></ul>"
+      },
+      {
+        "text": "Benefits",
+        "content": "<ul><li>Paid time off and medical insurance.</li></ul>"
+      }
+    ],
+    "additional": "<p>We are an equal opportunity employer.</p>"
+  },
+  {
+    "id": "sample-employer-5-hr-generalist-0",
+    "text": "Sample HR Generalist",
+    "categories": {
+      "location": "Austin, TX",
+      "team": "Sample team"
+    },
+    "hostedUrl": "https://jobs.lever.co/sample-employer-5/sample-employer-5-hr-generalist-0",
+    "applyUrl": "https://jobs.lever.co/sample-employer-5/sample-employer-5-hr-generalist-0/apply",
+    "createdAt": 1788220800000,
+    "description": "<h2>About the company</h2><p>SAMPLE DATA, not research. Sample employer 5. No verified primary employer sector.</p>",
+    "descriptionPlain": "SAMPLE DATA, not research.",
+    "lists": [
+      {
+        "text": "Responsibilities",
+        "content": "<ul><li>Independently handle day-to-day client work.</li><li>Prepare reports and explain results.</li></ul>"
+      },
+      {
+        "text": "Requirements",
+        "content": "<ul><li>Experience with HRIS.</li><li>Ability to communicate across teams.</li></ul>"
+      },
+      {
+        "text": "Preferred qualifications",
+        "content": "<ul><li>Experience with SQL is a plus.</li></ul>"
+      },
+      {
+        "text": "Benefits",
+        "content": "<ul><li>Paid time off and medical insurance.</li></ul>"
+      }
+    ],
+    "additional": "<p>We are an equal opportunity employer.</p>"
+  },
+  {
+    "id": "sample-employer-5-hr-generalist-1",
+    "text": "Sample HR Generalist",
+    "categories": {
+      "location": "Austin, TX",
+      "team": "Sample team"
+    },
+    "hostedUrl": "https://jobs.lever.co/sample-employer-5/sample-employer-5-hr-generalist-1",
+    "applyUrl": "https://jobs.lever.co/sample-employer-5/sample-employer-5-hr-generalist-1/apply",
+    "createdAt": 1788220800000,
+    "description": "<h2>About the company</h2><p>SAMPLE DATA, not research. Sample employer 5. No verified primary employer sector.</p>",
+    "descriptionPlain": "SAMPLE DATA, not research.",
+    "lists": [
+      {
+        "text": "Responsibilities",
+        "content": "<ul><li>Own end-to-end delivery of projects.</li><li>Coordinate implementation with client teams.</li></ul>"
+      },
+      {
+        "text": "Requirements",
+        "content": "<ul><li>Experience with HRIS.</li><li>Ability to communicate across teams.</li></ul>"
+      },
+      {
+        "text": "Preferred qualifications",
+        "content": "<ul><li>Experience with SQL is a plus.</li></ul>"
+      },
+      {
+        "text": "Benefits",
+        "content": "<ul><li>Paid time off and medical insurance.</li></ul>"
+      }
+    ],
+    "additional": "<p>We are an equal opportunity employer.</p>"
+  }
+]

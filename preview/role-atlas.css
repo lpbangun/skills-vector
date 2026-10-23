@@ -373,10 +373,6 @@ details.more { border: 1px solid var(--rule-soft); background: var(--paper); }
 details.more > summary { cursor: pointer; padding: 0.75rem 0.9rem; font-weight: 500; min-height: 44px; }
 details.more[open] > summary { border-bottom: 1px solid var(--rule-soft); }
 details.more > :not(summary) { margin: 0.9rem; }
-.dec { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem; }
-@media (max-width: 820px) { .dec { grid-template-columns: minmax(0, 1fr); } }
-.dec > div { display: grid; gap: 0.6rem; align-content: start; }
-.dec ul.questions { list-style: square; }
 .rules .chip { white-space: nowrap; }
 .xp { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.04em; color: var(--uncertain); margin-left: 0.25rem; }
 .seg button[aria-pressed="true"] .xp { color: inherit; opacity: 0.8; }

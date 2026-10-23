@@ -13,6 +13,10 @@
   var state = { role: null, level: null, tab: "map", have: {}, lens: "level", edges: "co", node: null,
     industry: null, mapLevel: 0, mode: "list", skill: null };
 
+  function noun(value, word) { return Number(value) === 1 ? word : word + "s"; }
+  function signalReading(signal) {
+    return signal.source_kind === "postings" ? signal.reading.replace(/\b1 employers\b/g, "1 employer").replace(/\b1 postings\b/g, "1 posting") : signal.reading;
+  }
   function percentage(value) { return Math.round(value * 1000) / 10; }
   function levelLabel(value) { return value === null ? "level unassigned" : (role().raw.data_kind === "research" ? "first observed at L" : "first asked at L") + value; }
   function shareLabel(value) { return value === null ? "—" : value + "%"; }
@@ -92,7 +96,7 @@
       var fams = {}; skill.evidence.forEach(function (item) { fams[item.family] = true; });
       return { id: skill.id, short: skill.short_label, label: skill.label, from: skill.first_level,
         sh: skill.share_by_level, src: skill.source_links, status: skill.status,
-        sig: skill.evidence.map(function (item) { return [item.source_kind + ":" + item.source, item.reading, item.direction, item.family]; }),
+        sig: skill.evidence.map(function (item) { return [item.source_kind + ":" + item.source, signalReading(item), item.direction, item.family]; }),
         fams: fams, official: hasOfficial(skill), disputed: skill.disputed,
         call: skill.forecast };
     });
@@ -118,7 +122,7 @@
       '<div class="found">' + [[f.wage, f.wageNote], [f.employment, f.employmentNote], [f.outlook, f.outlookNote]].map(function (item) {
         return '<div><span class="v">' + esc(item[0]) + '</span><span class="label">' + esc(item[1]) + '</span></div>';
       }).join('') + '</div><div class="label">Demand window ' + esc(r.window.current) + ' ' + timingTag(raw.demand_window.timing) + '</div>' +
-      '<div class="num"><strong>' + r.window.postings + '</strong> admitted postings from <strong>' + r.window.employers + '</strong> employers. Largest employer: ' + percentage(raw.demand_window.max_employer_share) + '%.</div></div>';
+      '<div class="num"><strong>' + r.window.postings + '</strong> admitted ' + noun(r.window.postings, 'posting') + ' from <strong>' + r.window.employers + '</strong> ' + noun(r.window.employers, 'employer') + '. Largest employer: ' + percentage(raw.demand_window.max_employer_share) + '%.</div></div>';
   }
 
   function renderSkillPanel(list) {
@@ -139,7 +143,7 @@
       '<div class="chips"><span class="chip st-' + st[1] + '">' + st[0] + '</span><span class="chip src">' + levelLabel(k.from) + '</span></div>' +
       '<p style="font-size:0.9rem">' + esc(why) + '</p>' + (k.disputed ? '<p class="caveat"><strong>Disputed.</strong> ' + esc(k.disputed) + '</p>' : '') + '</div>' +
       '<div><div class="label">Evidence</div><ul class="sig">' + original.evidence.map(function (signal) {
-        return '<li><span class="src">' + esc(signal.source) + timingTag(signal.timing, signal.as_of) + '</span><span>' + esc(signal.reading) + ' <span class="mono">' + esc(signal.family + " · " + signal.direction) + '</span></span></li>';
+        return '<li><span class="src">' + esc(signal.source) + timingTag(signal.timing, signal.as_of) + '</span><span>' + esc(signalReading(signal)) + ' <span class="mono">' + esc(signal.family + " · " + signal.direction) + '</span></span></li>';
       }).join('') + '</ul></div>' +
       (forecast ? '<div class="forecast">' + (forecast.basis === "none"
         ? '<span class="label">No forecast yet</span><p class="forecast-reason">' + esc(forecast.reason) + '</p><p>' + esc(forecast.claim) + '</p>'
@@ -181,22 +185,15 @@
 
   function renderMethod() {
     renderTrackRecord();
-    var raw = role().raw, signals = {};
+    var raw = role().raw, method = envelopes[state.role].method;
     $("limitsList").innerHTML = raw.limits.map(function (limit) { return "<li>" + esc(limit) + "</li>"; }).join("");
-    function collect(value) {
-      if (Array.isArray(value)) value.forEach(collect);
-      else if (value && typeof value === "object") {
-        if (value.source_kind) signals[value.source_kind] = value;
-        else Object.values(value).forEach(collect);
-      }
-    }
-    collect(raw);
-    $("sourceTable").innerHTML = Object.values(signals).map(function (signal) {
-      return '<tr><td>' + esc(signal.source) + '</td><td>' + timingTag(signal.timing, signal.as_of) + '</td><td>' + esc({P: "Postings", O: "Official map", M: "Market trend", context: "Context only"}[signal.family]) + '</td><td>' + esc(signal.reading) + (signal.retrieved_at ? '<small class="source-retrieval">Retrieved ' + esc(signal.retrieved_at) + '</small>' : '') + '</td></tr>';
-    }).join('');
+    $("methodWindows").textContent = "Settled window length: " + method.window_length + ". Forecast horizon: " + method.forecast_horizon_quarters + " quarters. Numeric research probabilities require a historical backtest; none-basis calls are never shown as percentages.";
+    $("sourceTable").innerHTML = method.sources.map(function (source) {
+      return '<tr data-source-kind="' + esc(source.source_kind) + '"><td>' + esc(source.source) + '</td><td>' + timingTag(source.timing) + '</td><td>' + esc({P: "Postings", O: "Official map", M: "Market trend", context: "Context only"}[source.family]) + '</td><td>' + esc(source.good_for) + '</td></tr>';
+    }).join("");
     var layerRows = [
       ["Foundation", "baseline", "Official-map sources and occupation context.", "Long-run tasks and anchor statistics.", raw.foundation.core_tasks.length + " recorded core tasks."],
-      ["Demand", "what employers ask", raw.demand_window.window_length + " windows.", "Posting and employer sample counts.", raw.demand_window.postings + " postings / " + raw.demand_window.employers + " employers."],
+      ["Demand", "what employers ask", raw.demand_window.window_length + " windows.", "Posting and employer sample counts.", raw.demand_window.postings + " " + noun(raw.demand_window.postings, "posting") + " / " + raw.demand_window.employers + " " + noun(raw.demand_window.employers, "employer") + "."],
       ["Shifts", "forward-looking", "Comparable windows and independent signals.", "Core, rising, early and fading; disputes remain flags.", raw.skill_map.skills.filter(function (skill) { return skill.status !== "core"; }).length + " non-core skills with forecasts."],
       ["Seniority ladder", "levels of one job", "Scope and ownership first; titles/years are weak signals.", "Role-specific names on the shared L1–L5 scale.", raw.ladder.levels.length + " recorded IC levels; management is a separate track."],
       ["Skills graph", "how skills connect", "Posting shares, map links and qualified co-occurrence edges.", "Level coverage, asked-together pairs and top-level additions.", raw.skill_map.skills.length + " skills / " + raw.skill_map.asked_together.length + " qualified pairs."],
@@ -315,7 +312,7 @@
         "<dt>Scope</dt><dd>" + esc(l.scope) + "</dd>" +
         "<dt>Owns</dt><dd>" + esc(l.owns) + "</dd>" +
         '<dt>Years wording</dt><dd>"' + esc(l.years) + '" <span class="muted" style="font-size:0.8rem">as advertised, never used alone to level</span></dd>' +
-        '<dt>Evidence</dt><dd class="num">' + l.n + " postings · " + l.e + " employers · " + r.window.current + "</dd>" +
+        '<dt>Evidence</dt><dd class="num">' + l.n + " " + noun(l.n, "posting") + " · " + l.e + " " + noun(l.e, "employer") + " · " + r.window.current + "</dd>" +
       "</dl>" +
       '<div class="stepup"><span class="label">What changes from the level below</span><span>' + esc(l.stepUp) + "</span></div>" +
       '<div><div class="label" style="margin-bottom:0.3rem">Expectations at this level</div><ul class="exp">' +
@@ -546,13 +543,13 @@
     }).join("");
     if (ind.thin) {
       $("indSheet").innerHTML = '<div style="display:grid; gap:0.35rem"><div class="label">Sector</div><h3 style="font-size:1.35rem">' + esc(ind.label) + '</h3><div class="mono muted">NAICS ' + esc(ind.naics) + "</div></div>" +
-        '<p class="caveat">Evidence: ' + ind.postings + " postings from " + ind.employers + " employers in " + r.window.current + ". Profile not published: " + esc(ind.reason) + ". A profile needs 30+ postings and 8+ employers. The gap stays visible.</p>";
+        '<p class="caveat">Evidence: ' + ind.postings + " " + noun(ind.postings, "posting") + " from " + ind.employers + " " + noun(ind.employers, "employer") + " in " + r.window.current + ". Profile not published: " + esc(ind.reason) + ". A profile needs 30+ postings and 8+ employers. The gap stays visible.</p>";
     } else
     $("indSheet").innerHTML =
       '<div style="display:grid; gap:0.35rem"><div class="label">Sector</div><h3 style="font-size:1.35rem">' + esc(ind.label) + '</h3><div class="mono muted">NAICS ' + esc(ind.naics) + " · " + esc(ind.naicsTitle) + '</div><div class="muted" style="font-size:0.84rem">Largest in sample: ' + esc(ind.sub) + "</div></div>" +
       '<div class="found">' +
         '<div><span class="v">' + esc(ind.share) + '</span><span class="label">of this job\'s U.S. employment (if supplied)</span></div>' +
-        '<div><span class="v num">' + ind.postings + '</span><span class="label">postings · ' + ind.employers + " employers</span></div>" +
+        '<div><span class="v num">' + ind.postings + '</span><span class="label">' + noun(ind.postings, 'posting') + ' · ' + ind.employers + ' ' + noun(ind.employers, 'employer') + '</span></div>' +
         '<div><span class="v">' + esc(ind.pay) + '</span><span class="label">median pay in this industry</span></div>' +
       "</div>" +
       '<div class="stepup"><span class="label">How it differs here</span><span>' + esc(ind.differs) + "</span></div>" +
