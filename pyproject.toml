@@ -28,4 +28,4 @@ package-dir = {"" = "src"}
 where = ["src"]
 
 [tool.setuptools.package-data]
-skills_vector = ["fixtures/*.json", "fixtures/*.md", "market/role_atlas/*.json", "market/role_atlas/fixtures/*.json", "market/role_atlas/*.md"]
+skills_vector = ["fixtures/*.json", "fixtures/*.md", "market/role_atlas_contract/*.json", "market/role_atlas_contract/fixtures/*.json", "market/role_atlas_contract/*.md"]

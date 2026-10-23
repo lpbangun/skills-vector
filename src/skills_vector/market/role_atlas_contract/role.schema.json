@@ -115,33 +115,23 @@
   "allOf": [
     {
       "if": {
-        "anyOf": [
-          {
-            "properties": {
-              "anchors": {
-                "contains": {
-                  "properties": {
-                    "fit": {
-                      "const": "partial"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          {
-            "properties": {
-              "status": {
-                "const": "emerging"
-              }
-            }
+        "properties": {
+          "status": {
+            "const": "emerging"
           }
-        ]
+        }
       },
       "then": {
         "properties": {
           "publication": {
             "const": "experimental"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "publication": {
+            "const": "standard"
           }
         }
       }
@@ -190,6 +180,21 @@
           "minLength": 1,
           "pattern": "\\S"
         },
+        "source_kind": {
+          "enum": [
+            "postings",
+            "postings_new_phrasing",
+            "onet_ratings",
+            "onet_emerging_tasks",
+            "onet_hot_technologies",
+            "esco",
+            "hiring_lab",
+            "economic_index",
+            "bls_projections",
+            "bls_industry_matrix",
+            "careeronestop"
+          ]
+        },
         "family": {
           "enum": [
             "P",
@@ -211,16 +216,22 @@
           "minLength": 1,
           "pattern": "\\S"
         },
-        "agrees": {
-          "type": "boolean"
+        "direction": {
+          "enum": [
+            "up",
+            "down",
+            "flat",
+            "presence"
+          ]
         }
       },
       "required": [
         "source",
+        "source_kind",
         "family",
         "timing",
         "reading",
-        "agrees"
+        "direction"
       ],
       "additionalProperties": false
     },

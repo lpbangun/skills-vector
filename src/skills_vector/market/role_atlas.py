@@ -14,12 +14,31 @@ from typing import Any, Literal, Self, get_args, get_origin, get_type_hints
 from jsonschema import Draft202012Validator
 
 SCHEMA_VERSION = "skills-vector.role/2"
-CONTRACT_ROOT = Path(__file__).with_name("role_atlas")
+CONTRACT_ROOT = Path(__file__).with_name("role_atlas_contract")
 SCHEMA_PATH = CONTRACT_ROOT / "role.schema.json"
 FIXTURE_ROOT = CONTRACT_ROOT / "fixtures"
 Timing = Literal["leading", "coincident", "lagging", "long-term"]
 Family = Literal["P", "O", "M", "context"]
 SkillStatus = Literal["core", "rising", "early", "fading"]
+Direction = Literal["up", "down", "flat", "presence"]
+SourceKind = Literal[
+    "postings", "postings_new_phrasing", "onet_ratings", "onet_emerging_tasks",
+    "onet_hot_technologies", "esco", "hiring_lab", "economic_index",
+    "bls_projections", "bls_industry_matrix", "careeronestop",
+]
+SOURCE_RULES: dict[SourceKind, tuple[Timing, Family]] = {
+    "postings": ("coincident", "P"),
+    "postings_new_phrasing": ("leading", "P"),
+    "onet_ratings": ("lagging", "O"),
+    "onet_emerging_tasks": ("leading", "O"),
+    "onet_hot_technologies": ("coincident", "M"),
+    "esco": ("lagging", "O"),
+    "hiring_lab": ("coincident", "M"),
+    "economic_index": ("coincident", "M"),
+    "bls_projections": ("long-term", "context"),
+    "bls_industry_matrix": ("lagging", "context"),
+    "careeronestop": ("lagging", "O"),
+}
 
 
 class RoleValidationError(ValueError):
@@ -67,10 +86,11 @@ class Anchor(Model):
 @dataclass
 class Signal(Model):
     source: str
+    source_kind: SourceKind
     family: Family
     timing: Timing
     reading: str
-    agrees: bool
+    direction: Direction
 
 
 @dataclass
@@ -366,7 +386,7 @@ def derive_status(windows: list[Measurement], evidence: list[Signal]) -> SkillSt
         return "fading"
     if current.share >= 0.25 and current.employers >= 10 and any(window.share >= 0.25 for window in comparable):
         return "core"
-    if delta >= Decimal("0.05") and spread and any(signal.family in ("O", "M") and signal.agrees for signal in evidence):
+    if delta >= Decimal("0.05") and spread and any(signal.family in ("O", "M") and signal.direction == "up" for signal in evidence):
         return "rising"
     return "early"
 
@@ -394,9 +414,8 @@ def _validate_structure(payload: Any) -> None:
 
 def validate_role(record: RoleRecord) -> None:
     _validate_structure(record.to_dict())
-    _require(not any(anchor.fit == "partial" for anchor in record.anchors)
-             or record.publication == "experimental", "partial anchors require experimental publication")
-    _require(record.status != "emerging" or record.publication == "experimental", "emerging roles require experimental publication")
+    expected_publication = "experimental" if record.status == "emerging" else "standard"
+    _require(record.publication == expected_publication, f"{record.status} roles require {expected_publication} publication")
     demand = record.demand_window
     _require(("Q" in demand.id) == (demand.window_length == "quarterly"), "demand window cadence mismatch")
     if demand.compared_to is not None:
@@ -456,11 +475,9 @@ def validate_role(record: RoleRecord) -> None:
     for window in _walk(record, PostingWindow):
         _require(window.mentions <= window.postings and window.employers <= window.mentions, "invalid observation counts")
     for signal in _walk(record, Signal):
-        source = signal.source.casefold()
-        if source == "esco" or ("o*net" in source and ("ratings" in source or "level" in source)):
-            _require(signal.timing == "lagging", "O*NET ratings and ESCO links must be lagging")
-        if "bls" in source and "projection" in source:
-            _require(signal.timing == "long-term", "BLS projections must be long-term")
+        timing, family = SOURCE_RULES[signal.source_kind]
+        _require(signal.timing == timing, f"{signal.source_kind} timing must be {timing}")
+        _require(signal.family == family, f"{signal.source_kind} family must be {family}")
     for level in record.ladder.levels:
         for expectation in level.expectations:
             _require(expectation.introduced_at == "earlier" or expectation.introduced_at <= level.level, "expectation introduced after its level")
@@ -482,13 +499,15 @@ class RoleCatalogStore:
     """Read-only sibling of CatalogStore. Fixture access is explicit, never a release fallback.
 
     A root contains one role/2 JSON document per role. No method writes files or
-    consults preview/release/current.json. Reads return fresh validated values.
+    consults preview/release/current.json. Validation is cached by path/mtime;
+    public reads return fresh dictionaries, never the cached models.
     """
 
     root: Path
 
     def __post_init__(self) -> None:
         self.root = Path(self.root)
+        self._cache: dict[tuple[Path, int], RoleRecord] = {}
 
     @classmethod
     def fixtures(cls) -> Self:
@@ -502,9 +521,18 @@ class RoleCatalogStore:
                      if role in (record.id, record.id.removeprefix("role."))), None)
 
     def _records(self, release_id: str | None) -> list[RoleRecord]:
-        records = [RoleRecord.from_json(path.read_text(encoding="utf-8"))
-                   for path in sorted(self.root.glob("*.json"))]
+        records = []
+        cache = {}
+        for path in sorted(self.root.glob("*.json")):
+            path = path.resolve()
+            key = (path, path.stat().st_mtime_ns)
+            record = self._cache.get(key)
+            if record is None:
+                record = RoleRecord.from_json(path.read_text(encoding="utf-8"))
+            cache[key] = record
+            records.append(record)
         _require(len({(record.id, record.release_id) for record in records}) == len(records), "duplicate role in catalog release")
         if self.root.resolve() == FIXTURE_ROOT.resolve():
             _require(all(record.data_kind == "fixture" for record in records), "fixture catalog contains non-fixture data")
+        self._cache = cache
         return [record for record in records if release_id is None or record.release_id == release_id]

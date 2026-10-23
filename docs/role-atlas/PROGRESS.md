@@ -90,3 +90,108 @@ transports; no external service or model was called.
 **G6:** M1 is committed once on `feat/role-atlas` with message
 `feat(role-atlas): add M1 role/2 contract and fixture catalog`. Stop for review;
 M2 has not started.
+
+## M1 review round 1 replies
+
+Re-read the corrected BRIEF.md and STANDARDS.md and addressed every must/should
+finding in `reviews/M1-r1.md`. This section supersedes the original M1 report's
+partial-anchor publication rule, boolean agreement field and old data paths.
+
+1. **Must — experimental rule: fixed.** Publication now equals `experimental`
+   exactly when role status is `emerging`, in both JSON Schema and Python
+   validation. Established roles cannot be experimental. Account Executive is
+   `standard` with its original `fit: partial`; FDE remains experimental and HR
+   remains standard. Removed the partial-anchor rule and regenerated fixtures.
+   Regression tests accept/reject both publication directions for every role and
+   for partial, close and exact anchor fits.
+
+2. **Must — direction of agreement: fixed.** Replaced `Signal.agrees` with the
+   closed `direction` values `up`, `down`, `flat`, `presence`. Rising requires
+   an O/M signal explicitly pointing up; presence, flat or down cannot confirm
+   it. Tests assert presence → early, M/up → rising, O/M/down → early, and
+   rejection of an asserted rising record without upward confirmation. Fading
+   remains posting-driven and accepts a lagging map's continued presence.
+   Fixture posting directions follow their numeric changes, including HR's up
+   signals. Existing map/Hot Technologies listings and high Economic Index use
+   are presence; Hiring Lab trends and the addition of the FDE emerging task
+   point up. Prototype statuses, counts, shares and forecast rates still match.
+
+3. **Must — source-kind timing/family: fixed.** Added the exact closed set of
+   eleven `source_kind` values to Signal models and schema. `SOURCE_RULES` in
+   `market/role_atlas.py` is the single canonical timing/family table, used by
+   both validation and fixture construction. Display names no longer drive
+   classification. The table-driven regression test accepts each canonical pair
+   and rejects a timing mismatch and a family mismatch for every kind; it also
+   covers the review's `O*NET importance`/coincident example. Missing/unknown
+   kinds and directions and the old `agrees` property are rejected. The vocabulary
+   has no wages-series kind, so the previous extra wages/employment Signal was
+   omitted rather than mislabeled as a matrix/projection. All illustrative
+   foundation pay/employment values remain unchanged; this is documented in the
+   contract README.
+
+4. **Should — module/data name collision: fixed.** Renamed the data directory to
+   `src/skills_vector/market/role_atlas_contract/`. Updated `CONTRACT_ROOT`,
+   package-data globs, the fixture script's documentation and the contract README.
+   Python imports still use `skills_vector.market.role_atlas`. An offline wheel
+   build and ZIP inspection verified that the module and all six contract data
+   files are included, with no old `market/role_atlas/` directory entries.
+
+5. **Should — repeated parsing/validation: fixed.** Chose a per-store cache keyed
+   by `(resolved path, st_mtime_ns)`. Unchanged files reuse validated models;
+   changed/new files are parsed and validated, and stale/deleted versions are
+   pruned after successful reads. Public methods still return fresh dictionaries.
+   Tests count parses across list/role reads, verify nested caller mutations do
+   not leak, reload only the changed file, reject an invalid edit rather than
+   returning stale data, and remove deleted records. Duplicate-role and fixture
+   checks still run on every catalog read. This is an M1 store fix, not an M2
+   read surface.
+
+6. **Note — fixture caveats: retained.** Every fixture still carries
+   `data_kind: "fixture"`, the fixture release id and the original `limits`
+   language about synthetic core measurements, assumed edge employer counts,
+   employer concentration and illustrative forecast rates. The renamed README
+   preserves those caveats. No fixture was written under `preview/release/`.
+   No API/UI work was started.
+
+### Round 1 verification
+
+Commands ran using codemode batches in this worktree on `feat/role-atlas`:
+
+| Command | Real result |
+| --- | --- |
+| `.venv/bin/python scripts/build_role_atlas_fixtures.py` | Exit 0; printed all three fixture filenames and rebuilt the renamed fixture directory. |
+| `.venv/bin/python -m unittest discover -s tests -p test_role_atlas.py` | Exit 0; **32 tests, OK**, no skips. Includes unchanged model/schema round-trip, prototype fidelity and deterministic fixture rebuild checks. |
+| `.venv/bin/python -m unittest discover -s tests` | Exit 0; **160 tests in 33.836s, OK (skipped=2)**. The same pre-existing optional browser and missing sealed-original-artifact skips; no newly skipped tests. |
+| `.venv/bin/python -m compileall -q src/skills_vector/market/role_atlas.py scripts/build_role_atlas_fixtures.py tests/test_role_atlas.py` | Exit 0, no errors. |
+| `uv lock --check --offline` | Exit 0; resolved 61 packages, no lock or dependency changes. |
+| `git diff --check` | Exit 0, no whitespace errors. |
+| `git diff --exit-code -- preview/release/` | Exit 0; no immutable release edits. |
+
+Offline packaging verification (exit 0; `wheel contract files: 6`):
+
+```sh
+tmp=$(mktemp -d /tmp/role-atlas-wheel.XXXXXX) && uv build --wheel --offline --out-dir "$tmp" && .venv/bin/python - "$tmp" <<'PY'
+import sys
+from pathlib import Path
+from zipfile import ZipFile
+
+wheel = next(Path(sys.argv[1]).glob('*.whl'))
+with ZipFile(wheel) as archive:
+    names = archive.namelist()
+    prefix = 'skills_vector/market/role_atlas_contract/'
+    contract = [name for name in names if name.startswith(prefix)]
+    assert len(contract) == 6, contract
+    assert 'skills_vector/market/role_atlas.py' in names
+    assert not any(name.startswith('skills_vector/market/role_atlas/') for name in names)
+    print('wheel contract files:', len(contract))
+    for name in contract:
+        print(name)
+PY
+```
+
+No external services, paid/model calls or secrets were used. Existing suite HTTP
+logs are local/in-process transports. No changes outside M1 review scope and no
+M2 implementation. Remaining limitations are the explicit fixture assumptions
+and normal mtime-cache semantics: content writers must advance file mtime when
+changing a record. Fixes are committed on `feat/role-atlas` with message
+`fix(role-atlas): address M1 review round 1`; stop for review.

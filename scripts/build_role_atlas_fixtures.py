@@ -2,16 +2,24 @@
 """Rebuild the explicitly illustrative M1 catalog from the frozen prototype snapshot.
 
 This is not an evidence pipeline. It never reads or writes published releases.
-See market/role_atlas/README.md for the additional fixture-only assumptions.
+See market/role_atlas_contract/README.md for the additional fixture-only assumptions.
 """
 
 from __future__ import annotations
 
 import json
 import re
-from skills_vector.market.role_atlas import CONTRACT_ROOT, FIXTURE_ROOT, RoleRecord
+
+from skills_vector.market.role_atlas import (
+    CONTRACT_ROOT, FIXTURE_ROOT, SOURCE_RULES, Direction, RoleRecord, SourceKind,
+)
 
 RELEASE_ID = "fixture_role_atlas_2026q3"
+SOURCE_KINDS = {
+    "posts": "postings", "early": "postings_new_phrasing", "onet": "onet_ratings",
+    "emerg": "onet_emerging_tasks", "esco": "esco", "hot": "onet_hot_technologies",
+    "sector": "hiring_lab", "aei": "economic_index",
+}
 SHIFT_IDS = {
     "account-executive": {"aires": "ai-prospecting", "selfsrc": "self-sourced", "consumption": "consumption", "coldcall": "call-volume"},
     "forward-deployed-engineer": {"llmapps": "agents", "evals": "evals"},
@@ -23,8 +31,10 @@ def slug(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
 
 
-def signal(source: str, family: str, timing: str, reading: str, agrees: bool = False) -> dict:
-    return {"source": source, "family": family, "timing": timing, "reading": reading, "agrees": agrees}
+def signal(source_kind: SourceKind, source: str, reading: str, direction: Direction = "presence") -> dict:
+    timing, family = SOURCE_RULES[source_kind]
+    return {"source": source, "source_kind": source_kind, "family": family,
+            "timing": timing, "reading": reading, "direction": direction}
 
 
 def counts(postings: int, employers: int, window: str) -> dict:
@@ -51,11 +61,6 @@ def build_records(snapshot: dict) -> list[RoleRecord]:
                 for link, reading in (("Ee", "essential"), ("Eo", "optional")):
                     if link in links:
                         raw_signals.append(["esco", f"ESCO lists it as {reading} for the matched occupation."])
-            evidence = []
-            for kind, reading in raw_signals:
-                source = snapshot["kinds"][kind]
-                evidence.append(signal(source["name"], source["fam"], source["tm"][1], reading,
-                                       kind in ("sector", "aei", "hot", "emerg")))
             shift_id = SHIFT_IDS[role_id].get(key)
             if shift_id:
                 shift = next(item for item in role["shifts"] if item["id"] == shift_id)
@@ -72,6 +77,13 @@ def build_records(snapshot: dict) -> list[RoleRecord]:
                         "max_employer_share": 0.2, "comparison_group": "fixture-prototype",
                         "levels": measured_levels, "timing": "coincident"}
                        for window, share, employers in measurements]
+            posting_direction = "up" if measurements[-1][1] > measurements[0][1] else "down" if measurements[-1][1] < measurements[0][1] else "flat"
+            evidence = []
+            for kind, reading in raw_signals:
+                # A newly emerging official task indicates addition; a Hot
+                # Technologies listing or high AI use alone is only presence.
+                direction = posting_direction if kind in ("posts", "early") else "up" if kind in ("sector", "emerg") else "presence"
+                evidence.append(signal(SOURCE_KINDS[kind], snapshot["kinds"][kind]["name"], reading, direction))
             call = extra.get("call")
             forecast = None if call is None else {
                 "id": f"forecast.{role_id}.{key}", "claim": call[0], "probability": call[1] / 100,
@@ -96,9 +108,9 @@ def build_records(snapshot: dict) -> list[RoleRecord]:
                     "domain_knowledge": sector["know"],
                     "skill_shares": [{"skill": "skill." + row[0], "share": row[1][index] / 100, "timing": "coincident"}
                                      for row in snapshot["industry"][role_id]["heat"]],
-                    "sources": [signal("BLS occupation-by-industry matrix", "context", "lagging", "Employment share for the anchor occupation."),
-                                signal("Job postings", "P", "coincident", "Duties, credentials and skill shares in this sector."),
-                                signal("CareerOneStop", "O", "lagging", "Certification Finder matches by O*NET and NAICS.")],
+                    "sources": [signal("bls_industry_matrix", "BLS occupation-by-industry matrix", "Employment share for the anchor occupation."),
+                                signal("postings", "Job postings", "Duties, credentials and skill shares in this sector."),
+                                signal("careeronestop", "CareerOneStop", "Certification Finder matches by O*NET and NAICS.")],
                 }
             industries.append({"naics": sector["naics"], "label": sector["label"], "naics_title": sector["naicsTitle"],
                                "sub_industries": sector["sub"], "evidence": counts(sector["postings"], sector["employers"], current),
@@ -106,15 +118,14 @@ def build_records(snapshot: dict) -> list[RoleRecord]:
         foundation = role["foundation"]
         record = {
             "schema": "skills-vector.role/2", "id": "role." + role_id, "label": role["label"],
-            "status": role["status"], "publication": "experimental" if any(anchor["fit"] == "partial" for anchor in role["anchors"]) or role["status"] == "emerging" else "standard",
+            "status": role["status"], "publication": "experimental" if role["status"] == "emerging" else "standard",
             "data_kind": "fixture", "release_id": RELEASE_ID, "aliases": role["aliases"], "anchors": role["anchors"],
             "foundation": {"median_pay": foundation["wage"], "pay_note": foundation["wageNote"],
                            "employment": foundation["employment"], "employment_note": foundation["employmentNote"],
                            "outlook_10y": foundation["outlook"], "outlook_note": foundation["outlookNote"],
                            "core_tasks": foundation["tasks"],
-                           "sources": [signal("O*NET ratings and tasks", "O", "lagging", f"Anchor tasks rated {snapshot['onet_year'][role_id]}."),
-                                       signal("BLS wages and employment", "context", "lagging", "Anchor-code statistics, not title-specific estimates."),
-                                       signal("BLS employment projections", "context", "long-term", "Ten-year headcount outlook, not skill demand.")]},
+                           "sources": [signal("onet_ratings", "O*NET ratings and tasks", f"Anchor tasks rated {snapshot['onet_year'][role_id]}."),
+                                       signal("bls_projections", "BLS employment projections", "Ten-year headcount outlook, not skill demand.")]},
             "demand_window": {"id": current, "compared_to": previous, "postings": role["window"]["postings"],
                               "employers": role["window"]["employers"], "max_employer_share": 0.2,
                               "timing": "coincident", "window_length": "quarterly"},
@@ -137,7 +148,7 @@ def build_records(snapshot: dict) -> list[RoleRecord]:
                           "top_level_adds": {"top_level": top, "core_level": graph["mid"],
                                              "skills": [skill["id"] for skill in skills if skill["share_by_level"][top - 1] >= 40
                                                         and skill["share_by_level"][top - 1] - skill["share_by_level"][graph["mid"] - 1] >= 20],
-                                             "long_run_bar": signal("O*NET level ratings", "O", "lagging", "The durable proficiency bar, not current posting demand.")}},
+                                             "long_run_bar": signal("onet_ratings", "O*NET level ratings", "The durable proficiency bar, not current posting demand.")}},
             "industries": industries,
             "observations": [{"id": "observation." + shift["id"], "label": shift["label"], "levels": shift["levels"],
                               "windows": [{"id": window, "mentions": values[0], "postings": values[1], "employers": values[2], "timing": "coincident"}

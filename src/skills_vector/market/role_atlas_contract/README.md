@@ -1,5 +1,8 @@
 # Role Atlas contract (M1)
 
+Contract data lives in `market/role_atlas_contract/`, separate from the Python
+module `market/role_atlas.py`.
+
 - `role.schema.json`: JSON Schema Draft 2020-12, `skills-vector.role/2`.
 - `../role_atlas.py`: typed dataclasses, lossless JSON loading, structural validation,
   pure status derivation, evidence-rule validation and a read-only sibling of the
@@ -12,7 +15,7 @@
 
 Use `RoleRecord.from_dict()` / `from_json()` to load a record. Construction and
 `validate_role()` enforce both structure and evidence rules; schema validation
-alone cannot enforce arithmetic or cross-record references. Unknown fields are
+alone cannot enforce arithmetic, source-kind metadata or cross-record references. Unknown fields are
 rejected, not silently dropped. JSON Schema uses local references only. The
 `jsonschema` package was already a transitive MCP dependency; it is declared
 explicitly because this contract now uses it directly.
@@ -20,9 +23,12 @@ explicitly because this contract now uses it directly.
 `RoleCatalogStore(root)` reads role/2 JSON documents from an explicitly selected
 catalog directory. `list_roles(release_id=None)` returns full records;
 `role(slug_or_id, release_id=None)` returns a full record or `None`. An unknown
-release returns no records. Reads are fresh and do not mutate files. Duplicate
-role/release pairs and invalid records fail closed. Neither the store nor the
-fixture builder reads or writes `preview/release/`.
+release returns no records. Parsing and validation are cached by resolved path
+and nanosecond mtime. Changed files are revalidated; stale/deleted cache entries
+are pruned after a successful read. Each public read returns a fresh dictionary,
+so callers cannot mutate cached models. Duplicate role/release pairs and invalid
+records fail closed, including modified files. Neither the store nor the fixture
+builder reads or writes `preview/release/`.
 
 ## Units and rule decisions
 
@@ -37,9 +43,20 @@ prototype's rising signals whose previous window had fewer than eight employers.
 Core needs a current share of at least 25%, another comparable window at 25%+,
 and ten current employers. Core does not need O/M confirmation or a concentration
 cap. Fading is checked first (including for core), then core, then rising, then
-early. Rising needs an agreeing O/M signal, not merely an official source that
-mentions the skill or contradicts the trend. Decimal arithmetic preserves the
-exact five-point boundary. `disputed` is explanatory text, not a fifth status.
+early. Rising needs an O/M signal with `direction: "up"`. The other directions
+are `down`, `flat` and `presence`; presence means listed without asserting a
+trend. A lagging map that still lists a fading skill is presence and does not
+block posting-driven fading. Decimal arithmetic preserves the exact five-point
+boundary. `disputed` is explanatory text, not a fifth status.
+
+Every Signal carries a closed `source_kind` as well as a display-only `source`.
+`SOURCE_RULES` in `market/role_atlas.py` is the canonical timing/family table,
+shared by validation and the fixture builder. Validation never infers source
+identity from display-name substrings. The supported kinds are postings, new
+posting phrasing, O*NET ratings/emerging tasks/Hot Technologies, ESCO, Hiring Lab,
+Economic Index, BLS projections/industry matrix and CareerOneStop. For example,
+O*NET ratings are lagging/O, Emerging Tasks leading/O, Hot Technologies
+coincident/M, and BLS projections long-term/context.
 
 Window cadence is a demand-window config value, defaulting to quarterly in the
 Python model and fixtures; monthly is supported. The horizon is always four
@@ -62,8 +79,9 @@ forecast probabilities/base rates are preserved and tested. The contract
 normalizes the prototype rather than adopting its older role/1 JSON shape:
 
 - All records carry `data_kind: "fixture"` and a fixture-specific release id.
-- Both partial-anchor roles (including Account Executive) are experimental,
-  even though the prototype only displays that flag for FDE. This follows C4.
+- Only emerging roles are experimental: FDE is experimental; established Account
+  Executive and HR Generalist are standard. Account Executive retains its partial
+  anchor fit. Publication is independent of anchor fit in both directions.
 - The prototype's legacy `growing`/`contested` graph labels are not skill statuses.
   The skill-map `SIGNALS` supply statuses; dispute text remains a separate flag.
   Raw shift counts are retained as observations without promoting legacy states.
@@ -82,8 +100,16 @@ normalizes the prototype rather than adopting its older role/1 JSON shape:
   visible in the frozen input snapshot, never as accepted edges.
 - The thin FDE finance sector remains visible with `profile: null`, a reason,
   and its original 12 postings / 5 employers; it receives no heatmap shares.
-- Source timing and evidence-family fields, forecast ids, creation dates and the
-  four-quarter horizon are contract metadata added to the illustrative inputs.
+- Source kinds, timing, families and directions, forecast ids, creation dates and
+  the four-quarter horizon are contract metadata added to the illustrative inputs.
+  Posting directions follow the numeric window changes (steady core is flat).
+  Hiring Lab trend readings and the addition of an O*NET emerging task indicate
+  up; existing O*NET/ESCO/Hot Technologies listings and high Economic Index use
+  alone are presence, not rising confirmation. This preserves the prototype's
+  statuses without treating map presence as an upward trend.
+- The closed source-kind vocabulary has no wages-series kind. The prior extra
+  wages/employment Signal is omitted rather than mislabeled as an industry
+  matrix or projection; the illustrative pay/employment values are unchanged.
   No backtest scores are copied or claimed. All forecast rates are illustrative.
 
 The same assumptions are disclosed in each fixture record's `limits`. These

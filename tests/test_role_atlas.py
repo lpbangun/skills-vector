@@ -5,11 +5,13 @@ from __future__ import annotations
 import copy
 import importlib.util
 import json
+import os
 import re
 import tempfile
 import unittest
 from dataclasses import replace
 from pathlib import Path
+from unittest.mock import patch
 
 from jsonschema import Draft202012Validator
 
@@ -17,6 +19,7 @@ from skills_vector.market.role_atlas import (
     CONTRACT_ROOT,
     FIXTURE_ROOT,
     SCHEMA_PATH,
+    SOURCE_RULES,
     AskedTogether,
     DemandWindow,
     EvidenceCounts,
@@ -39,9 +42,11 @@ def measurement(share: float, *, window: str = "2026-Q3", employers: int = 8,
     return Measurement(window, share, employers, concentration, group, levels or [1, 2], "coincident")
 
 
-def signals(family: str = "M", agrees: bool = True) -> list[Signal]:
-    return [Signal("Job postings", "P", "coincident", "Sample share", True),
-            Signal("Independent source", family, "coincident", "Independent direction", agrees)]
+def signals(family: str = "M", direction: str = "up") -> list[Signal]:
+    kind = {"M": "hiring_lab", "O": "onet_emerging_tasks", "P": "postings", "context": "bls_projections"}[family]
+    timing, _ = SOURCE_RULES[kind]
+    return [Signal("Job postings", "postings", "P", "coincident", "Sample share", "up"),
+            Signal("Independent source", kind, family, timing, "Independent direction", direction)]
 
 
 class StatusRuleTests(unittest.TestCase):
@@ -67,8 +72,22 @@ class StatusRuleTests(unittest.TestCase):
         self.assertEqual(derive_status([previous, current], signals("O")), "rising")
         self.assertEqual(derive_status([previous, current], signals("P")), "early")
         self.assertEqual(derive_status([previous, current], signals("context")), "early")
-        self.assertEqual(derive_status([previous, current], signals(agrees=False)), "early")
+        self.assertEqual(derive_status([previous, current], signals(direction="presence")), "early")
         self.assertEqual(derive_status([current], signals()), "early")
+
+    def test_rising_requires_an_upward_non_posting_signal(self) -> None:
+        windows = [measurement(0.10, window="2026-Q2"), measurement(0.15)]
+        for direction in ("presence", "down", "flat"):
+            for family in ("O", "M"):
+                with self.subTest(direction=direction, family=family):
+                    self.assertEqual(derive_status(windows, signals(family, direction)), "early")
+        self.assertEqual(derive_status(windows, signals("M", "up")), "rising")
+        self.assertEqual(derive_status(windows, signals("O", "up")), "rising")
+
+    def test_fading_is_not_blocked_by_presence_in_a_lagging_map(self) -> None:
+        windows = [measurement(0.20, window="2026-Q2"), measurement(0.15)]
+        official = Signal("O*NET importance", "onet_ratings", "O", "lagging", "Still listed", "presence")
+        self.assertEqual(derive_status(windows, [official]), "fading")
 
     def test_fading_exactly_five_points_same_spread_floor(self) -> None:
         previous = measurement(0.30, window="2026-Q2")
@@ -202,7 +221,8 @@ class RoleContractTests(unittest.TestCase):
             self.reject(payload, f"status must be {expected}")
         payload = copy.deepcopy(self.payload)
         for evidence in self.skill(payload)["evidence"]:
-            evidence["agrees"] = False
+            if evidence["family"] in ("O", "M"):
+                evidence["direction"] = "presence"
         self.reject(payload, "status must be early")
 
     def test_disputed_is_a_flag_not_a_fifth_status(self) -> None:
@@ -253,18 +273,20 @@ class RoleContractTests(unittest.TestCase):
         self.assertIsNone(fde.industries[-1].profile)
         self.assertEqual(fde.industries[-1].reason, "below 30 postings / 8 employers")
 
-    def test_partial_anchor_and_emerging_require_experimental(self) -> None:
-        self.assertEqual(self.payload["publication"], "experimental")
-        payload = copy.deepcopy(self.payload)
-        payload["publication"] = "standard"
-        self.assertFalse(self.validator.is_valid(payload))
-        self.reject(payload)
-        payload["anchors"][0]["fit"] = "close"
-        self.assertEqual(RoleRecord.from_dict(payload).publication, "standard")
-        payload["status"] = "emerging"
-        self.reject(payload)
-        payload["publication"] = "experimental"
-        self.assertEqual(RoleRecord.from_dict(payload).status, "emerging")
+    def test_experimental_publication_depends_on_role_status_not_anchor_fit(self) -> None:
+        self.assertEqual(self.payload["publication"], "standard")
+        self.assertEqual(self.payload["anchors"][0]["fit"], "partial")
+        for role in self.catalog.list_roles():
+            expected = "experimental" if role["status"] == "emerging" else "standard"
+            self.assertEqual(RoleRecord.from_dict(role).publication, expected)
+            for fit in ("partial", "close", "exact"):
+                with self.subTest(role=role["id"], fit=fit):
+                    payload = copy.deepcopy(role)
+                    payload["anchors"][0]["fit"] = fit
+                    self.assertEqual(RoleRecord.from_dict(payload).publication, expected)
+                    payload["publication"] = "standard" if expected == "experimental" else "experimental"
+                    self.assertFalse(self.validator.is_valid(payload))
+                    self.reject(payload)
 
     def test_every_signal_requires_valid_timing_including_nested_counts(self) -> None:
         def signals_with_timing(value: object, path: tuple = ()) -> list[tuple]:
@@ -291,16 +313,62 @@ class RoleContractTests(unittest.TestCase):
                     self.assertFalse(self.validator.is_valid(payload))
                     self.reject(payload)
 
-    def test_official_timing_classes_are_not_interchangeable(self) -> None:
+    def test_source_kind_requires_canonical_timing_and_family_for_every_kind(self) -> None:
+        expected_rules = {
+            "postings": ("coincident", "P"),
+            "postings_new_phrasing": ("leading", "P"),
+            "onet_ratings": ("lagging", "O"),
+            "onet_emerging_tasks": ("leading", "O"),
+            "onet_hot_technologies": ("coincident", "M"),
+            "esco": ("lagging", "O"),
+            "hiring_lab": ("coincident", "M"),
+            "economic_index": ("coincident", "M"),
+            "bls_projections": ("long-term", "context"),
+            "bls_industry_matrix": ("lagging", "context"),
+            "careeronestop": ("lagging", "O"),
+        }
+        self.assertEqual(SOURCE_RULES, expected_rules)
+        self.assertEqual(set(self.schema["$defs"]["Signal"]["properties"]["source_kind"]["enum"]), set(expected_rules))
+        for kind, (timing, family) in expected_rules.items():
+            with self.subTest(kind=kind):
+                payload = copy.deepcopy(self.payload)
+                source = Signal("Arbitrary display name", kind, family, timing, "A source reading", "presence")
+                payload["foundation"]["sources"][0] = source.to_dict()
+                rebuilt = RoleRecord.from_dict(payload).foundation.sources[0]
+                self.assertEqual((rebuilt.source_kind, rebuilt.timing, rebuilt.family), (kind, timing, family))
+                payload["foundation"]["sources"][0]["timing"] = "lagging" if timing != "lagging" else "coincident"
+                self.reject(payload, f"{kind} timing must be {timing}")
+                payload["foundation"]["sources"][0] = source.to_dict()
+                payload["foundation"]["sources"][0]["family"] = "M" if family != "M" else "O"
+                self.reject(payload, f"{kind} family must be {family}")
         payload = copy.deepcopy(self.payload)
-        for index, expected in ((0, "lagging"), (2, "long-term")):
-            self.assertEqual(payload["foundation"]["sources"][index]["timing"], expected)
-            bad = copy.deepcopy(payload)
-            bad["foundation"]["sources"][index]["timing"] = "coincident"
-            self.reject(bad)
-        esco = next(signal for skill in payload["skill_map"]["skills"] for signal in skill["evidence"] if signal["source"] == "ESCO")
-        esco["timing"] = "leading"
+        payload["foundation"]["sources"][0].update(source="O*NET importance", timing="coincident")
+        self.reject(payload, "onet_ratings timing must be lagging")
+
+    def test_signal_kind_and_direction_are_closed_required_fields(self) -> None:
+        for field, invalid in (("source_kind", "other"), ("direction", "agree")):
+            payload = copy.deepcopy(self.payload)
+            payload["foundation"]["sources"][0][field] = invalid
+            self.reject(payload)
+            del payload["foundation"]["sources"][0][field]
+            self.reject(payload)
+        payload = copy.deepcopy(self.payload)
+        payload["foundation"]["sources"][0]["agrees"] = True
         self.reject(payload)
+
+    def test_rising_record_requires_up_direction_and_fading_keeps_map_presence(self) -> None:
+        for direction in ("presence", "down", "flat", "up"):
+            payload = copy.deepcopy(self.payload)
+            for signal in self.skill(payload)["evidence"]:
+                if signal["family"] in ("O", "M"):
+                    signal["direction"] = direction
+            if direction == "up":
+                self.assertEqual(self.skill(RoleRecord.from_dict(payload).to_dict())["status"], "rising")
+            else:
+                self.reject(payload, "status must be early")
+        skill = self.skill(self.payload, "coldcall")
+        self.assertEqual(skill["status"], "fading")
+        self.assertEqual(next(signal for signal in skill["evidence"] if signal["source_kind"] == "onet_ratings")["direction"], "presence")
 
     def test_unknown_or_missing_fields_rejected_not_silently_lost(self) -> None:
         for target in ("root", "forecast", "evidence"):
@@ -476,6 +544,39 @@ class FixtureCatalogTests(unittest.TestCase):
         self.assertEqual(self.snapshot, before)
         for record in first:
             self.assertEqual(record.to_json(), (FIXTURE_ROOT / f"{record.id.removeprefix('role.')}.json").read_text(encoding="utf-8"))
+
+    def test_store_caches_validation_by_path_and_mtime_without_leaking_mutations(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            payloads = [self.catalog.role(role) for role in ("account-executive", "hr-generalist")]
+            for payload in payloads:
+                (root / f"{payload['id']}.json").write_text(json.dumps(payload), encoding="utf-8")
+            path = root / "role.account-executive.json"
+            store = RoleCatalogStore(root)
+            with patch.object(RoleRecord, "from_json", wraps=RoleRecord.from_json) as load:
+                records = store.list_roles()
+                self.assertEqual(load.call_count, 2)
+                records[0]["skill_map"]["skills"][0]["label"] = "mutated"
+                self.assertEqual(store.role("account-executive")["skill_map"]["skills"][0]["label"], payloads[0]["skill_map"]["skills"][0]["label"])
+                self.assertEqual(load.call_count, 2)
+                mtime = path.stat().st_mtime_ns
+                payloads[0]["label"] = "Updated fixture label"
+                path.write_text(json.dumps(payloads[0]), encoding="utf-8")
+                os.utime(path, ns=(mtime + 1_000_000_000, mtime + 1_000_000_000))
+                self.assertEqual(store.role("account-executive")["label"], "Updated fixture label")
+                self.assertEqual(load.call_count, 3)
+                mtime = path.stat().st_mtime_ns
+                payloads[0]["publication"] = "experimental"
+                path.write_text(json.dumps(payloads[0]), encoding="utf-8")
+                os.utime(path, ns=(mtime + 1_000_000_000, mtime + 1_000_000_000))
+                with self.assertRaises(RoleValidationError):
+                    store.list_roles()
+                self.assertEqual(load.call_count, 4)
+                path.unlink()
+                self.assertIsNone(store.role("account-executive"))
+                self.assertEqual([record["id"] for record in store.list_roles()], ["role.hr-generalist"])
+                self.assertEqual(load.call_count, 4)
+                self.assertEqual(len(store._cache), 1)
 
     def test_store_pinning_unknowns_and_fresh_reads(self) -> None:
         release_id = self.catalog.list_roles()[0]["release_id"]

@@ -36,24 +36,19 @@
     "sources": [
       {
         "source": "O*NET ratings and tasks",
+        "source_kind": "onet_ratings",
         "family": "O",
         "timing": "lagging",
         "reading": "Anchor tasks rated 2024.",
-        "agrees": false
-      },
-      {
-        "source": "BLS wages and employment",
-        "family": "context",
-        "timing": "lagging",
-        "reading": "Anchor-code statistics, not title-specific estimates.",
-        "agrees": false
+        "direction": "presence"
       },
       {
         "source": "BLS employment projections",
+        "source_kind": "bls_projections",
         "family": "context",
         "timing": "long-term",
         "reading": "Ten-year headcount outlook, not skill demand.",
-        "agrees": false
+        "direction": "presence"
       }
     ]
   },
@@ -327,24 +322,27 @@
         "evidence": [
           {
             "source": "Job postings",
+            "source_kind": "postings",
             "family": "P",
             "timing": "coincident",
             "reading": "Asked in 84% of L1 postings, steady across two windows.",
-            "agrees": false
+            "direction": "flat"
           },
           {
             "source": "O*NET ratings and tasks",
+            "source_kind": "onet_ratings",
             "family": "O",
             "timing": "lagging",
             "reading": "In the O*NET record for 15-1252.00 (rated 2024).",
-            "agrees": false
+            "direction": "presence"
           },
           {
             "source": "ESCO",
+            "source_kind": "esco",
             "family": "O",
             "timing": "lagging",
             "reading": "ESCO lists it as essential for the matched occupation.",
-            "agrees": false
+            "direction": "presence"
           }
         ],
         "forecast": null,
@@ -400,24 +398,27 @@
         "evidence": [
           {
             "source": "Job postings",
+            "source_kind": "postings",
             "family": "P",
             "timing": "coincident",
             "reading": "Asked in 72% of L1 postings, steady across two windows.",
-            "agrees": false
+            "direction": "flat"
           },
           {
             "source": "O*NET ratings and tasks",
+            "source_kind": "onet_ratings",
             "family": "O",
             "timing": "lagging",
             "reading": "In the O*NET record for 15-1252.00 (rated 2024).",
-            "agrees": false
+            "direction": "presence"
           },
           {
             "source": "ESCO",
+            "source_kind": "esco",
             "family": "O",
             "timing": "lagging",
             "reading": "ESCO lists it as essential for the matched occupation.",
-            "agrees": false
+            "direction": "presence"
           }
         ],
         "forecast": null,
@@ -472,17 +473,19 @@
         "evidence": [
           {
             "source": "Job postings",
+            "source_kind": "postings",
             "family": "P",
             "timing": "coincident",
             "reading": "Asked in 61% of L2 postings, steady across two windows.",
-            "agrees": false
+            "direction": "flat"
           },
           {
             "source": "O*NET ratings and tasks",
+            "source_kind": "onet_ratings",
             "family": "O",
             "timing": "lagging",
             "reading": "In the O*NET record for 15-1252.00 (rated 2024).",
-            "agrees": false
+            "direction": "presence"
           }
         ],
         "forecast": null,
@@ -534,10 +537,11 @@
         "evidence": [
           {
             "source": "Job postings",
+            "source_kind": "postings",
             "family": "P",
             "timing": "coincident",
             "reading": "Asked in 62% of L3 postings, steady across two windows.",
-            "agrees": false
+            "direction": "flat"
           }
         ],
         "forecast": null,
@@ -590,17 +594,19 @@
         "evidence": [
           {
             "source": "Job postings",
+            "source_kind": "postings",
             "family": "P",
             "timing": "coincident",
             "reading": "Asked in 70% of L3 postings, steady across two windows.",
-            "agrees": false
+            "direction": "flat"
           },
           {
             "source": "ESCO",
+            "source_kind": "esco",
             "family": "O",
             "timing": "lagging",
             "reading": "ESCO lists it as optional for the matched occupation.",
-            "agrees": false
+            "direction": "presence"
           }
         ],
         "forecast": null,
@@ -650,31 +656,35 @@
         "evidence": [
           {
             "source": "Job postings",
+            "source_kind": "postings",
             "family": "P",
             "timing": "coincident",
             "reading": "Up from 21% to 43% of L2–L3 postings across 17 employers.",
-            "agrees": false
+            "direction": "up"
           },
           {
             "source": "O*NET Hot Technologies",
+            "source_kind": "onet_hot_technologies",
             "family": "M",
             "timing": "coincident",
             "reading": "LLM frameworks listed as Hot Technologies for Software Developers.",
-            "agrees": true
+            "direction": "presence"
           },
           {
             "source": "O*NET Emerging Tasks",
+            "source_kind": "onet_emerging_tasks",
             "family": "O",
             "timing": "leading",
             "reading": "An emerging task for the anchor code mentions integrating AI models.",
-            "agrees": true
+            "direction": "up"
           },
           {
             "source": "Anthropic Economic Index",
+            "source_kind": "economic_index",
             "family": "M",
             "timing": "coincident",
             "reading": "Coding and integration tasks lead AI use in the index.",
-            "agrees": true
+            "direction": "presence"
           }
         ],
         "forecast": {
@@ -734,17 +744,19 @@
         "evidence": [
           {
             "source": "Job postings",
+            "source_kind": "postings",
             "family": "P",
             "timing": "coincident",
             "reading": "Asked in 47% of L3 postings, steady across two windows.",
-            "agrees": false
+            "direction": "flat"
           },
           {
             "source": "ESCO",
+            "source_kind": "esco",
             "family": "O",
             "timing": "lagging",
             "reading": "ESCO lists it as optional for the matched occupation.",
-            "agrees": false
+            "direction": "presence"
           }
         ],
         "forecast": null,
@@ -794,10 +806,11 @@
         "evidence": [
           {
             "source": "New phrasing in postings",
+            "source_kind": "postings_new_phrasing",
             "family": "P",
             "timing": "leading",
             "reading": "From 0% to 9% of postings, at 6 employers.",
-            "agrees": false
+            "direction": "up"
           }
         ],
         "forecast": {
@@ -856,10 +869,11 @@
         "evidence": [
           {
             "source": "Job postings",
+            "source_kind": "postings",
             "family": "P",
             "timing": "coincident",
             "reading": "Asked in 64% of L4 postings, steady across two windows.",
-            "agrees": false
+            "direction": "flat"
           }
         ],
         "forecast": null,
@@ -908,17 +922,19 @@
         "evidence": [
           {
             "source": "Job postings",
+            "source_kind": "postings",
             "family": "P",
             "timing": "coincident",
             "reading": "Asked in 71% of L4 postings, steady across two windows.",
-            "agrees": false
+            "direction": "flat"
           },
           {
             "source": "O*NET ratings and tasks",
+            "source_kind": "onet_ratings",
             "family": "O",
             "timing": "lagging",
             "reading": "In the O*NET record for 15-1252.00 (rated 2024).",
-            "agrees": false
+            "direction": "presence"
           }
         ],
         "forecast": null,
@@ -967,17 +983,19 @@
         "evidence": [
           {
             "source": "Job postings",
+            "source_kind": "postings",
             "family": "P",
             "timing": "coincident",
             "reading": "Asked in 68% of L4 postings, steady across two windows.",
-            "agrees": false
+            "direction": "flat"
           },
           {
             "source": "ESCO",
+            "source_kind": "esco",
             "family": "O",
             "timing": "lagging",
             "reading": "ESCO lists it as essential for the matched occupation.",
-            "agrees": false
+            "direction": "presence"
           }
         ],
         "forecast": null,
@@ -1055,10 +1073,11 @@
       ],
       "long_run_bar": {
         "source": "O*NET level ratings",
+        "source_kind": "onet_ratings",
         "family": "O",
         "timing": "lagging",
         "reading": "The durable proficiency bar, not current posting demand.",
-        "agrees": false
+        "direction": "presence"
       }
     }
   },
@@ -1141,24 +1160,27 @@
         "sources": [
           {
             "source": "BLS occupation-by-industry matrix",
+            "source_kind": "bls_industry_matrix",
             "family": "context",
             "timing": "lagging",
             "reading": "Employment share for the anchor occupation.",
-            "agrees": false
+            "direction": "presence"
           },
           {
             "source": "Job postings",
+            "source_kind": "postings",
             "family": "P",
             "timing": "coincident",
             "reading": "Duties, credentials and skill shares in this sector.",
-            "agrees": false
+            "direction": "presence"
           },
           {
             "source": "CareerOneStop",
+            "source_kind": "careeronestop",
             "family": "O",
             "timing": "lagging",
             "reading": "Certification Finder matches by O*NET and NAICS.",
-            "agrees": false
+            "direction": "presence"
           }
         ]
       },
@@ -1242,24 +1264,27 @@
         "sources": [
           {
             "source": "BLS occupation-by-industry matrix",
+            "source_kind": "bls_industry_matrix",
             "family": "context",
             "timing": "lagging",
             "reading": "Employment share for the anchor occupation.",
-            "agrees": false
+            "direction": "presence"
           },
           {
             "source": "Job postings",
+            "source_kind": "postings",
             "family": "P",
             "timing": "coincident",
             "reading": "Duties, credentials and skill shares in this sector.",
-            "agrees": false
+            "direction": "presence"
           },
           {
             "source": "CareerOneStop",
+            "source_kind": "careeronestop",
             "family": "O",
             "timing": "lagging",
             "reading": "Certification Finder matches by O*NET and NAICS.",
-            "agrees": false
+            "direction": "presence"
           }
         ]
       },
