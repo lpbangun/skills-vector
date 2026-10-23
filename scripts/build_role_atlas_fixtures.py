@@ -31,10 +31,10 @@ def slug(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
 
 
-def signal(source_kind: SourceKind, source: str, reading: str, direction: Direction = "presence") -> dict:
+def signal(source_kind: SourceKind, source: str, reading: str, direction: Direction = "presence", *, as_of: str | None = None) -> dict:
     timing, family = SOURCE_RULES[source_kind]
     return {"source": source, "source_kind": source_kind, "family": family,
-            "timing": timing, "reading": reading, "direction": direction}
+            "timing": timing, "reading": reading, "direction": direction, "as_of": as_of}
 
 
 def counts(postings: int, employers: int, window: str) -> dict:
@@ -83,7 +83,8 @@ def build_records(snapshot: dict) -> list[RoleRecord]:
                 # A newly emerging official task indicates addition; a Hot
                 # Technologies listing or high AI use alone is only presence.
                 direction = posting_direction if kind in ("posts", "early") else "up" if kind in ("sector", "emerg") else "presence"
-                evidence.append(signal(SOURCE_KINDS[kind], snapshot["kinds"][kind]["name"], reading, direction))
+                evidence.append(signal(SOURCE_KINDS[kind], snapshot["kinds"][kind]["name"], reading, direction,
+                                       as_of=str(snapshot["onet_year"][role_id]) if kind == "onet" else None))
             call = extra.get("call")
             forecast = None if call is None else {
                 "id": f"forecast.{role_id}.{key}", "claim": call[0], "probability": call[1] / 100,
@@ -124,7 +125,8 @@ def build_records(snapshot: dict) -> list[RoleRecord]:
                            "employment": foundation["employment"], "employment_note": foundation["employmentNote"],
                            "outlook_10y": foundation["outlook"], "outlook_note": foundation["outlookNote"],
                            "core_tasks": foundation["tasks"],
-                           "sources": [signal("onet_ratings", "O*NET ratings and tasks", f"Anchor tasks rated {snapshot['onet_year'][role_id]}."),
+                           "sources": [signal("onet_ratings", "O*NET ratings and tasks", f"Anchor tasks rated {snapshot['onet_year'][role_id]}.",
+                                              as_of=str(snapshot["onet_year"][role_id])),
                                        signal("bls_projections", "BLS employment projections", "Ten-year headcount outlook, not skill demand.")]},
             "demand_window": {"id": current, "compared_to": previous, "postings": role["window"]["postings"],
                               "employers": role["window"]["employers"], "max_employer_share": 0.2,
@@ -148,7 +150,8 @@ def build_records(snapshot: dict) -> list[RoleRecord]:
                           "top_level_adds": {"top_level": top, "core_level": graph["mid"],
                                              "skills": [skill["id"] for skill in skills if skill["share_by_level"][top - 1] >= 40
                                                         and skill["share_by_level"][top - 1] - skill["share_by_level"][graph["mid"] - 1] >= 20],
-                                             "long_run_bar": signal("onet_ratings", "O*NET level ratings", "The durable proficiency bar, not current posting demand.")}},
+                                             "long_run_bar": signal("onet_ratings", "O*NET level ratings", "The durable proficiency bar, not current posting demand.",
+                                                                    as_of=str(snapshot["onet_year"][role_id]))}},
             "industries": industries,
             "observations": [{"id": "observation." + shift["id"], "label": shift["label"], "levels": shift["levels"],
                               "windows": [{"id": window, "mentions": values[0], "postings": values[1], "employers": values[2], "timing": "coincident"}

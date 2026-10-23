@@ -455,3 +455,93 @@ JS syntax and Python compilation checks were clean. No product dependency added.
 
 No paid/model calls, secrets, immutable-release edits or unrelated refactors.
 M3 complete for review; stop here before M4.
+
+## M3 review round 1 replies
+
+M2 approval in `reviews/M2-r2.md` acknowledged. This is an M3 review fix-up;
+no M4 work is included.
+
+1. **Must 1 — desktop Connections clipping: fixed.** The SVG now fits its
+   container at desktop widths. Its 960-unit viewBox is unchanged, but the CSS
+   minimum is 704px rather than 960px. Invisible 60×60 hit boxes remain at least
+   44×44 CSS pixels at that minimum; their vertical offset includes the label
+   without overlapping the next row. Below that width the chart alone scrolls,
+   with a visible horizontal-scroll/arrow-key cue and a focusable scroll region.
+   ResizeObserver keeps the cue current. This supersedes the original M3 report's
+   960px-minimum deviation.
+
+   `check_role_atlas.py` now requires, at 1280, `scrollWidth <= clientWidth` on
+   the graph and every node/level-name bounding box inside its visible rectangle.
+   It also checks exact API short labels, actual hit-box dimensions and cue
+   visibility, and exercises keyboard scrolling at 390. Regression probes
+   deliberately restore the old 960px minimum and move a node outside the
+   visible rectangle: both must be rejected by the new fit check.
+
+2. **Should 1 — structured rating year: fixed.** Review-requested contract
+   extension: optional `Signal.as_of` in the model/schema, accepting a four-digit
+   year, a valid ISO calendar date, or unknown/null/omission. Syntax is constrained
+   by the schema; the runtime format checker also rejects impossible dates.
+   The fixture builder uses only the frozen snapshot's `onet_year` values
+   (AE 2021, FDE 2024, HR 2023), for foundation, O*NET skill evidence and the
+   long-run bar. Other dates remain unknown. Fixtures were rebuilt; no market
+   release was changed.
+
+   Source timing tags render `lagging · rated {year}` from `as_of` in the role
+   head, evidence detail and Method, never from prose. Method now collects the
+   selected record's sources, so another role's year cannot overwrite its year.
+   Tests cover year/date/null round trips, omission, invalid types/syntax/calendar
+   dates, fixture provenance and deterministic output. Browser probes use a
+   structured 2018 date with deliberately conflicting “rated 2099” prose, and
+   then omit the date, verifying that the UI never parses the prose.
+
+3. **Should 2 — plural copy: fixed.** The detail says “1 independent source
+   points up” or “N independent sources point up”. Browser checks assert the
+   actual fixture counts and add another upward source to exercise the plural.
+
+4. **Optional note — ladder labels:** enabled `hyphens: auto` with the existing
+   English `lang` metadata; browser checks verify both. Automatic hyphenation
+   depends on browser dictionary support; the existing wrapping fallback remains.
+
+### Exact verification commands and results
+
+All commands below exited 0:
+
+```sh
+.venv/bin/python scripts/build_role_atlas_fixtures.py
+.venv/bin/python -m unittest discover -s tests -p test_role_atlas.py
+.venv/bin/python -m unittest discover -s tests
+uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m3-r1 --role-atlas-fixtures --compare-reference
+bash scripts/assemble_vercel.sh
+node --check preview/role-atlas.js
+.venv/bin/python -m compileall -q src/skills_vector/market/role_atlas.py scripts/build_role_atlas_fixtures.py scripts/check_role_atlas.py tests/test_role_atlas.py
+uv lock --check --offline
+git diff --check
+git diff HEAD --exit-code -- preview/release/
+```
+
+- Builder: wrote the three explicitly labeled fixture files only.
+- Focused contract tests: **36 tests, OK**.
+- Final full suite: **185 tests in 61.105s, OK (skipped=2)**; the same two
+  pre-existing skips. Includes REST/MCP parity and legacy preview/assembly tests.
+- Final browser run: **1280 light, 1280 dark, 390 light**, every role and tab,
+  18 app plus 18 reference screenshots per case (**108 total**), all `errors: []`.
+  New graph-fit/negative probes, source-year and plural-copy checks all passed.
+  Chromium: explicit `executable_path` to
+  `~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome`.
+- Assembly: **551 files**. Lock check: **61 packages resolved**. JS syntax,
+  compilation, whitespace and immutable-release checks clean.
+
+Opened the saved 1280-light AE Connections screenshot next to the reference,
+including a graph-detail crop. Confirmed **all five columns**, including L5
+“Strategic AE” and “Multi-year deals”, and complete “Procurement and legal”,
+“Strategic account plans” and “Executive alignment” labels. Measured graph
+`scrollWidth = clientWidth = 754`. Artifacts under `/tmp/role-atlas-m3-r1/`:
+
+- `app/1280-light/account-executive-connections.png`
+- `reference/1280-light/account-executive-connections.png`
+- `compare-1280-light-account-executive-connections.png`
+- `compare-1280-light-account-executive-connections-detail.png`
+- `connections-comparison-metrics.json` and `results.json`
+
+No new dependency, paid/model calls, secrets or immutable-release edits. No known
+remaining blocker from this review. Stop here; M4 has not started.

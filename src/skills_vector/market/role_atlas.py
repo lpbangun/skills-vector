@@ -49,7 +49,7 @@ class RoleValidationError(ValueError):
 def _validator() -> Draft202012Validator:
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
     Draft202012Validator.check_schema(schema)
-    return Draft202012Validator(schema)
+    return Draft202012Validator(schema, format_checker=Draft202012Validator.FORMAT_CHECKER)
 
 
 @cache
@@ -96,6 +96,7 @@ class Signal(Model):
     timing: Timing
     reading: str
     direction: Direction
+    as_of: str | None = None
 
 
 @dataclass

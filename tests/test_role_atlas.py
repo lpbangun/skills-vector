@@ -146,7 +146,7 @@ class RoleContractTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
-        cls.validator = Draft202012Validator(cls.schema)
+        cls.validator = Draft202012Validator(cls.schema, format_checker=Draft202012Validator.FORMAT_CHECKER)
         cls.catalog = RoleCatalogStore.fixtures()
         cls.payload = cls.catalog.role("account-executive")
 
@@ -181,6 +181,34 @@ class RoleContractTests(unittest.TestCase):
                 self.assertIsInstance(rebuilt.skill_map.skills[0].windows[0], Measurement)
                 self.assertIsInstance(rebuilt.foundation.sources[0], Signal)
                 self.assertEqual(rebuilt.schema, "skills-vector.role/2")
+
+    def test_optional_source_as_of_round_trip(self) -> None:
+        for as_of in ("2021", "2020-02-29", None):
+            with self.subTest(as_of=as_of):
+                payload = copy.deepcopy(self.payload)
+                payload["foundation"]["sources"][0]["as_of"] = as_of
+                record = RoleRecord.from_dict(payload)
+                self.assertEqual(record.foundation.sources[0].as_of, as_of)
+                serialized = json.loads(record.to_json())
+                self.validator.validate(serialized)
+                self.assertEqual(serialized, payload)
+                self.assertEqual(RoleRecord.from_dict(serialized), record)
+        payload = copy.deepcopy(self.payload)
+        del payload["foundation"]["sources"][0]["as_of"]
+        self.assertIsNone(RoleRecord.from_dict(payload).foundation.sources[0].as_of)
+
+    def test_invalid_source_as_of_is_rejected(self) -> None:
+        for as_of in ("", "rated 2021", "2021\n", "2021-2-03", "2021-02-29",
+                      "2020-02-30", "2021-04-31", "2021-13-01", "2021-01-01T00:00:00Z",
+                      2021, True, {}):
+            with self.subTest(as_of=as_of):
+                payload = copy.deepcopy(self.payload)
+                payload["foundation"]["sources"][0]["as_of"] = as_of
+                self.assertFalse(self.validator.is_valid(payload))
+                self.reject(payload, "as_of")
+        for as_of in ("rated 2021", "2021\n", "2021-13-01", "2021-01-01T00:00:00Z"):
+            payload["foundation"]["sources"][0]["as_of"] = as_of
+            self.assertFalse(Draft202012Validator(self.schema).is_valid(payload))
 
     def test_non_core_forecast_required_but_core_can_have_none(self) -> None:
         self.assertIsNone(self.skill(self.payload, "prosp")["forecast"])
@@ -476,6 +504,14 @@ class FixtureCatalogTests(unittest.TestCase):
         self.assertTrue(all("fixture" in record["release_id"] for record in records))
         self.assertFalse(FIXTURE_ROOT.resolve().is_relative_to((ROOT / "preview" / "release").resolve()))
         self.assertEqual(self.catalog.root, FIXTURE_ROOT)
+
+    def test_fixture_source_dates_come_from_structured_prototype_years(self) -> None:
+        for key, year in self.snapshot["onet_year"].items():
+            record = self.catalog.role(key)
+            sources = record["foundation"]["sources"] + [record["skill_map"]["top_level_adds"]["long_run_bar"]]
+            sources += [source for skill in record["skill_map"]["skills"] for source in skill["evidence"]]
+            for source in sources:
+                self.assertEqual(source["as_of"], str(year) if source["source_kind"] == "onet_ratings" else None)
 
     def test_all_prototype_numbers_and_content_preserved(self) -> None:
         for key, raw in self.snapshot["roles"].items():

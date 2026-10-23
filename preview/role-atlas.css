@@ -141,7 +141,7 @@ section { display: grid; gap: 1.25rem; }
 .stairs { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 0.35rem; align-items: end; height: 13rem; }
 .step { display: flex; flex-direction: column; justify-content: flex-end; gap: 0.25rem; border: 1px solid var(--rule); background: var(--recess); color: var(--ink); padding: 0.45rem 0.4rem; cursor: pointer; text-align: left; font: inherit; min-width: 0; height: 100%; }
 .step .lv { font-family: var(--font-mono); font-size: 0.7rem; color: var(--graphite-soft); }
-.step .nm { font-size: 0.78rem; font-weight: 500; line-height: 1.25; overflow-wrap: anywhere; }
+.step .nm { font-size: 0.78rem; font-weight: 500; line-height: 1.25; overflow-wrap: anywhere; hyphens: auto; }
 .step .n { font-family: var(--font-mono); font-size: 0.66rem; color: var(--graphite-soft); font-variant-numeric: tabular-nums; }
 .step:hover { background: var(--present-soft); }
 .step[aria-pressed="true"] { background: var(--present); border-color: var(--present); color: var(--btn-fg); }
@@ -236,7 +236,8 @@ footer { border-top: 1px solid var(--rule); padding-top: 1rem; color: var(--grap
 @media (max-width: 980px) { .graph-wrap { grid-template-columns: minmax(0, 1fr); } }
 .graph-fig { margin: 0; background: var(--surface); border: 1px solid var(--rule-soft); display: grid; gap: 0; min-width: 0; }
 .graph-scroll { overflow-x: auto; }
-.graph-scroll svg { display: block; width: 100%; min-width: 960px; height: auto; color: var(--ink); }
+.graph-scroll svg { display: block; width: 100%; min-width: 704px; height: auto; color: var(--ink); }
+.graph-scroll-cue { padding: 0.6rem 0.8rem; font-size: 0.8rem; color: var(--present-ink); background: var(--present-soft); border-bottom: 1px solid var(--rule-soft); }
 .graph-fig figcaption { border-top: 1px solid var(--rule-soft); padding: 0.6rem 0.8rem; font-size: 0.8rem; color: var(--graphite-soft); display: grid; gap: 0.45rem; }
 .legend { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; align-items: center; font-size: 0.76rem; color: var(--graphite); }
 .legend span { display: inline-flex; gap: 0.35rem; align-items: center; }

@@ -62,6 +62,41 @@ def assert_view(page, label: str) -> None:
         require(target["height"] >= 43.9 and target["width"] >= 43.9, f"{label}: target below 44px: {target}")
 
 
+def timing_label(source: dict) -> str:
+    return source["timing"] + (" · rated " + source["as_of"][:4] if source.get("as_of") else "")
+
+
+def assert_graph_fit(page) -> None:
+    page.wait_for_function("""() => { const graph = document.querySelector('#graph');
+        return document.querySelector('#graphScrollCue').hidden === (graph.scrollWidth <= graph.clientWidth); }""")
+    metrics = page.locator("#graph").evaluate("""graph => {
+        const rect = graph.getBoundingClientRect();
+        const box = node => { const r = node.getBoundingClientRect(); return {left:r.left, right:r.right, top:r.top, bottom:r.bottom, width:r.width, height:r.height}; };
+        return {viewport:innerWidth, scroll:graph.scrollWidth, client:graph.clientWidth,
+          visible:{left:rect.left, right:rect.left+graph.clientWidth, top:rect.top, bottom:rect.top+graph.clientHeight},
+          nodes:[...graph.querySelectorAll('[data-node], .g-lvname')].map(node => ({id:node.dataset.node || node.textContent, ...box(node)})),
+          hits:[...graph.querySelectorAll('.g-hit')].map(box)}; }""")
+    require(page.locator("#graphScrollCue").is_visible() == (metrics["scroll"] > metrics["client"]), "graph scroll cue visibility mismatch")
+    for hit in metrics["hits"]:
+        require(hit["width"] >= 43.9 and hit["height"] >= 43.9, f"graph hit target below 44px: {hit}")
+    if metrics["viewport"] == 1280:
+        require(metrics["scroll"] <= metrics["client"], f"desktop graph scrolls: {metrics}")
+        visible = metrics["visible"]
+        for node in metrics["nodes"]:
+            require(node["left"] >= visible["left"] - 0.5 and node["right"] <= visible["right"] + 0.5
+                    and node["top"] >= visible["top"] - 0.5 and node["bottom"] <= visible["bottom"] + 0.5,
+                    f"node/heading outside visible graph: {node}; container: {visible}")
+
+
+def reject_graph_fit(page, reason: str) -> None:
+    try:
+        assert_graph_fit(page)
+    except AssertionError as error:
+        require(reason in str(error), f"wrong graph-fit rejection: {error}")
+    else:
+        raise AssertionError("graph-fit gate accepted a deliberately clipped graph")
+
+
 def current_record(page) -> dict:
     return json.loads(page.locator("#json").get_attribute("data-raw"))
 
@@ -85,6 +120,12 @@ def exercise_map(page, record: dict, output: Path, role: str) -> None:
         require(page.locator("#skillPanel h3").inner_text() == skill["label"], "skill detail mismatch")
         if skill["forecast"]:
             require("Base rate:" in page.locator("#skillPanel").inner_text(), "missing forecast base rate")
+        tags = page.locator("#skillPanel .sig .tm").all_inner_texts()
+        require([tag.casefold() for tag in tags] == [timing_label(source) for source in skill["evidence"]], "source timing/as-of mismatch")
+        if skill["status"] == "rising":
+            count = sum(source["family"] in ("O", "M") and source["direction"] == "up" for source in skill["evidence"])
+            expected = f"{count} independent source points up." if count == 1 else f"{count} independent sources point up."
+            require(expected in page.locator("#skillPanel").inner_text(), "incorrect source-count grammar")
     for level in record["ladder"]["levels"]:
         number = level["level"]
         page.locator(f'#mapLevel [data-mlevel="{number}"]').click()
@@ -100,6 +141,15 @@ def exercise_map(page, record: dict, output: Path, role: str) -> None:
     require(page.locator("#connWrap").is_visible(), "connections did not open")
     require(page.locator("#graph [data-node]").count() == len(skills), "graph lost API nodes")
     require(page.locator("#graph .g-edge").count() == len(record["skill_map"]["asked_together"]), "wrong qualified edges")
+    for node in page.locator("#graph [data-node]").all():
+        require(node.locator(".g-label").text_content() == skills[node.get_attribute("data-node")]["short_label"], "graph truncated a label")
+    assert_graph_fit(page)
+    if page.viewport_size["width"] == 390:
+        page.locator("#graph").evaluate("graph => graph.scrollLeft = 0")
+        page.locator("#graph").focus()
+        page.keyboard.press("ArrowRight")
+        page.wait_for_function("document.querySelector('#graph').scrollLeft > 0")
+        page.locator("#graph").evaluate("graph => graph.scrollLeft = 0")
     snapshot(page, output, role + "-connections")
     page.locator("#graph [data-node]").first.focus()
     page.locator("#graph [data-node]").first.press("Enter")
@@ -120,12 +170,14 @@ def exercise_map(page, record: dict, output: Path, role: str) -> None:
     require(page.locator("#graph .g-edge.build").count() == len(record["skill_map"]["builds_on"]), "wrong builds-on edges")
     page.locator('[data-lens="level"]').click()
     page.locator('[data-edges="co"]').click()
+    assert_graph_fit(page)
     assert_view(page, role + " connections")
     page.locator('[data-mode="list"]').click()
 
 
 def exercise_tab(page, tab: str, record: dict, requests: list[str]) -> None:
     if tab == "levels":
+        require(page.locator("#stairs .nm").first.evaluate("node => getComputedStyle(node).hyphens === 'auto' && node.closest('[lang]').lang === 'en'"), "ladder hyphenation needs English language metadata")
         for level in record["ladder"]["levels"]:
             page.locator(f'#stairs [data-level="{level["level"]}"]').click()
             require(page.locator("#sheet h3").inner_text() == level["name"], "level title mismatch")
@@ -215,6 +267,10 @@ def check_case(browser, base: str, out: Path, width: int, scheme: str, reference
                 require(record["id"] == "role." + role, "wrong selected API role")
                 require(page.locator("#fixtureCallout").is_visible() == (record["data_kind"] == "fixture"), "fixture caveat visibility mismatch")
                 require(page.locator("#experimentalCaveat").count() == (1 if record["publication"] == "experimental" else 0), "experimental caveat mismatch")
+                head_sources = [next(source for source in record["foundation"]["sources"] if source["source_kind"] == kind)
+                                for kind in ("onet_ratings", "bls_projections")]
+                tags = page.locator("#roleHead .tm").all_inner_texts()
+                require([tag.casefold() for tag in tags] == [timing_label(source) for source in head_sources] + [record["demand_window"]["timing"]], "role head lost the source rating year")
                 keyboard_tabs(page)
             for tab in TABS:
                 page.locator("#t-" + tab).click()
@@ -255,7 +311,7 @@ def check_case(browser, base: str, out: Path, width: int, scheme: str, reference
 
 
 def check_failure_states(browser, base: str) -> None:
-    with browser.new_context() as context:
+    with browser.new_context(viewport={"width": 1280, "height": 900}) as context:
         page = context.new_page()
         errors = []
         page.on("pageerror", lambda error: errors.append(str(error)))
@@ -269,6 +325,23 @@ def check_failure_states(browser, base: str) -> None:
         page.unroute("**/v1/roles")
         page.locator("#retryLoad").click()
         page.wait_for_function("document.querySelector('#app').dataset.ready === 'true'")
+
+        page.locator('[data-mode="conn"]').click()
+        page.evaluate("document.fonts.ready")
+        assert_graph_fit(page)
+        style = page.add_style_tag(content="#graph svg { min-width: 960px; }")
+        try:
+            reject_graph_fit(page, "desktop graph scrolls")
+        finally:
+            style.evaluate("node => node.remove()")
+        node = page.locator("#graph [data-node]").first
+        node.evaluate("node => node.setAttribute('transform', 'translate(-960 0)')")
+        try:
+            reject_graph_fit(page, "outside visible graph")
+        finally:
+            node.evaluate("node => node.removeAttribute('transform')")
+        assert_graph_fit(page)
+        page.locator('[data-mode="list"]').click()
 
         for field in ("release_id", "schema", "data_kind"):
             def mismatch(route):
@@ -299,6 +372,47 @@ def check_failure_states(browser, base: str) -> None:
         require(page.locator("#roleHead img, #map svg").count() == 0, "API markup was injected into the DOM")
         require(page.evaluate("window.atlasInjected !== true"), "untrusted API text executed")
         page.unroute("**/v1/roles/*")
+        for as_of in ("2018-04-03", None):
+            def source_probe(route):
+                payload = route.fetch().json()
+                def dates(value):
+                    if isinstance(value, list):
+                        for child in value:
+                            dates(child)
+                    elif isinstance(value, dict):
+                        if value.get("source_kind") == "onet_ratings":
+                            value["reading"] = "Test prose says rated 2099; do not parse it."
+                            if as_of is None:
+                                value.pop("as_of", None)
+                            else:
+                                value["as_of"] = as_of
+                        else:
+                            for child in value.values():
+                                dates(child)
+                dates(payload["role"])
+                rising = next((skill for skill in payload["role"]["skill_map"]["skills"] if skill["status"] == "rising"), None)
+                if rising:
+                    kind = "hiring_lab" if any(source["source_kind"] == "onet_emerging_tasks" for source in rising["evidence"]) else "onet_emerging_tasks"
+                    rising["evidence"].append({"source": "Test independent source", "source_kind": kind,
+                        "family": "M" if kind == "hiring_lab" else "O", "timing": "coincident" if kind == "hiring_lab" else "leading",
+                        "direction": "up", "reading": "Test upward confirmation.", "as_of": None})
+                route.fulfill(json=payload)
+            page.route("**/v1/roles/*", source_probe)
+            page.reload()
+            page.wait_for_function("document.querySelector('#app').dataset.ready === 'true'")
+            expected = "lagging · rated 2018" if as_of else "lagging"
+            require(page.locator("#roleHead .tm").first.inner_text().casefold() == expected, "source date was parsed from prose")
+            record = current_record(page)
+            bar_source = record["skill_map"]["top_level_adds"]["long_run_bar"]["source"]
+            method_row = page.locator("#sourceTable tr").filter(has_text=bar_source)
+            require(method_row.locator(".tm").inner_text().casefold() == expected, "method lost the structured source year")
+            rising = next((skill for skill in record["skill_map"]["skills"] if skill["status"] == "rising"), None)
+            if rising:
+                ids = page.locator("#map .srow").evaluate_all("nodes => nodes.map(node => node.dataset.skill)")
+                page.locator("#map .srow").nth(ids.index(rising["id"])).click()
+                count = sum(source["family"] in ("O", "M") and source["direction"] == "up" for source in rising["evidence"])
+                require(count > 1 and f"{count} independent sources point up." in page.locator("#skillPanel").inner_text(), "plural copy failed")
+            page.unroute("**/v1/roles/*")
         require(not errors, "\n".join(errors))
     with browser.new_context() as context:
         page = context.new_page()

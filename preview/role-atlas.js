@@ -15,7 +15,9 @@
 
   function percentage(value) { return Math.round(value * 1000) / 10; }
   function hasOfficial(skill) { return skill.source_links.some(function (link) { return link !== "P"; }); }
-  function timingTag(timing) { return '<span class="tm tm-' + timingClasses[timing] + '">' + esc(timing) + '</span>'; }
+  function timingTag(timing, asOf) {
+    return '<span class="tm tm-' + timingClasses[timing] + '">' + esc(timing + (asOf ? " · rated " + asOf.slice(0, 4) : "")) + '</span>';
+  }
   function findData(root, key, value) {
     return Array.from(document.querySelectorAll(root + " [data-" + key + "]")).find(function (element) { return element.dataset[key] === value; });
   }
@@ -107,9 +109,9 @@
       (experimental ? '<span class="chip st-emerging">experimental</span>' : '') + '</div>' +
       (experimental ? '<p class="caveat" id="experimentalCaveat"><strong>Experimental.</strong> This emerging role has no exact official occupation match. The anchor to ' + esc(a.title) + ' is partial; levels, skills and forecasts rest mostly on postings. Expect larger changes between releases.</p>' : '') +
       '<div class="mono muted">' + esc(a.system + " " + a.code + " · " + a.title + " · fit: " + a.fit) + '</div>' +
-      '<div class="label">Core tasks from O*NET ' + (official ? timingTag(official.timing) : '') + '</div><ul class="tasks">' +
+      '<div class="label">Core tasks from O*NET ' + (official ? timingTag(official.timing, official.as_of) : '') + '</div><ul class="tasks">' +
       f.tasks.map(function (task) { return '<li>' + esc(task) + '</li>'; }).join('') + '</ul></div>' +
-      '<div style="display:grid; gap:0.8rem; align-content:start"><div class="label">Foundation · BLS ' + (projection ? timingTag(projection.timing) : '') + '</div>' +
+      '<div style="display:grid; gap:0.8rem; align-content:start"><div class="label">Foundation · BLS ' + (projection ? timingTag(projection.timing, projection.as_of) : '') + '</div>' +
       '<div class="found">' + [[f.wage, f.wageNote], [f.employment, f.employmentNote], [f.outlook, f.outlookNote]].map(function (item) {
         return '<div><span class="v">' + esc(item[0]) + '</span><span class="label">' + esc(item[1]) + '</span></div>';
       }).join('') + '</div><div class="label">Demand window ' + esc(r.window.current) + ' ' + timingTag(raw.demand_window.timing) + '</div>' +
@@ -125,7 +127,7 @@
     var confirming = original.evidence.filter(function (signal) { return (signal.family === "O" || signal.family === "M") && signal.direction === "up"; });
     var why = {
       core: "Repeated posting demand at its measured levels." + (k.official ? " An official map also lists it." : " It is not in official maps yet."),
-      rising: "Posting share is up, and " + confirming.length + " independent source(s) point up.",
+      rising: "Posting share is up, and " + confirming.length + (confirming.length === 1 ? " independent source points up." : " independent sources point up."),
       early: "A watch item: independent upward confirmation or comparable-window employer coverage is not yet sufficient.",
       fading: "Posting share is down. Official maps may still list this skill because their ratings lag."
     }[k.status];
@@ -134,7 +136,7 @@
       '<div class="chips"><span class="chip st-' + st[1] + '">' + st[0] + '</span><span class="chip src">first asked at L' + k.from + '</span></div>' +
       '<p style="font-size:0.9rem">' + esc(why) + '</p>' + (k.disputed ? '<p class="caveat"><strong>Disputed.</strong> ' + esc(k.disputed) + '</p>' : '') + '</div>' +
       '<div><div class="label">Evidence</div><ul class="sig">' + original.evidence.map(function (signal) {
-        return '<li><span class="src">' + esc(signal.source) + timingTag(signal.timing) + '</span><span>' + esc(signal.reading) + ' <span class="mono">' + esc(signal.family + " · " + signal.direction) + '</span></span></li>';
+        return '<li><span class="src">' + esc(signal.source) + timingTag(signal.timing, signal.as_of) + '</span><span>' + esc(signal.reading) + ' <span class="mono">' + esc(signal.family + " · " + signal.direction) + '</span></span></li>';
       }).join('') + '</ul></div>' +
       (forecast ? '<div class="forecast"><span class="label">Forecast · resolves ' + esc(forecast.resolves) + '</span><span><span class="p">' + percentage(forecast.probability) + '%</span> likely: ' + esc(forecast.claim) + '.</span>' +
         '<small>Base rate: ' + percentage(forecast.base_rate) + '%. Horizon: ' + forecast.horizon_quarters + ' quarters. Scored against ' + esc(forecast.scored_against) + '.' +
@@ -170,9 +172,9 @@
         else Object.values(value).forEach(collect);
       }
     }
-    Object.values(ROLES).forEach(function (item) { collect(item.raw); });
+    collect(raw);
     $("sourceTable").innerHTML = Object.values(signals).map(function (signal) {
-      return '<tr><td>' + esc(signal.source) + '</td><td>' + timingTag(signal.timing) + '</td><td>' + esc({P: "Postings", O: "Official map", M: "Market trend", context: "Context only"}[signal.family]) + '</td><td>' + esc(signal.reading) + '</td></tr>';
+      return '<tr><td>' + esc(signal.source) + '</td><td>' + timingTag(signal.timing, signal.as_of) + '</td><td>' + esc({P: "Postings", O: "Official map", M: "Market trend", context: "Context only"}[signal.family]) + '</td><td>' + esc(signal.reading) + '</td></tr>';
     }).join('');
     var layerRows = [
       ["Foundation", "baseline", "Official-map sources and occupation context.", "Long-run tasks and anchor statistics.", raw.foundation.core_tasks.length + " recorded core tasks."],
@@ -373,6 +375,14 @@
     Array.prototype.forEach.call($("edgePick").children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.edges === state.edges)); });
   }
 
+  function updateGraphScrollCue() {
+    var graph = $("graph"), scrolls = graph.scrollWidth > graph.clientWidth;
+    $("graphScrollCue").hidden = !scrolls;
+    graph.tabIndex = scrolls ? 0 : -1;
+    if (scrolls) graph.setAttribute("aria-describedby", "graphScrollCue");
+    else graph.removeAttribute("aria-describedby");
+  }
+
   function renderGraph() {
     renderGraphControls();
     var g = GRAPH[state.role], r = role(), nodes = graphNodes(), byId = {};
@@ -420,7 +430,8 @@
       var lvl = idx + 1, tip = n.label + ". " + STATUS[n.status][0] + ": " + s + "% of L" + lvl + " postings" + (top && diff ? ". Separates the top level." : "") + (n.disputed ? ". Disputed: " + n.disputed : "");
       out.push('<g class="g-n' + (top && !diff ? " dim" : "") + '" data-node="' + esc(n.id) + '" tabindex="0" role="button" aria-pressed="' + (sel === n.id) + '" aria-label="' + esc(tip) + '">');
       out.push("<title>" + esc(tip) + "</title>");
-      out.push('<circle class="g-hit" cx="' + x + '" cy="' + y + '" r="24"/>');
+      // A 60px hit box stays 44px at the SVG's 704px minimum. Offset it to include the label without overlapping the next row.
+      out.push('<rect class="g-hit" x="' + (x - 30) + '" y="' + (y - 26) + '" width="60" height="60"/>');
       out.push('<circle class="g-sel" cx="' + x + '" cy="' + y + '" r="' + (rr + 3).toFixed(1) + '"/>');
       if (top && diff) out.push('<circle class="g-ring" cx="' + x + '" cy="' + y + '" r="' + (rr + 4.5).toFixed(1) + '"/>');
       out.push('<circle class="g-dot st-' + n.state + (s > 0 ? "" : " hollow") + '" cx="' + x + '" cy="' + y + '" r="' + rr.toFixed(1) + '"/>');
@@ -430,6 +441,7 @@
     });
     out.push("</svg>");
     $("graph").innerHTML = out.join("");
+    updateGraphScrollCue();
     renderGraphPanel(nodes, byId);
   }
 
@@ -660,7 +672,7 @@
   });
   $("mapMode").addEventListener("click", function (e) {
     var b = e.target.closest("button[data-mode]"); if (!b) return;
-    state.mode = b.dataset.mode; renderMap(); persist();
+    state.mode = b.dataset.mode; renderMap(); updateGraphScrollCue(); persist();
   });
   $("map").addEventListener("click", function (e) {
     var b = e.target.closest("button[data-skill]"); if (!b) return;
@@ -680,6 +692,7 @@
     } catch (err) { selectIt(); }
   });
 
+  new ResizeObserver(updateGraphScrollCue).observe($("graph"));
   $("retryLoad").addEventListener("click", loadCatalog);
   document.addEventListener("click", function (event) {
     var button = event.target.closest("button");

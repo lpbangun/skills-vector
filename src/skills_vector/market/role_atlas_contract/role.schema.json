@@ -223,6 +223,14 @@
             "flat",
             "presence"
           ]
+        },
+        "as_of": {
+          "description": "Source rating/as-of date, when known; never inferred from reading prose.",
+          "anyOf": [
+            {"type": "string", "minLength": 4, "maxLength": 4, "pattern": "^[0-9]{4}$"},
+            {"type": "string", "minLength": 10, "maxLength": 10, "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$", "format": "date"},
+            {"type": "null"}
+          ]
         }
       },
       "required": [

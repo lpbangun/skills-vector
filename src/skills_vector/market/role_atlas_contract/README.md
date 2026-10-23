@@ -58,6 +58,12 @@ Economic Index, BLS projections/industry matrix and CareerOneStop. For example,
 O*NET ratings are lagging/O, Emerging Tasks leading/O, Hot Technologies
 coincident/M, and BLS projections long-term/context.
 
+Signals optionally carry `as_of`: a four-digit year or a valid ISO `YYYY-MM-DD`
+date (null/omission means unknown). The validator checks calendar dates. Readers
+render its year in source timing tags, never extracting it from `reading` prose.
+The fixtures use the frozen snapshot's O*NET rating years for foundation, skill
+evidence and the long-run bar; other source dates remain unknown.
+
 Window cadence is a demand-window config value, defaulting to quarterly in the
 Python model and fixtures; monthly is supported. The horizon is always four
 quarters (twelve months), and resolve dates are checked against creation dates.
