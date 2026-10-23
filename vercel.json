@@ -7,7 +7,7 @@
   "cleanUrls": true,
   "functions": {
     "api/index.py": {
-      "includeFiles": "{preview/release/**,src/skills_vector/**}",
+      "includeFiles": "{preview/release/**,src/skills_vector/**,research/role-atlas/**}",
       "maxDuration": 15
     }
   },

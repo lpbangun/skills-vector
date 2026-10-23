@@ -1,0 +1,1075 @@
+{
+  "schema": "skills-vector.role/2",
+  "id": "role.account-executive",
+  "label": "Account Executive",
+  "status": "established",
+  "publication": "standard",
+  "data_kind": "research",
+  "release_id": "role_research_c5c1bf7bde401bdd",
+  "aliases": [
+    "account executive",
+    "sales executive",
+    "ae",
+    "closing sales"
+  ],
+  "anchors": [
+    {
+      "system": "O*NET-SOC",
+      "code": "41-4012.00",
+      "title": "Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products",
+      "fit": "partial"
+    }
+  ],
+  "foundation": {
+    "median_pay": "Not recorded",
+    "pay_note": "No wage series imported",
+    "employment": "Not recorded",
+    "employment_note": "No headcount series imported",
+    "outlook_10y": "Not recorded",
+    "outlook_note": "No projection series imported",
+    "core_tasks": [
+      "Negotiate details of contracts and payments.",
+      "Identify prospective customers by using business directories, following leads from existing clients, participating in organizations and clubs, and attending trade shows and conferences.",
+      "Contact regular and prospective customers to demonstrate products, explain product features, and solicit orders.",
+      "Perform administrative duties, such as preparing sales budgets and reports, keeping sales records, and filing expense account reports."
+    ],
+    "sources": [
+      {
+        "source": "O*NET published task excerpt",
+        "source_kind": "onet_ratings",
+        "family": "O",
+        "timing": "lagging",
+        "reading": "https://www.onetonline.org/link/summary/41-4012.00; task-level anchor only; rating date is not established by retrieval date.",
+        "direction": "presence",
+        "as_of": null
+      }
+    ]
+  },
+  "demand_window": {
+    "id": "2026-Q4",
+    "compared_to": null,
+    "postings": 5,
+    "employers": 5,
+    "max_employer_share": 0.2,
+    "timing": "coincident",
+    "window_length": "quarterly"
+  },
+  "ladder": {
+    "scale": "shared L1-L5",
+    "track": "individual_contributor",
+    "linked_roles": [],
+    "levels": [
+      {
+        "id": "account-executive.L1",
+        "level": 1,
+        "name": "Sales L1",
+        "typical_titles": [],
+        "years_wording": "Not recorded",
+        "scope": "Declared algorithmic scope rubric: Guided. Not a population hiring standard.",
+        "owns": "No assigned scope/ownership evidence in this sample.",
+        "step_up": "Scope-rubric distinction only; longitudinal progression and promotion requirements are not established.",
+        "evidence": {
+          "postings": 0,
+          "employers": 0,
+          "window": "2026-Q4",
+          "timing": "coincident"
+        },
+        "expectations": []
+      },
+      {
+        "id": "account-executive.L2",
+        "level": 2,
+        "name": "Sales L2",
+        "typical_titles": [],
+        "years_wording": "Not recorded",
+        "scope": "Declared algorithmic scope rubric: Independent. Not a population hiring standard.",
+        "owns": "No assigned scope/ownership evidence in this sample.",
+        "step_up": "Scope-rubric distinction only; longitudinal progression and promotion requirements are not established.",
+        "evidence": {
+          "postings": 0,
+          "employers": 0,
+          "window": "2026-Q4",
+          "timing": "coincident"
+        },
+        "expectations": []
+      },
+      {
+        "id": "account-executive.L3",
+        "level": 3,
+        "name": "Sales L3",
+        "typical_titles": [],
+        "years_wording": "Not recorded",
+        "scope": "Declared algorithmic scope rubric: Complex delivery. Not a population hiring standard.",
+        "owns": "No assigned scope/ownership evidence in this sample.",
+        "step_up": "Scope-rubric distinction only; longitudinal progression and promotion requirements are not established.",
+        "evidence": {
+          "postings": 0,
+          "employers": 0,
+          "window": "2026-Q4",
+          "timing": "coincident"
+        },
+        "expectations": []
+      },
+      {
+        "id": "account-executive.L4",
+        "level": 4,
+        "name": "Sales L4",
+        "typical_titles": [],
+        "years_wording": "Not recorded",
+        "scope": "Declared algorithmic scope rubric: Strategic. Not a population hiring standard.",
+        "owns": "No assigned scope/ownership evidence in this sample.",
+        "step_up": "Scope-rubric distinction only; longitudinal progression and promotion requirements are not established.",
+        "evidence": {
+          "postings": 0,
+          "employers": 0,
+          "window": "2026-Q4",
+          "timing": "coincident"
+        },
+        "expectations": []
+      },
+      {
+        "id": "account-executive.L5",
+        "level": 5,
+        "name": "Sales L5",
+        "typical_titles": [],
+        "years_wording": "Not recorded",
+        "scope": "Declared algorithmic scope rubric: Organization-wide. Not a population hiring standard.",
+        "owns": "No assigned scope/ownership evidence in this sample.",
+        "step_up": "Scope-rubric distinction only; longitudinal progression and promotion requirements are not established.",
+        "evidence": {
+          "postings": 0,
+          "employers": 0,
+          "window": "2026-Q4",
+          "timing": "coincident"
+        },
+        "expectations": []
+      }
+    ]
+  },
+  "skill_map": {
+    "skills": [
+      {
+        "id": "skill.onet.41-4012.00.local-task.demonstration",
+        "short_label": "Product demos",
+        "label": "Product demos",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "source_links": [
+          "P",
+          "O"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          },
+          {
+            "source": "O*NET local task anchor",
+            "source_kind": "onet_ratings",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "onet:41-4012.00:local-task:demonstration; local natural key, not an official task database ID. https://www.onetonline.org/link/summary/41-4012.00; published source src_3d355c8e4edbd6e5043e. Contact regular and prospective customers to demonstrate products, explain product features, and solicit orders.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.account-executive.skill.onet.41-4012.00.local-task.demonstration",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.onet.41-4012.00.local-task.negotiation",
+        "short_label": "Negotiation",
+        "label": "Negotiation",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "source_links": [
+          "P",
+          "O"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          },
+          {
+            "source": "O*NET local task anchor",
+            "source_kind": "onet_ratings",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "onet:41-4012.00:local-task:negotiation; local natural key, not an official task database ID. https://www.onetonline.org/link/summary/41-4012.00; published source src_3d355c8e4edbd6e5043e. Negotiate details of contracts and payments.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.account-executive.skill.onet.41-4012.00.local-task.negotiation",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.onet.41-4012.00.local-task.prospecting",
+        "short_label": "Prospecting",
+        "label": "Prospecting",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "source_links": [
+          "P",
+          "O"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.4,
+            "employers": 2,
+            "max_employer_share": 0.5,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "2/5 admitted role postings record this node in their published expectation excerpts; 2 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          },
+          {
+            "source": "O*NET local task anchor",
+            "source_kind": "onet_ratings",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "onet:41-4012.00:local-task:prospecting; local natural key, not an official task database ID. https://www.onetonline.org/link/summary/41-4012.00; published source src_3d355c8e4edbd6e5043e. Identify prospective customers by using business directories, following leads from existing clients, participating in organizations and clubs, and attending trade shows and conferences.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.account-executive.skill.onet.41-4012.00.local-task.prospecting",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.4,
+          "base_rate": 0.4,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.onet.41-4012.00.local-task.records",
+        "short_label": "Sales records",
+        "label": "Sales records",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "source_links": [
+          "P",
+          "O"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.4,
+            "employers": 2,
+            "max_employer_share": 0.5,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "2/5 admitted role postings record this node in their published expectation excerpts; 2 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          },
+          {
+            "source": "O*NET local task anchor",
+            "source_kind": "onet_ratings",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "onet:41-4012.00:local-task:records; local natural key, not an official task database ID. https://www.onetonline.org/link/summary/41-4012.00; published source src_3d355c8e4edbd6e5043e. Perform administrative duties, such as preparing sales budgets and reports, keeping sales records, and filing expense account reports.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.account-executive.skill.onet.41-4012.00.local-task.records",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.4,
+          "base_rate": 0.4,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.6119381771c8dfac",
+        "short_label": "Experience in Sal…",
+        "label": "Experience in Salesforce is a plus",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.account-executive.skill.posting.6119381771c8dfac",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.6a1ecf85fcb37bb0",
+        "short_label": "Analytical abilit…",
+        "label": "Analytical ability to manage complex pricing and cost considerations",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.account-executive.skill.posting.6a1ecf85fcb37bb0",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.b3ec611af7aa51e0",
+        "short_label": "Highly effective…",
+        "label": "Highly effective communication skills",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.account-executive.skill.posting.b3ec611af7aa51e0",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.bbb2e34dbe68a903",
+        "short_label": "Ability to unders…",
+        "label": "Ability to understand complex technical ecosystems and build great relationships with technical customers",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.account-executive.skill.posting.bbb2e34dbe68a903",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.d48a1e646d7ae7fa",
+        "short_label": "Ability to articu…",
+        "label": "Ability to articulate the business value of complex enterprise technology",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.account-executive.skill.posting.d48a1e646d7ae7fa",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.dd1ffdcb4b08bac8",
+        "short_label": "Strong communicat…",
+        "label": "Strong communication, organizational and presentation skills with the ability to sell and negotiate at all decision-making levels",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.account-executive.skill.posting.dd1ffdcb4b08bac8",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.f40c8a76af69e6f7",
+        "short_label": "Ability to drive…",
+        "label": "Ability to drive and close upsell opportunities for additional Stripe products in long-term, consultative engagements",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.account-executive.skill.posting.f40c8a76af69e6f7",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      }
+    ],
+    "asked_together": [],
+    "builds_on": [],
+    "top_level_adds": {
+      "top_level": 5,
+      "core_level": 3,
+      "skills": [],
+      "long_run_bar": {
+        "source": "O*NET local task anchor",
+        "source_kind": "onet_ratings",
+        "family": "O",
+        "timing": "lagging",
+        "reading": "Local task alignment is presence only; no numeric proficiency rating or level rating was supplied.",
+        "direction": "presence",
+        "as_of": null
+      }
+    }
+  },
+  "industries": [
+    {
+      "naics": "11",
+      "label": "Agriculture, forestry, fishing and hunting",
+      "naics_title": "Agriculture, forestry, fishing and hunting",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "21",
+      "label": "Mining, quarrying, and oil and gas extraction",
+      "naics_title": "Mining, quarrying, and oil and gas extraction",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "22",
+      "label": "Utilities",
+      "naics_title": "Utilities",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "23",
+      "label": "Construction",
+      "naics_title": "Construction",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "31-33",
+      "label": "Manufacturing",
+      "naics_title": "Manufacturing",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "42",
+      "label": "Wholesale trade",
+      "naics_title": "Wholesale trade",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "44-45",
+      "label": "Retail trade",
+      "naics_title": "Retail trade",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "48-49",
+      "label": "Transportation and warehousing",
+      "naics_title": "Transportation and warehousing",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "51",
+      "label": "Information",
+      "naics_title": "Information",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "52",
+      "label": "Finance and insurance",
+      "naics_title": "Finance and insurance",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "53",
+      "label": "Real estate and rental and leasing",
+      "naics_title": "Real estate and rental and leasing",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "54",
+      "label": "Professional, scientific, and technical services",
+      "naics_title": "Professional, scientific, and technical services",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "55",
+      "label": "Management of companies and enterprises",
+      "naics_title": "Management of companies and enterprises",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "56",
+      "label": "Administrative, support and waste management services",
+      "naics_title": "Administrative, support and waste management services",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "61",
+      "label": "Educational services",
+      "naics_title": "Educational services",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "62",
+      "label": "Health care and social assistance",
+      "naics_title": "Health care and social assistance",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "71",
+      "label": "Arts, entertainment and recreation",
+      "naics_title": "Arts, entertainment and recreation",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "72",
+      "label": "Accommodation and food services",
+      "naics_title": "Accommodation and food services",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "81",
+      "label": "Other services",
+      "naics_title": "Other services",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "92",
+      "label": "Public administration",
+      "naics_title": "Public administration",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    }
+  ],
+  "observations": [],
+  "limits": [
+    "Research projection of published release rel_20261002_cbdc6e8d5c4f; source counts are a bounded admitted sample, not market prevalence.",
+    "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand; baseline forecasts assume the same admission and excerpt-selection process.",
+    "One selected snapshot only. Retrieval dates bin observed mentions; repeated releases are not independent windows. No comparable temporal history is asserted, so all current statuses are early.",
+    "Null first_level means no observed assigned level; null share_by_level means no assigned denominator, not zero demand. Measurement strata explicitly include unassigned postings.",
+    "Level names are a declared algorithmic scope rubric, not observed role progression. Titles and tenure never assign levels. Missing level expectations remain empty; no carry-over or first-introduction claim is inferred.",
+    "O*NET task excerpts are attributed to O*NET OnLine, U.S. Department of Labor, CC BY 4.0, as recorded in the published sources; agent-authored alignments are not official or human-adjudicated equivalence.",
+    "Backbone local-task keys identify exact O*NET task text within its SOC summary, not official task database element IDs; unmapped phrases remain posting-led literal identities.",
+    "Unverified employer sectors are excluded, not guessed. Sector profiles need 30 postings and 8 employers. Official industry shares, wages and credential catalogs were not imported; any credential/knowledge text is a literal posting mention.",
+    "Forecast probabilities equal current role-wide mention fractions as an explicit uncalibrated persistence baseline, not researched trend probabilities. No temporal base-rate archive, ledger, resolution or backtest exists (M5 pending)."
+  ]
+}

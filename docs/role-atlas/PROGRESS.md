@@ -545,3 +545,215 @@ including a graph-detail crop. Confirmed **all five columns**, including L5
 
 No new dependency, paid/model calls, secrets or immutable-release edits. No known
 remaining blocker from this review. Stop here; M4 has not started.
+
+## M4 — Offline evidence pipeline
+
+M3-r2 approval and its M4 carry-over were read. Research records have **no fixture
+`presentation`**; the fallback official-map-linked/posting-led bands were exercised
+against the generated research selection, not just against fixtures.
+
+### Built and scope
+
+- `market/role_pipeline.py`: deterministic operator module; no network/provider/
+  LLM imports. Reads an indexed published snapshot, verifies the publisher's
+  canonical manifest hash, included extract hashes and exact source-bound quotes,
+  and validates mapping provenance. Defaults to quarterly retrieval-date bins;
+  monthly is configurable. Selects the latest observed bin in that snapshot,
+  explicitly auditing other-bin exclusions, with no invented comparable history.
+- `market/role_atlas_mappings/{employers,skills}.json` and README: all 13 employers
+  have source notes and are **unverified**, with null NAICS. Local excerpts do not
+  verify primary-employer sectors; no assignment from names, customers or job
+  functions. Such rows contribute to no sector. The 21 phrase alignments target
+  11 exact, hash-checked local O*NET task excerpts. Unmapped skill phrases retain
+  posting-led literal identities, not guessed ontology matches.
+- Scope/ownership triage uses source-verified duty/capability quotes. Titles and
+  tenure are retained as weak audit fields only, never votes. Past-experience
+  wording is not current ownership. Conflicting strong levels and management
+  scope remain `unassigned`. All evidence, reasons and phrase/backbone links are
+  retained per posting in the audit. Multiple mentions count once per posting/node.
+- Status derivation and all existing floors are reused unchanged. Observed pair
+  lift uses actual marginals/co-mentions/employers; every dropped pair records its
+  failing floors. Sector profiles require 30 postings and 8 employers from
+  **verified** mappings; literal duties/credential/knowledge mentions are emitted
+  only after that floor, without invented issuers or official catalog matches.
+- Output: `research/role-atlas/m4/roles/*.json` plus sibling `audit.json`, all four
+  records `data_kind: research`, validated by `RoleRecord`. Output id:
+  **`role_research_c5c1bf7bde401bdd`**. Inputs:
+  **`rel_20261002_cbdc6e8d5c4f`**, retrieval window **2026-Q4**. Id hashes input,
+  mapping, recipe and contract/schema bytes plus cadence; no wall clock or output
+  path. Different/unrelated output and input-tree/symlink overlaps are rejected.
+- `tests/test_role_atlas_pipeline.py`: 12 tests, including byte-identical output
+  in different directories and identical reruns, exact real-data counts, all edge/
+  sector floor boundaries, nullable round trips/rejections, weak/strong/conflicting
+  triage, bad hashes/quotes/mappings/paths, input protection, and real SDK REST/MCP
+  parity over the research selection. No heavy dependency added.
+- Guide/package metadata updated. The Vercel function includes the new research
+  directory for operator-explicit selection; no automatic catalog selection,
+  source retrieval, deployment or immutable-release publication was added.
+
+### Necessary contract/reader changes (G3 scope note)
+
+The fixture-era contract could not represent an unassigned skill, missing level
+sample, or an empty level without inventing evidence. The same role/2 schema and
+M1 validator now encode these absences: nullable `first_level`, nullable per-level
+shares, explicit `unassigned` measurement stratum, empty title/expectation lists,
+nullable `introduced_at`, and an empty skill list when none is recorded. Research
+validation rejects numeric shares for absent denominators, missing shares for
+observed denominators, and an asserted first level without an observed mention.
+All prior M1 tests remain; no status, forecast, edge or sector floor was relaxed.
+Existing fixture records were not rewritten. Consumers must support these explicit
+unknowns rather than coercing them to L1 or zero.
+
+The reader shows a separate **Unassigned** graph column (not L6), `?`/dashes for
+missing samples, and insufficient-evidence gap/level/comparison states. It does
+not claim BLS series or CareerOneStop imports where none exists. Unscored
+persistence estimates are labeled as such. The checker accepts real missing data
+while still asserting API values, graph fit, hit targets, notices, exact JSON,
+privacy, and no fixture presentation on research responses.
+
+### Per-role output counts
+
+Level vectors are **L1 / L2 / L3 / L4 / L5 / unassigned**. Skill vectors are
+**core / rising / early / fading**. The 20 sectors are a predeclared broad NAICS
+vocabulary, not 20 observed industries. No employer-sector assignment was verified.
+Only pairs actually observed together are edge candidates. Floor-failure counts
+can overlap: one dropped pair may fail both the posting and employer floors.
+
+#### Account Executive
+
+| Metric | Count |
+| --- | --- |
+| Postings in | 5 |
+| Postings per level, including unassigned | 0 / 0 / 0 / 0 / 0 / 5 |
+| Skills by status | 0 / 0 / 11 / 0 |
+| Edges kept / dropped | 0 / 12 |
+| Dropped: lift / postings / employers floor | 1 / 12 / 12 |
+| Sectors with / without profiles | 0 / 20 |
+
+#### Forward Deployed Engineer
+
+| Metric | Count |
+| --- | --- |
+| Postings in | 5 |
+| Postings per level, including unassigned | 0 / 0 / 0 / 2 / 0 / 3 |
+| Skills by status | 0 / 0 / 10 / 0 |
+| Edges kept / dropped | 0 / 14 |
+| Dropped: lift / postings / employers floor | 0 / 14 / 14 |
+| Sectors with / without profiles | 0 / 20 |
+
+#### Growth Manager
+
+| Metric | Count |
+| --- | --- |
+| Postings in | 4 |
+| Postings per level, including unassigned | 0 / 1 / 0 / 1 / 0 / 2 |
+| Skills by status | 0 / 0 / 5 / 0 |
+| Edges kept / dropped | 0 / 1 |
+| Dropped: lift / postings / employers floor | 0 / 1 / 1 |
+| Sectors with / without profiles | 0 / 20 |
+
+#### HR Generalist
+
+| Metric | Count |
+| --- | --- |
+| Postings in | 5 |
+| Postings per level, including unassigned | 0 / 0 / 0 / 0 / 0 / 5 |
+| Skills by status | 0 / 0 / 7 / 0 |
+| Edges kept / dropped | 0 / 5 |
+| Dropped: lift / postings / employers floor | 0 / 5 / 5 |
+| Sectors with / without profiles | 0 / 20 |
+
+Totals: **19 postings, 15 unassigned, 33 early skills, 0 kept/32 dropped observed
+pairs, 0 populated/80 null sector profiles**. All input postings fall in the
+current bin, so no older-bin exclusion affects these totals. This is honestly
+thin output, not a market/trend finding.
+
+### Exact verification commands and real results
+
+All commands below exited 0:
+
+```sh
+.venv/bin/python -m skills_vector.market.role_pipeline --output research/role-atlas/m4
+.venv/bin/python -m skills_vector.market.role_pipeline --output /tmp/role-atlas-m4-rebuild
+diff -qr research/role-atlas/m4 /tmp/role-atlas-m4-rebuild
+.venv/bin/python -m unittest discover -s tests -p test_role_atlas_pipeline.py
+.venv/bin/python -m unittest discover -s tests
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m4-final --role-atlas-root research/role-atlas/m4/roles
+uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m4-fixture-regression --role-atlas-fixtures
+bash scripts/assemble_vercel.sh
+uv lock --check --offline
+node --check preview/role-atlas.js
+.venv/bin/python -m compileall -q src/skills_vector/market/role_pipeline.py src/skills_vector/market/role_atlas.py scripts/check_role_atlas.py tests/test_role_atlas_pipeline.py
+git diff --check
+git diff HEAD --exit-code -- preview/release/
+```
+
+- Producer: four validated role records and one audit. `diff -qr`: **no differences**
+  for all five files. The determinism test also checks identical reruns and moves
+  output locations; research API/SDK parity and release-pinned skill citations pass.
+- Focused pipeline suite: **12 tests, OK**. Full suite: **197 tests in 57.241s,
+  OK (skipped=2)**; the same two pre-existing skips, none newly skipped.
+- Research browser: **1280 light, 1280 dark, 390 light**, all four roles, every tab
+  plus Connections: **24 screenshots/case, 72 total**, all `errors: []`.
+  Explicit Chromium executable is
+  `~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome`. Package resolution
+  was forced offline for the final research run; page traffic is local-only.
+- Fixture browser regression: same three cases, **18 screenshots/case, 54 total**,
+  all `errors: []`. Legacy preview and existing API/contract tests remain green.
+- Assembly: **551 files**; lock check: **61 packages resolved**. JS syntax, Python
+  compilation and diff checks clean.
+
+Published-tree integrity was checked against both pre-task SHA-256 receipts and
+committed Git blobs. This reproducible Git-blob check also exited 0:
+
+```sh
+.venv/bin/python - <<'PY'
+import hashlib, pathlib, subprocess
+rows=subprocess.check_output(['git','ls-tree','-r','HEAD','--','preview/release/'],text=True).splitlines()
+expected={}
+for row in rows:
+    metadata,name=row.split('\t',1)
+    expected[name]=metadata.split()[2]
+    data=pathlib.Path(name).read_bytes()
+    assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==expected[name],name
+actual={str(p) for p in pathlib.Path('preview/release').rglob('*') if p.is_file()}
+assert actual==set(expected)
+print(f'{len(expected)} published files match committed Git blobs, including current.json')
+PY
+```
+
+Real output: **533 published files match committed Git blobs, including
+current.json**. No original published file was modified or added.
+
+Opened final research screenshots: AE Connections at 1280 light, FDE Connections
+at 1280 dark, HR gap at 390 light, and Growth levels at 1280 light. Confirmed the
+fallback source bands, visible separate unresolved assignments, full desktop fit,
+missing-sample markers, unpopulated level/gap states and thin-evidence counts.
+Artifacts: `/tmp/role-atlas-m4-final/` and its `results.json`.
+
+### Deviations, limits and open risks
+
+- The published excerpts do not supply official O*NET task database element IDs.
+  Backbone ids are explicit local natural keys anchored to official SOC codes and
+  exact O*NET task text, **not invented official element IDs**. No local ESCO
+  snapshot exists, so no ESCO equivalence is asserted. Mapping alignments and
+  scope rubrics are agent-authored, not human-adjudicated equivalence or validated
+  career progression. This inherits the published sample/admission bounds.
+- This build uses one selected snapshot, not eight repeated releases as eight
+  independent periods. Retrieval bins are not complete quarterly market cohorts.
+  No comparable past window or rising/fading/core evidence is manufactured.
+- All 13 employer rows remain unverified. Primary-employer classification needs
+  better local evidence before profiles can clear even the mapping gate; the
+  actual samples also fall far below 30 postings/8 employers.
+- Frequencies count recorded published expectation excerpts, **not exhaustive
+  full posting text**. Non-matches are not verified absence of demand. Baselines
+  explicitly assume the same admission and excerpt-selection process.
+- M1 requires a four-quarter forecast for every non-core skill. The emitted
+  **uncalibrated sample-persistence baseline** sets probability and base_rate to
+  the observed current mention fraction. It is a declared assumption, not a
+  measured transition base rate, learned trend forecast, market probability or
+  calibrated result. Numeric official wages/headcounts/projections/ratings are
+  not copied from fixtures. No ledger, importer, resolution or backtest was built.
+
+No paid/model calls, secrets, input-release writes or unrelated refactors. M4 is
+complete for review. Stop here; **M5 has not started**.

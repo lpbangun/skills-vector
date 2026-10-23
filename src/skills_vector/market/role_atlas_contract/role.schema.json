@@ -409,7 +409,8 @@
             },
             {
               "const": "earlier"
-            }
+            },
+            {"type": "null"}
           ]
         },
         "basis": {
@@ -459,7 +460,7 @@
             "minLength": 1,
             "pattern": "\\S"
           },
-          "minItems": 1
+          "minItems": 0
         },
         "years_wording": {
           "type": "string",
@@ -489,7 +490,7 @@
           "items": {
             "$ref": "#/$defs/Expectation"
           },
-          "minItems": 1
+          "minItems": 0
         }
       },
       "required": [
@@ -597,11 +598,13 @@
           "pattern": "\\S"
         },
         "levels": {
+          "description": "Observed sampling strata; unassigned retains postings whose level could not be established.",
           "type": "array",
           "items": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 5
+            "anyOf": [
+              {"type": "integer", "minimum": 1, "maximum": 5},
+              {"const": "unassigned"}
+            ]
           },
           "minItems": 1,
           "uniqueItems": true
@@ -702,14 +705,16 @@
           ]
         },
         "first_level": {
-          "type": "integer",
+          "description": "First observed assigned level; null when no positive assigned-level observation exists.",
+          "type": ["integer", "null"],
           "minimum": 1,
           "maximum": 5
         },
         "share_by_level": {
+          "description": "Percentages; null means no assigned denominator, never zero demand.",
           "type": "array",
           "items": {
-            "type": "number",
+            "type": ["number", "null"],
             "minimum": 0,
             "maximum": 100
           },
@@ -905,7 +910,7 @@
           "items": {
             "$ref": "#/$defs/Skill"
           },
-          "minItems": 1
+          "minItems": 0
         },
         "asked_together": {
           "type": "array",

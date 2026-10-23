@@ -1,0 +1,1063 @@
+{
+  "schema": "skills-vector.role/2",
+  "id": "role.forward-deployed-engineer",
+  "label": "Forward Deployed Engineer",
+  "status": "emerging",
+  "publication": "experimental",
+  "data_kind": "research",
+  "release_id": "role_research_c5c1bf7bde401bdd",
+  "aliases": [
+    "FDE",
+    "forward-deployed engineer",
+    "forward deployed engineer",
+    "forward-deployed software engineer"
+  ],
+  "anchors": [
+    {
+      "system": "O*NET-SOC",
+      "code": "15-1252.00",
+      "title": "Software Developers",
+      "fit": "partial"
+    }
+  ],
+  "foundation": {
+    "median_pay": "Not recorded",
+    "pay_note": "No wage series imported",
+    "employment": "Not recorded",
+    "employment_note": "No headcount series imported",
+    "outlook_10y": "Not recorded",
+    "outlook_note": "No projection series imported",
+    "core_tasks": [
+      "Design, develop and modify software systems, using scientific analysis and mathematical models to predict and measure outcomes and consequences of design.",
+      "Analyze user needs and software requirements to determine feasibility of design within time and cost constraints."
+    ],
+    "sources": [
+      {
+        "source": "O*NET published task excerpt",
+        "source_kind": "onet_ratings",
+        "family": "O",
+        "timing": "lagging",
+        "reading": "https://www.onetonline.org/link/summary/15-1252.00; task-level anchor only; rating date is not established by retrieval date.",
+        "direction": "presence",
+        "as_of": null
+      }
+    ]
+  },
+  "demand_window": {
+    "id": "2026-Q4",
+    "compared_to": null,
+    "postings": 5,
+    "employers": 5,
+    "max_employer_share": 0.2,
+    "timing": "coincident",
+    "window_length": "quarterly"
+  },
+  "ladder": {
+    "scale": "shared L1-L5",
+    "track": "individual_contributor",
+    "linked_roles": [],
+    "levels": [
+      {
+        "id": "forward-deployed-engineer.L1",
+        "level": 1,
+        "name": "Engineering L1",
+        "typical_titles": [],
+        "years_wording": "Not recorded",
+        "scope": "Declared algorithmic scope rubric: Guided. Not a population hiring standard.",
+        "owns": "No assigned scope/ownership evidence in this sample.",
+        "step_up": "Scope-rubric distinction only; longitudinal progression and promotion requirements are not established.",
+        "evidence": {
+          "postings": 0,
+          "employers": 0,
+          "window": "2026-Q4",
+          "timing": "coincident"
+        },
+        "expectations": []
+      },
+      {
+        "id": "forward-deployed-engineer.L2",
+        "level": 2,
+        "name": "Engineering L2",
+        "typical_titles": [],
+        "years_wording": "Not recorded",
+        "scope": "Declared algorithmic scope rubric: Independent. Not a population hiring standard.",
+        "owns": "No assigned scope/ownership evidence in this sample.",
+        "step_up": "Scope-rubric distinction only; longitudinal progression and promotion requirements are not established.",
+        "evidence": {
+          "postings": 0,
+          "employers": 0,
+          "window": "2026-Q4",
+          "timing": "coincident"
+        },
+        "expectations": []
+      },
+      {
+        "id": "forward-deployed-engineer.L3",
+        "level": 3,
+        "name": "Engineering L3",
+        "typical_titles": [],
+        "years_wording": "Not recorded",
+        "scope": "Declared algorithmic scope rubric: Complex delivery. Not a population hiring standard.",
+        "owns": "No assigned scope/ownership evidence in this sample.",
+        "step_up": "Scope-rubric distinction only; longitudinal progression and promotion requirements are not established.",
+        "evidence": {
+          "postings": 0,
+          "employers": 0,
+          "window": "2026-Q4",
+          "timing": "coincident"
+        },
+        "expectations": []
+      },
+      {
+        "id": "forward-deployed-engineer.L4",
+        "level": 4,
+        "name": "Engineering L4",
+        "typical_titles": [
+          "Forward Deployed Engineer",
+          "Sr. Forward Deployed Engineer (FDE) - Public Sector"
+        ],
+        "years_wording": "6+ years experience in data engineering, data platforms & analytics, or software engineering",
+        "scope": "Declared algorithmic scope rubric: Strategic. Not a population hiring standard.",
+        "owns": "Comfort owning ambiguous technical problems end to end; Comfort owning ambiguous technical problems end to end, identifying patterns across customer engagements, and turning field learning into reusable product improvements.; You will own the architecture, lead design decisions, and implement end-to-end systems spanning data engineering, AI, and application development.",
+        "step_up": "Scope-rubric distinction only; longitudinal progression and promotion requirements are not established.",
+        "evidence": {
+          "postings": 2,
+          "employers": 2,
+          "window": "2026-Q4",
+          "timing": "coincident"
+        },
+        "expectations": [
+          {
+            "id": "exp.forward-deployed-engineer.01495a684f89a021",
+            "label": "Familiarity with CI/CD for produc",
+            "introduced_at": null,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.forward-deployed-engineer.01495a684f89a021@role_research_c5c1bf7bde401bdd",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.forward-deployed-engineer.80267ea3383f6180",
+            "label": "writing code, config, agent skills, and guideline files against their systems and ours",
+            "introduced_at": null,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.forward-deployed-engineer.80267ea3383f6180@role_research_c5c1bf7bde401bdd",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.forward-deployed-engineer.c860bb9cee9fa1bd",
+            "label": "Working knowledge of two or more common Cloud ecosystems (AWS, Azure, GCP)",
+            "introduced_at": null,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.forward-deployed-engineer.c860bb9cee9fa1bd@role_research_c5c1bf7bde401bdd",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.forward-deployed-engineer.de658da5b70d1280",
+            "label": "Run technical discovery: understand a customer's dev environment, toolchain, and constraints",
+            "introduced_at": null,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.forward-deployed-engineer.de658da5b70d1280@role_research_c5c1bf7bde401bdd",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.forward-deployed-engineer.eeb7c2cf10e564ae",
+            "label": "Fluency in writing code in Python, Scala, JavaScript/TypeScript, and modern frameworks",
+            "introduced_at": null,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.forward-deployed-engineer.eeb7c2cf10e564ae@role_research_c5c1bf7bde401bdd",
+            "timing": "coincident"
+          },
+          {
+            "id": "exp.forward-deployed-engineer.fb7ae13ac3fb0bfb",
+            "label": "Comfort owning ambiguous technical problems end to end",
+            "introduced_at": null,
+            "basis": "advertised_demand",
+            "cite": "/v1/expectations/exp.forward-deployed-engineer.fb7ae13ac3fb0bfb@role_research_c5c1bf7bde401bdd",
+            "timing": "coincident"
+          }
+        ]
+      },
+      {
+        "id": "forward-deployed-engineer.L5",
+        "level": 5,
+        "name": "Engineering L5",
+        "typical_titles": [],
+        "years_wording": "Not recorded",
+        "scope": "Declared algorithmic scope rubric: Organization-wide. Not a population hiring standard.",
+        "owns": "No assigned scope/ownership evidence in this sample.",
+        "step_up": "Scope-rubric distinction only; longitudinal progression and promotion requirements are not established.",
+        "evidence": {
+          "postings": 0,
+          "employers": 0,
+          "window": "2026-Q4",
+          "timing": "coincident"
+        },
+        "expectations": []
+      }
+    ]
+  },
+  "skill_map": {
+    "skills": [
+      {
+        "id": "skill.onet.15-1252.00.local-task.discovery",
+        "short_label": "Customer discovery",
+        "label": "Customer discovery",
+        "status": "early",
+        "first_level": 4,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          50.0,
+          null
+        ],
+        "source_links": [
+          "P",
+          "O"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.4,
+            "employers": 2,
+            "max_employer_share": 0.5,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              4,
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "2/5 admitted role postings record this node in their published expectation excerpts; 2 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          },
+          {
+            "source": "O*NET local task anchor",
+            "source_kind": "onet_ratings",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "onet:15-1252.00:local-task:discovery; local natural key, not an official task database ID. https://www.onetonline.org/link/summary/15-1252.00; published source src_e933e580d83319da7e23. Analyze user needs and software requirements to determine feasibility of design within time and cost constraints.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.forward-deployed-engineer.skill.onet.15-1252.00.local-task.discovery",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.4,
+          "base_rate": 0.4,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.onet.15-1252.00.local-task.software",
+        "short_label": "Software changes",
+        "label": "Software changes",
+        "status": "early",
+        "first_level": 4,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          100.0,
+          null
+        ],
+        "source_links": [
+          "P",
+          "O"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.6,
+            "employers": 3,
+            "max_employer_share": 0.3333333333333333,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              4,
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "3/5 admitted role postings record this node in their published expectation excerpts; 3 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          },
+          {
+            "source": "O*NET local task anchor",
+            "source_kind": "onet_ratings",
+            "family": "O",
+            "timing": "lagging",
+            "reading": "onet:15-1252.00:local-task:software; local natural key, not an official task database ID. https://www.onetonline.org/link/summary/15-1252.00; published source src_e933e580d83319da7e23. Design, develop and modify software systems, using scientific analysis and mathematical models to predict and measure outcomes and consequences of design.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.forward-deployed-engineer.skill.onet.15-1252.00.local-task.software",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.6,
+          "base_rate": 0.6,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.0e821edd5c69e5a1",
+        "short_label": "work directly wit…",
+        "label": "work directly with customers",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          0.0,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              4,
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.forward-deployed-engineer.skill.posting.0e821edd5c69e5a1",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.288a95450eb4e7f0",
+        "short_label": "deeply technical,…",
+        "label": "deeply technical, customer-facing",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          0.0,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              4,
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.forward-deployed-engineer.skill.posting.288a95450eb4e7f0",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.632a7fc335c2e63e",
+        "short_label": "Comfort owning am…",
+        "label": "Comfort owning ambiguous technical problems end to end",
+        "status": "early",
+        "first_level": 4,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          50.0,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              4,
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.forward-deployed-engineer.skill.posting.632a7fc335c2e63e",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.698a76d2c0a8aa7e",
+        "short_label": "Familiarity with…",
+        "label": "Familiarity with CI/CD for produc",
+        "status": "early",
+        "first_level": 4,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          50.0,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              4,
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.forward-deployed-engineer.skill.posting.698a76d2c0a8aa7e",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.a9bbcdade7a3ccde",
+        "short_label": "move quickly from…",
+        "label": "move quickly from insight to implementation",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          0.0,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              4,
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.forward-deployed-engineer.skill.posting.a9bbcdade7a3ccde",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.b26ed103c6093610",
+        "short_label": "bring real-world…",
+        "label": "bring real-world learning back into the product",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          0.0,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              4,
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.forward-deployed-engineer.skill.posting.b26ed103c6093610",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.bccc29a4aa9bbd03",
+        "short_label": "Working knowledge…",
+        "label": "Working knowledge of two or more common Cloud ecosystems (AWS, Azure, GCP)",
+        "status": "early",
+        "first_level": 4,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          50.0,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              4,
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.forward-deployed-engineer.skill.posting.bccc29a4aa9bbd03",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      },
+      {
+        "id": "skill.posting.c26b5fd3ad218c8c",
+        "short_label": "using tools like…",
+        "label": "using tools like TypeScript , React , and Next.js",
+        "status": "early",
+        "first_level": null,
+        "share_by_level": [
+          null,
+          null,
+          null,
+          0.0,
+          null
+        ],
+        "source_links": [
+          "P"
+        ],
+        "windows": [
+          {
+            "window": "2026-Q4",
+            "share": 0.2,
+            "employers": 1,
+            "max_employer_share": 1.0,
+            "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+            "levels": [
+              4,
+              "unassigned"
+            ],
+            "timing": "coincident"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "Published job postings",
+            "source_kind": "postings",
+            "family": "P",
+            "timing": "coincident",
+            "reading": "1/5 admitted role postings record this node in their published expectation excerpts; 1 employers. Role-wide scope includes unassigned postings. No comparable historical window is asserted.",
+            "direction": "presence",
+            "as_of": null
+          }
+        ],
+        "forecast": {
+          "id": "forecast.forward-deployed-engineer.skill.posting.c26b5fd3ad218c8c",
+          "claim": "Uncalibrated sample-persistence baseline: a future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+          "probability": 0.2,
+          "base_rate": 0.2,
+          "horizon_quarters": 4,
+          "created": "2026-Q4",
+          "resolves": "2027-Q4",
+          "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+        },
+        "disputed": null
+      }
+    ],
+    "asked_together": [],
+    "builds_on": [],
+    "top_level_adds": {
+      "top_level": 5,
+      "core_level": 3,
+      "skills": [],
+      "long_run_bar": {
+        "source": "O*NET local task anchor",
+        "source_kind": "onet_ratings",
+        "family": "O",
+        "timing": "lagging",
+        "reading": "Local task alignment is presence only; no numeric proficiency rating or level rating was supplied.",
+        "direction": "presence",
+        "as_of": null
+      }
+    }
+  },
+  "industries": [
+    {
+      "naics": "11",
+      "label": "Agriculture, forestry, fishing and hunting",
+      "naics_title": "Agriculture, forestry, fishing and hunting",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "21",
+      "label": "Mining, quarrying, and oil and gas extraction",
+      "naics_title": "Mining, quarrying, and oil and gas extraction",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "22",
+      "label": "Utilities",
+      "naics_title": "Utilities",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "23",
+      "label": "Construction",
+      "naics_title": "Construction",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "31-33",
+      "label": "Manufacturing",
+      "naics_title": "Manufacturing",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "42",
+      "label": "Wholesale trade",
+      "naics_title": "Wholesale trade",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "44-45",
+      "label": "Retail trade",
+      "naics_title": "Retail trade",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "48-49",
+      "label": "Transportation and warehousing",
+      "naics_title": "Transportation and warehousing",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "51",
+      "label": "Information",
+      "naics_title": "Information",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "52",
+      "label": "Finance and insurance",
+      "naics_title": "Finance and insurance",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "53",
+      "label": "Real estate and rental and leasing",
+      "naics_title": "Real estate and rental and leasing",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "54",
+      "label": "Professional, scientific, and technical services",
+      "naics_title": "Professional, scientific, and technical services",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "55",
+      "label": "Management of companies and enterprises",
+      "naics_title": "Management of companies and enterprises",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "56",
+      "label": "Administrative, support and waste management services",
+      "naics_title": "Administrative, support and waste management services",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "61",
+      "label": "Educational services",
+      "naics_title": "Educational services",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "62",
+      "label": "Health care and social assistance",
+      "naics_title": "Health care and social assistance",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "71",
+      "label": "Arts, entertainment and recreation",
+      "naics_title": "Arts, entertainment and recreation",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "72",
+      "label": "Accommodation and food services",
+      "naics_title": "Accommodation and food services",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "81",
+      "label": "Other services",
+      "naics_title": "Other services",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    },
+    {
+      "naics": "92",
+      "label": "Public administration",
+      "naics_title": "Public administration",
+      "sub_industries": "Not verified in local inputs",
+      "evidence": {
+        "postings": 0,
+        "employers": 0,
+        "window": "2026-Q4",
+        "timing": "coincident"
+      },
+      "profile": null,
+      "reason": "Below 30 postings / 8 employers using verified employer sectors only; unverified employer mappings are excluded, never inferred from customers or job function."
+    }
+  ],
+  "observations": [],
+  "limits": [
+    "Research projection of published release rel_20261002_cbdc6e8d5c4f; source counts are a bounded admitted sample, not market prevalence.",
+    "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand; baseline forecasts assume the same admission and excerpt-selection process.",
+    "One selected snapshot only. Retrieval dates bin observed mentions; repeated releases are not independent windows. No comparable temporal history is asserted, so all current statuses are early.",
+    "Null first_level means no observed assigned level; null share_by_level means no assigned denominator, not zero demand. Measurement strata explicitly include unassigned postings.",
+    "Level names are a declared algorithmic scope rubric, not observed role progression. Titles and tenure never assign levels. Missing level expectations remain empty; no carry-over or first-introduction claim is inferred.",
+    "O*NET task excerpts are attributed to O*NET OnLine, U.S. Department of Labor, CC BY 4.0, as recorded in the published sources; agent-authored alignments are not official or human-adjudicated equivalence.",
+    "Backbone local-task keys identify exact O*NET task text within its SOC summary, not official task database element IDs; unmapped phrases remain posting-led literal identities.",
+    "Unverified employer sectors are excluded, not guessed. Sector profiles need 30 postings and 8 employers. Official industry shares, wages and credential catalogs were not imported; any credential/knowledge text is a literal posting mention.",
+    "Forecast probabilities equal current role-wide mention fractions as an explicit uncalibrated persistence baseline, not researched trend probabilities. No temporal base-rate archive, ledger, resolution or backtest exists (M5 pending)."
+  ]
+}

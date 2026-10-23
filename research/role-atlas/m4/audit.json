@@ -1,0 +1,1239 @@
+{
+  "input_hashes": {
+    "contract.py": "6845fb8b3a8d0938b040d59b7dd650e9ab53318e97046f1a79d760f395660fa2",
+    "mappings/employers.json": "068c94aa9db1855fcf22bf0be22d2c280cbf3a3114d451de9b0be7424d271138",
+    "mappings/skills.json": "bbaf3dc5e026af31a6521297bda3199e5e3df31e96f1e4a75ace0d169c69a45b",
+    "recipe.py": "2bf92098a83630bc11e632f05ed52bdcd717cd3e4a76a5647ab8f6cb0eefeb5b",
+    "release/candidate.json": "f94f7be9a42a12d93eea1126c52b16b26dac32ec43d62dd9e06d22c6c5ee445a",
+    "release/changes.json": "4a7c85af272debe5fa5e8af412afcb6f73221f6886a08fbfa494ad0cc1f4b542",
+    "release/claims.json": "4a47f95792e9c553a5ad8cb3249d29e6c50af769aab1f077016f162e1eeed2bd",
+    "release/disagreements.json": "e972519aeb06304b9c7cc62d5dd175df65b3a715e7bfc921f8db1f7bcaa1c150",
+    "release/exclusions.json": "8fc20cf3d262b4d0b7535446c27874dfa483080cb86dc297a1215e41bda95306",
+    "release/extracts/src_140307f829bfdb285349.txt": "1474cce02b567c6948c78622ce6fc7d0d2918ab0b46340c754992b458c7c2f68",
+    "release/extracts/src_1ed341a8573851cfd6b0.txt": "36e7250e3611c7897706c6de2e569d4ce631546eb5bd0851887fcba83f5cc1fa",
+    "release/extracts/src_23760a5aa6b68b517610.txt": "751461926b772bb89712f01faf193d8e70e125844d39be6718b3f3115df47911",
+    "release/extracts/src_2b15a14ab97190e211f7.txt": "1f572d3dbb978b4a805473f1cac2762e8790b1a96064c3713b835ed8f1e55f56",
+    "release/extracts/src_2ef617516a5da8524028.txt": "065427127058797b0a4770474a5f282111d9b01c526e85d0e1cf2ce2863505f5",
+    "release/extracts/src_3d355c8e4edbd6e5043e.txt": "96df07af83f8d7eb929e7e5a2bdb06fccf46e28658b3514020812aa517298a6d",
+    "release/extracts/src_3f93e9db896b7e1fadb7.txt": "61e8fa2fc84f5fa7e3e83c150d379400d8571dcc605101cb20a3b43fa5321280",
+    "release/extracts/src_3fe01ef9bfa3c8e6402e.txt": "65b5da5d9d14030c92a89c6a4e3ec2945bc2cbe7876eacc47e2217f40a857c52",
+    "release/extracts/src_409b57128331cc153a21.txt": "4e1075f692865dfa9678f0842c09af4ea084c1094ef4a437db52a6cb46dc378e",
+    "release/extracts/src_446100506f5f4b8c8026.txt": "f6b0cc5ebe3616ce09cf6645b4e3b4f08db6d91846da65ae304edcaa1f2debc5",
+    "release/extracts/src_5adcf4b6a53289b61d25.txt": "bf8047ae0c42add81fe5b9a85fbd36f004c53db902c3cbe5de231a59eea10915",
+    "release/extracts/src_6076d691fd591ccffd48.txt": "13b0b1500e3d49cc840c392c98071a09169290e3a679cbfc72b8fb48fc7ed5f7",
+    "release/extracts/src_6098b7029cbc74dc882c.txt": "93941954865b2aa337848cb24ed3db28c9170e7016dce5c9b0e492ec2f2c549e",
+    "release/extracts/src_6413b1c5f80546a23d4d.txt": "1d9bcf05f699f5885ce75691db981b577fa39fa883b0ae342c88ad70be7f160f",
+    "release/extracts/src_6f6386f2dbdc790195d8.txt": "3a150285335a7b7fdd2a644f56ce7de795001147dbf9773844441383db469e39",
+    "release/extracts/src_72e3cbb5b807b879eef2.txt": "f43d03e0474b90e31a14d12e9e00d37d887f32836683f69d1a0f74bf90fc4f40",
+    "release/extracts/src_73b0452f4c687bbded4c.txt": "71d9b2c69b9a4f364c68aed877fcd3fdeafa7003758713b061974ec9d862c8dc",
+    "release/extracts/src_87cd1d977c6b5c4dcce9.txt": "53670db31997fba5877902150a00309db4d22f52ff8a4753b9f0df59ea09fb02",
+    "release/extracts/src_8bd6bf1222f2f674de90.txt": "3486e48d530b847090c220e7f220763fdb384aab68180576427b3de850ec7923",
+    "release/extracts/src_9474d748372eef14060d.txt": "05024cf53d3b2bde72ec1c9dc4c5bd66c8cfff8c09661e162853663607142768",
+    "release/extracts/src_9b15265c573be6162aac.txt": "f18327f47c37b40e1c34c889120f29632fe4c0d9776caf69a8a0de1429d1c58b",
+    "release/extracts/src_b062fd8e938dd36fa472.txt": "26181d2be7f966faf33918cc33cae5807eed442fbe5338ffbfee15c82ae48cca",
+    "release/extracts/src_b77f5f4add678f615754.txt": "eda3c0020f1511c5be42b78cfdda725d4f3d652de535335a292c5cf8e5518045",
+    "release/extracts/src_bb83224100d7cd1745fb.txt": "da508a8150cdba4f5c78641d1eeb0b71afc99d89d861ecbe885afe788e0db99c",
+    "release/extracts/src_c0c36636b26209c07cf2.txt": "30ee821f01c323fb437bc56ad753d906db5c952b3b0feca7febcf5fe7319f045",
+    "release/extracts/src_d208f9eed67eab78c345.txt": "70cbcca91f2f67df458bda1b195bf21c3e7f251da7b6feb2c5870dc1cb5067ce",
+    "release/extracts/src_d2249964cdeb3b0f93a9.txt": "3f534c684a5abe31a79a291e9f661eb7b4ee2e89a892a23beff5ee7d0a61b589",
+    "release/extracts/src_e35af9278335d5045c77.txt": "0fbc38f8f8a6acf816af8cabb5d01356ad72209337e00b7cf307ed5c05388459",
+    "release/extracts/src_e427ebf38b2d67d898f7.txt": "ce9a5a1d38ae73e96b0ea10786b45acb952d812a08f115d7918ea31094b687d6",
+    "release/extracts/src_e815e32b3bd8b5f52366.txt": "07a369aacfbd6485e87a9e9afb3b883f3221d8347d9c4a84f64f3130a3cd031e",
+    "release/extracts/src_e933e580d83319da7e23.txt": "4308885c507f7bc5a5be9e161eec16982d17563b5a7defa183d9f875a098ebfd",
+    "release/extracts/src_eeefb08bfb9b382eb2c0.txt": "4630feb9d3b9fe656e82ef9bc8550b1bbc2413bccb2733104219a083b96dafeb",
+    "release/extracts/src_f579643a28beaf93e8e1.txt": "699e9a5c17591ad468e57dac81ae45cf9d047bdee5c59360c0d01bcad6aa2fe1",
+    "release/extracts/src_f793b4b4dbf42ae0efb2.txt": "412c586f4d22253aaf4f22341b47f1814ed365721cb2245436677fed57ae5487",
+    "release/extracts/src_faf73f88dbaba0d70efb.txt": "4f04e934c2f4f9b600b332fdfd523236700a9b4eca176a1ade6d4c3a0b1238d9",
+    "release/lineage.json": "e5058c64c250e2a5377d7afc5ba7424ae41d7ed357cbc75f38a43700185d54ed",
+    "release/manifest.json": "c787b2d21ee32f1bb1ad1987a26c882f844e4ea534b3588bee91096549e5005d",
+    "release/mappings.json": "2fa27b7b13ba45093586de33281d2b556a912380dfed985d4cc07addd6cfcbc4",
+    "release/occupations.json": "4d2eb0b75d41876eccbfccc421aca1fb95ace5ca6280395e6a443ad8c2b30aa3",
+    "release/postings.json": "56f5c572d5a2b0ac699ccf40711d6263446b10ddafb91ee7942f6f4c3710895e",
+    "release/requirements.json": "9e99f1d8d34e73d8430ea78af16769b08e99d9beda19d65dd8167ed4fba97a86",
+    "release/sources.json": "31e7875a763f4d3dd915a56453472dd6c2470a86eed0a0ac4600a679153e065b",
+    "schema.json": "65c3804b662421d047459873c9fb91891943b8cdd4470b70d5e0a7e673e85fc5"
+  },
+  "input_release_id": "rel_20261002_cbdc6e8d5c4f",
+  "recipe": "role-evidence/1",
+  "release_id": "role_research_c5c1bf7bde401bdd",
+  "roles": {
+    "account-executive": {
+      "backbone_linked_skills": 4,
+      "current_postings": 5,
+      "dropped_edges": [
+        {
+          "a": "skill.onet.41-4012.00.local-task.demonstration",
+          "b": "skill.onet.41-4012.00.local-task.prospecting",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 2.5,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.41-4012.00.local-task.demonstration",
+          "b": "skill.onet.41-4012.00.local-task.records",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 2.5,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.41-4012.00.local-task.demonstration",
+          "b": "skill.posting.dd1ffdcb4b08bac8",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.41-4012.00.local-task.negotiation",
+          "b": "skill.onet.41-4012.00.local-task.records",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 2.5,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.41-4012.00.local-task.prospecting",
+          "b": "skill.onet.41-4012.00.local-task.records",
+          "employers": 1,
+          "failed_floors": [
+            "lift",
+            "postings",
+            "employers"
+          ],
+          "lift": 1.25,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.41-4012.00.local-task.prospecting",
+          "b": "skill.posting.d48a1e646d7ae7fa",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 2.5,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.41-4012.00.local-task.prospecting",
+          "b": "skill.posting.dd1ffdcb4b08bac8",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 2.5,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.41-4012.00.local-task.records",
+          "b": "skill.posting.dd1ffdcb4b08bac8",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 2.5,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.6119381771c8dfac",
+          "b": "skill.posting.b3ec611af7aa51e0",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.6a1ecf85fcb37bb0",
+          "b": "skill.posting.bbb2e34dbe68a903",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.6a1ecf85fcb37bb0",
+          "b": "skill.posting.f40c8a76af69e6f7",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.bbb2e34dbe68a903",
+          "b": "skill.posting.f40c8a76af69e6f7",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        }
+      ],
+      "edge_floor_failures": {
+        "employers": 12,
+        "lift": 1,
+        "postings": 12
+      },
+      "edges_dropped": 12,
+      "edges_kept": 0,
+      "excluded_non_skill_mentions": {
+        "contextual_expectation": 1,
+        "demonstration": 1,
+        "experience": 5
+      },
+      "other_window_postings_not_compared": 0,
+      "posting_led_skills": 7,
+      "postings": [
+        {
+          "employer": "Datadog",
+          "level": null,
+          "posting_id": "031b24ad47ad38fe2f3456a3",
+          "reason": "no_current_scope_or_ownership_signal",
+          "skill_links": [
+            {
+              "backbone_id": "onet:41-4012.00:local-task:negotiation",
+              "expectation_id": "exp_0d94f071e153a8e4daa5",
+              "phrase": "Negotiate favorable pricing and business terms",
+              "skill": "skill.onet.41-4012.00.local-task.negotiation",
+              "source_id": "src_73b0452f4c687bbded4c"
+            },
+            {
+              "backbone_id": "onet:41-4012.00:local-task:records",
+              "expectation_id": "exp_9f2162a5e898f127929c",
+              "phrase": "Ensure high forecasting accuracy and consistency",
+              "skill": "skill.onet.41-4012.00.local-task.records",
+              "source_id": "src_73b0452f4c687bbded4c"
+            }
+          ],
+          "source_id": "src_73b0452f4c687bbded4c",
+          "strong_signals": [],
+          "weak_signals": {
+            "advertised_experience": [
+              "5+ years closing experience (mix of field selling within mid-market and enterprise)"
+            ],
+            "title": "Strategic Account Executive"
+          }
+        },
+        {
+          "employer": "Stripe",
+          "level": null,
+          "posting_id": "0ed45105a02c40ed703b5253",
+          "reason": "no_current_scope_or_ownership_signal",
+          "skill_links": [
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_28ed3872275f17bbdd15",
+              "phrase": "Analytical ability to manage complex pricing and cost considerations",
+              "skill": "skill.posting.6a1ecf85fcb37bb0",
+              "source_id": "src_6098b7029cbc74dc882c"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_bfae533d3af2772444ca",
+              "phrase": "Ability to understand complex technical ecosystems and build great relationships with technical customers",
+              "skill": "skill.posting.bbb2e34dbe68a903",
+              "source_id": "src_6098b7029cbc74dc882c"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_02ee0f5c2d511d4fa887",
+              "phrase": "Ability to drive and close upsell opportunities for additional Stripe products in long-term, consultative engagements",
+              "skill": "skill.posting.f40c8a76af69e6f7",
+              "source_id": "src_6098b7029cbc74dc882c"
+            }
+          ],
+          "source_id": "src_6098b7029cbc74dc882c",
+          "strong_signals": [],
+          "weak_signals": {
+            "advertised_experience": [
+              "5+ years of experience in a client-facing/sales role"
+            ],
+            "title": "Account Executive, AI Startups - Grower"
+          }
+        },
+        {
+          "employer": "Verkada",
+          "level": null,
+          "posting_id": "126ac2cfb1c706b3eb843cae",
+          "reason": "no_current_scope_or_ownership_signal",
+          "skill_links": [
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_38257cc3e55e9a6a522b",
+              "phrase": "Experience in Salesforce is a plus",
+              "skill": "skill.posting.6119381771c8dfac",
+              "source_id": "src_9474d748372eef14060d"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_75bd6317fa8826bc12a1",
+              "phrase": "Highly effective communication skills",
+              "skill": "skill.posting.b3ec611af7aa51e0",
+              "source_id": "src_9474d748372eef14060d"
+            }
+          ],
+          "source_id": "src_9474d748372eef14060d",
+          "strong_signals": [],
+          "weak_signals": {
+            "advertised_experience": [
+              "At least 2+ years of sales experience in a quota-carrying capacity"
+            ],
+            "title": "Account Executive, Territory (Mid-Market)"
+          }
+        },
+        {
+          "employer": "MongoDB",
+          "level": null,
+          "posting_id": "441e49c4ad2a3ef3d76a6872",
+          "reason": "no_current_scope_or_ownership_signal",
+          "skill_links": [
+            {
+              "backbone_id": "onet:41-4012.00:local-task:prospecting",
+              "expectation_id": "exp_be4935d176bc364f5695",
+              "phrase": "generating your own pipeline and hitting sales targets",
+              "skill": "skill.onet.41-4012.00.local-task.prospecting",
+              "source_id": "src_3fe01ef9bfa3c8e6402e"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_a875ef953827f0d64cef",
+              "phrase": "Ability to articulate the business value of complex enterprise technology",
+              "skill": "skill.posting.d48a1e646d7ae7fa",
+              "source_id": "src_3fe01ef9bfa3c8e6402e"
+            }
+          ],
+          "source_id": "src_3fe01ef9bfa3c8e6402e",
+          "strong_signals": [],
+          "weak_signals": {
+            "advertised_experience": [
+              "Min. 3 year B2B sales experience in a quota carrying closing role, or Strategic Account-based selling experience"
+            ],
+            "title": "Inside Account Executive"
+          }
+        },
+        {
+          "employer": "Toast",
+          "level": null,
+          "posting_id": "5da2e1a5e0bc206eebbcf0ac",
+          "reason": "no_current_scope_or_ownership_signal",
+          "skill_links": [
+            {
+              "backbone_id": "onet:41-4012.00:local-task:demonstration",
+              "expectation_id": "exp_87bae35eb78ede2a8153",
+              "phrase": "Conduct demos and develop a solution",
+              "skill": "skill.onet.41-4012.00.local-task.demonstration",
+              "source_id": "src_2ef617516a5da8524028"
+            },
+            {
+              "backbone_id": "onet:41-4012.00:local-task:prospecting",
+              "expectation_id": "exp_d760be0e164ba8a3c9df",
+              "phrase": "prospect, build relationships, and sign up new restaurateurs",
+              "skill": "skill.onet.41-4012.00.local-task.prospecting",
+              "source_id": "src_2ef617516a5da8524028"
+            },
+            {
+              "backbone_id": "onet:41-4012.00:local-task:records",
+              "expectation_id": "exp_dbd425d1a0bd9e9d2d27",
+              "phrase": "Leverage Salesforce (our CRM) to manage all sales activities",
+              "skill": "skill.onet.41-4012.00.local-task.records",
+              "source_id": "src_2ef617516a5da8524028"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_d10def6af0b129870963",
+              "phrase": "Strong communication, organizational and presentation skills with the ability to sell and negotiate at all decision-making levels",
+              "skill": "skill.posting.dd1ffdcb4b08bac8",
+              "source_id": "src_2ef617516a5da8524028"
+            }
+          ],
+          "source_id": "src_2ef617516a5da8524028",
+          "strong_signals": [],
+          "weak_signals": {
+            "advertised_experience": [
+              "1+ years of experience in a sourcing or closing sales role, restaurant operations, or a relatable field and industry"
+            ],
+            "title": "Territory Account Executive , SMB - Atlanta, GA"
+          }
+        }
+      ],
+      "postings_in": 5,
+      "postings_per_level": {
+        "L1": 0,
+        "L2": 0,
+        "L3": 0,
+        "L4": 0,
+        "L5": 0,
+        "unassigned": 5
+      },
+      "postings_with_unverified_sectors": 5,
+      "sectors_with_profiles": 0,
+      "sectors_without_profiles": 20,
+      "skills_by_status": {
+        "core": 0,
+        "early": 11,
+        "fading": 0,
+        "rising": 0
+      },
+      "window": "2026-Q4"
+    },
+    "forward-deployed-engineer": {
+      "backbone_linked_skills": 2,
+      "current_postings": 5,
+      "dropped_edges": [
+        {
+          "a": "skill.onet.15-1252.00.local-task.discovery",
+          "b": "skill.onet.15-1252.00.local-task.software",
+          "employers": 2,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 1.6666666666666667,
+          "postings": 2,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.15-1252.00.local-task.discovery",
+          "b": "skill.posting.632a7fc335c2e63e",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 2.5,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.15-1252.00.local-task.discovery",
+          "b": "skill.posting.c26b5fd3ad218c8c",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 2.5,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.15-1252.00.local-task.software",
+          "b": "skill.posting.632a7fc335c2e63e",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 1.6666666666666667,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.15-1252.00.local-task.software",
+          "b": "skill.posting.698a76d2c0a8aa7e",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 1.6666666666666667,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.15-1252.00.local-task.software",
+          "b": "skill.posting.bccc29a4aa9bbd03",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 1.6666666666666667,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.15-1252.00.local-task.software",
+          "b": "skill.posting.c26b5fd3ad218c8c",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 1.6666666666666667,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.0e821edd5c69e5a1",
+          "b": "skill.posting.288a95450eb4e7f0",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.0e821edd5c69e5a1",
+          "b": "skill.posting.a9bbcdade7a3ccde",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.0e821edd5c69e5a1",
+          "b": "skill.posting.b26ed103c6093610",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.288a95450eb4e7f0",
+          "b": "skill.posting.a9bbcdade7a3ccde",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.288a95450eb4e7f0",
+          "b": "skill.posting.b26ed103c6093610",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.698a76d2c0a8aa7e",
+          "b": "skill.posting.bccc29a4aa9bbd03",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.a9bbcdade7a3ccde",
+          "b": "skill.posting.b26ed103c6093610",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        }
+      ],
+      "edge_floor_failures": {
+        "employers": 14,
+        "lift": 0,
+        "postings": 14
+      },
+      "edges_dropped": 14,
+      "edges_kept": 0,
+      "excluded_non_skill_mentions": {
+        "experience": 6
+      },
+      "other_window_postings_not_compared": 0,
+      "posting_led_skills": 8,
+      "postings": [
+        {
+          "employer": "Databricks",
+          "level": 4,
+          "posting_id": "3d3afe13c27bbf828dd47a2f",
+          "reason": "source_verified_scope_and_ownership",
+          "skill_links": [
+            {
+              "backbone_id": "onet:15-1252.00:local-task:software",
+              "expectation_id": "exp_86c927e0020227cc11be",
+              "phrase": "Fluency in writing code in Python, Scala, JavaScript/TypeScript, and modern frameworks",
+              "skill": "skill.onet.15-1252.00.local-task.software",
+              "source_id": "src_2b15a14ab97190e211f7"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_b5c5fbc7354bbacffc3b",
+              "phrase": "Familiarity with CI/CD for produc",
+              "skill": "skill.posting.698a76d2c0a8aa7e",
+              "source_id": "src_2b15a14ab97190e211f7"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_2c24478c3859fd0fbace",
+              "phrase": "Working knowledge of two or more common Cloud ecosystems (AWS, Azure, GCP)",
+              "skill": "skill.posting.bccc29a4aa9bbd03",
+              "source_id": "src_2b15a14ab97190e211f7"
+            }
+          ],
+          "source_id": "src_2b15a14ab97190e211f7",
+          "strong_signals": [
+            {
+              "level": 4,
+              "quote": "You will own the architecture, lead design decisions, and implement end-to-end systems spanning data engineering, AI, and application development."
+            }
+          ],
+          "weak_signals": {
+            "advertised_experience": [
+              "6+ years experience in data engineering, data platforms & analytics, or software engineering"
+            ],
+            "title": "Sr. Forward Deployed Engineer (FDE) - Public Sector"
+          }
+        },
+        {
+          "employer": "MongoDB",
+          "level": null,
+          "posting_id": "4f9082e0ca94c9a0d9bffb7d",
+          "reason": "no_current_scope_or_ownership_signal",
+          "skill_links": [],
+          "source_id": "src_6f6386f2dbdc790195d8",
+          "strong_signals": [],
+          "weak_signals": {
+            "advertised_experience": [
+              "5 - 8 years of engineering experience required",
+              "Hands-on production engineering experience, including writing code, debugging failures, and implementing fixes directly",
+              "Engineering experience in AI and agentic development",
+              "Experience with developing and deploying software within enterprise environments"
+            ],
+            "title": "Senior Forward Deployed Engineer"
+          }
+        },
+        {
+          "employer": "Asana",
+          "level": null,
+          "posting_id": "7cf53ba1465e666d299e98a0",
+          "reason": "no_current_scope_or_ownership_signal",
+          "skill_links": [
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_6bb4f34aef8998483fdd",
+              "phrase": "work directly with customers",
+              "skill": "skill.posting.0e821edd5c69e5a1",
+              "source_id": "src_e35af9278335d5045c77"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_84e0e5529ea42be61dbb",
+              "phrase": "deeply technical, customer-facing",
+              "skill": "skill.posting.288a95450eb4e7f0",
+              "source_id": "src_e35af9278335d5045c77"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_c4dc73e239480237d7a3",
+              "phrase": "move quickly from insight to implementation",
+              "skill": "skill.posting.a9bbcdade7a3ccde",
+              "source_id": "src_e35af9278335d5045c77"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_60b9dcdb42fe2367068a",
+              "phrase": "bring real-world learning back into the product",
+              "skill": "skill.posting.b26ed103c6093610",
+              "source_id": "src_e35af9278335d5045c77"
+            }
+          ],
+          "source_id": "src_e35af9278335d5045c77",
+          "strong_signals": [],
+          "weak_signals": {
+            "advertised_experience": [],
+            "title": "Forward Deployed Engineer, Command by Asana"
+          }
+        },
+        {
+          "employer": "Figma",
+          "level": 4,
+          "posting_id": "bf7ed583f9d0873d973f7c59",
+          "reason": "source_verified_scope_and_ownership",
+          "skill_links": [
+            {
+              "backbone_id": "onet:15-1252.00:local-task:discovery",
+              "expectation_id": "exp_2a15127f52c6323eba0d",
+              "phrase": "Run technical discovery: understand a customer's dev environment, toolchain, and constraints",
+              "skill": "skill.onet.15-1252.00.local-task.discovery",
+              "source_id": "src_140307f829bfdb285349"
+            },
+            {
+              "backbone_id": "onet:15-1252.00:local-task:software",
+              "expectation_id": "exp_afcf8bd0d641cb76f8bc",
+              "phrase": "writing code, config, agent skills, and guideline files against their systems and ours",
+              "skill": "skill.onet.15-1252.00.local-task.software",
+              "source_id": "src_140307f829bfdb285349"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_85f409bf1e1f266df29e",
+              "phrase": "Comfort owning ambiguous technical problems end to end",
+              "skill": "skill.posting.632a7fc335c2e63e",
+              "source_id": "src_140307f829bfdb285349"
+            }
+          ],
+          "source_id": "src_140307f829bfdb285349",
+          "strong_signals": [
+            {
+              "level": 4,
+              "quote": "Comfort owning ambiguous technical problems end to end"
+            },
+            {
+              "level": 4,
+              "quote": "Comfort owning ambiguous technical problems end to end, identifying patterns across customer engagements, and turning field learning into reusable product improvements."
+            }
+          ],
+          "weak_signals": {
+            "advertised_experience": [],
+            "title": "Forward Deployed Engineer"
+          }
+        },
+        {
+          "employer": "Stripe",
+          "level": null,
+          "posting_id": "da58f07367ace66ebfe7e129",
+          "reason": "no_current_scope_or_ownership_signal",
+          "skill_links": [
+            {
+              "backbone_id": "onet:15-1252.00:local-task:discovery",
+              "expectation_id": "exp_7bbf5dcf442f19fe0b52",
+              "phrase": "Work directly with customers to understand their technical and operational objectives",
+              "skill": "skill.onet.15-1252.00.local-task.discovery",
+              "source_id": "src_6413b1c5f80546a23d4d"
+            },
+            {
+              "backbone_id": "onet:15-1252.00:local-task:software",
+              "expectation_id": "exp_059e741574790bc954cc",
+              "phrase": "Design, code, and launch features",
+              "skill": "skill.onet.15-1252.00.local-task.software",
+              "source_id": "src_6413b1c5f80546a23d4d"
+            },
+            {
+              "backbone_id": "onet:15-1252.00:local-task:software",
+              "expectation_id": "exp_d4b2e99660d678806ff8",
+              "phrase": "prototype and propose software solutions",
+              "skill": "skill.onet.15-1252.00.local-task.software",
+              "source_id": "src_6413b1c5f80546a23d4d"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_d392071a149d7d3d7615",
+              "phrase": "using tools like TypeScript , React , and Next.js",
+              "skill": "skill.posting.c26b5fd3ad218c8c",
+              "source_id": "src_6413b1c5f80546a23d4d"
+            }
+          ],
+          "source_id": "src_6413b1c5f80546a23d4d",
+          "strong_signals": [],
+          "weak_signals": {
+            "advertised_experience": [],
+            "title": "Forward Deployed Engineer, Privy"
+          }
+        }
+      ],
+      "postings_in": 5,
+      "postings_per_level": {
+        "L1": 0,
+        "L2": 0,
+        "L3": 0,
+        "L4": 2,
+        "L5": 0,
+        "unassigned": 3
+      },
+      "postings_with_unverified_sectors": 5,
+      "sectors_with_profiles": 0,
+      "sectors_without_profiles": 20,
+      "skills_by_status": {
+        "core": 0,
+        "early": 10,
+        "fading": 0,
+        "rising": 0
+      },
+      "window": "2026-Q4"
+    },
+    "growth-manager": {
+      "backbone_linked_skills": 1,
+      "current_postings": 4,
+      "dropped_edges": [
+        {
+          "a": "skill.posting.6efb452d78298ea0",
+          "b": "skill.posting.7a11ae9c98bddac9",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 4.0,
+          "postings": 1,
+          "timing": "coincident"
+        }
+      ],
+      "edge_floor_failures": {
+        "employers": 1,
+        "lift": 0,
+        "postings": 1
+      },
+      "edges_dropped": 1,
+      "edges_kept": 0,
+      "excluded_non_skill_mentions": {
+        "contextual_expectation": 2,
+        "demonstration": 2,
+        "experience": 5
+      },
+      "other_window_postings_not_compared": 0,
+      "posting_led_skills": 4,
+      "postings": [
+        {
+          "employer": "Duolingo",
+          "level": 2,
+          "posting_id": "1a76c35ae1f30d92cf37057b",
+          "reason": "source_verified_scope_and_ownership",
+          "skill_links": [
+            {
+              "backbone_id": "onet:11-2021.00:local-task:campaign",
+              "expectation_id": "exp_2f07bb431bdf072d441a",
+              "phrase": "Own day-to-day execution of global performance marketing campaigns",
+              "skill": "skill.onet.11-2021.00.local-task.campaign",
+              "source_id": "src_1ed341a8573851cfd6b0"
+            },
+            {
+              "backbone_id": "onet:11-2021.00:local-task:campaign",
+              "expectation_id": "exp_2871dae65f6be77b9f83",
+              "phrase": "drive Duolingo’s global user acquisition campaigns across multiple channels",
+              "skill": "skill.onet.11-2021.00.local-task.campaign",
+              "source_id": "src_1ed341a8573851cfd6b0"
+            },
+            {
+              "backbone_id": "onet:11-2021.00:local-task:campaign",
+              "expectation_id": "exp_31cd65f947b87fab902e",
+              "phrase": "run and optimize mobile install campaigns across major platforms",
+              "skill": "skill.onet.11-2021.00.local-task.campaign",
+              "source_id": "src_1ed341a8573851cfd6b0"
+            }
+          ],
+          "source_id": "src_1ed341a8573851cfd6b0",
+          "strong_signals": [
+            {
+              "level": 2,
+              "quote": "Own day-to-day execution of global performance marketing campaigns"
+            }
+          ],
+          "weak_signals": {
+            "advertised_experience": [],
+            "title": "Senior Performance Marketing Manager"
+          }
+        },
+        {
+          "employer": "Figma",
+          "level": 4,
+          "posting_id": "5100869e45f2160aa6a8ba00",
+          "reason": "source_verified_scope_and_ownership",
+          "skill_links": [
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_d82cfaff2f680d65e2d9",
+              "phrase": "Familiarity with current AI-powered product development and a POV on how our industry will evolve",
+              "skill": "skill.posting.6fbe3946aad530a8",
+              "source_id": "src_f793b4b4dbf42ae0efb2"
+            }
+          ],
+          "source_id": "src_f793b4b4dbf42ae0efb2",
+          "strong_signals": [
+            {
+              "level": 4,
+              "quote": "Shape Figma’s growth strategy as our business and product evolve."
+            }
+          ],
+          "weak_signals": {
+            "advertised_experience": [
+              "7+ years of product management experience"
+            ],
+            "title": "Product Manager, AI Growth"
+          }
+        },
+        {
+          "employer": "Instacart",
+          "level": null,
+          "posting_id": "e194045c9495262260dc708d",
+          "reason": "no_current_scope_or_ownership_signal",
+          "skill_links": [
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_3fd43ba7f7d082ad1800",
+              "phrase": "Strong communication skills, both written and verbal",
+              "skill": "skill.posting.6de6bb6568e5295c",
+              "source_id": "src_6076d691fd591ccffd48"
+            }
+          ],
+          "source_id": "src_6076d691fd591ccffd48",
+          "strong_signals": [],
+          "weak_signals": {
+            "advertised_experience": [
+              "Previous experience in a sales or business development role, preferably in the advertising industry."
+            ],
+            "title": "Activation Sales Development Representative I"
+          }
+        },
+        {
+          "employer": "Chime",
+          "level": null,
+          "posting_id": "feec93b2d9dd8777f41114f9",
+          "reason": "no_current_scope_or_ownership_signal",
+          "skill_links": [
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_57fe0bc3bc9f2906286b",
+              "phrase": "guide a team of designers, copywriters, and video editors",
+              "skill": "skill.posting.6efb452d78298ea0",
+              "source_id": "src_faf73f88dbaba0d70efb"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_fd7b8cc43e72d129cb75",
+              "phrase": "AI-native fluency: hands-on comfort prompting and directing AI tools",
+              "skill": "skill.posting.7a11ae9c98bddac9",
+              "source_id": "src_faf73f88dbaba0d70efb"
+            }
+          ],
+          "source_id": "src_faf73f88dbaba0d70efb",
+          "strong_signals": [],
+          "weak_signals": {
+            "advertised_experience": [
+              "Experience managing or directing external agency, freelance, or vendor creative partners",
+              "Experience across print, in addition to Meta, TikTok, YouTube, Mobile, and Google",
+              "Experience directing or being on set for lightweight, fast-turn UGC-style production shoots — not mandatory, but a plus."
+            ],
+            "title": "Associate Creative Director, Growth Marketing"
+          }
+        }
+      ],
+      "postings_in": 4,
+      "postings_per_level": {
+        "L1": 0,
+        "L2": 1,
+        "L3": 0,
+        "L4": 1,
+        "L5": 0,
+        "unassigned": 2
+      },
+      "postings_with_unverified_sectors": 4,
+      "sectors_with_profiles": 0,
+      "sectors_without_profiles": 20,
+      "skills_by_status": {
+        "core": 0,
+        "early": 5,
+        "fading": 0,
+        "rising": 0
+      },
+      "window": "2026-Q4"
+    },
+    "hr-generalist": {
+      "backbone_linked_skills": 3,
+      "current_postings": 5,
+      "dropped_edges": [
+        {
+          "a": "skill.onet.13-1071.00.local-task.policy",
+          "b": "skill.onet.13-1071.00.local-task.relations",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 2.5,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.13-1071.00.local-task.policy",
+          "b": "skill.posting.1141ba92a2f02faf",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 2.5,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.13-1071.00.local-task.records",
+          "b": "skill.posting.07b515ec149b8821",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.onet.13-1071.00.local-task.records",
+          "b": "skill.posting.d512b42afab4c153",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        },
+        {
+          "a": "skill.posting.07b515ec149b8821",
+          "b": "skill.posting.d512b42afab4c153",
+          "employers": 1,
+          "failed_floors": [
+            "postings",
+            "employers"
+          ],
+          "lift": 5.0,
+          "postings": 1,
+          "timing": "coincident"
+        }
+      ],
+      "edge_floor_failures": {
+        "employers": 5,
+        "lift": 0,
+        "postings": 5
+      },
+      "edges_dropped": 5,
+      "edges_kept": 0,
+      "excluded_non_skill_mentions": {
+        "contextual_expectation": 1,
+        "credential": 1,
+        "demonstration": 2,
+        "experience": 6
+      },
+      "other_window_postings_not_compared": 0,
+      "posting_led_skills": 4,
+      "postings": [
+        {
+          "employer": "SpaceX",
+          "level": null,
+          "posting_id": "0f556d03efbac0c5b485a50f",
+          "reason": "no_current_scope_or_ownership_signal",
+          "skill_links": [
+            {
+              "backbone_id": "onet:13-1071.00:local-task:policy",
+              "expectation_id": "exp_a6e454e5cf951fd00616",
+              "phrase": "implementation of human resources policies, programs, and processes",
+              "skill": "skill.onet.13-1071.00.local-task.policy",
+              "source_id": "src_bb83224100d7cd1745fb"
+            },
+            {
+              "backbone_id": "onet:13-1071.00:local-task:relations",
+              "expectation_id": "exp_5a89944dc44ae368d4ef",
+              "phrase": "Counsel a small client group (150-200 employees)",
+              "skill": "skill.onet.13-1071.00.local-task.relations",
+              "source_id": "src_bb83224100d7cd1745fb"
+            },
+            {
+              "backbone_id": "onet:13-1071.00:local-task:relations",
+              "expectation_id": "exp_229558159c703667d7bf",
+              "phrase": "Respond to day-to-day employee inquiries, questions and complaints",
+              "skill": "skill.onet.13-1071.00.local-task.relations",
+              "source_id": "src_bb83224100d7cd1745fb"
+            }
+          ],
+          "source_id": "src_bb83224100d7cd1745fb",
+          "strong_signals": [],
+          "weak_signals": {
+            "advertised_experience": [
+              "6+ months as a SpaceX HR Coordinator or 1+ years of professional human resources experience"
+            ],
+            "title": "HR Generalist"
+          }
+        },
+        {
+          "employer": "Figma",
+          "level": null,
+          "posting_id": "49fe009623daaf424f9a6295",
+          "reason": "no_current_scope_or_ownership_signal",
+          "skill_links": [
+            {
+              "backbone_id": "onet:13-1071.00:local-task:records",
+              "expectation_id": "exp_c468a82ad944f8c0679f",
+              "phrase": "Build, maintain, and troubleshoot Workday reports, dashboards, and calculated fields",
+              "skill": "skill.onet.13-1071.00.local-task.records",
+              "source_id": "src_e427ebf38b2d67d898f7"
+            },
+            {
+              "backbone_id": "onet:13-1071.00:local-task:records",
+              "expectation_id": "exp_0adef5d31d5e38633e51",
+              "phrase": "Configure and maintain Workday Core HCM",
+              "skill": "skill.onet.13-1071.00.local-task.records",
+              "source_id": "src_e427ebf38b2d67d898f7"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_c8872e6541fd46d5c947",
+              "phrase": "Manage the HRIS support ticket queue",
+              "skill": "skill.posting.07b515ec149b8821",
+              "source_id": "src_e427ebf38b2d67d898f7"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_5712e34b1ce55fbb4683",
+              "phrase": "Create, execute, and troubleshoot Enterprise Interface Builder (EIB) integrations",
+              "skill": "skill.posting.d512b42afab4c153",
+              "source_id": "src_e427ebf38b2d67d898f7"
+            }
+          ],
+          "source_id": "src_e427ebf38b2d67d898f7",
+          "strong_signals": [],
+          "weak_signals": {
+            "advertised_experience": [],
+            "title": "HRIS Analyst"
+          }
+        },
+        {
+          "employer": "SpaceX",
+          "level": null,
+          "posting_id": "8c8a03fb3aaa8a0a26eb04dc",
+          "reason": "no_current_scope_or_ownership_signal",
+          "skill_links": [],
+          "source_id": "src_b062fd8e938dd36fa472",
+          "strong_signals": [],
+          "weak_signals": {
+            "advertised_experience": [
+              "6+ months as a SpaceX HR Coordinator or 1+ years of professional human resources experience"
+            ],
+            "title": "HR Generalist"
+          }
+        },
+        {
+          "employer": "Justworks",
+          "level": null,
+          "posting_id": "bee627a17f105b9b59569465",
+          "reason": "no_current_scope_or_ownership_signal",
+          "skill_links": [
+            {
+              "backbone_id": "onet:13-1071.00:local-task:policy",
+              "expectation_id": "exp_2429d1c7762a26d5c55a",
+              "phrase": "Explain complicated compliance and HR concepts in simple, user-friendly terms",
+              "skill": "skill.onet.13-1071.00.local-task.policy",
+              "source_id": "src_446100506f5f4b8c8026"
+            },
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_d431fbee85c46392cabe",
+              "phrase": "Coach and mentor fellow HR Consultants",
+              "skill": "skill.posting.1141ba92a2f02faf",
+              "source_id": "src_446100506f5f4b8c8026"
+            }
+          ],
+          "source_id": "src_446100506f5f4b8c8026",
+          "strong_signals": [],
+          "weak_signals": {
+            "advertised_experience": [
+              "Minimum of 7 years experience at the HR Generalist, HR Business Partner, HR Manager, or Employee Relations Manager level"
+            ],
+            "title": "Senior HR Consultant"
+          }
+        },
+        {
+          "employer": "SpaceX",
+          "level": null,
+          "posting_id": "d83b6766a139d20367deecc7",
+          "reason": "no_current_scope_or_ownership_signal",
+          "skill_links": [
+            {
+              "backbone_id": null,
+              "expectation_id": "exp_d7038d4b3014fdee4dea",
+              "phrase": "Familiarity with Greenhouse, UltiPro, and/or Workday",
+              "skill": "skill.posting.08aed99431cd830f",
+              "source_id": "src_9b15265c573be6162aac"
+            }
+          ],
+          "source_id": "src_9b15265c573be6162aac",
+          "strong_signals": [],
+          "weak_signals": {
+            "advertised_experience": [
+              "2+ years of human resources experience"
+            ],
+            "title": "HR Business Partner (Employee Relations)"
+          }
+        }
+      ],
+      "postings_in": 5,
+      "postings_per_level": {
+        "L1": 0,
+        "L2": 0,
+        "L3": 0,
+        "L4": 0,
+        "L5": 0,
+        "unassigned": 5
+      },
+      "postings_with_unverified_sectors": 5,
+      "sectors_with_profiles": 0,
+      "sectors_without_profiles": 20,
+      "skills_by_status": {
+        "core": 0,
+        "early": 7,
+        "fading": 0,
+        "rising": 0
+      },
+      "window": "2026-Q4"
+    }
+  },
+  "window_length": "quarterly"
+}

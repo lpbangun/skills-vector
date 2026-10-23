@@ -248,6 +248,7 @@ footer { border-top: 1px solid var(--rule); padding-top: 1rem; color: var(--grap
 .g-lv { font: 500 12px var(--font-mono); fill: var(--graphite-soft); }
 .g-lvname { font: 500 13px var(--font-sans); fill: var(--graphite); }
 .g-lvname.on { fill: var(--present); font-weight: 600; }
+.g-unknown { font: 500 13px var(--font-mono); fill: var(--graphite); text-anchor: middle; }
 .g-label { font: 400 13px var(--font-sans); fill: var(--ink); }
 .g-flag { font: 600 14px var(--font-mono); fill: var(--disagree); }
 .g-edge { fill: none; stroke: var(--graphite-soft); opacity: 0.45; }

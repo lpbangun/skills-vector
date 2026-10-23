@@ -134,7 +134,7 @@ class DemandWindow(Model):
 class Expectation(Model):
     id: str
     label: str
-    introduced_at: int | Literal["earlier"]
+    introduced_at: int | Literal["earlier"] | None
     basis: Literal["advertised_demand"]
     cite: str
     timing: Timing
@@ -176,6 +176,7 @@ class Measurement(Model):
 
     comparison_group identifies a comparable sampling method. A changed group or
     level scope cannot support a trend. Shares are fractions, not percentages.
+    The explicit "unassigned" stratum retains observations without a level.
     """
 
     window: str
@@ -183,7 +184,7 @@ class Measurement(Model):
     employers: int
     max_employer_share: float
     comparison_group: str
-    levels: list[int]
+    levels: list[int | Literal["unassigned"]]
     timing: Timing
 
 
@@ -205,8 +206,8 @@ class Skill(Model):
     short_label: str
     label: str
     status: SkillStatus
-    first_level: int
-    share_by_level: list[float]
+    first_level: int | None
+    share_by_level: list[float | None]
     source_links: list[str]
     windows: list[Measurement]
     evidence: list[Signal]
@@ -362,7 +363,7 @@ def _validate_measurements(windows: list[Measurement]) -> None:
         _require(0 <= window.max_employer_share <= 1, "invalid employer share")
         _require(bool(window.comparison_group.strip()), "missing comparison group")
         _require(bool(window.levels) and len(set(window.levels)) == len(window.levels)
-                 and all(type(level) is int and 1 <= level <= 5 for level in window.levels), "invalid measurement levels")
+                 and all(level == "unassigned" or (type(level) is int and 1 <= level <= 5) for level in window.levels), "invalid measurement levels")
         _require(window.timing == "coincident", "window shares must be coincident")
         _require(window.employers > 0 or window.share == 0, "positive share without employers")
     _require(ids == sorted(ids, key=_period), "measurement windows must be chronological")
@@ -435,9 +436,17 @@ def validate_role(record: RoleRecord) -> None:
     ids = {skill.id for skill in skills}
     _require(len(ids) == len(skills), "duplicate skill ids")
     for skill in skills:
-        _require(skill.first_level in levels and len(skill.share_by_level) == len(levels), "invalid skill level coverage")
+        _require((skill.first_level is None or skill.first_level in levels) and len(skill.share_by_level) == len(levels), "invalid skill level coverage")
+        if skill.first_level is None:
+            _require(not any(share is not None and share > 0 for share in skill.share_by_level), "unknown first level has observed positive coverage")
+        if record.data_kind == "research":
+            for level, share in zip(record.ladder.levels, skill.share_by_level, strict=True):
+                _require((share is None) == (level.evidence.postings == 0), "research share must preserve missing assigned denominators")
+            if skill.first_level is not None:
+                first = skill.share_by_level[skill.first_level - 1]
+                _require(first is not None and first > 0, "research first level needs an observed mention")
         for window in skill.windows:
-            _require(set(window.levels) <= set(levels), "measurement references unknown level")
+            _require(set(window.levels) <= set(levels) | {"unassigned"}, "measurement references unknown level")
         _require(bool(skill.windows) and skill.windows[-1].window == record.demand_window.id, "skill must measure the current window")
         expected = derive_status(skill.windows, skill.evidence)
         _require(skill.status == expected, f"{skill.id}: status must be {expected}")
@@ -459,7 +468,9 @@ def validate_role(record: RoleRecord) -> None:
     _require(top.top_level == max(levels) and top.core_level in levels and top.core_level < top.top_level,
              "top-level adds must compare the highest level with a lower core level")
     expected_top = {skill.id for skill in skills
-                    if skill.share_by_level[top.top_level - 1] >= 40
+                    if skill.share_by_level[top.top_level - 1] is not None
+                    and skill.share_by_level[top.core_level - 1] is not None
+                    and skill.share_by_level[top.top_level - 1] >= 40
                     and skill.share_by_level[top.top_level - 1] - skill.share_by_level[top.core_level - 1] >= 20}
     _require(set(top.skills) == expected_top and len(top.skills) == len(expected_top), "incorrect top-level posting comparison")
     _require(top.long_run_bar.timing == "lagging", "O*NET long-run bar must be lagging")
@@ -485,7 +496,7 @@ def validate_role(record: RoleRecord) -> None:
         _require(signal.family == family, f"{signal.source_kind} family must be {family}")
     for level in record.ladder.levels:
         for expectation in level.expectations:
-            _require(expectation.introduced_at == "earlier" or expectation.introduced_at <= level.level, "expectation introduced after its level")
+            _require(expectation.introduced_at is None or expectation.introduced_at == "earlier" or expectation.introduced_at <= level.level, "expectation introduced after its level")
             _require(expectation.cite == f"/v1/expectations/{expectation.id}@{record.release_id}", "expectation citation must be release-pinned")
 
 

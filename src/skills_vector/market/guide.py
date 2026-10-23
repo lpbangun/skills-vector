@@ -331,6 +331,15 @@ the approved concept; this is illustration metadata, not evidence or a change to
 the schema-valid record under `role`. Research selections never receive fixture
 presentation metadata.
 
+M4 offline research output can be selected with `--role-atlas-root` pointing at
+its `roles/` directory. Unknown `first_level` and missing `share_by_level`
+denominators are null, not L1 or zero demand. Measurement strata may explicitly
+include `"unassigned"` alongside numeric levels. Level titles/expectations can
+be empty; `introduced_at: null` asserts neither introduction nor carry-over.
+Do not infer a career level from these absences. Current one-snapshot research
+forecasts are explicitly uncalibrated sample-persistence baselines, not measured
+four-quarter transition probabilities or a resolved forecast ledger.
+
 Expectation citation ids are `id@release`, exactly as returned in level `cite`
 paths. They resolve to the stored expectation and all its role/level occurrences.
 Current shift items also carry a skill `cite` in that same endpoint namespace;

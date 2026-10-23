@@ -1,0 +1,106 @@
+[
+  {
+    "employer": "Asana",
+    "status": "unverified",
+    "naics": null,
+    "source_id": "src_e35af9278335d5045c77",
+    "quote": null,
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+  },
+  {
+    "employer": "Chime",
+    "status": "unverified",
+    "naics": null,
+    "source_id": "src_faf73f88dbaba0d70efb",
+    "quote": null,
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+  },
+  {
+    "employer": "Databricks",
+    "status": "unverified",
+    "naics": null,
+    "source_id": "src_2b15a14ab97190e211f7",
+    "quote": null,
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+  },
+  {
+    "employer": "Datadog",
+    "status": "unverified",
+    "naics": null,
+    "source_id": "src_73b0452f4c687bbded4c",
+    "quote": null,
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+  },
+  {
+    "employer": "Duolingo",
+    "status": "unverified",
+    "naics": null,
+    "source_id": "src_1ed341a8573851cfd6b0",
+    "quote": null,
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+  },
+  {
+    "employer": "Figma",
+    "status": "unverified",
+    "naics": null,
+    "source_id": "src_140307f829bfdb285349",
+    "quote": null,
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+  },
+  {
+    "employer": "Instacart",
+    "status": "unverified",
+    "naics": null,
+    "source_id": "src_6076d691fd591ccffd48",
+    "quote": null,
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+  },
+  {
+    "employer": "Justworks",
+    "status": "unverified",
+    "naics": null,
+    "source_id": "src_446100506f5f4b8c8026",
+    "quote": null,
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+  },
+  {
+    "employer": "MongoDB",
+    "status": "unverified",
+    "naics": null,
+    "source_id": "src_3fe01ef9bfa3c8e6402e",
+    "quote": null,
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+  },
+  {
+    "employer": "SpaceX",
+    "status": "unverified",
+    "naics": null,
+    "source_id": "src_bb83224100d7cd1745fb",
+    "quote": null,
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+  },
+  {
+    "employer": "Stripe",
+    "status": "unverified",
+    "naics": null,
+    "source_id": "src_6098b7029cbc74dc882c",
+    "quote": null,
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+  },
+  {
+    "employer": "Toast",
+    "status": "unverified",
+    "naics": null,
+    "source_id": "src_2ef617516a5da8524028",
+    "quote": null,
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+  },
+  {
+    "employer": "Verkada",
+    "status": "unverified",
+    "naics": null,
+    "source_id": "src_9474d748372eef14060d",
+    "quote": null,
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+  }
+]

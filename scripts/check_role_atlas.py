@@ -129,8 +129,8 @@ def exercise_map(page, record: dict, output: Path, role: str) -> None:
     for level in record["ladder"]["levels"]:
         number = level["level"]
         page.locator(f'#mapLevel [data-mlevel="{number}"]').click()
-        expected = {key for key, skill in skills.items() if skill["share_by_level"][number - 1] >= 15
-                    or (skill["status"] == "fading" and skill["share_by_level"][number - 1] > 0)}
+        expected = {key for key, skill in skills.items() if skill["share_by_level"][number - 1] is not None and (skill["share_by_level"][number - 1] >= 15
+                    or (skill["status"] == "fading" and skill["share_by_level"][number - 1] > 0))}
         require(set(page.locator("#map .srow").evaluate_all("nodes => nodes.map(n => n.dataset.skill)")) == expected,
                 "needed-at filter does not match API shares")
     page.locator('#mapLevel [data-mlevel="0"]').click()
@@ -166,6 +166,9 @@ def exercise_map(page, record: dict, output: Path, role: str) -> None:
         page.locator("#clearNode").click()
     page.locator('[data-lens="top"]').click()
     require(page.locator("#graph .g-ring").count() == len(record["skill_map"]["top_level_adds"]["skills"]), "wrong top-level highlights")
+    top = record["skill_map"]["top_level_adds"]
+    if any(skill["share_by_level"][top["top_level"] - 1] is None or skill["share_by_level"][top["core_level"] - 1] is None for skill in skills.values()):
+        require("No measured comparison" in page.locator("#graphPanel").inner_text(), "missing level samples implied a measured comparison")
     page.locator('[data-edges="builds"]').click()
     require(page.locator("#graph .g-edge.build").count() == len(record["skill_map"]["builds_on"]), "wrong builds-on edges")
     page.locator('[data-lens="level"]').click()
@@ -194,12 +197,16 @@ def exercise_tab(page, tab: str, record: dict, requests: list[str]) -> None:
             page.locator("#industryPick button").first.click()
     elif tab == "gap":
         before_requests = len(requests)
-        before = page.locator("#next li").count()
+        before = page.locator("#next").inner_text()
         checkbox = page.locator("#checks input").first
-        checked = checkbox.is_checked()
-        checkbox.set_checked(not checked)
-        require(page.locator("#next li").count() != before, "gap comparison did not update locally")
-        page.locator("#checks input").first.set_checked(checked)
+        if checkbox.count():
+            checked = checkbox.is_checked()
+            checkbox.set_checked(not checked)
+            require(page.locator("#next").inner_text() != before, "gap comparison did not update locally")
+            page.locator("#checks input").first.set_checked(checked)
+        else:
+            require("No assigned expectations" in page.locator("#checks").inner_text(), "empty gap input hid missing evidence")
+            require("Insufficient assigned evidence" in before, "empty gap comparison claimed completeness")
         require(len(requests) == before_requests, "gap interaction sent a network request")
         prefs = page.evaluate("JSON.parse(localStorage.getItem('sv-role-atlas') || '{}')")
         require("have" not in prefs, "personal gap evidence was persisted")
@@ -267,8 +274,12 @@ def check_case(browser, base: str, out: Path, width: int, scheme: str, reference
                 require(record["id"] == "role." + role, "wrong selected API role")
                 require(page.locator("#fixtureCallout").is_visible() == (record["data_kind"] == "fixture"), "fixture caveat visibility mismatch")
                 require(page.locator("#experimentalCaveat").count() == (1 if record["publication"] == "experimental" else 0), "experimental caveat mismatch")
-                head_sources = [next(source for source in record["foundation"]["sources"] if source["source_kind"] == kind)
-                                for kind in ("onet_ratings", "bls_projections")]
+                head_sources = [source for kind in ("onet_ratings", "bls_projections")
+                                for source in record["foundation"]["sources"] if source["source_kind"] == kind]
+                if record["data_kind"] == "research":
+                    response = page.request.get(base + "/v1/roles/" + role + "?release=" + record["release_id"]).json()
+                    require("presentation" not in response, "research selection received fixture layout")
+                    require("level unassigned" in page.locator("#skillPanel").inner_text() or any(s["first_level"] is not None for s in record["skill_map"]["skills"]), "unknown levels were promoted")
                 tags = page.locator("#roleHead .tm").all_inner_texts()
                 require([tag.casefold() for tag in tags] == [timing_label(source) for source in head_sources] + [record["demand_window"]["timing"]], "role head lost the source rating year")
                 keyboard_tabs(page)
