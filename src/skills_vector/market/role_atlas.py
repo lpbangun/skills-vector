@@ -6,7 +6,7 @@ import json
 import re
 from dataclasses import asdict, dataclass, fields, is_dataclass
 from decimal import Decimal
-from functools import lru_cache
+from functools import cache
 from pathlib import Path
 from types import UnionType
 from typing import Any, Literal, Self, get_args, get_origin, get_type_hints
@@ -45,11 +45,16 @@ class RoleValidationError(ValueError):
     """A structural or evidence-rule violation in a role/2 record."""
 
 
-@lru_cache(maxsize=1)
+@cache
 def _validator() -> Draft202012Validator:
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
     Draft202012Validator.check_schema(schema)
     return Draft202012Validator(schema)
+
+
+@cache
+def _model_hints(kind: type) -> dict[str, Any]:
+    return get_type_hints(kind)
 
 
 def _decode(kind: Any, value: Any) -> Any:
@@ -61,7 +66,7 @@ def _decode(kind: Any, value: Any) -> Any:
     if origin is list:
         return [_decode(args[0], item) for item in value]
     if is_dataclass(kind):
-        hints = get_type_hints(kind)
+        hints = _model_hints(kind)
         return kind(**{key: _decode(hints[key], item) for key, item in value.items()})
     return value
 
@@ -400,9 +405,8 @@ def sector_qualifies(evidence: EvidenceCounts) -> bool:
 
 
 def _validate_structure(payload: Any) -> None:
-    errors = sorted(_validator().iter_errors(payload), key=lambda error: str(list(error.path)))
-    if errors:
-        error = errors[0]
+    error = next(_validator().iter_errors(payload), None)
+    if error is not None:
         path = ".".join(str(part) for part in error.path) or "record"
         raise RoleValidationError(f"{path}: {error.message}")
     # JSON Schema's numeric comparisons alone do not exclude Python NaN/Infinity.

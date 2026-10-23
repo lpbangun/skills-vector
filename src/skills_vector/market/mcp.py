@@ -27,13 +27,15 @@ from .core import (
     CatalogStore,
 )
 from .remote import RemoteCatalogStore
+from .role_reads import RoleAtlasReads, add_role_atlas_options
 
 READ_ONLY = ToolAnnotations(read_only_hint=True, open_world_hint=False)
 
 
-def create_mcp_server(store: CatalogStore) -> MCPServer:
+def create_mcp_server(store: CatalogStore, *, role_catalog: RoleAtlasReads | None = None) -> MCPServer:
     """Create a stateless-capable MCP server over one shared catalog object."""
 
+    role_catalog = role_catalog or RoleAtlasReads()
     server = MCPServer(
         "skills-vector-market",
         version="market-api/2",
@@ -45,9 +47,47 @@ def create_mcp_server(store: CatalogStore) -> MCPServer:
             "Never infer missing work level, responsibility, experience, context, or requirements from a title. "
             "people_management is distinct from people_manager work level and senior_strategic_ic; require explicit supervisory evidence. "
             "Expectation identity filters accept exact producer-supplied identity_id only; do not merge synonyms. "
-            "expectation_id includes basis; relationship_id identifies the posting/source edge."
+            "expectation_id includes basis; relationship_id identifies the posting/source edge. "
+            "Role Atlas tools read a separately selected role/2 catalog. Fixture data is illustrative, never research; "
+            "retain fixture_caveat and limits. Experimental publication identifies emerging roles."
+
         ),
     )
+
+    @server.tool(annotations=READ_ONLY)
+    def list_roles(release_id: str | None = None) -> dict[str, Any]:
+        """List the selected role/2 release. Fixtures require explicit server configuration."""
+        return role_catalog.list_roles(release_id)
+
+    @server.tool(annotations=READ_ONLY)
+    def get_role(role: str, release_id: str | None = None) -> dict[str, Any]:
+        """Read a full role/2 record, preserving fixture and experimental caveats."""
+        return role_catalog.role(role, release_id)
+
+    @server.tool(annotations=READ_ONLY)
+    def get_role_level(role: str, level: str, release_id: str | None = None) -> dict[str, Any]:
+        """Read one role-specific level by L1–L5 (or its number), with expectations."""
+        return role_catalog.level(role, level, release_id)
+
+    @server.tool(annotations=READ_ONLY)
+    def get_role_graph(role: str, release_id: str | None = None) -> dict[str, Any]:
+        """Read the role's skill map, evidence, forecasts, edges and top-level comparison."""
+        return role_catalog.graph(role, release_id)
+
+    @server.tool(annotations=READ_ONLY)
+    def get_role_industry(role: str, naics: str, release_id: str | None = None) -> dict[str, Any]:
+        """Read one broad NAICS sector; thin profiles remain null with a reason."""
+        return role_catalog.industry(role, naics, release_id)
+
+    @server.tool(annotations=READ_ONLY)
+    def list_shifts(since: str, release_id: str | None = None) -> dict[str, Any]:
+        """Read stored state changes after YYYY-Qn or YYYY-MM, through a pinned release."""
+        return role_catalog.shifts(since, release_id)
+
+    @server.tool(annotations=READ_ONLY)
+    def get_expectation(expectation_id: str, release_id: str) -> dict[str, Any]:
+        """Resolve id@release to stored expectation occurrences; missing quotes are explicit."""
+        return role_catalog.expectation(expectation_id, release_id)
 
     @server.tool(annotations=READ_ONLY)
     def get_brief(
@@ -213,9 +253,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8787)
     parser.add_argument("--print-tools", action="store_true")
+    add_role_atlas_options(parser)
     args = parser.parse_args(argv)
     store = build_backend(release_root=args.release_root, base_url=args.base_url)
-    server = create_mcp_server(store)
+    role_catalog = RoleAtlasReads.configured(args.role_atlas_root, fixtures=args.role_atlas_fixtures)
+    server = create_mcp_server(store, role_catalog=role_catalog)
     if args.print_tools:
         print(json.dumps(tool_schemas(server), indent=2, ensure_ascii=False))
         return 0
@@ -227,3 +269,7 @@ def main(argv: list[str] | None = None) -> int:
 
 
 __all__ = ["build_backend", "create_mcp_server", "tool_schemas"]
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -17,6 +17,7 @@ from starlette.responses import FileResponse, Response
 from .api import MAX_BODY_BYTES, handle_request
 from .core import CatalogStore
 from .mcp import create_mcp_server
+from .role_reads import RoleAtlasReads
 
 MAX_MCP_BODY_BYTES = 16 * 1024
 API_METHODS = ["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "TRACE", "CONNECT"]
@@ -40,10 +41,12 @@ def create_market_app(
     release_root: Path | None = None,
     serve_static: bool = False,
     public_host: bool = False,
+    role_catalog: RoleAtlasReads | None = None,
 ):
     """Build a stateless-SDK HTTP app with REST, MCP, and optional local files."""
 
-    server = create_mcp_server(store)
+    role_catalog = role_catalog or RoleAtlasReads()
+    server = create_mcp_server(store, role_catalog=role_catalog)
     roots = {
         "worktree": Path(worktree).resolve() if worktree is not None else None,
         "release": Path(release_root).resolve() if release_root is not None else None,
@@ -51,7 +54,7 @@ def create_market_app(
 
     async def api_request(request: Request) -> Response:
         if request.method not in ("GET", "HEAD"):
-            result = handle_request(request.method, request.url.path, store=store)
+            result = handle_request(request.method, request.url.path, store=store, role_catalog=role_catalog)
         else:
             body = bytearray()
             async for chunk in request.stream():
@@ -71,6 +74,7 @@ def create_market_app(
                 request.url.path + ("?" + request.url.query if request.url.query else ""),
                 body=bytes(body),
                 store=store,
+                role_catalog=role_catalog,
                 base_url=str(request.base_url).rstrip("/"),
             )
         return Response(
@@ -83,6 +87,8 @@ def create_market_app(
     # only the MCP endpoint can accept protocol POST/GET/DELETE exchanges.
     server.custom_route("/api", methods=API_METHODS)(api_request)
     server.custom_route("/api/{path:path}", methods=API_METHODS)(api_request)
+    server.custom_route("/v1", methods=API_METHODS)(api_request)
+    server.custom_route("/v1/{path:path}", methods=API_METHODS)(api_request)
 
     if serve_static:
         async def index_file(request: Request) -> Response:

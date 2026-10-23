@@ -31,6 +31,13 @@ def api_schema(*, base_url: str = "") -> dict[str, Any]:
             "component_pinning": "component_id is stable by occupation, measure, and definition version; pass release to reproduce the immutable release record",
         },
         "endpoints": [
+            {"path": "/v1/roles", "params": ["release?"], "returns": "role/2 index with release pin, data kind and fixture caveat"},
+            {"path": "/v1/roles/{role}", "params": ["release?"], "returns": "full schema-valid role/2 record in role envelope"},
+            {"path": "/v1/roles/{role}/levels/{L}", "params": ["release?"], "returns": "one level and expectations"},
+            {"path": "/v1/roles/{role}/graph", "params": ["release?"], "returns": "skill map, evidence, forecasts and edges"},
+            {"path": "/v1/roles/{role}/industries/{naics}", "params": ["release?"], "returns": "broad sector, including null thin profiles"},
+            {"path": "/v1/shifts", "params": ["since", "release?"], "returns": "stored state changes since YYYY-Qn or YYYY-MM, with history coverage"},
+            {"path": "/v1/expectations/{id}@{release}", "returns": "pinned expectation occurrences; missing posting/quote lineage explicitly marked not_recorded"},
             {"path": "/api/health", "returns": "release pointer status and role slugs"},
             {"path": "/api/brief", "params": ["release?"], "returns": "four registered roles, publication state, and release metadata"},
             {"path": "/api/release", "params": ["release?"], "returns": "release metadata, scope, versions"},
@@ -51,6 +58,13 @@ def api_schema(*, base_url: str = "") -> dict[str, Any]:
             {"path": "/api/mcp", "methods": ["POST", "GET", "DELETE"], "returns": "official MCP SDK stateless Streamable HTTP read tools"},
         ],
         "mcp_tools": [
+            {"name": "list_roles", "params": ["release_id?"]},
+            {"name": "get_role", "params": ["role", "release_id?"]},
+            {"name": "get_role_level", "params": ["role", "level", "release_id?"]},
+            {"name": "get_role_graph", "params": ["role", "release_id?"]},
+            {"name": "get_role_industry", "params": ["role", "naics", "release_id?"]},
+            {"name": "list_shifts", "params": ["since", "release_id?"]},
+            {"name": "get_expectation", "params": ["expectation_id", "release_id"]},
             {"name": "release_info", "params": ["release_id?"]},
             {"name": "get_brief", "params": ["release_id?"]},
             {"name": "list_occupations", "params": ["release_id?"]},
@@ -63,6 +77,13 @@ def api_schema(*, base_url: str = "") -> dict[str, Any]:
             {"name": "inspect_evidence", "params": ["section", "occupation?", "limit?", "include_text?", "release_id?"]},
             {"name": "research_plan", "params": ["query", "occupation?"], "mutates_catalog": False, "starts_research": False},
         ],
+        "role_atlas": {
+            "record_schema": "skills-vector.role/2",
+            "selection": "disabled unless a research catalog or fixtures are explicitly configured; never a release-tree fallback",
+            "fixture_caveat": "Fixture data is illustrative, not research. Preserve fixture_caveat, data_kind and limits in all downstream use.",
+            "experimental": "publication is experimental exactly when role status is emerging; partial anchor fit alone does not imply experimental",
+            "pinning": "use returned release_id with release= (REST) or release_id (MCP); expectation citations require id@release",
+        },
         "component_schema": "market-component/1",
         "role_dimensions": {
             "work_level": ["individual_contributor", "people_manager", "unknown"],
@@ -249,6 +270,70 @@ demonstrated by this evidence—not that someone lacks a skill. Personal work hi
 and self-assessment stay with the user's own local agent; never upload them to this
 service. No personal evidence is required for browsing, and the catalog cannot make
 personal assessments.
+
+## Role Atlas role/2 reads
+
+The Role Atlas is a separate `skills-vector.role/2` catalog, not a reinterpretation
+of the legacy market releases. REST and MCP return identical JSON envelopes:
+
+| REST GET | MCP tool |
+| --- | --- |
+| `/v1/roles` | `list_roles(release_id?)` |
+| `/v1/roles/{{role}}` | `get_role(role, release_id?)` |
+| `/v1/roles/{{role}}/levels/{{L}}` | `get_role_level(role, level, release_id?)` |
+| `/v1/roles/{{role}}/graph` | `get_role_graph(role, release_id?)` |
+| `/v1/roles/{{role}}/industries/{{naics}}` | `get_role_industry(role, naics, release_id?)` |
+| `/v1/shifts?since=2026-07` | `list_shifts(since, release_id?)` |
+| `/v1/expectations/{{id}}@{{release}}` | `get_expectation(expectation_id, release_id)` |
+
+Use this host (`{base}`) for these requests and `/api/mcp` for the tools. Optional
+REST pins use `?release=<release_id>`. Each success envelope carries `release_id`,
+`data_kind`, `fixture_caveat` and `limits`. The full schema-valid record is under
+`role`; other reads return `roles`, `level`, `graph`, `industry` or `shifts`.
+Unknown role, level, sector, expectation or release returns a structured 404;
+invalid parameters return 400. No unknown pin silently falls back to current.
+Levels accept `L3` or `3`. NAICS ranges accept `31–33` or `31-33`.
+
+A server serves **no role/2 catalog by default** (503, never fixture fallback).
+For local REST+MCP, explicitly select one of:
+
+```sh
+uv run skills-vector market serve --role-atlas-root /absolute/research-role-catalog
+uv run skills-vector market serve --role-atlas-fixtures
+uv run skills-vector market mcp --release-root preview/release --role-atlas-fixtures
+```
+
+The module server/MCP entrypoints accept the same options. These options are
+mutually exclusive. The catalog directory contains flat role/2 JSON documents;
+multiple releases use different filenames. Without a pin, the release with the
+latest demand window is selected, with release-id lexical order breaking ties.
+Always reuse the returned pin to reproduce a read. The legacy MCP `--base-url`
+backend does not auto-select a role/2 catalog; use deployed HTTP MCP or explicitly
+configure local role/2 data for stdio.
+
+For the deployed `api/index.py`, set `SKILLS_VECTOR_ROLE_ATLAS_ROOT` to an explicit
+research catalog directory, or `SKILLS_VECTOR_ROLE_ATLAS_FIXTURES=1` to select the
+packaged fixtures. Do not set both. A research selection containing fixture
+records fails closed. Neither a query parameter nor a tool argument can enable
+fixtures. No catalog read writes a release or calls an external service.
+
+**Fixture caveat:** `data_kind: fixture` means illustrative prototype numbers,
+not research findings. Keep the returned `fixture_caveat` and all `limits`,
+including synthetic core measurements, assumed edge employer counts, concentration
+and illustrative forecast rates. Never relabel fixtures as research. An emerging
+role (FDE in the fixtures) has `publication: experimental`; retain that caveat.
+Established Account Executive stays standard even though its anchor fit is partial.
+Thin sectors remain visible with `profile: null` and a reason.
+
+Expectation citation ids are `id@release`, exactly as returned in level `cite`
+paths. They resolve to the stored expectation and all its role/level occurrences.
+The current contract stores level evidence counts, not posting ids/quote excerpts:
+`postings` and `excerpts` are empty and `evidence_status` is `not_recorded`. Do not
+invent citations from those counts. The shifts read compares stored release
+snapshots and reports `history_status`; a single fixture snapshot yields no
+asserted state transitions, rather than inferring past non-posting confirmation.
+`since` is an exclusive window boundary; `release` is the inclusive upper pin.
+No person-specific gap or assessment data is accepted by these read-only tools.
 
 ## Local stdio fallback and operator boundary
 

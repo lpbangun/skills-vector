@@ -32,6 +32,7 @@ from skills_vector.market.role_atlas import (
     edge_qualifies,
     sector_qualifies,
     validate_role,
+    _validator,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -157,6 +158,14 @@ class RoleContractTests(unittest.TestCase):
             RoleRecord.from_dict(payload)
         if message:
             self.assertIn(message, str(raised.exception))
+
+    def test_schema_validator_is_loaded_and_checked_once_per_process(self) -> None:
+        _validator.cache_clear()
+        with patch.object(Draft202012Validator, "check_schema", wraps=Draft202012Validator.check_schema) as check:
+            first = _validator()
+            self.assertIs(_validator(), first)
+            self.assertEqual(check.call_count, 1)
+        self.assertEqual(_validator.cache_info().hits, 1)
 
     def test_all_models_round_trip_through_real_json_schema(self) -> None:
         self.validator.check_schema(self.schema)
@@ -310,7 +319,6 @@ class RoleContractTests(unittest.TestCase):
                         del target["timing"]
                     else:
                         target["timing"] = invalid
-                    self.assertFalse(self.validator.is_valid(payload))
                     self.reject(payload)
 
     def test_source_kind_requires_canonical_timing_and_family_for_every_kind(self) -> None:

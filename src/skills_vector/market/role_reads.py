@@ -1,0 +1,191 @@
+"""Release-pinned Role Atlas reads shared verbatim by REST and MCP."""
+
+from __future__ import annotations
+
+import argparse
+import os
+import re
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any
+
+from .role_atlas import SCHEMA_VERSION, RoleCatalogStore, RoleValidationError, _period
+
+FIXTURE_CAVEAT = "Fixture data: illustrative prototype numbers and assumptions, not research findings. See limits."
+HTTP_STATUS = {
+    "invalid_request": 400,
+    "unknown_release": 404,
+    "unknown_role": 404,
+    "unknown_level": 404,
+    "unknown_industry": 404,
+    "unknown_expectation": 404,
+    "role_catalog_unavailable": 503,
+}
+RELEASE_PATTERN = r"[A-Za-z0-9][A-Za-z0-9._-]{0,79}"
+ROLE_PATTERN = r"(?:role\.)?[a-z0-9][a-z0-9-]{0,63}"
+WINDOW_PATTERN = r"[0-9]{4}-(?:Q[1-4]|0[1-9]|1[0-2])"
+EXPECTATION_PATTERN = r"[A-Za-z0-9][A-Za-z0-9._-]{0,199}"
+
+
+class RoleReadError(ValueError):
+    def __init__(self, code: str, detail: str) -> None:
+        super().__init__(detail)
+        self.code = code
+
+
+def _check(condition: bool, detail: str) -> None:
+    if not condition:
+        raise RoleReadError("invalid_request", detail)
+
+
+@dataclass
+class RoleAtlasReads:
+    catalog: RoleCatalogStore | None = None
+    fixtures: bool = False
+
+    @classmethod
+    def configured(cls, root: Path | str | None = None, *, fixtures: bool = False) -> RoleAtlasReads:
+        if root is not None and not str(root).strip():
+            raise ValueError("role-atlas root must not be blank")
+        if root is not None and fixtures:
+            raise ValueError("select a research role-atlas root OR the fixture catalog, not both")
+        return cls(RoleCatalogStore.fixtures() if fixtures else RoleCatalogStore(Path(root)) if root is not None else None, fixtures)
+
+    def list_roles(self, release_id: str | None = None) -> dict[str, Any]:
+        return self._read("roles", release_id=release_id)
+
+    def role(self, role: str, release_id: str | None = None) -> dict[str, Any]:
+        return self._read("role", role=role, release_id=release_id)
+
+    def level(self, role: str, level: str, release_id: str | None = None) -> dict[str, Any]:
+        return self._read("level", role=role, level=level, release_id=release_id)
+
+    def graph(self, role: str, release_id: str | None = None) -> dict[str, Any]:
+        return self._read("graph", role=role, release_id=release_id)
+
+    def industry(self, role: str, naics: str, release_id: str | None = None) -> dict[str, Any]:
+        return self._read("industry", role=role, naics=naics, release_id=release_id)
+
+    def shifts(self, since: str, release_id: str | None = None) -> dict[str, Any]:
+        return self._read("shifts", since=since, release_id=release_id)
+
+    def expectation(self, expectation_id: str, release_id: str) -> dict[str, Any]:
+        return self._read("expectation", expectation_id=expectation_id, release_id=release_id)
+
+    def _read(self, resource: str, *, release_id: str | None, **params: Any) -> dict[str, Any]:
+        context = {"data_kind": "fixture" if self.fixtures else "research",
+                   "fixture_caveat": FIXTURE_CAVEAT if self.fixtures else None}
+        try:
+            if release_id is not None:
+                _check(bool(re.fullmatch(RELEASE_PATTERN, release_id)), "release must be an immutable release id")
+            if "role" in params:
+                _check(bool(re.fullmatch(ROLE_PATTERN, params["role"])), "role must be a lowercase role slug or role id")
+            if resource == "level":
+                _check(bool(re.fullmatch(r"L?[0-9]{1,2}", params["level"])), "level must be L1–L5 (or its number)")
+            if resource == "industry":
+                _check(bool(re.fullmatch(r"[0-9]{2}(?:[–-][0-9]{2})?", params["naics"])), "naics must be a broad sector code")
+            if resource == "shifts":
+                _check(bool(re.fullmatch(WINDOW_PATTERN, params["since"])), "since must be YYYY-Qn or YYYY-MM")
+            if resource == "expectation":
+                _check(bool(re.fullmatch(EXPECTATION_PATTERN, params["expectation_id"])), "invalid expectation id")
+                _check(release_id is not None, "expectations require an explicit release id")
+            if self.catalog is None:
+                raise RoleReadError("role_catalog_unavailable", "No role/2 catalog selected. Configure a research catalog or explicitly select fixtures.")
+            all_records = self.catalog.list_roles()
+            expected_kind = "fixture" if self.fixtures else "research"
+            if any(record["data_kind"] != expected_kind for record in all_records):
+                raise RoleReadError("role_catalog_unavailable", "Catalog data kind does not match the explicit selection; fixtures require fixture mode.")
+            if not all_records:
+                raise RoleReadError("role_catalog_unavailable", "The selected role/2 catalog has no records.")
+            release_keys: dict[str, tuple[int, str]] = {}
+            for record in all_records:
+                rid = record["release_id"]
+                release_keys[rid] = max(release_keys.get(rid, (-1, rid)), (_period(record["demand_window"]["id"]), rid))
+            rid = release_id if release_id is not None else max(release_keys, key=release_keys.get)
+            context["release_id"] = rid
+            records = [record for record in all_records if record["release_id"] == rid]
+            if not records:
+                raise RoleReadError("unknown_release", "Unknown role/2 release; no fallback was used.")
+            context.update(record_schema=SCHEMA_VERSION,
+                           limits=list(dict.fromkeys(limit for record in records for limit in record["limits"])))
+            payload: dict[str, Any] = {"status": "ok", **context}
+            if resource == "roles":
+                fields = ("id", "label", "status", "publication", "data_kind", "release_id", "anchors", "demand_window", "limits")
+                return {**payload, "roles": [{field: record[field] for field in fields} for record in records]}
+            if resource == "shifts":
+                return {**payload, **self._shifts(records, all_records, release_keys, rid, params["since"])}
+            if resource == "expectation":
+                occurrences = [
+                    {"role_id": record["id"], "publication": record["publication"], "level": level["level"],
+                     "evidence": level["evidence"], "expectation": expectation}
+                    for record in records for level in record["ladder"]["levels"] for expectation in level["expectations"]
+                    if expectation["id"] == params["expectation_id"]
+                ]
+                if not occurrences:
+                    raise RoleReadError("unknown_expectation", "Unknown expectation in the pinned release.")
+                return {**payload, "citation_id": f"{params['expectation_id']}@{rid}",
+                        "expectation": occurrences[0]["expectation"], "occurrences": occurrences,
+                        "postings": [], "excerpts": [], "evidence_status": "not_recorded",
+                        "evidence_note": "The role/2 contract records level counts, not posting ids or quote excerpts. None are fabricated."}
+            record = next((record for record in records if params["role"] in (record["id"], record["id"].removeprefix("role."))), None)
+            if record is None:
+                raise RoleReadError("unknown_role", "Unknown role in the pinned release.")
+            payload.update(role_id=record["id"], publication=record["publication"], limits=record["limits"])
+            if resource == "role":
+                return {**payload, "role": record}
+            if resource == "graph":
+                return {**payload, "graph": record["skill_map"]}
+            if resource == "level":
+                number = int(params["level"].removeprefix("L"))
+                level = next((item for item in record["ladder"]["levels"] if item["level"] == number), None)
+                if level is None:
+                    raise RoleReadError("unknown_level", "Unknown level for this role in the pinned release.")
+                return {**payload, "level": level}
+            naics = params["naics"].replace("-", "–")
+            industry = next((item for item in record["industries"] if item["naics"].replace("-", "–") == naics), None)
+            if industry is None:
+                raise RoleReadError("unknown_industry", "Unknown sector for this role in the pinned release.")
+            return {**payload, "industry": industry}
+        except RoleReadError as exc:
+            return {"status": exc.code, "detail": str(exc), **context}
+        except (OSError, RoleValidationError):
+            return {"status": "role_catalog_unavailable", "detail": "The role/2 catalog is unreadable or invalid.", **context}
+
+    def _shifts(self, records: list[dict], all_records: list[dict], release_keys: dict,
+                rid: str, since: str) -> dict[str, Any]:
+        changes = []
+        uncompared = []
+        for record in records:
+            history = sorted((item for item in all_records if item["id"] == record["id"]
+                              and release_keys[item["release_id"]] <= release_keys[rid]),
+                             key=lambda item: release_keys[item["release_id"]])
+            if len(history) < 2:
+                uncompared.append(record["id"])
+            for before, after in zip(history, history[1:]):
+                if _period(after["demand_window"]["id"]) <= _period(since):
+                    continue
+                previous = {skill["id"]: skill["status"] for skill in before["skill_map"]["skills"]}
+                for skill in after["skill_map"]["skills"]:
+                    if skill["id"] in previous and previous[skill["id"]] != skill["status"]:
+                        changes.append({"role_id": after["id"], "skill_id": skill["id"], "label": skill["label"],
+                                        "previous_status": previous[skill["id"]], "status": skill["status"],
+                                        "window": after["demand_window"]["id"], "release_id": after["release_id"],
+                                        "data_kind": after["data_kind"], "fixture_caveat": FIXTURE_CAVEAT if self.fixtures else None,
+                                        "evidence": skill["evidence"], "forecast": skill["forecast"]})
+        changes.sort(key=lambda item: (release_keys[item["release_id"]], item["role_id"], item["skill_id"]))
+        return {"since": since, "shifts": changes, "uncompared_roles": uncompared,
+                "history_status": "not_recorded" if len(uncompared) == len(records) else "partial" if uncompared else "available",
+                "history_note": "State changes compare stored role/2 release snapshots, not inferred historical non-posting signals. A single snapshot cannot establish a change."}
+
+
+def add_role_atlas_options(parser: argparse.ArgumentParser) -> None:
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--role-atlas-root", type=Path, default=None, help="explicit research role/2 catalog directory")
+    group.add_argument("--role-atlas-fixtures", action="store_true", help="explicitly serve the illustrative role/2 fixture catalog")
+
+
+def role_atlas_from_environment() -> RoleAtlasReads:
+    raw = os.environ.get("SKILLS_VECTOR_ROLE_ATLAS_FIXTURES", "0").lower()
+    if raw not in ("0", "1", "false", "true"):
+        raise ValueError("SKILLS_VECTOR_ROLE_ATLAS_FIXTURES must be 0/1 or false/true")
+    return RoleAtlasReads.configured(os.environ.get("SKILLS_VECTOR_ROLE_ATLAS_ROOT"), fixtures=raw in ("1", "true"))

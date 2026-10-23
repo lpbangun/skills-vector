@@ -13,7 +13,7 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
-from urllib.parse import parse_qs, urlsplit
+from urllib.parse import parse_qs, unquote, urlsplit
 
 from .core import (
     EXPECTATION_BASIS_VALUES,
@@ -26,6 +26,7 @@ from .core import (
     CatalogStore,
 )
 from .guide import agent_guide_markdown, api_schema
+from .role_reads import HTTP_STATUS, RoleAtlasReads
 
 MAX_QUERY_LENGTH = 400
 MAX_LIMIT = 200
@@ -80,6 +81,34 @@ def _flag(params: dict[str, list[str]], key: str) -> bool:
     return raw in ("1", "true", "yes", "on")
 
 
+def _role_request(path: str, params: dict[str, list[str]], catalog: RoleAtlasReads) -> ApiResponse:
+    if any(len(params.get(key, [])) > 1 for key in ("release", "since")):
+        return _error(400, "invalid_request", "release and since must each have at most one value")
+    release_id = _one(params, "release")
+    if path == "/v1/roles":
+        payload = catalog.list_roles(release_id)
+    elif path == "/v1/shifts":
+        payload = catalog.shifts(_one(params, "since") or "", release_id)
+    elif match := re.fullmatch(r"/v1/expectations/([^/]+)", path):
+        expectation_id, separator, pin = unquote(match[1]).rpartition("@")
+        if not separator or (release_id is not None and release_id != pin):
+            return _error(400, "invalid_request", "expectation citations require id@release and a matching release query, if supplied")
+        payload = catalog.expectation(expectation_id, pin)
+    elif match := re.fullmatch(r"/v1/roles/([^/]+)(?:/(levels|industries)/([^/]+)|/(graph))?", path):
+        role = unquote(match[1])
+        if match[2] == "levels":
+            payload = catalog.level(role, unquote(match[3]), release_id)
+        elif match[2] == "industries":
+            payload = catalog.industry(role, unquote(match[3]), release_id)
+        elif match[4] == "graph":
+            payload = catalog.graph(role, release_id)
+        else:
+            payload = catalog.role(role, release_id)
+    else:
+        return _error(404, "not_found", f"no API route for {path!r}")
+    return _json(HTTP_STATUS.get(payload.get("status"), 200), payload)
+
+
 def handle_request(
     method: str,
     target: str,
@@ -87,6 +116,7 @@ def handle_request(
     body: bytes = b"",
     store: CatalogStore | None = None,
     store_factory: Callable[[], CatalogStore] | None = None,
+    role_catalog: RoleAtlasReads | None = None,
     base_url: str = "",
 ) -> ApiResponse:
     """Route one API request. ``store_factory`` is resolved lazily per request."""
@@ -107,6 +137,9 @@ def handle_request(
         return _error(405, "method_not_allowed", "Only GET/HEAD reads are served.", allowed=["GET", "HEAD"])
     if body and len(body) > MAX_BODY_BYTES:
         return _error(413, "payload_too_large", f"request body exceeds {MAX_BODY_BYTES} bytes")
+
+    if path == "/v1" or path.startswith("/v1/"):
+        return _role_request(path, params, role_catalog or RoleAtlasReads())
 
     if not path.startswith("/api"):
         return _error(404, "not_found", f"no API route for {path!r}")
@@ -278,7 +311,9 @@ def handle_request(
     return _error(404, "not_found", f"no API route for {path!r}")
 
 
-def handler_for_release_root(release_root: Path | str, *, base_url: str = "") -> Callable[..., ApiResponse]:
+def handler_for_release_root(
+    release_root: Path | str, *, base_url: str = "", role_catalog: RoleAtlasReads | None = None,
+) -> Callable[..., ApiResponse]:
     """Bind a router callable to a release root (used by the local server)."""
 
     def _handle(method: str, target: str, *, body: bytes = b"") -> ApiResponse:
@@ -287,6 +322,7 @@ def handler_for_release_root(release_root: Path | str, *, base_url: str = "") ->
             target,
             body=body,
             store_factory=lambda: CatalogStore(Path(release_root), base_url=base_url),
+            role_catalog=role_catalog,
             base_url=base_url,
         )
 

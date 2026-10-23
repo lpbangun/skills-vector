@@ -195,3 +195,112 @@ M2 implementation. Remaining limitations are the explicit fixture assumptions
 and normal mtime-cache semantics: content writers must advance file mtime when
 changing a record. Fixes are committed on `feat/role-atlas` with message
 `fix(role-atlas): address M1 review round 1`; stop for review.
+
+## M2 — Read surfaces
+
+### M1-r2 carry-over (done first)
+
+- Changed `_validator()` to the requested process-wide `functools.cache` and
+  added a regression test proving repeated lookups reuse the same checked schema.
+  The previous implementation already had a bounded LRU cache; no claim that it
+  was uncached is needed for the fix.
+- Cached dataclass type hints and stopped structural validation at the first
+  error instead of collecting/sorting every error. Removed one redundant second
+  invocation of the same JSON Schema validator per nested-timing rejection case;
+  every original valid/invalid case still runs through the real model/schema
+  validator. Fixture catalogs remain initialized once per test class. No tests,
+  cases or skips were removed/added to weaken coverage.
+- Final focused result: **33 tests in 9.879s, OK; 10.086s shell elapsed**, below
+  the requested 15s. This includes the new cache regression test.
+
+### Built and standards evidence
+
+- **R1:** All seven REST reads exist: role index, full role, level, graph, broad
+  NAICS sector, shifts since a window, and expectation citation by `id@release`.
+  `market/role_reads.py` is the shared, read-only query service over the role/2
+  sibling catalog. `market/api.py` returns the existing status/detail error
+  envelope convention with structured 404s for unknown role, level, sector,
+  expectation and release. Invalid inputs return 400; mutations return 405;
+  request-body bounds and HEAD behavior are preserved.
+- **R2:** Seven read-only MCP tools call that exact service: `list_roles`,
+  `get_role`, `get_role_level`, `get_role_graph`, `get_role_industry`,
+  `list_shifts`, `get_expectation`. An official-SDK ClientSession over an
+  in-process ASGI transport calls every pair and asserts identical JSON,
+  including explicit release pins, not-found cases and invalid input. Another
+  SDK test proves an unselected catalog cannot be enabled by a client.
+- **R3:** Every successful read carries `release_id`; full schema-valid role/2
+  records are under the `role` key of the common envelope. Explicit unknown pins
+  never fall back. Tests use three temporary fixture snapshots to prove old
+  role/subresource/citation reads stay pinned when a newer snapshot exists.
+  Every expectation cite in all three packaged fixture roles resolves to the
+  exact expectation and its role/level occurrences. Historical shifts compare
+  stored states, with an exclusive `since` boundary and inclusive release pin;
+  tests cover changes in both directions and absent/partial history.
+- **R4:** Updated the served agent guide and machine-readable API schema with
+  every endpoint/tool, input/pin conventions, configuration, fixture and
+  experimental caveats, null thin sectors and missing-lineage/history behavior.
+- **Explicit fixture selection:** Role Atlas is disabled by default (503), not
+  a fallback for the legacy release tree. Local server/MCP entrypoints and
+  `skills-vector market serve|mcp` accept mutually exclusive
+  `--role-atlas-root` and `--role-atlas-fixtures`. Deployed `api/index.py` selects
+  `SKILLS_VECTOR_ROLE_ATLAS_ROOT` or `SKILLS_VECTOR_ROLE_ATLAS_FIXTURES=1`.
+  Conflicting/invalid configuration fails closed; research mode rejects fixture
+  records. Each fixture success/projection retains `data_kind`, the explicit
+  `fixture_caveat`, original `limits`, and applicable experimental publication.
+- **Integration:** One selected service instance backs REST and MCP in
+  `create_market_app`. Added `/v1` ASGI routes and Vercel rewrites to the existing
+  function, preserving `/api` and the existing static preview. No M3 UI or
+  assembly work. The standalone MCP module now actually invokes its existing
+  `main()` so its documented/configured `--print-tools` entrypoint works.
+- **G2–G4:** Added 16 offline M2 tests plus the cache regression. No new
+  dependencies, paid/model calls, external network requests, secret access or
+  immutable release edits. Dataclasses/stdlib and the existing maintained MCP
+  SDK/router patterns remain in use.
+
+### Verification (exact commands and real results)
+
+Run from this worktree on `feat/role-atlas`, using codemode batches:
+
+| Command | Result |
+| --- | --- |
+| `TIMEFORMAT='elapsed %3R s'; time .venv/bin/python -m unittest discover -s tests -p test_role_atlas.py` | Exit 0; **33 tests in 9.879s, OK; elapsed 10.086s**, no skips. |
+| `.venv/bin/python -m unittest discover -s tests -p test_role_atlas_api_mcp.py` | Exit 0; **16 tests in 3.286s, OK**, no skips. Real ASGI/SDK requests, no external services. |
+| `.venv/bin/python -m unittest discover -s tests` | Exit 0; **177 tests in 23.167s, OK (skipped=2)**. The same pre-existing optional-browser and absent sealed-original-artifact skips; no newly skipped tests. |
+| `.venv/bin/python -m compileall -q api/index.py src/skills_vector/market src/skills_vector/market_cli.py tests/test_role_atlas.py tests/test_role_atlas_api_mcp.py` | Exit 0, no errors. |
+| `uv lock --check --offline` | Exit 0; resolved 61 packages, lock/dependencies unchanged. |
+| `git diff --check` | Exit 0, no whitespace errors. |
+| `git diff --exit-code -- preview/release/` | Exit 0; release tree unchanged. |
+| `.venv/bin/python -m skills_vector.market.mcp --release-root preview/release --role-atlas-fixtures --print-tools > /tmp/role-atlas-m2-tools.json` | Exit 0; valid tool JSON. A stdlib JSON inspection asserted all seven new read-tool names are present; CLI behavior is also covered by tests. |
+
+The first standalone-module tool-list smoke produced no JSON because the existing
+module defined `main()` without invoking it. Added the module guard and verified
+both module and market CLI paths; the final smoke passes. Full suites passed
+before and after this correction (final result above).
+
+### Deviations and open risks
+
+- No M3 work. Only the explicitly requested M1-r2 performance carry-over and M2
+  read/configuration/routing/docs/tests changed. One M2 commit, no push or history
+  rewrite: `feat(role-atlas): add M2 release-pinned REST and MCP reads`.
+- The current M1 expectation contract contains level evidence counts, not
+  individual posting ids or quote excerpts. Citation endpoints resolve the
+  stored expectation/occurrences and explicitly return empty `postings` and
+  `excerpts` with `evidence_status: not_recorded`; no source lineage is invented.
+  Actual posting/excerpt lineage remains an evidence-pipeline input/contract
+  extension for later work, not a claimed M2 finding.
+- A single fixture snapshot cannot prove a status transition. `/v1/shifts`
+  therefore returns no asserted transitions and `history_status: not_recorded`
+  for that catalog. It returns real stored-state differences when historical
+  snapshots exist, as the temporary multi-release tests demonstrate. It never
+  retroactively applies current O/M confirmation to earlier windows.
+- With no explicit pin, latest means greatest demand-window start, with lexical
+  release id as tie-breaker. Clients should always reuse the returned release
+  id. Historical files must be retained and treated as immutable by producers;
+  these reads never publish or replace them. The inherited mtime cache requires
+  content writers to advance mtime when changing files.
+- Real role/2 research data is not produced by M2. Operators must configure a
+  research catalog directory or explicitly opt into labeled fixtures. Legacy
+  `--base-url` does not silently select local/remote Role Atlas data; deployed
+  HTTP MCP shares its server's explicit role/2 selection.
+
+M2 complete; stop for review. M3 has not started.

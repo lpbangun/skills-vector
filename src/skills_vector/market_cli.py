@@ -25,6 +25,7 @@ from .market.core import (
     CatalogStore,
 )
 from .market.guide import agent_guide_markdown, api_schema
+from .market.role_reads import RoleAtlasReads, add_role_atlas_options
 
 DEFAULT_RELEASE_ROOT = Path("preview/release")
 DEFAULT_EVIDENCE_ROOT = Path.home() / ".local" / "share" / "skills-vector-evidence"
@@ -221,6 +222,7 @@ def build_parser() -> argparse.ArgumentParser:
     serve.add_argument("--port", type=int, default=8787)
     serve.add_argument("--worktree", type=Path, default=Path(__file__).resolve().parents[2])
     serve.add_argument("--release-root", type=Path, default=None)
+    add_role_atlas_options(serve)
 
     mcp = sub.add_parser("mcp", help="maintained MCP SDK server (stdio or stateless Streamable HTTP)")
     mcp.add_argument("--release-root", type=Path, default=DEFAULT_RELEASE_ROOT)
@@ -229,6 +231,7 @@ def build_parser() -> argparse.ArgumentParser:
     mcp.add_argument("--host", default="127.0.0.1")
     mcp.add_argument("--port", type=int, default=8787)
     mcp.add_argument("--print-tools", action="store_true")
+    add_role_atlas_options(mcp)
 
     guide = sub.add_parser("agent-guide", help="agent guide and machine-readable schema")
     guide.add_argument("--deployed-url", default=None)
@@ -452,7 +455,8 @@ def run(argv: list[str]) -> int:
 
         worktree = args.worktree.resolve()
         release_root = args.release_root.resolve() if args.release_root else worktree / "preview" / "release"
-        return run_server(worktree, release_root, args.host, args.port)
+        return run_server(worktree, release_root, args.host, args.port,
+                          role_atlas_root=args.role_atlas_root, role_atlas_fixtures=args.role_atlas_fixtures)
     if command == "mcp":
         from .market.mcp import build_backend, create_mcp_server, tool_schemas
 
@@ -460,7 +464,8 @@ def run(argv: list[str]) -> int:
             release_root=str(args.release_root) if args.release_root else None,
             base_url=args.base_url,
         )
-        server = create_mcp_server(backend)
+        role_catalog = RoleAtlasReads.configured(args.role_atlas_root, fixtures=args.role_atlas_fixtures)
+        server = create_mcp_server(backend, role_catalog=role_catalog)
         if args.print_tools:
             _print({"tools": tool_schemas(server), "schema": api_schema()})
             return 0

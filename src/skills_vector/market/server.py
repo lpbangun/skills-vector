@@ -9,6 +9,7 @@ from typing import Any
 import uvicorn
 
 from .core import CatalogStore
+from .role_reads import RoleAtlasReads, add_role_atlas_options
 from .web import create_market_app
 
 
@@ -17,6 +18,9 @@ def build_server(
     release_root: Path,
     host: str = "127.0.0.1",
     port: int = 8787,
+    *,
+    role_atlas_root: Path | None = None,
+    role_atlas_fixtures: bool = False,
 ) -> uvicorn.Server:
     """Build an ASGI server over one local catalog store."""
 
@@ -27,6 +31,7 @@ def build_server(
         worktree=worktree,
         release_root=release_root,
         serve_static=True,
+        role_catalog=RoleAtlasReads.configured(role_atlas_root, fixtures=role_atlas_fixtures),
     )
     config = uvicorn.Config(app, host=host, port=port, log_level="info", access_log=False)
     return uvicorn.Server(config)
@@ -37,8 +42,12 @@ def run_server(
     release_root: Path,
     host: str = "127.0.0.1",
     port: int = 8787,
+    *,
+    role_atlas_root: Path | None = None,
+    role_atlas_fixtures: bool = False,
 ) -> int:
-    server = build_server(worktree, release_root, host, port)
+    server = build_server(worktree, release_root, host, port,
+                          role_atlas_root=role_atlas_root, role_atlas_fixtures=role_atlas_fixtures)
     print(f"skills-vector market ASGI server on http://{host}:{port} (MCP /api/mcp)", flush=True)
     server.run()
     return 0
@@ -50,10 +59,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--release-root", type=Path, default=None)
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8787)
+    add_role_atlas_options(parser)
     args = parser.parse_args(argv)
     worktree = Path(args.worktree).resolve()
     release_root = Path(args.release_root).resolve() if args.release_root else worktree / "preview" / "release"
-    return run_server(worktree, release_root, args.host, args.port)
+    return run_server(worktree, release_root, args.host, args.port,
+                      role_atlas_root=args.role_atlas_root, role_atlas_fixtures=args.role_atlas_fixtures)
 
 
 if __name__ == "__main__":
