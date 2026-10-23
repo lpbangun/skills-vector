@@ -324,7 +324,12 @@ including synthetic core measurements, assumed edge employer counts, concentrati
 and illustrative forecast rates. Never relabel fixtures as research. An emerging
 role (FDE in the fixtures) has `publication: experimental`; retain that caveat.
 Established Account Executive stays standard even though its anchor fit is partial.
-Thin sectors remain visible with `profile: null` and a reason.
+Thin sectors remain visible with `profile: null` and a reason. The human reader is
+at `/role-atlas.html`, using the same configured API and release pin. Fixture role
+and graph envelopes may also carry labeled `presentation` family/row layout from
+the approved concept; this is illustration metadata, not evidence or a change to
+the schema-valid record under `role`. Research selections never receive fixture
+presentation metadata.
 
 Expectation citation ids are `id@release`, exactly as returned in level `cite`
 paths. They resolve to the stored expectation and all its role/level occurrences.

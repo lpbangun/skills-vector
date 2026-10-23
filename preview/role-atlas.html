@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Skills Vector Role Atlas: level-specific skills, changing demand, industries and evidence.">
+<title>Skills Vector Role Atlas</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/role-atlas-assets/fonts.css">
+<link rel="stylesheet" href="/role-atlas.css">
+<script src="/role-atlas.js" defer></script>
+</head>
+<body>
+<div class="wrap" id="app" data-view="human">
+
+  <header class="mast">
+    <div class="mast-top">
+      <span class="brand">Skills Vector · Role Atlas</span>
+      <span class="label" id="releaseLabel">Role reference · skills-vector.role/2</span>
+    </div>
+    <h1>Every skill a job asks for, at each level and in each industry, and which ones are changing</h1>
+    <p class="lede">Pick a job. The skill map lists every skill employers ask for, the levels that need it, and whether demand is steady, rising or fading. Each call names the data behind it, and every forecast is scored when the data comes in.</p>
+    <div class="callout" id="fixtureCallout" role="note" hidden>
+      <strong>Fixture data</strong>
+      <span id="fixtureNote"></span>
+    </div>
+  </header>
+
+  <section class="panel" id="loadStatus" role="status" aria-live="polite">
+    <h2 id="loadTitle">Loading the role catalog</h2>
+    <p id="loadMessage">Reading the selected role/2 release. No personal information is sent.</p>
+    <button type="button" class="btn" id="retryLoad" hidden>Retry loading</button>
+  </section>
+  <main id="atlasContent" hidden>
+  <section aria-labelledby="h-role">
+    <div class="toolbar">
+      <div class="field">
+        <span class="label" id="lbl-role">Role</span>
+        <div class="seg" id="rolePick" role="group" aria-labelledby="lbl-role"></div>
+      </div>
+    </div>
+    <h2 id="h-role" class="sr-only">Role record</h2>
+    <div class="role-head" id="roleHead"></div>
+
+    <div class="tabs" role="tablist" aria-label="Role views" id="tabs">
+      <button type="button" role="tab" id="t-map" aria-controls="tab-map" data-tab="map">Skill map</button>
+      <button type="button" role="tab" id="t-levels" aria-controls="tab-levels" data-tab="levels">Levels</button>
+      <button type="button" role="tab" id="t-industries" aria-controls="tab-industries" data-tab="industries">Industries</button>
+      <button type="button" role="tab" id="t-gap" aria-controls="tab-gap" data-tab="gap">Your gap</button>
+      <button type="button" role="tab" id="t-agent" aria-controls="tab-agent" data-tab="agent">For agents</button>
+    </div>
+
+    <div role="tabpanel" id="tab-map" aria-labelledby="t-map" class="tabpanel" tabindex="0">
+      <p class="muted">Every skill employers ask for in this role, grouped by what the evidence says about it. Select a skill to see why it has its status.</p>
+      <div class="toolbar">
+        <div class="field">
+          <span class="label" id="lbl-mlevel">Needed at</span>
+          <div class="seg" id="mapLevel" role="group" aria-labelledby="lbl-mlevel"></div>
+        </div>
+        <div class="field">
+          <span class="label" id="lbl-mmode">Show</span>
+          <div class="seg" id="mapMode" role="group" aria-labelledby="lbl-mmode">
+            <button type="button" data-mode="list" aria-pressed="true">List</button>
+            <button type="button" data-mode="conn" aria-pressed="false">Connections</button>
+          </div>
+        </div>
+      </div>
+      <div id="mapList" style="display:grid; gap:1rem">
+        <div class="topline" id="topLine"></div>
+        <div class="map-wrap">
+          <div class="map" id="map"></div>
+          <aside class="panel" id="skillPanel" aria-live="polite"></aside>
+        </div>
+      </div>
+      <div id="connWrap" hidden style="gap:1rem">
+        <p class="muted" id="graphIntro">Columns are the level where employers first ask for a skill. Dot size is the share of postings at the chosen level. <span id="graphRole" hidden></span></p>
+        <div class="toolbar">
+      <div class="field">
+        <span class="label" id="lbl-glevel">Sized for level</span>
+        <div class="seg" id="graphLevel" role="group" aria-labelledby="lbl-glevel"></div>
+      </div>
+      <div class="field">
+        <span class="label" id="lbl-lens">Lens</span>
+        <div class="seg" id="lensPick" role="group" aria-labelledby="lbl-lens">
+          <button type="button" data-lens="level" aria-pressed="true">One level</button>
+          <button type="button" data-lens="top" aria-pressed="false">What separates the top</button>
+        </div>
+      </div>
+      <div class="field">
+        <span class="label" id="lbl-edges">Lines</span>
+        <div class="seg" id="edgePick" role="group" aria-labelledby="lbl-edges">
+          <button type="button" data-edges="co" aria-pressed="true">Asked together</button>
+          <button type="button" data-edges="builds" aria-pressed="false">Builds on</button>
+        </div>
+      </div>
+    </div>
+    <div class="graph-wrap">
+      <figure class="graph-fig">
+        <div class="graph-scroll" id="graph"></div>
+        <figcaption>
+          <div class="legend" aria-label="Legend">
+            <span><svg viewBox="0 0 26 14" aria-hidden="true"><circle cx="5" cy="7" r="3" fill="currentColor"/><circle cx="17" cy="7" r="6" fill="currentColor"/></svg>share of postings at the level</span>
+            <span><svg viewBox="0 0 26 14" aria-hidden="true"><circle cx="13" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-dasharray="2 2"/></svg>not asked at this level</span>
+            <span><svg viewBox="0 0 26 14" aria-hidden="true"><circle cx="13" cy="7" r="5" fill="none" stroke="var(--analysis)" stroke-width="2.25"/></svg>separates the top level</span>
+            <span><svg viewBox="0 0 26 14" aria-hidden="true"><line x1="1" y1="4" x2="25" y2="4" stroke="currentColor" stroke-width="1"/><line x1="1" y1="10" x2="25" y2="10" stroke="currentColor" stroke-width="3.5"/></svg>thicker = more often together</span>
+            <span><svg viewBox="0 0 26 14" aria-hidden="true"><line x1="1" y1="7" x2="20" y2="7" stroke="currentColor" stroke-dasharray="4 3"/><polygon points="20,3 26,7 20,11" fill="currentColor"/></svg>builds on</span>
+            <span>dot color = shift state, as in the chips below</span>
+          </div>
+          <span>An "asked together" line needs lift of 1.5 or more, from 25+ postings across 8+ employers. Top levels with few postings may show no lines: too little data, not no connection. Bands use the catalog’s family layout when supplied; otherwise they separate official-map-linked and posting-led skills. Layout is not a measured connection.</span>
+        </figcaption>
+      </figure>
+      <aside class="panel" id="graphPanel" aria-live="polite"></aside>
+    </div>
+      </div>
+    </div>
+
+    <div role="tabpanel" id="tab-levels" aria-labelledby="t-levels" class="tabpanel" tabindex="0" hidden>
+      <p class="muted">The same job at each level: what it owns, what changes from the level below, and how many postings back each level.</p>
+      <div class="explorer">
+        <div class="ladder">
+          <div class="label">Seniority ladder · individual contributor track</div>
+          <div class="stairs" id="stairs" role="group" aria-label="Levels"></div>
+          <div class="axis"><span>less scope</span><span>more scope and ownership</span></div>
+          <div class="branch" id="branch"></div>
+        </div>
+        <article class="sheet" id="sheet" aria-live="polite"></article>
+      </div>
+    </div>
+
+    <div role="tabpanel" id="tab-industries" aria-labelledby="t-industries" class="tabpanel" tabindex="0" hidden>
+      <p class="muted"><span id="indRole">This role</span> by broad industry sector (NAICS two-digit). Duties come from each sector's postings, certifications from CareerOneStop, and the share of jobs from the BLS occupation-by-industry matrix. A sector needs 30+ postings from 8+ employers to get a profile.</p>
+      <div class="toolbar">
+      <div class="field">
+        <span class="label" id="lbl-ind">Industry</span>
+        <div class="seg" id="industryPick" role="group" aria-labelledby="lbl-ind"></div>
+      </div>
+    </div>
+    <div class="ind">
+      <article class="sheet" id="indSheet" aria-live="polite"></article>
+      <div class="panel">
+        <div class="label">Same skills, by industry</div>
+        <div class="heat" id="heat"></div>
+        <p class="rule-note">Share of postings in each industry that ask for the skill, at the core level and above. The selected industry is outlined. Pick an industry above, or a column header.</p>
+      </div>
+    </div>
+    </div>
+
+    <div role="tabpanel" id="tab-gap" aria-labelledby="t-gap" class="tabpanel" tabindex="0" hidden>
+      <p class="muted">Pick a target level in the Levels tab. Tick what you can already show evidence for. The list on the right orders what to learn next for <span id="gapTarget">the selected level</span>. This comparison runs only in your browser. Your skills never reach the server.</p>
+      <div class="gap">
+      <div class="panel">
+        <span class="label">Example profile · edit freely</span>
+        <div class="checks" id="checks"></div>
+      </div>
+      <div class="panel">
+        <span class="label">Learn next</span>
+        <ol class="next" id="next"></ol>
+      </div>
+    </div>
+    </div>
+
+    <div role="tabpanel" id="tab-agent" aria-labelledby="t-agent" class="tabpanel agent" tabindex="0" hidden>
+      <div class="agent-bar">
+        <span class="mono muted" id="agentPath"></span>
+        <button type="button" class="btn" id="copyJson">Copy JSON</button>
+      </div>
+      <pre class="json" id="json" tabindex="0" aria-label="Role record as JSON"></pre>
+      <div class="endpoints" aria-label="Read-only endpoints">
+        <div><code>GET /v1/roles</code><span>Index of roles with status, anchors and last window.</span></div>
+        <div><code>GET /v1/roles/{role}</code><span>The full record shown here. Pinned by <span class="mono">release_id</span>.</span></div>
+        <div><code>GET /v1/roles/{role}/levels/{L}</code><span>One level, with its expectations and evidence counts.</span></div>
+        <div><code>GET /v1/roles/{role}/graph</code><span>Skill nodes with shares by level, edges, and the top-level profile.</span></div>
+        <div><code>GET /v1/roles/{role}/industries/{naics}</code><span>Duties, certifications and skill shares for one industry.</span></div>
+        <div><code id="shiftsEndpoint">GET /v1/shifts?since={window}</code><span>Current non-core signals and recorded state transitions, across roles.</span></div>
+        <div><code>GET /v1/expectations/{id}@{release}</code><span>Pinned expectation or skill. Missing posting excerpts are explicitly marked.</span></div>
+        <div><code>Gap · browser only</code><span>A local comparison. Nothing is uploaded or submitted.</span></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section aria-labelledby="h-method">
+    <div class="sec-head">
+      <span class="label">Method</span>
+      <h2 id="h-method">How a call is made, and how it is checked</h2>
+      <p class="muted">A forecast here is not a guess about the future of work. It is a narrow, dated claim about what employers will ask for, built from sources whose timing is known, and scored when the next windows arrive.</p>
+    </div>
+    <ol class="steps">
+      <li><strong>Know how early each source is.</strong> Job postings move first. O*NET and ESCO confirm years later. BLS projections speak to headcount, not skills. Each signal on the page carries its timing.</li>
+      <li><strong>Require two kinds of evidence.</strong> Postings alone can surface an early signal. A skill is called rising only when an independent source agrees on the direction.</li>
+      <li><strong>Score every call.</strong> Each rising, early or fading skill carries a dated, checkable claim with a probability. When the window closes, the claim resolves against the posting sample and the score is published.</li>
+    </ol>
+
+
+    <h3>Where each source sits in time</h3>
+    <div class="rules"><table>
+      <thead><tr><th scope="col">Source</th><th scope="col">Timing</th><th scope="col">Counts as</th><th scope="col">Reading in this release</th></tr></thead>
+      <tbody id="sourceTable"></tbody>
+    </table></div>
+    <h3>What each status requires</h3>
+    <div class="rules">
+      <table>
+        <thead><tr><th scope="col">Status</th><th scope="col">Requires</th><th scope="col">The map may say</th><th scope="col">It may not say</th></tr></thead>
+        <tbody>
+          <tr><td><span class="chip st-established">core</span></td><td>Asked in 25%+ of postings at its levels, in 2+ windows, across 10+ employers.</td><td>"Repeated posting demand at these levels."</td><td>That it predicts hiring. If no official map lists it yet, the map says so.</td></tr>
+          <tr><td><span class="chip st-growing">rising</span></td><td>Share up 5+ points across 2 comparable windows, 8+ employers, no employer over 20%, <em>and</em> at least one O/M signal pointing up.</td><td>"Rising, confirmed by a market-trend source."</td><td>Anything beyond the dated claim it carries.</td></tr>
+          <tr><td><span class="chip st-emerging">early signal</span></td><td>New or rising in postings, but no independent source agrees yet, or only one window exists.</td><td>"Seen at N employers. Watch item."</td><td>That it is common, required or growing.</td></tr>
+          <tr><td><span class="chip st-fading">fading</span></td><td>Share down 5+ points across 2 comparable windows, same employer floor.</td><td>"Asked less often. Official maps may still list it."</td><td>That the skill is no longer needed.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <h3>Track record</h3>
+    <div class="record">
+      <div class="panel">
+        <div class="found">
+          <div><span class="v">—</span><span class="label">resolved calls not supplied</span></div>
+          <div><span class="v">—</span><span class="label">Brier score not supplied</span></div>
+          <div><span class="v">—</span><span class="label">official-map lag not supplied</span></div>
+        </div>
+        <p class="rule-note">This role/2 release contains no resolved forecast ledger. No backtest score or historical lag is claimed.</p>
+      </div>
+      <div class="panel">
+        <div class="label">Calibration · when the map said X%, how often it happened</div>
+        <p class="empty">Not available in this release. Calibration needs resolved forecasts, not illustrative probabilities.</p>
+      </div>
+    </div>
+    <details class="more">
+      <summary>The seven-layer model behind each record, and what this release has</summary>
+      <div class="layers" id="layers" role="table" aria-label="Layer model"></div>
+    </details>
+    <details class="more">
+      <summary>How one posting gets a level</summary>
+      <p class="muted">Scope and ownership are strong signals; title and years are weak signals. Conflicting strong evidence must remain unassigned. Per-posting triage is not supplied by this release.</p>
+      <div class="triage">
+        <div class="posting" id="triageScope"></div>
+        <div class="matrix" id="triageLadder"></div>
+      </div>
+    </details>
+    <details class="more" id="limitsDetail">
+      <summary>Limits and fixture assumptions in this release</summary>
+      <ul class="questions" id="limitsList"></ul>
+    </details>
+  </section>
+  <section aria-labelledby="h-q">
+    <div class="sec-head">
+      <span class="label">For your review</span>
+      <h2 id="h-q">Decisions</h2>
+    </div>
+    <div class="dec">
+      <div>
+        <h3>Settled</h3>
+        <ul class="questions">
+          <li><strong>Industry grain:</strong> broad NAICS sectors. Larger sub-industries are named inside each sector.</li>
+          <li><strong>Top performer:</strong> posting demand plus O*NET ratings, each labeled with its timing. O*NET is the slow, durable bar; postings are the current ask.</li>
+          <li><strong>Connection threshold:</strong> lift 1.5+, from 25+ postings across 8+ employers, matching the employer floor for "rising". Lines show only in the Connections view.</li>
+          <li><strong>Forecast horizon:</strong> 4 quarters.</li>
+          <li><strong>Probabilities:</strong> people see the percentage, with the base rate it started from.</li>
+          <li><strong>Ladder shape:</strong> role-specific level names on a shared L1 to L5 scale.</li>
+          <li><strong>Emerging roles:</strong> roles with emerging status are clearly marked experimental; partial anchor fit alone does not imply experimental.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Still open</h3>
+        <ol class="questions">
+          <li><strong>Window length.</strong> Quarterly is safer at today's volume; monthly catches change sooner. Four-quarter forecasts work with either.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+
+  <footer><span id="dataFooter">Skills Vector · Role Atlas.</span> <a href="/">Back to Evidence Atlas</a></footer>
+  </main>
+</div>
+<noscript><p class="callout">JavaScript is required to read the role/2 API. No illustrative role data is embedded in this page.</p></noscript>
+</body>
+</html>

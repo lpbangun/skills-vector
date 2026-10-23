@@ -332,3 +332,126 @@ Verification:
 No new dependencies, external services, secrets, release edits or fabricated
 history. M3 has not started at this fix-up commit. Commit:
 `fix(role-atlas): expose current shifts alongside state changes`.
+
+## M3 — Web app
+
+Built the API-backed Role Atlas at `/role-atlas.html` (also `/role-atlas`),
+next to the existing preview. The M2-r1 fix above is a separate commit,
+`d5a76cd`; this milestone does not start M4.
+
+### Implementation and scope
+
+- `preview/role-atlas.html`, `.css`, `.js`: adapted the approved render's
+  masthead, role picker, foundation/demand panel, five tabs, list/connections
+  switch, evidence detail, ladder, industry heatmap, local gap and agent JSON.
+  Preserved its light/dark tokens, serif/sans/mono typography and flat surfaces.
+- W2: fetch `/v1/roles`, then release-pinned full role/2 records. Reject mismatched
+  schema, release or data kind; show a recoverable error instead of falling back
+  to embedded fixtures. Role names, measurements, evidence, forecasts, limits,
+  levels, sectors and JSON all come from those responses. The agent pane displays
+  and copies the exact schema-valid record under `role`, with its pinned URL.
+- W4/W5: WAI-ARIA tabs with roving focus and arrows/Home/End; full-label map
+  buttons; visible keyboard focus and restored focus after regenerated controls;
+  44px targets; text labels alongside color, including a separate graph dispute
+  marker/detail. Fixture and experimental notices use API fields. Gap comparison
+  runs in memory in the browser; checked skills are neither uploaded nor stored.
+  Optional localStorage remembers only view preferences and cannot block browsing.
+- `preview/role-atlas-assets/`: self-hosted IBM Plex Sans, IBM Plex Mono and
+  STIX Two Text, with upstream OFL licenses and a source note. About 1.3MB of
+  fonts preserves the reference typography without runtime third-party requests.
+- `market/web.py` serves the page/assets with the existing safe static resolver;
+  `scripts/assemble_vercel.sh` copies them beside the unchanged legacy preview.
+  `tests/test_role_atlas_web.py` covers routing, traversal rejection, the
+  accessible/no-embedded-data skeleton and isolated assembly.
+- M3-required adjacent API change: `market/role_reads.py` adds optional, labeled
+  fixture-only `presentation` family/row layout to role/graph envelopes. It reads
+  the already checked-in prototype snapshot, not frontend constants. The role/2
+  record/schema is unchanged. Research selections and unmatched custom fixtures
+  receive no fixture layout; reads return fresh values. Updated the guide and
+  REST/MCP parity/selection tests. No evidence classification or producer was added.
+
+### Verification commands and real results
+
+All commands below exited 0.
+
+```sh
+.venv/bin/python -m unittest discover -s tests
+```
+
+Final run: **182 tests in 60.193s, OK (skipped=2)**. Both skips predate this
+milestone; no newly skipped tests. Focused API/MCP and web runs also passed:
+
+```sh
+.venv/bin/python -m unittest discover -s tests -p test_role_atlas_api_mcp.py
+.venv/bin/python -m unittest discover -s tests -p test_role_atlas_web.py
+```
+
+**18 tests OK** and **3 tests OK**, respectively. They include REST/MCP equality
+with presentation metadata, research isolation, unknown/mismatched fixture layout
+fallback, fresh-value behavior, legacy preview and assembly checks.
+
+```sh
+uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m3-final-evidence --role-atlas-fixtures --compare-reference
+```
+
+W3: explicit executable path
+`~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome`. All three roles,
+all five tabs and connections visited in each requested case:
+
+| Case | App screenshots | Reference screenshots | Errors |
+| --- | ---: | ---: | --- |
+| 1280 light | 18 | 18 | none |
+| 1280 dark | 18 | 18 | none |
+| 390 light | 18 | 18 | none |
+
+**108 checker screenshots**, with `results.json`, under the path above. The
+checker fails on console/page errors and page overflow. It also asserts API
+values, status/level filters, graph nodes/edges and top-level adds, dispute flags,
+sector-floor gaps, exact JSON and copy behavior, tab/focus/target semantics,
+local gap privacy, preference restoration and legacy preview. It runs with
+reduced motion enabled. Additional probes verify unavailable/retry, schema/release/data-kind mismatch
+rejection, escaped API text, absent optional layout and disabled-storage handling.
+Product font loads are verified; comparison uses the same local fonts and UTF-8
+reference HTML without external requests.
+
+Opened nine side-by-side comparison images from the final evidence directory:
+AE map at 1280 light and 390 light; FDE map at 1280 dark; HR levels at 1280 light;
+FDE industries at 1280 light and 390 light; HR gap at 390 light; HR agents at
+1280 dark; and an AE connection-detail crop from both rendered pages. Checked
+masthead/type, tokens, panel proportions, ladder, heatmap, checkbox list, JSON
+and connection-family layout against the reference. These are manual visual
+comparisons, not a claim of pixel-identical screenshots. Earlier browser checking
+found and fixed an inactive-tab arrow-focus bug; reference capture's font URL and
+UTF-8 issues were also corrected before collecting final evidence.
+
+```sh
+bash scripts/assemble_vercel.sh
+git diff --check
+git diff --cached --check
+git diff --exit-code -- preview/release/
+uv lock --check --offline
+node --check preview/role-atlas.js
+.venv/bin/python -m compileall -q scripts/check_role_atlas.py tests/test_role_atlas_web.py src/skills_vector/market/web.py src/skills_vector/market/role_reads.py
+```
+
+Assembly: **551 files**. Lock check: **61 packages resolved**. Diff/release-tree,
+JS syntax and Python compilation checks were clean. No product dependency added.
+
+### Intentional differences and open risks
+
+- Canonical role/2 statuses and directional corroboration replace the concept's
+  older status words/counts. Disputed is a flag, not a fifth status. The agent
+  pane uses role/2 and the actual fixture release, not the concept's role/1 JSON.
+- Prototype calibration/track-record numbers are not copied: the page explicitly
+  says there is no resolved ledger/backtest result. Forecast/base-rate numbers
+  remain visibly illustrative. M5 is not implemented.
+- Connection SVG keeps a 960px minimum width for accessible node targets and
+  scrolls inside its own container when necessary; the page never scrolls
+  horizontally. Research without family layout uses explicitly described
+  official-map-linked/posting-led bands, not invented domain-family assignments.
+- Production data selection remains operator-explicit; no research producer,
+  historical archive or signal importer was added. M4/M5 remain pending. The
+  screenshot artifacts are in `/tmp`; the command above regenerates them.
+
+No paid/model calls, secrets, immutable-release edits or unrelated refactors.
+M3 complete for review; stop here before M4.

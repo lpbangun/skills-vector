@@ -3,13 +3,15 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import re
 from dataclasses import dataclass
+from functools import cache
 from pathlib import Path
 from typing import Any
 
-from .role_atlas import SCHEMA_VERSION, RoleCatalogStore, RoleValidationError, _period
+from .role_atlas import CONTRACT_ROOT, SCHEMA_VERSION, RoleCatalogStore, RoleValidationError, _period
 
 FIXTURE_CAVEAT = "Fixture data: illustrative prototype numbers and assumptions, not research findings. See limits."
 HTTP_STATUS = {
@@ -25,6 +27,22 @@ RELEASE_PATTERN = r"[A-Za-z0-9][A-Za-z0-9._-]{0,79}"
 ROLE_PATTERN = r"(?:role\.)?[a-z0-9][a-z0-9-]{0,63}"
 WINDOW_PATTERN = r"[0-9]{4}-(?:Q[1-4]|0[1-9]|1[0-2])"
 EXPECTATION_PATTERN = r"[A-Za-z0-9][A-Za-z0-9._-]{0,199}"
+
+
+@cache
+def _fixture_graphs() -> dict[str, Any]:
+    return json.loads((CONTRACT_ROOT / "prototype.json").read_text(encoding="utf-8"))["graph"]
+
+
+def _fixture_presentation(record: dict[str, Any]) -> dict[str, Any] | None:
+    if record["data_kind"] != "fixture":
+        return None
+    graph = _fixture_graphs().get(record["id"].removeprefix("role."))
+    if graph is None or {"skill." + node[0] for node in graph["nodes"]} != {skill["id"] for skill in record["skill_map"]["skills"]}:
+        return None
+    return {"data_kind": "fixture", "source": "design-concepts/role-atlas.html",
+            "graph": {"families": [list(family) for family in graph["families"]],
+                      "rows": {"skill." + node[0]: node[4] for node in graph["nodes"]}}}
 
 
 class RoleReadError(ValueError):
@@ -137,6 +155,10 @@ class RoleAtlasReads:
             if record is None:
                 raise RoleReadError("unknown_role", "Unknown role in the pinned release.")
             payload.update(role_id=record["id"], publication=record["publication"], limits=record["limits"])
+            if resource in ("role", "graph"):
+                presentation = _fixture_presentation(record) if self.fixtures else None
+                if presentation is not None:
+                    payload["presentation"] = presentation
             if resource == "role":
                 return {**payload, "role": record}
             if resource == "graph":

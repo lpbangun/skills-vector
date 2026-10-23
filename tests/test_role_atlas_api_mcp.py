@@ -90,6 +90,31 @@ class RoleAtlasHttpTests(unittest.TestCase):
         self.assertEqual(industry["naics"], "31–33")
         self.assertEqual(industry["evidence"]["postings"], 112)
 
+    def test_fixture_presentation_is_explicit_separate_and_returns_fresh_values(self) -> None:
+        role = self.reads.role("account-executive")
+        presentation = role["presentation"]
+        self.assertEqual(presentation["data_kind"], "fixture")
+        self.assertEqual(presentation["graph"]["families"][0], ["Pipeline", 0, 1])
+        self.assertEqual(presentation["graph"]["rows"]["skill.aires"], 7)
+        self.assertNotIn("presentation", role["role"])
+        self.assertEqual(self.reads.graph("account-executive")["presentation"], presentation)
+        presentation["graph"]["families"][0][0] = "mutated"
+        self.assertEqual(self.reads.role("account-executive")["presentation"]["graph"]["families"][0][0], "Pipeline")
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            record = self.reads.role("account-executive")["role"]
+            record["id"] = "role.example"
+            (root / "role.json").write_text(json.dumps(record), encoding="utf-8")
+            custom = RoleAtlasReads(RoleCatalogStore(root), fixtures=True).role("example")
+            self.assertEqual(custom["status"], "ok")
+            self.assertNotIn("presentation", custom)
+            record["id"] = "role.account-executive"
+            updated = json.loads(json.dumps(record).replace("skill.prosp", "skill.custom"))
+            (root / "role.json").write_text(json.dumps(updated), encoding="utf-8")
+            custom = RoleAtlasReads(RoleCatalogStore(root), fixtures=True).role("account-executive")
+            self.assertEqual(custom["status"], "ok")
+            self.assertNotIn("presentation", custom)
+
     def test_experimental_and_thin_profiles_remain_honest(self) -> None:
         role = self.client.get("/v1/roles/forward-deployed-engineer").json()
         self.assertEqual(role["publication"], "experimental")
@@ -381,6 +406,7 @@ class RoleAtlasConfigTests(unittest.TestCase):
             self.assertEqual(payload["data_kind"], "research")
             self.assertIsNone(payload["fixture_caveat"])
             self.assertEqual(payload["role"]["label"], "HR Generalist")
+            self.assertNotIn("presentation", payload)
             (root / "broken.json").write_text("{", encoding="utf-8")
             self.assertEqual(reads.list_roles()["status"], "role_catalog_unavailable")
         self.assertEqual(reads.list_roles()["status"], "role_catalog_unavailable")

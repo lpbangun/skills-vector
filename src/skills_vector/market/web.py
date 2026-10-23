@@ -106,6 +106,11 @@ def create_market_app(
                 return await index_file(request)
             if request_path.startswith("/release/") and release is not None:
                 path = _safe_file(release, request_path.removeprefix("/release/"))
+            elif request_path in ("/role-atlas", "/role-atlas.html", "/role-atlas.css", "/role-atlas.js") and root is not None:
+                name = "role-atlas.html" if request_path == "/role-atlas" else request_path.lstrip("/")
+                path = _safe_file(root / "preview", name)
+            elif request_path.startswith("/role-atlas-assets/") and root is not None:
+                path = _safe_file(root / "preview" / "role-atlas-assets", request_path.removeprefix("/role-atlas-assets/"))
             elif request_path.startswith("/design-system/") and root is not None:
                 path = _safe_file(
                     root / "design-concepts" / "design-system",
