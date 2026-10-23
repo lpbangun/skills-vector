@@ -34,7 +34,7 @@ It also shows the evidence behind each answer.
 - **Sector profile floor:** ≥30 postings from ≥8 employers in the window.
 - **Emerging roles:** a role whose status is `emerging` (no O*NET occupation matches the title) is published with `publication: "experimental"` and shown as experimental. An established role with a partial anchor (for example Account Executive) stays `standard`; its anchor shows `fit: partial`.
 - **Levels:** role-specific names on a shared L1–L5 scale. Management is a linked role, not a level.
-- **Still open:** window length (monthly vs quarterly). Keep it a config value; default to quarterly.
+- **Window length:** quarterly (settled 2026-10-23). It stays a config value.
 
 ## Milestones (build in order; stop after each and report)
 
@@ -60,6 +60,34 @@ It also shows the evidence behind each answer.
    - Operator-run importers for O*NET Hot Technologies, Emerging Tasks, BLS occupation × industry and CareerOneStop certifications. The certifications importer accepts a local file, since its API needs a key we do not have.
    - A forecast ledger with create, resolve and score (Brier score plus calibration bins).
    - A backtest harness interface that reports "not run: no historical posting archive" until data exists.
+
+## M6: Posting volume (no-model extraction lane)
+
+Why: the current release admits 5 postings per role because model-backed extraction is capped (12 DeepInfra calls a run, `max_postings: 5`). The same run excluded 5,898 public postings at that cap. The Role Atlas needs hundreds of postings per role per quarter before core, rising, edges, sector profiles or scored forecasts can exist.
+
+Build a deterministic, model-free lane that turns public job-board postings into role/2 evidence:
+
+- **Retrieval:** reuse the existing allowlisted public job-board parsers (Greenhouse, Lever, Ashby and the others in `market/sources.py`), the US geography rule and dedup. No paid or metered search, and no new hosts without a note in PROGRESS.md.
+- **Extraction without a model:**
+  - split each posting's description into sections (responsibilities, requirements, preferred, about the company, benefits) using headings and list structure;
+  - keep each bullet as a verbatim quote with its source hash, exactly like today's source-verified excerpts;
+  - drop company, benefits and legal sections;
+  - record a per-posting `extraction_method: "rules/1"`.
+- **Admission:** a new operator policy with `max_postings_per_role` up to 500, with fair allocation per employer: no employer above 20% of a role's sample. It must sit under a new hard ceiling in `market/limits.py` that only this lane uses. The model-backed lane's limits stay unchanged.
+- **Output:** a snapshot directory per quarter (quarterly is settled) outside `preview/release/releases/`, with a manifest, hashes and per-posting provenance. Existing immutable releases stay untouched.
+- **M4 pipeline:**
+  - accept these snapshots as input, so that two quarterly snapshots give two comparable windows;
+  - scope and ownership triage now sees full responsibility sections, and should assign far more levels, with P3 rules unchanged;
+  - the phrase map gains rules-based normalization (lowercase, strip boilerplate such as "experience with", "ability to", "is a plus"). Labels stay traceable to their quotes.
+- **Tests:** offline only, using checked-in sample board payloads in the real upstream formats. Cover section splitting, boilerplate dropping, the employer cap, determinism, and that no model client is imported in this lane.
+- **Operator run:** document the exact command. Pi does not run live retrieval. The reviewer or user runs it.
+
+Acceptance (also G1–G6, P1–P5):
+
+- **V1** No model or provider import anywhere in the lane, enforced by a test.
+- **V2** For 300 sample postings per role, the employer cap holds and output is byte-identical across runs.
+- **V3** Every emitted expectation quote is an exact substring of the retrieved description (hash-checked).
+- **V4** At least 80% of the checked-in sample postings get a responsibilities section. The report lists the failures.
 
 ## Guardrails (hard)
 
