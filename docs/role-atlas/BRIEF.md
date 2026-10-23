@@ -89,6 +89,53 @@ Acceptance (also G1–G6, P1–P5):
 - **V3** Every emitted expectation quote is an exact substring of the retrieved description (hash-checked).
 - **V4** At least 80% of the checked-in sample postings get a responsibilities section. The report lists the failures.
 
+## M7: Real-data quality (from the first live capture)
+
+First live capture: `/home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261023T214312Z/2026-Q4` (2026-Q4, 13 boards, read-only). Projected through the M4/M6 pipeline:
+
+| Role | Eligible | Admitted | Employers | Responsibilities found | Levels assigned | Distinct skills | Edges kept |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Account Executive | 333 | 70 | 7 | 101/333 (30%) | 3/70 | 403 | 0/3970 |
+| Forward Deployed Engineer | 62 | 0 | 0 | 8/62 | – | – | – |
+| Growth Manager | 8 | 0 | 0 | 7/8 | – | – | – |
+| HR Generalist | 2 | 0 | 0 | 0/2 | – | – | – |
+
+The authored samples overfit: V4 passed at 87.5% on samples and reached 30% on real boards. M7 makes the lane work on real text. Use the capture above as a read-only diagnostic corpus. Never copy whole real postings into the repo. Tests use short, synthetic reproductions of the structures you observe, with no more than one real sentence per case.
+
+1. **Section detection on real boards.**
+   - Diagnose the 232 AE and 54 FDE failures by ATS and by structure: for example headings in `<strong>`/`<p>` rather than `<h*>`, "What you'll do"/"In this role" phrasing, colon-led paragraphs, or no heading at all.
+   - Raise responsibilities detection to ≥80% of eligible postings per ATS on the live capture, with no new false sections. Spot-check 20 random successes and list any wrong spans.
+   - Report a per-ATS before/after table.
+
+2. **Skill grouping onto O*NET 31.0** (local download: `/home/logani/.local/share/skills-vector-evidence/onet/db_31_0`; source zip sha256 `6883548adf5fde64cf6f801b35d15519c9225f2732c3cab0e281c652d16b23a9`, CC BY 4.0).
+   - Deterministically map each expectation span to:
+     - a Detailed Work Activity (`Tasks to DWAs`, `GWAs to IWAs to DWAs`);
+     - and/or a `Software Skills` commodity or example.
+   - The role's skill-map nodes become those backbone ids, so the same skill worded differently counts once.
+   - Spans that match nothing stay posting-led, after phrase-rules/1.
+   - Lexical and rule-based only; no embeddings and no models. Each match records method, matched text and confidence (exact, close or loose). Only exact and close matches group.
+   - Check in the derived lookup tables you need, with a source note, a hash of the source zip and the attribution. Do not check in the whole database.
+   - Update the M5 Hot Technologies importer, if needed, for the 31.0 file names (`Software Skills.txt`).
+   - Report the AE skill count before and after grouping, the top 25 grouped nodes with posting share and employer count, and a 30-span random audit of matches you judge right or wrong.
+
+3. **Level triage on real text.**
+   - Tabulate the reasons for the 67/70 unassigned AE postings.
+   - Add scope and ownership patterns only where they are current-duty statements (segment owned, quota or territory scope, deal size, team leadership without direct reports, and so on). Keep P3: titles and years stay weak, and conflicts stay unassigned.
+   - Hand-label 40 AE postings against the rubric. Put the labels in a checked-in review file with a quote per label, and report agreement between the rules and your labels.
+   - Target: ≥50% assigned with ≥85% agreement on the labeled set. If that is impossible without breaking P3, say so and stop at the honest number.
+
+4. **Roster tooling (no live calls by Pi).** Add `posting-volume roster-probe --candidates <file>`:
+   - an operator command that checks candidate ATS tokens on the existing allowlisted hosts;
+   - it records, per token, whether the board exists, its postings total and matched titles per role;
+   - it writes a reviewed-roster draft with source notes.
+   - Tests are offline with sample payloads. The reviewer runs it live.
+
+Acceptance (plus G1–G6, P1–P5, V1–V3):
+- **Q1** ≥80% responsibilities per ATS on the live capture.
+- **Q2** AE distinct skill nodes fall substantially (report the number), with a ≥80% judged-correct rate in the 30-span audit.
+- **Q3** The level target as stated, or an honest stop.
+- **Q4** Deterministic: re-projecting the live capture twice is byte-identical.
+
 ## Guardrails (hard)
 
 - Work only in this worktree, on branch `feat/role-atlas`. Commit at the end of each milestone with a clear message. Never push, never touch `main`, and never rewrite history.
