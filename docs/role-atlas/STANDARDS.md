@@ -24,8 +24,11 @@ A milestone passes only when every item applicable to it is true. Reviews quote 
   - limits.
 - **C3** Status derivation is a pure function of window measurements plus evidence families. It reproduces all of BRIEF's rules exactly, including the boundary cases: exactly 25%, exactly 5 points, 7 vs 8 employers, one employer at 21%, and rising without an O/M family becoming early.
 - **C4** Validation rejects:
-  - a non-core skill without a forecast;
-  - a forecast whose horizon is not 4 quarters, or with no base rate, or with probability outside 0–1;
+  - a non-core skill without a forecast object;
+  - a forecast without claim, horizon_quarters, created, resolves or scored_against, or whose horizon is not 4 quarters;
+  - a forecast without `basis` (`backtest` | `fixture` | `none`);
+  - `backtest` or `fixture` without a numeric probability and base rate, each within 0–1;
+  - `none` with a non-null probability or base rate, or without a non-blank `reason`. A `none` forecast is never shown as a percentage;
   - edges below the threshold;
   - a sector profile below the floor (it must instead be `profile: null` with a reason);
   - an `emerging` role not marked experimental, or a non-emerging role marked experimental;
