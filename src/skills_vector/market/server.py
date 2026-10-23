@@ -21,6 +21,7 @@ def build_server(
     *,
     role_atlas_root: Path | None = None,
     role_atlas_fixtures: bool = False,
+    role_atlas_ledger: Path | None = None,
 ) -> uvicorn.Server:
     """Build an ASGI server over one local catalog store."""
 
@@ -31,7 +32,7 @@ def build_server(
         worktree=worktree,
         release_root=release_root,
         serve_static=True,
-        role_catalog=RoleAtlasReads.configured(role_atlas_root, fixtures=role_atlas_fixtures),
+        role_catalog=RoleAtlasReads.configured(role_atlas_root, fixtures=role_atlas_fixtures, ledger_path=role_atlas_ledger),
     )
     config = uvicorn.Config(app, host=host, port=port, log_level="info", access_log=False)
     return uvicorn.Server(config)
@@ -45,9 +46,10 @@ def run_server(
     *,
     role_atlas_root: Path | None = None,
     role_atlas_fixtures: bool = False,
+    role_atlas_ledger: Path | None = None,
 ) -> int:
     server = build_server(worktree, release_root, host, port,
-                          role_atlas_root=role_atlas_root, role_atlas_fixtures=role_atlas_fixtures)
+                          role_atlas_root=role_atlas_root, role_atlas_fixtures=role_atlas_fixtures, role_atlas_ledger=role_atlas_ledger)
     print(f"skills-vector market ASGI server on http://{host}:{port} (MCP /api/mcp)", flush=True)
     server.run()
     return 0
@@ -64,7 +66,7 @@ def main(argv: list[str] | None = None) -> int:
     worktree = Path(args.worktree).resolve()
     release_root = Path(args.release_root).resolve() if args.release_root else worktree / "preview" / "release"
     return run_server(worktree, release_root, args.host, args.port,
-                      role_atlas_root=args.role_atlas_root, role_atlas_fixtures=args.role_atlas_fixtures)
+                      role_atlas_root=args.role_atlas_root, role_atlas_fixtures=args.role_atlas_fixtures, role_atlas_ledger=args.role_atlas_ledger)
 
 
 if __name__ == "__main__":

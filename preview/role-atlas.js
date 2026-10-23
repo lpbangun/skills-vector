@@ -167,7 +167,20 @@
 
   function recordJSON() { return role().raw; }
 
+  function renderTrackRecord() {
+    var report = envelopes[state.role].track_record;
+    $("ledgerTracked").textContent = report.ledger_selected ? report.tracked_count : "—";
+    $("ledgerResolved").textContent = report.ledger_selected ? report.resolved_count : "—";
+    $("ledgerBrier").textContent = report.brier_score === null ? "—" : report.brier_score.toFixed(3);
+    $("ledgerSummary").textContent = (report.ledger_selected ? report.pending_count + " pending; " + report.scored_count + " scored; " + report.unscored_count + " unscored. " : "No ledger selected. ") + report.reason;
+    $("ledgerBacktest").textContent = report.backtest.status + ": " + report.backtest.reason;
+    $("ledgerCalibration").innerHTML = report.scored_count ? report.calibration_bins.filter(function (bin) { return bin.n > 0; }).map(function (bin) {
+      return '<div class="cal-row"><span>' + percentage(bin.lower) + "–" + percentage(bin.upper) + '%</span><span class="cal-track" aria-hidden="true"><span class="cal-bar" style="width:' + percentage(bin.observed_rate) + '%"></span><span class="cal-tick" style="left:' + percentage(bin.midpoint) + '%"></span></span><span>' + percentage(bin.observed_rate) + "% observed · mean p " + percentage(bin.mean_probability) + "% · n=" + bin.n + "</span></div>";
+    }).join("") + '<p class="rule-note">Bars: observed frequency. Ticks: bin midpoints. Left-closed bins; 100% is in the last bin.</p>' : '<p class="empty">No scored research forecasts. Calibration needs resolved calls with backtest probabilities, not illustrative or missing probabilities.</p>';
+  }
+
   function renderMethod() {
+    renderTrackRecord();
     var raw = role().raw, signals = {};
     $("limitsList").innerHTML = raw.limits.map(function (limit) { return "<li>" + esc(limit) + "</li>"; }).join("");
     function collect(value) {
@@ -179,7 +192,7 @@
     }
     collect(raw);
     $("sourceTable").innerHTML = Object.values(signals).map(function (signal) {
-      return '<tr><td>' + esc(signal.source) + '</td><td>' + timingTag(signal.timing, signal.as_of) + '</td><td>' + esc({P: "Postings", O: "Official map", M: "Market trend", context: "Context only"}[signal.family]) + '</td><td>' + esc(signal.reading) + '</td></tr>';
+      return '<tr><td>' + esc(signal.source) + '</td><td>' + timingTag(signal.timing, signal.as_of) + '</td><td>' + esc({P: "Postings", O: "Official map", M: "Market trend", context: "Context only"}[signal.family]) + '</td><td>' + esc(signal.reading) + (signal.retrieved_at ? '<small class="source-retrieval">Retrieved ' + esc(signal.retrieved_at) + '</small>' : '') + '</td></tr>';
     }).join('');
     var layerRows = [
       ["Foundation", "baseline", "Official-map sources and occupation context.", "Long-run tasks and anchor statistics.", raw.foundation.core_tasks.length + " recorded core tasks."],

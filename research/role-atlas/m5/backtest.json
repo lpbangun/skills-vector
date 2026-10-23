@@ -1,0 +1,9 @@
+{
+  "brier_score": null,
+  "calibration_bins": [],
+  "forecasts_estimated": 0,
+  "per_forecast": [],
+  "reason": "No historical posting archive was provided. One current snapshot is not history.",
+  "scored_count": 0,
+  "status": "not run: no historical posting archive"
+}

@@ -82,11 +82,13 @@ def _flag(params: dict[str, list[str]], key: str) -> bool:
 
 
 def _role_request(path: str, params: dict[str, list[str]], catalog: RoleAtlasReads) -> ApiResponse:
-    if any(len(params.get(key, [])) > 1 for key in ("release", "since")):
-        return _error(400, "invalid_request", "release and since must each have at most one value")
+    if any(len(params.get(key, [])) > 1 for key in ("release", "since", "role")):
+        return _error(400, "invalid_request", "release, since and role must each have at most one value")
     release_id = _one(params, "release")
     if path == "/v1/roles":
         payload = catalog.list_roles(release_id)
+    elif path == "/v1/track-record":
+        payload = catalog.track_record(_one(params, "role"), release_id)
     elif path == "/v1/shifts":
         payload = catalog.shifts(_one(params, "since") or "", release_id)
     elif match := re.fullmatch(r"/v1/expectations/([^/]+)", path):

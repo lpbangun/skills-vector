@@ -1,9 +1,11 @@
-# Role Atlas research projection (M4)
+# Role Atlas research projection and ledger (M4–M5)
 
-Build offline from a selected, published release and checked-in local mappings:
+Build a new projection offline from a selected, published release and checked-in local mappings.
+The approved `m4/` snapshot is preserved; contract/recipe changes intentionally
+produce a different release id and must use a new output directory:
 
 ```sh
-.venv/bin/python -m skills_vector.market.role_pipeline --output research/role-atlas/m4
+.venv/bin/python -m skills_vector.market.role_pipeline --output /tmp/role-atlas-new-projection
 ```
 
 Default input: `preview/release/current.json` and its selected release directory,
@@ -62,5 +64,26 @@ horizon, creation/resolve window and scoring target are preserved for M5. Curren
 recorded mention fractions are measurements, never substitutes for probabilities.
 The UI says **No forecast yet**, with the reason and claim in the detail panel.
 Only `basis: backtest` or `basis: fixture` permits numeric probabilities/base rates;
-these are required and bounded to 0–1. There is no ledger, archive, resolution or
-backtest implementation here; those remain M5.
+these are required and bounded to 0–1. The separate M5 ledger does not mutate
+these immutable role forecast objects.
+
+## M5 official files and ledger
+
+[Operator workflow and formats](../../docs/role-atlas/OFFICIAL_SIGNALS_AND_LEDGER.md).
+Importers read local O*NET/BLS/CareerOneStop files only; authored samples cannot
+merge into research. No official files or historical posting archive were
+supplied in M5, so no sample is asserted as an official research finding.
+
+`m5/ledger.json` tracks all 38 M4 research forecast skeletons, with `basis: none`,
+null probabilities/base rates and no structured events inferred from prose.
+`m5/backtest.json` reports **not run: no historical posting archive** with null
+Brier and empty calibration. There are no resolutions or scores.
+
+Select it explicitly in addition to the existing roles root:
+
+```sh
+.venv/bin/skills-vector market serve --role-atlas-root research/role-atlas/m4/roles --role-atlas-ledger research/role-atlas/m5/ledger.json
+```
+
+The Method section and `/v1/track-record` show the same pinned track record;
+fixtures/none calls are excluded from scoring. The source role JSON stays intact.

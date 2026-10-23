@@ -1,0 +1,1219 @@
+{
+  "backtest": {
+    "brier_score": null,
+    "calibration_bins": [],
+    "forecasts_estimated": 0,
+    "per_forecast": [],
+    "reason": "No historical posting archive was provided. One current snapshot is not history.",
+    "scored_count": 0,
+    "status": "not run: no historical posting archive"
+  },
+  "entries": [
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.hr-generalist.skill.posting.08aed99431cd830f",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.08c31dc95092c632fba5972c",
+      "resolution": null,
+      "role_id": "role.hr-generalist",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.08aed99431cd830f",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "c566469beed108eecc3b0ae5c1277f670977665c43371355d1819972a71eb6c0"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.hr-generalist.skill.posting.3b6067a131aea9af",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.0971ee58e828191bfdd009a3",
+      "resolution": null,
+      "role_id": "role.hr-generalist",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.3b6067a131aea9af",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "c566469beed108eecc3b0ae5c1277f670977665c43371355d1819972a71eb6c0"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.account-executive.skill.onet.41-4012.00.local-task.prospecting",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.1455d76b6a42ed327178469f",
+      "resolution": null,
+      "role_id": "role.account-executive",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.onet.41-4012.00.local-task.prospecting",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "eb81315faab1c60b775ebff9c86440bc07eb1da4a1baa955ede2a7c22e319e47"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.hr-generalist.skill.onet.13-1071.00.local-task.policy",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.1528fea583a10be20ae5f58a",
+      "resolution": null,
+      "role_id": "role.hr-generalist",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.onet.13-1071.00.local-task.policy",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "c566469beed108eecc3b0ae5c1277f670977665c43371355d1819972a71eb6c0"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.forward-deployed-engineer.skill.posting.0e821edd5c69e5a1",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.1b8d9f6ba4aac4236f2fb25a",
+      "resolution": null,
+      "role_id": "role.forward-deployed-engineer",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          4,
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.0e821edd5c69e5a1",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "47effd870e2fe615932f0768f6e72d143464e3f0a62a1fe4642776839e666ffa"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.account-executive.skill.posting.6a1ecf85fcb37bb0",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.20103374349bfab9fd48b973",
+      "resolution": null,
+      "role_id": "role.account-executive",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.6a1ecf85fcb37bb0",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "eb81315faab1c60b775ebff9c86440bc07eb1da4a1baa955ede2a7c22e319e47"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.forward-deployed-engineer.skill.posting.bccc29a4aa9bbd03",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.2788dc5cbb842173d9f727bd",
+      "resolution": null,
+      "role_id": "role.forward-deployed-engineer",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          4,
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.bccc29a4aa9bbd03",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "47effd870e2fe615932f0768f6e72d143464e3f0a62a1fe4642776839e666ffa"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.forward-deployed-engineer.skill.posting.e58f82058d83f87a",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.2bdde6e97bd2a3ffe4e86ee9",
+      "resolution": null,
+      "role_id": "role.forward-deployed-engineer",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          4,
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.e58f82058d83f87a",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "47effd870e2fe615932f0768f6e72d143464e3f0a62a1fe4642776839e666ffa"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.forward-deployed-engineer.skill.posting.288a95450eb4e7f0",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.2ec9709831c34807b7103116",
+      "resolution": null,
+      "role_id": "role.forward-deployed-engineer",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          4,
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.288a95450eb4e7f0",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "47effd870e2fe615932f0768f6e72d143464e3f0a62a1fe4642776839e666ffa"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.account-executive.skill.posting.6119381771c8dfac",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.342f18a7c40e6edf5edcef82",
+      "resolution": null,
+      "role_id": "role.account-executive",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.6119381771c8dfac",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "eb81315faab1c60b775ebff9c86440bc07eb1da4a1baa955ede2a7c22e319e47"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.forward-deployed-engineer.skill.posting.a9bbcdade7a3ccde",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.345d573c6729377bb9ccc1e5",
+      "resolution": null,
+      "role_id": "role.forward-deployed-engineer",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          4,
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.a9bbcdade7a3ccde",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "47effd870e2fe615932f0768f6e72d143464e3f0a62a1fe4642776839e666ffa"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.account-executive.skill.posting.d48a1e646d7ae7fa",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.34d17010a44943138f9c8edb",
+      "resolution": null,
+      "role_id": "role.account-executive",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.d48a1e646d7ae7fa",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "eb81315faab1c60b775ebff9c86440bc07eb1da4a1baa955ede2a7c22e319e47"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.growth-manager.skill.posting.6fbe3946aad530a8",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.3f7f5754f8cdfdb51b57f181",
+      "resolution": null,
+      "role_id": "role.growth-manager",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          2,
+          4,
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.6fbe3946aad530a8",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "1b35ea9b0b51e0b74382f31ec5e3b98de271753e37b8ac79eb7252a45cd82f1c"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.account-executive.skill.onet.41-4012.00.local-task.demonstration",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.401e5c77192056b517616998",
+      "resolution": null,
+      "role_id": "role.account-executive",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.onet.41-4012.00.local-task.demonstration",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "eb81315faab1c60b775ebff9c86440bc07eb1da4a1baa955ede2a7c22e319e47"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.hr-generalist.skill.onet.13-1071.00.local-task.relations",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.48410618a132c5d3aad56f6f",
+      "resolution": null,
+      "role_id": "role.hr-generalist",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.onet.13-1071.00.local-task.relations",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "c566469beed108eecc3b0ae5c1277f670977665c43371355d1819972a71eb6c0"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.growth-manager.skill.posting.6de6bb6568e5295c",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.4ad3eaedbe0673d680c921be",
+      "resolution": null,
+      "role_id": "role.growth-manager",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          2,
+          4,
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.6de6bb6568e5295c",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "1b35ea9b0b51e0b74382f31ec5e3b98de271753e37b8ac79eb7252a45cd82f1c"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.account-executive.skill.posting.dd1ffdcb4b08bac8",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.51b466a9eb9af6b62af1c893",
+      "resolution": null,
+      "role_id": "role.account-executive",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.dd1ffdcb4b08bac8",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "eb81315faab1c60b775ebff9c86440bc07eb1da4a1baa955ede2a7c22e319e47"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.forward-deployed-engineer.skill.onet.15-1252.00.local-task.software",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.52a289b1ce4e8ae426ed531a",
+      "resolution": null,
+      "role_id": "role.forward-deployed-engineer",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          4,
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.onet.15-1252.00.local-task.software",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "47effd870e2fe615932f0768f6e72d143464e3f0a62a1fe4642776839e666ffa"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.account-executive.skill.posting.bbb2e34dbe68a903",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.53d5bc8f9e19498c7b52bcc6",
+      "resolution": null,
+      "role_id": "role.account-executive",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.bbb2e34dbe68a903",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "eb81315faab1c60b775ebff9c86440bc07eb1da4a1baa955ede2a7c22e319e47"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.forward-deployed-engineer.skill.posting.698a76d2c0a8aa7e",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.53d8fd91e375d5833a61f194",
+      "resolution": null,
+      "role_id": "role.forward-deployed-engineer",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          4,
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.698a76d2c0a8aa7e",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "47effd870e2fe615932f0768f6e72d143464e3f0a62a1fe4642776839e666ffa"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.growth-manager.skill.posting.7a11ae9c98bddac9",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.53f677c3df282dded8ac369a",
+      "resolution": null,
+      "role_id": "role.growth-manager",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          2,
+          4,
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.7a11ae9c98bddac9",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "1b35ea9b0b51e0b74382f31ec5e3b98de271753e37b8ac79eb7252a45cd82f1c"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.account-executive.skill.posting.809e5f0e82e5bc2c",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.55f810ac398171cef89c3606",
+      "resolution": null,
+      "role_id": "role.account-executive",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.809e5f0e82e5bc2c",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "eb81315faab1c60b775ebff9c86440bc07eb1da4a1baa955ede2a7c22e319e47"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.hr-generalist.skill.posting.8e391b2f8801a9ce",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.5f2073f33ae9420a4878cf9b",
+      "resolution": null,
+      "role_id": "role.hr-generalist",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.8e391b2f8801a9ce",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "c566469beed108eecc3b0ae5c1277f670977665c43371355d1819972a71eb6c0"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.account-executive.skill.posting.23a1b42043fe07b8",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.75ecdc4550f9f95da544411e",
+      "resolution": null,
+      "role_id": "role.account-executive",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.23a1b42043fe07b8",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "eb81315faab1c60b775ebff9c86440bc07eb1da4a1baa955ede2a7c22e319e47"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.growth-manager.skill.posting.6efb452d78298ea0",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.7f056db043ff5c2021d0ee97",
+      "resolution": null,
+      "role_id": "role.growth-manager",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          2,
+          4,
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.6efb452d78298ea0",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "1b35ea9b0b51e0b74382f31ec5e3b98de271753e37b8ac79eb7252a45cd82f1c"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.account-executive.skill.posting.b3ec611af7aa51e0",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.84cc6a94e7d94f5a503b5baa",
+      "resolution": null,
+      "role_id": "role.account-executive",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.b3ec611af7aa51e0",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "eb81315faab1c60b775ebff9c86440bc07eb1da4a1baa955ede2a7c22e319e47"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.forward-deployed-engineer.skill.posting.632a7fc335c2e63e",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.88f9797d86a073e5b50b32c4",
+      "resolution": null,
+      "role_id": "role.forward-deployed-engineer",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          4,
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.632a7fc335c2e63e",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "47effd870e2fe615932f0768f6e72d143464e3f0a62a1fe4642776839e666ffa"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.hr-generalist.skill.posting.d512b42afab4c153",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.8c21024d1c7dd8fb7148807d",
+      "resolution": null,
+      "role_id": "role.hr-generalist",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.d512b42afab4c153",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "c566469beed108eecc3b0ae5c1277f670977665c43371355d1819972a71eb6c0"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.account-executive.skill.posting.f40c8a76af69e6f7",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.a3c4c68617ad72a1129281b5",
+      "resolution": null,
+      "role_id": "role.account-executive",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.f40c8a76af69e6f7",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "eb81315faab1c60b775ebff9c86440bc07eb1da4a1baa955ede2a7c22e319e47"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.forward-deployed-engineer.skill.onet.15-1252.00.local-task.discovery",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.a8315ec026c5e8032b593056",
+      "resolution": null,
+      "role_id": "role.forward-deployed-engineer",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          4,
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.onet.15-1252.00.local-task.discovery",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "47effd870e2fe615932f0768f6e72d143464e3f0a62a1fe4642776839e666ffa"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.hr-generalist.skill.posting.a0893eef516298e0",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.b088ea62a61b27daff02dcd5",
+      "resolution": null,
+      "role_id": "role.hr-generalist",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.a0893eef516298e0",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "c566469beed108eecc3b0ae5c1277f670977665c43371355d1819972a71eb6c0"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.hr-generalist.skill.posting.394c013b8f8a6c2c",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.c0eb0699030c0ca022f8d20a",
+      "resolution": null,
+      "role_id": "role.hr-generalist",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.394c013b8f8a6c2c",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "c566469beed108eecc3b0ae5c1277f670977665c43371355d1819972a71eb6c0"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.forward-deployed-engineer.skill.posting.b26ed103c6093610",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.c24a5ba4ba0fc5d3447d3090",
+      "resolution": null,
+      "role_id": "role.forward-deployed-engineer",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          4,
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.b26ed103c6093610",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "47effd870e2fe615932f0768f6e72d143464e3f0a62a1fe4642776839e666ffa"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.growth-manager.skill.onet.11-2021.00.local-task.campaign",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.c35255c29587609761ebbde4",
+      "resolution": null,
+      "role_id": "role.growth-manager",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          2,
+          4,
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.onet.11-2021.00.local-task.campaign",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "1b35ea9b0b51e0b74382f31ec5e3b98de271753e37b8ac79eb7252a45cd82f1c"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.account-executive.skill.onet.41-4012.00.local-task.negotiation",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.d1e8781c20aee4d416dc6b47",
+      "resolution": null,
+      "role_id": "role.account-executive",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.onet.41-4012.00.local-task.negotiation",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "eb81315faab1c60b775ebff9c86440bc07eb1da4a1baa955ede2a7c22e319e47"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.forward-deployed-engineer.skill.posting.c26b5fd3ad218c8c",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.d4b5e6af9170b1161b662665",
+      "resolution": null,
+      "role_id": "role.forward-deployed-engineer",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          4,
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.c26b5fd3ad218c8c",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "47effd870e2fe615932f0768f6e72d143464e3f0a62a1fe4642776839e666ffa"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.hr-generalist.skill.posting.1141ba92a2f02faf",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.d82f45742092c73e463206a7",
+      "resolution": null,
+      "role_id": "role.hr-generalist",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.1141ba92a2f02faf",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "c566469beed108eecc3b0ae5c1277f670977665c43371355d1819972a71eb6c0"
+    },
+    {
+      "backtest": null,
+      "data_kind": "research",
+      "event": null,
+      "event_rationale": null,
+      "forecast": {
+        "base_rate": null,
+        "basis": "none",
+        "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
+        "created": "2026-Q4",
+        "horizon_quarters": 4,
+        "id": "forecast.hr-generalist.skill.posting.07b515ec149b8821",
+        "probability": null,
+        "reason": "One observed window; no historical base rate or backtest archive.",
+        "resolves": "2027-Q4",
+        "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"
+      },
+      "id": "call.e8b592c93d53401265788d5d",
+      "resolution": null,
+      "role_id": "role.hr-generalist",
+      "scope": {
+        "comparison_group": "role-evidence/1:rel_20261002_cbdc6e8d5c4f:snapshot-only",
+        "levels": [
+          "unassigned"
+        ],
+        "window_length": "quarterly"
+      },
+      "skill_id": "skill.posting.07b515ec149b8821",
+      "source_release": "role_research_e647b3e2dce649d4",
+      "source_sha256": "c566469beed108eecc3b0ae5c1277f670977665c43371355d1819972a71eb6c0"
+    }
+  ],
+  "limits": [
+    "Research calls start without probabilities. Only a causal local-archive backtest can estimate them.",
+    "Events are operator-bound to exact claims; prose is never parsed into thresholds.",
+    "Missing skills, missing scopes and changed sampling groups are not negative outcomes.",
+    "Fixture probabilities are illustrative and excluded from track-record scores."
+  ],
+  "schema": "skills-vector.forecast-ledger/1"
+}

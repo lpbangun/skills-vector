@@ -233,6 +233,9 @@ def build_parser() -> argparse.ArgumentParser:
     mcp.add_argument("--print-tools", action="store_true")
     add_role_atlas_options(mcp)
 
+    from .market.role_operations import add_operator_commands
+    add_operator_commands(sub)
+
     guide = sub.add_parser("agent-guide", help="agent guide and machine-readable schema")
     guide.add_argument("--deployed-url", default=None)
 
@@ -242,6 +245,13 @@ def build_parser() -> argparse.ArgumentParser:
 def run(argv: list[str]) -> int:
     args = build_parser().parse_args(argv)
     command = args.market_command
+    if command in ("signals", "forecast-ledger"):
+        from .market.role_operations import run_operator_command
+        try:
+            _print(run_operator_command(args))
+        except (ValueError, OSError) as exc:
+            raise SystemExit(str(exc)) from exc
+        return 0
     if command == "browse":
         _print(_backend(args).list_occupations())
         return 0
@@ -456,7 +466,7 @@ def run(argv: list[str]) -> int:
         worktree = args.worktree.resolve()
         release_root = args.release_root.resolve() if args.release_root else worktree / "preview" / "release"
         return run_server(worktree, release_root, args.host, args.port,
-                          role_atlas_root=args.role_atlas_root, role_atlas_fixtures=args.role_atlas_fixtures)
+                          role_atlas_root=args.role_atlas_root, role_atlas_fixtures=args.role_atlas_fixtures, role_atlas_ledger=args.role_atlas_ledger)
     if command == "mcp":
         from .market.mcp import build_backend, create_mcp_server, tool_schemas
 
@@ -464,7 +474,7 @@ def run(argv: list[str]) -> int:
             release_root=str(args.release_root) if args.release_root else None,
             base_url=args.base_url,
         )
-        role_catalog = RoleAtlasReads.configured(args.role_atlas_root, fixtures=args.role_atlas_fixtures)
+        role_catalog = RoleAtlasReads.configured(args.role_atlas_root, fixtures=args.role_atlas_fixtures, ledger_path=args.role_atlas_ledger)
         server = create_mcp_server(backend, role_catalog=role_catalog)
         if args.print_tools:
             _print({"tools": tool_schemas(server), "schema": api_schema()})

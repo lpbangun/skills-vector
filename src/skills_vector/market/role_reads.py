@@ -11,7 +11,7 @@ from functools import cache
 from pathlib import Path
 from typing import Any
 
-from .role_atlas import CONTRACT_ROOT, SCHEMA_VERSION, RoleCatalogStore, RoleValidationError, _period
+from .role_atlas import CONTRACT_ROOT, SCHEMA_VERSION, RoleCatalogStore, _period
 
 FIXTURE_CAVEAT = "Fixture data: illustrative prototype numbers and assumptions, not research findings. See limits."
 HTTP_STATUS = {
@@ -60,14 +60,29 @@ def _check(condition: bool, detail: str) -> None:
 class RoleAtlasReads:
     catalog: RoleCatalogStore | None = None
     fixtures: bool = False
+    ledger_path: Path | None = None
 
     @classmethod
-    def configured(cls, root: Path | str | None = None, *, fixtures: bool = False) -> RoleAtlasReads:
+    def configured(cls, root: Path | str | None = None, *, fixtures: bool = False,
+                   ledger_path: Path | str | None = None) -> RoleAtlasReads:
         if root is not None and not str(root).strip():
             raise ValueError("role-atlas root must not be blank")
         if root is not None and fixtures:
             raise ValueError("select a research role-atlas root OR the fixture catalog, not both")
-        return cls(RoleCatalogStore.fixtures() if fixtures else RoleCatalogStore(Path(root)) if root is not None else None, fixtures)
+        if ledger_path is not None and not str(ledger_path).strip():
+            raise ValueError("role-atlas ledger path must not be blank")
+        return cls(RoleCatalogStore.fixtures() if fixtures else RoleCatalogStore(Path(root)) if root is not None else None,
+                   fixtures, Path(ledger_path) if ledger_path is not None else None)
+
+    def track_record(self, role: str | None = None, release_id: str | None = None) -> dict[str, Any]:
+        return self._read("track_record", release_id=release_id, **({"role": role} if role is not None else {}))
+
+    def _track_record(self, records: list[dict]) -> dict:
+        from .role_ledger import read_ledger, track_record
+        ledger = read_ledger(self.ledger_path) if self.ledger_path is not None else None
+        if ledger is not None and any(e["data_kind"] != ("fixture" if self.fixtures else "research") for e in ledger["entries"]):
+            raise ValueError("ledger data kind does not match the catalog selection")
+        return track_record(records, ledger)
 
     def list_roles(self, release_id: str | None = None) -> dict[str, Any]:
         return self._read("roles", release_id=release_id)
@@ -127,6 +142,8 @@ class RoleAtlasReads:
             context.update(record_schema=SCHEMA_VERSION,
                            limits=list(dict.fromkeys(limit for record in records for limit in record["limits"])))
             payload: dict[str, Any] = {"status": "ok", **context}
+            if resource == "track_record" and "role" not in params:
+                return {**payload, "track_record": self._track_record(records)}
             if resource == "roles":
                 fields = ("id", "label", "status", "publication", "data_kind", "release_id", "anchors", "demand_window", "limits")
                 return {**payload, "roles": [{field: record[field] for field in fields} for record in records]}
@@ -159,8 +176,10 @@ class RoleAtlasReads:
                 presentation = _fixture_presentation(record) if self.fixtures else None
                 if presentation is not None:
                     payload["presentation"] = presentation
+            if resource == "track_record":
+                return {**payload, "track_record": self._track_record([record])}
             if resource == "role":
-                return {**payload, "role": record}
+                return {**payload, "role": record, "track_record": self._track_record([record])}
             if resource == "graph":
                 return {**payload, "graph": record["skill_map"]}
             if resource == "level":
@@ -176,7 +195,7 @@ class RoleAtlasReads:
             return {**payload, "industry": industry}
         except RoleReadError as exc:
             return {"status": exc.code, "detail": str(exc), **context}
-        except (OSError, RoleValidationError):
+        except (OSError, ValueError):
             return {"status": "role_catalog_unavailable", "detail": "The role/2 catalog is unreadable or invalid.", **context}
 
     def _shifts(self, records: list[dict], all_records: list[dict], release_keys: dict,
@@ -230,10 +249,12 @@ def add_role_atlas_options(parser: argparse.ArgumentParser) -> None:
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--role-atlas-root", type=Path, default=None, help="explicit research role/2 catalog directory")
     group.add_argument("--role-atlas-fixtures", action="store_true", help="explicitly serve the illustrative role/2 fixture catalog")
+    parser.add_argument("--role-atlas-ledger", type=Path, default=None, help="explicit local forecast ledger; does not enable a catalog")
 
 
 def role_atlas_from_environment() -> RoleAtlasReads:
     raw = os.environ.get("SKILLS_VECTOR_ROLE_ATLAS_FIXTURES", "0").lower()
     if raw not in ("0", "1", "false", "true"):
         raise ValueError("SKILLS_VECTOR_ROLE_ATLAS_FIXTURES must be 0/1 or false/true")
-    return RoleAtlasReads.configured(os.environ.get("SKILLS_VECTOR_ROLE_ATLAS_ROOT"), fixtures=raw in ("1", "true"))
+    return RoleAtlasReads.configured(os.environ.get("SKILLS_VECTOR_ROLE_ATLAS_ROOT"), fixtures=raw in ("1", "true"),
+                                     ledger_path=os.environ.get("SKILLS_VECTOR_ROLE_ATLAS_LEDGER"))

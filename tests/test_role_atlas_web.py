@@ -89,7 +89,11 @@ class RoleAtlasWebTests(unittest.TestCase):
         self.assertNotIn("rel_example", script)
         self.assertNotIn("skills-vector.role/1", script)
         self.assertNotIn("fonts.googleapis.com", html)
-        self.assertIn("No backtest score", html)
+        self.assertIn('id="ledgerBrier"', html)
+        self.assertIn('id="ledgerCalibration"', html)
+        self.assertIn("envelopes[state.role].track_record", script)
+        self.assertIn("report.brier_score === null", script)
+        self.assertIn("No scored research forecasts", script)
 
     def test_vercel_assembly_includes_page_assets_and_untouched_legacy_index(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

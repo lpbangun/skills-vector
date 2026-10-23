@@ -224,6 +224,12 @@
             "presence"
           ]
         },
+        "retrieved_at": {
+          "description": "Operator-recorded retrieval timestamp, when available. Not the source as-of date.",
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$"
+        },
         "as_of": {
           "description": "Source rating/as-of date, when known; never inferred from reading prose.",
           "anyOf": [

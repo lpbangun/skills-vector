@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import json
 import re
-from dataclasses import asdict, dataclass, fields, is_dataclass
+from copy import deepcopy
+from dataclasses import dataclass, field, fields, is_dataclass
+from datetime import datetime
 from decimal import Decimal
 from functools import cache
 from pathlib import Path
@@ -71,10 +73,21 @@ def _decode(kind: Any, value: Any) -> Any:
     return value
 
 
+def _encode(value: Any) -> Any:
+    if is_dataclass(value):
+        return {item.name: _encode(getattr(value, item.name)) for item in fields(value)
+                if not (item.metadata.get("omit_none") and getattr(value, item.name) is None)}
+    if isinstance(value, list):
+        return [_encode(item) for item in value]
+    if isinstance(value, dict):
+        return {key: _encode(item) for key, item in value.items()}
+    return deepcopy(value)
+
+
 @dataclass
 class Model:
     def to_dict(self) -> dict[str, Any]:
-        return asdict(self)
+        return _encode(self)
 
     def to_json(self) -> str:
         return json.dumps(self.to_dict(), ensure_ascii=False, allow_nan=False, indent=2) + "\n"
@@ -97,6 +110,7 @@ class Signal(Model):
     reading: str
     direction: Direction
     as_of: str | None = None
+    retrieved_at: str | None = field(default=None, metadata={"omit_none": True})
 
 
 @dataclass
@@ -496,6 +510,12 @@ def validate_role(record: RoleRecord) -> None:
         timing, family = SOURCE_RULES[signal.source_kind]
         _require(signal.timing == timing, f"{signal.source_kind} timing must be {timing}")
         _require(signal.family == family, f"{signal.source_kind} family must be {family}")
+        if signal.retrieved_at is not None:
+            try:
+                stamp = datetime.fromisoformat(signal.retrieved_at.replace("Z", "+00:00"))
+                _require(stamp.utcoffset() is not None, "retrieved_at needs a timezone")
+            except ValueError as exc:
+                raise RoleValidationError("invalid retrieved_at timestamp") from exc
     for level in record.ladder.levels:
         for expectation in level.expectations:
             _require(expectation.introduced_at is None or expectation.introduced_at == "earlier" or expectation.introduced_at <= level.level, "expectation introduced after its level")

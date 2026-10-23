@@ -1,0 +1,12 @@
+{
+  "CertList": [
+    {
+      "CertId": "000001",
+      "CertName": "Sample HR credential (not a real certification)",
+      "Organization": "Sample certification body",
+      "CertType": "Core",
+      "Url": "https://example.invalid/sample-certification"
+    }
+  ],
+  "RecordCount": 1
+}

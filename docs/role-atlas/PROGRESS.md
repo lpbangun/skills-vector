@@ -911,3 +911,267 @@ under the paths in the commands above.
 
 No STANDARDS edits, paid/model calls, secrets, original-release writes or M5 work.
 Stop here for review.
+
+## M5 — Official signals and forecast ledger
+
+Read M4-r2 and the updated C4 before implementation. Both carry-overs are
+preserved: **no posting-phrase normalization**, and research ledger calls enter
+with **basis none**; only a local historical backtest can estimate numbers.
+STANDARDS.md is unchanged in this milestone.
+
+### Built (S1–S4)
+
+- **S1:** Operator commands under the existing market CLI: `signals import`
+  for Hot Technologies, Emerging Tasks, BLS occupation × industry and saved
+  CareerOneStop certifications; `signals merge` for validated role/2 output.
+  Inputs are local paths, never URLs fetched by the program. Tiny authored
+  upstream-format samples live in `tests/samples/role-atlas/`, with explicit
+  sample labels and a format README. O*NET TSV flags, native task dates, BLS
+  CSV/scalar XLSX (including split headers/merged cells) and CareerOneStop
+  CertList responses are covered. No dependency was added.
+- **S2:** Imported signals retain publisher/source_kind, required operator
+  retrieval timestamp, canonical timing/family/direction and source-file hash,
+  scope and native values. The optional M1 `Signal.retrieved_at` extension is
+  timezone/calendar-validated and omitted when unknown, preserving pre-M5 JSON
+  round trips. Retrieval is not a source rating date. This narrow contract/model
+  change is necessary to preserve S2 metadata in the merged record.
+- Merge defaults to anchor context, never guessed skill equivalence. Skill
+  bindings require rationale and qualitative exact/close/loose confidence;
+  loose stays audit-only. BLS context cannot corroborate a skill rise; Hot
+  Technology presence is not upward confirmation. The **unchanged** pure status
+  engine recomputes bound skills. Every output passes `RoleRecord.from_dict`;
+  counts, labels, edges, sector floors and null profiles stay intact. Sample
+  bundles cannot merge into research. Output is deterministic, release-pinned,
+  separately written, protected against input overlap/symlinks, and preflighted
+  before writes. Native industry shares are not broad-sector aggregates;
+  certification catalog membership is not an employer requirement.
+- **S3:** `forecast-ledger create`, `backtest`, `resolve`, `score` and `show`.
+  Stable ledger ids, source-role/release/digest, original forecast id, claim,
+  probability/base rate, basis/reason, created/resolves/horizon/scored_against
+  are retained. Create appends cohorts idempotently; issued sources/events,
+  estimated probabilities and resolutions are immutable. Re-publication of
+  the same call in another release is not an independent forecast.
+- Events are explicit exact-claim operator bindings, not prose-derived numbers.
+  Supported events test a recorded-scope share at/above or below a threshold.
+  Resolution requires the exact four-quarter target, matching cadence, skill,
+  levels/comparison_group and a nonempty denominator. Missing skills/scopes,
+  unbound claims and wrong windows are deferred, not scored as failures. None
+  forecasts can resolve but never contribute to Brier/calibration. Fixtures are
+  also excluded from the research track record.
+- Backtest uses a conservative **empirical historical event-rate baseline**.
+  Only matured origin→12-month-target pairs strictly before creation are used;
+  rolling-origin predictions use targets strictly before their own origin.
+  At least two matured pairs and one causal scored prediction are required.
+  Receipts retain archive/pair hashes and recomputable math. Future windows,
+  fixture archives and duplicate comparable windows cannot fill gaps. An already
+  resolved none call cannot be retrofitted with a probability.
+- Hand-computed tests: Brier for p=.8/.4 and y=1/0 is **.1**; bin boundaries
+  include 0, .1 and 1. Historical outcomes [0,1,1] yield baseline **2/3**, causal
+  predictions [0,1/2] yield **5/8**, and a later positive outcome scores **1/9**.
+  Monthly and quarterly cases agree. Corrupted receipts and look-ahead fail.
+- **S4:** With no archive, the CLI and API report exactly **not run: no historical
+  posting archive**, with a reason, null Brier, empty calibration and no estimated
+  probabilities. Insufficient/incompatible supplied history has its own explicit
+  not-run reason, rather than fabricated results.
+
+### API / Method and actual current state
+
+`GET /v1/track-record?role=...&release=...` and MCP `get_track_record` return
+identical release-pinned payloads. Full-role envelopes include the same summary
+outside the immutable role JSON. `--role-atlas-ledger` works with serve/MCP/checker;
+`SKILLS_VECTOR_ROLE_ATLAS_LEDGER` supports deployment configuration. A ledger does
+not enable a catalog, and corrupt/missing/wrong-kind explicit selections fail
+closed. Counts verify the exact origin role/release/hash. No read writes files.
+
+Method renders actual ledger counts, Brier or a dash, no-archive reason, and
+calibration bars with midpoint ticks, observed frequency, mean probability and n.
+Empty calibration is explicit. No prototype calibration numbers or lag are copied.
+The frozen role's own forecast JSON is not silently rewritten by ledger updates.
+
+Checked-in `research/role-atlas/m5/{ledger,backtest}.json` uses the approved M4
+release `role_research_e647b3e2dce649d4`:
+
+| Role | Tracked / pending none calls | Resolved / scored | Brier / calibration |
+| --- | ---: | ---: | --- |
+| Account Executive | 12 / 12 | 0 / 0 | null / [] |
+| Forward Deployed Engineer | 11 / 11 | 0 / 0 | null / [] |
+| Growth Manager | 5 / 5 | 0 / 0 | null / [] |
+| HR Generalist | 10 / 10 | 0 / 0 | null / [] |
+| **Total** | **38 / 38** | **0 / 0** | **null / []** |
+
+No official downloaded files or historical archive were supplied. No sample
+was promoted into research. The current single-future-posting skeleton claims
+are not relabeled as window-share events; they remain unbound and pending.
+The approved M4 files, posting-led phrases, 19 postings/15 unassigned, all status
+floors and 80 null sector profiles are unchanged. The optional contract extension
+changes future producer hashes, so README rebuild instructions now target a new
+output directory rather than overwrite the approved M4 snapshot.
+
+### Exact commands / results (G1–G5)
+
+```sh
+.venv/bin/skills-vector market forecast-ledger create --roles-root research/role-atlas/m4/roles --ledger research/role-atlas/m5/ledger.json > /tmp/role-atlas-m5-create.json
+.venv/bin/skills-vector market forecast-ledger backtest --ledger research/role-atlas/m5/ledger.json --output research/role-atlas/m5/backtest.json
+.venv/bin/skills-vector market forecast-ledger create --roles-root src/skills_vector/market/role_atlas_contract/fixtures --ledger /tmp/role-atlas-m5-fixture-ledger.json > /tmp/role-atlas-m5-fixture-create.json
+.venv/bin/skills-vector market forecast-ledger create --roles-root research/role-atlas/m4/roles --ledger /tmp/role-atlas-m5-rebuild/ledger.json > /tmp/role-atlas-m5-rebuild-create.json
+.venv/bin/skills-vector market forecast-ledger backtest --ledger /tmp/role-atlas-m5-rebuild/ledger.json --output /tmp/role-atlas-m5-rebuild/backtest.json > /tmp/role-atlas-m5-rebuild-backtest.json
+diff -qr research/role-atlas/m5 /tmp/role-atlas-m5-rebuild
+```
+
+All exit **0**. Independent ledger/backtest files match byte-for-byte; no-archive
+output is the status above, 0 estimates/scores, Brier null and bins []. Fixture
+ledger tracks 9 illustrative calls, never research scores.
+
+```sh
+.venv/bin/skills-vector market signals import hot-technologies --input 'tests/samples/role-atlas/Technology Skills.sample.tsv' --retrieved-at 2026-09-01T12:00:00Z --sample --output /tmp/role-atlas-m5-hot.json > /tmp/role-atlas-m5-hot.log
+.venv/bin/skills-vector market signals import emerging-tasks --input 'tests/samples/role-atlas/Emerging Tasks.sample.tsv' --retrieved-at 2026-09-01T12:00:00Z --sample --output /tmp/role-atlas-m5-tasks.json > /tmp/role-atlas-m5-tasks.log
+.venv/bin/skills-vector market signals import bls-industry --input tests/samples/role-atlas/occupation.sample.csv --year 2024 --retrieved-at 2026-09-01T12:00:00Z --sample --output /tmp/role-atlas-m5-matrix.json > /tmp/role-atlas-m5-matrix.log
+.venv/bin/skills-vector market signals import certifications --input tests/samples/role-atlas/certifications.sample.json --soc 13-1071.00 --retrieved-at 2026-09-01T12:00:00Z --sample --output /tmp/role-atlas-m5-certifications.json > /tmp/role-atlas-m5-certifications.log
+.venv/bin/skills-vector market signals merge --roles-root src/skills_vector/market/role_atlas_contract/fixtures --bundle /tmp/role-atlas-m5-hot.json --bundle /tmp/role-atlas-m5-tasks.json --bundle /tmp/role-atlas-m5-matrix.json --bundle /tmp/role-atlas-m5-certifications.json --output /tmp/role-atlas-m5-sample-merged
+```
+
+All exit **0**: respectively 2/1/1/1 admitted sample signals; three schema-valid
+fixture roles, release `role_signals_3881f0db7eae6ecd`. Only temporary fixture
+output was written. Unit tests also prove byte-identical merge reruns/rebuilds,
+exact/close promotion, loose non-promotion, presence not confirming rising,
+malformed source/metadata rejection and source/output protection.
+
+```sh
+.venv/bin/python -m unittest discover -s tests -p test_role_atlas_signals.py
+.venv/bin/python -m unittest discover -s tests -p test_role_atlas_ledger.py
+.venv/bin/python -m unittest discover -s tests
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m5-research --role-atlas-root research/role-atlas/m4/roles --role-atlas-ledger research/role-atlas/m5/ledger.json
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m5-fixtures --role-atlas-fixtures --role-atlas-ledger /tmp/role-atlas-m5-fixture-ledger.json
+bash scripts/assemble_vercel.sh
+uv lock --check --offline
+node --check preview/role-atlas.js
+.venv/bin/python -m compileall -q src/skills_vector/market/role_artifacts.py src/skills_vector/market/role_signals.py src/skills_vector/market/role_ledger.py src/skills_vector/market/role_operations.py src/skills_vector/market/role_atlas.py scripts/check_role_atlas.py tests/test_role_atlas_signals.py tests/test_role_atlas_ledger.py
+git diff --check
+git diff HEAD --exit-code -- preview/release/ research/role-atlas/m4/ docs/role-atlas/STANDARDS.md src/skills_vector/market/role_atlas_contract/fixtures/
+```
+
+Final runs exit **0**. New focused suites: **10 signal tests**, **11 ledger tests**;
+final full suite: **221 tests in 44.991s, OK (skipped=2)**, the same pre-existing
+two skips. There are **21 new tests**, including source-format/schema negatives,
+CLI lifecycle, both cadences, receipt/math corruption, source hash/kind errors,
+REST/maintained-SDK-MCP parity and release pins. An initial pass exposed a stale
+static HTML assertion and two test-helper mistakes (parent SOC matching and the
+SDK's snake_case property); these were fixed before the final successful runs.
+Extra merged-cell and empty-denominator cases were added before the final run;
+the empty test initially violated M1's positive-share/employer rule, so the
+synthetic empty measurement was corrected to zero share, not the rule relaxed.
+
+Both browser selections visited every role/tab/Connections at **1280 light,
+1280 dark and 390 light**, with explicit local Chromium 1243. Research: **72
+screenshots** (24/case); fixtures: **54** (18/case); every `errors` array is empty.
+The checker asserts ledger count/Brier/empty calibration against the pinned API,
+including that fixtures cannot acquire research scores. Logs/results/screenshots
+are under the paths in the commands above. Assembly: **551 files**. Offline lock:
+**61 packages resolved**. Syntax/compilation/diff checks clean.
+
+Additional scored-UI check used the explicitly synthetic test helpers (temporary
+files only, not research evidence):
+
+```sh
+PYTHONPATH=tests:src .venv/bin/python - <<'PY'
+from pathlib import Path
+from test_role_atlas_ledger import sample_record,sample_event,archive_sample
+from skills_vector.market.role_artifacts import canonical,write_json
+from skills_vector.market.role_ledger import create_ledger,backtest_ledger,resolve_ledger
+r=Path('/tmp/role-atlas-m5-synthetic-ui');r.mkdir(exist_ok=True)
+a=r/'archive'
+if not a.exists(): archive_sample(a)
+roles=r/'roles';roles.mkdir(exist_ok=True)
+origin=sample_record('2024-Q1',.1); later=sample_record('2025-Q1',.3)
+(roles/'role.json').write_text(canonical(origin))
+l=backtest_ledger(create_ledger([origin],sample_event(origin)),a)['ledger']
+l=resolve_ledger(l,[later])['ledger']
+write_json(r/'ledger.json',l)
+print('Synthetic only: one resolved call, Brier 1/9; not research findings.')
+PY
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m5-scored-browser --role-atlas-root /tmp/role-atlas-m5-synthetic-ui/roles --role-atlas-ledger /tmp/role-atlas-m5-synthetic-ui/ledger.json
+```
+
+Exit **0**, **18 screenshots**, all three cases, no errors; displayed Brier .111
+and populated bin match the actual computed synthetic ledger. Also ran the checker
+assertion after intentionally replacing the displayed Brier with “invented score”:
+it rejected the corruption at all three cases for both real-empty and synthetic-
+scored pages (six negative probes), then passed after restoration. Exact crop/
+negative-probe command:
+
+```sh
+UV_OFFLINE=1 uv run --with playwright python - <<'PY'
+import sys
+from pathlib import Path
+from types import SimpleNamespace
+sys.path.insert(0, 'scripts')
+from check_role_atlas import local_server, CHROMIUM, assert_track_record, current_record
+from playwright.sync_api import sync_playwright
+out=Path('/tmp/role-atlas-m5-method');out.mkdir(exist_ok=True)
+with sync_playwright() as p:
+ browser=p.chromium.launch(executable_path=str(CHROMIUM),headless=True)
+ for name,root,ledger in [('research','research/role-atlas/m4/roles','research/role-atlas/m5/ledger.json'),('synthetic','/tmp/role-atlas-m5-synthetic-ui/roles','/tmp/role-atlas-m5-synthetic-ui/ledger.json')]:
+  args=SimpleNamespace(url=None,role_atlas_root=Path(root),role_atlas_fixtures=False,role_atlas_ledger=Path(ledger))
+  with local_server(args) as base:
+   for width,scheme in [(1280,'light'),(1280,'dark'),(390,'light')]:
+    page=browser.new_page(viewport={'width':width,'height':900},color_scheme=scheme)
+    page.goto(base+'/role-atlas.html',wait_until='networkidle')
+    page.wait_for_function("document.querySelector('#app').dataset.ready === 'true'")
+    record=current_record(page)
+    assert_track_record(page,base,'account-executive',record)
+    before=page.locator('#ledgerBrier').inner_text()
+    page.locator('#ledgerBrier').evaluate("node => node.textContent = 'invented score'")
+    rejected=False
+    try: assert_track_record(page,base,'account-executive',record)
+    except AssertionError: rejected=True
+    assert rejected,'checker did not reject a fabricated score'
+    page.locator('#ledgerBrier').evaluate('(node,value) => node.textContent=value',before)
+    assert_track_record(page,base,'account-executive',record)
+    page.locator('#trackRecord').screenshot(path=str(out/f'{name}-{width}-{scheme}.png'))
+    print(name,width,scheme,'Brier:',before,'negative fabricated-score probe rejected')
+    page.close()
+ browser.close()
+PY
+```
+
+Opened Method crops under `/tmp/role-atlas-m5-method/`: research 1280 light and
+390 light, synthetic 1280 dark and 390 light. Confirmed honest empty states,
+visible no-archive reason, legible labels, fitting mobile panels, and numeric
+calibration bars/midpoint ticks with mean p and n only in the synthetic scored
+case. These are visual checks, not claims that research calibration exists.
+
+A final Git-blob/file-set integrity check confirmed all **533** published files
+unchanged, including current.json:
+
+```sh
+.venv/bin/python - <<'PY'
+import hashlib,subprocess
+from pathlib import Path
+files=subprocess.check_output(['git','ls-files','-z','preview/release/']).decode().split('\0')[:-1]
+for name in files:
+ data=Path(name).read_bytes()
+ blob=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+ expected=subprocess.check_output(['git','rev-parse','HEAD:'+name]).decode().strip()
+ assert blob==expected,name
+actual={str(p) for p in Path('preview/release').rglob('*') if p.is_file()}
+assert actual==set(files),actual.symmetric_difference(files)
+print(f'All {len(files)} published files and the file set unchanged against HEAD blobs.')
+PY
+```
+
+The exact diff check above also confirms the
+approved M4 research records, fixtures and STANDARDS unchanged. No paid/model
+calls, downloads, secrets, immutable-release edits, new dependencies, deployment
+or push. Operator formats/workflow and limitations are documented in
+`docs/role-atlas/OFFICIAL_SIGNALS_AND_LEDGER.md` and the existing guide/READMEs.
+
+### Remaining limitations / stop
+
+No historical archive or real downloaded official files are present, so there
+are deliberately **no research probabilities or scores**. Upstream layout variants
+outside the documented local adapters may require a value-only local export;
+none are silently guessed. The baseline is simple and unconditioned, with thin
+counts visible in receipts. Operators must review event semantics and preserve
+comparable samples. Ledger mutation is single-writer. No raw phrase normalization
+or new status/floor policy was introduced. M5 is complete for review; commit this
+milestone on `feat/role-atlas` and stop.

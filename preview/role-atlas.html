@@ -168,6 +168,7 @@
       </div>
       <pre class="json" id="json" tabindex="0" aria-label="Role record as JSON"></pre>
       <div class="endpoints" aria-label="Read-only endpoints">
+        <div><code>GET /v1/track-record?role={role}</code><span>Release-pinned ledger counts, scores and calibration, with honest missing-archive states.</span></div>
         <div><code>GET /v1/roles</code><span>Index of roles with status, anchors and last window.</span></div>
         <div><code>GET /v1/roles/{role}</code><span>The full record shown here. Pinned by <span class="mono">release_id</span>.</span></div>
         <div><code>GET /v1/roles/{role}/levels/{L}</code><span>One level, with its expectations and evidence counts.</span></div>
@@ -190,7 +191,7 @@
     <ol class="steps">
       <li><strong>Know how early each source is.</strong> Job postings move first. O*NET and ESCO confirm years later. BLS projections speak to headcount, not skills. Each signal on the page carries its timing.</li>
       <li><strong>Require two kinds of evidence.</strong> Postings alone can surface an early signal. A skill is called rising only when an independent source agrees on the direction.</li>
-      <li><strong>Score every call.</strong> Each rising, early or fading skill carries a dated, checkable claim with a probability. When the window closes, the claim resolves against the posting sample and the score is published.</li>
+      <li><strong>Score every call.</strong> Each rising, early or fading skill carries a dated, checkable claim. Numeric research probabilities require a historical backtest. Without one, “No forecast yet” is explicit. Resolved calls without probabilities are tracked, never scored.</li>
     </ol>
 
 
@@ -214,18 +215,20 @@
 
 
     <h3>Track record</h3>
-    <div class="record">
+    <div class="record" id="trackRecord" aria-label="Forecast ledger track record">
       <div class="panel">
         <div class="found">
-          <div><span class="v">—</span><span class="label">resolved calls not supplied</span></div>
-          <div><span class="v">—</span><span class="label">Brier score not supplied</span></div>
-          <div><span class="v">—</span><span class="label">official-map lag not supplied</span></div>
+          <div><span class="v" id="ledgerTracked">—</span><span class="label">tracked ledger calls</span></div>
+          <div><span class="v" id="ledgerResolved">—</span><span class="label">resolved ledger calls</span></div>
+          <div><span class="v" id="ledgerBrier">—</span><span class="label">Brier score · lower is better</span></div>
         </div>
-        <p class="rule-note">This role/2 release contains no resolved forecast ledger. No backtest score or historical lag is claimed.</p>
+        <p class="rule-note" id="ledgerSummary"></p>
+        <p class="rule-note" id="ledgerBacktest"></p>
+        <p class="rule-note">Official-map lag is not measured. Fixture calls and calls without probabilities never contribute to scores.</p>
       </div>
       <div class="panel">
         <div class="label">Calibration · when the map said X%, how often it happened</div>
-        <p class="empty">Not available in this release. Calibration needs resolved forecasts, not illustrative probabilities.</p>
+        <div class="calib" id="ledgerCalibration"></div>
       </div>
     </div>
     <details class="more">

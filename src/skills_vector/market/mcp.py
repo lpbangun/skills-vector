@@ -55,6 +55,11 @@ def create_mcp_server(store: CatalogStore, *, role_catalog: RoleAtlasReads | Non
     )
 
     @server.tool(annotations=READ_ONLY)
+    def get_track_record(role: str | None = None, release_id: str | None = None) -> dict[str, Any]:
+        """Read release-pinned ledger counts, Brier/calibration, and honest no-archive state. Never scores fixtures or none-basis calls."""
+        return role_catalog.track_record(role, release_id)
+
+    @server.tool(annotations=READ_ONLY)
     def list_roles(release_id: str | None = None) -> dict[str, Any]:
         """List the selected role/2 release. Fixtures require explicit server configuration."""
         return role_catalog.list_roles(release_id)
@@ -256,7 +261,7 @@ def main(argv: list[str] | None = None) -> int:
     add_role_atlas_options(parser)
     args = parser.parse_args(argv)
     store = build_backend(release_root=args.release_root, base_url=args.base_url)
-    role_catalog = RoleAtlasReads.configured(args.role_atlas_root, fixtures=args.role_atlas_fixtures)
+    role_catalog = RoleAtlasReads.configured(args.role_atlas_root, fixtures=args.role_atlas_fixtures, ledger_path=args.role_atlas_ledger)
     server = create_mcp_server(store, role_catalog=role_catalog)
     if args.print_tools:
         print(json.dumps(tool_schemas(server), indent=2, ensure_ascii=False))

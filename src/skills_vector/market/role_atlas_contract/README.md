@@ -68,6 +68,12 @@ coincident/M, and BLS projections long-term/context.
 Signals optionally carry `as_of`: a four-digit year or a valid ISO `YYYY-MM-DD`
 date (null/omission means unknown). The validator checks calendar dates. Readers
 render its year in source timing tags, never extracting it from `reading` prose.
+M5-imported signals also carry `retrieved_at`, an ISO timestamp with timezone,
+validated for actual calendar dates. It is not an as-of/rating date. The field is
+optional and omitted when unknown so pre-M5 records round-trip unchanged. Every
+new importer requires it and the merge preserves it. Source timing/family and
+status rules are unchanged.
+
 The fixtures use the frozen snapshot's O*NET rating years for foundation, skill
 evidence and the long-run bar; other source dates remain unknown.
 

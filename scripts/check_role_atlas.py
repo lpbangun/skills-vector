@@ -37,7 +37,7 @@ def local_server(args):
         listener.bind(("127.0.0.1", 0))
         port = listener.getsockname()[1]
         server = build_server(ROOT, ROOT / "preview/release", port=port,
-                              role_atlas_root=args.role_atlas_root, role_atlas_fixtures=args.role_atlas_fixtures)
+                              role_atlas_root=args.role_atlas_root, role_atlas_fixtures=args.role_atlas_fixtures, role_atlas_ledger=args.role_atlas_ledger)
         thread = threading.Thread(target=lambda: server.run(sockets=[listener]), daemon=True)
         thread.start()
         try:
@@ -60,6 +60,24 @@ def assert_view(page, label: str) -> None:
     require(metrics["scroll"] <= metrics["width"], f"{label}: horizontal page overflow {metrics}")
     for target in metrics["targets"]:
         require(target["height"] >= 43.9 and target["width"] >= 43.9, f"{label}: target below 44px: {target}")
+
+
+def assert_track_record(page, base: str, role: str, record: dict) -> None:
+    report = page.request.get(base + "/v1/track-record?role=" + role + "&release=" + record["release_id"]).json()
+    require(report["status"] == "ok" and report["release_id"] == record["release_id"], "track record lost release pin")
+    stats = report["track_record"]
+    require(page.locator("#ledgerTracked").inner_text() == (str(stats["tracked_count"]) if stats["ledger_selected"] else "—"), "ledger count differs from API")
+    require(page.locator("#ledgerResolved").inner_text() == (str(stats["resolved_count"]) if stats["ledger_selected"] else "—"), "resolved count differs from API")
+    expected = "—" if stats["brier_score"] is None else f'{stats["brier_score"]:.3f}'
+    require(page.locator("#ledgerBrier").inner_text() == expected, "Brier differs from API")
+    require(stats["backtest"]["status"] in page.locator("#ledgerBacktest").inner_text(), "backtest status missing")
+    if stats["scored_count"] == 0:
+        require(stats["brier_score"] is None and stats["calibration_bins"] == [], "empty ledger fabricated scores")
+        require(page.locator("#ledgerCalibration .cal-row").count() == 0 and "No scored research forecasts" in page.locator("#ledgerCalibration").inner_text(), "empty calibration state missing")
+    else:
+        require(page.locator("#ledgerCalibration .cal-row").count() == sum(bin["n"] > 0 for bin in stats["calibration_bins"]), "calibration bins differ from API")
+    if record["data_kind"] == "fixture":
+        require(stats["scored_count"] == 0, "fixture forecasts counted as research track record")
 
 
 def assert_detail_fit(page) -> None:
@@ -313,6 +331,7 @@ def check_case(browser, base: str, out: Path, width: int, scheme: str, reference
                     require("level unassigned" in page.locator("#skillPanel").inner_text() or any(s["first_level"] is not None for s in record["skill_map"]["skills"]), "unknown levels were promoted")
                 tags = page.locator("#roleHead .tm").all_inner_texts()
                 require([tag.casefold() for tag in tags] == [timing_label(source) for source in head_sources] + [record["demand_window"]["timing"]], "role head lost the source rating year")
+                assert_track_record(page, base, role, record)
                 keyboard_tabs(page)
             for tab in TABS:
                 page.locator("#t-" + tab).click()

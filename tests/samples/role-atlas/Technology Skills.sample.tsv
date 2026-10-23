@@ -1,0 +1,4 @@
+O*NET-SOC Code	Example	Commodity Code	Commodity Title	Hot Technology	In Demand
+41-4011.00	Sample CRM tool	99999999	Sample commodity (not an official classification)	Y	Y
+15-1252.00	Sample developer tool	99999998	Sample development commodity	Y	N
+15-1252.00	Sample non-hot tool	99999997	Sample other commodity	N	N

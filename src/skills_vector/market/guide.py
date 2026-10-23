@@ -31,6 +31,7 @@ def api_schema(*, base_url: str = "") -> dict[str, Any]:
             "component_pinning": "component_id is stable by occupation, measure, and definition version; pass release to reproduce the immutable release record",
         },
         "endpoints": [
+            {"path": "/v1/track-record", "params": ["role?", "release?"], "returns": "pinned ledger counts, Brier/calibration or null scores, explicit backtest coverage"},
             {"path": "/v1/roles", "params": ["release?"], "returns": "role/2 index with release pin, data kind and fixture caveat"},
             {"path": "/v1/roles/{role}", "params": ["release?"], "returns": "full schema-valid role/2 record in role envelope"},
             {"path": "/v1/roles/{role}/levels/{L}", "params": ["release?"], "returns": "one level and expectations"},
@@ -58,6 +59,7 @@ def api_schema(*, base_url: str = "") -> dict[str, Any]:
             {"path": "/api/mcp", "methods": ["POST", "GET", "DELETE"], "returns": "official MCP SDK stateless Streamable HTTP read tools"},
         ],
         "mcp_tools": [
+            {"name": "get_track_record", "params": ["role?", "release_id?"]},
             {"name": "list_roles", "params": ["release_id?"]},
             {"name": "get_role", "params": ["role", "release_id?"]},
             {"name": "get_role_level", "params": ["role", "level", "release_id?"]},
@@ -341,6 +343,19 @@ forecast objects have `basis: "none"`, null `probability` and `base_rate`, and a
 explicit reason. They preserve a dated claim for future evaluation, not a forecast
 percentage. Numeric probabilities/base rates require `basis: "backtest"` (historical
 archive) or `basis: "fixture"` (illustrative); both numbers must be in 0–1.
+
+M5 official-signal importers and forecast ledger are local operator CLI commands;
+see `docs/role-atlas/OFFICIAL_SIGNALS_AND_LEDGER.md`. They never fetch files or
+accept API keys. Select a ledger with `--role-atlas-ledger` (serve/MCP) or
+`SKILLS_VECTOR_ROLE_ATLAS_LEDGER`; this does not enable a catalog. The read-only
+`GET /v1/track-record?role=...&release=...` and MCP `get_track_record(role, release_id)`
+return identical pinned counts, Brier/calibration or null/[], and backtest coverage.
+Full-role envelopes carry the same `track_record` outside the immutable role JSON.
+Wrong-kind/corrupt selected ledgers fail closed. None-basis and fixture calls are
+never scored. Research calls enter the ledger as none; only a causal historical
+backtest can estimate numbers, before resolution. Without an archive the status
+is `not run: no historical posting archive`, with a reason and no numeric score.
+The web Method section renders this response, not prototype calibration numbers.
 
 Expectation citation ids are `id@release`, exactly as returned in level `cite`
 paths. They resolve to the stored expectation and all its role/level occurrences.
