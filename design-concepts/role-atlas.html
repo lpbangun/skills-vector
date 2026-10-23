@@ -1,0 +1,1617 @@
+<title>Skills Vector Role Atlas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@500;600&display=swap">
+<style>
+/* Layout: Evidence Atlas · Control desk. Single reading column of stacked regions; the role explorer splits into ladder + level sheet. Square corners, hairline rules, color only for evidence state. */
+:root {
+  --canvas: #f2f5f7;
+  --recess: #e4ebf0;
+  --paper: #fafbfc;
+  --surface: #ffffff;
+  --ink: #0c1828;
+  --ink-mid: #163049;
+  --graphite: #3f4a55;
+  --graphite-soft: #5c6772;
+  --rule: #163049;
+  --rule-soft: #bcc8d4;
+  --present: #1a4f8c;
+  --present-soft: #d6e4f2;
+  --present-ink: #123a6a;
+  --uncertain: #8a5c48;
+  --uncertain-soft: #efe6e0;
+  --disagree: #8e2f45;
+  --disagree-soft: #f0d9df;
+  --analysis: #5c4a78;
+  --analysis-soft: #ebe6f2;
+  --btn-bg: #0c1828;
+  --btn-fg: #ffffff;
+  --code-bg: #0c1828;
+  --code-fg: #d6e4f2;
+  --code-key: #9cc0ea;
+  --code-str: #e6cdbf;
+
+  --font-serif: "STIX Two Text", "Times New Roman", Times, serif;
+  --font-sans: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier New", Courier, monospace;
+  --max: 1120px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --canvas: #0e1620; --recess: #15212e; --paper: #121c28; --surface: #17232f;
+    --ink: #e4ebf2; --ink-mid: #c9d5df; --graphite: #b0bdc9; --graphite-soft: #8b99a7;
+    --rule: #7d8fa3; --rule-soft: #2b3b4d;
+    --present: #86b2e6; --present-soft: #1b3350; --present-ink: #c3d9f3;
+    --uncertain: #d5a690; --uncertain-soft: #36271f;
+    --disagree: #e48ea4; --disagree-soft: #3b1e27;
+    --analysis: #b9aade; --analysis-soft: #282238;
+    --btn-bg: #c9d5df; --btn-fg: #0c1828;
+    --code-bg: #0a121b; --code-fg: #c9d5df; --code-key: #86b2e6; --code-str: #d5a690;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --canvas: #0e1620; --recess: #15212e; --paper: #121c28; --surface: #17232f;
+  --ink: #e4ebf2; --ink-mid: #c9d5df; --graphite: #b0bdc9; --graphite-soft: #8b99a7;
+  --rule: #7d8fa3; --rule-soft: #2b3b4d;
+  --present: #86b2e6; --present-soft: #1b3350; --present-ink: #c3d9f3;
+  --uncertain: #d5a690; --uncertain-soft: #36271f;
+  --disagree: #e48ea4; --disagree-soft: #3b1e27;
+  --analysis: #b9aade; --analysis-soft: #282238;
+  --btn-bg: #c9d5df; --btn-fg: #0c1828;
+  --code-bg: #0a121b; --code-fg: #c9d5df; --code-key: #86b2e6; --code-str: #d5a690;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--canvas); color: var(--ink);
+  font-family: var(--font-sans); font-size: 0.9375rem; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 4rem;
+}
+.wrap { max-width: var(--max); margin: 0 auto; display: grid; gap: 2.75rem; }
+h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; text-wrap: balance; margin: 0; color: var(--ink); }
+h1 { font-size: clamp(1.85rem, 4.2vw, 2.7rem); line-height: 1.12; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.4rem, 2.8vw, 1.85rem); line-height: 1.2; letter-spacing: -0.015em; }
+h3 { font-size: 1.15rem; line-height: 1.25; }
+p { margin: 0; max-width: 68ch; }
+.label { font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--graphite-soft); }
+.mono { font-family: var(--font-mono); font-size: 0.8rem; }
+.muted { color: var(--graphite); }
+.num { font-variant-numeric: tabular-nums; }
+a { color: var(--present); }
+:focus-visible { outline: 2px solid var(--present); outline-offset: 2px; }
+
+/* Masthead */
+.mast { border-bottom: 1px solid var(--rule); padding-block: 1.75rem 1.5rem; display: grid; gap: 0.9rem; }
+.mast-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; align-items: baseline; }
+.brand { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mid); }
+.lede { font-family: var(--font-serif); font-size: 1.12rem; line-height: 1.5; color: var(--graphite); max-width: 62ch; }
+.callout { background: var(--uncertain-soft); color: var(--ink-mid); padding: 0.75rem 0.9rem; border-top: 1px solid var(--uncertain); display: grid; gap: 0.2rem; max-width: 80ch; }
+.callout strong { color: var(--uncertain); font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+
+section { display: grid; gap: 1.25rem; }
+.sec-head { display: grid; gap: 0.45rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
+
+/* Layer model */
+.layers { display: grid; gap: 0; border: 1px solid var(--rule-soft); background: var(--surface); }
+.layer { display: grid; grid-template-columns: 11rem minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); border-top: 1px solid var(--rule-soft); }
+.layer:first-child { border-top: 0; }
+.layer > div { padding: 0.8rem 0.9rem; min-width: 0; display: grid; gap: 0.25rem; align-content: start; }
+.layer > div + div { border-left: 1px solid var(--rule-soft); }
+.layer.head > div { background: var(--recess); padding-block: 0.5rem; }
+.layer-name { font-family: var(--font-serif); font-weight: 600; font-size: 1.02rem; }
+.layer-tag { font-family: var(--font-mono); font-size: 0.68rem; color: var(--graphite-soft); }
+.today { color: var(--disagree); }
+.cadence { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; padding: 0.1rem 0.35rem; background: var(--recess); color: var(--graphite); width: fit-content; }
+.layer .cell-label { display: none; }
+@media (max-width: 820px) {
+  .layer { grid-template-columns: minmax(0, 1fr); }
+  .layer.head { display: none; }
+  .layer > div + div { border-left: 0; border-top: 1px dashed var(--rule-soft); }
+  .layer .cell-label { display: block; }
+}
+
+/* Role picker + view toggle */
+.toolbar { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; align-items: end; justify-content: space-between; }
+.seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--rule); }
+.seg button { font: 500 0.85rem var(--font-sans); background: var(--surface); color: var(--ink); border: 0; padding: 0.55rem 0.9rem; min-height: 44px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--rule); }
+.seg button[aria-pressed="true"] { background: var(--btn-bg); color: var(--btn-fg); }
+.seg button:hover:not([aria-pressed="true"]) { background: var(--present-soft); }
+.field { display: grid; gap: 0.3rem; }
+
+/* Role sheet */
+.role-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 1.5rem; background: var(--paper); border: 1px solid var(--rule-soft); padding: 1.1rem 1.2rem; }
+@media (max-width: 820px) { .role-head { grid-template-columns: minmax(0, 1fr); } }
+.role-title { display: flex; flex-wrap: wrap; gap: 0.5rem 0.8rem; align-items: baseline; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.chip { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.04em; padding: 0.12rem 0.42rem; border: 1px solid currentColor; overflow-wrap: anywhere; }
+.st-established { color: var(--ink-mid); }
+.st-growing { color: var(--present); background: var(--present-soft); border-color: var(--present); }
+.st-emerging { color: var(--uncertain); background: var(--uncertain-soft); border-color: var(--uncertain); }
+.st-contested { color: var(--disagree); background: var(--disagree-soft); border-color: var(--disagree); }
+.st-fading { color: var(--graphite-soft); border-style: dashed; }
+.found { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
+.found div { display: grid; gap: 0.1rem; }
+.found .v { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.tasks { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.2rem; color: var(--graphite); }
+
+/* Ladder */
+.explorer { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 1.25rem; align-items: start; }
+@media (max-width: 900px) { .explorer { grid-template-columns: minmax(0, 1fr); } }
+.ladder { background: var(--surface); border: 1px solid var(--rule-soft); padding: 1rem; display: grid; gap: 0.9rem; }
+.stairs { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 0.35rem; align-items: end; height: 13rem; }
+.step { display: flex; flex-direction: column; justify-content: flex-end; gap: 0.25rem; border: 1px solid var(--rule); background: var(--recess); color: var(--ink); padding: 0.45rem 0.4rem; cursor: pointer; text-align: left; font: inherit; min-width: 0; height: 100%; }
+.step .lv { font-family: var(--font-mono); font-size: 0.7rem; color: var(--graphite-soft); }
+.step .nm { font-size: 0.78rem; font-weight: 500; line-height: 1.25; overflow-wrap: anywhere; }
+.step .n { font-family: var(--font-mono); font-size: 0.66rem; color: var(--graphite-soft); font-variant-numeric: tabular-nums; }
+.step:hover { background: var(--present-soft); }
+.step[aria-pressed="true"] { background: var(--present); border-color: var(--present); color: var(--btn-fg); }
+:root[data-theme="dark"] .step[aria-pressed="true"] { color: var(--canvas); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .step[aria-pressed="true"] { color: var(--canvas); } }
+.step[aria-pressed="true"] .lv, .step[aria-pressed="true"] .n { color: inherit; opacity: 0.85; }
+.branch { border-top: 1px dashed var(--rule-soft); padding-top: 0.6rem; display: grid; gap: 0.2rem; }
+.axis { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.66rem; color: var(--graphite-soft); }
+
+.sheet { background: var(--paper); border: 1px solid var(--rule); padding: 1.1rem 1.2rem; display: grid; gap: 1rem; min-width: 0; }
+.kv { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 0.35rem 0.9rem; margin: 0; }
+.kv dt { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--graphite-soft); padding-top: 0.15rem; }
+.kv dd { margin: 0; min-width: 0; }
+@media (max-width: 480px) { .kv { grid-template-columns: minmax(0, 1fr); } .kv dd { margin-bottom: 0.4rem; } }
+.stepup { border-top: 1px solid var(--present); background: var(--present-soft); color: var(--ink-mid); padding: 0.65rem 0.8rem; display: grid; gap: 0.2rem; }
+.stepup .label { color: var(--present-ink); }
+.exp { list-style: none; margin: 0; padding: 0; display: grid; }
+.exp li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.6rem; padding: 0.45rem 0; border-top: 1px solid var(--rule-soft); align-items: baseline; }
+.exp li .sub { font-size: 0.8rem; color: var(--graphite-soft); }
+.tag-new { color: var(--present); }
+.tag-carry { color: var(--graphite-soft); }
+
+/* Shifts */
+.shifts { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 0.9rem; }
+.shift { background: var(--surface); border: 1px solid var(--rule-soft); padding: 0.9rem 1rem; display: grid; gap: 0.6rem; align-content: start; }
+.shift-top { display: flex; justify-content: space-between; gap: 0.6rem; align-items: start; }
+.shift h3 { font-size: 1.02rem; }
+.win { display: grid; grid-template-columns: 4.6rem minmax(0, 1fr) 6.6rem; gap: 0.5rem; align-items: center; font-family: var(--font-mono); font-size: 0.7rem; color: var(--graphite); font-variant-numeric: tabular-nums; }
+.track { height: 0.6rem; background: var(--recess); position: relative; }
+.bar { position: absolute; inset: 0 auto 0 0; background: var(--ink-mid); }
+.bar.cur { background: currentColor; }
+.scale { display: grid; grid-template-columns: 4.6rem minmax(0, 1fr) 6.6rem; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.62rem; color: var(--graphite-soft); }
+.scale span:nth-child(2) { display: flex; justify-content: space-between; }
+.rule-note { font-size: 0.8rem; color: var(--graphite-soft); }
+.lvls { font-family: var(--font-mono); font-size: 0.7rem; color: var(--graphite); }
+
+/* Triage */
+.triage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 1.25rem; align-items: start; }
+@media (max-width: 900px) { .triage { grid-template-columns: minmax(0, 1fr); } }
+.posting { background: var(--surface); border: 1px solid var(--rule-soft); padding: 1rem 1.1rem; display: grid; gap: 0.6rem; font-size: 0.9rem; }
+.posting mark { background: var(--present-soft); color: var(--ink); padding: 0 0.15rem; }
+.posting mark.weak { background: var(--recess); }
+.posting mark.neg { background: var(--analysis-soft); }
+.matrix { overflow-x: auto; background: var(--surface); border: 1px solid var(--rule-soft); }
+.matrix table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 0.84rem; }
+.matrix th, .matrix td { padding: 0.5rem 0.6rem; border-top: 1px solid var(--rule-soft); text-align: left; vertical-align: top; }
+.matrix thead th { border-top: 0; background: var(--recess); font-family: var(--font-mono); font-weight: 500; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--graphite); }
+.matrix td.cellv { text-align: center; font-family: var(--font-mono); font-size: 0.72rem; width: 2.6rem; }
+.hit { background: var(--present-soft); color: var(--present-ink); }
+.hit-weak { background: var(--recess); color: var(--graphite); }
+.verdict { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: baseline; padding: 0.7rem 0.9rem; border-top: 1px solid var(--rule); background: var(--paper); }
+
+/* Gap */
+.gap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+@media (max-width: 820px) { .gap { grid-template-columns: minmax(0, 1fr); } }
+.panel { background: var(--surface); border: 1px solid var(--rule-soft); padding: 1rem 1.1rem; display: grid; gap: 0.7rem; min-width: 0; }
+.checks { display: grid; gap: 0.15rem; }
+.checks label { display: grid; grid-template-columns: 1.3rem minmax(0, 1fr) auto; gap: 0.4rem; align-items: baseline; padding: 0.3rem 0; border-top: 1px solid var(--rule-soft); cursor: pointer; }
+.checks input { accent-color: var(--present); width: 1rem; height: 1rem; margin: 0; }
+.checks .lvl { font-family: var(--font-mono); font-size: 0.66rem; color: var(--graphite-soft); }
+.next { list-style: none; counter-reset: n; margin: 0; padding: 0; display: grid; gap: 0.55rem; }
+.next li { counter-increment: n; display: grid; grid-template-columns: 1.8rem minmax(0, 1fr); gap: 0.4rem; }
+.next li::before { content: counter(n); font-family: var(--font-serif); font-weight: 600; font-size: 1.1rem; color: var(--present); }
+.next .why { font-size: 0.8rem; color: var(--graphite-soft); }
+.empty { color: var(--graphite); font-style: italic; }
+
+/* Agent view */
+.agent { display: grid; gap: 0.6rem; }
+.agent-bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.6rem; align-items: center; }
+.btn { font: 500 0.85rem var(--font-sans); background: var(--surface); color: var(--ink); border: 1px solid var(--rule); padding: 0.5rem 0.85rem; min-height: 40px; cursor: pointer; }
+.btn:hover { background: var(--present-soft); }
+pre.json { margin: 0; background: var(--code-bg); color: var(--code-fg); padding: 1rem; overflow: auto; max-height: 34rem; font: 0.76rem/1.5 var(--font-mono); }
+pre.json .k { color: var(--code-key); }
+pre.json .s { color: var(--code-str); }
+.endpoints { display: grid; gap: 0; border: 1px solid var(--rule-soft); background: var(--surface); }
+.endpoints div { display: grid; grid-template-columns: minmax(0, 17rem) minmax(0, 1fr); gap: 0.9rem; padding: 0.55rem 0.8rem; border-top: 1px solid var(--rule-soft); }
+.endpoints div:first-child { border-top: 0; }
+.endpoints code { font-family: var(--font-mono); font-size: 0.78rem; color: var(--present-ink); overflow-wrap: anywhere; }
+@media (max-width: 620px) { .endpoints div { grid-template-columns: minmax(0, 1fr); gap: 0.2rem; } }
+
+/* Rules table */
+.rules { overflow-x: auto; border: 1px solid var(--rule-soft); background: var(--surface); }
+.rules table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 0.86rem; }
+.rules th, .rules td { padding: 0.6rem 0.7rem; border-top: 1px solid var(--rule-soft); text-align: left; vertical-align: top; }
+.rules thead th { border-top: 0; background: var(--recess); font-family: var(--font-mono); font-weight: 500; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--graphite); }
+
+.questions { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.45rem; max-width: 75ch; }
+footer { border-top: 1px solid var(--rule); padding-top: 1rem; color: var(--graphite-soft); font-size: 0.8rem; }
+
+/* Skills graph */
+.graph-wrap { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+@media (max-width: 980px) { .graph-wrap { grid-template-columns: minmax(0, 1fr); } }
+.graph-fig { margin: 0; background: var(--surface); border: 1px solid var(--rule-soft); display: grid; gap: 0; min-width: 0; }
+.graph-scroll { overflow-x: auto; }
+.graph-scroll svg { display: block; width: 100%; min-width: 720px; height: auto; color: var(--ink); }
+.graph-fig figcaption { border-top: 1px solid var(--rule-soft); padding: 0.6rem 0.8rem; font-size: 0.8rem; color: var(--graphite-soft); display: grid; gap: 0.45rem; }
+.legend { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; align-items: center; font-size: 0.76rem; color: var(--graphite); }
+.legend span { display: inline-flex; gap: 0.35rem; align-items: center; }
+.legend svg { width: 26px; height: 14px; color: var(--ink); }
+.g-band { fill: var(--recess); opacity: 0.55; }
+.g-col { stroke: var(--rule-soft); stroke-width: 1; }
+.g-fam { font: 500 11.5px var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; fill: var(--graphite-soft); }
+.g-lv { font: 500 12px var(--font-mono); fill: var(--graphite-soft); }
+.g-lvname { font: 500 13px var(--font-sans); fill: var(--graphite); }
+.g-lvname.on { fill: var(--present); font-weight: 600; }
+.g-label { font: 400 13px var(--font-sans); fill: var(--ink); }
+.g-edge { fill: none; stroke: var(--graphite-soft); opacity: 0.45; }
+.g-edge.build { stroke-dasharray: 4 3; stroke-width: 1.3; }
+.g-edge.on { stroke: var(--present); opacity: 1; }
+.g-edge.off { opacity: 0.1; }
+.g-arrow { fill: var(--graphite-soft); }
+.g-n { cursor: pointer; }
+.g-n:focus { outline: none; }
+.g-n:focus-visible .g-sel { stroke: var(--present); stroke-width: 2; }
+.g-hit { fill: transparent; }
+.g-dot { stroke: var(--surface); stroke-width: 2; }
+.g-dot.st-established { fill: var(--ink-mid); }
+.g-dot.st-growing { fill: var(--present); }
+.g-dot.st-emerging { fill: var(--uncertain); }
+.g-dot.st-contested { fill: var(--disagree); }
+.g-dot.st-fading { fill: var(--graphite-soft); }
+.g-dot.hollow { fill: var(--surface); stroke: var(--graphite-soft); stroke-width: 1.3; stroke-dasharray: 2 2; }
+.g-ring { fill: none; stroke: var(--analysis); stroke-width: 2.25; }
+.g-sel { fill: none; stroke: transparent; stroke-width: 2; }
+.g-n[aria-pressed="true"] .g-sel { stroke: var(--ink); }
+.g-n.dim { opacity: 0.3; }
+.bars { display: grid; gap: 0.3rem; }
+.bars .win { grid-template-columns: 2.2rem minmax(0, 1fr) 2.8rem; }
+.pairs { list-style: none; margin: 0; padding: 0; display: grid; }
+.pairs li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.6rem; padding: 0.35rem 0; border-top: 1px solid var(--rule-soft); font-size: 0.86rem; }
+.pairs .mono { color: var(--graphite-soft); }
+.chip.analysis { color: var(--analysis); background: var(--analysis-soft); border-color: var(--analysis); }
+.chip.src { color: var(--graphite); }
+.linkbtn { font: inherit; font-size: 0.8rem; background: none; border: 0; padding: 0; color: var(--present); cursor: pointer; text-decoration: underline; width: fit-content; min-height: 32px; }
+.caveat { font-size: 0.8rem; color: var(--graphite); border-top: 1px solid var(--uncertain); background: var(--uncertain-soft); padding: 0.55rem 0.7rem; }
+
+/* Industry view */
+.ind { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 1.25rem; align-items: start; }
+@media (max-width: 920px) { .ind { grid-template-columns: minmax(0, 1fr); } }
+.certs { overflow-x: auto; }
+.certs table, .heat table { border-collapse: collapse; width: 100%; font-size: 0.84rem; }
+.certs th, .certs td { padding: 0.45rem 0.5rem; border-top: 1px solid var(--rule-soft); text-align: left; vertical-align: top; }
+.certs thead th, .heat thead th { border-top: 0; font-family: var(--font-mono); font-weight: 500; font-size: 0.64rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--graphite-soft); }
+.certs td.n { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-mono); font-size: 0.76rem; }
+.req { font-family: var(--font-mono); font-size: 0.66rem; padding: 0.1rem 0.38rem; border: 1px solid currentColor; white-space: nowrap; }
+.req-required { color: var(--present); background: var(--present-soft); }
+.req-preferred { color: var(--ink-mid); }
+.req-common { color: var(--graphite-soft); border-style: dashed; }
+.heat { overflow-x: auto; }
+.heat table { min-width: 460px; }
+.heat th, .heat td { padding: 0.45rem 0.5rem; border-top: 1px solid var(--surface); }
+.heat thead th { text-align: center; vertical-align: bottom; border-bottom: 2px solid transparent; }
+.heat thead th.on { color: var(--present); border-bottom-color: var(--present); }
+.heat tbody th { text-align: left; font-weight: 400; font-size: 0.84rem; border-top: 1px solid var(--rule-soft); }
+.heat td { text-align: center; font-family: var(--font-mono); font-size: 0.76rem; font-variant-numeric: tabular-nums; color: var(--ink); border-left: 2px solid var(--surface); }
+.heat td.hi { color: var(--canvas); }
+.heat td.on { outline: 2px solid var(--present); outline-offset: -2px; }
+.know { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.know span { font-size: 0.8rem; padding: 0.15rem 0.5rem; background: var(--recess); color: var(--ink-mid); }
+
+/* Rev 2: tabs, skill map, method */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.tabs { display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--rule); gap: 0; }
+.tabs button { font: 500 0.92rem var(--font-sans); background: none; color: var(--graphite); border: 0; border-bottom: 3px solid transparent; padding: 0.6rem 0.95rem; min-height: 44px; cursor: pointer; margin-bottom: -1px; }
+.tabs button:hover { color: var(--ink); background: var(--recess); }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--present); font-weight: 600; }
+.tabpanel { display: grid; gap: 1.1rem; }
+.tabpanel[hidden], #connWrap[hidden] { display: none; }
+#connWrap { display: grid; }
+.topline { background: var(--analysis-soft); border-top: 1px solid var(--analysis); padding: 0.65rem 0.85rem; font-size: 0.9rem; display: grid; gap: 0.2rem; }
+.topline .label { color: var(--analysis); }
+.map-wrap { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+@media (max-width: 940px) { .map-wrap { grid-template-columns: minmax(0, 1fr); } }
+.map { display: grid; gap: 0.9rem; min-width: 0; }
+.lane { border: 1px solid var(--rule-soft); background: var(--surface); }
+.lane-head { display: flex; flex-wrap: wrap; gap: 0.3rem 0.7rem; align-items: baseline; padding: 0.5rem 0.8rem; background: var(--recess); }
+.lane-head .muted { font-size: 0.8rem; }
+.cols, .srow { display: grid; grid-template-columns: minmax(0, 1fr) 6.2rem 4rem minmax(0, 11rem); gap: 0.7rem; align-items: center; padding: 0.45rem 0.8rem; }
+.cols { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--graphite-soft); padding-block: 0.3rem; }
+.srow { width: 100%; text-align: left; font: inherit; font-size: 0.88rem; color: var(--ink); background: none; border: 0; border-top: 1px solid var(--rule-soft); cursor: pointer; min-height: 44px; }
+.srow:hover { background: var(--paper); }
+.srow[aria-pressed="true"] { background: var(--present-soft); }
+.srow .flag { font-family: var(--font-mono); font-size: 0.64rem; color: var(--disagree); margin-left: 0.35rem; }
+.srow .flag.gap { color: var(--uncertain); }
+.pips { display: inline-grid; grid-auto-flow: column; gap: 2px; }
+.pips i { font: 500 9px/1 var(--font-mono); font-style: normal; width: 1.1rem; height: 1rem; display: grid; place-items: center; background: var(--recess); color: var(--graphite-soft); }
+.pips i.on { background: var(--ink-mid); color: var(--surface); }
+.pips.ev i { border: 1px solid var(--rule-soft); background: none; }
+.pips.ev i.on { background: var(--present); border-color: var(--present); color: var(--surface); }
+.call { font-family: var(--font-mono); font-size: 0.72rem; color: var(--graphite); }
+.call strong { color: var(--ink); font-weight: 500; }
+@media (max-width: 640px) {
+  .cols { display: none; }
+  .srow { grid-template-columns: minmax(0, 1fr) auto; }
+  .srow .call { grid-column: 1 / -1; }
+  .srow .pips:not(.ev) { display: none; }
+}
+.sig { list-style: none; margin: 0; padding: 0; display: grid; }
+.sig li { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 0.6rem; padding: 0.45rem 0; border-top: 1px solid var(--rule-soft); font-size: 0.85rem; }
+.sig li .src { display: grid; gap: 0.2rem; align-content: start; font-weight: 500; }
+@media (max-width: 480px) { .sig li { grid-template-columns: minmax(0, 1fr); } }
+.tm { font-family: var(--font-mono); font-size: 0.64rem; padding: 0.05rem 0.35rem; border: 1px solid currentColor; width: fit-content; white-space: nowrap; }
+.tm-lead { color: var(--uncertain); }
+.tm-now { color: var(--present); }
+.tm-lag { color: var(--graphite); border-style: dashed; }
+.tm-long { color: var(--analysis); }
+.forecast { border-top: 1px solid var(--present); background: var(--present-soft); padding: 0.65rem 0.8rem; display: grid; gap: 0.3rem; }
+.forecast .p { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 600; color: var(--present-ink); }
+.forecast small { color: var(--graphite); font-size: 0.8rem; }
+.steps { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; }
+@media (max-width: 820px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+.steps li { counter-increment: s; background: var(--surface); border: 1px solid var(--rule-soft); padding: 0.9rem 1rem; display: grid; gap: 0.35rem; font-size: 0.9rem; align-content: start; }
+.steps li::before { content: counter(s); font-family: var(--font-serif); font-weight: 600; font-size: 1.4rem; color: var(--present); line-height: 1; }
+.record { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+@media (max-width: 820px) { .record { grid-template-columns: minmax(0, 1fr); } }
+.calib { display: grid; gap: 0.45rem; }
+.calib .row { display: grid; grid-template-columns: 4.6rem minmax(0, 1fr) 6.8rem; gap: 0.5rem; align-items: center; font-family: var(--font-mono); font-size: 0.72rem; color: var(--graphite); font-variant-numeric: tabular-nums; }
+.calib .track { height: 0.9rem; }
+.calib .tick { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--ink); }
+.calib .bar { background: var(--present); }
+details.more { border: 1px solid var(--rule-soft); background: var(--paper); }
+details.more > summary { cursor: pointer; padding: 0.75rem 0.9rem; font-weight: 500; min-height: 44px; }
+details.more[open] > summary { border-bottom: 1px solid var(--rule-soft); }
+details.more > :not(summary) { margin: 0.9rem; }
+.dec { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem; }
+@media (max-width: 820px) { .dec { grid-template-columns: minmax(0, 1fr); } }
+.dec > div { display: grid; gap: 0.6rem; align-content: start; }
+.dec ul.questions { list-style: square; }
+.rules .chip { white-space: nowrap; }
+.xp { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.04em; color: var(--uncertain); margin-left: 0.25rem; }
+.seg button[aria-pressed="true"] .xp { color: inherit; opacity: 0.8; }
+
+[data-view="agent"] .human-only { display: none; }
+[data-view="human"] .agent-only { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .bar { transition: width 200ms cubic-bezier(0.16, 1, 0.3, 1); }
+  .step { transition: background 120ms; }
+}
+</style>
+
+<div class="wrap" id="app" data-view="human">
+
+  <header class="mast">
+    <div class="mast-top">
+      <span class="brand">Skills Vector · Role Atlas</span>
+      <span class="label">Concept prototype · rev 2 · 2026-10-23</span>
+    </div>
+    <h1>Every skill a job asks for, at each level and in each industry, and which ones are changing</h1>
+    <p class="lede">Pick a job. The skill map lists every skill employers ask for, the levels that need it, and whether demand is steady, rising or fading. Each call names the data behind it, and every forecast is scored when the data comes in.</p>
+    <div class="callout" role="note">
+      <strong>Illustrative data</strong>
+      <span>Wages, counts, windows, probabilities and track-record figures on this page are invented to show structure. Nothing here is research output. The only real figures are in the "Current build" column of the layer model.</span>
+    </div>
+  </header>
+
+  <section aria-labelledby="h-role">
+    <div class="toolbar">
+      <div class="field">
+        <span class="label" id="lbl-role">Role</span>
+        <div class="seg" id="rolePick" role="group" aria-labelledby="lbl-role"></div>
+      </div>
+    </div>
+    <h2 id="h-role" class="sr-only">Role record</h2>
+    <div class="role-head" id="roleHead"></div>
+
+    <div class="tabs" role="tablist" aria-label="Role views" id="tabs">
+      <button type="button" role="tab" id="t-map" aria-controls="tab-map" data-tab="map">Skill map</button>
+      <button type="button" role="tab" id="t-levels" aria-controls="tab-levels" data-tab="levels">Levels</button>
+      <button type="button" role="tab" id="t-industries" aria-controls="tab-industries" data-tab="industries">Industries</button>
+      <button type="button" role="tab" id="t-gap" aria-controls="tab-gap" data-tab="gap">Your gap</button>
+      <button type="button" role="tab" id="t-agent" aria-controls="tab-agent" data-tab="agent">For agents</button>
+    </div>
+
+    <div role="tabpanel" id="tab-map" aria-labelledby="t-map" class="tabpanel">
+      <p class="muted">Every skill employers ask for in this role, grouped by what the evidence says about it. Select a skill to see why it has its status.</p>
+      <div class="toolbar">
+        <div class="field">
+          <span class="label" id="lbl-mlevel">Needed at</span>
+          <div class="seg" id="mapLevel" role="group" aria-labelledby="lbl-mlevel"></div>
+        </div>
+        <div class="field">
+          <span class="label" id="lbl-mmode">Show</span>
+          <div class="seg" id="mapMode" role="group" aria-labelledby="lbl-mmode">
+            <button type="button" data-mode="list" aria-pressed="true">List</button>
+            <button type="button" data-mode="conn" aria-pressed="false">Connections</button>
+          </div>
+        </div>
+      </div>
+      <div id="mapList" style="display:grid; gap:1rem">
+        <div class="topline" id="topLine"></div>
+        <div class="map-wrap">
+          <div class="map" id="map"></div>
+          <aside class="panel" id="skillPanel" aria-live="polite"></aside>
+        </div>
+      </div>
+      <div id="connWrap" hidden style="gap:1rem">
+        <p class="muted" id="graphIntro">Columns are the level where employers first ask for a skill. Dot size is the share of postings at the chosen level. <span id="graphRole" hidden></span></p>
+        <div class="toolbar">
+      <div class="field">
+        <span class="label" id="lbl-glevel">Sized for level</span>
+        <div class="seg" id="graphLevel" role="group" aria-labelledby="lbl-glevel"></div>
+      </div>
+      <div class="field">
+        <span class="label" id="lbl-lens">Lens</span>
+        <div class="seg" id="lensPick" role="group" aria-labelledby="lbl-lens">
+          <button type="button" data-lens="level" aria-pressed="true">One level</button>
+          <button type="button" data-lens="top" aria-pressed="false">What separates the top</button>
+        </div>
+      </div>
+      <div class="field">
+        <span class="label" id="lbl-edges">Lines</span>
+        <div class="seg" id="edgePick" role="group" aria-labelledby="lbl-edges">
+          <button type="button" data-edges="co" aria-pressed="true">Asked together</button>
+          <button type="button" data-edges="builds" aria-pressed="false">Builds on</button>
+        </div>
+      </div>
+    </div>
+    <div class="graph-wrap">
+      <figure class="graph-fig">
+        <div class="graph-scroll" id="graph"></div>
+        <figcaption>
+          <div class="legend" aria-label="Legend">
+            <span><svg viewBox="0 0 26 14" aria-hidden="true"><circle cx="5" cy="7" r="3" fill="currentColor"/><circle cx="17" cy="7" r="6" fill="currentColor"/></svg>share of postings at the level</span>
+            <span><svg viewBox="0 0 26 14" aria-hidden="true"><circle cx="13" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-dasharray="2 2"/></svg>not asked at this level</span>
+            <span><svg viewBox="0 0 26 14" aria-hidden="true"><circle cx="13" cy="7" r="5" fill="none" stroke="var(--analysis)" stroke-width="2.25"/></svg>separates the top level</span>
+            <span><svg viewBox="0 0 26 14" aria-hidden="true"><line x1="1" y1="4" x2="25" y2="4" stroke="currentColor" stroke-width="1"/><line x1="1" y1="10" x2="25" y2="10" stroke="currentColor" stroke-width="3.5"/></svg>thicker = more often together</span>
+            <span><svg viewBox="0 0 26 14" aria-hidden="true"><line x1="1" y1="7" x2="20" y2="7" stroke="currentColor" stroke-dasharray="4 3"/><polygon points="20,3 26,7 20,11" fill="currentColor"/></svg>builds on</span>
+            <span>dot color = shift state, as in the chips below</span>
+          </div>
+          <span>An "asked together" line needs lift of 1.5 or more, from 25+ postings across 8+ employers. Top levels with few postings may show no lines: too little data, not no connection. The skill backbone comes from O*NET and ESCO; posting phrases are mapped onto it.</span>
+        </figcaption>
+      </figure>
+      <aside class="panel" id="graphPanel" aria-live="polite"></aside>
+    </div>
+      </div>
+    </div>
+
+    <div role="tabpanel" id="tab-levels" aria-labelledby="t-levels" class="tabpanel" hidden>
+      <p class="muted">The same job at each level: what it owns, what changes from the level below, and how many postings back each level.</p>
+      <div class="explorer">
+        <div class="ladder">
+          <div class="label">Seniority ladder · individual contributor track</div>
+          <div class="stairs" id="stairs" role="group" aria-label="Levels"></div>
+          <div class="axis"><span>less scope</span><span>more scope and ownership</span></div>
+          <div class="branch" id="branch"></div>
+        </div>
+        <article class="sheet" id="sheet" aria-live="polite"></article>
+      </div>
+    </div>
+
+    <div role="tabpanel" id="tab-industries" aria-labelledby="t-industries" class="tabpanel" hidden>
+      <p class="muted"><span id="indRole">This role</span> by broad industry sector (NAICS two-digit). Duties come from each sector's postings, certifications from CareerOneStop, and the share of jobs from the BLS occupation-by-industry matrix. A sector needs 30+ postings from 8+ employers to get a profile.</p>
+      <div class="toolbar">
+      <div class="field">
+        <span class="label" id="lbl-ind">Industry</span>
+        <div class="seg" id="industryPick" role="group" aria-labelledby="lbl-ind"></div>
+      </div>
+    </div>
+    <div class="ind">
+      <article class="sheet" id="indSheet" aria-live="polite"></article>
+      <div class="panel">
+        <div class="label">Same skills, by industry</div>
+        <div class="heat" id="heat"></div>
+        <p class="rule-note">Share of postings in each industry that ask for the skill, at the core level and above. The selected industry is outlined. Pick an industry above, or a column header.</p>
+      </div>
+    </div>
+    </div>
+
+    <div role="tabpanel" id="tab-gap" aria-labelledby="t-gap" class="tabpanel" hidden>
+      <p class="muted">Pick a target level in the Levels tab. Tick what you can already show evidence for. The list on the right orders what to learn next for <span id="gapTarget">the selected level</span>. In the product this runs in your own agent, so your skills never reach the server.</p>
+      <div class="gap">
+      <div class="panel">
+        <span class="label">Example profile · edit freely</span>
+        <div class="checks" id="checks"></div>
+      </div>
+      <div class="panel">
+        <span class="label">Learn next</span>
+        <ol class="next" id="next"></ol>
+      </div>
+    </div>
+    </div>
+
+    <div role="tabpanel" id="tab-agent" aria-labelledby="t-agent" class="tabpanel agent" hidden>
+      <div class="agent-bar">
+        <span class="mono muted" id="agentPath"></span>
+        <button type="button" class="btn" id="copyJson">Copy JSON</button>
+      </div>
+      <pre class="json" id="json" tabindex="0" aria-label="Role record as JSON"></pre>
+      <div class="endpoints" aria-label="Proposed read endpoints">
+        <div><code>GET /v1/roles</code><span>Index of roles with status, anchors and last window.</span></div>
+        <div><code>GET /v1/roles/{role}</code><span>The full record shown here. Pinned by <span class="mono">release_id</span>.</span></div>
+        <div><code>GET /v1/roles/{role}/levels/{L}</code><span>One level, with its expectations and evidence counts.</span></div>
+        <div><code>GET /v1/roles/{role}/graph</code><span>Skill nodes with shares by level, edges, and the top-level profile.</span></div>
+        <div><code>GET /v1/roles/{role}/industries/{naics}</code><span>Duties, certifications and skill shares for one industry.</span></div>
+        <div><code>GET /v1/shifts?since=2026-07</code><span>All shifts that changed state since a window, across roles.</span></div>
+        <div><code>GET /v1/expectations/{id}@{release}</code><span>Stable citation. Resolves to cited postings and excerpts.</span></div>
+        <div><code>POST gap (local MCP tool)</code><span>Runs in the reader's agent. Their skills never reach the server.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-method">
+    <div class="sec-head">
+      <span class="label">Method</span>
+      <h2 id="h-method">How a call is made, and how it is checked</h2>
+      <p class="muted">A forecast here is not a guess about the future of work. It is a narrow, dated claim about what employers will ask for, built from sources whose timing is known, and scored when the next windows arrive.</p>
+    </div>
+    <ol class="steps">
+      <li><strong>Know how early each source is.</strong> Job postings move first. O*NET and ESCO confirm years later. BLS projections speak to headcount, not skills. Each signal on the page carries its timing.</li>
+      <li><strong>Require two kinds of evidence.</strong> Postings alone can only produce an early signal. A skill is called rising only when an independent source agrees on the direction.</li>
+      <li><strong>Score every call.</strong> Each rising, early or fading skill carries a dated, checkable claim with a probability. When the window closes, the claim resolves against the posting sample and the score is published.</li>
+    </ol>
+
+    <h3>Where each source sits in time</h3>
+    <div class="rules">
+      <table>
+        <thead><tr><th scope="col">Source</th><th scope="col">Timing</th><th scope="col">Counts as</th><th scope="col">Good for</th><th scope="col">Refresh</th></tr></thead>
+        <tbody>
+          <tr><td>New phrasing in postings at a few employers</td><td><span class="tm tm-lead">leading</span> 0–12 months</td><td>Postings</td><td>First sign of change. Often noise.</td><td>monthly</td></tr>
+          <tr><td>Share of postings in a stratified sample</td><td><span class="tm tm-now">coincident</span></td><td>Postings</td><td>What employers ask for now, by level and sector.</td><td>monthly</td></tr>
+          <tr><td>Indeed Hiring Lab sector trends</td><td><span class="tm tm-now">coincident</span></td><td>Market trend</td><td>Independent check on direction. Sector level only.</td><td>monthly</td></tr>
+          <tr><td>O*NET Hot Technologies and In Demand</td><td><span class="tm tm-now">coincident</span> to lagging</td><td>Market trend</td><td>Named tools, derived by O*NET from postings.</td><td>periodic</td></tr>
+          <tr><td>Anthropic Economic Index</td><td><span class="tm tm-now">coincident</span></td><td>Market trend</td><td>Which O*NET tasks AI is already used for.</td><td>periodic</td></tr>
+          <tr><td>O*NET Emerging Tasks</td><td><span class="tm tm-lead">leading</span> for the official record</td><td>Official map</td><td>New tasks reported by workers, before ratings change.</td><td>per release</td></tr>
+          <tr><td>O*NET importance and level ratings, ESCO links</td><td><span class="tm tm-lag">lagging</span> years</td><td>Official map</td><td>The durable core of a job and its top-level bar. Slow to show change.</td><td>multi-year cycle</td></tr>
+          <tr><td>BLS employment projections</td><td><span class="tm tm-long">long-term</span> 10 years</td><td>Context only</td><td>Whether the job grows. Says nothing about skills.</td><td>annual</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>What each status requires</h3>
+    <div class="rules">
+      <table>
+        <thead><tr><th scope="col">Status</th><th scope="col">Requires</th><th scope="col">The map may say</th><th scope="col">It may not say</th></tr></thead>
+        <tbody>
+          <tr><td><span class="chip st-established">core</span></td><td>Asked in 25%+ of postings at its levels, in 2+ windows, across 10+ employers.</td><td>"Most sampled employers ask for this at L3."</td><td>That it predicts hiring. If no official map lists it yet, the map says so.</td></tr>
+          <tr><td><span class="chip st-growing">rising</span></td><td>Share up 5+ points across 2 comparable windows, 8+ employers, no employer over 20%, <em>and</em> at least one independent source agreeing.</td><td>"Rising, confirmed by a market-trend source."</td><td>Anything beyond the dated claim it carries.</td></tr>
+          <tr><td><span class="chip st-emerging">early signal</span></td><td>New or rising in postings, but no independent source agrees yet, or only one window exists.</td><td>"Seen at N employers. Watch item."</td><td>That it is common, required or growing.</td></tr>
+          <tr><td><span class="chip st-fading">fading</span></td><td>Share down 5+ points across 2 comparable windows, same employer floor.</td><td>"Asked less often. Official maps may still list it."</td><td>That the skill is no longer needed.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Track record</h3>
+    <div class="record">
+      <div class="panel">
+        <div class="found">
+          <div><span class="v num">132</span><span class="label">calls resolved in backtest</span></div>
+          <div><span class="v num">0.19</span><span class="label">Brier score · lower is better · 0.25 = coin flip</span></div>
+          <div><span class="v num">6 qtrs</span><span class="label">median lag, postings to O*NET</span></div>
+        </div>
+        <p style="font-size:0.86rem">Before launch, the method is replayed on history: posting archives such as NLx (2010 onward) and archived O*NET releases. That sets the starting probability for each evidence profile, and measures how far O*NET lags postings. Live calls are then scored the same way and published per role.</p>
+      </div>
+      <div class="panel">
+        <div class="label">Calibration · when the map said X%, how often it happened</div>
+        <div class="calib" id="calib"></div>
+      </div>
+    </div>
+
+    <details class="more">
+      <summary>The seven-layer model behind each record, and what the current build has</summary>
+      <div class="layers" role="table" aria-label="Layer model">
+      <div class="layer head" role="row">
+        <div role="columnheader"><span class="label">Layer</span></div>
+        <div role="columnheader"><span class="label">Source and cadence</span></div>
+        <div role="columnheader"><span class="label">What it can say</span></div>
+        <div role="columnheader"><span class="label">Current build (real)</span></div>
+      </div>
+      <div class="layer" role="row">
+        <div role="cell"><span class="layer-name">Foundation</span><span class="layer-tag">baseline</span></div>
+        <div role="cell"><span class="label cell-label">Source and cadence</span>O*NET tasks, skills, knowledge and technology ratings. BLS wages, employment and 10-year projections.<span class="cadence">annual</span></div>
+        <div role="cell"><span class="label cell-label">What it can say</span>National pay, size, outlook, and rated importance of tasks and skills. O*NET's emerging-task list is a leading signal.</div>
+        <div role="cell"><span class="label cell-label">Current build (real)</span><span class="today">Quotes only.</span> O*NET and BLS pages are fetched for excerpts. No wages, employment, projections or ratings are used.</div>
+      </div>
+      <div class="layer" role="row">
+        <div role="cell"><span class="layer-name">Demand</span><span class="layer-tag">what employers ask</span></div>
+        <div role="cell"><span class="label cell-label">Source and cadence</span>Public ATS boards (Greenhouse, Lever, Ashby and others), stratified by company size and stage.<span class="cadence">monthly window</span></div>
+        <div role="cell"><span class="label cell-label">What it can say</span>Share of postings and employers that state an expectation, at each level, in one window.</div>
+        <div role="cell"><span class="label cell-label">Current build (real)</span><span class="today num">13 to 26 postings per role from 6 to 8 employers.</span> 16 boards, mostly large tech. 8 of 13 HR postings are one employer.</div>
+      </div>
+      <div class="layer" role="row">
+        <div role="cell"><span class="layer-name">Shifts</span><span class="layer-tag">forward-looking</span></div>
+        <div role="cell"><span class="label cell-label">Source and cadence</span>Differences between two or more comparable demand windows, plus new titles and new requirement phrasing.<span class="cadence">per new window</span></div>
+        <div role="cell"><span class="label cell-label">What it can say</span>Emerging, growing, established, fading or contested, each with a stated threshold.</div>
+        <div role="cell"><span class="label cell-label">Current build (real)</span><span class="today">None.</span> Trend claims are banned outright, so nothing forward-looking can be said.</div>
+      </div>
+      <div class="layer" role="row">
+        <div role="cell"><span class="layer-name">Seniority ladder</span><span class="layer-tag">levels of one job</span></div>
+        <div role="cell"><span class="label cell-label">Source and cadence</span>Each posting is levelled from its own scope and ownership evidence. The title only nudges the result.<span class="cadence">per window</span></div>
+        <div role="cell"><span class="label cell-label">What it can say</span>What each level owns, what it adds over the level below, and how much evidence backs each level.</div>
+        <div role="cell"><span class="label cell-label">Current build (real)</span><span class="today">One forced label.</span> Every role is scoped "mid-level IC", yet 33 of 58 admitted postings are tagged senior.</div>
+      </div>
+      <div class="layer" role="row">
+        <div role="cell"><span class="layer-name">Skills graph</span><span class="layer-tag">how skills connect</span></div>
+        <div role="cell"><span class="label cell-label">Source and cadence</span>O*NET and ESCO skills as the backbone. Posting phrases mapped onto them with an open extractor. Pairs counted within postings.<span class="cadence">per window</span></div>
+        <div role="cell"><span class="label cell-label">What it can say</span>Which skills each level asks for, which travel together, and what the top level asks for that the core level does not.</div>
+        <div role="cell"><span class="label cell-label">Current build (real)</span><span class="today">None.</span> Claim tags are word splits. Nothing maps to a skills taxonomy, so no pairs can be counted.</div>
+      </div>
+      <div class="layer" role="row">
+        <div role="cell"><span class="layer-name">Industry view</span><span class="layer-tag">same job, different field</span></div>
+        <div role="cell"><span class="label cell-label">Source and cadence</span>Employers tagged by NAICS. BLS occupation-by-industry matrix. CareerOneStop certifications by O*NET and NAICS code.<span class="cadence">per window · annual</span></div>
+        <div role="cell"><span class="label cell-label">What it can say</span>Duties, certifications, licences and skill shares that differ by industry, with evidence counts per industry.</div>
+        <div role="cell"><span class="label cell-label">Current build (real)</span><span class="today">None.</span> Employers are not tagged by industry, and the 16 sampled boards are almost all tech companies.</div>
+      </div>
+      <div class="layer" role="row">
+        <div role="cell"><span class="layer-name">Your gap</span><span class="layer-tag">private, local</span></div>
+        <div role="cell"><span class="label cell-label">Source and cadence</span>Reader's own skills or résumé, compared on their device or in their own agent.<span class="cadence">on demand</span></div>
+        <div role="cell"><span class="label cell-label">What it can say</span>What to learn next for a target level, ordered by level requirements and active shifts.</div>
+        <div role="cell"><span class="label cell-label">Current build (real)</span><span class="today">Removed.</span> The assessment contract was deleted. Learning priorities are per role, not per person or level.</div>
+      </div>
+    </div>
+    </details>
+    <details class="more">
+      <summary>How one posting gets a level</summary>
+      <p class="muted">The level comes from what the posting says the person will own. Title and years wording are weak signals. When strong signals disagree, the posting stays unassigned.</p>
+      <div class="triage">
+      <div class="posting" aria-label="Example posting">
+        <span class="label">Example posting · written for this prototype</span>
+        <h3><mark class="weak">Account Executive</mark>, Mid-Market</h3>
+        <p>You will own a <mark>book of 40 to 60 named mid-market accounts</mark> and carry an <mark>annual new-business quota of about $900K</mark>. Typical deals involve <mark>3 to 5 stakeholders and a 45 to 90 day cycle</mark>.</p>
+        <p>You will build your own pipeline alongside one SDR, run discovery and demos, and <mark>build ROI cases with finance buyers</mark>. You will use AI research tools to prepare account plans.</p>
+        <p><mark class="weak">3+ years of closing experience in B2B SaaS.</mark> This is an <mark class="neg">individual contributor role with no direct reports</mark>.</p>
+        <div class="chips" aria-label="Legend">
+          <span class="chip st-growing">strong signal</span>
+          <span class="chip st-established">weak signal</span>
+          <span class="chip" style="color:var(--analysis);background:var(--analysis-soft)">track signal</span>
+        </div>
+      </div>
+      <div style="display:grid; gap:0">
+        <div class="matrix">
+          <table>
+            <caption class="label" style="text-align:left; padding:0.55rem 0.6rem; caption-side:top">Signals against the Account Executive ladder</caption>
+            <thead><tr><th scope="col">Signal</th><th scope="col">Weight</th><th scope="col">L1</th><th scope="col">L2</th><th scope="col">L3</th><th scope="col">L4</th><th scope="col">L5</th></tr></thead>
+            <tbody id="matrixBody"></tbody>
+          </table>
+        </div>
+        <div class="verdict">
+          <span class="label">Result</span>
+          <strong style="font-family:var(--font-serif); font-size:1.1rem">L3 · Mid-Market AE</strong>
+          <span class="chip st-growing">confidence: high</span>
+          <span class="muted" style="font-size:0.84rem">4 of 4 strong signals agree. IC track confirmed by the posting itself.</span>
+        </div>
+      </div>
+    </div>
+    </details>
+  </section>
+
+  <section aria-labelledby="h-q">
+    <div class="sec-head">
+      <span class="label">For your review</span>
+      <h2 id="h-q">Decisions</h2>
+    </div>
+    <div class="dec">
+      <div>
+        <h3>Settled</h3>
+        <ul class="questions">
+          <li><strong>Industry grain:</strong> broad NAICS sectors. Larger sub-industries are named inside each sector.</li>
+          <li><strong>Top performer:</strong> posting demand plus O*NET ratings, each labeled with its timing. O*NET is the slow, durable bar; postings are the current ask.</li>
+          <li><strong>Connection threshold:</strong> lift 1.5+, from 25+ postings across 8+ employers, matching the employer floor for "rising". Lines show only in the Connections view.</li>
+          <li><strong>Forecast horizon:</strong> 4 quarters.</li>
+          <li><strong>Probabilities:</strong> people see the percentage, with the base rate it started from.</li>
+          <li><strong>Ladder shape:</strong> role-specific level names on a shared L1 to L5 scale.</li>
+          <li><strong>Emerging roles:</strong> published with a partial O*NET anchor, clearly marked experimental.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Still open</h3>
+        <ol class="questions">
+          <li><strong>Window length.</strong> Quarterly is safer at today's volume; monthly catches change sooner. Four-quarter forecasts work with either.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <footer>Skills Vector · Role Atlas concept. Built on the Evidence Atlas · Control tokens. All role data on this page is illustrative.</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // Illustrative data only. Shapes follow the proposed skills-vector.role/1 record.
+  var ROLES = {
+    "account-executive": {
+      label: "Account Executive",
+      status: "established",
+      anchors: [{ system: "O*NET-SOC", code: "41-4011.00", title: "Sales Representatives, Wholesale and Manufacturing, Technical and Scientific Products", fit: "partial" }],
+      aliases: ["AE", "Account Executive", "Commercial AE", "Enterprise AE"],
+      foundation: { wage: "$98k", wageNote: "median annual pay", employment: "~330k", employmentNote: "U.S. jobs in anchor code", outlook: "+3%", outlookNote: "10-year projection",
+        tasks: ["Identify prospective customers and qualify leads", "Negotiate prices and terms of sale", "Prepare and present proposals to buyers", "Maintain records of accounts and pipeline"] },
+      window: { current: "2026-Q3", previous: "2026-Q2", postings: 412, employers: 61 },
+      levels: [
+        { L: 1, name: "Sales Development Rep", titles: ["SDR", "BDR", "Sales Development Representative"], years: "0–2 years", scope: "Outbound prospecting and qualifying. Quota is meetings booked, not revenue.", owns: "A meetings target and a list of target accounts.", stepUp: "Entry level for this ladder.", n: 88, e: 34,
+          exp: [["Prospecting cadences across email, phone and social", "carry"], ["CRM hygiene and activity logging", "carry"], ["Basic discovery and qualification questions", "carry"], ["Handling first-call objections", "carry"]] },
+        { L: 2, name: "SMB / Associate AE", titles: ["Associate AE", "SMB Account Executive", "Commercial AE I"], years: "1–3 years", scope: "Full cycle on small, fast deals. High volume, short cycles, one or two buyers.", owns: "A revenue quota on transactional deals.", stepUp: "Closes revenue instead of handing meetings off. Runs demos and pricing conversations alone.", n: 104, e: 41,
+          exp: [["Full-cycle selling on short deals", "new"], ["Product demos tailored to one buyer", "new"], ["Pipeline management and weekly forecast", "new"], ["Prospecting cadences across email, phone and social", "carry"]] },
+        { L: 3, name: "Mid-Market AE", titles: ["Account Executive", "Mid-Market AE", "Commercial AE"], years: "3–5 years", scope: "Book of named accounts. Several stakeholders per deal, 30 to 90 day cycles.", owns: "A book of business and a new-business quota.", stepUp: "Sells to a buying group, not one buyer. Builds the business case and forecasts by deal stage.", n: 121, e: 48,
+          exp: [["Structured qualification (MEDDICC or similar)", "new"], ["Multi-threading across a buying group", "new"], ["ROI and business-case building with finance buyers", "new"], ["Mutual action plans and stage-accurate forecasting", "new"], ["Full-cycle selling on short deals", "carry"]] },
+        { L: 4, name: "Enterprise AE", titles: ["Enterprise Account Executive", "Senior AE"], years: "5–8+ years", scope: "Large accounts with procurement, security and legal review. 6 to 12 month cycles.", owns: "A seven-figure quota across a small set of large accounts.", stepUp: "Runs a deal team of SEs, partners and execs. Navigates procurement and legal, not only the buyer.", n: 74, e: 33,
+          exp: [["Strategic account planning", "new"], ["Executive alignment and sponsorship", "new"], ["Procurement, security and legal navigation", "new"], ["Orchestrating SEs, partners and internal execs", "new"], ["Multi-threading across a buying group", "carry"]] },
+        { L: 5, name: "Strategic AE", titles: ["Strategic Account Executive", "Named Strategic AE"], years: "8+ years", scope: "A handful of the company's largest accounts. Multi-year, multi-product agreements.", owns: "Long-term account strategy for named strategic customers.", stepUp: "Shapes multi-year account strategy and complex deal structures. Builds internal coalitions to win.", n: 25, e: 14,
+          exp: [["Multi-year, multi-product deal structuring", "new"], ["C-level relationships at customer and internally", "new"], ["Territory and account-portfolio strategy", "new"], ["Executive alignment and sponsorship", "carry"]] }
+      ],
+      branch: { from: 3, label: "Sales Manager", note: "Separate linked role. Owns hiring and coaching of AEs. Not part of this IC ladder." },
+      shifts: [
+        { id: "ai-prospecting", label: "AI-assisted prospecting and account research", state: "growing", levels: [1, 2, 3], prev: [9, 150, 6], cur: [58, 412, 23], note: "Named tools vary. The stable expectation is using AI to prepare account research and outreach." },
+        { id: "self-sourced", label: "AEs expected to source their own pipeline", state: "growing", levels: [2, 3], prev: [24, 150, 12], cur: [101, 412, 29], note: "Fewer postings promise dedicated SDR support at L2 and L3." },
+        { id: "consumption", label: "Usage-based and consumption pricing deals", state: "emerging", levels: [3, 4, 5], prev: [2, 150, 2], cur: [17, 412, 7], note: "Below the growing threshold: only 7 employers so far." },
+        { id: "call-volume", label: "Daily cold-call volume targets", state: "fading", levels: [1, 2], prev: [31, 150, 15], cur: [44, 412, 18], note: "Still common at L1, but a smaller share than the earlier window." }
+      ]
+    },
+    "forward-deployed-engineer": {
+      label: "Forward Deployed Engineer",
+      status: "emerging",
+      anchors: [{ system: "O*NET-SOC", code: "15-1252.00", title: "Software Developers", fit: "partial" }],
+      aliases: ["FDE", "Forward Deployed Engineer", "Deployment Engineer", "Forward Deployed Software Engineer"],
+      foundation: { wage: "$133k", wageNote: "median for anchor code only", employment: "n/a", employmentNote: "no official count for this title", outlook: "+15%", outlookNote: "anchor code, not this title",
+        tasks: ["Modify software to meet customer needs", "Analyze user needs and design solutions", "Confer with customers on project status", "Integrate systems and data sources"] },
+      window: { current: "2026-Q3", previous: "2026-Q2", postings: 96, employers: 31 },
+      levels: [
+        { L: 1, name: "Associate FDE", titles: ["Forward Deployed Engineer, New Grad", "Associate Deployment Engineer"], years: "0–2 years", scope: "Builds integrations and workflows inside a customer deployment, guided by a senior FDE.", owns: "Assigned workstreams in one deployment.", stepUp: "Entry level for this ladder.", n: 14, e: 8,
+          exp: [["Production Python or TypeScript", "carry"], ["Data integration and SQL", "carry"], ["Working directly with customer users", "carry"]] },
+        { L: 2, name: "Forward Deployed Engineer", titles: ["Forward Deployed Engineer", "Forward Deployed Software Engineer"], years: "2–5 years", scope: "Owns a customer deployment end to end: scoping, building, shipping and adoption.", owns: "Outcomes of one or two customer deployments.", stepUp: "Scopes the work with the customer instead of receiving tasks. Accountable for adoption, not just delivery.", n: 47, e: 24,
+          exp: [["Scoping problems with non-technical customers", "new"], ["Building LLM applications and agent workflows", "new"], ["Shipping to production in customer environments", "new"], ["Data integration and SQL", "carry"]] },
+        { L: 3, name: "Senior FDE", titles: ["Senior Forward Deployed Engineer"], years: "5+ years", scope: "Leads multi-workstream deployments and feeds field patterns back into the product.", owns: "Technical win and delivery across a strategic account.", stepUp: "Turns one-off customer builds into reusable product features. Supports pre-sales technical evaluation.", n: 28, e: 16,
+          exp: [["Product feedback from field patterns", "new"], ["Pre-sales technical evaluation", "new"], ["Evaluation design for customer AI deployments", "new"], ["Building LLM applications and agent workflows", "carry"]] },
+        { L: 4, name: "Staff FDE / Deployment Lead", titles: ["Staff Forward Deployed Engineer", "Deployment Strategist"], years: "8+ years", scope: "Sets deployment patterns across accounts and mentors other FDEs.", owns: "The deployment playbook and its quality bar.", stepUp: "Works across accounts. Defines how deployments are done rather than doing one.", n: 7, e: 5,
+          exp: [["Cross-account deployment architecture", "new"], ["Mentoring and technical leadership", "new"], ["Product feedback from field patterns", "carry"]] }
+      ],
+      branch: { from: 3, label: "FDE Manager", note: "Separate linked role. Too few postings in this window to publish a ladder." },
+      shifts: [
+        { id: "title-spread", label: "Title spreading beyond AI labs to SaaS companies", state: "growing", levels: [1, 2, 3, 4], prev: [21, 38, 9], cur: [58, 96, 22], note: "Share here is postings from non-AI-lab employers. The role itself is the shift." },
+        { id: "agents", label: "Building agent workflows for customers", state: "growing", levels: [2, 3], prev: [8, 38, 5], cur: [41, 96, 17], note: "Replacing earlier 'data pipeline' framing at L2." },
+        { id: "evals", label: "Designing evaluations for customer AI deployments", state: "emerging", levels: [3, 4], prev: [0, 38, 0], cur: [9, 96, 6], note: "New phrasing this window. Below the growing threshold." },
+        { id: "vs-se", label: "Overlap with Solutions Engineer", state: "contested", levels: [2, 3], prev: [6, 38, 4], cur: [19, 96, 11], note: "Some employers use FDE for pre-sales SE work. Two readings are kept apart until resolved." }
+      ]
+    },
+    "hr-generalist": {
+      label: "HR Generalist",
+      status: "established",
+      anchors: [{ system: "O*NET-SOC", code: "13-1071.00", title: "Human Resources Specialists", fit: "close" }],
+      aliases: ["HR Generalist", "People Generalist", "HR Business Partner"],
+      foundation: { wage: "$72k", wageNote: "median annual pay", employment: "~900k", employmentNote: "U.S. jobs in anchor code", outlook: "+6%", outlookNote: "10-year projection",
+        tasks: ["Interpret and explain HR policies", "Maintain employee records and HRIS data", "Advise managers on employee relations", "Coordinate onboarding and benefits enrollment"] },
+      window: { current: "2026-Q3", previous: "2026-Q2", postings: 288, employers: 74 },
+      levels: [
+        { L: 1, name: "HR Coordinator", titles: ["HR Coordinator", "People Operations Coordinator"], years: "0–2 years", scope: "Onboarding logistics, HRIS data entry and employee records.", owns: "Accuracy of records and onboarding steps.", stepUp: "Entry level for this ladder.", n: 71, e: 38,
+          exp: [["HRIS data entry and audits", "carry"], ["Onboarding and offboarding coordination", "carry"], ["Answering routine employee questions", "carry"]] },
+        { L: 2, name: "HR Generalist", titles: ["HR Generalist", "People Generalist"], years: "2–5 years", scope: "First line for employee relations, policy, leave and benefits administration.", owns: "Day-to-day HR for a site or employee group.", stepUp: "Handles employee-relations cases and policy questions, not just transactions.", n: 109, e: 52,
+          exp: [["Employee-relations intake and documentation", "new"], ["Leave, benefits and multi-state compliance", "new"], ["Policy interpretation for managers", "new"], ["HRIS data entry and audits", "carry"]] },
+        { L: 3, name: "Senior Generalist / HRBP", titles: ["Senior HR Generalist", "HR Business Partner"], years: "5–8 years", scope: "Partners with managers on performance, investigations and org change.", owns: "HR outcomes for a business unit.", stepUp: "Advises leaders and runs investigations. Uses data to argue for changes.", n: 82, e: 41,
+          exp: [["Workplace investigations", "new"], ["Performance-cycle and calibration support", "new"], ["People analytics for managers", "new"], ["Employee-relations intake and documentation", "carry"]] },
+        { L: 4, name: "Senior HRBP", titles: ["Senior HR Business Partner", "Sr. People Partner"], years: "8+ years", scope: "Advises executives on org design and workforce planning.", owns: "People strategy for a function.", stepUp: "Shapes org design and workforce plans with executives, not only managers.", n: 26, e: 17,
+          exp: [["Org design and workforce planning", "new"], ["Executive coaching and advising", "new"], ["People analytics for managers", "carry"]] }
+      ],
+      branch: { from: 3, label: "HR Manager", note: "Separate linked role. Owns an HR team and its hiring." },
+      shifts: [
+        { id: "hr-automation", label: "Automating HR workflows with AI tools in the HRIS", state: "growing", levels: [1, 2, 3], prev: [7, 120, 6], cur: [49, 288, 21], note: "Most mentions are inside Workday or Rippling workflows." },
+        { id: "ai-policy", label: "Writing AI acceptable-use and data policies", state: "emerging", levels: [2, 3, 4], prev: [1, 120, 1], cur: [14, 288, 9], note: "New phrasing. Not yet at the growing threshold." },
+        { id: "analytics-gen", label: "People analytics expected at generalist level", state: "growing", levels: [2, 3], prev: [11, 120, 8], cur: [52, 288, 26], note: "Previously concentrated at L3 and above." },
+        { id: "multistate", label: "Multi-state compliance for remote employees", state: "established", levels: [2, 3], prev: [38, 120, 29], cur: [93, 288, 55], note: "Stable share across both windows." }
+      ]
+    }
+  };
+
+  // Triage worked example (Account Executive ladder). Each row: label, weight, level hits ("s" strong, "w" weak).
+  var MATRIX = [
+    ["Book of 40–60 named mid-market accounts", "strong", ["", "", "s", "", ""]],
+    ["~$900K new-business quota", "strong", ["", "", "s", "s", ""]],
+    ["3–5 stakeholders, 45–90 day cycle", "strong", ["", "", "s", "", ""]],
+    ["ROI cases with finance buyers", "strong", ["", "", "s", "s", ""]],
+    ["Title: Account Executive", "weak", ["", "w", "w", "w", ""]],
+    ["Wording: 3+ years closing", "weak", ["", "w", "w", "", ""]],
+    ["No direct reports", "track", ["IC", "IC", "IC", "IC", "IC"]]
+  ];
+
+  // Skills graph (illustrative). Node: [id, short label, full label, first level, row, shift state, share of postings by level (%), sources].
+  // Sources: P postings, O O*NET, Ee ESCO essential, Eo ESCO optional. Co edge: [a, b, lift, postings together]. Build edge: [from, to].
+  var GRAPH = {
+    "account-executive": {
+      mid: 3,
+      families: [["Pipeline", 0, 1], ["Deal craft", 2, 4], ["Account strategy", 5, 6], ["Tools and AI", 7, 8]],
+      nodes: [
+        ["prosp", "Prospecting cadences", "Prospecting cadences across email, phone and social", 1, 0, "established", [78, 52, 30, 12, 5], ["P", "O", "Ee"]],
+        ["coldcall", "Cold-call volume", "Daily cold-call volume targets", 1, 1, "fading", [24, 9, 2, 0, 0], ["P", "O"]],
+        ["selfsrc", "Self-sourced pipeline", "Sourcing your own pipeline without SDR support", 2, 1, "growing", [0, 38, 31, 14, 6], ["P"]],
+        ["disc", "Discovery questions", "Basic discovery and qualification questions", 1, 2, "established", [70, 66, 58, 44, 30], ["P", "O", "Ee"]],
+        ["forecast", "Pipeline forecast", "Pipeline management and weekly forecast", 2, 2, "established", [0, 40, 52, 50, 40], ["P", "Eo"]],
+        ["fullcycle", "Full-cycle closing", "Full-cycle selling on short deals", 2, 3, "established", [3, 72, 60, 41, 22], ["P", "O", "Ee"]],
+        ["demo", "Tailored demos", "Product demos tailored to one buyer", 2, 4, "established", [2, 48, 40, 22, 10], ["P", "Eo"]],
+        ["meddicc", "MEDDICC qualifying", "Structured qualification (MEDDICC or similar)", 3, 2, "established", [0, 8, 46, 52, 38], ["P"]],
+        ["multithread", "Multi-threading", "Multi-threading across a buying group", 3, 3, "established", [0, 6, 44, 61, 55], ["P"]],
+        ["roi", "ROI business cases", "ROI and business-case building with finance buyers", 3, 4, "established", [0, 4, 35, 49, 47], ["P", "Eo"]],
+        ["consumption", "Consumption pricing", "Usage-based and consumption pricing deals", 3, 5, "emerging", [0, 0, 3, 6, 9], ["P"]],
+        ["procure", "Procurement and legal", "Procurement, security and legal navigation", 4, 4, "established", [0, 0, 5, 52, 49], ["P", "O"]],
+        ["acctplan", "Strategic account plans", "Strategic account planning", 4, 5, "established", [0, 0, 9, 58, 66], ["P", "Ee"]],
+        ["exec", "Executive alignment", "Executive alignment and sponsorship", 4, 6, "established", [0, 0, 6, 47, 71], ["P"]],
+        ["dealstruct", "Multi-year deals", "Multi-year, multi-product deal structuring", 5, 5, "established", [0, 0, 0, 12, 64], ["P"]],
+        ["aires", "AI account research", "AI-assisted prospecting and account research", 1, 7, "growing", [22, 25, 21, 10, 4], ["P"]],
+        ["crm", "CRM hygiene", "CRM hygiene and activity logging", 1, 8, "established", [64, 55, 48, 40, 31], ["P", "O", "Eo"]]
+      ],
+      co: [["prosp", "selfsrc", 2.1, 61], ["prosp", "aires", 1.8, 44], ["disc", "meddicc", 1.6, 52], ["meddicc", "multithread", 2.4, 71], ["multithread", "exec", 2.0, 38],
+        ["roi", "procure", 1.7, 33], ["roi", "meddicc", 1.5, 40], ["acctplan", "exec", 2.6, 41], ["acctplan", "dealstruct", 2.2, 22], ["exec", "dealstruct", 1.9, 21],
+        ["procure", "dealstruct", 1.6, 20], ["fullcycle", "demo", 1.9, 63], ["fullcycle", "forecast", 1.7, 58], ["consumption", "dealstruct", 1.8, 20], ["crm", "forecast", 1.5, 66], ["aires", "acctplan", 1.3, 24]],
+      builds: [["disc", "meddicc"], ["fullcycle", "multithread"], ["multithread", "exec"], ["roi", "dealstruct"], ["acctplan", "dealstruct"], ["prosp", "selfsrc"], ["demo", "roi"]]
+    },
+    "forward-deployed-engineer": {
+      mid: 2,
+      families: [["Engineering", 0, 1], ["Customer work", 2, 3], ["AI systems", 4, 5], ["Field leadership", 6, 6]],
+      nodes: [
+        ["py", "Production Python / TS", "Production Python or TypeScript", 1, 0, "established", [84, 78, 70, 61], ["P", "O", "Ee"]],
+        ["sql", "Data integration, SQL", "Data integration and SQL", 1, 1, "established", [72, 66, 52, 40], ["P", "O", "Ee"]],
+        ["custusers", "Working with users", "Working directly with customer users", 1, 2, "established", [58, 61, 55, 44], ["P", "O"]],
+        ["prodship", "Ship in customer envs", "Shipping to production in customer environments", 2, 1, "established", [12, 58, 62, 50], ["P"]],
+        ["scoping", "Scoping with customers", "Scoping problems with non-technical customers", 2, 2, "established", [10, 64, 70, 66], ["P", "Eo"]],
+        ["llmapps", "LLM apps and agents", "Building LLM applications and agent workflows", 2, 4, "growing", [30, 55, 60, 52], ["P"]],
+        ["presales", "Pre-sales evaluation", "Pre-sales technical evaluation", 3, 3, "contested", [0, 18, 47, 40], ["P", "Eo"]],
+        ["evals", "AI eval design", "Evaluation design for customer AI deployments", 3, 5, "emerging", [0, 6, 24, 35], ["P"]],
+        ["feedback", "Product feedback", "Product feedback from field patterns", 3, 6, "established", [0, 12, 52, 64], ["P"]],
+        ["xarch", "Cross-account patterns", "Cross-account deployment architecture", 4, 0, "established", [0, 0, 10, 71], ["P", "O"]],
+        ["mentor", "Mentoring", "Mentoring and technical leadership", 4, 6, "established", [0, 2, 15, 68], ["P", "Ee"]]
+      ],
+      co: [["py", "llmapps", 1.6, 47], ["sql", "prodship", 1.4, 51], ["scoping", "custusers", 2.0, 49], ["scoping", "presales", 1.9, 30], ["llmapps", "evals", 2.5, 24],
+        ["presales", "feedback", 1.5, 21], ["feedback", "xarch", 1.8, 20], ["xarch", "mentor", 1.7, 20], ["prodship", "xarch", 1.3, 20], ["llmapps", "prodship", 1.6, 40]],
+      builds: [["custusers", "scoping"], ["py", "llmapps"], ["llmapps", "evals"], ["scoping", "presales"], ["feedback", "xarch"], ["prodship", "xarch"]]
+    },
+    "hr-generalist": {
+      mid: 2,
+      families: [["Operations", 0, 2], ["Relations and compliance", 3, 5], ["Strategy and analytics", 6, 7]],
+      nodes: [
+        ["hris", "HRIS data and audits", "HRIS data entry and audits", 1, 0, "established", [80, 58, 36, 18], ["P", "O", "Ee"]],
+        ["onboard", "Onboarding", "Onboarding and offboarding coordination", 1, 1, "established", [76, 44, 20, 8], ["P", "O", "Ee"]],
+        ["hrauto", "HR workflow automation", "Automating HR workflows with AI tools in the HRIS", 1, 2, "growing", [18, 21, 17, 9], ["P"]],
+        ["er", "ER intake", "Employee-relations intake and documentation", 2, 3, "established", [8, 62, 58, 40], ["P", "O", "Ee"]],
+        ["leave", "Leave and multi-state", "Leave, benefits and multi-state compliance", 2, 4, "established", [12, 66, 54, 31], ["P", "O", "Ee"]],
+        ["policy", "Policy interpretation", "Policy interpretation for managers", 2, 5, "established", [6, 52, 57, 45], ["P", "O"]],
+        ["analytics", "People analytics", "People analytics for managers", 2, 6, "growing", [2, 28, 46, 58], ["P", "Eo"]],
+        ["invest", "Investigations", "Workplace investigations", 3, 3, "established", [0, 10, 55, 48], ["P", "Eo"]],
+        ["aipolicy", "AI use policy", "Writing AI acceptable-use and data policies", 3, 5, "emerging", [0, 4, 9, 14], ["P"]],
+        ["perf", "Performance cycles", "Performance-cycle and calibration support", 3, 6, "established", [0, 12, 49, 52], ["P", "Eo"]],
+        ["coach", "Executive advising", "Executive coaching and advising", 4, 6, "established", [0, 0, 6, 59], ["P"]],
+        ["orgdesign", "Workforce planning", "Org design and workforce planning", 4, 7, "established", [0, 0, 8, 67], ["P", "Ee"]]
+      ],
+      co: [["hris", "hrauto", 2.2, 40], ["hris", "onboard", 1.8, 88], ["er", "invest", 2.4, 46], ["er", "policy", 1.7, 61], ["leave", "policy", 1.9, 57],
+        ["invest", "perf", 1.3, 22], ["analytics", "perf", 1.8, 34], ["analytics", "orgdesign", 2.1, 20], ["orgdesign", "coach", 2.3, 20], ["policy", "aipolicy", 1.6, 20], ["hrauto", "analytics", 1.4, 21]],
+      builds: [["er", "invest"], ["analytics", "orgdesign"], ["policy", "aipolicy"], ["perf", "coach"], ["hris", "hrauto"]]
+    }
+  };
+
+  // Industry view by broad NAICS sector (illustrative). Cert: [name, issuer, requirement, share of postings %].
+  // Heat: [node id, share per sector in list order]; null where the sector is below the profile floor.
+  var INDUSTRY = {
+    "account-executive": {
+      list: [
+        { key: "info", label: "Information", naics: "51", naicsTitle: "Information", sub: "Software publishers, data and cloud services", share: "12%", postings: 196, employers: 28, pay: "$112k",
+          differs: "Selling method and AI tooling dominate. Credentials barely appear; employers screen on quota history instead.",
+          duties: ["Run trials and proofs of concept with the buyer's team", "Price seat, usage and platform tiers", "Hand accounts to customer success at signature"],
+          certs: [["MEDDICC practitioner training", "MEDDICC", "preferred", 4]], know: ["ARR, NRR and churn", "SOC 2 security reviews", "Product-led trials"] },
+        { key: "fin", label: "Finance and insurance", naics: "52", naicsTitle: "Finance and insurance", sub: "Banks, brokerages, insurers, fintech", share: "9%", postings: 63, employers: 12, pay: "$118k",
+          differs: "Regulated products need licences. Compliance review shapes how deals are run and documented.",
+          duties: ["Sell into buyers with compliance approval chains", "Document suitability and disclosures", "Coordinate regulated terms with legal"],
+          certs: [["Securities Industry Essentials (SIE)", "FINRA", "required", 38], ["Series 7 and Series 63", "FINRA / NASAA", "required", 31], ["CFP certification", "CFP Board", "preferred", 6]],
+          know: ["SEC and FINRA rules", "Bank vendor-risk reviews", "Suitability standards"] },
+        { key: "mfg", label: "Manufacturing", naics: "31–33", naicsTitle: "Manufacturing", sub: "Machinery, medical devices, electronics", share: "21%", postings: 112, employers: 24, pay: "$96k",
+          differs: "Technical deals, often through distributors. Medical-device makers add hospital access rules, which is where most credential asks come from.",
+          duties: ["Quote configured products with engineering", "Manage distributor and channel partners", "Support cases in hospitals (medical devices)"],
+          certs: [["Engineering degree or technical certificate", "Accredited programs", "preferred", 29], ["Hospital vendor credentialing", "Hospital credentialing programs", "required", 24], ["OSHA 10-hour", "OSHA outreach trainers", "common", 9]],
+          know: ["Reading specs and drawings", "FDA device rules (medical devices)", "Channel margins"] },
+        { key: "whl", label: "Wholesale trade", naics: "42", naicsTitle: "Wholesale trade", sub: "Industrial, medical and IT distributors", share: "31%", postings: 58, employers: 16, pay: "$84k",
+          differs: "Territory selling of a broad catalog to repeat buyers. Relationships and product range matter more than structured deal methods.",
+          duties: ["Manage a territory of repeat accounts", "Negotiate volume pricing and rebates", "Coordinate stock and delivery with operations"],
+          certs: [["Product-line certifications", "Manufacturers", "common", 14], ["Certified Sales Professional", "NASP", "preferred", 5]],
+          know: ["Distributor pricing", "ERP order systems", "Rebate programs"] }
+      ],
+      heat: [["meddicc", [52, 30, 24, 8]], ["multithread", [48, 44, 33, 12]], ["procure", [40, 58, 38, 15]], ["demo", [44, 20, 40, 29]], ["selfsrc", [36, 18, 25, 41]], ["aires", [31, 12, 8, 6]], ["consumption", [12, 2, 1, 0]]]
+    },
+    "forward-deployed-engineer": {
+      list: [
+        { key: "info", label: "Information", naics: "51", naicsTitle: "Information", sub: "Software and data platform companies", share: "n/a", postings: 41, employers: 17, pay: "$165k",
+          differs: "Closer to solutions engineering. More integration and pre-sales work, and vendor cloud certifications appear.",
+          duties: ["Integrate the product with customer data stacks", "Customize workflows on the platform", "Support the technical win in pre-sales"],
+          certs: [["AWS Certified Solutions Architect – Associate", "AWS", "preferred", 14], ["Snowflake or Databricks certification", "Vendor", "common", 9]],
+          know: ["Data warehouses", "SSO and SCIM", "Platform extension APIs"] },
+        { key: "pro", label: "Professional and technical services", naics: "54", naicsTitle: "Professional, scientific and technical services", sub: "AI research labs, federal IT contractors, consultancies", share: "n/a", postings: 55, employers: 14, pay: "$178k",
+          differs: "Mixes AI labs with federal contractors. Contractor roles add clearances and security certifications; lab roles add model evaluation.",
+          duties: ["Deploy models into customer workflows", "Work on site with government users (contractors)", "Report model gaps to research teams (labs)"],
+          certs: [["Active security clearance (Secret or TS/SCI)", "U.S. government", "required", 29], ["CompTIA Security+ (DoD 8140)", "CompTIA", "required", 17]],
+          know: ["Evals and fine-tuning trade-offs", "FedRAMP and Authority to Operate", "Air-gapped deployment"] },
+        { key: "fin", label: "Finance and insurance", naics: "52", naicsTitle: "Finance and insurance", sub: "Banks and insurers", share: "n/a", postings: 12, employers: 5, pay: "n/a", thin: true }
+      ],
+      heat: [["llmapps", [52, 64, null]], ["evals", [14, 27, null]], ["scoping", [68, 64, null]], ["prodship", [61, 58, null]], ["presales", [49, 10, null]], ["feedback", [30, 36, null]]]
+    },
+    "hr-generalist": {
+      list: [
+        { key: "info", label: "Information", naics: "51", naicsTitle: "Information", sub: "Software, media and telecom", share: "7%", postings: 92, employers: 31, pay: "$84k",
+          differs: "Fast hiring and frequent reorganizations. Certifications are optional and analytics are asked for early.",
+          duties: ["Support fast hiring and frequent reorganizations", "Administer equity and remote-work policies", "Run engagement surveys"],
+          certs: [["SHRM-CP", "SHRM", "preferred", 18], ["PHR", "HRCI", "preferred", 11]], know: ["Equity programs", "Multi-state remote employment"] },
+        { key: "health", label: "Health care", naics: "62", naicsTitle: "Health care and social assistance", sub: "Hospitals, clinics, long-term care", share: "13%", postings: 81, employers: 22, pay: "$70k",
+          differs: "Licences and shifts drive the work. HR tracks clinical credentials and often works with unions.",
+          duties: ["Track clinical licences and credential renewals", "Staff around-the-clock shift schedules", "Support collective-bargaining processes"],
+          certs: [["SHRM-CP or PHR", "SHRM / HRCI", "preferred", 39], ["HIPAA training", "Employer", "required", 27]], know: ["Joint Commission standards", "Licence verification", "Union contracts"] },
+        { key: "mfg", label: "Manufacturing", naics: "31–33", naicsTitle: "Manufacturing", sub: "Plants and industrial sites", share: "11%", postings: 64, employers: 15, pay: "$68k",
+          differs: "An hourly, on-site workforce. Safety and attendance processes take a large share of the job.",
+          duties: ["Run safety and incident-report processes", "Manage attendance and overtime for hourly staff", "Support plant labour relations"],
+          certs: [["PHR", "HRCI", "preferred", 24], ["OSHA 30-hour", "OSHA outreach trainers", "preferred", 21]], know: ["FLSA overtime", "Workers' compensation", "Shift scheduling"] },
+        { key: "public", label: "Public administration", naics: "92", naicsTitle: "Public administration", sub: "State, county and city government", share: "9%", postings: 51, employers: 14, pay: "$66k",
+          differs: "Rules-based hiring. Civil-service exams, union grievance steps and public-records law shape every process.",
+          duties: ["Run civil-service exams and eligibility lists", "Apply union contracts and grievance steps", "Follow open-hiring and public-records rules"],
+          certs: [["SHRM-CP", "SHRM", "preferred", 19], ["IPMA-HR CP or SCP", "IPMA-HR", "preferred", 14]], know: ["Civil service rules", "Public pensions", "Grievance procedures"] }
+      ],
+      heat: [["er", [55, 61, 63, 70]], ["leave", [58, 66, 49, 52]], ["invest", [31, 44, 47, 52]], ["analytics", [49, 22, 18, 14]], ["hrauto", [33, 12, 9, 6]], ["aipolicy", [11, 4, 2, 3]]]
+    }
+  };
+
+  // Skill-map evidence (illustrative). Skills not listed here are core, with signals built from their sources.
+  // Signal: [kind, reading]. Call: [claim, probability, base rate, resolves].
+  var KINDS = {
+    posts: { name: "Job postings", fam: "P", tm: ["now", "coincident"] },
+    early: { name: "New phrasing in postings", fam: "P", tm: ["lead", "leading"] },
+    onet: { name: "O*NET ratings and tasks", fam: "O", tm: ["lag", "lagging"] },
+    emerg: { name: "O*NET Emerging Tasks", fam: "O", tm: ["lead", "leading"] },
+    esco: { name: "ESCO", fam: "O", tm: ["lag", "lagging"] },
+    hot: { name: "O*NET Hot Technologies", fam: "M", tm: ["now", "coincident"] },
+    sector: { name: "Indeed Hiring Lab", fam: "M", tm: ["now", "coincident"] },
+    aei: { name: "Anthropic Economic Index", fam: "M", tm: ["now", "coincident"] }
+  };
+  var ONET_YEAR = { "account-executive": 2021, "forward-deployed-engineer": 2024, "hr-generalist": 2023 };
+  var SIGNALS = {
+    "account-executive": {
+      aires: { status: "rising", sig: [["posts", "Up from 6% to 14% of L1–L3 postings between 2026-Q2 and Q3, across 23 employers."], ["sector", "AI mentions in U.S. sales postings rising in the sector series."], ["aei", "Research and drafting tasks for sales occupations show heavy AI use."]],
+        call: ["Asked in 20%+ of L1–L3 postings by 2027-Q3", 72, 62, "2027-Q3"] },
+      selfsrc: { status: "early", sig: [["posts", "Up from 16% to 25% of L2–L3 postings across 29 employers."], ["onet", "Not in the O*NET record. No sector series tracks it."]],
+        note: "Rising in postings, but no independent source confirms it, so it stays an early signal.",
+        call: ["Asked in 30%+ of L2–L3 postings by 2027-Q3", 55, 41, "2027-Q3"] },
+      consumption: { status: "early", sig: [["early", "From 1% to 4% of postings, at 7 employers. Below the 8-employer floor."]],
+        call: ["Asked in 10%+ of L3–L5 postings by 2027-Q3", 35, 31, "2027-Q3"] },
+      coldcall: { status: "fading", sig: [["posts", "Down from 21% to 11% of L1–L2 postings across 18 employers."], ["onet", "Still listed in O*NET tasks for the anchor code (rated 2021). Official maps lag."]],
+        call: ["Asked in under 8% of L1–L2 postings by 2027-Q3", 60, 55, "2027-Q3"] }
+    },
+    "forward-deployed-engineer": {
+      llmapps: { status: "rising", sig: [["posts", "Up from 21% to 43% of L2–L3 postings across 17 employers."], ["hot", "LLM frameworks listed as Hot Technologies for Software Developers."], ["emerg", "An emerging task for the anchor code mentions integrating AI models."], ["aei", "Coding and integration tasks lead AI use in the index."]],
+        call: ["Asked in 50%+ of L2 postings by 2027-Q3", 80, 62, "2027-Q3"] },
+      evals: { status: "early", sig: [["early", "From 0% to 9% of postings, at 6 employers."]],
+        call: ["Asked in 20%+ of L3–L4 postings by 2027-Q3", 45, 31, "2027-Q3"] },
+      presales: { disputed: "Some employers use the FDE title for pre-sales solutions engineering. Both readings are kept apart." }
+    },
+    "hr-generalist": {
+      hrauto: { status: "rising", sig: [["posts", "Up from 6% to 17% of L1–L3 postings across 21 employers."], ["hot", "HRIS platforms with AI features listed as Hot Technologies."], ["sector", "AI mentions in HR postings rising in the sector series."]],
+        call: ["Asked in 25%+ of L1–L3 postings by 2027-Q3", 66, 62, "2027-Q3"] },
+      analytics: { status: "rising", sig: [["posts", "Up from 9% to 18% of L2–L3 postings across 26 employers."], ["onet", "In the O*NET record for HR Specialists at low importance (rated 2023)."], ["sector", "Analytics mentions in HR postings rising in the sector series."]],
+        call: ["Asked in 35%+ of L2 postings by 2027-Q3", 60, 62, "2027-Q3"] },
+      aipolicy: { status: "early", sig: [["early", "From 1% to 5% of postings, at 9 employers. Only one source so far."]],
+        call: ["Asked in 10%+ of L2–L4 postings by 2027-Q3", 50, 31, "2027-Q3"] }
+    }
+  };
+  var STATUS = {
+    core: ["core", "established", "Most sampled employers ask for it at these levels."],
+    rising: ["rising", "growing", "Demand is up, and an independent source agrees."],
+    early: ["early signal", "emerging", "Seen in postings only. A watch item, not a trend."],
+    fading: ["fading", "fading", "Asked less often. Official maps may still list it."]
+  };
+  var CALIB = [["30–50%", 40, 41, 37], ["50–70%", 60, 58, 61], ["70–90%", 80, 33, 76]];
+
+  var state = { role: "account-executive", level: 3, tab: "map", have: {}, lens: "level", edges: "co", node: null, industry: null, mapLevel: 0, mode: "list", skill: null };
+  try { var saved = JSON.parse(localStorage.getItem("sv-atlas") || "null"); if (saved && ROLES[saved.role]) { state.role = saved.role; state.level = saved.level; state.tab = saved.tab || "map"; state.mapLevel = saved.mapLevel || 0; state.mode = saved.mode === "conn" ? "conn" : "list"; state.lens = saved.lens === "top" ? "top" : "level"; state.edges = saved.edges === "builds" ? "builds" : "co"; state.industry = saved.industry || null; } } catch (e) {}
+  function persist() { try { localStorage.setItem("sv-atlas", JSON.stringify({ role: state.role, level: state.level, tab: state.tab, mapLevel: state.mapLevel, mode: state.mode, lens: state.lens, edges: state.edges, industry: state.industry })); } catch (e) {} }
+
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function pct(a, b) { return b ? Math.round((a / b) * 1000) / 10 : 0; }
+  function slug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
+  function role() { return ROLES[state.role]; }
+  function level() { var r = role(); return r.levels.filter(function (l) { return l.L === state.level; })[0] || r.levels[0]; }
+
+  function defaultHave() {
+    // Example profile: everything up to one level below the target, minus one item.
+    var r = role(), have = {}, skipped = false;
+    r.levels.forEach(function (l) {
+      if (l.L < state.level) l.exp.forEach(function (x) {
+        if (!skipped && l.L === state.level - 1 && x[1] === "new") { skipped = true; return; }
+        have[slug(x[0])] = true;
+      });
+    });
+    return have;
+  }
+
+  function renderRolePick() {
+    $("rolePick").innerHTML = Object.keys(ROLES).map(function (k) {
+      return '<button type="button" data-role="' + k + '" aria-pressed="' + (k === state.role) + '">' + esc(ROLES[k].label) + (ROLES[k].status === "emerging" ? ' <span class="xp">experimental</span>' : "") + "</button>";
+    }).join("");
+  }
+
+  function renderHead() {
+    var r = role(), f = r.foundation, a = r.anchors[0];
+    $("roleHead").innerHTML =
+      '<div style="display:grid; gap:0.7rem">' +
+        '<div class="role-title"><h3 style="font-size:1.5rem">' + esc(r.label) + '</h3><span class="chip st-' + r.status + '">role ' + r.status + "</span>" + (r.status === "emerging" ? '<span class="chip st-emerging">experimental</span>' : "") + "</div>" +
+        (r.status === "emerging" ? '<p class="caveat"><strong>Experimental.</strong> This role has no clean O*NET code; it is anchored partially to ' + esc(a.title) + '. Levels, skills and forecasts rest mostly on postings, with a weaker official baseline. Expect bigger changes between releases.</p>' : "") +
+        '<div class="mono muted">' + esc(a.system) + " " + esc(a.code) + " · " + esc(a.title) + ' · fit: ' + esc(a.fit) + "</div>" +
+        '<div class="label">Core tasks from O*NET <span class="tm tm-lag">lagging · rated ' + ONET_YEAR[state.role] + '</span></div><ul class="tasks">' + f.tasks.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>" +
+      "</div>" +
+      '<div style="display:grid; gap:0.8rem; align-content:start">' +
+        '<div class="label">Foundation · BLS <span class="tm tm-long">long-term</span></div>' +
+        '<div class="found">' +
+          '<div><span class="v">' + f.wage + '</span><span class="label">' + f.wageNote + "</span></div>" +
+          '<div><span class="v">' + f.employment + '</span><span class="label">' + f.employmentNote + "</span></div>" +
+          '<div><span class="v">' + f.outlook + '</span><span class="label">' + f.outlookNote + "</span></div>" +
+        "</div>" +
+        '<div class="label">Demand window ' + r.window.current + ' <span class="tm tm-now">coincident</span></div>' +
+        '<div class="num"><strong>' + r.window.postings + "</strong> admitted postings from <strong>" + r.window.employers + "</strong> employers. No employer above 20%.</div>" +
+      "</div>";
+  }
+
+  function renderLadder() {
+    var r = role(), max = r.levels.length;
+    $("stairs").innerHTML = r.levels.map(function (l, i) {
+      var h = Math.round(38 + (62 * i) / Math.max(1, max - 1));
+      return '<button type="button" class="step" data-level="' + l.L + '" aria-pressed="' + (l.L === state.level) + '" style="height:' + h + '%">' +
+        '<span class="lv">L' + l.L + "</span><span class=\"nm\">" + esc(l.name) + '</span><span class="n">n=' + l.n + " · " + l.e + " emp</span></button>";
+    }).join("");
+    $("branch").innerHTML = '<span class="label">Linked role from L' + r.branch.from + ' · ' + esc(r.branch.label) + '</span><span class="muted" style="font-size:0.84rem">' + esc(r.branch.note) + "</span>";
+  }
+
+  function confidence(l) {
+    if (l.e >= 15 && l.n >= 40) return ["high", "growing"];
+    if (l.e >= 8) return ["medium", "established"];
+    return ["low · thin evidence", "emerging"];
+  }
+
+  function renderSheet() {
+    var r = role(), l = level(), c = confidence(l);
+    var active = r.shifts.filter(function (s) { return s.levels.indexOf(l.L) > -1 && s.state !== "fading"; });
+    $("sheet").innerHTML =
+      '<div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:0.5rem; align-items:baseline">' +
+        '<div><span class="label">Level ' + l.L + " of " + r.levels.length + '</span><h3 style="font-size:1.4rem">' + esc(l.name) + "</h3></div>" +
+        '<span class="chip st-' + c[1] + '">evidence: ' + c[0] + "</span>" +
+      "</div>" +
+      '<dl class="kv">' +
+        "<dt>Typical titles</dt><dd>" + l.titles.map(esc).join(", ") + "</dd>" +
+        "<dt>Scope</dt><dd>" + esc(l.scope) + "</dd>" +
+        "<dt>Owns</dt><dd>" + esc(l.owns) + "</dd>" +
+        '<dt>Years wording</dt><dd>"' + esc(l.years) + '" <span class="muted" style="font-size:0.8rem">as advertised, never used alone to level</span></dd>' +
+        '<dt>Evidence</dt><dd class="num">' + l.n + " postings · " + l.e + " employers · " + r.window.current + "</dd>" +
+      "</dl>" +
+      '<div class="stepup"><span class="label">What changes from the level below</span><span>' + esc(l.stepUp) + "</span></div>" +
+      '<div><div class="label" style="margin-bottom:0.3rem">Expectations at this level</div><ul class="exp">' +
+        l.exp.map(function (x) {
+          return "<li><span>" + esc(x[0]) + "</span>" + (x[1] === "new" ? '<span class="label tag-new">new at L' + l.L + "</span>" : '<span class="label tag-carry">carried over</span>') + "</li>";
+        }).join("") +
+      "</ul></div>" +
+      (active.length ? '<div><div class="label" style="margin-bottom:0.35rem">Shifts touching this level</div><div class="chips">' +
+        active.map(function (s) { return '<span class="chip st-' + s.state + '">' + s.state + " · " + esc(s.label) + "</span>"; }).join("") + "</div></div>" : "");
+  }
+
+  function renderMatrix() {
+    $("matrixBody").innerHTML = MATRIX.map(function (row) {
+      return "<tr><th scope=\"row\" style=\"font-weight:400\">" + esc(row[0]) + '</th><td class="mono">' + row[1] + "</td>" +
+        row[2].map(function (h) {
+          var cls = h === "s" ? "hit" : h === "w" ? "hit-weak" : "";
+          var txt = h === "s" ? "●" : h === "w" ? "○" : h === "IC" ? "IC" : "";
+          var lab = h === "s" ? "strong match" : h === "w" ? "weak match" : h === "IC" ? "IC track" : "no match";
+          return '<td class="cellv ' + cls + '" aria-label="' + lab + '">' + txt + "</td>";
+        }).join("") + "</tr>";
+    }).join("");
+  }
+
+  function gapItems() {
+    var r = role(), items = [], seen = {};
+    r.levels.forEach(function (l) {
+      if (l.L > state.level) return;
+      l.exp.forEach(function (x) {
+        var id = slug(x[0]);
+        if (seen[id]) return;
+        seen[id] = true;
+        items.push({ id: id, label: x[0], L: l.L, kind: l.L === state.level ? "target" : "earlier" });
+      });
+    });
+    r.shifts.forEach(function (s) {
+      if (s.levels.indexOf(state.level) < 0 || s.state === "fading" || s.state === "contested") return;
+      var id = "shift-" + s.id;
+      if (seen[id]) return;
+      seen[id] = true;
+      items.push({ id: id, label: s.label, L: null, kind: "shift", state: s.state });
+    });
+    return items;
+  }
+
+  function renderGap() {
+    var l = level(), items = gapItems();
+    $("gapTarget").textContent = "L" + l.L + " · " + l.name;
+    $("checks").innerHTML = items.map(function (it) {
+      var tag = it.kind === "shift" ? '<span class="chip st-' + it.state + '">' + it.state + "</span>" : '<span class="lvl">L' + it.L + "</span>";
+      return '<label><input type="checkbox" id="have-' + it.id + '" data-id="' + it.id + '"' + (state.have[it.id] ? " checked" : "") + "><span>" + esc(it.label) + "</span>" + tag + "</label>";
+    }).join("");
+    var rank = { target: 0, shift: 1, earlier: 2 };
+    var missing = items.filter(function (it) { return !state.have[it.id]; }).sort(function (a, b) {
+      if (rank[a.kind] !== rank[b.kind]) return rank[a.kind] - rank[b.kind];
+      if (a.kind === "shift") return a.state === "growing" ? -1 : 1;
+      return (b.L || 0) - (a.L || 0);
+    });
+    $("next").innerHTML = missing.length ? missing.map(function (it) {
+      var why = it.kind === "target" ? "New at L" + state.level + ". This is what separates the target level from the one below."
+        : it.kind === "shift" ? (it.state === "growing" ? "Growing shift that touches this level. Measured across two windows." : "Emerging shift. Early signal only, so lower priority.")
+        : "Expected from L" + it.L + " and still assumed at the target level.";
+      return "<li><div><div>" + esc(it.label) + '</div><div class="why">' + why + "</div></div></li>";
+    }).join("") : '<li style="display:block" class="empty">Nothing missing for this level in the example profile. Pick a higher level to see the next step.</li>';
+  }
+
+  // ---- Skills graph ----
+  function graphNodes() {
+    return GRAPH[state.role].nodes.map(function (n) {
+      return { id: n[0], short: n[1], label: n[2], from: n[3], row: n[4], state: n[5], sh: n[6], src: n[7] };
+    });
+  }
+  function coEdges() { return GRAPH[state.role].co.filter(function (e) { return e[2] >= 1.5 && e[3] >= 25; }); }
+  function topLevel() { var lv = role().levels; return lv[lv.length - 1].L; }
+  function separatesTop(n) { var g = GRAPH[state.role], t = topLevel(); return n.sh[t - 1] - n.sh[g.mid - 1] >= 20 && n.sh[t - 1] >= 40; }
+  function levelName(L) { return role().levels.filter(function (l) { return l.L === L; })[0].name; }
+  var SRC = { P: "Postings", O: "O*NET", Ee: "ESCO essential", Eo: "ESCO optional" };
+
+  function renderGraphControls() {
+    var r = role();
+    $("graphRole").textContent = r.label;
+    $("graphLevel").innerHTML = r.levels.map(function (l) {
+      var on = state.lens === "level" && l.L === state.level;
+      return '<button type="button" data-glevel="' + l.L + '" aria-pressed="' + on + '"' + (state.lens === "top" ? " disabled" : "") + ">L" + l.L + "</button>";
+    }).join("");
+    Array.prototype.forEach.call($("lensPick").children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.lens === state.lens)); });
+    Array.prototype.forEach.call($("edgePick").children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.edges === state.edges)); });
+  }
+
+  function renderGraph() {
+    renderGraphControls();
+    var g = GRAPH[state.role], r = role(), nodes = graphNodes(), byId = {};
+    nodes.forEach(function (n) { byId[n.id] = n; });
+    var cols = r.levels.length, W = 960, left = 150, right = 10, colW = (W - left - right) / cols, topPad = 60, rowH = 62;
+    var nRows = g.families[g.families.length - 1][2] + 1, H = topPad + nRows * rowH + 6;
+    var idx = (state.lens === "top" ? topLevel() : state.level) - 1;
+    function px(n) { return left + colW * (n.from - 0.5); }
+    function py(n) { return topPad + n.row * rowH + 20; }
+    function rad(n) { var s = n.sh[idx]; return s > 0 ? 5 + Math.sqrt(s) : 4.5; }
+    var sel = state.node && byId[state.node] ? state.node : null;
+    var out = [];
+    out.push('<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Skills graph for ' + esc(r.label) + ". " + nodes.length + " skills arranged by the level where they are first asked for. " +
+      (state.lens === "top" ? "Outlined skills separate L" + topLevel() + " from L" + g.mid + "." : "Dot size is the share of L" + state.level + " postings.") + '">');
+    out.push('<defs><marker id="g-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="g-arrow" d="M0,0 L8,4 L0,8 z"/></marker></defs>');
+    g.families.forEach(function (f, i) {
+      var y = topPad + f[1] * rowH;
+      if (i % 2 === 0) out.push('<rect class="g-band" x="0" y="' + y + '" width="' + W + '" height="' + (f[2] - f[1] + 1) * rowH + '"/>');
+      out.push('<text class="g-fam" x="12" y="' + (y + 20) + '">' + esc(f[0]) + "</text>");
+    });
+    r.levels.forEach(function (l, i) {
+      var cx = left + colW * (i + 0.5), on = l.L === idx + 1;
+      out.push('<line class="g-col" x1="' + (left + colW * i) + '" y1="8" x2="' + (left + colW * i) + '" y2="' + H + '"/>');
+      out.push('<text class="g-lv" x="' + cx + '" y="20" text-anchor="middle">L' + l.L + "</text>");
+      out.push('<text class="g-lvname' + (on ? " on" : "") + '" x="' + cx + '" y="42" text-anchor="middle">' + esc(l.name) + "</text>");
+    });
+    if (state.edges === "co") {
+      coEdges().forEach(function (e) {
+        var a = byId[e[0]], b = byId[e[1]], x1 = px(a), y1 = py(a), x2 = px(b), y2 = py(b);
+        var mx = (x1 + x2) / 2, my = (y1 + y2) / 2, dx = x2 - x1, dy = y2 - y1, len = Math.sqrt(dx * dx + dy * dy) || 1;
+        var bend = x1 === x2 ? 34 : Math.max(16, Math.min(60, len * 0.14)), cx = mx - (dy / len) * bend, cy = my + (dx / len) * bend;
+        var cls = sel ? (e[0] === sel || e[1] === sel ? " on" : " off") : "";
+        out.push('<path class="g-edge' + cls + '" stroke-width="' + (1 + (e[2] - 1) * 2).toFixed(2) + '" d="M' + x1 + "," + y1 + " Q" + cx.toFixed(1) + "," + cy.toFixed(1) + " " + x2 + "," + y2 + '"/>');
+      });
+    } else {
+      g.builds.forEach(function (e) {
+        var a = byId[e[0]], b = byId[e[1]], x1 = px(a), y1 = py(a), x2 = px(b), y2 = py(b);
+        var dx = x2 - x1, dy = y2 - y1, len = Math.sqrt(dx * dx + dy * dy) || 1, ra = rad(a) + 3, rb = rad(b) + 5;
+        var cls = sel ? (e[0] === sel || e[1] === sel ? " on" : " off") : "";
+        out.push('<line class="g-edge build' + cls + '" x1="' + (x1 + dx / len * ra).toFixed(1) + '" y1="' + (y1 + dy / len * ra).toFixed(1) + '" x2="' + (x2 - dx / len * rb).toFixed(1) + '" y2="' + (y2 - dy / len * rb).toFixed(1) + '" marker-end="url(#g-arrow)"/>');
+      });
+    }
+    nodes.forEach(function (n) {
+      var x = px(n), y = py(n), s = n.sh[idx], rr = rad(n), top = state.lens === "top", diff = separatesTop(n);
+      var lvl = idx + 1, tip = n.label + ": " + s + "% of L" + lvl + " postings" + (top && diff ? ". Separates the top level." : "");
+      out.push('<g class="g-n' + (top && !diff ? " dim" : "") + '" data-node="' + n.id + '" tabindex="0" role="button" aria-pressed="' + (sel === n.id) + '" aria-label="' + esc(tip) + '">');
+      out.push("<title>" + esc(tip) + "</title>");
+      out.push('<circle class="g-hit" cx="' + x + '" cy="' + y + '" r="24"/>');
+      out.push('<circle class="g-sel" cx="' + x + '" cy="' + y + '" r="' + (rr + 3).toFixed(1) + '"/>');
+      if (top && diff) out.push('<circle class="g-ring" cx="' + x + '" cy="' + y + '" r="' + (rr + 4.5).toFixed(1) + '"/>');
+      out.push('<circle class="g-dot st-' + n.state + (s > 0 ? "" : " hollow") + '" cx="' + x + '" cy="' + y + '" r="' + rr.toFixed(1) + '"/>');
+      out.push('<text class="g-label" x="' + x + '" y="' + (y + 33) + '" text-anchor="middle">' + esc(n.short) + "</text>");
+      out.push("</g>");
+    });
+    out.push("</svg>");
+    $("graph").innerHTML = out.join("");
+    renderGraphPanel(nodes, byId);
+  }
+
+  function shareList(items, idx) {
+    return '<ul class="pairs">' + items.map(function (n) { return "<li><span>" + esc(n.label) + '</span><span class="mono">' + n.sh[idx] + "%</span></li>"; }).join("") + "</ul>";
+  }
+
+  function renderGraphPanel(nodes, byId) {
+    var g = GRAPH[state.role], t = topLevel(), html;
+    var n = state.node && byId[state.node];
+    if (n) {
+      var lvl = state.lens === "top" ? t : state.level;
+      var pairs = coEdges().filter(function (e) { return e[0] === n.id || e[1] === n.id; }).sort(function (a, b) { return b[2] - a[2]; });
+      var on = g.builds.filter(function (e) { return e[1] === n.id; }).map(function (e) { return byId[e[0]].short; });
+      var leads = g.builds.filter(function (e) { return e[0] === n.id; }).map(function (e) { return byId[e[1]].short; });
+      html = '<div style="display:grid; gap:0.45rem"><div class="label">Skill</div><h3>' + esc(n.label) + "</h3>" +
+        '<div class="chips"><span class="chip st-' + n.state + '">' + n.state + '</span><span class="chip src">first asked at L' + n.from + "</span>" +
+        (separatesTop(n) ? '<span class="chip analysis">separates L' + t + "</span>" : "") + "</div>" +
+        '<div class="chips">' + n.src.map(function (c) { return '<span class="chip src">' + SRC[c] + "</span>"; }).join("") + "</div></div>" +
+        '<div style="display:grid; gap:0.4rem"><div class="label">Share of postings by level</div><div class="bars">' +
+        role().levels.map(function (l) {
+          var v = n.sh[l.L - 1];
+          return '<div class="win" style="color:var(' + (l.L === lvl ? "--present" : "--ink-mid") + ')"><span>L' + l.L + '</span><span class="track"><span class="bar cur" style="width:' + v + '%"></span></span><span>' + v + "%</span></div>";
+        }).join("") + "</div></div>" +
+        '<div style="display:grid; gap:0.3rem"><div class="label">Most often asked together with</div>' +
+        (pairs.length ? '<ul class="pairs">' + pairs.map(function (e) {
+          var o = byId[e[0] === n.id ? e[1] : e[0]];
+          return "<li><span>" + esc(o.label) + '</span><span class="mono">' + e[2].toFixed(1) + "× · " + e[3] + " postings</span></li>";
+        }).join("") + "</ul>" : '<p class="empty">No pair above the threshold.</p>') + "</div>" +
+        (on.length || leads.length ? '<dl class="kv">' + (on.length ? "<dt>Builds on</dt><dd>" + esc(on.join(", ")) + "</dd>" : "") + (leads.length ? "<dt>Leads to</dt><dd>" + esc(leads.join(", ")) + "</dd>" : "") + "</dl>" : "") +
+        '<button type="button" class="linkbtn" id="clearNode">Back to the summary</button>';
+    } else if (state.lens === "top") {
+      var mid = g.mid, sep = nodes.filter(separatesTop).sort(function (a, b) { return (b.sh[t - 1] - b.sh[mid - 1]) - (a.sh[t - 1] - a.sh[mid - 1]); });
+      var drop = nodes.filter(function (x) { return x.sh[mid - 1] - x.sh[t - 1] >= 15; });
+      var carry = nodes.filter(function (x) { return !separatesTop(x) && drop.indexOf(x) < 0 && x.sh[t - 1] >= 30 && x.sh[mid - 1] >= 30; });
+      html = '<div style="display:grid; gap:0.35rem"><div class="label">Top performer profile</div><h3>What L' + t + " · " + esc(levelName(t)) + " asks for that L" + mid + " · " + esc(levelName(mid)) + " does not</h3></div>" +
+        '<div style="display:grid; gap:0.3rem"><div class="label">Separates the top · share at L' + t + " vs L" + mid + '</div><ul class="pairs">' +
+        sep.map(function (x) { return "<li><span>" + esc(x.label) + '</span><span class="mono">' + x.sh[t - 1] + "% vs " + x.sh[mid - 1] + "%</span></li>"; }).join("") + "</ul></div>" +
+        '<div style="display:grid; gap:0.3rem"><div class="label">Carried from L' + mid + '</div><ul class="pairs">' +
+        carry.map(function (x) { return "<li><span>" + esc(x.label) + '</span><span class="mono">' + x.sh[t - 1] + "%</span></li>"; }).join("") + "</ul></div>" +
+        (drop.length ? '<div style="display:grid; gap:0.3rem"><div class="label">Asked less at the top</div><ul class="pairs">' +
+          drop.map(function (x) { return "<li><span>" + esc(x.label) + '</span><span class="mono">' + x.sh[mid - 1] + "% → " + x.sh[t - 1] + "%</span></li>"; }).join("") + "</ul></div>" : "") +
+        '<p class="caveat">This shows what employers ask of the top level, not what makes someone excellent at it. Saying more needs practitioner review and O*NET level ratings.</p>';
+    } else {
+      var i = state.level - 1, most = nodes.filter(function (x) { return x.sh[i] > 0; }).sort(function (a, b) { return b.sh[i] - a.sh[i]; }).slice(0, 6);
+      html = '<div style="display:grid; gap:0.35rem"><div class="label">Most asked at this level</div><h3>L' + state.level + " · " + esc(levelName(state.level)) + "</h3></div>" +
+        shareList(most, i) +
+        '<p class="muted" style="font-size:0.84rem">Select a skill in the graph to see its share at every level, what it is asked together with, and what it builds on.</p>';
+    }
+    $("graphPanel").innerHTML = html;
+  }
+
+  // ---- Industry view ----
+  function industries() { return INDUSTRY[state.role].list; }
+  function industry() {
+    var list = industries();
+    return list.filter(function (x) { return x.key === state.industry; })[0] || list[0];
+  }
+
+  function renderIndustry() {
+    var r = role(), list = industries(), ind = industry(), byId = {};
+    graphNodes().forEach(function (n) { byId[n.id] = n; });
+    state.industry = ind.key;
+    $("indRole").textContent = r.label;
+    $("industryPick").innerHTML = list.map(function (x) {
+      return '<button type="button" data-ind="' + x.key + '" aria-pressed="' + (x.key === ind.key) + '">' + esc(x.label) + "</button>";
+    }).join("");
+    if (ind.thin) {
+      $("indSheet").innerHTML = '<div style="display:grid; gap:0.35rem"><div class="label">Sector</div><h3 style="font-size:1.35rem">' + esc(ind.label) + '</h3><div class="mono muted">NAICS ' + esc(ind.naics) + "</div></div>" +
+        '<p class="caveat">Only ' + ind.postings + " postings from " + ind.employers + " employers in " + r.window.current + ". A sector needs 30+ postings from 8+ employers before the map describes it. Shown so the gap is visible, not hidden.</p>";
+    } else
+    $("indSheet").innerHTML =
+      '<div style="display:grid; gap:0.35rem"><div class="label">Sector</div><h3 style="font-size:1.35rem">' + esc(ind.label) + '</h3><div class="mono muted">NAICS ' + esc(ind.naics) + " · " + esc(ind.naicsTitle) + '</div><div class="muted" style="font-size:0.84rem">Largest in sample: ' + esc(ind.sub) + "</div></div>" +
+      '<div class="found">' +
+        '<div><span class="v">' + esc(ind.share) + '</span><span class="label">of this job\'s U.S. employment (BLS matrix)</span></div>' +
+        '<div><span class="v num">' + ind.postings + '</span><span class="label">postings · ' + ind.employers + " employers</span></div>" +
+        '<div><span class="v">' + esc(ind.pay) + '</span><span class="label">median pay in this industry</span></div>' +
+      "</div>" +
+      '<div class="stepup"><span class="label">How it differs here</span><span>' + esc(ind.differs) + "</span></div>" +
+      '<div style="display:grid; gap:0.3rem"><div class="label">Duties specific to this industry</div><ul class="pairs">' +
+        ind.duties.map(function (d) { return "<li><span>" + esc(d) + "</span><span></span></li>"; }).join("") + "</ul></div>" +
+      '<div style="display:grid; gap:0.3rem"><div class="label">Certifications and licences</div>' +
+        (ind.certs.length ? '<div class="certs"><table><thead><tr><th scope="col">Credential</th><th scope="col">Issuer</th><th scope="col">Asked as</th><th scope="col" style="text-align:right">Postings</th></tr></thead><tbody>' +
+          ind.certs.map(function (c) { return "<tr><td>" + esc(c[0]) + '</td><td class="muted">' + esc(c[1]) + '</td><td><span class="req req-' + c[2] + '">' + c[2] + '</span></td><td class="n">' + c[3] + "%</td></tr>"; }).join("") +
+          "</tbody></table></div>" : '<p class="empty">No credential appears in enough postings to list.</p>') +
+        '<span class="rule-note">Matched in CareerOneStop Certification Finder by O*NET code and NAICS. The share is postings that name the credential.</span></div>' +
+      '<div style="display:grid; gap:0.3rem"><div class="label">Domain knowledge</div><div class="know">' + ind.know.map(function (k) { return "<span>" + esc(k) + "</span>"; }).join("") + "</div></div>";
+
+    var col = list.map(function (x) { return x.key; }).indexOf(ind.key);
+    $("heat").innerHTML = '<table><thead><tr><th scope="col" style="text-align:left">Skill</th>' +
+      list.map(function (x, i) { return '<th scope="col" class="' + (i === col ? "on" : "") + '"><button type="button" class="linkbtn" data-ind="' + x.key + '" style="color:inherit">' + esc(x.label) + "</button></th>"; }).join("") +
+      "</tr></thead><tbody>" +
+      INDUSTRY[state.role].heat.map(function (row) {
+        return '<tr><th scope="row">' + esc(byId[row[0]].short) + "</th>" + row[1].map(function (v, i) {
+          if (v === null) return '<td class="' + (i === col ? "on" : "") + '" title="Below the sector floor">–</td>';
+          var mix = Math.min(88, Math.round(v * 1.15));
+          return '<td class="' + (mix > 48 ? "hi " : "") + (i === col ? "on" : "") + '" style="background:color-mix(in srgb, var(--present) ' + mix + '%, var(--surface))" title="' + esc(byId[row[0]].label + " · " + list[i].label + ": " + v + "% of postings") + '">' + v + "%</td>";
+        }).join("") + "</tr>";
+      }).join("") + "</tbody></table>";
+  }
+
+  // ---- Skill map ----
+  function skills() {
+    var r = role(), a = r.anchors[0], extra = SIGNALS[state.role];
+    return graphNodes().map(function (n) {
+      var x = extra[n.id] || {}, sig = x.sig;
+      if (!sig) {
+        var peak = n.sh.indexOf(Math.max.apply(null, n.sh));
+        sig = [["posts", "Asked in " + n.sh[peak] + "% of L" + (peak + 1) + " postings, steady across two windows."]];
+        if (n.src.indexOf("O") > -1) sig.push(["onet", "In the O*NET record for " + a.code + " (rated " + ONET_YEAR[state.role] + ")."]);
+        if (n.src.indexOf("Ee") > -1) sig.push(["esco", "ESCO lists it as essential for the matched occupation."]);
+        if (n.src.indexOf("Eo") > -1) sig.push(["esco", "ESCO lists it as optional for the matched occupation."]);
+      }
+      var fams = {}; sig.forEach(function (g) { fams[KINDS[g[0]].fam] = true; });
+      if (n.src.indexOf("O") > -1 || n.src.indexOf("Ee") > -1 || n.src.indexOf("Eo") > -1) fams.O = true;
+      return { id: n.id, short: n.short, label: n.label, from: n.from, sh: n.sh, src: n.src, status: x.status || "core", sig: sig, fams: fams,
+        call: x.call || null, note: x.note || "", disputed: x.disputed || "", official: !!fams.O };
+    });
+  }
+  function neededAt(k, L) { return k.sh[L - 1] >= 15; }
+
+  function renderTopLine(list) {
+    var g = GRAPH[state.role], t = topLevel();
+    var sep = list.filter(function (k) { return k.sh[t - 1] - k.sh[g.mid - 1] >= 20 && k.sh[t - 1] >= 40; })
+      .sort(function (a, b) { return (b.sh[t - 1] - b.sh[g.mid - 1]) - (a.sh[t - 1] - a.sh[g.mid - 1]); });
+    $("topLine").innerHTML = '<span class="label">What the top level adds</span><span>Compared with L' + g.mid + " · " + esc(levelName(g.mid)) + ", postings for L" + t + " · " + esc(levelName(t)) + " add: " +
+      sep.map(function (k) { return "<strong>" + esc(k.short) + "</strong> (" + k.sh[t - 1] + "% vs " + k.sh[g.mid - 1] + "%)"; }).join(", ") +
+      '. O*NET ratings give the slower, long-run bar for the same skills.</span>';
+  }
+
+  function renderMap() {
+    var r = role(), list = skills(), L = state.mapLevel;
+    if (L && !r.levels.some(function (l) { return l.L === L; })) { L = state.mapLevel = 0; }
+    $("mapLevel").innerHTML = '<button type="button" data-mlevel="0" aria-pressed="' + (L === 0) + '">All</button>' +
+      r.levels.map(function (l) { return '<button type="button" data-mlevel="' + l.L + '" aria-pressed="' + (L === l.L) + '">L' + l.L + "</button>"; }).join("");
+    Array.prototype.forEach.call($("mapMode").children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.mode === state.mode)); });
+    $("mapList").hidden = state.mode !== "list"; $("connWrap").hidden = state.mode !== "conn";
+    renderTopLine(list);
+    var shown = list.filter(function (k) { return !L || neededAt(k, L) || (k.status === "fading" && k.sh[L - 1] > 0); });
+    if (state.skill && !shown.some(function (k) { return k.id === state.skill; })) state.skill = null;
+    if (!state.skill && shown.length) state.skill = (shown.filter(function (k) { return k.status === "rising"; })[0] || shown[0]).id;
+    $("map").innerHTML = ["core", "rising", "early", "fading"].map(function (st) {
+      var rows = shown.filter(function (k) { return k.status === st; });
+      if (!rows.length) return "";
+      if (st === "core") rows.sort(function (a, b) { return a.from - b.from; });
+      return '<div class="lane"><div class="lane-head"><span class="chip st-' + STATUS[st][1] + '">' + STATUS[st][0] + '</span><span class="muted">' + STATUS[st][2] + '</span><span class="mono muted" style="margin-left:auto">' + rows.length + "</span></div>" +
+        '<div class="cols" aria-hidden="true"><span>Skill</span><span>Levels</span><span>Evidence</span><span>Forecast</span></div>' +
+        rows.map(function (k) {
+          var pips = r.levels.map(function (l) { return '<i class="' + (neededAt(k, l.L) ? "on" : "") + '">' + l.L + "</i>"; }).join("");
+          var ev = ["P", "O", "M"].map(function (f) { return '<i class="' + (k.fams[f] ? "on" : "") + '">' + f + "</i>"; }).join("");
+          var call = k.call ? "<strong>" + k.call[1] + "%</strong> · " + esc(k.call[0].replace("Asked in ", "")) : (st === "core" ? "–" : "");
+          var lvls = r.levels.filter(function (l) { return neededAt(k, l.L); }).map(function (l) { return "L" + l.L; }).join(", ") || "none above 15%";
+          var evTxt = ["P", "O", "M"].filter(function (f) { return k.fams[f]; }).map(function (f) { return { P: "postings", O: "official map", M: "market trend" }[f]; }).join(", ");
+          return '<button type="button" class="srow" data-skill="' + k.id + '" aria-pressed="' + (state.skill === k.id) + '" aria-label="' + esc(k.label + ". " + STATUS[st][0] + ". Needed at " + lvls + ". Evidence: " + evTxt + "." + (k.call ? " Forecast " + k.call[1] + "%: " + k.call[0] + "." : "")) + '">' +
+            "<span>" + esc(k.label) + (k.disputed ? '<span class="flag">disputed</span>' : "") + (!k.official && st === "core" ? '<span class="flag gap">not in official maps yet</span>' : "") + "</span>" +
+            '<span class="pips" aria-hidden="true">' + pips + '</span><span class="pips ev" aria-hidden="true">' + ev + '</span><span class="call" aria-hidden="true">' + call + "</span></button>";
+        }).join("") + "</div>";
+    }).join("") + '<p class="rule-note">Levels: filled where 15%+ of that level\'s postings ask for it. Evidence: P postings · O official map (O*NET or ESCO) · M market trend (Hiring Lab, Hot Technologies, Economic Index).</p>';
+    renderSkillPanel(list);
+  }
+
+  function renderSkillPanel(list) {
+    var k = list.filter(function (x) { return x.id === state.skill; })[0];
+    if (!k) { $("skillPanel").innerHTML = '<p class="empty">No skills at this level.</p>'; return; }
+    var st = STATUS[k.status], byId = {}; list.forEach(function (x) { byId[x.id] = x; });
+    var pairs = coEdges().filter(function (e) { return e[0] === k.id || e[1] === k.id; }).sort(function (a, b) { return b[2] - a[2]; });
+    var why = k.note || ({
+      core: "Most sampled employers ask for this from L" + k.from + "." + (k.official ? " Official maps agree." : " No official map lists it yet: postings are ahead of the taxonomy."),
+      rising: "Postings show a rise, and " + k.sig.filter(function (g) { return KINDS[g[0]].fam !== "P"; }).length + " independent source(s) point the same way.",
+      early: "Only postings show this so far. It becomes rising when an independent source agrees and the employer floor is met.",
+      fading: "Employers ask for this less often. Official maps may still list it because they update on a multi-year cycle."
+    })[k.status];
+    $("skillPanel").innerHTML =
+      '<div style="display:grid; gap:0.4rem"><div class="label">Skill</div><h3>' + esc(k.label) + "</h3>" +
+        '<div class="chips"><span class="chip st-' + st[1] + '">' + st[0] + '</span><span class="chip src">first asked at L' + k.from + "</span></div>" +
+        "<p style=\"font-size:0.9rem\">" + esc(why) + "</p>" + (k.disputed ? '<p class="caveat">' + esc(k.disputed) + "</p>" : "") + "</div>" +
+      '<div style="display:grid; gap:0.2rem"><div class="label">Evidence</div><ul class="sig">' +
+        k.sig.map(function (g) { var kd = KINDS[g[0]]; return '<li><span class="src">' + esc(kd.name) + '<span class="tm tm-' + kd.tm[0] + '">' + kd.tm[1] + "</span></span><span>" + esc(g[1]) + "</span></li>"; }).join("") + "</ul></div>" +
+      (k.call ? '<div class="forecast"><span class="label">Forecast · resolves ' + k.call[3] + '</span><span><span class="p">' + k.call[1] + "%</span> likely: " + esc(k.call[0]) + ".</span>" +
+        "<small>Starts from a base rate of " + k.call[2] + "%: how often skills with the same evidence profile reached a similar bar within 4 quarters in the backtest. " +
+        (k.call[1] > k.call[2] ? "Adjusted up for the agreeing sources and employer spread." : k.call[1] < k.call[2] ? "Adjusted down for thin employer spread." : "No adjustment.") +
+        " Scored against the stratified posting sample when the window closes.</small></div>"
+        : '<div class="forecast"><span class="label">No forecast</span><small>Core skills are re-checked every window. A drop of 5+ points across two windows moves a skill to fading.</small></div>') +
+      '<div style="display:grid; gap:0.35rem"><div class="label">Share of postings by level</div><div class="bars">' +
+        role().levels.map(function (l) { var v = k.sh[l.L - 1]; return '<div class="win" style="color:var(--ink-mid)"><span>L' + l.L + '</span><span class="track"><span class="bar cur" style="width:' + v + '%"></span></span><span>' + v + "%</span></div>"; }).join("") + "</div></div>" +
+      (pairs.length ? '<div style="display:grid; gap:0.2rem"><div class="label">Most often asked together with</div><ul class="pairs">' +
+        pairs.map(function (e) { var o = byId[e[0] === k.id ? e[1] : e[0]]; return "<li><span>" + esc(o.label) + '</span><span class="mono">' + e[2].toFixed(1) + "× · " + e[3] + " postings</span></li>"; }).join("") + "</ul></div>" : "");
+  }
+
+  function renderCalib() {
+    $("calib").innerHTML = CALIB.map(function (c) {
+      return '<div class="row"><span>said ' + c[0] + '</span><span class="track"><span class="bar cur" style="width:' + c[3] + '%"></span><span class="tick" style="left:' + c[1] + '%"></span></span><span>' + c[3] + "% true · n=" + c[2] + "</span></div>";
+    }).join("") + '<span class="rule-note">Bar: share of calls that came true. Tick: the middle of the stated range. Bars close to their ticks mean the probabilities can be trusted.</span>';
+  }
+
+  function renderTabs() {
+    Array.prototype.forEach.call($("tabs").children, function (b) {
+      var on = b.dataset.tab === state.tab;
+      b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1;
+      $("tab-" + b.dataset.tab).hidden = !on;
+    });
+  }
+
+  function recordJSON() {
+    var r = role();
+    return {
+      schema: "skills-vector.role/1",
+      id: "role." + state.role,
+      release_id: "rel_example_2026q3",
+      label: r.label,
+      status: r.status,
+      publication: r.status === "emerging" ? "experimental" : "standard",
+      aliases: r.aliases,
+      anchors: r.anchors,
+      illustrative: true,
+      foundation: {
+        basis: "official_statistics",
+        median_pay: r.foundation.wage, employment: r.foundation.employment, outlook_10y: r.foundation.outlook,
+        core_tasks: r.foundation.tasks
+      },
+      demand_window: { id: r.window.current, compared_to: r.window.previous, postings: r.window.postings, employers: r.window.employers, max_employer_share: 0.2 },
+      ladder: {
+        scale: "shared L1-L5",
+        track: "individual_contributor",
+        linked_roles: [{ from_level: r.branch.from, role: slug(r.branch.label), relation: "people_management_track" }],
+        levels: r.levels.map(function (l) {
+          return {
+            id: state.role + ".L" + l.L, level: l.L, name: l.name, typical_titles: l.titles,
+            years_wording: l.years, scope: l.scope, owns: l.owns, step_up: l.stepUp,
+            evidence: { postings: l.n, employers: l.e, window: r.window.current },
+            expectations: l.exp.map(function (x) {
+              return { id: "exp." + slug(x[0]), label: x[0], introduced_at: x[1] === "new" ? l.L : "earlier", basis: "advertised_demand", cite: "/v1/expectations/exp." + slug(x[0]) + "@rel_example_2026q3" };
+            })
+          };
+        })
+      },
+      shifts: r.shifts.map(function (s) {
+        return {
+          id: "shift." + s.id, label: s.label, state: s.state, levels: s.levels,
+          windows: [
+            { id: r.window.previous, mentions: s.prev[0], postings: s.prev[1], employers: s.prev[2] },
+            { id: r.window.current, mentions: s.cur[0], postings: s.cur[1], employers: s.cur[2] }
+          ],
+          rule: "states.v1#" + s.state, note: s.note
+        };
+      }),
+      skill_map: {
+        statuses: "states.v2: core | rising | early | fading",
+        evidence_families: { P: "postings", O: "official map (O*NET, ESCO)", M: "market trend (Hiring Lab, Hot Technologies, Economic Index)" },
+        skills: skills().map(function (k) {
+          return {
+            id: "skill." + k.id, label: k.label, status: k.status, first_level: k.from, share_by_level: k.sh,
+            in_official_map: k.official, disputed: k.disputed || undefined,
+            evidence: k.sig.map(function (g) { return { source: KINDS[g[0]].name, timing: KINDS[g[0]].tm[1], reading: g[1] }; }),
+            forecast: k.call ? { claim: k.call[0], probability: k.call[1] / 100, base_rate: k.call[2] / 100, resolves: k.call[3], scored_against: "stratified posting sample" } : null
+          };
+        }),
+        asked_together: coEdges().map(function (e) { return { a: "skill." + e[0], b: "skill." + e[1], lift: e[2], postings: e[3] }; }),
+        edge_rule: "lift >= 1.5 from 25+ postings across 8+ employers",
+        top_level_adds: { compares: ["L" + topLevel(), "L" + GRAPH[state.role].mid], skills: graphNodes().filter(separatesTop).map(function (n) { return "skill." + n.id; }), long_run_bar: "O*NET level ratings" }
+      },
+      industries: industries().map(function (x) {
+        if (x.thin) return { naics: x.naics, label: x.label, profile: null, reason: "below 30 postings / 8 employers", evidence: { postings: x.postings, employers: x.employers } };
+        return {
+          naics: x.naics, label: x.label, naics_title: x.naicsTitle, share_of_occupation_jobs: x.share,
+          evidence: { postings: x.postings, employers: x.employers, window: r.window.current },
+          median_pay: x.pay, how_it_differs: x.differs, distinct_duties: x.duties,
+          certifications: x.certs.map(function (c) { return { name: c[0], issuer: c[1], asked_as: c[2], posting_share: c[3] / 100, source: "CareerOneStop" }; }),
+          domain_knowledge: x.know
+        };
+      }),
+      limits: [
+        "Counts describe the admitted sample in each window, not the whole market.",
+        "Posting frequency is not importance, proficiency or hiring likelihood.",
+        "Shift states hold only between the windows listed.",
+        "Industry splits are only as wide as the employers sampled in each industry."
+      ]
+    };
+  }
+
+  function highlight(json) {
+    return esc(json).replace(/(&quot;[^&]*?(?:&(?!quot;)[^&]*?)*&quot;)(\s*:)?/g, function (m, str, colon) {
+      return colon ? '<span class="k">' + str + "</span>" + colon : '<span class="s">' + str + "</span>";
+    });
+  }
+
+  function renderAgent() {
+    var text = JSON.stringify(recordJSON(), null, 2);
+    $("json").innerHTML = highlight(text);
+    $("json").dataset.raw = text;
+    $("agentPath").textContent = "GET /v1/roles/" + state.role + "?release=rel_example_2026q3";
+  }
+
+  function renderAll() { renderRolePick(); renderHead(); renderTabs(); renderMap(); renderLadder(); renderSheet(); renderGraph(); renderIndustry(); renderGap(); renderAgent(); persist(); }
+
+  $("rolePick").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-role]"); if (!b) return;
+    state.role = b.dataset.role;
+    var r = role(); state.level = r.levels[Math.min(2, r.levels.length - 1)].L;
+    state.have = defaultHave(); state.node = null; state.industry = null; state.skill = null; state.mapLevel = 0; renderAll();
+  });
+  $("stairs").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-level]"); if (!b) return;
+    state.level = Number(b.dataset.level); state.have = defaultHave();
+    renderLadder(); renderSheet(); renderGraph(); renderGap(); persist();
+  });
+  $("graphLevel").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-glevel]"); if (!b) return;
+    state.level = Number(b.dataset.glevel); state.have = defaultHave();
+    renderLadder(); renderSheet(); renderGraph(); renderGap(); persist();
+  });
+  $("lensPick").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-lens]"); if (!b) return;
+    state.lens = b.dataset.lens; renderGraph(); persist();
+  });
+  $("edgePick").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-edges]"); if (!b) return;
+    state.edges = b.dataset.edges; renderGraph(); persist();
+  });
+  function pickNode(el) {
+    var id = el.dataset.node;
+    state.node = state.node === id ? null : id; renderGraph();
+    var again = document.querySelector('#graph [data-node="' + id + '"]'); if (again) again.focus();
+  }
+  $("graph").addEventListener("click", function (e) { var n = e.target.closest("[data-node]"); if (n) pickNode(n); });
+  $("graph").addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    var n = e.target.closest("[data-node]"); if (!n) return;
+    e.preventDefault(); pickNode(n);
+  });
+  $("graphPanel").addEventListener("click", function (e) { if (e.target.id === "clearNode") { state.node = null; renderGraph(); } });
+  function pickIndustry(e) {
+    var b = e.target.closest("button[data-ind]"); if (!b) return;
+    state.industry = b.dataset.ind; renderIndustry(); renderAgent(); persist();
+  }
+  $("industryPick").addEventListener("click", pickIndustry);
+  $("heat").addEventListener("click", pickIndustry);
+  $("tabs").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-tab]"); if (!b) return;
+    state.tab = b.dataset.tab; renderTabs(); persist();
+  });
+  $("tabs").addEventListener("keydown", function (e) {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    var bs = Array.prototype.slice.call($("tabs").children), i = bs.map(function (b) { return b.dataset.tab; }).indexOf(state.tab);
+    i = (i + (e.key === "ArrowRight" ? 1 : bs.length - 1)) % bs.length;
+    state.tab = bs[i].dataset.tab; renderTabs(); bs[i].focus(); persist();
+  });
+  $("mapLevel").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-mlevel]"); if (!b) return;
+    state.mapLevel = Number(b.dataset.mlevel); renderMap(); persist();
+  });
+  $("mapMode").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-mode]"); if (!b) return;
+    state.mode = b.dataset.mode; renderMap(); persist();
+  });
+  $("map").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-skill]"); if (!b) return;
+    state.skill = b.dataset.skill; renderMap();
+    var again = document.querySelector('#map [data-skill="' + state.skill + '"]'); if (again) again.focus();
+  });
+  $("checks").addEventListener("change", function (e) {
+    var id = e.target.dataset && e.target.dataset.id; if (!id) return;
+    state.have[id] = e.target.checked; renderGap();
+    var el = $("have-" + id); if (el) el.focus();
+  });
+  $("copyJson").addEventListener("click", function () {
+    var btn = this, raw = $("json").dataset.raw;
+    function selectIt() { var rng = document.createRange(); rng.selectNodeContents($("json")); var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(rng); btn.textContent = "Selected. Press Ctrl+C"; }
+    try {
+      navigator.clipboard.writeText(raw).then(function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy JSON"; }, 1600); }, selectIt);
+    } catch (err) { selectIt(); }
+  });
+
+  renderMatrix();
+  renderCalib();
+  state.have = defaultHave();
+  renderAll();
+})();
+</script>

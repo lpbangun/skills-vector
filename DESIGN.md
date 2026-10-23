@@ -137,6 +137,8 @@ Density is deliberate: comparison tables, coverage matrices, provenance stages, 
 
 **Canonical reference:** `design-concepts/app.html` (Control locked). Shared tokens: `design-concepts/design-system/tokens.css`.
 
+**Role Atlas reference:** `design-concepts/role-atlas.html` is the approved render for the role record (skill map, levels, industries, gap, agent view, method). Match its layout and components; its data is illustrative and never ships as product data. See [Role Atlas surfaces](#role-atlas-surfaces).
+
 ## Colors
 
 Palette character: cool mineral neutrals with a restrained cobalt accent and semantic clay/wine states — never hospital teal + warning yellow.
@@ -234,6 +236,47 @@ Small squares: fill = present/uncertain/disagree; slash = idle/absent. Always pa
 
 ### Motion
 Ease `cubic-bezier(0.16, 1, 0.3, 1)`. Feedback 120–200ms; viz hover ≤250ms. Honor `prefers-reduced-motion` (keep color/opacity state; drop spatial motion).
+
+## Role Atlas surfaces
+
+The role page is one reading column (max 1120px) that stacks the masthead, then the role bar, then the tabs, then Method, then Decisions. Reference: `design-concepts/role-atlas.html`. Anything new on these surfaces follows the patterns below rather than inventing new ones.
+
+### Structure
+- **Role bar:** a segmented role picker, then the role head. The role head is a paper panel with the title, status chip, O*NET anchor line, core tasks, and BLS foundation stats. Each source in the head carries a timing tag.
+- **Tabs:** Skill map (default) · Levels · Industries · Your gap · For agents. Tabs are text with a 3px cobalt bottom bar when selected over a 1px rule. They use `role="tablist"`, arrow keys move between them, and the selected tab persists per viewer.
+- **Method** sits below the tabs: three numbered step cards, the source-timing table, the status-rules table, and the track record. The layer model and the posting-triage example live in collapsed `<details>` panels.
+
+### Status and timing vocabulary
+- **Skill status:** `core` (ink outline) · `rising` (cobalt wash) · `early signal` (clay wash) · `fading` (graphite, dashed). `disputed` is a wine text flag, not a status. These four are the only status names.
+- **Source timing tags:** `leading` (clay) · `coincident` (cobalt) · `lagging` (graphite, dashed) · `long-term` (violet). Every signal shown to a reader carries one. O*NET ratings and ESCO links are always `lagging`, and BLS projections are always `long-term`.
+- **Experimental:** emerging roles show an `experimental` chip in the head, a clay caveat paragraph, and a small mono `experimental` tag in the role picker.
+
+### Skill map
+- Rows are grouped into status lanes in the order core, rising, early signal, fading. Each lane has a recess header holding its chip, a one-line meaning, and a count.
+- A row is a full-width button with four columns: skill · level pips · evidence squares · forecast. Below 640px it becomes two columns, and the forecast wraps onto its own line.
+- **Level pips:** one numbered square per level, filled ink-mid where 15%+ of that level's postings ask for the skill.
+- **Evidence squares:** `P` (postings), `O` (official map: O*NET or ESCO) and `M` (market trend), filled cobalt when that evidence family is present. Every row has an `aria-label` that spells out its pips and squares.
+- **Forecast cell:** mono, with the percentage in ink, for example "72% · 20%+ of L1–L3 postings by 2027-Q3". Core rows show an en dash.
+- **Detail panel** (sticky right column ≥940px, below the map otherwise): status chip, a plain-language reason, the evidence list (source name + timing tag + reading), the forecast box (cobalt top hairline on present-soft, with a large serif percentage, the base rate and how the claim resolves), share-by-level bars, and "asked together with".
+- **"What the top level adds"** is a violet analysis strip (analysis-soft with a 1px violet top rule) above the lanes.
+- **Connections** is an alternate view: inline SVG, columns = level first asked, family bands, dots sized by share and colored by status, lines only above the published threshold. It is never the default view.
+
+### Industries
+- A sector picker (broad NAICS sectors), a sector sheet (NAICS line, the largest sub-industries, three foundation stats, a "How it differs here" cobalt step box, duties, a certifications table with `required` / `preferred` / `common` tags, and domain knowledge as recess tags), and a heatmap of the same skills across sectors.
+- **Heatmap cells:** `color-mix(in srgb, var(--present) N%, var(--surface))` with the value printed in the cell. The selected sector's column is outlined in cobalt. A sector below the evidence floor shows a clay caveat in place of a profile and en dashes in the heatmap. It is never hidden.
+
+### Numbers and honesty
+- Each probability is shown as a percentage, with the base rate it started from beside it.
+- Calibration is a bar per probability bin with a tick at the stated midpoint, plus n.
+- Any page or section with non-research data carries the clay "Illustrative data" or "Fixture data" callout. Never present fixture numbers as findings.
+
+### Dark mode
+Every role-page token is redefined under `@media (prefers-color-scheme: dark)` (guarded by `:root:not([data-theme="light"])`) and again under `:root[data-theme="dark"]`. Use the dark values from the reference: canvas `#0e1620`, surface `#17232f`, present `#86b2e6`, uncertain `#d5a690`, disagree `#e48ea4`, analysis `#b9aade`. Selected controls invert to light fill and dark text.
+
+### Acceptance for any role surface
+- No horizontal page scroll at 390px. Wide tables and the SVG scroll inside their own container.
+- 44px minimum hit targets, visible focus ring, and keyboard operation for tabs, pips rows, and segmented controls.
+- Zero console errors. Light and dark mode both render from tokens, with no hard-coded hex outside token blocks.
 
 ## Do's and Don'ts
 
