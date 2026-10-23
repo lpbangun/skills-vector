@@ -1,0 +1,368 @@
+{
+  "cases": [
+    {
+      "job_id": "6230952004",
+      "level": 3,
+      "posting_id": "f850904642a9f407778322ac",
+      "quote": "Lead multi-stakeholder sales cycles, building executive sponsorship and internal champions while navigating security, accessibility, and SLED procurement requirements",
+      "rationale": "Current complex, multi-stakeholder commercial delivery/account scope; generic book ownership alone is not the label basis.",
+      "source_id": "desc.2026Q4.f850904642a9f407778322ac",
+      "source_sha256": "904e696a804379ef4855e142bf0d7799aefc2ac78501814b8cb2308bfba86bd4"
+    },
+    {
+      "job_id": "5104078",
+      "level": 2,
+      "posting_id": "ec95a72653f75bf0d3822843",
+      "quote": "Manage own book of business, build and manage an end-to-end sales pipeline and all supporting activities; prospect to close; meet or exceed your quotas",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.ec95a72653f75bf0d3822843",
+      "source_sha256": "e8befe05beefd54e5312bf512664c7b651a915658cf331f9ef06b052d95a194d"
+    },
+    {
+      "job_id": "7155024",
+      "level": 2,
+      "posting_id": "a4bf2000845a4b19d760357e",
+      "quote": "Handle existing customer expectations while expanding reach and depth into assigned territory",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.a4bf2000845a4b19d760357e",
+      "source_sha256": "322c9fe354c281dd074de74f8efe87d71d034337273fa6def9bb0885549c1430"
+    },
+    {
+      "job_id": "4134175007",
+      "level": 2,
+      "posting_id": "321ddf75c211fc40975e076e",
+      "quote": "Source and close new business to consistently meet or exceed quarterly sales quotas",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.321ddf75c211fc40975e076e",
+      "source_sha256": "27349d2430b58e88776386714e60f938c9dda52d3f4c80769f7259e061bf80f1"
+    },
+    {
+      "job_id": "6430945",
+      "level": 2,
+      "posting_id": "19ce9607776c566a72802cb5",
+      "quote": "Handle existing customer expectations while expanding reach and depth into assigned territory",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.19ce9607776c566a72802cb5",
+      "source_sha256": "7ddfc4cf0136db5f70a72dff256e648377a05538cacc29e7991455453936c52d"
+    },
+    {
+      "job_id": "5027198007",
+      "level": 2,
+      "posting_id": "50a6d24837f775926ddc0429",
+      "quote": "Source and close new business to consistently meet or exceed quarterly sales quotas",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.50a6d24837f775926ddc0429",
+      "source_sha256": "afdec58e4b1d42abb888bf6f5321cc223db7ecd129236168e6424008d81cc550"
+    },
+    {
+      "job_id": "5156789007",
+      "level": 2,
+      "posting_id": "610f6fb7f027335424c69d06",
+      "quote": "Manage the entire sales process to ensure delivery against key performance metrics and quota, with a strong emphasis on net new business sales.",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.610f6fb7f027335424c69d06",
+      "source_sha256": "f8138e5fac6d5c5dfbaa37a61bfc38d3a0d7755b76ae39ad23f2876e3184c385"
+    },
+    {
+      "job_id": "6163246",
+      "level": 2,
+      "posting_id": "9d59a2e887f36048908653d8",
+      "quote": "Manage the full sales cycle, including negotiations and on-site technical demonstrations",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.9d59a2e887f36048908653d8",
+      "source_sha256": "cd495a5abf0969821dded653f36ef25df826be49da2a8c38da5e028d479c60e6"
+    },
+    {
+      "job_id": "8147923",
+      "level": 4,
+      "posting_id": "8b364224977c5a5a94934a55",
+      "quote": "Architect and execute highly sophisticated, data-driven go-to-market strategies for the assigned AI Native territory, identifying key market segments and opportunities for exponential growth",
+      "rationale": "Current GTM strategy design/execution responsibility for the assigned domain, not the seniority title.",
+      "source_id": "desc.2026Q4.8b364224977c5a5a94934a55",
+      "source_sha256": "6196b69cea79e83f64f8305d9e6481ed41968ba26f08bfad511ac63cf10fc776"
+    },
+    {
+      "job_id": "7027846",
+      "level": 2,
+      "posting_id": "4d9f7d3d5c3c24e59115d3ce",
+      "quote": "Manage the full sales cycle for all MongoDB Products & Services",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.4d9f7d3d5c3c24e59115d3ce",
+      "source_sha256": "c9a9716e6df40b353a09ce321de2309d7601bb85d5717d1e10157d88e5ce5cc7"
+    },
+    {
+      "job_id": "8123027",
+      "level": 2,
+      "posting_id": "4a455316c1754e615df2d0d7",
+      "quote": "Identify and understand users’ pain points to propose Stripe solutions and own the full sales cycle, from business case development to close",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.4a455316c1754e615df2d0d7",
+      "source_sha256": "d415792dd7436f37cb62a49d252fa2b373330d6ca2a7e8d595cad69c5c8fa68f"
+    },
+    {
+      "job_id": "7179283",
+      "level": 2,
+      "posting_id": "c448a03499a2ac646d46acad",
+      "quote": "Own the Pipeline: From prospecting to close, you'll manage all activities required to win.",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.c448a03499a2ac646d46acad",
+      "source_sha256": "90b72210261aeecc7e6a5b5ef0619fcc3831a3ddca70ef0d388dce887f38f20a"
+    },
+    {
+      "job_id": "8178881",
+      "level": 3,
+      "posting_id": "49d7198164d86ab3f796169e",
+      "quote": "Drive deal strategy and commercial negotiations for large, complex renewals",
+      "rationale": "Current complex, multi-stakeholder commercial delivery/account scope; generic book ownership alone is not the label basis.",
+      "source_id": "desc.2026Q4.49d7198164d86ab3f796169e",
+      "source_sha256": "5e714b4fc29ad6c2bba9516c757f4420239f340b52a4e8f060b73cfff534b077"
+    },
+    {
+      "job_id": "8238731",
+      "level": 2,
+      "posting_id": "0ed45105a02c40ed703b5253",
+      "quote": "Own contract renewals and lead commercial negotiations to increase revenue and market share among existing customers.",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.0ed45105a02c40ed703b5253",
+      "source_sha256": "1ccaa1b2c40da9a974cd675fd34d6756929573ce03ba81c12f94dcf758551138"
+    },
+    {
+      "job_id": "8304836",
+      "level": 2,
+      "posting_id": "5d25e182be7df130ada16391",
+      "quote": "Own the full sales cycle from lead to close for Startup, SMB and mid-market platforms",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.5d25e182be7df130ada16391",
+      "source_sha256": "cfd42b76f755baa13505e53371d89afbc2e3aaebe9d3b569a0c630b26423ebbb"
+    },
+    {
+      "job_id": "6522713",
+      "level": 2,
+      "posting_id": "70eb801015c5c93d8f51a3fe",
+      "quote": "Manage own book of business, build and manage an end-to-end sales pipeline and all supporting activities; prospect to close; meet or exceed your quotas",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.70eb801015c5c93d8f51a3fe",
+      "source_sha256": "36f37ee41be8cc90ba7578bbac285decb5c9f3862eb114cff00b326ecbc821a8"
+    },
+    {
+      "job_id": "8147949",
+      "level": 4,
+      "posting_id": "ee9ce0cf63611eb205589a5b",
+      "quote": "Architect and execute highly sophisticated, data-driven go-to-market strategies for the assigned AI Native territory, identifying key market segments and opportunities for exponential growth",
+      "rationale": "Current GTM strategy design/execution responsibility for the assigned domain, not the seniority title.",
+      "source_id": "desc.2026Q4.ee9ce0cf63611eb205589a5b",
+      "source_sha256": "5781a3666f3b0fbaeec36f6dd2a9f10a25f2589d702194445c2fb1021dff921b"
+    },
+    {
+      "job_id": "5152703007",
+      "level": 2,
+      "posting_id": "29d5ac02abcb6a21b8a88c8e",
+      "quote": "Source and close new business to consistently meet or exceed quarterly sales quotas",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.29d5ac02abcb6a21b8a88c8e",
+      "source_sha256": "d4047aee492794102029d9f3b54085c76990744961907a8491a8ed6feb3482e7"
+    },
+    {
+      "job_id": "7687359",
+      "level": 2,
+      "posting_id": "b03a23ab07ae9051b583df76",
+      "quote": "Manage the full sales cycle for all MongoDB Products & Services",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.b03a23ab07ae9051b583df76",
+      "source_sha256": "80268c05461568180f1fe50426787fdc08656b4764fcc63195d38f3654ab554a"
+    },
+    {
+      "job_id": "8190042",
+      "level": null,
+      "posting_id": "43d6de986f80e263544ed263",
+      "quote": "Drive revenue to achieve and overperform on targets",
+      "rationale": "Revenue activity alone does not establish a clear ownership/decision boundary.",
+      "source_id": "desc.2026Q4.43d6de986f80e263544ed263",
+      "source_sha256": "ec9afede4bc120cccbae5f68db05d027d74cae355694311beb4c5a5a5b33436d"
+    },
+    {
+      "job_id": "6798820",
+      "level": 3,
+      "posting_id": "2cabc74e32a61cbff66baf92",
+      "quote": "Multi-thread into different departments of a complex organization",
+      "rationale": "Current complex, multi-stakeholder commercial delivery/account scope; generic book ownership alone is not the label basis.",
+      "source_id": "desc.2026Q4.2cabc74e32a61cbff66baf92",
+      "source_sha256": "99d382eee43895a3af1eedffbfabd9dfb1c3da9de2067e942462409b4acf7c64"
+    },
+    {
+      "job_id": "6522747",
+      "level": 2,
+      "posting_id": "8fbc3013ac1f19dd836ef245",
+      "quote": "Handle existing customer expectations while expanding reach and depth into assigned territory",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.8fbc3013ac1f19dd836ef245",
+      "source_sha256": "857fd589cf742407cef317059fab2e365fb8f876d6a947dff004842efaaa4ed1"
+    },
+    {
+      "job_id": "7027834",
+      "level": 2,
+      "posting_id": "a9b8905b6d292f5f7b1eefa9",
+      "quote": "Manage the full sales cycle for all MongoDB Products & Services",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.a9b8905b6d292f5f7b1eefa9",
+      "source_sha256": "1deb3078704ca9fcb83c226ab4c42d1030bc405ebe1661b90f42b7d0e3dfb7d2"
+    },
+    {
+      "job_id": "7137401",
+      "level": 2,
+      "posting_id": "96659fb56254735b54ea89ab",
+      "quote": "Manage own book of business, build and manage an end-to-end sales pipeline and all supporting activities; prospect to close; meet or exceed your quotas",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.96659fb56254735b54ea89ab",
+      "source_sha256": "23d1fcd86e050fa20c7510a61ddd9021aa14fb343fe022d70d24cab61b68fe48"
+    },
+    {
+      "job_id": "5426468004",
+      "level": 3,
+      "posting_id": "02a8c45d386480a9ce284313",
+      "quote": "Conduct thorough analysis to create strategic account plans that outline company priorities and initiatives, multi-threading at an executive level to build on expansion opportunities",
+      "rationale": "Current complex, multi-stakeholder commercial delivery/account scope; generic book ownership alone is not the label basis.",
+      "source_id": "desc.2026Q4.02a8c45d386480a9ce284313",
+      "source_sha256": "58232321086d8fd7db445aa3d0d6d7c0d767422040fd2d48d8c21e112f95561a"
+    },
+    {
+      "job_id": "5199808007",
+      "level": 2,
+      "posting_id": "2e90fa7f24f3f499678394e0",
+      "quote": "Source and close new business to consistently meet or exceed quarterly sales quotas",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.2e90fa7f24f3f499678394e0",
+      "source_sha256": "68e7f7fbc00bb5701002747829d54347181a0863a8a80c78949610e233ac01df"
+    },
+    {
+      "job_id": "6318505",
+      "level": 2,
+      "posting_id": "60605878e3bd12615126bd96",
+      "quote": "Manage own book of business, build and manage an end-to-end sales pipeline and all supporting activities; prospect to close; meet or exceed your quotas",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.60605878e3bd12615126bd96",
+      "source_sha256": "35f182bbe9a8df5b7b1b455c184203d2dfc5cdf37cc64f148e7d3dc0555ef554"
+    },
+    {
+      "job_id": "8190036",
+      "level": 3,
+      "posting_id": "2d967f82b8303b53d31cd474",
+      "quote": "Lead complex commercial discussions and coordinate with Partnerships and Deal teams when opportunities involve payment-method partners or bespoke commercial structures.",
+      "rationale": "Current complex, multi-stakeholder commercial delivery/account scope; generic book ownership alone is not the label basis.",
+      "source_id": "desc.2026Q4.2d967f82b8303b53d31cd474",
+      "source_sha256": "89a040822cda7de81718c18871d3dbbb66ca73c77ce9c71ea15d116b7168a9a1"
+    },
+    {
+      "job_id": "5558737004",
+      "level": 3,
+      "posting_id": "7a19ee5b95afde68c2950d0d",
+      "quote": "Conduct thorough analysis to create strategic account plans that outline company priorities and initiatives, multi-threading at at senior level to build on expansion opportunities",
+      "rationale": "Current complex, multi-stakeholder commercial delivery/account scope; generic book ownership alone is not the label basis.",
+      "source_id": "desc.2026Q4.7a19ee5b95afde68c2950d0d",
+      "source_sha256": "eccc31c1867dad0649b6f080af5574cddb20295506354153ae7e15985b918556"
+    },
+    {
+      "job_id": "4248006007",
+      "level": 2,
+      "posting_id": "5f80e3ffd184b9f889fc5b2b",
+      "quote": "Source and close new business to consistently meet or exceed quarterly sales quotas",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.5f80e3ffd184b9f889fc5b2b",
+      "source_sha256": "a4325deab0f63a374048fbc216562e3cb787f81b7af835d154d22fa8118df9f7"
+    },
+    {
+      "job_id": "8232743",
+      "level": 3,
+      "posting_id": "535b5808b514854c3409cff4",
+      "quote": "As an Enterprise Account Executive you’ll own complex enterprise sales cycles and help expand Privy’s work with companies across fintech and crypto.",
+      "rationale": "Current complex, multi-stakeholder commercial delivery/account scope; generic book ownership alone is not the label basis.",
+      "source_id": "desc.2026Q4.535b5808b514854c3409cff4",
+      "source_sha256": "ffdcffa14eca0ed77812bd0c41f8579370f79efe5e4f3d7050a49ee12d424284"
+    },
+    {
+      "job_id": "6522720",
+      "level": 2,
+      "posting_id": "031b24ad47ad38fe2f3456a3",
+      "quote": "Handle existing customer expectations while expanding reach and depth into assigned territory",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.031b24ad47ad38fe2f3456a3",
+      "source_sha256": "392b4a4062716ab6f9083fc70a01fc0a0a85aff36e9a8de8445ed1d6b2af96ea"
+    },
+    {
+      "job_id": "4135236007",
+      "level": 2,
+      "posting_id": "471b6db637d010a6e489fa7c",
+      "quote": "Source and close new business to consistently meet or exceed quarterly sales quotas",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.471b6db637d010a6e489fa7c",
+      "source_sha256": "bd4bddd1e6b5bb389e19265be2f584bb7a8a5575c07466d2dc0e4c10e1608192"
+    },
+    {
+      "job_id": "8267841",
+      "level": 2,
+      "posting_id": "6676235d597c5b2845556c2e",
+      "quote": "Own the full sales cycle from lead to close for Startup, SMB and mid-market platforms",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.6676235d597c5b2845556c2e",
+      "source_sha256": "cfd42b76f755baa13505e53371d89afbc2e3aaebe9d3b569a0c630b26423ebbb"
+    },
+    {
+      "job_id": "5565447004",
+      "level": 2,
+      "posting_id": "85f10723e4ae088aa879ed14",
+      "quote": "Create and manage a pipeline of SMB accounts from inbound and outbound activity to consistently meet or exceed quarterly and annual sales targets",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.85f10723e4ae088aa879ed14",
+      "source_sha256": "f3a157320ca6eb78a284c4e63a97e49cde95ed827a56814fc60f0308cf4c74b2"
+    },
+    {
+      "job_id": "8097302",
+      "level": 2,
+      "posting_id": "e3e872777c0a603d3ecb449f",
+      "quote": "Manage the full sales cycle for all MongoDB Products & Services",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.e3e872777c0a603d3ecb449f",
+      "source_sha256": "af67d794a90dae9beb305d2b5425e33444b4561047359eabd0974a16e9470ea0"
+    },
+    {
+      "job_id": "8067675",
+      "level": 2,
+      "posting_id": "c30c7916766b88fd8da7b9e5",
+      "quote": "Managing the full sales cycle for customer expansion, identifying and closing upsell opportunities within your assigned territory of existing Toast SMB POS customers, from outbound prospecting to contract negotiation and close.",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.c30c7916766b88fd8da7b9e5",
+      "source_sha256": "1b1d0f468c834bc47f96a7b47d15269ae40b0f0c72043b2178e39e1129d35bbb"
+    },
+    {
+      "job_id": "5041521007",
+      "level": 2,
+      "posting_id": "64f10ca7414aed0698c8b76c",
+      "quote": "Source and close new business to consistently meet or exceed quarterly sales quotas",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.64f10ca7414aed0698c8b76c",
+      "source_sha256": "fcaa045c33bbbc2a56104230b0b5b1459fa3b8fe128005a4a6bdd4333b649cd3"
+    },
+    {
+      "job_id": "7314667",
+      "level": 2,
+      "posting_id": "260d396e7efcc236390e1d51",
+      "quote": "Handle existing customer expectations while expanding reach and depth into assigned territory",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.260d396e7efcc236390e1d51",
+      "source_sha256": "1ec775a9adf81da13177d25dd107131a73c254dea7730147e05413f592307dea"
+    },
+    {
+      "job_id": "6755285",
+      "level": 2,
+      "posting_id": "909148088638d14f1b60c6da",
+      "quote": "Manage the full sales cycle for all MongoDB Products & Services",
+      "rationale": "Current bounded book/cycle/quota accountability, not title or tenure.",
+      "source_id": "desc.2026Q4.909148088638d14f1b60c6da",
+      "source_sha256": "9fdcdb21bc1afdba9d1944ff2b454771bec15488e2a91958bce05cf3a5e7aa14"
+    }
+  ],
+  "data_kind": "research-audit",
+  "reviewer": "coding agent manual review; not independent expert ground truth",
+  "seed": 20261024,
+  "source_snapshot_id": "f647a1ac44a1f666f9a3f3b9e74e7e5638d7e99a9a509c6b00c23ae8333552e5"
+}

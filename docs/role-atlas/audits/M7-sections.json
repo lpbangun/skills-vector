@@ -1,0 +1,168 @@
+{
+  "cases": [
+    {
+      "employer": "Stripe",
+      "job_id": "7993151",
+      "judged_correct": true,
+      "quote": "As an Account Executive, Existing Business, you’ll be managing existing relationships and identifying new opportunities to expand Stripe’s footprint within existing accounts.",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    },
+    {
+      "employer": "Asana",
+      "job_id": "8031595",
+      "judged_correct": true,
+      "quote": "Collaborate with Engineering leaders, platform teams, administrators, and hands-on builders to connect Command to the systems where work already happens",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "forward-deployed-engineer"
+    },
+    {
+      "employer": "Databricks",
+      "job_id": "8870724002",
+      "judged_correct": true,
+      "quote": "Meet with the CIO, IT executives, LOB executives, Program Managers, and other important partners",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    },
+    {
+      "employer": "Toast",
+      "job_id": "7826529",
+      "judged_correct": true,
+      "quote": "Use a consultative approach to prospect, build relationships, and sign up new convenience stores, grocery stores and bottle shops",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    },
+    {
+      "employer": "Stripe",
+      "job_id": "8274920",
+      "judged_correct": true,
+      "quote": "As an Account Executive (Existing Business), you will create partnerships between Stripe and the most innovative and fastest-growing software platforms in the world by helping them to understand how Stripe’s online commerce infrastructure can make payments a competitive advantage for their businesses.",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    },
+    {
+      "employer": "Stripe",
+      "job_id": "8138044",
+      "judged_correct": true,
+      "quote": "Work with existing Stripe customers in the AI Industry to develop and execute long-term sales strategies to expand Stripe’s revenue",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    },
+    {
+      "employer": "Toast",
+      "job_id": "7930749",
+      "judged_correct": true,
+      "quote": "Use a consultative approach to prospect, build relationships, and sign up new convenience stores, grocery stores and bottle shops",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    },
+    {
+      "employer": "Toast",
+      "job_id": "8289059",
+      "judged_correct": true,
+      "quote": "Use a consultative approach to prospect, build relationships, and sign up new convenience stores, grocery stores and bottle shops",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    },
+    {
+      "employer": "Stripe",
+      "job_id": "8157577",
+      "judged_correct": true,
+      "quote": "As an Account Executive, Strategic Pursuits , you will lead the end-to-end pursuit of Stripe’s largest and most complex platform opportunities.",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    },
+    {
+      "employer": "Verkada",
+      "job_id": "4248001007",
+      "judged_correct": true,
+      "quote": "Proactively identify and pursue new strategic business opportunities within Select Named Accounts.",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    },
+    {
+      "employer": "Stripe",
+      "job_id": "8190042",
+      "judged_correct": true,
+      "quote": "As a Billing Account Executive at Stripe, you'll use your sales and product expertise to help drive growth through both existing and new-to-Stripe customers.",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    },
+    {
+      "employer": "Verkada",
+      "job_id": "5261383007",
+      "judged_correct": true,
+      "quote": "At Verkada, we're known to push traditional boundaries, and our B2B growth efforts are no exception.",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "growth-manager"
+    },
+    {
+      "employer": "Datadog",
+      "job_id": "8180681",
+      "judged_correct": true,
+      "quote": "Own Datadog’s content-led SEO/GEO strategy, defining the topics, formats, and ecosystems that drive measurable growth in traffic and pipeline",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "growth-manager"
+    },
+    {
+      "employer": "Toast",
+      "job_id": "7826532",
+      "judged_correct": true,
+      "quote": "Use a consultative approach to prospect, build relationships, and sign up new convenience stores, grocery stores and bottle shops",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    },
+    {
+      "employer": "Toast",
+      "job_id": "8080096",
+      "judged_correct": true,
+      "quote": "Following up on marketing qualified leads in the market you support",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    },
+    {
+      "employer": "Toast",
+      "job_id": "8125653",
+      "judged_correct": true,
+      "quote": "Use a consultative approach to prospect, build relationships, and sign up new convenience stores, grocery stores and bottle shops",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    },
+    {
+      "employer": "Toast",
+      "job_id": "8049264",
+      "judged_correct": true,
+      "quote": "Use a consultative approach to prospect, build relationships, and sign up new convenience stores, grocery stores and bottle shops",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    },
+    {
+      "employer": "Toast",
+      "job_id": "8302424",
+      "judged_correct": true,
+      "quote": "Following up on marketing qualified leads in the market you support",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    },
+    {
+      "employer": "Toast",
+      "job_id": "8026391",
+      "judged_correct": true,
+      "quote": "Use a consultative approach to prospect, build relationships, and sign up new convenience stores, grocery stores and bottle shops",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    },
+    {
+      "employer": "Toast",
+      "job_id": "8301812",
+      "judged_correct": true,
+      "quote": "Following up on marketing qualified leads in the market you support",
+      "rationale": "Reviewed all responsibility spans: current duties; company, qualification and benefits boundaries excluded.",
+      "role": "account-executive"
+    }
+  ],
+  "data_kind": "research-audit",
+  "reviewer": "coding agent manual review; not independent expert ground truth",
+  "seed": 20261023,
+  "source_snapshot_id": "f647a1ac44a1f666f9a3f3b9e74e7e5638d7e99a9a509c6b00c23ae8333552e5"
+}

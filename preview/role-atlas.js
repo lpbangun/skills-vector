@@ -19,7 +19,7 @@
   }
   function percentage(value) { return Math.round(value * 1000) / 10; }
   function levelLabel(value) { return value === null ? "level unassigned" : (role().raw.data_kind === "research" ? "first observed at L" : "first asked at L") + value; }
-  function shareLabel(value) { return value === null ? "—" : value + "%"; }
+  function shareLabel(value) { return value === null ? "—" : (Math.round(value * 10) / 10) + "%"; }
   function comparableShares(a, b) { return a !== null && b !== null; }
   function hasOfficial(skill) { return skill.source_links.some(function (link) { return link !== "P"; }); }
   function timingTag(timing, asOf) {
@@ -127,7 +127,7 @@
 
   function renderSkillPanel(list) {
     var k = list.find(function (item) { return item.id === state.skill; });
-    if (!k) { $("skillPanel").innerHTML = '<p class="empty">No skills at this level.</p>'; return; }
+    if (!k) { $("skillPanel").innerHTML = '<p class="empty">' + (role().window.postings === 0 ? "No admitted postings in this role/window. No skill evidence is available; this is not evidence of no market demand." : "No skills at this level.") + '</p>'; return; }
     var raw = role().raw, original = raw.skill_map.skills.find(function (item) { return item.id === k.id; });
     var st = STATUS[k.status], byId = {}; list.forEach(function (item) { byId[item.id] = item; });
     var pairs = coEdges().filter(function (edge) { return edge[0] === k.id || edge[1] === k.id; }).sort(function (a, b) { return b[2] - a[2]; });

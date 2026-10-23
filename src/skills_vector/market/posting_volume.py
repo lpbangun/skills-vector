@@ -1,4 +1,4 @@
-"""Quarterly public-board capture and rules/1 extraction. No model/provider dependencies."""
+"""Quarterly public-board capture and versioned no-model extraction. No model/provider dependencies."""
 from __future__ import annotations
 
 import hashlib
@@ -19,7 +19,7 @@ from .role_artifacts import canonical, digest, guard_output, read_json, require
 from .sources import dedup_key, normalize_ws, parse_job_board, us_location_ok
 
 SCHEMA = "skills-vector.posting-snapshot/1"
-EXTRACTION = "rules/1"
+EXTRACTION = "rules/2"
 NORMALIZATION = "phrase-rules/1"
 BOARDS = {
     "greenhouse": "https://boards-api.greenhouse.io/v1/boards/{token}/jobs?content=true",
@@ -99,7 +99,7 @@ class _Blocks(HTMLParser):
             self.parts.append(data)
 
 
-def extract_sections(description: str, *, is_html: bool = True) -> dict:
+def extract_sections_v1(description: str, *, is_html: bool = True) -> dict:
     if is_html:
         parser = _Blocks()
         parser.feed(description); parser.close(); parser.flush()
@@ -133,6 +133,14 @@ def extract_sections(description: str, *, is_html: bool = True) -> dict:
         sections[section].append(value)
     return {"description": text, "source_sha256": sha, "expectations": expectations, "sections": dict(sections),
             "has_responsibilities": bool(sections.get("responsibilities"))}
+
+
+def extract_sections(description: str, *, is_html: bool = True, method: str = EXTRACTION) -> dict:
+    require(method in ("rules/1", "rules/2"), "unsupported extraction method")
+    if method == "rules/1":
+        return extract_sections_v1(description, is_html=is_html)
+    from .posting_sections import extract
+    return extract(description, is_html=is_html)
 
 
 def fair_sample(rows: list[dict], maximum: int) -> list[dict]:
@@ -213,18 +221,19 @@ def native_description(ats: str, native: dict) -> tuple[str, bool]:
 
 
 def _transport(url: str):
-    request = urllib.request.Request(url, headers={"User-Agent": "skills-vector-rules/1", "Accept": "application/json"})
+    request = urllib.request.Request(url, headers={"User-Agent": "skills-vector-rules/2", "Accept": "application/json"})
     opener = urllib.request.build_opener(AllowlistRedirectHandler)
     with opener.open(request, timeout=POSTING_VOLUME_LIMITS["retrieval_timeout_seconds"]) as response:
         return int(response.status), {k.lower(): v for k, v in response.headers.items()}, response.read(POSTING_VOLUME_LIMITS["max_response_bytes"] + 1)
 
 
 def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = None,
-            retrieved_at: str | None = None, live: bool = False, transport=None) -> tuple[dict, dict[str, bytes]]:
+            retrieved_at: str | None = None, live: bool = False, transport=None, saved_boards: dict | None = None, frozen_ids: set[str] | None = None, extraction_method: str = EXTRACTION) -> tuple[dict, dict[str, bytes]]:
+    require(extraction_method in ("rules/1", "rules/2"), "unsupported extraction method")
     require(bool(re.fullmatch(r"[0-9]{4}-Q[1-4]", window)), "quarter must be YYYY-Qn")
-    require(live != (payload_root is not None), "select local payloads OR explicit live mode")
+    require(sum((bool(live), payload_root is not None, saved_boards is not None)) == 1, "select local payloads OR saved capture OR explicit live mode")
     require(not live or policy.value["data_kind"] == "research", "live retrieval cannot use a sample policy")
-    require(live or retrieved_at is not None, "local capture requires the recorded retrieval timestamp")
+    require(live or saved_boards is not None or retrieved_at is not None, "local capture requires the recorded retrieval timestamp")
     if retrieved_at:
         require(quarter(retrieved_at) == window, "retrieval timestamp is outside requested quarter")
     payloads, postings, excluded, boards, complete, section_checks = {}, [], [], [], [], []
@@ -245,6 +254,11 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
                 boards.append({"url": url, "error": result.error or "non-200/truncated response"})
                 continue
             body = result.body
+        elif saved_boards is not None:
+            if url not in saved_boards:
+                boards.append({"url": url, "error": "No successful response in read-only source capture"})
+                continue
+            body, stamp = saved_boards[url]
         else:
             source = (payload_root / board["payload"]).resolve()
             require(source.is_relative_to(payload_root.resolve()) and source.is_file() and not any(p.startswith(".env") for p in source.parts), "unsafe/missing board payload")
@@ -282,11 +296,11 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
                     origin_hash, is_detail = detail.sha256, True
                     require(quarter(detail.retrieved_at) == window, "detail retrieval crossed quarter boundary")
                     stamp = detail.retrieved_at
-            extracted = extract_sections(description, is_html=is_html)
+            extracted = extract_sections(description, is_html=is_html, method=extraction_method)
             if len(matches) == 1 and us_location_ok(candidate["location"]):
                 section_checks.append({"posting_id": key, "role": matches[0], "job_id": candidate["job_id"], "employer": employer,
                                        "title": candidate["title"], "has_responsibilities": extracted["has_responsibilities"]})
-            if not extracted["expectations"]:
+            if not extracted["expectations"] and frozen_ids is None:
                 reason = reason or "no_recognized_expectation_section"
             if reason:
                 excluded.append({"posting_id": key, "title": candidate["title"], "employer": employer, "reason": reason,
@@ -306,7 +320,7 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
                              "description_path": text_path, "raw_description_path": raw_path,
                              "raw_description_sha256": hashlib.sha256(description.encode()).hexdigest(),
                              "board_sha256": origin_hash, "board_url": url, "ats": ats, "is_detail": is_detail,
-                             "description_is_html": is_html, "retrieved_at": stamp, "extraction_method": EXTRACTION,
+                             "description_is_html": is_html, "retrieved_at": stamp, "extraction_method": extraction_method,
                              "has_responsibilities": extracted["has_responsibilities"], "expectations": expectations,
                              "work_level": "unknown", "advertised_experience": {"value": []},
                              "employer_source_note": board["source_note"]})
@@ -321,7 +335,8 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
     selected, reports = [], {}
     for slug in sorted(policy.value["roles"]):
         candidates = [p for p in admitted if p["occupation_slug"] == slug]
-        chosen = fair_sample(candidates, policy.value["max_postings_per_role"])
+        chosen = ([p for p in candidates if p["dedup_key"] in frozen_ids] if frozen_ids is not None else fair_sample(candidates, policy.value["max_postings_per_role"]))
+        require(len(chosen) <= policy.value["max_postings_per_role"] and (not chosen or max(Counter(normalize_ws(p["employer"]).casefold() for p in chosen).values()) * 5 <= len(chosen)), "frozen cohort violates admission floors")
         selected.extend(chosen)
         ids = {p["dedup_key"] for p in chosen}
         excluded.extend({"posting_id": p["dedup_key"], "reason": "fair_employer_cap_or_policy_limit"} for p in candidates if p["dedup_key"] not in ids)
@@ -329,11 +344,11 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
                          "eligible_postings": sum(p["role"] == slug for p in section_checks),
                          "responsibilities": sum(p["has_responsibilities"] for p in section_checks if p["role"] == slug),
                          "responsibility_failures": [p["posting_id"] for p in section_checks if p["role"] == slug and not p["has_responsibilities"]]}
-    group = digest({"recipe": EXTRACTION, "normalization": NORMALIZATION, "implementation_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "policy": {k: v for k, v in policy.value.items() if k != "boards"},
+    group = digest({"recipe": extraction_method, "normalization": NORMALIZATION, "implementation_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "policy": {k: v for k, v in policy.value.items() if k != "boards"},
                     "boards": [{k: v for k, v in b.items() if k != "payload"} for b in sorted(policy.value["boards"], key=lambda b: (b["ats"], b["token"]))],
                     "complete_boards": complete})
     manifest = {"schema": SCHEMA, "data_kind": policy.value["data_kind"], "quarter": window, "window_length": "quarterly",
-                "comparison_group": "rules/1:" + group, "normalization": NORMALIZATION, "policy_sha256": digest(policy.value), "extraction_method": EXTRACTION,
+                "comparison_group": extraction_method + ":" + group, "normalization": NORMALIZATION, "policy_sha256": digest(policy.value), "extraction_method": extraction_method,
                 "boards": boards, "roles": reports, "exclusions": excluded, "section_checks": section_checks, "policy": policy.value,
                 "limits": ["Quarterly cross-sectional captured listings, not new-job flows or market prevalence.",
                            "Rules only: visible text is decoded from native HTML; quote offsets/hash refer to the exact saved description text. Original native description and board bytes are separately hashed.",

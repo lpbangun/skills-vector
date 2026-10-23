@@ -1,0 +1,214 @@
+[
+  {
+    "id": "4.A.1.a.2.h.1",
+    "name": "market-trends",
+    "pattern": "\\b(?:monitor|analy[sz]e|research|understand|track)\\b.{0,55}\\b(?:market|competitive|industry)\\b.{0,25}\\b(?:trends|landscape|conditions)\\b",
+    "confidence": "close",
+    "source_note": "Project lexical rule requiring explicit action/object words in the span; target is the role-scoped official DWA. Not a model or human-adjudicated semantic equivalence."
+  },
+  {
+    "id": "4.A.1.b.1.b.2",
+    "name": "prospecting",
+    "pattern": "\\b(?:prospect(?:ing)?|identify|qualify|research)\\b.{0,80}\\b(?:prospects|leads|new business|potential customers|new customers|accounts|new opportunities)\\b|\\b(?:prospect(?:ing)?|cold[- ]call(?:ing)?)\\b",
+    "confidence": "close",
+    "source_note": "Project lexical rule requiring explicit action/object words in the span; target is the role-scoped official DWA. Not a model or human-adjudicated semantic equivalence."
+  },
+  {
+    "id": "4.A.2.b.1.a.3",
+    "name": "sales-quotes",
+    "pattern": "\\b(?:creat(?:e|ing)|prepar(?:e|ing)|review(?:ing)?|generat(?:e|ing))\\b.{0,55}\\b(?:quotes|pricing proposals|price quotations)\\b",
+    "confidence": "close",
+    "source_note": "Project lexical rule requiring explicit action/object words in the span; target is the role-scoped official DWA. Not a model or human-adjudicated semantic equivalence."
+  },
+  {
+    "id": "4.A.4.a.6.c.2",
+    "name": "product-demos",
+    "pattern": "\\b(?:conduct(?:ing)?|deliver(?:ing)?|giv(?:e|ing)|perform(?:ing)?|present(?:ing)?|lead(?:ing)?)\\b.{0,60}\\b(?:demo(?:nstration)?s?|product demonstrations)\\b|\\bproduct demos?\\b",
+    "confidence": "close",
+    "source_note": "Project lexical rule requiring explicit action/object words in the span; target is the role-scoped official DWA. Not a model or human-adjudicated semantic equivalence."
+  },
+  {
+    "id": "4.A.4.a.6.c.5",
+    "name": "outreach",
+    "pattern": "\\b(?:cold call(?:ing|s)?|cold prospecting|outbound calls|(?:sales|customer|outbound|cold) outreach|contact(?:ing)? (?:prospective|potential) customers)\\b",
+    "confidence": "close",
+    "source_note": "Project lexical rule requiring explicit action/object words in the span; target is the role-scoped official DWA. Not a model or human-adjudicated semantic equivalence."
+  },
+  {
+    "id": "4.A.4.a.7.b.7",
+    "name": "sales-negotiation",
+    "pattern": "\\bnegotiat(?:e|ing|ion)\\b.{0,60}\\b(?:contracts|deals|terms|sales|pricing|agreements)\\b|\\b(?:contracts|deals|terms|sales|pricing)\\b.{0,35}\\bnegotiat(?:ion|ing)\\b",
+    "confidence": "close",
+    "source_note": "Project lexical rule requiring explicit action/object words in the span; target is the role-scoped official DWA. Not a model or human-adjudicated semantic equivalence."
+  },
+  {
+    "id": "4.A.3.b.6.j.2",
+    "name": "sales-records",
+    "pattern": "\\b(?:maintain|update|track|record|document)\\b.{0,65}\\b(?:customer details|sales activities|CRM records|account records|sales data|customer records)\\b",
+    "confidence": "close",
+    "source_note": "Project lexical rule requiring explicit action/object words in the span; target is the role-scoped official DWA. Not a model or human-adjudicated semantic equivalence."
+  },
+  {
+    "id": "4.A.3.b.6.m.1",
+    "name": "sales-contracts",
+    "pattern": "\\b(?:creat(?:e|ing)|prepar(?:e|ing)|review(?:ing)?|generat(?:e|ing))\\b.{0,60}\\b(?:sales |customer )?contracts\\b",
+    "confidence": "close",
+    "source_note": "Project lexical rule requiring explicit action/object words in the span; target is the role-scoped official DWA. Not a model or human-adjudicated semantic equivalence."
+  },
+  {
+    "id": "4.A.3.b.6.g.1",
+    "name": "proposals",
+    "pattern": "\\b(?:develop|create|prepare|deliver|craft|present)\\b.{0,60}\\b(?:proposals|business cases|sales presentations)\\b",
+    "confidence": "close",
+    "source_note": "Project lexical rule requiring explicit action/object words in the span; target is the role-scoped official DWA. Not a model or human-adjudicated semantic equivalence."
+  },
+  {
+    "id": "4.A.4.a.1.a.5",
+    "name": "explain-products",
+    "pattern": "\\b(?:explain|communicate|articulate|present)\\b.{0,80}\\b(?:value proposition|product value|technical (?:product|capability|information)|business value|solutions? (?:value|benefits))\\b",
+    "confidence": "close",
+    "source_note": "Project lexical rule requiring explicit action/object words in the span; target is the role-scoped official DWA. Not a model or human-adjudicated semantic equivalence."
+  },
+  {
+    "id": "4.A.4.b.6.b.4",
+    "name": "recommend-products",
+    "pattern": "\\b(?:recommend|position|match)\\b.{0,70}\\b(?:products|solutions|platform)\\b.{0,50}\\b(?:needs|customer|business)\\b",
+    "confidence": "close",
+    "source_note": "Project lexical rule requiring explicit action/object words in the span; target is the role-scoped official DWA. Not a model or human-adjudicated semantic equivalence."
+  },
+  {
+    "id": "4.A.4.b.6.b.3",
+    "name": "advise-product-use",
+    "pattern": "\\b(?:advise|educate|consult with)\\b.{0,70}\\b(?:customers|clients)\\b.{0,70}\\b(?:products|platform|solutions|technology)\\b",
+    "confidence": "close",
+    "source_note": "Project lexical rule requiring explicit action/object words in the span; target is the role-scoped official DWA. Not a model or human-adjudicated semantic equivalence."
+  },
+  {
+    "id": "4.A.4.b.4.j.5",
+    "name": "sales-campaigns",
+    "pattern": "\\b(?:coordinate|collaborate|partner|work closely)\\b.{0,80}\\b(?:marketing|sales development|SDR|BDR)\\b",
+    "confidence": "close",
+    "source_note": "Project lexical rule requiring explicit action/object words in the span; target is the role-scoped official DWA. Not a model or human-adjudicated semantic equivalence."
+  },
+  {
+    "id": "4.A.2.b.2.b.10",
+    "name": "software-design",
+    "pattern": "\\b(?:design|build|develop)\\b.{0,70}\\b(?:software|applications|full-stack solutions)\\b",
+    "confidence": "close",
+    "source_note": "Project lexical rule requiring explicit action/object words in the span; target is the role-scoped official DWA. Not a model or human-adjudicated semantic equivalence."
+  },
+  {
+    "id": "4.A.4.b.6.d.2",
+    "name": "technical-support",
+    "pattern": "\\b(?:provide|deliver|troubleshoot|resolve)\\b.{0,60}\\b(?:technical support|software issues|technical issues)\\b",
+    "confidence": "close",
+    "source_note": "Project lexical rule requiring explicit action/object words in the span; target is the role-scoped official DWA. Not a model or human-adjudicated semantic equivalence."
+  },
+  {
+    "id": "4.A.4.b.6.e.8",
+    "name": "hr-advice",
+    "pattern": "\\b(?:advise|coach|counsel|partner with)\\b.{0,65}\\b(?:managers|leaders|employees)\\b.{0,65}\\b(?:HR|human resources|employee relations|people)\\b",
+    "confidence": "close",
+    "source_note": "Project lexical rule requiring explicit action/object words in the span; target is the role-scoped official DWA. Not a model or human-adjudicated semantic equivalence."
+  },
+  {
+    "id": "4.A.4.a.4.a.2",
+    "name": "business-relationships",
+    "pattern": "\\b(?:build|develop|establish|maintain|nurture|cultivate|foster|strengthen|manage)\\w*\\b.{0,75}\\b(?:relationships|rapport|networks|relationship maps)\\b|\\brelationship[- ](?:building|focused)\\b",
+    "confidence": "close",
+    "roles": [
+      "account-executive"
+    ],
+    "source_note": "Lexical action/object rule for an official global DWA. If not in the anchor SOC's Tasks-to-DWAs, no official occupation-task membership is asserted."
+  },
+  {
+    "id": "4.A.1.a.2.c.3",
+    "name": "pipeline-management",
+    "pattern": "\\b(?:manage|maintain|monitor|track|build|develop|own)\\w*\\b.{0,65}\\b(?:sales pipeline|pipeline management|sales activities)\\b|\\bpipeline (?:generation|management)\\b",
+    "confidence": "close",
+    "roles": [
+      "account-executive"
+    ],
+    "source_note": "Lexical action/object rule for an official global DWA. If not in the anchor SOC's Tasks-to-DWAs, no official occupation-task membership is asserted."
+  },
+  {
+    "id": "4.A.4.c.1.c.4",
+    "name": "close-sales",
+    "pattern": "\\b(?:clos(?:e|ing)|win|winning)\\b.{0,65}\\b(?:deals|sales|new business|new logos|business)\\b|\\b(?:full|end.to.end|complete) sales (?:cycle|process)\\b|\\bclosing (?:experience|sales|deals)\\b",
+    "confidence": "close",
+    "roles": [
+      "account-executive"
+    ],
+    "source_note": "Lexical action/object rule for an official global DWA. If not in the anchor SOC's Tasks-to-DWAs, no official occupation-task membership is asserted."
+  },
+  {
+    "id": "4.A.2.b.3.a.22",
+    "name": "product-learning",
+    "pattern": "\\b(?:learn|understand|understanding|comprehension|knowledge|expert|expertise)\\b.{0,55}\\bproducts?\\b|\\bproduct (?:expert|knowledge|expertise)\\b",
+    "confidence": "close",
+    "roles": [
+      "account-executive"
+    ],
+    "source_note": "Lexical action/object rule for an official global DWA. If not in the anchor SOC's Tasks-to-DWAs, no official occupation-task membership is asserted."
+  },
+  {
+    "id": "4.A.2.b.2.h.2",
+    "name": "territory-business-plans",
+    "pattern": "\\b(?:develop|build|create|execute)\\b.{0,50}\\b(?:territory plan|account plan|business plan|plan for success)\\b",
+    "confidence": "close",
+    "roles": [
+      "account-executive"
+    ],
+    "source_note": "Lexical action/object rule for an official global DWA. If not in the anchor SOC's Tasks-to-DWAs, no official occupation-task membership is asserted."
+  },
+  {
+    "id": "4.A.4.a.2.e.4",
+    "name": "market-feedback",
+    "pattern": "\\b(?:provide|share|deliver|communicate)\\b.{0,50}\\b(?:market|client|customer)\\b.{0,30}\\bfeedback\\b",
+    "confidence": "close",
+    "roles": [
+      "account-executive"
+    ],
+    "source_note": "Lexical action/object rule for an official global DWA. If not in the anchor SOC's Tasks-to-DWAs, no official occupation-task membership is asserted."
+  },
+  {
+    "id": "4.A.1.a.1.n.2",
+    "name": "customer-discovery",
+    "pattern": "\\b(?:understand|discover|uncover|identify|assess|analy[sz]e)\\b.{0,70}\\b(?:customer|client|business)\\b.{0,40}\\b(?:needs|requirements|challenges|pain points)\\b|\\bdiscovery calls\\b",
+    "confidence": "close",
+    "roles": [
+      "account-executive"
+    ],
+    "source_note": "Lexical action/object rule for an official global DWA. If not in the anchor SOC's Tasks-to-DWAs, no official occupation-task membership is asserted."
+  },
+  {
+    "id": "4.A.4.a.2.c.1",
+    "name": "cross-team-coordination",
+    "pattern": "\\b(?:collaborate|coordinate|partner|work closely)\\b.{0,80}\\b(?:teams|departments|stakeholders|solution architects|sales ecosystem)\\b|\\bcross[- ]functional (?:collaboration|teams|partnerships)\\b",
+    "confidence": "close",
+    "roles": [
+      "account-executive"
+    ],
+    "source_note": "Lexical action/object rule for an official global DWA. If not in the anchor SOC's Tasks-to-DWAs, no official occupation-task membership is asserted."
+  },
+  {
+    "id": "4.A.4.a.6.c.7",
+    "name": "sales-presentations",
+    "pattern": "\\b(?:deliver|conduct|present|lead)\\b.{0,60}\\b(?:sales presentations|customer presentations|executive presentations)\\b|\\b(?:sales|customer) presentation skills\\b",
+    "confidence": "close",
+    "roles": [
+      "account-executive"
+    ],
+    "source_note": "Lexical action/object rule for an official global DWA. If not in the anchor SOC's Tasks-to-DWAs, no official occupation-task membership is asserted."
+  },
+  {
+    "id": "4.A.2.a.4.g.8",
+    "name": "forecast-data-analysis",
+    "pattern": "\\b(?:analy[sz]e|review|interpret|evaluate)\\b.{0,50}\\bforecast(?:ing|s| data)?\\b",
+    "confidence": "close",
+    "roles": [
+      "account-executive"
+    ],
+    "source_note": "Lexical action/object rule for an official global DWA. If not in the anchor SOC's Tasks-to-DWAs, no official occupation-task membership is asserted."
+  }
+]

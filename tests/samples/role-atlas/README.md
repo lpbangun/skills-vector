@@ -10,6 +10,10 @@ Native column/key formats exercised:
 - O*NET database **Technology Skills.txt**, tab-delimited UTF-8:
   O*NET-SOC Code, Example, Commodity Code, Commodity Title, Hot Technology,
   In Demand. Y/N flags; only Hot Technology=Y is admitted.
+- O*NET 31.0 **Software Skills.txt**, tab-delimited UTF-8:
+  O*NET-SOC Code, Workplace Example, Element ID, Element Name, Hot Technology,
+  In Demand. The tiny authored sample exercises the renamed native columns;
+  it is not copied from the downloaded database.
 - O*NET database **Emerging Tasks.txt**, tab-delimited:
   O*NET-SOC Code, Task, Task Type, Incumbents Responding, Date, Domain Source.
   The native MM/YYYY date is retained verbatim, not invented as a precise date.

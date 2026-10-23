@@ -1,0 +1,2822 @@
+{
+  "attribution": "O*NET 31.0 Database, U.S. Department of Labor, Employment and Training Administration. CC BY 4.0. https://www.onetcenter.org/database.html",
+  "dwas": [
+    {
+      "gwa": "4.A.1.a.1",
+      "id": "4.A.1.a.1.n.2",
+      "iwa": "4.A.1.a.1.n",
+      "label": "Gather customer or product information to determine customer needs.",
+      "role": "account-executive",
+      "soc": null,
+      "source_note": "Global DWA lexical candidate; not an occupation-task membership assertion.",
+      "task_ids": []
+    },
+    {
+      "gwa": "4.A.1.a.2",
+      "id": "4.A.1.a.2.c.3",
+      "iwa": "4.A.1.a.2.c",
+      "label": "Monitor sales activities.",
+      "role": "account-executive",
+      "soc": null,
+      "source_note": "Global DWA lexical candidate; not an occupation-task membership assertion.",
+      "task_ids": []
+    },
+    {
+      "gwa": "4.A.1.a.2",
+      "id": "4.A.1.a.2.h.1",
+      "iwa": "4.A.1.a.2.h",
+      "label": "Monitor market conditions or trends.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8122"
+      ]
+    },
+    {
+      "gwa": "4.A.1.b.1",
+      "id": "4.A.1.b.1.b.2",
+      "iwa": "4.A.1.b.1.b",
+      "label": "Identify potential customers.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8120"
+      ]
+    },
+    {
+      "gwa": "4.A.2.a.2",
+      "id": "4.A.2.a.2.a.3",
+      "iwa": "4.A.2.a.2.a",
+      "label": "Verify customer credit information.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8125"
+      ]
+    },
+    {
+      "gwa": "4.A.2.a.4",
+      "id": "4.A.2.a.4.g.8",
+      "iwa": "4.A.2.a.4.g",
+      "label": "Analyze forecasting data to improve business decisions.",
+      "role": "account-executive",
+      "soc": null,
+      "source_note": "Global DWA lexical candidate; not an occupation-task membership assertion.",
+      "task_ids": []
+    },
+    {
+      "gwa": "4.A.2.b.1",
+      "id": "4.A.2.b.1.a.3",
+      "iwa": "4.A.2.b.1.a",
+      "label": "Estimate costs or terms of sales.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8116",
+        "8118"
+      ]
+    },
+    {
+      "gwa": "4.A.2.b.2",
+      "id": "4.A.2.b.2.h.2",
+      "iwa": "4.A.2.b.2.h",
+      "label": "Develop financial or business plans.",
+      "role": "account-executive",
+      "soc": null,
+      "source_note": "Global DWA lexical candidate; not an occupation-task membership assertion.",
+      "task_ids": []
+    },
+    {
+      "gwa": "4.A.2.b.2",
+      "id": "4.A.2.b.2.o.1",
+      "iwa": "4.A.2.b.2.o",
+      "label": "Prepare drawings or diagrams of products or services.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8118"
+      ]
+    },
+    {
+      "gwa": "4.A.2.b.3",
+      "id": "4.A.2.b.3.a.22",
+      "iwa": "4.A.2.b.3.a",
+      "label": "Study product information to acquire professional knowledge.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8122"
+      ]
+    },
+    {
+      "gwa": "4.A.3.a.2",
+      "id": "4.A.3.a.2.ak.1",
+      "iwa": "4.A.3.a.2.ak",
+      "label": "Stock products or parts.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8128"
+      ]
+    },
+    {
+      "gwa": "4.A.3.a.2",
+      "id": "4.A.3.a.2.h.2",
+      "iwa": "4.A.3.a.2.h",
+      "label": "Set up merchandise displays.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8128"
+      ]
+    },
+    {
+      "gwa": "4.A.3.b.6",
+      "id": "4.A.3.b.6.a.2",
+      "iwa": "4.A.3.b.6.a",
+      "label": "Prepare financial documents, reports, or budgets.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8124"
+      ]
+    },
+    {
+      "gwa": "4.A.3.b.6",
+      "id": "4.A.3.b.6.g.1",
+      "iwa": "4.A.3.b.6.g",
+      "label": "Develop proposals for current or prospective customers.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8118"
+      ]
+    },
+    {
+      "gwa": "4.A.3.b.6",
+      "id": "4.A.3.b.6.j.2",
+      "iwa": "4.A.3.b.6.j",
+      "label": "Maintain records of sales or other business transactions.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8124"
+      ]
+    },
+    {
+      "gwa": "4.A.3.b.6",
+      "id": "4.A.3.b.6.m.1",
+      "iwa": "4.A.3.b.6.m",
+      "label": "Prepare sales or other contracts.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "20267"
+      ]
+    },
+    {
+      "gwa": "4.A.4.a.1",
+      "id": "4.A.4.a.1.a.5",
+      "iwa": "4.A.4.a.1.a",
+      "label": "Explain technical product or service information to customers.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8115",
+        "8116"
+      ]
+    },
+    {
+      "gwa": "4.A.4.a.2",
+      "id": "4.A.4.a.2.c.1",
+      "iwa": "4.A.4.a.2.c",
+      "label": "Communicate with other workers to coordinate activities.",
+      "role": "account-executive",
+      "soc": null,
+      "source_note": "Global DWA lexical candidate; not an occupation-task membership assertion.",
+      "task_ids": []
+    },
+    {
+      "gwa": "4.A.4.a.2",
+      "id": "4.A.4.a.2.e.4",
+      "iwa": "4.A.4.a.2.e",
+      "label": "Share sales-related or market information with colleagues.",
+      "role": "account-executive",
+      "soc": null,
+      "source_note": "Global DWA lexical candidate; not an occupation-task membership assertion.",
+      "task_ids": []
+    },
+    {
+      "gwa": "4.A.4.a.4",
+      "id": "4.A.4.a.4.a.2",
+      "iwa": "4.A.4.a.4.a",
+      "label": "Develop business relationships.",
+      "role": "account-executive",
+      "soc": null,
+      "source_note": "Global DWA lexical candidate; not an occupation-task membership assertion.",
+      "task_ids": []
+    },
+    {
+      "gwa": "4.A.4.a.6",
+      "id": "4.A.4.a.6.c.2",
+      "iwa": "4.A.4.a.6.c",
+      "label": "Demonstrate products to consumers.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8115"
+      ]
+    },
+    {
+      "gwa": "4.A.4.a.6",
+      "id": "4.A.4.a.6.c.5",
+      "iwa": "4.A.4.a.6.c",
+      "label": "Contact current or potential customers to promote products or services.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8115"
+      ]
+    },
+    {
+      "gwa": "4.A.4.a.6",
+      "id": "4.A.4.a.6.c.7",
+      "iwa": "4.A.4.a.6.c",
+      "label": "Deliver promotional presentations to current or prospective customers.",
+      "role": "account-executive",
+      "soc": null,
+      "source_note": "Global DWA lexical candidate; not an occupation-task membership assertion.",
+      "task_ids": []
+    },
+    {
+      "gwa": "4.A.4.a.6",
+      "id": "4.A.4.a.6.c.9",
+      "iwa": "4.A.4.a.6.c",
+      "label": "Distribute promotional literature or samples to customers.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8119"
+      ]
+    },
+    {
+      "gwa": "4.A.4.a.7",
+      "id": "4.A.4.a.7.b.7",
+      "iwa": "4.A.4.a.7.b",
+      "label": "Negotiate prices or other sales terms.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "20268",
+        "8129"
+      ]
+    },
+    {
+      "gwa": "4.A.4.a.8",
+      "id": "4.A.4.a.8.c.3",
+      "iwa": "4.A.4.a.8.c",
+      "label": "Answer customer questions about goods or services.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8113"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.4",
+      "id": "4.A.4.b.4.j.29",
+      "iwa": "4.A.4.b.4.j",
+      "label": "Arrange delivery of goods or services.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8121"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.4",
+      "id": "4.A.4.b.4.j.5",
+      "iwa": "4.A.4.b.4.j",
+      "label": "Coordinate sales campaigns.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8128"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.6",
+      "id": "4.A.4.b.6.b.3",
+      "iwa": "4.A.4.b.6.b",
+      "label": "Advise customers on the use of products or services.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8117"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.6",
+      "id": "4.A.4.b.6.b.4",
+      "iwa": "4.A.4.b.6.b",
+      "label": "Recommend products or services to customers.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8114"
+      ]
+    },
+    {
+      "gwa": "4.A.4.c.1",
+      "id": "4.A.4.c.1.c.4",
+      "iwa": "4.A.4.c.1.c",
+      "label": "Execute sales or other financial transactions.",
+      "role": "account-executive",
+      "soc": null,
+      "source_note": "Global DWA lexical candidate; not an occupation-task membership assertion.",
+      "task_ids": []
+    },
+    {
+      "gwa": "4.A.4.c.1",
+      "id": "4.A.4.c.1.e.3",
+      "iwa": "4.A.4.c.1.e",
+      "label": "Send information, materials or documentation.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8126"
+      ]
+    },
+    {
+      "gwa": "4.A.4.c.3",
+      "id": "4.A.4.c.3.e.1",
+      "iwa": "4.A.4.c.3.e",
+      "label": "Order materials, supplies, or equipment.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8126"
+      ]
+    },
+    {
+      "gwa": "4.A.4.c.3",
+      "id": "4.A.4.c.3.e.4",
+      "iwa": "4.A.4.c.3.e",
+      "label": "Purchase stocks of merchandise or supplies.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8127"
+      ]
+    },
+    {
+      "gwa": "4.A.4.c.3",
+      "id": "4.A.4.c.3.g.4",
+      "iwa": "4.A.4.c.3.g",
+      "label": "Monitor inventories of products or materials.",
+      "role": "account-executive",
+      "soc": "41-4012.00",
+      "task_ids": [
+        "8127"
+      ]
+    },
+    {
+      "gwa": "4.A.1.a.2",
+      "id": "4.A.1.a.2.j.3",
+      "iwa": "4.A.1.a.2.j",
+      "label": "Monitor computer system performance to ensure proper operation.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21671"
+      ]
+    },
+    {
+      "gwa": "4.A.2.a.1",
+      "id": "4.A.2.a.1.g.6",
+      "iwa": "4.A.2.a.1.g",
+      "label": "Assess database performance.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21676"
+      ]
+    },
+    {
+      "gwa": "4.A.2.a.4",
+      "id": "4.A.2.a.4.d.1",
+      "iwa": "4.A.2.a.4.d",
+      "label": "Apply mathematical principles or statistical approaches to solve problems in scientific or applied fields.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21667"
+      ]
+    },
+    {
+      "gwa": "4.A.2.a.4",
+      "id": "4.A.2.a.4.e.5",
+      "iwa": "4.A.2.a.4.e",
+      "label": "Analyze project data to determine specifications or requirements.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21661",
+        "21662",
+        "21672"
+      ]
+    },
+    {
+      "gwa": "4.A.2.b.2",
+      "id": "4.A.2.b.2.b.10",
+      "iwa": "4.A.2.b.2.b",
+      "label": "Design software applications.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21667"
+      ]
+    },
+    {
+      "gwa": "4.A.2.b.2",
+      "id": "4.A.2.b.2.b.7",
+      "iwa": "4.A.2.b.2.b",
+      "label": "Modify software programs to improve performance.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21667",
+        "21670"
+      ]
+    },
+    {
+      "gwa": "4.A.3.b.1",
+      "id": "4.A.3.b.1.f.7",
+      "iwa": "4.A.3.b.1.f",
+      "label": "Prepare data for analysis.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21676"
+      ]
+    },
+    {
+      "gwa": "4.A.3.b.2",
+      "id": "4.A.3.b.2.a.7",
+      "iwa": "4.A.3.b.2.a",
+      "label": "Develop performance metrics or standards related to information technology.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21668"
+      ]
+    },
+    {
+      "gwa": "4.A.3.b.2",
+      "id": "4.A.3.b.2.f.15",
+      "iwa": "4.A.3.b.2.f",
+      "label": "Develop testing routines or procedures.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21669"
+      ]
+    },
+    {
+      "gwa": "4.A.4.a.2",
+      "id": "4.A.4.a.2.h.7",
+      "iwa": "4.A.4.a.2.h",
+      "label": "Collaborate with others to determine design specifications or details.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21664"
+      ]
+    },
+    {
+      "gwa": "4.A.4.a.2",
+      "id": "4.A.4.a.2.h.9",
+      "iwa": "4.A.4.a.2.h",
+      "label": "Communicate project information to others.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21673"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.1",
+      "id": "4.A.4.b.1.a.3",
+      "iwa": "4.A.4.b.1.a",
+      "label": "Collaborate with others to resolve information technology issues.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21663"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.1",
+      "id": "4.A.4.b.1.f.6",
+      "iwa": "4.A.4.b.1.f",
+      "label": "Assign duties or work schedules to employees.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21677"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.3",
+      "id": "4.A.4.b.3.e.3",
+      "iwa": "4.A.4.b.3.e",
+      "label": "Teach others to use computer equipment or hardware.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21679"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.4",
+      "id": "4.A.4.b.4.a.7",
+      "iwa": "4.A.4.b.4.a",
+      "label": "Supervise information technology personnel.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21677",
+        "21678"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.4",
+      "id": "4.A.4.b.4.e.4",
+      "iwa": "4.A.4.b.4.e",
+      "label": "Coordinate software or hardware installation.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21666"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.4",
+      "id": "4.A.4.b.4.e.7",
+      "iwa": "4.A.4.b.4.e",
+      "label": "Manage information technology projects or system activities.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21669"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.6",
+      "id": "4.A.4.b.6.d.2",
+      "iwa": "4.A.4.b.6.d",
+      "label": "Provide technical support for software maintenance or use.",
+      "role": "forward-deployed-engineer",
+      "soc": "15-1252.00",
+      "task_ids": [
+        "21665"
+      ]
+    },
+    {
+      "gwa": "4.A.1.a.1",
+      "id": "4.A.1.a.1.n.4",
+      "iwa": "4.A.1.a.1.n",
+      "label": "Conduct opinion surveys or needs assessments.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "965"
+      ]
+    },
+    {
+      "gwa": "4.A.1.a.2",
+      "id": "4.A.1.a.2.h.3",
+      "iwa": "4.A.1.a.2.h",
+      "label": "Monitor external affairs or events affecting business operations.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "958"
+      ]
+    },
+    {
+      "gwa": "4.A.2.a.1",
+      "id": "4.A.2.a.1.b.1",
+      "iwa": "4.A.2.a.1.b",
+      "label": "Evaluate program effectiveness.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "951"
+      ]
+    },
+    {
+      "gwa": "4.A.2.a.2",
+      "id": "4.A.2.a.2.c.1",
+      "iwa": "4.A.2.a.2.c",
+      "label": "Compile operational data.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "957"
+      ]
+    },
+    {
+      "gwa": "4.A.2.a.4",
+      "id": "4.A.2.a.4.b.8",
+      "iwa": "4.A.2.a.4.b",
+      "label": "Analyze market research data.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "958",
+        "963"
+      ]
+    },
+    {
+      "gwa": "4.A.2.a.4",
+      "id": "4.A.2.a.4.g.12",
+      "iwa": "4.A.2.a.4.g",
+      "label": "Analyze data to inform operational decisions or activities.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "952"
+      ]
+    },
+    {
+      "gwa": "4.A.2.a.4",
+      "id": "4.A.2.a.4.g.8",
+      "iwa": "4.A.2.a.4.g",
+      "label": "Analyze forecasting data to improve business decisions.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "958"
+      ]
+    },
+    {
+      "gwa": "4.A.2.b.1",
+      "id": "4.A.2.b.1.h.8",
+      "iwa": "4.A.2.b.1.h",
+      "label": "Estimate cost or material requirements.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "952"
+      ]
+    },
+    {
+      "gwa": "4.A.2.b.2",
+      "id": "4.A.2.b.2.c.2",
+      "iwa": "4.A.2.b.2.c",
+      "label": "Develop marketing plans or strategies for environmental initiatives.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "19503",
+        "19504"
+      ]
+    },
+    {
+      "gwa": "4.A.2.b.2",
+      "id": "4.A.2.b.2.c.3",
+      "iwa": "4.A.2.b.2.c",
+      "label": "Develop marketing plans or strategies.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "20709",
+        "951",
+        "959"
+      ]
+    },
+    {
+      "gwa": "4.A.2.b.2",
+      "id": "4.A.2.b.2.q.3",
+      "iwa": "4.A.2.b.2.q",
+      "label": "Develop sustainable organizational policies or practices.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "19505"
+      ]
+    },
+    {
+      "gwa": "4.A.2.b.4",
+      "id": "4.A.2.b.4.a.6",
+      "iwa": "4.A.2.b.4.a",
+      "label": "Determine pricing or monetary policies.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "950"
+      ]
+    },
+    {
+      "gwa": "4.A.4.a.2",
+      "id": "4.A.4.a.2.c.14",
+      "iwa": "4.A.4.a.2.c",
+      "label": "Confer with organizational members to accomplish work activities.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "19502",
+        "956",
+        "960",
+        "964"
+      ]
+    },
+    {
+      "gwa": "4.A.4.a.7",
+      "id": "4.A.4.a.7.b.4",
+      "iwa": "4.A.4.a.7.b",
+      "label": "Negotiate contracts for transportation, distribution, or logistics services.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "955"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.1",
+      "id": "4.A.4.b.1.e.3",
+      "iwa": "4.A.4.b.1.e",
+      "label": "Coordinate special events or programs.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "961"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.4",
+      "id": "4.A.4.b.4.a.13",
+      "iwa": "4.A.4.b.4.a",
+      "label": "Supervise employees.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "954"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.4",
+      "id": "4.A.4.b.4.j.3",
+      "iwa": "4.A.4.b.4.j",
+      "label": "Direct sales, marketing, or customer service activities.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "20709",
+        "961"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.6",
+      "id": "4.A.4.b.6.e.10",
+      "iwa": "4.A.4.b.6.e",
+      "label": "Advise others on business or operational matters.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "962"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.6",
+      "id": "4.A.4.b.6.e.7",
+      "iwa": "4.A.4.b.6.e",
+      "label": "Recommend organizational process or policy changes.",
+      "role": "growth-manager",
+      "soc": "11-2021.00",
+      "task_ids": [
+        "19505"
+      ]
+    },
+    {
+      "gwa": "4.A.1.a.1",
+      "id": "4.A.1.a.1.w.1",
+      "iwa": "4.A.1.a.1.w",
+      "label": "Interview employees, customers, or others to collect information.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18854"
+      ]
+    },
+    {
+      "gwa": "4.A.1.a.2",
+      "id": "4.A.1.a.2.k.7",
+      "iwa": "4.A.1.a.2.k",
+      "label": "Evaluate personnel practices to ensure adherence to regulations.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18852",
+        "18874"
+      ]
+    },
+    {
+      "gwa": "4.A.2.a.1",
+      "id": "4.A.2.a.1.b.4",
+      "iwa": "4.A.2.a.1.b",
+      "label": "Evaluate effectiveness of personnel policies or practices.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18853",
+        "18875"
+      ]
+    },
+    {
+      "gwa": "4.A.2.a.2",
+      "id": "4.A.2.a.2.e.3",
+      "iwa": "4.A.2.a.2.e",
+      "label": "Verify application data to determine program eligibility.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18855"
+      ]
+    },
+    {
+      "gwa": "4.A.2.a.3",
+      "id": "4.A.2.a.3.a.5",
+      "iwa": "4.A.2.a.3.a",
+      "label": "Review license or permit applications.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18876"
+      ]
+    },
+    {
+      "gwa": "4.A.2.b.3",
+      "id": "4.A.2.b.3.a.6",
+      "iwa": "4.A.2.b.3.a",
+      "label": "Update knowledge of legal or regulatory environments.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18864"
+      ]
+    },
+    {
+      "gwa": "4.A.3.b.6",
+      "id": "4.A.3.b.6.h.14",
+      "iwa": "4.A.3.b.6.h",
+      "label": "Maintain data in information systems or databases.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18866"
+      ]
+    },
+    {
+      "gwa": "4.A.3.b.6",
+      "id": "4.A.3.b.6.h.9",
+      "iwa": "4.A.3.b.6.h",
+      "label": "Maintain records, documents, or other files.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18863"
+      ]
+    },
+    {
+      "gwa": "4.A.3.b.6",
+      "id": "4.A.3.b.6.l.10",
+      "iwa": "4.A.3.b.6.l",
+      "label": "Develop training materials.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18870"
+      ]
+    },
+    {
+      "gwa": "4.A.3.b.6",
+      "id": "4.A.3.b.6.o.4",
+      "iwa": "4.A.3.b.6.o",
+      "label": "Prepare operational reports.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18853"
+      ]
+    },
+    {
+      "gwa": "4.A.4.a.1",
+      "id": "4.A.4.a.1.b.4",
+      "iwa": "4.A.4.a.1.b",
+      "label": "Explain regulations, policies, or procedures.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18861"
+      ]
+    },
+    {
+      "gwa": "4.A.4.a.2",
+      "id": "4.A.4.a.2.e.5",
+      "iwa": "4.A.4.a.2.e",
+      "label": "Discuss business strategies, practices, or policies with managers.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18856",
+        "18875"
+      ]
+    },
+    {
+      "gwa": "4.A.4.a.3",
+      "id": "4.A.4.a.3.c.6",
+      "iwa": "4.A.4.a.3.c",
+      "label": "Inform individuals or organizations of status or findings.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18857"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.3",
+      "id": "4.A.4.b.3.d.1",
+      "iwa": "4.A.4.b.3.d",
+      "label": "Train personnel to enhance job skills.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18870"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.3",
+      "id": "4.A.4.b.3.d.17",
+      "iwa": "4.A.4.b.3.d",
+      "label": "Train personnel on managerial topics.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18867"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.4",
+      "id": "4.A.4.b.4.f.2",
+      "iwa": "4.A.4.b.4.f",
+      "label": "Coordinate personnel recruitment activities.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18858",
+        "18860",
+        "18865",
+        "18873"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.6",
+      "id": "4.A.4.b.6.e.10",
+      "iwa": "4.A.4.b.6.e",
+      "label": "Advise others on business or operational matters.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18874"
+      ]
+    },
+    {
+      "gwa": "4.A.4.b.6",
+      "id": "4.A.4.b.6.e.8",
+      "iwa": "4.A.4.b.6.e",
+      "label": "Advise others on human resources topics.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18872"
+      ]
+    },
+    {
+      "gwa": "4.A.4.c.2",
+      "id": "4.A.4.c.2.a.2",
+      "iwa": "4.A.4.c.2.a",
+      "label": "Conduct eligibility or selection interviews.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18862"
+      ]
+    },
+    {
+      "gwa": "4.A.4.c.2",
+      "id": "4.A.4.c.2.a.8",
+      "iwa": "4.A.4.c.2.a",
+      "label": "Administer personnel recruitment or hiring activities.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "18859",
+        "18868",
+        "18869",
+        "18871"
+      ]
+    },
+    {
+      "gwa": "4.A.4.c.2",
+      "id": "4.A.4.c.2.b.1",
+      "iwa": "4.A.4.c.2.b",
+      "label": "Perform human resources activities.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "21097"
+      ]
+    },
+    {
+      "gwa": "4.A.4.c.2",
+      "id": "4.A.4.c.2.b.2",
+      "iwa": "4.A.4.c.2.b",
+      "label": "Administer compensation or benefits programs.",
+      "role": "hr-generalist",
+      "soc": "13-1071.00",
+      "task_ids": [
+        "21097"
+      ]
+    }
+  ],
+  "roles": {
+    "account-executive": "41-4012.00",
+    "forward-deployed-engineer": "15-1252.00",
+    "growth-manager": "11-2021.00",
+    "hr-generalist": "13-1071.00"
+  },
+  "rules_sha256": "4178753cd86f2c00bbde2c4611bae2f50fb310e36e215d361144ec1392007b30",
+  "schema": "skills-vector.onet-backbone/1",
+  "software": [
+    {
+      "examples": {
+        "hr-generalist": [
+          "ADP Workforce Now",
+          "AST Staff Matrix",
+          "Adobe Human Capital Application Solution Accelerator",
+          "Applicant tracking software",
+          "ApplicantPro iApplicants",
+          "Arbita OnePost",
+          "Arbita OneWorld",
+          "Background checking software",
+          "BlackDog Recruiting",
+          "Blackdog",
+          "Bond International Adapt Staffing",
+          "Bond International Software Bond StaffSuite",
+          "BrightMove Applicant Tracking System",
+          "Bullhorn Applicant Tracking System",
+          "COATSsql",
+          "CVTracer",
+          "Candidate screening software",
+          "Candidate tracking software",
+          "Careerbuilder.com",
+          "Cluen Encore",
+          "Cluen executive recruitment software",
+          "DGCC.com RecruitTrack",
+          "Data Frenzy",
+          "Ellucian Banner Human Resources",
+          "GoBackgrounds",
+          "HRM Direct",
+          "HireAbility ResumeParser",
+          "HireLogic PowerPlace",
+          "Human resource information system (HRIS)",
+          "Human resource management software HRMS",
+          "ICIMS",
+          "Industrial Code Recruitpoint.net",
+          "Intelius",
+          "Intelligent Algorithms InfoGIST Platinum Recruiter",
+          "Job posting software",
+          "Kronos Workforce HR",
+          "Lawson Human Resource Management",
+          "Main Sequence Technologies PCRecruiter",
+          "Main Sequence Technologies PCRecruiter Resume Inhaler",
+          "Micro J Systems PcHunter",
+          "Oracle HRIS",
+          "Oracle Taleo",
+          "Post Once",
+          "PostingPal",
+          "PowerPlace Professional",
+          "Recruit Wizard",
+          "RecruitTrack",
+          "Recruitment management software",
+          "Recruitpoint.net",
+          "Resource Edge TalentHook Sphere",
+          "Resume converter software",
+          "Resume extraction and search software",
+          "Resume processing software",
+          "ResumeRobot",
+          "SAP ERP Human Capital Management",
+          "Safari Software Products Safari",
+          "Sendouts Recruiting",
+          "Silk Road technology OpenHire",
+          "Staffing Solutions Enterprises Staff Matrix",
+          "StaffingSoft Staffing Edition",
+          "Talent Technology HireDesk",
+          "Talent Technology Resume Mirror",
+          "Talent Technology Talemetry",
+          "TalentHook",
+          "Technomedia Hodes iQ",
+          "TempWorks recruiting and staffing software",
+          "VCG Pointwing",
+          "eQuest"
+        ]
+      },
+      "id": "2.E.1.c",
+      "label": "Human resources software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Google Classroom",
+          "Microsoft Project",
+          "Microsoft Teams",
+          "Oracle Primavera Enterprise Project Portfolio Management"
+        ],
+        "forward-deployed-engineer": [
+          "Atlassian Confluence",
+          "Microsoft Project",
+          "Microsoft Team Foundation Server",
+          "Microsoft Teams",
+          "Oracle Primavera Enterprise Project Portfolio Management"
+        ],
+        "growth-manager": [
+          "Atlassian Confluence",
+          "Microsoft Project",
+          "Microsoft Teams"
+        ],
+        "hr-generalist": [
+          "Microsoft Project",
+          "Oracle Primavera Enterprise Project Portfolio Management"
+        ]
+      },
+      "id": "2.E.1.e",
+      "label": "Project management software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "MASterMind"
+        ],
+        "forward-deployed-engineer": [
+          "Ansible software"
+        ],
+        "growth-manager": [
+          "Oracle Beehive"
+        ]
+      },
+      "id": "2.E.1.i",
+      "label": "Expert system software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Microsoft Office software"
+        ],
+        "forward-deployed-engineer": [
+          "LibreOffice",
+          "Microsoft Office software"
+        ],
+        "growth-manager": [
+          "Microsoft Office software"
+        ],
+        "hr-generalist": [
+          "Microsoft Office software"
+        ]
+      },
+      "id": "2.E.1.k",
+      "label": "Office suite software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Google Ads",
+          "HubSpot software",
+          "Marketo Marketing Automation"
+        ],
+        "forward-deployed-engineer": [
+          "Marketo Marketing Automation"
+        ],
+        "growth-manager": [
+          "Google Ads",
+          "HubSpot software",
+          "Marketo Marketing Automation"
+        ],
+        "hr-generalist": [
+          "Google Ads",
+          "Marketo Marketing Automation"
+        ]
+      },
+      "id": "2.E.1.l",
+      "label": "Sales and marketing software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Apache Airflow"
+        ]
+      },
+      "id": "2.E.1.o",
+      "label": "Procedure management software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Microsoft Visio"
+        ],
+        "forward-deployed-engineer": [
+          "Microsoft Visio"
+        ],
+        "growth-manager": [
+          "Microsoft Visio"
+        ],
+        "hr-generalist": [
+          "Microsoft Visio"
+        ]
+      },
+      "id": "2.E.1.p",
+      "label": "Process mapping and design software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Oracle WebLogic Server"
+        ],
+        "forward-deployed-engineer": [
+          "Atlassian Bitbucket",
+          "Docker",
+          "GitHub",
+          "GitLab",
+          "Kubernetes",
+          "Microservices Architecture",
+          "Oracle Application Server",
+          "Oracle WebLogic Server",
+          "Red Hat OpenShift",
+          "Red Hat WildFly",
+          "Spring Boot"
+        ],
+        "growth-manager": [
+          "GitHub"
+        ],
+        "hr-generalist": [
+          "GitHub",
+          "Oracle WebLogic Server"
+        ]
+      },
+      "id": "2.E.10.a",
+      "label": "Application server software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Eko",
+          "Skype"
+        ],
+        "forward-deployed-engineer": [
+          "Skype"
+        ],
+        "growth-manager": [
+          "Eko"
+        ],
+        "hr-generalist": [
+          "Skype"
+        ]
+      },
+      "id": "2.E.10.b",
+      "label": "Desktop communications software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Microsoft Active Directory"
+        ]
+      },
+      "id": "2.E.10.d",
+      "label": "Internet directory services software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Microsoft Internet Explorer",
+          "Mozilla Firefox",
+          "SeaMonkey"
+        ],
+        "growth-manager": [
+          "Web browser software"
+        ],
+        "hr-generalist": [
+          "Microsoft Internet Explorer",
+          "Web browser software"
+        ]
+      },
+      "id": "2.E.10.e",
+      "label": "Internet browser software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Nagios",
+          "Wireshark"
+        ]
+      },
+      "id": "2.E.11.a",
+      "label": "Network monitoring software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Software distribution management software"
+        ]
+      },
+      "id": "2.E.11.c",
+      "label": "Administration software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Voice over internet protocol VoIP system software"
+        ],
+        "forward-deployed-engineer": [
+          "Voice over internet protocol VoIP system software"
+        ]
+      },
+      "id": "2.E.11.d",
+      "label": "Internet protocol IP multimedia subsystem software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Amazon Web Services AWS CloudFormation",
+          "Google Cloud software",
+          "IBM WebSphere",
+          "IBM WebSphere MQ",
+          "Oracle Cloud software",
+          "Splunk Enterprise"
+        ],
+        "growth-manager": [
+          "Splunk Enterprise"
+        ]
+      },
+      "id": "2.E.11.e",
+      "label": "Cloud-based management software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Citrix cloud computing software"
+        ],
+        "forward-deployed-engineer": [
+          "Citrix cloud computing software",
+          "PuTTY"
+        ],
+        "growth-manager": [
+          "Citrix cloud computing software"
+        ]
+      },
+      "id": "2.E.12.a",
+      "label": "Access software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "IBM Domino"
+        ],
+        "growth-manager": [
+          "IBM Domino"
+        ],
+        "hr-generalist": [
+          "IBM Domino"
+        ]
+      },
+      "id": "2.E.12.b",
+      "label": "Communications server software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Amazon Simple Storage Service S3",
+          "Storage area network SAN software"
+        ]
+      },
+      "id": "2.E.12.f",
+      "label": "Storage networking software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Border Gateway Protocol BGP"
+        ]
+      },
+      "id": "2.E.12.g",
+      "label": "Switch or router software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Migration software"
+        ]
+      },
+      "id": "2.E.12.m",
+      "label": "Platform interconnectivity software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "File server software"
+        ]
+      },
+      "id": "2.E.13.a",
+      "label": "Filesystem software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "IBM z/OS operating systems"
+        ]
+      },
+      "id": "2.E.13.b",
+      "label": "Network operation system software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Apple macOS",
+          "Handheld computer device software",
+          "Microsoft Windows",
+          "UNIX"
+        ],
+        "forward-deployed-engineer": [
+          "Apple iOS",
+          "Apple macOS",
+          "Bash",
+          "Cisco IOS",
+          "Disk operating system DOS",
+          "Google Android",
+          "Hewlett Packard HP-UX",
+          "IBM AIX",
+          "Job control language JCL",
+          "KornShell",
+          "Linux",
+          "Magellan Firmware",
+          "Microsoft Windows",
+          "Microsoft Windows Server",
+          "Operating system shells",
+          "Oracle Solaris",
+          "QNX",
+          "Real time operating system RTOS software",
+          "Red Hat Enterprise Linux",
+          "Shell script",
+          "UNIX",
+          "UNIX Shell",
+          "Ubuntu",
+          "Win CE",
+          "Wind River VxWorks"
+        ],
+        "growth-manager": [
+          "Apple macOS"
+        ],
+        "hr-generalist": [
+          "Apple macOS",
+          "Microsoft Windows",
+          "Oracle Solaris"
+        ]
+      },
+      "id": "2.E.13.c",
+      "label": "Operating system software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Single sign-on SSO"
+        ]
+      },
+      "id": "2.E.14.a",
+      "label": "Authentication server software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Virtual private networking VPN software"
+        ],
+        "forward-deployed-engineer": [
+          "Firewall software",
+          "Virtual private networking VPN software"
+        ]
+      },
+      "id": "2.E.14.c",
+      "label": "Network security and virtual private network VPN equipment software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "McAfee",
+          "NortonLifeLock cybersecurity software"
+        ],
+        "forward-deployed-engineer": [
+          "Encryption software",
+          "McAfee",
+          "NortonLifeLock cybersecurity software"
+        ],
+        "growth-manager": [
+          "McAfee",
+          "NortonLifeLock cybersecurity software"
+        ]
+      },
+      "id": "2.E.14.d",
+      "label": "Transaction security and virus protection software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Microsoft DirectX"
+        ]
+      },
+      "id": "2.E.15.c",
+      "label": "Device drivers or system software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Backup and archival software",
+          "Veritas NetBackup"
+        ]
+      },
+      "id": "2.E.15.f",
+      "label": "Backup or archival software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "IBM Notes",
+          "Microsoft Exchange",
+          "Microsoft Outlook",
+          "Mozilla Thunderbird"
+        ],
+        "forward-deployed-engineer": [
+          "Google Gmail",
+          "IBM Notes",
+          "Microsoft Exchange",
+          "Microsoft Outlook"
+        ],
+        "growth-manager": [
+          "IBM Notes",
+          "Microsoft Outlook"
+        ],
+        "hr-generalist": [
+          "IBM Notes",
+          "Microsoft Outlook"
+        ]
+      },
+      "id": "2.E.16.a",
+      "label": "Electronic mail software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Cisco Webex",
+          "FaceTime",
+          "Google Meet",
+          "LogMeIn GoToMeeting",
+          "Zoom"
+        ],
+        "forward-deployed-engineer": [
+          "Cisco Webex",
+          "FaceTime",
+          "Google Meet",
+          "LogMeIn GoToMeeting",
+          "Zoom"
+        ],
+        "growth-manager": [
+          "Google Meet",
+          "LogMeIn GoToMeeting"
+        ],
+        "hr-generalist": [
+          "Cisco Webex",
+          "FaceTime",
+          "Google Meet",
+          "Zoom"
+        ]
+      },
+      "id": "2.E.16.b",
+      "label": "Video conferencing software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "LogMeIn GoToWebinar"
+        ],
+        "forward-deployed-engineer": [
+          "LogMeIn GoToWebinar"
+        ],
+        "growth-manager": [
+          "LogMeIn GoToWebinar"
+        ]
+      },
+      "id": "2.E.16.c",
+      "label": "Network conferencing software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Blink",
+          "GroupMe"
+        ],
+        "forward-deployed-engineer": [
+          "Blink",
+          "GroupMe"
+        ]
+      },
+      "id": "2.E.16.d",
+      "label": "Instant messaging software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "ESRI ArcGIS software"
+        ]
+      },
+      "id": "2.E.16.e",
+      "label": "Map creation software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Dropbox",
+          "Google Drive",
+          "Slack"
+        ],
+        "forward-deployed-engineer": [
+          "Dropbox",
+          "Google Drive",
+          "Platform as a service PaaS",
+          "Slack"
+        ],
+        "growth-manager": [
+          "Asana",
+          "Dropbox",
+          "Google Drive",
+          "Slack",
+          "Software as a service SaaS"
+        ],
+        "hr-generalist": [
+          "Google Drive",
+          "Slack"
+        ]
+      },
+      "id": "2.E.16.i",
+      "label": "Cloud-based data access and sharing software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "IBM Power Systems software"
+        ],
+        "forward-deployed-engineer": [
+          "IBM Power Systems software"
+        ],
+        "growth-manager": [
+          "IBM Power Systems software"
+        ],
+        "hr-generalist": [
+          "IBM Power Systems software"
+        ]
+      },
+      "id": "2.E.17.a",
+      "label": "Enterprise system management software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Fund accounting software",
+          "Intuit QuickBooks",
+          "Sage 50 Accounting",
+          "Tax software"
+        ],
+        "growth-manager": [
+          "Fund accounting software",
+          "Intuit QuickBooks",
+          "Tax software"
+        ],
+        "hr-generalist": [
+          "Intuit QuickBooks",
+          "Sage 50 Accounting",
+          "Tax software"
+        ]
+      },
+      "id": "2.E.2.a",
+      "label": "Accounting software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Microsoft Dynamics",
+          "Microsoft Dynamics GP",
+          "NetSuite ERP",
+          "Oracle Fusion Applications",
+          "Oracle Hyperion",
+          "Oracle JD Edwards EnterpriseOne",
+          "Oracle PeopleSoft",
+          "SAP Business Objects",
+          "SAP software",
+          "SSA Global BPCS"
+        ],
+        "forward-deployed-engineer": [
+          "Management information systems MIS",
+          "Microsoft Dynamics",
+          "Microsoft Dynamics GP",
+          "NetSuite ERP",
+          "Oracle Fusion Applications",
+          "Oracle Hyperion",
+          "Oracle JD Edwards EnterpriseOne",
+          "Oracle PeopleSoft",
+          "Oracle PeopleSoft Financials",
+          "SAP Business Objects",
+          "SAP ERP",
+          "SAP software",
+          "Workday software"
+        ],
+        "growth-manager": [
+          "Microsoft Dynamics",
+          "NetSuite ERP",
+          "Oracle Fusion Applications",
+          "Oracle Hyperion",
+          "Oracle PeopleSoft",
+          "Oracle PeopleSoft Financials",
+          "SAP Business Objects",
+          "SAP software"
+        ],
+        "hr-generalist": [
+          "Microsoft Dynamics",
+          "Microsoft Dynamics GP",
+          "NetSuite ERP",
+          "Oracle Fusion Applications",
+          "Oracle Hyperion",
+          "Oracle JD Edwards EnterpriseOne",
+          "Oracle PeopleSoft",
+          "Oracle PeopleSoft Financials",
+          "Oracle PeopleSoft Human Capital Management",
+          "SAP Business Objects",
+          "SAP software",
+          "Workday software"
+        ]
+      },
+      "id": "2.E.2.b",
+      "label": "Enterprise resource planning ERP software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Delphi Technology",
+          "Oracle E-Business Suite Financials"
+        ],
+        "forward-deployed-engineer": [
+          "Delphi Technology",
+          "Oracle E-Business Suite Financials"
+        ],
+        "growth-manager": [
+          "Delphi Technology",
+          "Oracle E-Business Suite Financials"
+        ],
+        "hr-generalist": [
+          "Oracle E-Business Suite Financials"
+        ]
+      },
+      "id": "2.E.2.d",
+      "label": "Financial analysis software"
+    },
+    {
+      "examples": {
+        "hr-generalist": [
+          "Kronos Workforce Payroll",
+          "Kronos Workforce Timekeeper",
+          "MPAY Millennium"
+        ]
+      },
+      "id": "2.E.2.e",
+      "label": "Time accounting software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Adobe Creative Cloud software",
+          "Adobe Illustrator",
+          "Adobe Photoshop",
+          "SmugMug Flickr"
+        ],
+        "forward-deployed-engineer": [
+          "Adobe Creative Cloud software",
+          "Adobe Illustrator",
+          "Adobe Photoshop",
+          "GNU Image Manipulation Program GIMP",
+          "JamBoard",
+          "Open Graphics Library OpenGL",
+          "SmugMug Flickr",
+          "Trimble SketchUp Pro"
+        ],
+        "growth-manager": [
+          "Adobe Creative Cloud software",
+          "Adobe Illustrator",
+          "Adobe Photoshop",
+          "Canva",
+          "JamBoard",
+          "SmugMug Flickr"
+        ],
+        "hr-generalist": [
+          "Adobe Creative Cloud software",
+          "Adobe Illustrator",
+          "Adobe Photoshop",
+          "SmugMug Flickr"
+        ]
+      },
+      "id": "2.E.4.b",
+      "label": "Graphics or photo imaging software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Screencastify",
+          "YouTube"
+        ],
+        "forward-deployed-engineer": [
+          "Adobe After Effects",
+          "Flipgrid",
+          "Loom",
+          "Screencastify",
+          "YouTube"
+        ],
+        "growth-manager": [
+          "Adobe After Effects",
+          "Apple Final Cut Pro",
+          "Flipgrid",
+          "Kapwing",
+          "Screencast-O-Matic",
+          "Screencastify",
+          "TikTok",
+          "WeVideo",
+          "YouTube"
+        ],
+        "hr-generalist": [
+          "Apple Final Cut Pro",
+          "Loom",
+          "YouTube"
+        ]
+      },
+      "id": "2.E.4.c",
+      "label": "Video creation and editing software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "3M Post-it App",
+          "Evernote",
+          "Google Docs",
+          "Microsoft OneNote",
+          "Microsoft Word"
+        ],
+        "forward-deployed-engineer": [
+          "3M Post-it App",
+          "Evernote",
+          "Google Docs",
+          "Microsoft OneNote",
+          "Microsoft Word"
+        ],
+        "growth-manager": [
+          "Evernote",
+          "Google Docs",
+          "Microsoft Word"
+        ],
+        "hr-generalist": [
+          "Evernote",
+          "Google Docs",
+          "Microsoft Word"
+        ]
+      },
+      "id": "2.E.4.d",
+      "label": "Word processing software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Apple Keynote",
+          "Google Slides",
+          "Microsoft PowerPoint"
+        ],
+        "forward-deployed-engineer": [
+          "Google Slides",
+          "Microsoft PowerPoint"
+        ],
+        "growth-manager": [
+          "Apple Keynote",
+          "Google Slides",
+          "Mentimeter",
+          "Microsoft PowerPoint"
+        ],
+        "hr-generalist": [
+          "Google Slides",
+          "Microsoft PowerPoint"
+        ]
+      },
+      "id": "2.E.4.f",
+      "label": "Presentation software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Adobe Dreamweaver",
+          "Facebook",
+          "LinkedIn",
+          "Social media sites"
+        ],
+        "forward-deployed-engineer": [
+          "Adobe Dreamweaver",
+          "Google Sites",
+          "LinkedIn",
+          "Social media sites",
+          "WordPress"
+        ],
+        "growth-manager": [
+          "Adobe Dreamweaver",
+          "Facebook",
+          "Instagram",
+          "LinkedIn",
+          "Social media sites",
+          "WordPress"
+        ],
+        "hr-generalist": [
+          "Adobe Dreamweaver",
+          "Facebook",
+          "Social media sites"
+        ]
+      },
+      "id": "2.E.4.g",
+      "label": "Web page creation and editing software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Computerized call calendars",
+          "Computerized time management systems"
+        ]
+      },
+      "id": "2.E.4.h",
+      "label": "Calendar and scheduling software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Microsoft Excel"
+        ],
+        "forward-deployed-engineer": [
+          "Google Sheets",
+          "Microsoft Excel"
+        ],
+        "growth-manager": [
+          "Microsoft Excel"
+        ],
+        "hr-generalist": [
+          "Microsoft Excel"
+        ]
+      },
+      "id": "2.E.4.i",
+      "label": "Spreadsheet software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Adobe InDesign",
+          "Contract Central",
+          "Microsoft Publisher"
+        ],
+        "forward-deployed-engineer": [
+          "Adobe InDesign",
+          "Microsoft Publisher"
+        ],
+        "growth-manager": [
+          "Adobe InDesign",
+          "Microsoft Publisher"
+        ],
+        "hr-generalist": [
+          "Adobe InDesign",
+          "Microsoft Publisher"
+        ]
+      },
+      "id": "2.E.4.k",
+      "label": "Desktop publishing software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Atlassian JIRA",
+          "Emerald Software Group Emerald Green Office"
+        ],
+        "growth-manager": [
+          "Atlassian JIRA"
+        ]
+      },
+      "id": "2.E.5.a",
+      "label": "Content workflow software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Adobe Acrobat",
+          "Microsoft SharePoint"
+        ],
+        "forward-deployed-engineer": [
+          "Adobe Acrobat",
+          "Document management system software",
+          "Microsoft SharePoint"
+        ],
+        "growth-manager": [
+          "Adobe Acrobat",
+          "Adobe Acrobat Reader",
+          "Microsoft SharePoint"
+        ],
+        "hr-generalist": [
+          "Adobe Acrobat",
+          "Adobe LifeCycle Enterprise Suite",
+          "Microsoft SharePoint"
+        ]
+      },
+      "id": "2.E.5.b",
+      "label": "Document management software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Apache Subversion SVN",
+          "Git",
+          "Version control software"
+        ]
+      },
+      "id": "2.E.5.c",
+      "label": "File versioning software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "VMware"
+        ]
+      },
+      "id": "2.E.6.b",
+      "label": "Clustering software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "ACT! Premium",
+          "Advantage Signature Marketing Group Web Master",
+          "Aptean Onyx CRM",
+          "Ardexus Mode",
+          "Ardexus TASC",
+          "Commence Application Suite",
+          "Contact management systems",
+          "Contract tracking software",
+          "HEAT Software GoldMine",
+          "HydraNet",
+          "Maximizer Software Maximizer Enterprise",
+          "Microsoft Dynamics CRM",
+          "NetSuite NetCRM",
+          "Novo Customer Tracking Software",
+          "Oracle Eloqua",
+          "Relavis CRM Portal",
+          "Root Systems SPS Process Management",
+          "Sage SalesLogix",
+          "Sales force automation software",
+          "Salesforce software",
+          "SamePage StudioCRM",
+          "Soffront CRM Portal",
+          "Tigerpaw",
+          "interlinkONE",
+          "vtiger CRM"
+        ],
+        "forward-deployed-engineer": [
+          "Blackbaud The Raiser's Edge",
+          "Oracle Eloqua",
+          "Salesforce software"
+        ],
+        "growth-manager": [
+          "Blackbaud The Raiser's Edge",
+          "Constant Contact",
+          "MarketSharp",
+          "Oracle Eloqua",
+          "Oracle Siebel Server Sync",
+          "QAD Marketing Automation",
+          "Sage SalesLogix",
+          "Salesforce software",
+          "Salesforce.com Salesforce CRM"
+        ],
+        "hr-generalist": [
+          "Blackbaud The Raiser's Edge",
+          "Oracle Eloqua",
+          "Salesforce software",
+          "Vendor management system software"
+        ]
+      },
+      "id": "2.E.6.c",
+      "label": "Customer relationship management CRM software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Relational database management software"
+        ],
+        "forward-deployed-engineer": [
+          "Amazon DynamoDB",
+          "Amazon Kinesis",
+          "Apache Cassandra",
+          "Apache Flume",
+          "Apache HBase",
+          "Apache Hadoop",
+          "Apache Oozie",
+          "Apache Pig",
+          "Apache Solr",
+          "Computer Associates integrated data management system CA-IDMS",
+          "Data definition language DDL",
+          "Data manipulation language DML",
+          "Distributed database management software",
+          "Elasticsearch",
+          "Microsoft transact-structural query language T-SQL",
+          "MongoDB",
+          "NoSQL",
+          "Oracle Database",
+          "Oracle PL/SQL",
+          "Redis",
+          "Relational database management software",
+          "SAP Adaptive Server Enterprise",
+          "Structured Query Report SQR",
+          "Talend Big Data Integration",
+          "Teradata Database"
+        ],
+        "growth-manager": [
+          "Apache Cassandra",
+          "Apache Hadoop",
+          "Apache Hive",
+          "Apache Pig",
+          "Apache Solr",
+          "Elasticsearch",
+          "NoSQL",
+          "Oracle PL/SQL",
+          "Teradata Database"
+        ],
+        "hr-generalist": [
+          "Teradata Database"
+        ]
+      },
+      "id": "2.E.6.d",
+      "label": "Data base management system software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "SalesInSync"
+        ],
+        "forward-deployed-engineer": [
+          "DataVision",
+          "Microsoft SQL Server Reporting Services SSRS",
+          "Oracle Business Intelligence Discoverer",
+          "Oracle Business Intelligence Suite",
+          "Oracle Reports",
+          "SAP Business Intelligence",
+          "SAP Crystal Reports"
+        ],
+        "growth-manager": [
+          "Database reporting software"
+        ],
+        "hr-generalist": [
+          "Microsoft SQL Server Reporting Services SSRS",
+          "SAP Crystal Reports"
+        ]
+      },
+      "id": "2.E.6.e",
+      "label": "Data base reporting software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Airtable",
+          "Blackboard software",
+          "Data entry software",
+          "Database software",
+          "FileMaker Pro",
+          "Microsoft Access",
+          "Oracle Database",
+          "Yardi software"
+        ],
+        "forward-deployed-engineer": [
+          "ADO.NET",
+          "Airtable",
+          "Amazon Elastic Compute Cloud EC2",
+          "Amazon Redshift",
+          "Amazon Web Services AWS software",
+          "Apache Hive",
+          "Blackboard software",
+          "FileMaker Pro",
+          "GraphQL",
+          "IBM DB2",
+          "IEA Software Emerald",
+          "Microsoft Access",
+          "Microsoft SQL Server",
+          "MySQL",
+          "Oracle JDBC",
+          "Prometheus",
+          "PyTorch",
+          "ServiceNow",
+          "Structured query language SQL",
+          "Transact-SQL"
+        ],
+        "growth-manager": [
+          "AEC Software FastTrack Schedule",
+          "AdSense Tracker",
+          "Airtable",
+          "Amazon Redshift",
+          "Amazon Web Services AWS software",
+          "ClearEDGE",
+          "Database software",
+          "Databox",
+          "FileMaker Pro",
+          "Microsoft Access",
+          "Microsoft SQL Server",
+          "MySQL",
+          "Oracle Database",
+          "Structured query language SQL",
+          "Yardi software"
+        ],
+        "hr-generalist": [
+          "Airtable",
+          "Blackboard software",
+          "Data entry software",
+          "Database software",
+          "FileMaker Pro",
+          "Google",
+          "LinkedIn",
+          "Microsoft Access",
+          "Microsoft SQL Server",
+          "Online databases",
+          "Oracle Database"
+        ]
+      },
+      "id": "2.E.6.f",
+      "label": "Data base user interface and query software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Google Analytics"
+        ],
+        "forward-deployed-engineer": [
+          "Google Analytics",
+          "Snowflake"
+        ],
+        "growth-manager": [
+          "Google Analytics"
+        ],
+        "hr-generalist": [
+          "Google Analytics"
+        ]
+      },
+      "id": "2.E.6.g",
+      "label": "Data mining software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "LexisNexis"
+        ],
+        "forward-deployed-engineer": [
+          "Apache Avro",
+          "LexisNexis"
+        ],
+        "growth-manager": [
+          "LexisNexis"
+        ],
+        "hr-generalist": [
+          "LexisNexis"
+        ]
+      },
+      "id": "2.E.6.h",
+      "label": "Information retrieval or search software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Informatica software",
+          "Quest Erwin Data Modeler",
+          "Talend Data Fabric"
+        ]
+      },
+      "id": "2.E.6.i",
+      "label": "Metadata management software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Hibernate ORM",
+          "PostgreSQL"
+        ]
+      },
+      "id": "2.E.6.j",
+      "label": "Object oriented data base management software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Apache HTTP Server"
+        ]
+      },
+      "id": "2.E.6.k",
+      "label": "Portal server software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Customer information control system CICS",
+          "IBM Middleware",
+          "Microsoft Internet Information Services (IIS)",
+          "Object Management Group Object Request Broker",
+          "Web server software"
+        ],
+        "growth-manager": [
+          "Armand Morin MultiTrack Generator"
+        ]
+      },
+      "id": "2.E.6.l",
+      "label": "Transaction server software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "IBM Cognos Impromptu",
+          "MicroStrategy",
+          "Oracle Business Intelligence Enterprise Edition",
+          "Qlik Tech QlikView",
+          "Tableau"
+        ],
+        "forward-deployed-engineer": [
+          "Alteryx software",
+          "Google Looker Analytics",
+          "IBM Cognos Impromptu",
+          "MicroStrategy",
+          "Microsoft Power BI",
+          "Oracle Business Intelligence Enterprise Edition",
+          "Qlik Tech QlikView",
+          "Tableau"
+        ],
+        "growth-manager": [
+          "Google Looker Analytics",
+          "IBM Cognos Impromptu",
+          "MicroStrategy",
+          "Oracle Business Intelligence Enterprise Edition",
+          "Qlik Tech QlikView",
+          "Tableau"
+        ],
+        "hr-generalist": [
+          "IBM Cognos Impromptu",
+          "MicroStrategy",
+          "Oracle Business Intelligence Enterprise Edition",
+          "Qlik Tech QlikView",
+          "Tableau"
+        ]
+      },
+      "id": "2.E.6.m",
+      "label": "Business intelligence and data analysis software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Automated installation software",
+          "Chef",
+          "Deployment software",
+          "IBM Rational ClearCase",
+          "IBM Terraform",
+          "Patch management software",
+          "Perforce Helix software",
+          "Puppet",
+          "Red Hat Ansible Engine",
+          "Visible Razor"
+        ],
+        "hr-generalist": [
+          "Perforce Helix software"
+        ]
+      },
+      "id": "2.E.7.a",
+      "label": "Configuration management software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Eclipse IDE",
+          "Microsoft Visual Basic"
+        ],
+        "forward-deployed-engineer": [
+          "A programming language APL",
+          "ABC Compiler",
+          "AWK",
+          "Ada",
+          "Adobe ActionScript",
+          "Algorithmic language ALGOL",
+          "American National Standards Institute ANSI C",
+          "Apache Ant",
+          "Apache Kafka",
+          "Apache Maven",
+          "B-Method",
+          "Beginner's all-purpose symbolic instruction code BASIC",
+          "Bigloo Scheme",
+          "C",
+          "Call-processing language CPL",
+          "Canu",
+          "Common business oriented language COBOL",
+          "Computer On-line Real-time Applications Language CORAL 66",
+          "Eclipse IDE",
+          "Embarcadero JBuilder",
+          "Embedded systems development software",
+          "Event-driven State-machines Programming",
+          "Formula translation/translator FORTRAN",
+          "Forth",
+          "Gambit Scheme",
+          "Go",
+          "Haskell",
+          "IBM Rational ClearQuest",
+          "IBM Rational Rose XDE",
+          "ICON programming language",
+          "Integrated development environment IDE software",
+          "Interface definition language IDL",
+          "Interstate connection ICON",
+          "J",
+          "JFrog Artifactory",
+          "Kotlin",
+          "List processing language LISP",
+          "MUMPS M",
+          "Microsoft .NET Framework",
+          "Microsoft Azure DevOps Services",
+          "Microsoft Azure software",
+          "Microsoft ESP SDK",
+          "Microsoft PowerShell",
+          "Microsoft Visual Basic",
+          "Microsoft Visual Basic Scripting Edition VBScript",
+          "Microsoft Visual Basic for Applications VBA",
+          "Microsoft Visual Studio",
+          "National Instruments LabVIEW",
+          "OpenAI ChatGPT",
+          "Oracle Java 2 Platform Enterprise Edition J2EE",
+          "Oracle SQL Developer",
+          "Pascal",
+          "Programming language one PL/I",
+          "Prolog",
+          "Restructured extended executor REXX",
+          "Ruby",
+          "Scheme",
+          "Software development tools",
+          "Software libraries",
+          "String oriented symbolic language SNOBOL",
+          "Symantec Visual Cafe",
+          "Verilog",
+          "Web application software",
+          "Web service definition language WDSL",
+          "XML Path Language XPATH",
+          "Xcode"
+        ],
+        "growth-manager": [
+          "Adobe ActionScript",
+          "C",
+          "Microsoft Azure software",
+          "Microsoft Visual Basic",
+          "Microsoft Visual Basic Scripting Edition VBScript",
+          "Microsoft Visual Basic for Applications VBA",
+          "Ruby"
+        ],
+        "hr-generalist": [
+          "Microsoft Visual Basic",
+          "Microsoft Visual Basic for Applications VBA"
+        ]
+      },
+      "id": "2.E.7.b",
+      "label": "Development environment software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Extensible markup language XML"
+        ],
+        "forward-deployed-engineer": [
+          "Atlassian Bamboo",
+          "Enterprise application integration EAI software",
+          "Extensible markup language XML",
+          "IBM InfoSphere DataStage",
+          "Jenkins CI",
+          "Microsoft Power Automate",
+          "Microsoft Power Platform software",
+          "Microsoft SQL Server Integration Services SSIS",
+          "MuleSoft software",
+          "Oracle Fusion Middleware",
+          "SAP NetWeaver"
+        ],
+        "growth-manager": [
+          "Extensible markup language XML",
+          "IBM InfoSphere DataStage"
+        ],
+        "hr-generalist": [
+          "Extensible markup language XML",
+          "IBM InfoSphere DataStage"
+        ]
+      },
+      "id": "2.E.7.c",
+      "label": "Enterprise application integration software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Figma",
+          "Grafana Labs Grafana Cloud",
+          "Graphical user interface GUI builder software",
+          "Graphical user interface GUI design software",
+          "Salesforce Visualforce"
+        ],
+        "growth-manager": [
+          "Figma"
+        ]
+      },
+      "id": "2.E.7.d",
+      "label": "Graphical user interface development software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Apache Groovy"
+        ],
+        "forward-deployed-engineer": [
+          "ABC: the AspectBench Compiler for AspectJ",
+          "Advanced business application programming ABAP",
+          "Apache Groovy",
+          "Apache Spark",
+          "C#",
+          "C++",
+          "Collaborative Application Markup Language CAML",
+          "Common Lisp Object System CLOS",
+          "Component object model COM software",
+          "Component-based Scalable Logical Architecture CSLA",
+          "Distributed component object model DCOM software",
+          "Document Object Model DOM Scripting",
+          "E++ pattern language",
+          "Eiffel",
+          "Embarcadero Delphi",
+          "Gradle",
+          "Jupyter Notebook",
+          "Microsoft ActiveX",
+          "Microsoft Visual Basic.NET",
+          "Microsoft Visual C# .NET",
+          "Modula",
+          "Oberon",
+          "Objective C",
+          "Objective Caml",
+          "Oracle Java",
+          "Oracle Java Message Service JMS",
+          "Perl",
+          "Python",
+          "R",
+          "RabbitMQ",
+          "SAP PowerBuilder",
+          "Scala",
+          "Simple API for XML SAX",
+          "Smalltalk",
+          "Sun Microsystems Java Persistence API",
+          "Swift",
+          "TypeScript",
+          "jQuery"
+        ],
+        "growth-manager": [
+          "Jupyter Notebook",
+          "Python",
+          "R",
+          "Swift"
+        ],
+        "hr-generalist": [
+          "Advanced business application programming ABAP"
+        ]
+      },
+      "id": "2.E.7.e",
+      "label": "Object or component oriented development software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Defect tracking software",
+          "Dynamic analysis software",
+          "Fault testing software",
+          "Functional testing software",
+          "Hewlett Packard LoadRunner",
+          "IBM Rational PurifyPlus",
+          "Integration testing software",
+          "Interoperability testing software",
+          "JUnit",
+          "Load testing software",
+          "Migration testing software",
+          "Mutation testing software",
+          "Recovery testing software",
+          "Regression testing software",
+          "Security testing software",
+          "Selenium",
+          "SonarQube",
+          "Source code editor software",
+          "Static analysis software",
+          "Stress testing software",
+          "System testing software",
+          "Test design software",
+          "Test implementation software",
+          "Unit testing software",
+          "Usability testing software"
+        ]
+      },
+      "id": "2.E.7.f",
+      "label": "Program testing software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "IBM Rational RequisitePro",
+          "Requirements management software",
+          "Unified modeling language UML"
+        ]
+      },
+      "id": "2.E.7.g",
+      "label": "Requirements analysis and system architecture software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Hypertext markup language HTML"
+        ],
+        "forward-deployed-engineer": [
+          "AJAX",
+          "Adobe Flex",
+          "Allaire ColdFusion",
+          "Apache Struts",
+          "Apache Tomcat",
+          "Backbone.js",
+          "Bootstrap",
+          "Cascading style sheets CSS",
+          "Django",
+          "Drupal",
+          "Dynamic hypertext markup language DHTML",
+          "Eclipse Jersey",
+          "Enterprise JavaBeans",
+          "Ext JS",
+          "Extensible hypertext markup language XHTML",
+          "Extensible stylesheet language transformations XSLT",
+          "Google Angular",
+          "Hypertext markup language HTML",
+          "JavaScript",
+          "JavaScript Object Notation JSON",
+          "JavaScript framework software",
+          "LAMP Stack",
+          "Microsoft ASP.NET",
+          "Microsoft ASP.NET Core MVC",
+          "Microsoft Active Server Pages ASP",
+          "Node.js",
+          "Oracle JavaServer Pages JSP",
+          "PHP",
+          "RESTful API",
+          "React",
+          "React Native",
+          "React Redux",
+          "Ruby on Rails",
+          "Spring Framework",
+          "Vue.js"
+        ],
+        "growth-manager": [
+          "Cascading style sheets CSS",
+          "Drupal",
+          "Dynamic hypertext markup language DHTML",
+          "Extensible hypertext markup language XHTML",
+          "Hypertext markup language HTML",
+          "JavaScript",
+          "LAMP Stack",
+          "Oracle JavaServer Pages JSP",
+          "PHP",
+          "Ruby on Rails"
+        ],
+        "hr-generalist": [
+          "Drupal",
+          "Enterprise JavaBeans",
+          "Hypertext markup language HTML"
+        ]
+      },
+      "id": "2.E.7.h",
+      "label": "Web platform development software"
+    },
+    {
+      "examples": {
+        "forward-deployed-engineer": [
+          "Moodle"
+        ],
+        "growth-manager": [
+          "Padlet"
+        ]
+      },
+      "id": "2.E.8.b",
+      "label": "Computer based training software"
+    },
+    {
+      "examples": {
+        "growth-manager": [
+          "Nearpod"
+        ]
+      },
+      "id": "2.E.8.e",
+      "label": "Multi-media educational software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "ESRI ArcGIS software",
+          "Geographic information system GIS software"
+        ],
+        "hr-generalist": [
+          "ESRI ArcGIS software"
+        ]
+      },
+      "id": "2.E.8.h",
+      "label": "Geographic information system"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Autodesk AutoCAD"
+        ]
+      },
+      "id": "2.E.9.c",
+      "label": "Computer aided design CAD software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "IBM SPSS Statistics",
+          "SAS"
+        ],
+        "forward-deployed-engineer": [
+          "Data analysis software",
+          "Dynamic modeling software",
+          "IBM SPSS Statistics",
+          "MathWorks Simulink",
+          "Minitab",
+          "SAS",
+          "Simulation program with integrated circuit emphasis SPICE",
+          "StataCorp Stata",
+          "TensorFlow",
+          "The MathWorks MATLAB"
+        ],
+        "growth-manager": [
+          "IBM SPSS Statistics",
+          "Lyris HQ Web-Analytics Solution",
+          "Minitab",
+          "Nedstat Sitestat",
+          "Online advertising reporting software",
+          "SAS",
+          "StataCorp Stata",
+          "The MathWorks MATLAB"
+        ],
+        "hr-generalist": [
+          "Assessment software",
+          "IBM SPSS Statistics",
+          "SAS",
+          "StataCorp Stata"
+        ]
+      },
+      "id": "2.E.9.d",
+      "label": "Analytical or scientific software"
+    },
+    {
+      "examples": {
+        "account-executive": [
+          "Epic Systems",
+          "Healthcare common procedure coding system HCPCS",
+          "Medical condition coding software"
+        ],
+        "hr-generalist": [
+          "MEDITECH software"
+        ]
+      },
+      "id": "2.E.9.i",
+      "label": "Medical software"
+    }
+  ],
+  "source_files": {
+    "GWAs to IWAs to DWAs.txt": "46c7ac496ba796a2f51b5519c8c4821cc82660d87d8b940df6cbfa15860ba55d",
+    "Software Skills.txt": "3fd63fb00251af89bf55eb1d24986e654ff61d0e5214fc238fbb56da7b4c4f4c",
+    "Tasks to DWAs.txt": "8667a918008973103390072da720a09db02812faf93610df659f653750e2769d"
+  },
+  "source_note": "Derived subset for the four local role anchors; official ids/names, not task equivalence adjudication.",
+  "source_zip_sha256": "6883548adf5fde64cf6f801b35d15519c9225f2732c3cab0e281c652d16b23a9",
+  "version": "31.0"
+}

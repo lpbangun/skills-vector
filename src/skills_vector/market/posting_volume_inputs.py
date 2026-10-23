@@ -12,11 +12,14 @@ from .role_artifacts import digest as object_digest, read_json
 from .role_pipeline import EvidenceInputs, digest, normalized, require, within
 
 
-def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, employer_map: Path | None = None) -> EvidenceInputs:
+def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, employer_map: Path | None = None, *, upgrade: bool = True, grouping: bool = True) -> EvidenceInputs:
     base = EvidenceInputs.read(release_root, mapping_root)
     postings, sources, extracts, hashes, groups = [], dict(base.sources), dict(base.extracts), dict(base.hashes), {}
     manifests = []
     configured_roles = None
+    from .onet_backbone import Backbone, LOOKUP, RULES
+    from .posting_volume import capture
+    backbone = Backbone() if grouping else None
     for root in sorted((p.resolve() for p in roots)):
         manifest = read_json(within(root, "manifest.json"))
         require(manifest["schema"] == SCHEMA and manifest["window_length"] == "quarterly", "unsupported snapshot schema/cadence")
@@ -24,7 +27,7 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
         window = manifest["quarter"]
         require(window not in groups, "duplicate quarterly snapshot; releases are not independent windows")
         policy = VolumePolicy.from_value(manifest["policy"], root / "manifest.json").value
-        require(manifest["policy_sha256"] == object_digest(policy) and manifest["extraction_method"] == EXTRACTION, "snapshot policy/method mismatch")
+        require(manifest["policy_sha256"] == object_digest(policy) and manifest["extraction_method"] in ("rules/1", "rules/2"), "snapshot policy/method mismatch")
         require(policy["data_kind"] == manifest["data_kind"], "snapshot/policy data kind mismatch")
         roles = set(policy["roles"])
         require(roles <= set(base.occupations) and (configured_roles is None or roles == configured_roles), "snapshot roles mismatch")
@@ -41,7 +44,7 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
         rows = read_json(within(root, "postings.json"))
         seen, native_cache, parsed_cache = set(), {}, {}
         for posting in rows:
-            require(posting["extraction_method"] == EXTRACTION and quarter(posting["retrieved_at"]) == window, "posting method/date mismatch")
+            require(posting["extraction_method"] == manifest["extraction_method"] and quarter(posting["retrieved_at"]) == window, "posting method/date mismatch")
             key = (posting["occupation_slug"], posting["dedup_key"])
             require(key not in seen and key[0] in roles, "duplicate/unknown-role posting")
             seen.add(key)
@@ -63,11 +66,11 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
                 require(us_location_ok(posting["location"]) and dedup_key(posting["employer"], posting["job_id"], posting["url"]) == posting["dedup_key"], "invalid geography/dedup identity")
             original, is_html = native_description(posting["ats"], native)
             require(original == raw and is_html == posting["description_is_html"], "description not bound to retrieved board row")
-            replay = extract_sections(raw, is_html=is_html)
+            replay = extract_sections(raw, is_html=is_html, method=posting["extraction_method"])
             require(replay["description"] == text and replay["has_responsibilities"] == posting["has_responsibilities"], "rules extraction replay mismatch")
             expected_quotes = [{**{k: v for k, v in e.items() if k != "quote"}, "source_wording": e["quote"]} for e in replay["expectations"]]
             actual_quotes = [{k: v for k, v in e.items() if k not in ("expectation_id", "source_id")} for e in posting["expectations"]]
-            require(expected_quotes == actual_quotes, "expectations not the exact rules/1 extraction")
+            require(expected_quotes == actual_quotes, "expectations not the exact rules extraction")
             for expected in posting["expectations"]:
                 require(expected["source_id"] == posting["source_id"] and expected["source_sha256"] == posting["source_sha256"], "expectation source/hash mismatch")
                 require(text[expected["start"]:expected["end"]] == expected["source_wording"], "expectation quote is not an exact description span")
@@ -82,6 +85,30 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
             selected = [p for p in rows if p["occupation_slug"] == slug]
             counts = Counter(normalized(p["employer"]) for p in selected)
             require(len(selected) <= policy["max_postings_per_role"] <= 500 and (not selected or max(counts.values()) * 5 <= len(selected)), "snapshot violates independent employer/posting cap")
+        if upgrade and manifest["extraction_method"] == "rules/1":
+            saved = {b["url"]: (within(root, b["path"]).read_bytes(), b["retrieved_at"])
+                     for b in manifest["boards"] if b.get("path") and b.get("listing_complete") and not b.get("problems")}
+            processed, payloads = capture(VolumePolicy.from_value(policy, root / "manifest.json"), window, saved_boards=saved, frozen_ids={p["dedup_key"] for p in rows})
+            old_ids = {p["source_id"] for p in rows}
+            postings = [p for p in postings if p["source_id"] not in old_ids]
+            for sid in old_ids:
+                sources.pop(sid); extracts.pop(sid)
+            rows = [p for p in json.loads(payloads["postings.json"]) if p["source_id"] in old_ids]
+            require({p["source_id"] for p in rows} == old_ids, "upgraded extraction must retain the frozen admission cohort")
+            processed["projection_cohort"] = {"source_snapshot": manifest["snapshot_id"], "postings": len(rows), "policy": "preserve-original-admission"}
+            processed["comparison_group"] += ":admission-" + manifest["extraction_method"]
+            for posting in rows:
+                sid = posting["source_id"]
+                text = payloads[posting["description_path"]].decode("utf-8")
+                for expected in posting["expectations"]:
+                    require(text[expected["start"]:expected["end"]] == expected["source_wording"] and expected["source_sha256"] == posting["source_sha256"], "upgraded quote provenance mismatch")
+                sources[sid] = {"id": sid, "sha256": posting["source_sha256"], "extract_sha256": posting["source_sha256"],
+                                "retrieved_at": posting["retrieved_at"], "url": posting["url"], "source_type": "job-posting", "inclusion": True}
+                extracts[sid] = text
+            postings.extend(rows)
+            groups[window] = processed["comparison_group"]
+            manifests[-1] = processed
+            hashes["processed/" + window + "/manifest"] = object_digest(processed)
     require(bool(manifests) and len({m["data_kind"] for m in manifests}) == 1, "missing/mixed snapshot kinds")
     employers = {}
     for posting in postings:
@@ -103,6 +130,13 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
             else:
                 require(row["naics"] is None, "unverified employer cannot have sector")
             employers[key] = row
+    if backbone:
+        for posting in postings:
+            posting["expectations"] = backbone.expand(posting["occupation_slug"], posting["expectations"])
+        hashes["onet31_lookup.json"] = digest(LOOKUP.read_bytes())
+        hashes["dwa_rules.json"] = digest(RULES.read_bytes())
+        hashes["onet_backbone.py"] = digest(Path(__file__).with_name("onet_backbone.py").read_bytes())
+    hashes["posting_sections.py"] = digest(Path(__file__).with_name("posting_sections.py").read_bytes())
     base.postings, base.sources, base.extracts, base.employers = postings, sources, extracts, employers
     base.occupations = {k: v for k, v in base.occupations.items() if k in configured_roles}
     base.skills = deepcopy(base.skills)
@@ -117,6 +151,6 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
     for name in ("posting_volume.py", "posting_volume_inputs.py"):
         base.hashes[name] = digest(Path(__file__).with_name(name).read_bytes())
     # Mapping/normalizer changes are sampling-definition changes, never a fabricated trend.
-    suffix = object_digest({"skills": base.skills, "employers": {k: {x: v for x, v in row.items() if x not in ("source_id", "quote")} for k, row in employers.items()}})
+    suffix = object_digest({"processing_recipe": {name: hashes[name] for name in ("recipe.py", "posting_sections.py", "posting_volume_inputs.py")}, "skills": base.skills, "backbone": backbone.fingerprint if backbone else None, "employers": {k: {x: v for x, v in row.items() if x not in ("source_id", "quote")} for k, row in employers.items()}})
     base.history_groups = {window: group + ":" + suffix for window, group in groups.items()}
     return base

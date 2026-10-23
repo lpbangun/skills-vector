@@ -179,7 +179,7 @@ def import_signals(kind: str, path: Path, retrieved_at: str, *, sample: bool = F
     elif kind in ("hot-technologies", "emerging-tasks"):
         columns = {"soc": ["O*NET-SOC Code"]}
         if kind == "hot-technologies":
-            columns.update(label=["Example"], commodity=["Commodity Code"], commodity_title=["Commodity Title"], hot=["Hot Technology"], demand=["In Demand"])
+            columns.update(label=["Example", "Workplace Example"], commodity=["Commodity Code", "Element ID"], commodity_title=["Commodity Title", "Element Name"], hot=["Hot Technology"], demand=["In Demand"])
         else:
             columns.update(label=["Task"], task_type=["Task Type"], respondents=["Incumbents Responding"], date=["Date"], domain=["Domain Source"])
         for row in _rows(_table(path), columns):
@@ -189,7 +189,7 @@ def import_signals(kind: str, path: Path, retrieved_at: str, *, sample: bool = F
                 require(row["hot"] in ("Y", "N") and row["demand"] in ("Y", "N"), "Hot Technology and In Demand must be Y/N")
                 if row["hot"] != "Y":
                     continue
-                reading = f"Hot Technology: {row['label']}; commodity {row['commodity']} ({row['commodity_title']}); In Demand: {row['demand']}. Presence, not an upward time series."
+                reading = f"Hot Technology: {row['label']}; classification {row['commodity']} ({row['commodity_title']}); In Demand: {row['demand']}. Presence, not an upward time series."
             else:
                 require(row["task_type"].lower() == "emerging", "expected Emerging task type")
                 require(row["respondents"].isdigit() and int(row["respondents"]) > 0, "invalid incumbent count")

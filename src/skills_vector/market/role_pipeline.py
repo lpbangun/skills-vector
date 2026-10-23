@@ -28,8 +28,13 @@ SCOPE_RULES = {
     4: r"\b(?:own(?:s|ing)?\b.{0,40}\b(?:architecture|ambiguous)|(?:shape|define|set|drive)\b.{0,40}\b(?:strategy|roadmap)|lead\b.{0,20}\bdesign decisions)",
     5: r"\b(?:own(?:s|ing)?|define|set)\b.{0,35}\b(?:company.wide|organization.wide|firm.wide)\b",
 }
+SALES_SCOPE_RULES = {
+    2: r"\b(?:own(?:ing)?|manag(?:e|ing))\b.{0,60}\b(?:book of business|named book|(?:full|entire|complete) sales (?:cycle|process)|account list|pipeline|contract renewals|relationship lifecycles)\b|\bown a named book\b|\bhandle existing customer expectations\b.{0,70}\bassigned territory\b|^(?:source and close|meet|exceed|deliver).{0,140}\bquotas?\b",
+    3: r"\b(?:lead|own)\b.{0,55}\b(?:multi.stakeholder sales cycles|complex (?:enterprise sales cycles|commercial discussions|renewals))\b|\bmulti.thread\b.{0,65}\bcomplex organization\b|\bmulti.threading at (?:an executive|a senior|senior) level\b",
+    4: r"\barchitect and execute\b.{0,65}\bgo.to.market strategies\b",
+}
 LEVEL_NAMES = ("Guided", "Independent", "Complex delivery", "Strategic", "Organization-wide")
-QUALIFICATION = re.compile(r"^(?:experience\b|previous experience\b|\d+\s*\+?\s*(?:[-–]\s*\d+)?\s*years?\b|at least\b)", re.I)
+QUALIFICATION = re.compile(r"^(?:experience\b|previous experience\b|(?:proven|demonstrated) (?:experience|ability)\b|ability to\b|you (?:have|bring)\b|must have\b|\d+\s*\+?\s*(?:[-–]\s*\d+)?\s*years?\b|at least\b)", re.I)
 MANAGEMENT = re.compile(r"\b(?:direct reports|manage (?:a|the|your) team|hire and (?:manage|evaluate)|supervise (?:staff|employees))\b", re.I)
 
 
@@ -78,7 +83,7 @@ class Triage:
     weak: dict[str, Any]
 
 
-def triage(posting: dict, quotes: list[str]) -> Triage:
+def triage(posting: dict, quotes: list[str], *, role_scope_rules: bool = True) -> Triage:
     """Only source-verified duty/scope quotes decide. Titles and tenure never vote."""
     weak = {"title": posting.get("title"), "advertised_experience": posting.get("advertised_experience", {}).get("value", [])}
     strong = []
@@ -88,7 +93,10 @@ def triage(posting: dict, quotes: list[str]) -> Triage:
             continue
         if MANAGEMENT.search(search_text):
             return Triage(None, "people_management_is_a_linked_track", [{"quote": quote, "track": "management"}], weak)
-        for level, pattern in SCOPE_RULES.items():
+        rules = list(SCOPE_RULES.items())
+        if role_scope_rules and posting.get("occupation_slug") == "account-executive":
+            rules.extend(SALES_SCOPE_RULES.items())
+        for level, pattern in rules:
             if re.search(pattern, search_text, re.I):
                 strong.append({"level": level, "quote": quote})
     if posting.get("work_level") == "people_manager":
@@ -103,6 +111,12 @@ def triage(posting: dict, quotes: list[str]) -> Triage:
 
 def signal(kind: str, source: str, reading: str) -> dict:
     return Signal(source, kind, "P" if kind == "postings" else "O", "coincident" if kind == "postings" else "lagging", reading, "presence").to_dict()
+
+
+def taxonomy_signal(match: dict) -> dict:
+    name = "Detailed Work Activity" if match["kind"] == "dwa" else "Software Skills"
+    return signal("onet_ratings", "O*NET 31.0 " + name,
+                  f"{match['id']}; {match['method']}; {match['confidence']}; matched text: {match['matched_text']}. O*NET 31.0, CC BY 4.0; taxonomy presence only, not upward confirmation or a Hot Technology flag.")
 
 
 def counts(rows: list[dict], window: str) -> dict:
@@ -151,6 +165,12 @@ def sector_profile(rows: list[dict], window: str, mentions: dict[str, set[str]])
 
 def skill_identity(expected: dict, slug: str, nodes: dict, phrase_map: dict, *, rules: bool = False) -> tuple:
     quote = expected["source_wording"]
+    match = expected.get("backbone_match")
+    if rules and match and match["confidence"] in ("exact", "close"):
+        from .posting_volume import normalize_phrase
+        label = match["label"]
+        node = {"id": match["id"], "short_label": label, "match_source": match, "quote": quote}
+        return "skill." + match["id"].replace(":", "."), {"label": label, "short_label": label if len(label) <= 18 else label[:17].rstrip() + "…", "node": node, "normalized_phrase": normalize_phrase(quote)}, None
     phrase = normalized(quote)
     if rules:
         from .posting_volume import normalize_phrase
@@ -190,9 +210,9 @@ class EvidenceInputs:
 
     @classmethod
     def from_snapshots(cls, roots: list[Path], release_root: Path, mapping_root: Path = MAPPING_ROOT,
-                       employer_map: Path | None = None) -> EvidenceInputs:
+                       employer_map: Path | None = None, *, upgrade: bool = True, grouping: bool = True) -> EvidenceInputs:
         from .posting_volume_inputs import read_snapshots
-        return read_snapshots(roots, release_root, mapping_root, employer_map)
+        return read_snapshots(roots, release_root, mapping_root, employer_map, upgrade=upgrade, grouping=grouping)
 
     @classmethod
     def read(cls, release_root: Path, mapping_root: Path = MAPPING_ROOT, release_id: str | None = None) -> EvidenceInputs:
@@ -310,10 +330,10 @@ class EvidenceInputs:
                             mentions[key] = set()
             for posting in rows:
                 duty_quotes = [e["source_wording"] for e in posting["expectations"] if e["dimension"] in ("task", "capability")
-                               and (posting.get("extraction_method") != "rules/1" or e.get("section") == "responsibilities")]
+                               and (not posting.get("extraction_method", "").startswith("rules/") or e.get("section") == "responsibilities")]
                 if posting.get("responsibility_evidence", {}).get("quote"):
                     duty_quotes.append(posting["responsibility_evidence"]["quote"])
-                decision = triage(posting, duty_quotes)
+                decision = triage(posting, duty_quotes, role_scope_rules=posting.get("extraction_method") == "rules/2")
                 assignments[posting["dedup_key"]] = decision.level
                 linked = []
                 for expected in posting["expectations"]:
@@ -323,11 +343,13 @@ class EvidenceInputs:
                     key, data, alignment = skill_identity(expected, slug, node_by_id, phrase_map, rules=bool(self.history_groups))
                     proposed_id = alignment["backbone_id"] if alignment else None
                     backbone_id = data["node"]["id"] if data["node"] else None
+                    if data["node"] and data["node"].get("match_source"):
+                        proposed_id = backbone_id
                     skill_data[key] = data
                     mentions[key].add(posting["dedup_key"])
                     linked.append({"skill": key, "backbone_id": backbone_id, "proposed_backbone_id": proposed_id,
                                    "mapping_confidence": alignment["confidence"] if alignment else None,
-                                   "mapping_rationale": alignment["rationale"] if alignment else None, "phrase": expected["source_wording"], "normalized_phrase": data["normalized_phrase"], "source_id": posting["source_id"], "expectation_id": expected["expectation_id"]})
+                                   "mapping_rationale": alignment["rationale"] if alignment else None, "phrase": expected["source_wording"], "normalized_phrase": data["normalized_phrase"], "backbone_match": expected.get("backbone_match"), "backbone_proposals": expected.get("backbone_proposals", []), "source_id": posting["source_id"], "expectation_id": expected["expectation_id"]})
                 posting_audit.append({"posting_id": posting["dedup_key"], "source_id": posting["source_id"], "employer": posting["employer"],
                                       "level": decision.level, "reason": decision.reason, "strong_signals": decision.strong,
                                       "weak_signals": decision.weak, "skill_links": sorted(linked, key=lambda x: (x["skill"], x["phrase"]))})
@@ -366,12 +388,16 @@ class EvidenceInputs:
                             self.history_groups[window], strata, "coincident"))
                 else:
                     measurements = [measurement]
-                historical_note = "Quarterly rules/1 captures; only identical sampling groups support a comparison." if self.history_groups else "No comparable historical window is asserted."
+                historical_note = "Quarterly rules captures; only identical sampling groups support a comparison." if self.history_groups else "No comparable historical window is asserted."
                 employer_word = "employer" if len(employer_counts) == 1 else "employers"
                 evidence = [signal("postings", "Captured public job postings" if self.history_groups else "Published job postings", f"{len(hits)}/{len(rows)} admitted role postings record this node in their published expectation excerpts; {len(employer_counts)} {employer_word}. Role-wide scope includes unassigned postings. {historical_note}")]
                 if data["node"]:
                     node = data["node"]
-                    evidence.append(signal("onet_ratings", "O*NET local task anchor", f"{node['id']}; local natural key, not an official task database ID. {self.sources[node['source_id']]['url']}; published source {node['source_id']}. {node['quote']}"))
+                    if node.get("match_source"):
+                        match = node["match_source"]
+                        evidence.append(taxonomy_signal(match))
+                    else:
+                        evidence.append(signal("onet_ratings", "O*NET local task anchor", f"{node['id']}; local natural key, not an official task database ID. {self.sources[node['source_id']]['url']}; published source {node['source_id']}. {node['quote']}"))
                 shares = [100 * sum(p["dedup_key"] in ids for p in level_rows[level]) / len(level_rows[level]) if level_rows[level] else None for level in range(1, 6)]
                 observed = [level for level in range(1, 6) if shares[level - 1] is not None and shares[level - 1] > 0]
                 forecast = {"id": "forecast." + slug + "." + key, "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
@@ -424,7 +450,7 @@ class EvidenceInputs:
                 "industries": industries, "observations": [], "limits": [
                     "Research projection of published release " + self.release_id + "; source counts are a bounded admitted sample, not market prevalence.",
                     "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand and is not a future probability.",
-                    "Quarterly rules/1 snapshots; only identical sampling definitions are comparable. Repeated releases within a quarter are not independent windows." if self.history_groups else "One selected snapshot only. Retrieval dates bin observed mentions; repeated releases are not independent windows. No comparable temporal history is asserted, so all current statuses are early.",
+                    "Quarterly rules snapshots; only identical sampling definitions are comparable. Repeated releases within a quarter are not independent windows." if self.history_groups else "One selected snapshot only. Retrieval dates bin observed mentions; repeated releases are not independent windows. No comparable temporal history is asserted, so all current statuses are early.",
                     "Null first_level means no observed assigned level; null share_by_level means no assigned denominator, not zero demand. Measurement strata explicitly include unassigned postings.",
                     "Level names are a declared algorithmic scope rubric, not observed role progression. Titles and tenure never assign levels. Missing level expectations remain empty; no carry-over or first-introduction claim is inferred.",
                     "O*NET task excerpts are attributed to O*NET OnLine, U.S. Department of Labor, CC BY 4.0, as recorded in the published sources; agent-authored alignments are not official or human-adjudicated equivalence.",

@@ -181,8 +181,11 @@ def exercise_map(page, record: dict, output: Path, role: str) -> None:
         require(expected in page.locator("#topLine").inner_text(), "missing comparison used placeholder titles")
     page.locator('#mapLevel [data-mlevel="0"]').click()
     page.keyboard.press("Tab")
-    page.locator("#map .srow").first.focus()
-    require(page.locator("#map .srow").first.evaluate("node => getComputedStyle(node).outlineStyle !== 'none'"), "missing visible focus")
+    if skills:
+        page.locator("#map .srow").first.focus()
+        require(page.locator("#map .srow").first.evaluate("node => getComputedStyle(node).outlineStyle !== 'none'"), "missing visible focus")
+    else:
+        require(record["demand_window"]["postings"] == 0 and "No admitted postings" in page.locator("#skillPanel").inner_text(), "empty role must state missing admission/evidence")
     page.locator('[data-mode="conn"]').click()
     require(page.locator("#connWrap").is_visible(), "connections did not open")
     require(page.locator("#graph [data-node]").count() == len(skills), "graph lost API nodes")
@@ -197,12 +200,13 @@ def exercise_map(page, record: dict, output: Path, role: str) -> None:
         page.wait_for_function("document.querySelector('#graph').scrollLeft > 0")
         page.locator("#graph").evaluate("graph => graph.scrollLeft = 0")
     snapshot(page, output, role + "-connections")
-    page.locator("#graph [data-node]").first.focus()
-    page.locator("#graph [data-node]").first.press("Enter")
-    require(page.locator("#graphPanel #clearNode").is_visible(), "graph keyboard selection failed")
-    selected = page.locator("#graph [data-node]").first.get_attribute("data-node")
-    page.locator("#clearNode").click()
-    require(page.evaluate("document.activeElement.dataset.node") == selected, "graph summary lost keyboard focus")
+    if skills:
+        page.locator("#graph [data-node]").first.focus()
+        page.locator("#graph [data-node]").first.press("Enter")
+        require(page.locator("#graphPanel #clearNode").is_visible(), "graph keyboard selection failed")
+        selected = page.locator("#graph [data-node]").first.get_attribute("data-node")
+        page.locator("#clearNode").click()
+        require(page.evaluate("document.activeElement.dataset.node") == selected, "graph summary lost keyboard focus")
     disputed = next((skill for skill in skills.values() if skill["disputed"]), None)
     if disputed:
         ids = page.locator("#graph [data-node]").evaluate_all("nodes => nodes.map(node => node.dataset.node)")
@@ -328,7 +332,7 @@ def check_case(browser, base: str, out: Path, width: int, scheme: str, reference
                 if record["data_kind"] == "research":
                     response = page.request.get(base + "/v1/roles/" + role + "?release=" + record["release_id"]).json()
                     require("presentation" not in response, "research selection received fixture layout")
-                    require("level unassigned" in page.locator("#skillPanel").inner_text() or any(s["first_level"] is not None for s in record["skill_map"]["skills"]), "unknown levels were promoted")
+                    require(not record["skill_map"]["skills"] or "level unassigned" in page.locator("#skillPanel").inner_text() or any(s["first_level"] is not None for s in record["skill_map"]["skills"]), "unknown levels were promoted")
                 tags = page.locator("#roleHead .tm").all_inner_texts()
                 require([tag.casefold() for tag in tags] == [timing_label(source) for source in head_sources] + [record["demand_window"]["timing"]], "role head lost the source rating year")
                 assert_track_record(page, base, role, record)
@@ -441,7 +445,8 @@ def check_failure_states(browser, base: str) -> None:
             payload = route.fetch().json()
             payload.pop("presentation", None)
             payload["role"]["label"] = '<img src=x onerror="window.atlasInjected=true">'
-            payload["role"]["skill_map"]["skills"][0]["label"] = '<svg onload="window.atlasInjected=true">'
+            if payload["role"]["skill_map"]["skills"]:
+                payload["role"]["skill_map"]["skills"][0]["label"] = '<svg onload="window.atlasInjected=true">'
             route.fulfill(json=payload)
         page.route("**/v1/roles/*", escape_probe)
         page.reload()

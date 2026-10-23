@@ -1,5 +1,11 @@
 # M6: quarterly posting volume, no-model lane
 
+M7 update: new captures emit `rules/2`; original `rules/1` snapshots remain valid
+and immutable. Offline projection upgrades extraction while freezing original
+admission. See [real-data quality](REAL_DATA_QUALITY.md) for grouping, audits,
+limitations and the operator-only roster probe. The rules/1 descriptions below
+record the approved M6 implementation, not the current extraction version.
+
 ## Boundaries
 
 `market posting-volume` reuses the existing allowlisted public board parsers,

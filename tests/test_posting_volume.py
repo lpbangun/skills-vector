@@ -154,9 +154,16 @@ def guarded(name, *args, **kwargs):
     if name.startswith(banned): raise AssertionError('model/provider import: '+name)
     return old(name,*args,**kwargs)
 builtins.__import__=guarded
+import socket
+def no_network(*args, **kwargs): raise AssertionError("network access in offline lane")
+socket.create_connection = no_network
+socket.getaddrinfo = no_network
+socket.socket.connect = no_network
+socket.socket.connect_ex = no_network
 from skills_vector.cli import main
 assert main(['market','posting-volume','capture','--policy',sys.argv[1],'--quarter','2026-Q4','--payload-root',sys.argv[2],'--retrieved-at','2026-10-15T00:00:00Z','--output',sys.argv[3]+'/captures']) == 0
 assert main(['market','posting-volume','project','--snapshot',sys.argv[3]+'/captures/2026-Q4','--output',sys.argv[3]+'/roles']) == 0
+assert main(['market','posting-volume','roster-probe','--candidates',sys.argv[1],'--payload-root',sys.argv[2],'--output',sys.argv[3]+'/roster.json']) == 0
 assert not any(n.startswith(banned) for n in sys.modules)
 try: guarded('skills_vector.market.agent')
 except AssertionError: pass
@@ -193,7 +200,7 @@ class SnapshotTests(unittest.TestCase):
         self.assertEqual(sum(len(r["responsibility_failures"]) for r in reports.values()), 6)
         self.assertGreaterEqual(42 / 48, .8)
         for posting in json.loads(files["postings.json"]):
-            self.assertEqual(posting["extraction_method"], "rules/1")
+            self.assertEqual(posting["extraction_method"], "rules/2")
             description = files[posting["description_path"]].decode()
             for expected in posting["expectations"]:
                 self.assertEqual(description[expected["start"]:expected["end"]], expected["source_wording"])

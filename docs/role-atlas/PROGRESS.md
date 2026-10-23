@@ -1418,3 +1418,315 @@ conservative and may miss unfamiliar headings. Employer aliases and primary
 sector evidence still require operator curation. Quarterly captures are stock
 observations, not counts of new hires/jobs. No forecast archive or calibration
 was fabricated. M6 is complete for review; commit on `feat/role-atlas` and stop.
+
+
+## M7 — real-data quality, implemented; Q3 honest stop
+
+Built against BRIEF M7 and the approved M6 review (`reviews/M6-r1.md`).
+Read-only diagnostic inputs were the 2026-Q4 capture and local O*NET 31.0
+specified in BRIEF. **No live retrieval/probe, paid/model call, secret access,
+push or deployment occurred.** No raw board payload or whole real posting was
+copied into the repository. Checked-in audit excerpts are limited to one source
+sentence per case; the native corpus remains outside the repo.
+
+### Implementation and boundaries
+
+- `posting_sections.py`: generic structural `rules/2` detection for h-tags,
+  bold/strong paragraphs, short colon headings, heading variants and explicit
+  current-duty prose. Company/benefits/legal/unknown bold boundaries and observed
+  non-duty paragraphs are excluded. Bare unheaded lists remain unknown.
+- Capture still uses the unchanged independent posting-lane ceilings and existing
+  parsers/allowlist. Original `rules/1` extraction remains replayable. Projection
+  validates the original manifest, indexed files, native rows, saved text and
+  quote offsets **before** any offline upgrade.
+- Offline upgrade reuses saved complete boards in memory and freezes the original
+  admission IDs. It does not resample the newly extractable candidates. Every
+  upgraded quote is still an exact saved-description substring.
+- `onet_backbone.py`, `dwa_rules.json`, `onet31_lookup.json`: deterministic
+  lexical grouping onto official DWA/software element IDs. The derived subset
+  contains 94 role-scoped DWA records and 76 software categories, with native
+  file hashes, source ZIP hash and CC BY 4.0 attribution. It is not the database.
+  Global lexical DWA candidates outside anchor-SOC task membership are explicitly
+  distinguished; no unsupported occupation equivalence is asserted.
+- Matches retain method, matched text, qualitative confidence and source version.
+  Only exact/close matches group; unmatched spans retain phrase-rules/1 labels
+  and original quotes. Both DWA and Software Skills taxonomy use standing O /
+  lagging presence under the existing durable O*NET source policy, not Hot
+  Technologies M evidence. A software example alone does not assert the Hot
+  Technology flag. Taxonomy-presence evidence is not upward confirmation.
+  Processing/section/level/grouping recipes are part of comparability identities.
+- The M5 importer now accepts 31.0 `Workplace Example`, `Element ID` and
+  `Element Name` columns. Tiny authored sample added; no official signal bundle
+  was silently imported/merged into research.
+- Expanded AE scope rules apply to **rules/2 evidence only**. Titles and tenure
+  remain weak, qualifications are not current ownership, and strong conflicts
+  remain unassigned. Approved M4 inputs/records are not reclassified by this lane.
+- `posting-volume roster-probe --candidates` supports saved samples or explicit
+  operator `--live`, existing Greenhouse/Lever/Ashby hosts, bounded retrieval,
+  existence/unknown states, native/observed totals, title counts, response hashes
+  and source notes. Output is a draft (`reviewed: false`), never an approved frame.
+  No live probe was run.
+- UI/checker support genuinely empty admitted roles without treating zero
+  admission as zero market demand. Nonempty roles still get every skill/detail,
+  graph/focus and overflow check. Escaping probes tolerate empty role payloads.
+  Display percentages round to one decimal; exact JSON evidence is unchanged.
+- Operator/reproduction details: `REAL_DATA_QUALITY.md`; frozen review cases:
+  `audits/M7-{sections,matches,levels}.json`. These are coding-agent manual
+  judgments, **not independent expert ground truth or population accuracy**.
+
+### Q1 — real responsibilities detection
+
+The captured ATS is Greenhouse only. Lever/Ashby have offline native-format
+tests, not an invented live accuracy result.
+
+| ATS | Eligible | Before rules/1 | After rules/2 |
+| --- | ---: | ---: | ---: |
+| Greenhouse | 405 | 116 (28.6%) | 405 (100%) |
+
+| Role | Before | After | Original admitted cohort |
+| --- | ---: | ---: | ---: |
+| AE | 101/333 | 333/333 | 70 |
+| FDE | 8/62 | 62/62 | 0 |
+| Growth Manager | 7/8 | 8/8 | 0 |
+| HR Generalist | 0/2 | 2/2 | 0 |
+
+The **232 AE failures** were recovered under these primary structures:
+198 bold-paragraph headings, 31 h-tag/new-vocabulary headings, two plain
+paragraph/colon headings and one explicit-duty/no-heading paragraph. The
+**54 FDE failures**: nine bold paragraphs, one h-tag/new vocabulary and 44
+plain paragraph/colon headings. Growth's one miss was explicit-duty prose;
+HR's two were one bold paragraph and one h-tag/new vocabulary. These are the
+first recovered responsibility section's structure, not independent causal
+attributions: a posting can combine markup and vocabulary differences.
+
+Seed `20261023`, sorted native job IDs, 20 random successes: **0 wrong spans
+in the final reviewed sample**. Cases pin IDs, a source excerpt and judgments.
+During development, a nested duty-category label and an in-office culture
+paragraph were detected and excluded; this is a rechecked development audit,
+not held-out validation. Detection means a responsibility section exists,
+not that every task sentence has been recovered or semantically validated.
+
+### Q2 — grouping and audit
+
+Frozen AE cohort: **403 nodes before**, **391 after structural re-extraction
+without grouping**, **284 after grouping**. Total reduction **119 (29.5%)**;
+grouping alone removes 107 from the re-extracted node count. Of 284 final
+nodes, 18 are O*NET 31 backbone-linked and 266 remain posting-led.
+
+Seed `3100`, unique posting/expectation spans sorted by job ID and quote,
+30 random matched spans: **29/30 judged correct (96.7%)**. The visible wrong/
+borderline case is the adjectival relationship-focused enthusiasm span mapped
+to developing business relationships; it remains recorded as an audit error,
+not relabeled to inflate accuracy. Confidence is a lexical rule label, not a
+calibrated correctness probability. Earlier development probes also caught
+generic “database” career text and LinkedIn SalesNavigator being mistaken for
+a generic software example; those aliases were restricted and negatively tested.
+
+Requested top 25 grouped nodes: only **18** exist, so all 18 are reported rather
+than padding seven. Shares use the frozen 70-posting role-wide denominator;
+these are observed mentions, not proficiency or hiring counts.
+
+| Rank | Backbone ID | Label | Posting share | Employers |
+| ---: | --- | --- | ---: | ---: |
+| 1 | `dwa.4.A.4.c.1.c.4` | Execute sales or other financial transactions. | 80.0% | 6 |
+| 2 | `dwa.4.A.1.b.1.b.2` | Identify potential customers. | 72.9% | 6 |
+| 3 | `dwa.4.A.4.a.4.a.2` | Develop business relationships. | 62.9% | 6 |
+| 4 | `dwa.4.A.1.a.2.c.3` | Monitor sales activities. | 42.9% | 5 |
+| 5 | `dwa.4.A.2.b.3.a.22` | Study product information to acquire professional knowledge. | 42.9% | 6 |
+| 6 | `software.2.E.6.c` | Customer relationship management CRM software | 38.6% | 4 |
+| 7 | `dwa.4.A.4.a.2.c.1` | Communicate with other workers to coordinate activities. | 30.0% | 5 |
+| 8 | `dwa.4.A.4.a.1.a.5` | Explain technical product or service information to customers. | 20.0% | 3 |
+| 9 | `dwa.4.A.2.b.2.h.2` | Develop financial or business plans. | 17.1% | 2 |
+| 10 | `dwa.4.A.4.a.2.e.4` | Share sales-related or market information with colleagues. | 15.7% | 1 |
+| 11 | `dwa.4.A.4.a.7.b.7` | Negotiate prices or other sales terms. | 15.7% | 3 |
+| 12 | `software.2.E.1.l` | Sales and marketing software | 11.4% | 1 |
+| 13 | `dwa.4.A.1.a.1.n.2` | Gather customer or product information to determine customer needs. | 5.7% | 3 |
+| 14 | `dwa.4.A.4.b.4.j.5` | Coordinate sales campaigns. | 5.7% | 1 |
+| 15 | `dwa.4.A.3.b.6.g.1` | Develop proposals for current or prospective customers. | 4.3% | 2 |
+| 16 | `dwa.4.A.4.a.6.c.2` | Demonstrate products to consumers. | 4.3% | 1 |
+| 17 | `dwa.4.A.1.a.2.h.1` | Monitor market conditions or trends. | 1.4% | 1 |
+| 18 | `software.2.E.4.g` | Web page creation and editing software | 1.4% | 1 |
+
+### Q3 — assignment improvement, **honest stop**
+
+Original generic triage on original rules/1 spans reproduces **3 L4 / 67
+unassigned**. All 67 lacked a matching current scope/ownership rule. Applying
+the expanded AE diagnostic policy to those same 67 original cases categorizes
+them as: **34 newly recognized current-scope cases**, **28 still without a
+current ownership/scope signal**, **5 conflicting strong-scope cases**. This
+separates missing patterns from missing evidence and conflict; it is not a
+claim that all 67 should be assigned.
+
+Final rules/2 output: **54/70 assigned (77.1%)**: L2=52, L4=2; L1/L3/L5=0.
+The remaining 16 are eight strong conflicts and eight without current scope.
+
+The 40 checked-in AE labels (seed `20261024`, sorted admitted native IDs) give
+**33/40 agreement (82.5%)**, below the 85% target. Seven disagreements are
+manual L3 labels: six have conflicting strong signals and one has complex-task
+wording without an independently clear ownership boundary. I have not overridden
+conflicts, treated title/tenure as scope, or added a complex-task-only rule to
+get one more agreement. No safe P3-preserving change to reach 85% was established;
+**Q3 takes the authorized honest-stop option**, not a target-pass claim.
+Independent rubric/label review is the next step, not label tuning.
+
+### Q4, floors and resulting research artifact
+
+Two fresh physical projections, including audit files, are byte-identical:
+`/tmp/role-atlas-m7-reviewed-release` and `/tmp/role-atlas-m7-reviewed-release-rebuild`.
+Release: **`role_research_37b69249638d55ae`**. Select its `roles/` directory.
+
+The original 70 AE postings/7 employers are retained, largest employer 20%.
+Other roles honestly remain empty under the frozen admission cohort; Q1
+eligible counts above are **not admitted volume**. All 284 skills are early;
+zero core/rising/fading, zero kept edges (2,842 dropped), 80 null sector profiles.
+All employer sectors remain unverified. No probability, calibration, historical
+window, ledger score or employer-sector evidence was manufactured. Every role
+record passes M1 validation.
+
+### Exact verification commands and results
+
+Final full suite (12 new M7 tests; existing V1 test expanded to all three CLI
+operations and blocks network connection/DNS attempts in a fresh subprocess):
+
+```sh
+.venv/bin/python -m unittest discover -s tests -p test_role_atlas_m7.py > /tmp/role-atlas-m7-new-tests-reviewed.log 2>&1
+.venv/bin/python -m unittest discover -s tests -p test_posting_volume.py > /tmp/role-atlas-m7-posting-verified.log 2>&1
+.venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m7-reviewed-tests.log 2>&1
+```
+
+Focused: 12 tests/1.258s and 16 tests/19.773s, OK. Final full:
+**249 tests in 202.193s, OK (skipped=2)**, concurrent with all browser sweeps;
+the same two pre-existing skips, no new skips. Tests are offline. Every added
+DWA rule has positive and rejected synthetic cases; tests cover structural
+boundaries, legacy integrity before upgrade, frozen cohort, loose nonpromotion,
+recipe identity, native 31.0 headers, scope/conflicts, roster failures and
+display-only percentage rounding.
+
+```sh
+.venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261023T214312Z/2026-Q4 --output /tmp/role-atlas-m7-reviewed-release > /tmp/role-atlas-m7-reviewed-release.json
+.venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261023T214312Z/2026-Q4 --output /tmp/role-atlas-m7-reviewed-release-rebuild > /tmp/role-atlas-m7-reviewed-release-rebuild.json
+diff -qr /tmp/role-atlas-m7-reviewed-release /tmp/role-atlas-m7-reviewed-release-rebuild
+.venv/bin/python scripts/audit_role_atlas_m7.py --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261023T214312Z/2026-Q4 --output /tmp/role-atlas-m7-quality-reviewed.json > /tmp/role-atlas-m7-quality-reviewed.log
+```
+
+All exit 0; diff emits nothing. Quality JSON reproduces tables, selection/source
+checks, agreement and `honest_stop: true`.
+
+```sh
+.venv/bin/python - <<'PY'
+from pathlib import Path
+from skills_vector.market.onet_backbone import derive
+print(derive(Path('/home/logani/.local/share/skills-vector-evidence/onet/db_31_0'),
+             Path('src/skills_vector/market/role_atlas_mappings/skills.json'),
+             Path('/tmp/role-atlas-m7-lookup-verification.json')))
+PY
+cmp /tmp/role-atlas-m7-lookup-verification.json src/skills_vector/market/role_atlas_mappings/onet31_lookup.json
+```
+
+Exit 0; 94 DWAs, 76 categories, byte-identical derived lookup; SHA-256
+`91d82384227b8908c4bef8af7b38237409701224efc87bf27e431446a38201e3`.
+The source ZIP hash is the supplied/recorded
+`6883548adf5fde64cf6f801b35d15519c9225f2732c3cab0e281c652d16b23a9`;
+native table file hashes were computed locally. The database was not copied.
+
+```sh
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m7-reviewed-fixtures --role-atlas-fixtures --role-atlas-ledger /tmp/role-atlas-m6-fixture-ledger.json > /tmp/role-atlas-m7-reviewed-fixtures.log 2>&1
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m7-reviewed-research --role-atlas-root research/role-atlas/m4/roles --role-atlas-ledger research/role-atlas/m5/ledger.json > /tmp/role-atlas-m7-reviewed-research.log 2>&1
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m7-reviewed-live --role-atlas-root /tmp/role-atlas-m7-reviewed-release/roles > /tmp/role-atlas-m7-reviewed-live.log 2>&1
+UV_OFFLINE=1 uv run --with playwright python /tmp/role-atlas-m7-visual.py > /tmp/role-atlas-m7-visual-reviewed.log 2>&1
+```
+
+All exit 0, using explicit Chromium
+`~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome`. Each selection
+runs **1280 light, 1280 dark, 390 light**, every role/tab/Connections and negative
+probes: fixtures **54**, approved research **72**, live projection **72**
+screenshots; every `errors: []`. The fixture ledger is the unchanged M6
+temporary fixture ledger (creation recipe in M6 above), not a research ledger.
+Scratch live root uses no mismatched old ledger. Viewport screenshots under
+`/tmp/role-atlas-m7-visual` were opened: live desktop list and dark graph,
+mobile CRM detail and empty FDE state. Checked wrapping, bounded percentage
+labels, source attribution, no-forecast treatment and explicit empty admission.
+
+```sh
+UV_OFFLINE=1 uv lock --check --offline
+bash scripts/assemble_vercel.sh
+git diff --check
+node --check preview/role-atlas.js
+.venv/bin/python -m compileall -q src/skills_vector scripts/audit_role_atlas_m7.py scripts/check_role_atlas.py
+```
+
+All exit 0: 61 locked packages, 551 assembled files in the script's fixed
+`.vercel-out` directory. No deployment. An earlier invocation passed an unused
+output argument; the script still used that same fixed directory.
+
+Read-only/protected-input verification was run before and after work: the
+334-file receipt is `/tmp/role-atlas-m7-input-receipts.json`. Final comparison
+also verifies the exact file set, not only hashes. 334 external input files,
+543 protected tracked files and all 533 published files/file set are unchanged.
+The protected tracked set includes M4/M5 artifacts, limits, tracked budgets and
+research configuration. STANDARDS/BRIEF/design were not edited by this build.
+Exact final integrity check (exit 0):
+
+```sh
+.venv/bin/python - <<'PY'
+from pathlib import Path
+import hashlib,json,subprocess
+root=Path.cwd();receipt=json.loads(Path('/tmp/role-atlas-m7-input-receipts.json').read_text())
+inputs=[Path('/home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261023T214312Z/2026-Q4'),Path('/home/logani/.local/share/skills-vector-evidence/onet/db_31_0')]
+assert {str(p) for r in inputs for p in r.rglob('*') if p.is_file()}==set(receipt)
+assert all(hashlib.sha256(Path(p).read_bytes()).hexdigest()==h for p,h in receipt.items())
+tracked=subprocess.check_output(['git','ls-files'],text=True).splitlines()
+protected=[p for p in tracked if p.startswith(('preview/release/','research/role-atlas/m4/','research/role-atlas/m5/')) or p=='src/skills_vector/market/limits.py' or 'budget' in p or ('research' in p and p.startswith('config/'))]
+for p in protected:assert (root/p).read_bytes()==subprocess.check_output(['git','show','HEAD:'+p]),p
+pub={p for p in tracked if p.startswith('preview/release/')}
+assert {str(p.relative_to(root)) for p in (root/'preview/release').rglob('*') if p.is_file()}==pub
+print('Read-only input files:',len(receipt),'unchanged; protected tracked files:',len(protected),'unchanged; published files:',len(pub),'unchanged')
+PY
+```
+
+Offline operator smoke (exit 0, six boards exist, all drafts unreviewed):
+
+```sh
+.venv/bin/skills-vector market posting-volume roster-probe --candidates tests/samples/posting-volume/policy.sample.json --payload-root tests/samples/posting-volume --output /tmp/role-atlas-m7-roster-draft.json > /tmp/role-atlas-m7-roster-summary.json
+```
+
+
+### Development failures, corrections, deviations and open risks
+
+- An initial scratch projection accidentally resampled the expanded candidate
+  pool (182 AE). It was discarded. Frozen admission was implemented and all
+  reported final comparisons use the original 70; no evidence from that initial
+  projection is presented as Q4 proof.
+- The first full run (247 tests) exposed two old M4 level regressions. Expanded AE
+  scope was isolated to rules/2 evidence, and existing expected research
+  denominators/unknown levels pass unchanged.
+- The first live browser sweep saved all 72 screenshots but failed in an XSS
+  negative probe that assumed every role had a first skill. The probe now mutates
+  only existing skills; full final sweeps, including the empty roles, pass.
+- A strengthened fresh-process test initially replaced the socket class and broke
+  stdlib SSL import rather than testing networking. It now blocks connection and
+  DNS entrypoints without replacing the class. Capture/project/roster all pass
+  the import/network guard. The final 249-test run above supersedes those failures.
+- Visual review found a repeating decimal percentage wrapping in the live detail.
+  The one-decimal display formatter and regression test fix it; raw evidence
+  numbers and physical projection identity are unchanged.
+- Final provenance review caught software-taxonomy presence being labeled with
+  the Hot Technologies market kind. It now uses standing official O / lagging
+  presence, like durable task anchors, with an explicit no-Hot-flag reading and
+  regression test. The genuine Hot Technologies importer still requires Y.
+  Fresh physical projections and all final gates above were rerun after this fix.
+- Q3 is the explicit deviation/authorized honest stop: 82.5% agreement is not
+  85%. The data and labels are retained for independent review, not coerced.
+- Q1 is this Greenhouse capture only; audits are small, development-set,
+  agent-authored checks. Broad heading variants can still miss or include
+  unfamiliar structures. Mixed paragraphs are not guaranteed atomic tasks.
+- Lexical grouping is incomplete and the audit records a real borderline error;
+  vendor/category ambiguity and semantic equivalence need further review.
+  There are only 18 grouped nodes, not 25. No embeddings/model fallback was used.
+- The 13-board starter roster remains biased. Empty non-AE cohorts require
+  operator-reviewed frame expansion, not relaxed caps or backfilled admission.
+  Employer aliases/primary sectors still require curation. One quarterly listing
+  stock is not new hiring, a trend, or a forecast archive.
+
+M7 is implemented for review with Q1/Q2/Q4 passing and Q3 explicitly stopped at
+the honest result. Commit on `feat/role-atlas`, then stop.

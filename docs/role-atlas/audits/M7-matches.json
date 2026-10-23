@@ -1,0 +1,610 @@
+{
+  "cases": [
+    {
+      "expectation_id": "expect.3d244aeb36cfec4ddcc9",
+      "full_span_sha256": "d235d2296594bcdc56569e6f92d17bc884d3a525cfb8aed7b68b125d905ffa84",
+      "job_id": "7156234",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.4.c.1.c.4"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:close-sales",
+          "matched_text_excerpt": "closing deals"
+        }
+      ],
+      "quote": "We are seeking candidates with a hunter mentality who are dedicated to grabbing new prospects, netting new logos, closing deals, and delivering immediate results.",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.b5187f076a21ddadb15b1a1a",
+      "source_sha256": "d4398739f0e11169689c1bad3147817198cd8b6e072aa4cbba3b1d062fcbee38"
+    },
+    {
+      "expectation_id": "expect.e39e5950c25844268fa9",
+      "full_span_sha256": "197d19250cfe535f4b5976a26509a2baf22c359e549de9bfb4f8e8086dcb4d34",
+      "job_id": "8175160",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.1.b.1.b.2"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:prospecting",
+          "matched_text_excerpt": "Prospect"
+        }
+      ],
+      "quote": "Prospect into CTOs, Engineering/IT leaders, and technical end users",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.3b894bd3daa628a6719d480b",
+      "source_sha256": "526c3168dca1bec88d5f425fc34bbb163c90887bb36b55ade502a969f9c38ec1"
+    },
+    {
+      "expectation_id": "expect.b86842a771a0926a5ab7",
+      "full_span_sha256": "fef0b01714d865a97a4100dbc6274e3652322c9d5d78fe69f5fdff3f9e3cfb12",
+      "job_id": "6163246",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.1.b.1.b.2"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:prospecting",
+          "matched_text_excerpt": "prospect"
+        }
+      ],
+      "quote": "Strategically prospect into Chief Technology Officers, Engineering/IT Leaders, and technical end users",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.9d59a2e887f36048908653d8",
+      "source_sha256": "cd495a5abf0969821dded653f36ef25df826be49da2a8c38da5e028d479c60e6"
+    },
+    {
+      "expectation_id": "expect.8bfa43b312d51ba2db35",
+      "full_span_sha256": "46e72820bd1541d4e714bfe3bdf6be040a9ac968ca766c22ffe795c5315c6495",
+      "job_id": "5161632007",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.4.c.1.c.4"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:close-sales",
+          "matched_text_excerpt": "close new business to consistently meet or exceed quarterly sales"
+        }
+      ],
+      "quote": "Source and close new business to consistently meet or exceed quarterly sales quotas",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.126ac2cfb1c706b3eb843cae",
+      "source_sha256": "8c913d060fa67bf3e603610d49dd56334bed789bc58bbbe32635ee84255dc8cf"
+    },
+    {
+      "expectation_id": "expect.b87570ab9f18bce86658",
+      "full_span_sha256": "9330c4777fa696512679a642babeeb37d895ae9c377b8a767f3ace82c251bd7c",
+      "job_id": "7179283",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.1.b.1.b.2"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:prospecting",
+          "matched_text_excerpt": "prospect for new business"
+        }
+      ],
+      "quote": "Hunt for New Business: Proactively prospect for new business through market research, sales tools, and cold outreach.",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.c448a03499a2ac646d46acad",
+      "source_sha256": "90b72210261aeecc7e6a5b5ef0619fcc3831a3ddca70ef0d388dce887f38f20a"
+    },
+    {
+      "expectation_id": "expect.10ea5a61e8c204aaa857",
+      "full_span_sha256": "64b8d0de09bf53e186124b5b38aa0b65f64570bddb6106cf4ef47c9152fd4c2f",
+      "job_id": "8238731",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.4.a.4.a.2"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:business-relationships",
+          "matched_text_excerpt": "build strong relationships"
+        }
+      ],
+      "quote": "We’re looking for a well-rounded strategic seller who can build strong relationships with Stripe’s clients and manage high velocity deal cycles.",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.0ed45105a02c40ed703b5253",
+      "source_sha256": "1ccaa1b2c40da9a974cd675fd34d6756929573ce03ba81c12f94dcf758551138"
+    },
+    {
+      "expectation_id": "expect.89bbcebd7491ddf44a9a",
+      "full_span_sha256": "32608cb633acf73ccf0d116eb479f1964d0c27c105638ce3e1a7e5f97311cd5d",
+      "job_id": "5156789007",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.4.a.4.a.2"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:business-relationships"
+        }
+      ],
+      "quote": "Customer-focused with extensive experience developing customer relationships within SLED accounts.",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.610f6fb7f027335424c69d06",
+      "source_sha256": "f8138e5fac6d5c5dfbaa37a61bfc38d3a0d7755b76ae39ad23f2876e3184c385"
+    },
+    {
+      "expectation_id": "expect.e1588f6243ef567e45c7",
+      "full_span_sha256": "ecada90641a6756e2fd2d8d975190814f934b07d430f75508a2b69babeef572b",
+      "job_id": "8097302",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.4.c.1.c.4"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:close-sales",
+          "matched_text_excerpt": "full sales cycle"
+        }
+      ],
+      "quote": "Manage the full sales cycle for all MongoDB Products & Services",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.e3e872777c0a603d3ecb449f",
+      "source_sha256": "af67d794a90dae9beb305d2b5425e33444b4561047359eabd0974a16e9470ea0"
+    },
+    {
+      "expectation_id": "expect.e330d3b0888e3ba48870",
+      "full_span_sha256": "0b660a5bfd50f8eea7c0aa87a0d7c62862665a9259b233bd394220deb6c6f014",
+      "job_id": "7615794",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.2.b.3.a.22"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:product-learning",
+          "matched_text_excerpt": "product expert"
+        }
+      ],
+      "quote": "Become a product expert and understand all components of MongoDB",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.aa15fbf31e3ffe38f2638b4a",
+      "source_sha256": "f74a7a4c787c3bcef3ac7d25db1da2b1ef009cc95b825f6014a60d19d7f5fdd3"
+    },
+    {
+      "expectation_id": "expect.369d4b188a5ad3432969",
+      "full_span_sha256": "48a1e2fe0f1dcb1bfb02592a10037fbcba34f65e614e74336f569ed5b81a1c0b",
+      "job_id": "6522747",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.4.c.1.c.4"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:close-sales",
+          "matched_text_excerpt": "close business"
+        }
+      ],
+      "quote": "Have intuitive sense of necessary steps to close business and gain customer validation",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.8fbc3013ac1f19dd836ef245",
+      "source_sha256": "857fd589cf742407cef317059fab2e365fb8f876d6a947dff004842efaaa4ed1"
+    },
+    {
+      "expectation_id": "expect.46f943c9ac319171c8e1",
+      "full_span_sha256": "4c10b17ee1fd6f80807107a93c110936b0d67a3c986e3d5efbd31d6c40ffcab1",
+      "job_id": "8067675",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:software:2.E.6.c"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "software-example-or-category",
+          "matched_text_excerpt": "Salesforce"
+        }
+      ],
+      "quote": "Familiarity with Salesforce CRM.",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.c30c7916766b88fd8da7b9e5",
+      "source_sha256": "1b1d0f468c834bc47f96a7b47d15269ae40b0f0c72043b2178e39e1129d35bbb"
+    },
+    {
+      "expectation_id": "expect.8bfa43b312d51ba2db35",
+      "full_span_sha256": "46e72820bd1541d4e714bfe3bdf6be040a9ac968ca766c22ffe795c5315c6495",
+      "job_id": "4135236007",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.4.c.1.c.4"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:close-sales",
+          "matched_text_excerpt": "close new business to consistently meet or exceed quarterly sales"
+        }
+      ],
+      "quote": "Source and close new business to consistently meet or exceed quarterly sales quotas",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.471b6db637d010a6e489fa7c",
+      "source_sha256": "bd4bddd1e6b5bb389e19265be2f584bb7a8a5575c07466d2dc0e4c10e1608192"
+    },
+    {
+      "expectation_id": "expect.05f18ad24c5d0dbfa90c",
+      "full_span_sha256": "edc93f32c666187d5398683954bc29d90e55c545e67271bd86145c4eab5d9b0e",
+      "job_id": "7191603",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.1.b.1.b.2"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:prospecting",
+          "matched_text_excerpt": "prospect"
+        }
+      ],
+      "quote": "Strategically prospect into CTOs, Engineering/IT Leaders, & technical end users",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.086755ec42ba4fc50fce5eea",
+      "source_sha256": "c37a11a45f5e6a9ac2ca1b000a1e177c2d44716eb7a5ae241c7ea19bcfe6bd96"
+    },
+    {
+      "expectation_id": "expect.3d244aeb36cfec4ddcc9",
+      "full_span_sha256": "d235d2296594bcdc56569e6f92d17bc884d3a525cfb8aed7b68b125d905ffa84",
+      "job_id": "7296351",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.4.c.1.c.4"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:close-sales",
+          "matched_text_excerpt": "closing deals"
+        }
+      ],
+      "quote": "We are seeking candidates with a hunter mentality who are dedicated to grabbing new prospects, netting new logos, closing deals, and delivering immediate results.",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.0c292a11046741f067bb2a94",
+      "source_sha256": "7ce443daa64280143b25502bada780ac3548500b1f29a217d95198c492c86ec4"
+    },
+    {
+      "expectation_id": "expect.0150e885a1b146558432",
+      "full_span_sha256": "570c563ffe22497865351230f01efcc2698810d585d82d3a4b77fcac8a9cbf83",
+      "job_id": "8041894",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.4.c.1.c.4"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:close-sales"
+        }
+      ],
+      "quote": "As an Account Executive, Existing Business, you’ll be managing existing relationships and identifying new opportunities to expand Stripe’s footprint within existing accounts.",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.3f2aee4879e39ddf98c48aea",
+      "source_sha256": "debd89661d011b4db839971b0d97e281103a8fa460ab1f4719f4ea56c3cf3c0e"
+    },
+    {
+      "expectation_id": "expect.5550fd5ee39f53d9fd05",
+      "full_span_sha256": "8c628a6182629579a53d77040e046ddd1811d95b8480634b92a23aa8400e3949",
+      "job_id": "8175160",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.1.b.1.b.2"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:prospecting",
+          "matched_text_excerpt": "prospecting"
+        }
+      ],
+      "quote": "Grow a current base of MongoDB customers by landing new workloads through outbound prospecting",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.3b894bd3daa628a6719d480b",
+      "source_sha256": "526c3168dca1bec88d5f425fc34bbb163c90887bb36b55ade502a969f9c38ec1"
+    },
+    {
+      "expectation_id": "expect.db8cae0b2d5acc93ccc8",
+      "full_span_sha256": "9b1d25e43be29a44920f102ca9a94e1829730dd4d382356af9ebdc879e992763",
+      "job_id": "7117086",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.4.a.7.b.7"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:sales-negotiation",
+          "matched_text_excerpt": "Negotiate favorable pricing and business terms"
+        }
+      ],
+      "quote": "Negotiate favorable pricing and business terms with large commercial enterprises by selling value and ROI",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.334d3aba0fc6abc63c4ec083",
+      "source_sha256": "a6f0b049ca2daedb0cf135f91548970fdda90750267232af219c75e8a6c245c6"
+    },
+    {
+      "expectation_id": "expect.430b45bbd3ae9fc22c07",
+      "full_span_sha256": "9627f7f25e2ebfe1822486a84ec8e8f1cc4fcd6dc973b810c45cfd46e0f4163a",
+      "job_id": "7687359",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.4.a.1.a.5"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:explain-products",
+          "matched_text_excerpt": "articulate the business value"
+        }
+      ],
+      "quote": "Ability to articulate the business value of complex enterprise technology",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.b03a23ab07ae9051b583df76",
+      "source_sha256": "80268c05461568180f1fe50426787fdc08656b4764fcc63195d38f3654ab554a"
+    },
+    {
+      "expectation_id": "expect.619c2554a1b1edc55280",
+      "full_span_sha256": "9c6b9f3772d58e3925b7e24ab70dfd4fdf373abfc4bcff00432c92b67bc24f1b",
+      "job_id": "5199808007",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.1.a.2.c.3"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:pipeline-management",
+          "matched_text_excerpt": "Maintain accurate pipeline management"
+        }
+      ],
+      "quote": "Maintain accurate pipeline management with expert-level forecasting",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.2e90fa7f24f3f499678394e0",
+      "source_sha256": "68e7f7fbc00bb5701002747829d54347181a0863a8a80c78949610e233ac01df"
+    },
+    {
+      "expectation_id": "expect.c8b966cd1390f2cb7f56",
+      "full_span_sha256": "0030096655eff0ab809c9925be7bc1101a8a72241b16022a2719110627bd256a",
+      "job_id": "7137456",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.4.a.4.a.2"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:business-relationships",
+          "matched_text_excerpt": "build relationships"
+        }
+      ],
+      "quote": "Establish a presence in your territory; research the ins and outs of your territory, develop a marketing and networking plan for how you will reach entrepreneur community in your market, and build relationships with the small business community",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.e8bb9989ae89e3ab4c6fbcb9",
+      "source_sha256": "5b50b124f43f13fd5ca3f85ae9cb66a527ccef34bd39542fc525736564dabc64"
+    },
+    {
+      "expectation_id": "expect.8b969d950cfa9154b29a",
+      "full_span_sha256": "0f35bbe670462881d6fc805e4bc372e6e99941c27e99c67c18e4505cb58ae871",
+      "job_id": "8147489",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.2.b.3.a.22"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:product-learning",
+          "matched_text_excerpt": "expert through continued product"
+        }
+      ],
+      "quote": "Become a Datadog expert through continued product and sales trainings",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.0867aa79086101d2eed068ad",
+      "source_sha256": "b0cc139e2e737c7317b6e691db8736d7c15df80e79751b8db653192073146b0b"
+    },
+    {
+      "expectation_id": "expect.5550fd5ee39f53d9fd05",
+      "full_span_sha256": "8c628a6182629579a53d77040e046ddd1811d95b8480634b92a23aa8400e3949",
+      "job_id": "6587328",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.1.b.1.b.2"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:prospecting",
+          "matched_text_excerpt": "prospecting"
+        }
+      ],
+      "quote": "Grow a current base of MongoDB customers by landing new workloads through outbound prospecting",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.ab1e080bc91a528d1162f204",
+      "source_sha256": "1377f5c8ef4b2615bdfa3dec108bc60cd8040f3c442d3d7e07d807c6a3454b14"
+    },
+    {
+      "expectation_id": "expect.ab71dec5569697e1a807",
+      "full_span_sha256": "ce242336addc89f443bf02212275640285a8b3556098cea9f2b02e62d2d2cf70",
+      "job_id": "7137456",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.1.a.2.c.3"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:pipeline-management",
+          "matched_text_excerpt": "Manage own book of business, build and manage an end-to-end sales pipeline"
+        }
+      ],
+      "quote": "Manage own book of business, build and manage an end-to-end sales pipeline and all supporting activities; prospect to close; meet or exceed your quotas",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.e8bb9989ae89e3ab4c6fbcb9",
+      "source_sha256": "5b50b124f43f13fd5ca3f85ae9cb66a527ccef34bd39542fc525736564dabc64"
+    },
+    {
+      "expectation_id": "expect.972c175ced97c2f8e22e",
+      "full_span_sha256": "37d1a310d469b6fc94280421334b9d26c2b8968ecd6f050fe40216adfb68757f",
+      "job_id": "7137456",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:software:2.E.1.l",
+        "onet31:software:2.E.6.c"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "software-example-or-category"
+        },
+        {
+          "confidence": "close",
+          "method": "software-example-or-category",
+          "matched_text_excerpt": "Salesforce"
+        }
+      ],
+      "quote": "Experience in Lead generation for B2B in a high-velocity setting (i.e., SaaS, PEO, Fintech)Salesforce, SalesLoft, LinkedIn SalesNavigator, and/or ZoomInfo are required.",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.e8bb9989ae89e3ab4c6fbcb9",
+      "source_sha256": "5b50b124f43f13fd5ca3f85ae9cb66a527ccef34bd39542fc525736564dabc64"
+    },
+    {
+      "expectation_id": "expect.5c72a677f970fd2a26c5",
+      "full_span_sha256": "12064974e794014f5ff8b8402abeb8f9d3e8f15370804f22f9f95d7cf0207b28",
+      "job_id": "7131386",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.1.b.1.b.2"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:prospecting",
+          "matched_text_excerpt": "Prospect"
+        }
+      ],
+      "quote": "Prospect into large Fortune 1000 companies while running an efficient sales process",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.72d4566311df500309be09b1",
+      "source_sha256": "a4941877c66ec252b6c90fe7d926c82bb9ab30ed27c01f0235c2ce1207dabc15"
+    },
+    {
+      "expectation_id": "expect.8acb346c92f2bd4f157b",
+      "full_span_sha256": "dabbe5e80f26813e23cfbeccffd859026f1d65537d2ad7cd3d9d0240b141c02c",
+      "job_id": "5156789007",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.3.b.6.g.1"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:proposals",
+          "matched_text_excerpt": "Create effective presentations and proposals"
+        }
+      ],
+      "quote": "Create effective presentations and proposals; create urgency to drive deal closure, negotiate pricing and contractual agreements",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.610f6fb7f027335424c69d06",
+      "source_sha256": "f8138e5fac6d5c5dfbaa37a61bfc38d3a0d7755b76ae39ad23f2876e3184c385"
+    },
+    {
+      "expectation_id": "expect.4ddbb85a7b782c877fec",
+      "full_span_sha256": "e4acb6c1537247513b08e0bb3d5ad7edea19da26731e386a3113f3df115f1163",
+      "job_id": "8190416",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.4.c.1.c.4"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:close-sales",
+          "matched_text_excerpt": "closing, and activating deals"
+        }
+      ],
+      "quote": "In this role, you will own the full commercial cycle—prospecting, structuring, closing, and activating deals—across Stripe's FX Acquiring, Multicurrency Settlement (MCS), and Currency Conversion (ICC) products.",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.3df74431d8c7c4761a2aa3a4",
+      "source_sha256": "842700b97649e1245f36ccda7ca7c60febd812f8a476a17ed080b6ed8dcf6d8f"
+    },
+    {
+      "expectation_id": "expect.02d7635e324dc5b85249",
+      "full_span_sha256": "9d22a215772326bf7eca3fdcc060a8868735406bead938b8dbfd32464af9a0ad",
+      "job_id": "8157360",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.1.b.1.b.2"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:prospecting",
+          "matched_text_excerpt": "prospect"
+        }
+      ],
+      "quote": "Able to demonstrate methodology to prospect and build pipeline on your own",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.8765b06d4c11bc2fcb6e5691",
+      "source_sha256": "93aa235013b84b67dd921b058891a0f5520b7619f708fd404b901c141b942678"
+    },
+    {
+      "expectation_id": "expect.0150e885a1b146558432",
+      "full_span_sha256": "570c563ffe22497865351230f01efcc2698810d585d82d3a4b77fcac8a9cbf83",
+      "job_id": "7993151",
+      "judged_correct": true,
+      "matched_ids": [
+        "onet31:dwa:4.A.4.c.1.c.4"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:close-sales"
+        }
+      ],
+      "quote": "As an Account Executive, Existing Business, you’ll be managing existing relationships and identifying new opportunities to expand Stripe’s footprint within existing accounts.",
+      "rationale": "Close lexical reference to the named work activity or explicitly named software category; this is not a proficiency, current-level or market-growth claim.",
+      "source_id": "desc.2026Q4.4ba45bb31eb5e2e66316cf17",
+      "source_sha256": "beef112b9bb609f9dc91035a1352cf2a3a96d2aed4e98d9d3df27e4c24468888"
+    },
+    {
+      "expectation_id": "expect.6781b7ace5dcb07f792b",
+      "full_span_sha256": "24643e8793a7e4643b6568af909e4342286831b488228714ad7170fb14e78225",
+      "job_id": "5104078",
+      "judged_correct": false,
+      "matched_ids": [
+        "onet31:dwa:4.A.4.a.4.a.2"
+      ],
+      "matches": [
+        {
+          "confidence": "close",
+          "method": "lexical-rule:business-relationships",
+          "matched_text_excerpt": "relationship-focused"
+        }
+      ],
+      "quote": "Passionate about sales and relationship-focused customer engagements",
+      "rationale": "Wrong/borderline: enthusiasm for relationship-focused engagement does not establish the activity of developing business relationships. Retained as a visible audit error, not scored as correct.",
+      "source_id": "desc.2026Q4.ec95a72653f75bf0d3822843",
+      "source_sha256": "e8befe05beefd54e5312bf512664c7b651a915658cf331f9ef06b052d95a194d"
+    }
+  ],
+  "data_kind": "research-audit",
+  "reviewer": "coding agent manual review; not independent expert ground truth",
+  "seed": 3100,
+  "source_snapshot_id": "f647a1ac44a1f666f9a3f3b9e74e7e5638d7e99a9a509c6b00c23ae8333552e5"
+}
