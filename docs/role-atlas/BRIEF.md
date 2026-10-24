@@ -180,6 +180,78 @@ Acceptance (plus G1–G6, P1–P5, V1–V3, W1–W6):
 - **T3** The FDE top 20 contains canonical nodes instead of single-employer phrasings wherever a lexicon or software alias applies.
 - **T4** The skill map stays readable at 1280 and 390 with the real AE release.
 
+## M9: Verified sectors and the structured career-page lane
+
+Two gaps remain after M8. The Industries tab is empty because every employer in `role_atlas_mappings/employers.json` is `unverified`. HR Generalist (5 postings) and Growth Manager (17) are thin because most of their employers post on Workday, iCIMS and their own career sites rather than Greenhouse, Lever or Ashby. Both are fixed from free, public, primary sources.
+
+### Part A: employer sectors from SEC EDGAR
+
+Reviewer-downloaded inputs (the user approved the contact header; never put any email or contact string in the repo, tests or logs):
+- `~/.local/share/skills-vector-evidence/sec/employer_sic.json` has 30 roster employers matched to SEC registrants, each with CIK, ticker, SIC code and description, and source URL. The reviewer rejected four name collisions: Linear, Mercury, Sierra and Vanta. Waymo and Zoox are subsidiaries, so they are not mapped (the parent's SIC is not the employer's sector). The raw submission files are in `sec/submissions/`.
+- `~/.local/share/skills-vector-evidence/sec/census/1987_SIC_to_2002_NAICS.csv` is the Census concordance, converted from the `.xls` (sha256 of the xls: fcb8ad7e4162a4d95c39ebe51c12e8ec20dfa6a31f2e81bf8fb1de08fbedc937).
+
+Build:
+1. An operator command, `market role-atlas sectors import --sec <dir> --concordance <csv>`. It writes a checked-in `role_atlas_mappings/sic_sectors.json` and updates `employers.json`. It reads local files only.
+2. SIC → NAICS sector rule. A SIC maps to a 2-digit sector automatically only when every concordance row for it falls in one sector. Otherwise it needs a reviewed decision row with a note. Reviewer decisions:
+
+   | SIC | Sector | Note |
+   | --- | --- | --- |
+   | 7372 | 51 Information | Software publishing, NAICS 511210. 334611 (mass reproduction) does not describe these registrants. |
+   | 7374 | 51 Information | 518210, unambiguous. |
+   | 4832 | 51 Information | 5151xx, unambiguous. |
+   | 7370 | 54 Professional, Scientific and Technical Services | SEC aggregate code, not in the 1987 concordance. Its children 7371/7373 map to 5415xx. |
+   | 7373 | 54 | 541512, unambiguous. |
+   | 6141, 6211, 6324 | 52 Finance and Insurance | Every concordance row falls in 52. |
+   | 6199 | 52 | SEC code, not in the concordance; the SIC major group 61 (nondepository credit) falls in 52. |
+   | 5812 | 72 Accommodation and Food Services | Restaurant rows; dinner theater (711110) does not apply to the registrant. |
+   | 3949 | 31–33 Manufacturing | 339920, unambiguous. |
+   | 5500 | 44–45 Retail Trade | SEC aggregate code for major group 55; its children map to 441xxx/447xxx. |
+   | 7389 | none | Spans 10+ sectors. DoorDash, Lyft and Instacart stay unverified with reason "SIC 7389 is ambiguous across sectors". |
+   | 7340 | none | SEC aggregate; children span 56 and 53. Airbnb stays unverified with the same kind of reason. |
+
+   Use sector 31–33 and 44–45 as NAICS writes them, never split by SIC.
+3. Each verified employer row carries:
+   - `status: "verified"`;
+   - `naics` sector;
+   - `source: "sec_edgar"` with CIK, SIC and SIC description, and retrieval date;
+   - `rule`: `concordance_unambiguous` or `reviewed_decision` with the decision note.
+
+   Private employers keep `unverified` with their existing note. Nothing is inferred from names or job text.
+4. Re-project `2026-Q4` with the verified map. Sector profiles appear only where the floor (≥30 postings, ≥8 employers) is met. Others stay `profile: null` with the reason and the counts. The Industries tab must list every sector seen, including below-floor ones with their counts, plus "Unverified employers: N postings from M employers".
+
+### Part B: structured career-page lane (`schema.org/JobPosting` JSON-LD)
+
+Employers publish `JobPosting` JSON-LD on their own job pages so that search engines can index them. Workday tenants, iCIMS and most custom career sites do this. The reviewer checked a live Workday tenant: its robots.txt lists `Sitemap:` lines and `Allow` for the career site; its sitemap lists job URLs; and each job page carries one `JobPosting` with title, hiringOrganization, jobLocation, datePosted, validThrough, employmentType, identifier and a full HTML description (about 10 KB). Saved samples, for format reference only (do not check them in): `~/.local/share/skills-vector-evidence/jsonld-samples/workday-salesforce-{robots.txt,sitemap.xml,job.html}`.
+
+Prior art to port from (both MIT, same author; attribute in the module docstring the same way `general-jobs-index` does for oh-shi):
+- `/home/logani/projects/general-jobs-index/src/lib/structured-career-page.ts` and `src/lib/public-web.ts`: robots parsing, sitemap discovery, same-site checks, bounded fetch;
+- `/home/logani/projects/jobsss/src/discovery.js` `jobPostingJsonLd`: `@graph` and array handling.
+
+Build it as a new board kind `jsonld` in the M6 posting-volume lane, so admission, the employer cap, sections, extraction, quotes and projection are all reused unchanged:
+1. **Roster, not the open web.** Each `jsonld` board in `config/role-atlas-posting-volume.json` names an employer, its career-site origin, an optional sitemap URL, and a `note` on why that host belongs to that employer (employer domain, or its ATS tenant subdomain). Aggregator and job-board hosts are rejected by a checked-in denylist: indeed, linkedin, glassdoor, ziprecruiter, monster, simplyhired, talent.com, jooble, adzuna, careerbuilder, dice, builtin, wellfound and google. This rejection is tested. Postings must be employer-published; reposts are not.
+2. **Politeness, enforced in code and tested:**
+   - fetch robots.txt first and obey Disallow for the lane's own User-Agent and `*`;
+   - discover job URLs only from sitemaps (robots `Sitemap:` lines or the configured one), with sitemap-index recursion depth ≤2;
+   - at most one request per second per host;
+   - at most 600 job pages per board per run;
+   - a 2 MB response cap, HTTPS only, and redirects only to the same site;
+   - a User-Agent from config (the operator supplies it; it is not hard-coded).
+3. **Parsing.** Read `JobPosting` from `application/ld+json`, handling `@graph`, arrays and `@type` as a list. Skip postings past `validThrough` relative to the window, or with no description. The description is normalized exactly like ATS descriptions, so quotes stay exact substrings (V3). Record `extraction_method` as now, plus `source_kind: "jsonld"` and the page URL as provenance. Geography uses `jobLocation` and `applicantLocationRequirements` under the existing US rule.
+4. **Title prefilter before fetching pages.** Workday-style job URLs carry the title slug. Use the role title hints on the URL slug to avoid fetching thousands of unrelated pages. Report fetched against skipped.
+5. **Dedup** across board kinds by employer + normalized title + location + identifier where present.
+6. **roster-probe** gains `jsonld`: for a candidate origin, report robots allow or deny, sitemap found, job URL count, title-hint matches per role, and whether a sampled page has a parseable `JobPosting`. Probing is read-only and budgeted like the existing probe.
+7. **Tests:** offline only, with small synthetic fixtures in the real formats (robots with Disallow, sitemap index, a job page with `@graph`, a page with no JSON-LD, an expired `validThrough`, and an aggregator host). Cover each rule passing and rejected (G2), and that the lane imports no model or HTTP client beyond the existing fetch layer (V1).
+
+The reviewer then proposes Workday and iCIMS candidates weighted toward HR Generalist and Growth Manager employers, runs the probe and a live capture, and the Q4 release is re-projected from the merged capture as a new release id. The superseded release stays on disk, and the API selects the new one.
+
+Acceptance (plus G1–G6, P1–P5, V1–V3, W1–W6):
+- **I1** Every verified employer row traces to an SEC submission file and either an unambiguous concordance row set or a reviewed decision. A test fails if a sector is set without one.
+- **I2** No sector is assigned to Waymo, Zoox, the four rejected collisions, or the 7389/7340 registrants.
+- **I3** The Industries tab renders verified sectors with honest below-floor counts at 1280 light, 1280 dark and 390, with no console errors (W3 checker extended).
+- **J1** Robots Disallow, the per-host rate, the page cap, the size cap, the same-site redirect and the aggregator denylist each have a rejecting test.
+- **J2** Byte-identical projection when the same capture is projected twice, with `jsonld` boards included.
+- **J3** PROGRESS.md documents the exact operator commands for the probe and the capture. Pi does not run live retrieval.
+
 ## Guardrails (hard)
 
 - Work only in this worktree, on branch `feat/role-atlas`. Commit at the end of each milestone with a clear message. Never push, never touch `main`, and never rewrite history.
