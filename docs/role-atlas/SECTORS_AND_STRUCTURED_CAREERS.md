@@ -53,9 +53,39 @@ identifier in the policy's top-level `user_agent`; it is not a code default or
 CLI argument. Only its hash enters the saved policy, never the header value.
 Use a token without personal details. `employer_aliases` is an optional reviewed
 list of additional hiring-organization names. Comparison strips a leading numeric
-company code, listed legal suffixes and punctuation, then casefolds. The roster
-origin plus its ownership note remains the employer identity; unrelated names
-are still rejected and counted. There is no fuzzy match.
+company code, listed legal suffixes and punctuation, then casefolds. The default
+`organization_rule: "name"` requires one of those names; missing or unrelated
+names are rejected and counted. There is no fuzzy match.
+
+For reviewed tenants that publish per-posting legal entities instead of the
+brand, opt in **per board**:
+
+```json
+{
+  "ats": "jsonld",
+  "employer": "Authored Employer",
+  "origin": "https://authored.myworkdayjobs.com",
+  "note": "Authored example: this tenant belongs to the named employer.",
+  "organization_rule": "tenant_entity"
+}
+```
+
+`tenant_entity` is valid only on hosts ending in `.myworkdayjobs.com`, or with
+an explicit nonblank `tenant_entity_note` documenting the reviewed exception for
+another host. The normal ownership `note` is still required; it is **not** the
+exception note. Other rule values and unreviewed non-Workday uses are rejected.
+The roster origin and ownership note determine the employer, regardless of the
+posting organization, including an absent or empty name. The raw name is stored
+as `hiring_entity` on the selected native job and captured posting (`null` when
+missing/non-string, `""` when explicitly empty), never substituted for the roster
+employer or used to infer its sector. US geography and expiry still apply.
+
+A normalized name equal to **another roster employer or its alias**, across any
+board kind in the same policy, is rejected as
+`organization_other_roster_employer`. Own names/aliases and additional boards for
+the same employer do not trigger that guard; an alias collision with another
+employer does. Keep all approved ATS and structured boards in the union policy
+so this comparison sees the full reviewed frame.
 
 Origins must be public HTTPS DNS hosts with an ownership note. The checked-in
 aggregator denylist applies to subdomains/country suffixes as well. Scope is
@@ -78,8 +108,16 @@ per response; at most 600 job pages/board and five redirect hops. The existing
 **200-request run ceiling remains in force** and can bind before the page cap.
 Incomplete discovery/cap/transport failures do not become complete comparison
 frames. Reports count fetched pages, title/cap skips, expiry, missing JSON-LD,
-organization/geography rejections and robots denials. A probe samples at most
-one matching job page. Rate waits are unnecessary for local fixture-file reads.
+organization/geography rejections and robots denials. Every structured capture
+board summary (`boards[].structured`) and probe board reports
+`hiring_entity_counts: [{"hiring_entity": "...", "count": 1}]`, sorted by the raw
+name, with a separate `null` bucket before names. These count **observed parsed
+JobPosting nodes before admission and dedup**, including rejected entities, not
+unique admitted postings. Empty and missing names remain distinct buckets.
+A probe samples at most one matching job page; its draft also includes the first
+node's raw `hiring_entity` (nullable), even if rejected. For multi-node pages,
+inspect the counts as well. All drafts remain `reviewed: false`. Rate waits are
+unnecessary for local fixture-file reads.
 
 `JobPosting` arrays, nested `@graph` and list-valued `@type` are supported.
 Expired or description-less postings are skipped. Expiry is judged at the
@@ -132,7 +170,9 @@ EVIDENCE="$HOME/.local/share/skills-vector-evidence/role-atlas"
 ```
 
 Every draft stays `reviewed: false`. Review per-path robots/discovery results,
-hiring organizations and the sampled node. Then create **one union policy**
+`hiring_entity`, the per-entity counts (including rejected/missing names), and
+the sampled node. Explicitly review any `tenant_entity` setting or non-Workday
+`tenant_entity_note`; a successful probe does not approve either. Then create **one union policy**
 containing the approved existing ATS boards and new structured boards (at most
 100 total), not two separate same-quarter projection inputs:
 

@@ -1,0 +1,7 @@
+{
+  "ats": "jsonld",
+  "employer": "Authored",
+  "origin": "https://careers.example.org",
+  "note": "Authored ownership note; no entity-rule exception reviewed.",
+  "organization_rule": "tenant_entity"
+}

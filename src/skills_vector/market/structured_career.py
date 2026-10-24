@@ -8,6 +8,7 @@ only sitemap-discovered employer-published JobPosting nodes enter this lane.
 from __future__ import annotations
 
 from collections import Counter
+from collections.abc import Sequence
 from datetime import date, datetime
 import hashlib
 import html
@@ -72,6 +73,17 @@ def validate_robots_agent(agent: str | None) -> None:
             "robots_agent must be a product token")
 
 
+def organization_rule(board: dict) -> str:
+    rule = board.get("organization_rule", "name")
+    require(rule in ("name", "tenant_entity"), "unknown organization_rule")
+    if rule == "tenant_entity":
+        note = board.get("tenant_entity_note")
+        require(urlsplit(safe_url(board["origin"])).hostname.endswith(".myworkdayjobs.com")
+                or isinstance(note, str) and note.strip(),
+                "tenant_entity requires a Workday tenant or tenant_entity_note")
+    return rule
+
+
 def validate_board(board: dict) -> None:
     origin = safe_url(board["origin"])
     require(urlsplit(origin).path == "/" and not urlsplit(origin).query,
@@ -83,6 +95,7 @@ def validate_board(board: dict) -> None:
     maximum = board.get("max_job_pages", MAX_PAGES)
     require(type(maximum) is int and 1 <= maximum <= MAX_PAGES, "structured page cap exceeds 600")
     validate_robots_agent(board.get("robots_agent"))
+    organization_rule(board)
     require(no_contacts(board), "non-data board metadata")
 
 
@@ -305,15 +318,32 @@ def organization_name(value: str) -> str:
     return " ".join(tokens)
 
 
-def normalize_node(node: dict, page_url: str, board: dict, as_of: str) -> tuple[dict | None, str | None]:
+def hiring_entity(node: dict) -> str | None:
+    org = node.get("hiringOrganization")
+    name = org.get("name") if isinstance(org, dict) else None
+    return name if isinstance(name, str) else None
+
+
+def normalize_node(node: dict, page_url: str, board: dict, as_of: str, *,
+                   roster: Sequence[dict] = ()) -> tuple[dict | None, str | None]:
     title, description = node.get("title"), node.get("description")
     if not isinstance(title, str) or not title.strip() or not isinstance(description, str) or not description.strip():
         return None, "missing_description_or_title"
-    org = node.get("hiringOrganization", {})
-    names = [board["employer"], *board.get("employer_aliases", [])]
-    if not isinstance(org, dict) or not organization_name(str(org.get("name", ""))) or organization_name(
-            str(org.get("name", ""))) not in {organization_name(n) for n in names}:
-        return None, "organization_mismatch"
+    entity = hiring_entity(node)
+    normalized_entity = organization_name(entity or "")
+    if organization_rule(board) == "tenant_entity":
+        other_names = {
+            organization_name(name)
+            for other in roster
+            if normalize_ws(other["employer"]).casefold() != normalize_ws(board["employer"]).casefold()
+            for name in [other["employer"], *other.get("employer_aliases", [])]
+        }
+        if normalized_entity and normalized_entity in other_names:
+            return None, "organization_other_roster_employer"
+    else:
+        names = [board["employer"], *board.get("employer_aliases", [])]
+        if not normalized_entity or normalized_entity not in {organization_name(n) for n in names}:
+            return None, "organization_mismatch"
     expiry = node.get("validThrough")
     if expiry:
         try:
@@ -335,7 +365,8 @@ def normalize_node(node: dict, page_url: str, board: dict, as_of: str) -> tuple[
     selected = {
         "id": hashlib.sha256(canonical(identity).encode()).hexdigest()[:24], "identifier": identifier,
         "title": normalize_ws(html.unescape(title)), "description": description, "location": place,
-        "url": safe_url(page_url, board["origin"]), "hiringOrganization": {"name": org["name"]},
+        "url": safe_url(page_url, board["origin"]), "hiringOrganization": {"name": entity},
+        "hiring_entity": entity,
         "datePosted": node.get("datePosted") if isinstance(node.get("datePosted"), str) else None,
         "validThrough": expiry if isinstance(expiry, str) else None,
         "employmentType": node.get("employmentType") if isinstance(node.get("employmentType"), (str, list)) else None,
@@ -343,7 +374,8 @@ def normalize_node(node: dict, page_url: str, board: dict, as_of: str) -> tuple[
     return selected, None
 
 
-def crawl(board: dict, roles: dict, session: Session, as_of: str, *, probe=False) -> tuple[dict, dict]:
+def crawl(board: dict, roles: dict, session: Session, as_of: str, *, probe=False,
+          roster: Sequence[dict] = ()) -> tuple[dict, dict]:
     validate_board(board)
     origin = safe_url(board["origin"])
     counts, problems = Counter(), []
@@ -402,6 +434,8 @@ def crawl(board: dict, roles: dict, session: Session, as_of: str, *, probe=False
     if counts["skipped_page_cap"] and not probe:
         problems.append("job page cap")
     jobs, parseable = [], False
+    entities = Counter()
+    sampled_entity = None
     for url in selected[:maximum]:
         if not robots.allows(url):
             counts["robots_denied_pages"] += 1
@@ -419,9 +453,13 @@ def crawl(board: dict, roles: dict, session: Session, as_of: str, *, probe=False
         parseable = bool(nodes) or parseable
         if not nodes:
             counts["no_jobposting"] += 1
-        for node in nodes:
+        for index, node in enumerate(nodes):
+            entity = hiring_entity(node)
+            entities[entity] += 1
+            if probe and index == 0:
+                sampled_entity = entity
             try:
-                item, reason = normalize_node(node, url, board, as_of)
+                item, reason = normalize_node(node, url, board, as_of, roster=roster)
             except (ValueError, TypeError):
                 item, reason = None, "invalid_jobposting"
             if item:
@@ -441,7 +479,13 @@ def crawl(board: dict, roles: dict, session: Session, as_of: str, *, probe=False
         "matched_titles": {role: len(values) for role, values in matched.items()}, "sample_parseable": parseable,
         "counts": dict(sorted(counts.items())), "problems": sorted(set(problems)), "listing_complete": not problems,
         "robots_sha256": first.sha256,
+        "hiring_entity_counts": [
+            {"hiring_entity": entity, "count": count}
+            for entity, count in sorted(entities.items(), key=lambda pair: (pair[0] is not None, pair[0] or ""))
+        ],
     }
+    if probe:
+        summary["hiring_entity"] = sampled_entity
     # Native selected fields retain unchanged descriptions. Repository quote
     # emission, not discovery/admission, omits communication-bearing sentences.
     return {"schema": "skills-vector.jsonld-board/1", "jobs": jobs, "summary": summary}, summary

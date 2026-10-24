@@ -66,7 +66,8 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
                 require(us_location_ok(posting["location"]) and dedup_key(posting["employer"], posting["job_id"], posting["url"]) == posting["dedup_key"], "invalid geography/dedup identity")
             if posting["ats"] == "jsonld":
                 require(posting.get("source_kind") == "jsonld" and posting.get("page_sha256") == native["page_sha256"]
-                        and posting.get("identifier") == native["identifier"], "structured page provenance mismatch")
+                        and posting.get("identifier") == native["identifier"]
+                        and posting.get("hiring_entity") == native.get("hiring_entity"), "structured page provenance mismatch")
             original, is_html = native_description(posting["ats"], native)
             require(original == raw and is_html == posting["description_is_html"], "description not bound to retrieved board row")
             require(manifest.get("contact_filter") in (None, "sentences/1"), "unknown contact filter")

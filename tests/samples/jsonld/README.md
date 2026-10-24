@@ -10,6 +10,12 @@ and URL sets, nested graph and array nodes exercise the native formats.
 without copying the real Workday page. The policy names its `robots_agent` product
 token separately from its header.
 
+The three `tenant-*.sample.html` fixtures cover a per-posting legal entity, a
+missing organization and another roster employer alias. The standalone
+`tenant-invalid-board.sample.json` covers a non-Workday entity rule without a
+reviewed exception note. Entity tests also check raw-name counts (including
+rejected and duplicate nodes), sampled probe names and source-bound replay.
+
 The sample policy is explicitly `data_kind: fixture`. Native descriptions and
 all resulting quotes remain source-bound. Tests construct the disallowed,
 expired, malformed, oversized, foreign-site, organization/geography mismatch,

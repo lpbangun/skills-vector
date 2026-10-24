@@ -34,7 +34,8 @@ def probe(candidates: Path, output: Path, *, payload_root: Path | None = None, l
                 local = None if live else local_transport(payload_root, board["payload"])
                 session = Session(value["user_agent"], robots_agent=board.get("robots_agent", value.get("robots_agent")),
                                   transport=transport or local, reserve=reserve, local=not live)
-                _, summary = crawl(board, value["roles"], session, board.get("retrieved_at") or _now_iso(), probe=True)
+                _, summary = crawl(board, value["roles"], session, board.get("retrieved_at") or _now_iso(),
+                                   probe=True, roster=value["boards"])
                 result = {"ats": "jsonld", "origin": board["origin"], "employer": board["employer"],
                           "exists": summary["sample_parseable"], "reviewed": False, **summary,
                           "source_note": board["source_note"] + " Read-only sitemap probe; human roster review required."}

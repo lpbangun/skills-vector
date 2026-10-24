@@ -304,7 +304,8 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
                     local = None if live else local_transport(payload_root, board["payload"])
                     session = Session(policy.value["user_agent"], robots_agent=board.get("robots_agent", policy.value.get("robots_agent")),
                                       transport=transport or local, reserve=reserve, local=not live)
-                collection, structured_summary = crawl(board, policy.value["roles"], session, stamp)
+                collection, structured_summary = crawl(board, policy.value["roles"], session, stamp,
+                                                       roster=policy.value["boards"])
                 body = canonical(collection).encode()
             except (ValueError, OSError, KeyError, TypeError):
                 boards.append({"url": url, "error": "structured discovery unavailable or rejected by policy"})
@@ -391,7 +392,8 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
                              "employer_source_note": board["source_note"]})
             if ats == "jsonld":
                 postings[-1].update(source_kind="jsonld", page_sha256=native[candidate["job_id"]]["page_sha256"],
-                                    identifier=native[candidate["job_id"]]["identifier"])
+                                    identifier=native[candidate["job_id"]]["identifier"],
+                                    hiring_entity=native[candidate["job_id"]].get("hiring_entity"))
     if any(p["ats"] == "jsonld" for p in postings):
         from .structured_career import cross_kind_dedup
         postings, cross_duplicates = cross_kind_dedup(postings)

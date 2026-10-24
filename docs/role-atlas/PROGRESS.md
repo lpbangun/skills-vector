@@ -3124,3 +3124,122 @@ The reviewed fixes do not change SEC decisions, scope rules, sampling/floors,
 forecast math or existing immutable releases. Real structured-page volume still
 awaits an operator-reviewed roster and explicitly authorized retrieval. One
 fix-up commit on `feat/role-atlas`, then stop for review.
+
+
+## M9 review round 3 — opt-in tenant legal entities
+
+Addressed both musts in `reviews/M9-r3.md`. No live retrieval was run and
+**no access to the operator evidence store** was made. No SEC import, real
+sample replay, external capture projection or evidence receipt scan was run.
+The possible background reviewer probe was not inspected or interrupted.
+
+### Must 1 — organization rule, provenance, counts and roster guard
+
+- Added per-board `organization_rule`: default/explicit `name` retains the
+  strict normalized employer/alias comparison and rejects absent/unrelated
+  names. `tenant_entity` trusts the reviewed roster origin/ownership note
+  instead; arbitrary per-posting legal entities and missing/empty names pass
+  the organization check. It does not bypass title/description, expiry, US
+  geography, robots, scope, sampling or any cap.
+- Validation permits `tenant_entity` only on a host ending in
+  `.myworkdayjobs.com`, or with a nonblank string `tenant_entity_note`.
+  The ordinary ownership note is still required and does not grant that
+  exception. Unknown rule values, the bare Workday apex, suffix-spoof hosts
+  and non-Workday hosts without a valid exception are rejected.
+- Raw `hiring_entity` is retained on both selected native jobs and captured
+  posting rows. Missing/non-string names are `null`; an explicitly empty
+  string stays empty. Names are not replaced with aliases, used as employer
+  identity or used to infer sectors. Replay binds the posting field to its
+  native collection row; older collections/rows without the field remain
+  readable.
+- Capture and probe pass **all policy boards**, including ATS boards, to the
+  collision check. An entity equal after existing legal-name normalization
+  to another roster employer or alias is rejected as
+  `organization_other_roster_employer`. Additional boards for the same
+  canonical roster employer are not collisions. Distinct roster labels are
+  not silently merged just because their legal-name normalization agrees;
+  an alias shared with another employer still rejects.
+- Each capture board's `structured` summary and each successful probe board
+  report `hiring_entity_counts`, a deterministic list of raw-name/count pairs.
+  Counts describe parsed nodes **before admission and dedup**, including
+  rejected entities, with separate missing/null and empty-name buckets.
+  They are not admitted-posting totals or coverage claims.
+
+### Must 2 — sampled entity in the draft
+
+The probe draft carries the first sampled node's raw `hiring_entity`, nullable,
+even when that node is rejected. A page containing several nodes also retains
+all observed names in its per-entity counts. Drafts remain `reviewed: false`;
+neither a successful sample nor an entity count approves an origin or exception.
+
+### Fixtures and actual evidence
+
+Added four authored case fixtures under `tests/samples/jsonld/`:
+`tenant-entity.sample.html`, `tenant-missing-entity.sample.html`,
+`tenant-other-employer.sample.html` and
+`tenant-invalid-board.sample.json`. They contain no real saved page or
+description and are not added to the active roster.
+
+Four new tests in `tests/test_structured_career_entities.py` cover those cases,
+default/explicit-name rejection, empty/malformed organization values, permitted
+non-Workday exceptions, illegal rules/notes, suffix spoofing, cross-ATS names/
+aliases, own versus conflicting aliases and unchanged foreign-country rejection.
+
+The network-blocked integration test captures **10 authored postings / five
+employers / two roles**, retains their exact entity values and replays/projects
+the snapshot twice byte-identically. One board sees four nodes: missing **1**,
+the legal entity **2**, the other employer alias **1**. It rejects the alias and
+deduplicates the repeated job while preserving those pre-admission counts.
+Three offline probes exercise missing, legal-entity and rejected-alias samples;
+every board fetches one page and reports the expected raw sample/counts.
+No fixture result is research evidence.
+
+Updated `SECTORS_AND_STRUCTURED_CAREERS.md` with policy examples, eligibility,
+the collision guard, nullable provenance, count denominators and reviewer
+instructions. Updated the fixture README. No dependencies, UI/API read
+surfaces, sector decisions, floors, forecast math or immutable publications
+were changed.
+
+### Exact verification commands and results
+
+To prevent the suite's optional external-audit lookup from accessing the
+normal evidence path, all tests ran with HOME isolated under `/tmp`.
+This affects only these test processes, not the background probe. The existing
+M8 test permits an unavailable local audit; those optional external-audit
+assertions were unavailable rather than replaced with fabricated receipts.
+Checked-in catalog/ledger, fixture, source-binding and API parity tests still ran.
+
+```sh
+TEST_HOME=$(mktemp -d /tmp/role-atlas-m9-r3-home.XXXXXX)
+printf '%s\n' "$TEST_HOME" > /tmp/role-atlas-m9-r3-test-home-path
+HOME="$TEST_HOME" .venv/bin/python -m unittest discover -s tests -p 'test_structured_career*.py' > /tmp/role-atlas-m9-r3-focused-tests.log 2>&1
+
+TEST_HOME=$(mktemp -d /tmp/role-atlas-m9-r3-suite-home.XXXXXX)
+HOME="$TEST_HOME" .venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m9-r3-full-tests.log 2>&1
+
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python -m unittest discover -s tests -p 'test_structured_career*.py' > /tmp/role-atlas-m9-r3-focused-final-tests.log 2>&1
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m9-r3-handoff-tests.log 2>&1
+
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python -m unittest discover -s tests -p 'test_structured_career*.py' > /tmp/role-atlas-m9-r3-focused-handoff-tests.log 2>&1
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m9-r3-final-tests.log 2>&1
+```
+
+All exit **0**. Focused runs: **17 tests / 1.256s**, **1.227s**, then
+**1.218s**, all OK. Full suite: **295 / 94.597s**, then **295 / 91.533s**
+after strengthening duplicate-node counting, finally **295 / 93.006s** after
+adding the distinct-roster-identity collision case. All **OK (skipped=2)**;
+the two skips are existing, with no new skips and no failing test attempts.
+
+```sh
+.venv/bin/python -m compileall -q src/skills_vector/market/structured_career.py src/skills_vector/market/posting_volume.py src/skills_vector/market/posting_volume_inputs.py src/skills_vector/market/roster_probe.py tests/test_structured_career_entities.py
+git diff --check
+git diff --exit-code -- research preview config docs/role-atlas/reviews
+```
+
+All exit **0**. The final diff check is repeated before committing. No browser
+sweep was rerun for this backend-only fix; no new screenshot, browser budget,
+live coverage or real-input replay claim is made. No operator paths were read
+to establish an integrity receipt. The checked-in research, preview, config
+and review trees have no diff.
+
+One fix-up commit on `feat/role-atlas`, then stop for review.
