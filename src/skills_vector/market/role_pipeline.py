@@ -28,11 +28,6 @@ SCOPE_RULES = {
     4: r"\b(?:own(?:s|ing)?\b.{0,40}\b(?:architecture|ambiguous)|(?:shape|define|set|drive)\b.{0,40}\b(?:strategy|roadmap)|lead\b.{0,20}\bdesign decisions)",
     5: r"\b(?:own(?:s|ing)?|define|set)\b.{0,35}\b(?:company.wide|organization.wide|firm.wide)\b",
 }
-SALES_SCOPE_RULES = {
-    2: r"\b(?:own(?:ing)?|manag(?:e|ing))\b.{0,60}\b(?:book of business|named book|(?:full|entire|complete) sales (?:cycle|process)|account list|pipeline|contract renewals|relationship lifecycles)\b|\bown a named book\b|\bhandle existing customer expectations\b.{0,70}\bassigned territory\b|^(?:source and close|meet|exceed|deliver).{0,140}\bquotas?\b",
-    3: r"\b(?:lead|own)\b.{0,55}\b(?:multi.stakeholder sales cycles|complex (?:enterprise sales cycles|commercial discussions|renewals))\b|\bmulti.thread\b.{0,65}\bcomplex organization\b|\bmulti.threading at (?:an executive|a senior|senior) level\b",
-    4: r"\barchitect and execute\b.{0,65}\bgo.to.market strategies\b",
-}
 LEVEL_NAMES = ("Guided", "Independent", "Complex delivery", "Strategic", "Organization-wide")
 QUALIFICATION = re.compile(r"^(?:experience\b|previous experience\b|(?:proven|demonstrated) (?:experience|ability)\b|ability to\b|you (?:have|bring)\b|must have\b|\d+\s*\+?\s*(?:[-–]\s*\d+)?\s*years?\b|at least\b)", re.I)
 MANAGEMENT = re.compile(r"\b(?:direct reports|manage (?:a|the|your) team|hire and (?:manage|evaluate)|supervise (?:staff|employees))\b", re.I)
@@ -83,24 +78,32 @@ class Triage:
     weak: dict[str, Any]
 
 
-def triage(posting: dict, quotes: list[str], *, role_scope_rules: bool = True) -> Triage:
-    """Only source-verified duty/scope quotes decide. Titles and tenure never vote."""
+def triage(posting: dict, quotes: list[str], *, role_scope_rules: bool = True, segment_policy: dict | None = None) -> Triage:
+    """Scope first; only a reviewed role-specific segment may be strong title evidence."""
     weak = {"title": posting.get("title"), "advertised_experience": posting.get("advertised_experience", {}).get("value", [])}
-    strong = []
+    strong, current_duties = [], []
+    segment_role = role_scope_rules and posting.get("occupation_slug") == "account-executive"
     for quote in sorted(set(quotes)):
         search_text = " ".join(quote.split())
         if QUALIFICATION.search(search_text):
             continue
         if MANAGEMENT.search(search_text):
             return Triage(None, "people_management_is_a_linked_track", [{"quote": quote, "track": "management"}], weak)
-        rules = list(SCOPE_RULES.items())
-        if role_scope_rules and posting.get("occupation_slug") == "account-executive":
-            rules.extend(SALES_SCOPE_RULES.items())
-        for level, pattern in rules:
+        current_duties.append(quote)
+        for level, pattern in SCOPE_RULES.items():
+            if segment_role and level not in (1, 5):
+                continue  # Generic selling/project/strategy duties do not separate AE levels.
             if re.search(pattern, search_text, re.I):
                 strong.append({"level": level, "quote": quote})
     if posting.get("work_level") == "people_manager":
         return Triage(None, "people_management_is_a_linked_track", strong, weak)
+    if segment_role:
+        from .role_segments import segment_signals
+        segments = segment_signals(posting, current_duties, segment_policy)
+        if len({s["segment"] for s in segments}) > 1:
+            return Triage(None, "conflicting_customer_segments", segments, weak)
+        if segments:
+            return Triage(segments[0]["level"], "reviewed_customer_segment_scope", segments, weak)
     levels = {signal["level"] for signal in strong}
     if len(levels) > 1:
         return Triage(None, "conflicting_strong_scope_signals", strong, weak)
@@ -333,7 +336,7 @@ class EvidenceInputs:
                                and (not posting.get("extraction_method", "").startswith("rules/") or e.get("section") == "responsibilities")]
                 if posting.get("responsibility_evidence", {}).get("quote"):
                     duty_quotes.append(posting["responsibility_evidence"]["quote"])
-                decision = triage(posting, duty_quotes, role_scope_rules=posting.get("extraction_method") == "rules/2")
+                decision = triage(posting, duty_quotes, role_scope_rules=posting.get("extraction_method") == "rules/2", segment_policy=self.skills.get("segment_scope"))
                 assignments[posting["dedup_key"]] = decision.level
                 linked = []
                 for expected in posting["expectations"]:
@@ -409,6 +412,7 @@ class EvidenceInputs:
                                "windows": [m.to_dict() for m in measurements], "evidence": evidence, "forecast": forecast if derive_status(measurements, [Signal(**s) for s in evidence]) != "core" else None, "disputed": None})
             kept, dropped = cooccurrences(rows, mentions)
             ladder = []
+            segment_policy = self.skills.get("segment_scope") if slug == "account-executive" and (not rows or any(p.get("extraction_method") == "rules/2" for p in rows)) else None
             for level, name in enumerate(LEVEL_NAMES, 1):
                 selected = level_rows[level]
                 expectations = {}
@@ -422,8 +426,8 @@ class EvidenceInputs:
                 ladder.append({"id": slug + f".L{level}", "level": level, "name": config["category"].capitalize() + f" L{level}" if selected else f"L{level}",
                                "typical_titles": sorted({p["title"] for p in selected}),
                                "years_wording": "; ".join(sorted({wording for p in selected for wording in p.get("advertised_experience", {}).get("value", [])})) or "Not recorded",
-                               "scope": "Declared algorithmic scope rubric: " + name + ". Not a population hiring standard.",
-                               "owns": "; ".join(sorted({s["quote"] for p in posting_audit if p["level"] == level for s in p["strong_signals"]})) or "No assigned scope/ownership evidence in this sample.",
+                               "scope": ("Reviewed AE segment scope: " + ("; ".join(r["segment"] + " — " + r["rationale"] for r in segment_policy["rows"] if r["level"] == level) or "No reviewed segment maps to this level") + ". Source: " + segment_policy["source_note"] + " Other scope uses the shared rubric; this is not observed progression.") if segment_policy else "Declared algorithmic scope rubric: " + name + ". Not a population hiring standard.",
+                               "owns": "; ".join(sorted({("Native title: " if s.get("origin") == "native_title" else "Current duty: " if s.get("origin") == "current_duty" else "") + s["quote"] for p in posting_audit if p["level"] == level for s in p["strong_signals"]})) or "No assigned scope/ownership evidence in this sample.",
                                "step_up": "Scope-rubric distinction only; longitudinal progression and promotion requirements are not established.",
                                "evidence": counts(selected, current), "expectations": [expectations[k] for k in sorted(expectations)]})
             industries = []
@@ -452,7 +456,7 @@ class EvidenceInputs:
                     "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand and is not a future probability.",
                     "Quarterly rules snapshots; only identical sampling definitions are comparable. Repeated releases within a quarter are not independent windows." if self.history_groups else "One selected snapshot only. Retrieval dates bin observed mentions; repeated releases are not independent windows. No comparable temporal history is asserted, so all current statuses are early.",
                     "Null first_level means no observed assigned level; null share_by_level means no assigned denominator, not zero demand. Measurement strata explicitly include unassigned postings.",
-                    "Level names are a declared algorithmic scope rubric, not observed role progression. Titles and tenure never assign levels. Missing level expectations remain empty; no carry-over or first-introduction claim is inferred.",
+                    ("AE customer segments in verified native titles or current owned-customer duties are strong scope under reviews/M7-r1.md; distinct segments conflict. Generic selling duties, seniority and years never assign. Mapping and rationales: ae_segments.json. Missing level expectations remain empty; progression is not established." if segment_policy else "Level names are a declared algorithmic scope rubric, not observed role progression. Titles and tenure never assign levels. Missing level expectations remain empty; no carry-over or first-introduction claim is inferred."),
                     "O*NET task excerpts are attributed to O*NET OnLine, U.S. Department of Labor, CC BY 4.0, as recorded in the published sources; agent-authored alignments are not official or human-adjudicated equivalence.",
                     "Backbone local-task keys identify exact O*NET task text within its SOC summary, not official task database element IDs; unmapped phrases remain posting-led literal identities.",
                     "Unverified employer sectors are excluded, not guessed. Sector profiles need 30 postings and 8 employers. Official industry shares, wages and credential catalogs were not imported; any credential/knowledge text is a literal posting mention.",

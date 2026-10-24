@@ -15,6 +15,7 @@ from skills_vector.market.onet_backbone import Backbone, LOOKUP, RULES, ZIP_SHA2
 from skills_vector.market.posting_volume import VolumePolicy, extract_sections, write_snapshot
 from skills_vector.market.role_artifacts import canonical, read_json
 from skills_vector.market.role_pipeline import EvidenceInputs, taxonomy_signal, triage
+from skills_vector.market.role_segments import DEFAULT_POLICY, load_policy, segment_signals
 from skills_vector.market.role_signals import import_signals
 from skills_vector.market.roster_probe import probe
 from skills_vector.market_cli import run
@@ -59,6 +60,11 @@ class SectionsV2Tests(unittest.TestCase):
             inputs = EvidenceInputs.from_snapshots([snapshot], ROOT / "preview/release")
             records, _ = inputs.build()
             self.assertEqual(sum(r.demand_window.postings for r in records), 48)
+            ae = next(r for r in records if r.id == "role.account-executive")
+            self.assertTrue(all("M7-r1.md" in level.scope for level in ae.ladder.levels))
+            self.assertTrue(any("SMB customer scope" in level.scope for level in ae.ladder.levels))
+            self.assertIn("ae_segments.json", inputs.hashes)
+            self.assertIn("role_segments.py", inputs.hashes)
             self.assertEqual({p["extraction_method"] for p in inputs.postings}, {"rules/2"})
             self.assertEqual(before, {str(p.relative_to(snapshot)): p.read_bytes() for p in snapshot.rglob("*") if p.is_file()})
             original_read = Path.read_bytes
@@ -172,15 +178,53 @@ class BackboneTests(unittest.TestCase):
 
 class ScopeAndRosterTests(unittest.TestCase):
     def test_current_duty_scope_not_title_tenure_or_qualification(self):
-        p = {"occupation_slug": "account-executive", "title": "Chief Strategic Executive"}
-        self.assertEqual(triage(p, ["Manage the full sales cycle for a bounded book."]).level, 2)
+        p = {"occupation_slug": "account-executive", "title": "Senior Account Executive II"}
+        for quote in ("Manage the full sales cycle for a bounded book.", "Manage the complete sales cycle, from initial contact to close, meeting quarterly sales quotas.",
+                      "Lead multi-stakeholder sales cycles.", "Architect and execute current go-to-market strategies.",
+                      "Own your pipeline and keep CRM hygiene.", "Prospect and exceed quota.", "Independently manage accounts."):
+            self.assertIsNone(triage(p, [quote]).level, quote)
         self.assertIsNone(triage(p, ["Manage the full sales cycle for a bounded book."], role_scope_rules=False).level)
-        self.assertEqual(triage(p, ["Lead multi-stakeholder sales cycles."]).level, 3)
-        self.assertEqual(triage(p, ["Architect and execute current go-to-market strategies."]).level, 4)
-        self.assertIsNone(triage(p, ["Manage the full sales cycle.", "Work under supervision."]).level)
+        self.assertEqual(triage(p, ["Manage the full sales cycle.", "Work under supervision."]).level, 1)
         for quote in ("Experience managing the full sales cycle.", "Proven ability to own architecture.", "10 years managing sales cycles."):
             self.assertIsNone(triage(p, [quote]).level)
         self.assertIsNone(triage(p, []).level)
+
+    def test_reviewed_segments_positive_negative_and_other_roles(self):
+        names = ["SMB", "Commercial", "Velocity", "Select", "Mid-Market", "Territory", "Enterprise", "Corporate",
+                 "State Enterprise", "Public Sector Named Account", "Strategic", "Named", "Global", "Key"]
+        policy = load_policy()
+        for row, name in zip(policy["rows"], names):
+            p = {"occupation_slug": "account-executive", "title": name + " Account Executive"}
+            decision = triage(p, [])
+            self.assertEqual(decision.level, row["level"], name)
+            self.assertEqual({s["segment"] for s in decision.strong}, {row["segment"]})
+            p["title"] = "Senior Account Executive II"
+            self.assertEqual(triage(p, ["Own " + name + " accounts."]).level, row["level"], name)
+            for quote in ("Experience managing " + name + " accounts.", "Do not own " + name + " accounts.", "Use " + name + " software."):
+                self.assertIsNone(triage(p, [quote]).level, quote)
+            p.update(occupation_slug="forward-deployed-engineer", title=name + " Engineer")
+            self.assertIsNone(triage(p, []).level)
+        with tempfile.TemporaryDirectory() as d:
+            data = read_json(DEFAULT_POLICY); data["rows"][0]["rationale"] = ""
+            path = Path(d) / "bad.json"; path.write_text(canonical(data))
+            with self.assertRaises(ValueError): load_policy(path)
+
+    def test_segment_conflicts_and_generic_geography_are_not_hidden(self):
+        p = {"occupation_slug": "account-executive", "title": "Enterprise Account Executive"}
+        self.assertEqual(triage(p, ["Create and manage a pipeline of Enterprise accounts.", "Meet quarterly sales quotas."]).level, 4)
+        self.assertEqual(triage(p, ["Develop strategic account plans.", "Expand reach within assigned territory."]).level, 4)
+        self.assertEqual(triage({**p, "title": "Strategic Account Executive"}, ["Manage the complete sales cycle and meet quota."]).level, 5)
+        for title, duties in (("SMB Account Executive", ["Own Enterprise accounts."]),
+                               ("Enterprise Account Executive", ["Own Named accounts."]),
+                               ("Commercial SMB Account Executive", []), ("Territory (Mid-Market) Account Executive", [])):
+            result = triage({**p, "title": title}, duties)
+            self.assertIsNone(result.level)
+            self.assertEqual(result.reason, "conflicting_customer_segments")
+        self.assertEqual(triage(p, ["Manage direct reports."]).reason, "people_management_is_a_linked_track")
+        p["title"] = "Account Executive"
+        for quote in ("Develop strategic account plans.", "Drive global growth strategy.", "Build key decision-maker relationships.",
+                      "Manage the complete sales cycle and meet quarterly sales quotas.", "Expand reach within assigned territory."):
+            self.assertIsNone(triage(p, [quote]).level, quote)
 
     def test_roster_probe_offline_totals_draft_and_cli_no_network(self):
         with tempfile.TemporaryDirectory() as d, patch("socket.socket", side_effect=AssertionError("no live calls")):
@@ -205,6 +249,25 @@ class ScopeAndRosterTests(unittest.TestCase):
         result = subprocess.run(["node", "-e", helpers + 'console.log(JSON.stringify([shareLabel(51.92307692307692),shareLabel(null),shareLabel(0),shareLabel(100)]));'], capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(json.loads(result.stdout), ["51.9%", "—", "0%", "100%"])
+
+    def test_rechecked_labels_and_heldout_audit_preserve_unfavorable_results(self):
+        root = ROOT / "docs/role-atlas/audits"
+        old = read_json(root / "M7-levels.json")
+        revised = read_json(root / "M7-r1-levels.json")
+        self.assertEqual([c["job_id"] for c in old["cases"]], [c["job_id"] for c in revised["cases"]])
+        self.assertEqual(sum(c["changed"] for c in revised["cases"]), 34)
+        self.assertEqual([c["level"] for c in old["cases"]], [c["previous_level"] for c in revised["cases"]])
+        self.assertTrue(all(c["rationale"] and c["quote_origin"] in ("native_title", "current_duty") for c in revised["cases"]))
+        held = read_json(root / "M7-r1-sections.json")
+        self.assertNotEqual(held["seed"], read_json(root / "M7-sections.json")["seed"])
+        self.assertEqual(len(held["cases"]), 20)
+        self.assertFalse(set(held["excluded_job_ids"]) & {c["job_id"] for c in held["cases"]})
+        self.assertEqual(sum(len(c["responsibility_span_hashes"]) for c in held["cases"]), 129)
+        self.assertEqual(sum(not c["judged_correct"] for c in held["cases"]), 1)
+        self.assertEqual(sum(len(c["wrong_spans"]) for c in held["cases"]), 1)
+        html = (ROOT / "preview/role-atlas.html").read_text()
+        self.assertIn("a reviewed role-specific scope policy", html)
+        self.assertNotIn("title and years are weak signals", html)
 
     def test_audit_files_are_explicit_manual_labels_not_model_accuracy(self):
         root = ROOT / "docs/role-atlas/audits"

@@ -140,6 +140,10 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
     base.postings, base.sources, base.extracts, base.employers = postings, sources, extracts, employers
     base.occupations = {k: v for k, v in base.occupations.items() if k in configured_roles}
     base.skills = deepcopy(base.skills)
+    from .role_segments import load_policy
+    base.skills["segment_scope"] = load_policy(mapping_root / "ae_segments.json")
+    hashes["ae_segments.json"] = digest((mapping_root / "ae_segments.json").read_bytes())
+    hashes["role_segments.py"] = digest(Path(__file__).with_name("role_segments.py").read_bytes())
     base.skills["roles"] = {k: v for k, v in base.skills["roles"].items() if k in configured_roles}
     base.skills["backbone"] = [n for n in base.skills["backbone"] if n["role"] in configured_roles]
     base.skills["phrases"] = [p for p in base.skills["phrases"] if p["role"] in configured_roles]
@@ -151,6 +155,6 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
     for name in ("posting_volume.py", "posting_volume_inputs.py"):
         base.hashes[name] = digest(Path(__file__).with_name(name).read_bytes())
     # Mapping/normalizer changes are sampling-definition changes, never a fabricated trend.
-    suffix = object_digest({"processing_recipe": {name: hashes[name] for name in ("recipe.py", "posting_sections.py", "posting_volume_inputs.py")}, "skills": base.skills, "backbone": backbone.fingerprint if backbone else None, "employers": {k: {x: v for x, v in row.items() if x not in ("source_id", "quote")} for k, row in employers.items()}})
+    suffix = object_digest({"processing_recipe": {name: hashes[name] for name in ("recipe.py", "posting_sections.py", "posting_volume_inputs.py", "role_segments.py")}, "skills": base.skills, "backbone": backbone.fingerprint if backbone else None, "employers": {k: {x: v for x, v in row.items() if x not in ("source_id", "quote")} for k, row in employers.items()}})
     base.history_groups = {window: group + ":" + suffix for window, group in groups.items()}
     return base

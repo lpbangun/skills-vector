@@ -13,6 +13,7 @@ from skills_vector.market.posting_volume import BOARDS, _Blocks, _native_rows, n
 from skills_vector.market.posting_sections import StructuralBlocks
 from skills_vector.market.role_artifacts import read_json, require, write_json
 from skills_vector.market.role_pipeline import EvidenceInputs, triage
+from skills_vector.market.role_segments import segment_signals
 from skills_vector.market.sources import parse_job_board, us_location_ok
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -97,21 +98,36 @@ def report(snapshot: Path) -> dict:
                          "after": sum(p["after"]["has_responsibilities"] for p in selected),
                          "recovered_failure_structure": dict(Counter(p["recovered_structure"] for p in selected if p["recovered_structure"]))}
     sections = read_json(AUDITS / "M7-sections.json")
-    levels = read_json(AUDITS / "M7-levels.json")
+    levels = read_json(AUDITS / "M7-r1-levels.json")
+    heldout = read_json(AUDITS / "M7-r1-sections.json")
     matches = read_json(AUDITS / "M7-matches.json")
-    for data in (sections, levels, matches):
+    for data in (sections, levels, matches, heldout):
         require(data["source_snapshot_id"] == snapshot_id, "audit pins another source snapshot")
     section_selection = random.Random(sections["seed"]).sample(pool, 20)
     require([p["job_id"] for p in section_selection] == [p["job_id"] for p in sections["cases"]], "section audit selection changed")
     for p, case in zip(section_selection, sections["cases"]):
         require(case["quote"] in p["after"]["description"], "section audit quote changed")
+    excluded = {p["job_id"] for p in current.postings} | {c["job_id"] for c in sections["cases"]}
+    require(excluded == set(heldout["excluded_job_ids"]), "held-out exclusions changed")
+    fresh_pool = [p for p in pool if p["after"]["has_responsibilities"] and p["job_id"] not in excluded]
+    fresh_selection = random.Random(heldout["seed"]).sample(fresh_pool, 20)
+    require(len(fresh_pool) == heldout["pool_n"] and [p["job_id"] for p in fresh_selection] == [c["job_id"] for c in heldout["cases"]], "held-out selection changed")
+    require(hashlib.sha256((ROOT / "src/skills_vector/market/posting_sections.py").read_bytes()).hexdigest() == heldout["extractor_sha256"], "held-out extractor changed")
+    for posting, case in zip(fresh_selection, heldout["cases"]):
+        require(case["quote"] in posting["after"]["description"] and case["description_sha256"] == posting["after"]["source_sha256"], "held-out quote/source changed")
+        spans = posting["after"]["sections"]["responsibilities"]
+        require([hashlib.sha256(s.encode()).hexdigest() for s in spans] == case["responsibility_span_hashes"], "held-out spans changed")
+        for wrong in case["wrong_spans"]:
+            require(hashlib.sha256(spans[wrong["index"]].encode()).hexdigest() == wrong["full_span_sha256"], "held-out error binding changed")
     label_selection = random.Random(levels["seed"]).sample(sorted(current.postings, key=lambda p: p["job_id"]), 40)
     require([p["job_id"] for p in label_selection] == [p["job_id"] for p in levels["cases"]], "level audit selection changed")
     predicted = {p["posting_id"]: p for p in audit["roles"]["account-executive"]["postings"]}
     agreement = 0
     mismatches = []
     for posting, case in zip(label_selection, levels["cases"]):
-        require(case["quote"] in current.extracts[posting["source_id"]] and case["source_sha256"] == posting["source_sha256"], "level audit quote/hash changed")
+        require(case["source_sha256"] == posting["source_sha256"] and case["board_sha256"] == posting["board_sha256"], "level audit source changed")
+        require(case["title"] == posting["title"] and hashlib.sha256(case["quote"].encode()).hexdigest() == case["quote_sha256"], "level audit title/quote hash changed")
+        require(case["quote"] == posting["title"] if case["quote_origin"] == "native_title" else case["quote"] in current.extracts[posting["source_id"]], "level audit quote changed")
         actual = predicted[posting["dedup_key"]]["level"]
         agreement += actual == case["level"]
         if actual != case["level"]:
@@ -125,17 +141,33 @@ def report(snapshot: Path) -> dict:
     old_ae = next(r for r in old_records if r.id == ae.id)
     raw_ae = next(r for r in ungrouped if r.id == ae.id)
     top = sorted((s for s in ae.skill_map.skills if s.id.startswith("skill.onet31.")), key=lambda s: (-s.windows[-1].share, s.id))[:25]
+    posting_led = sorted((s for s in ae.skill_map.skills if s.id.startswith("skill.posting.")), key=lambda s: (-s.windows[-1].share, s.id))[:25]
+    cross, title_cross = {}, {}
+    for posting in current.postings:
+        column = "L" + str(predicted[posting["dedup_key"]]["level"]) if predicted[posting["dedup_key"]]["level"] is not None else "unassigned"
+        segments = sorted({s["segment"] for s in segment_signals(posting, [], current.skills["segment_scope"], title_only=True)})
+        for table, key in ((cross, " + ".join(segments) or "none"), (title_cross, posting["title"])):
+            row = table.setdefault(key, dict.fromkeys(("L1", "L2", "L3", "L4", "L5", "unassigned"), 0))
+            row[column] += 1
     assigned = sum(p["level"] is not None for p in predicted.values())
     return {"source_snapshot_id": snapshot_id, "q1_per_ats": per_ats, "q1_per_role": per_role,
             "section_spot_check": {"n": 20, "wrong": sum(not c["judged_correct"] for c in sections["cases"])},
-            "q2": {"before_nodes": len(old_ae.skill_map.skills), "reextracted_ungrouped_nodes": len(raw_ae.skill_map.skills), "grouped_nodes": len(ae.skill_map.skills),
+            "held_out_section_check": {"seed": heldout["seed"], "pool_n": len(fresh_pool), "n": 20,
+                "span_n": sum(len(c["responsibility_span_hashes"]) for c in heldout["cases"]),
+                "wrong_postings": sum(not c["judged_correct"] for c in heldout["cases"]), "wrong_spans": sum(len(c["wrong_spans"]) for c in heldout["cases"]),
+                "errors": [{"job_id": c["job_id"], "quote": c["quote"], "errors": c["wrong_spans"]} for c in heldout["cases"] if c["wrong_spans"]]},
+            "q2": {"top_posting_led": [{"id": s.id, "label": s.label, "postings_share": s.windows[-1].share, "postings": round(s.windows[-1].share * len(predicted)), "employers": s.windows[-1].employers} for s in posting_led], "before_nodes": len(old_ae.skill_map.skills), "reextracted_ungrouped_nodes": len(raw_ae.skill_map.skills), "grouped_nodes": len(ae.skill_map.skills),
                    "audit_n": 30, "judged_correct": sum(c["judged_correct"] for c in matches["cases"]),
                    "top_grouped": [{"id": s.id, "label": s.label, "postings_share": s.windows[-1].share, "employers": s.windows[-1].employers} for s in top]},
-            "q3": {"baseline_level_counts": dict(baseline_levels), "baseline_unassigned_reasons": dict(baseline_reasons),
+            "q3": {"title_segment_level_crosstab": dict(sorted(cross.items())), "title_level_crosstab": dict(sorted(title_cross.items())),
+                   "level_counts": audit["roles"]["account-executive"]["postings_per_level"],
+                   "unassigned_reasons": dict(Counter(p["reason"] for p in predicted.values() if p["level"] is None)),
+                   "label_changes": [{"job_id": c["job_id"], "title": c["title"], "previous_level": c["previous_level"], "level": c["level"], "reason": c["rationale"]} for c in levels["cases"] if c["changed"]],
+                   "baseline_level_counts": dict(baseline_levels), "baseline_unassigned_reasons": dict(baseline_reasons),
                    "baseline_67_categories_under_ae_rules_on_original_spans": dict(baseline_categories),
                    "postings": len(predicted), "assigned": assigned, "labeled": 40, "agreement": agreement, "agreement_rate": agreement / 40,
                    "mismatches": mismatches, "honest_stop": assigned / len(predicted) < .5 or agreement / 40 < .85},
-            "limits": ["Agent-authored manual audits, not independent expert adjudication or a population accuracy estimate.",
+            "limits": ["Agent-authored rechecked labels measure conformance to the reviewer segment policy, not independent validity or population accuracy. Reviewer spot-check is still pending.",
                        "The original 70-posting admission cohort is frozen; eligible-board diagnostics use all 405 postings.",
                        "No four-quarter archive, scored forecast, or verified employer-sector data is manufactured."]}
 

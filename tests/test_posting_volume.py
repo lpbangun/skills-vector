@@ -211,7 +211,9 @@ class SnapshotTests(unittest.TestCase):
         inputs = EvidenceInputs.from_snapshots(self.snapshots, PUBLISHED)
         records, audit = inputs.build()
         self.assertEqual(len(records), 4)
-        self.assertEqual(sum(r["postings_per_level"]["unassigned"] for r in audit["roles"].values()), 7)
+        # The old AE fixture only names generic selling/project duties, not a reviewed segment.
+        self.assertEqual({k: r["postings_per_level"]["unassigned"] for k, r in audit["roles"].items()},
+                         {"account-executive": 12, "forward-deployed-engineer": 2, "growth-manager": 1, "hr-generalist": 2})
         for record in records:
             RoleRecord.from_dict(record.to_dict())
             self.assertEqual(record.data_kind, "fixture")

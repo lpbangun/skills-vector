@@ -1,0 +1,92 @@
+{
+  "schema": "skills-vector.role-segment-scope/1",
+  "role": "account-executive",
+  "source_note": "Reviewer decision: docs/role-atlas/reviews/M7-r1.md, must 1. Refines P3 only for Account Executive; no inferred scope policy for other roles.",
+  "policy": "Named customer segment in a verified native title or current owned-customer duty is strong scope. Seniority and years remain weak; common selling duties never assign. Any two distinct segments conflict, even when mapped to the same level. Longest overlapping compound consumes contained aliases.",
+  "rows": [
+    {
+      "segment": "smb",
+      "level": 2,
+      "pattern": "\\bSMB\\b",
+      "rationale": "Explicit SMB customer scope; the reviewed rubric places this segment at L2."
+    },
+    {
+      "segment": "commercial",
+      "level": 2,
+      "pattern": "\\bCommercial\\b",
+      "rationale": "Commercial is a reviewed L2 customer segment, not a seniority adjective."
+    },
+    {
+      "segment": "velocity",
+      "level": 2,
+      "pattern": "\\bVelocity\\b",
+      "rationale": "The reviewed Velocity sales motion is L2 scope."
+    },
+    {
+      "segment": "select",
+      "level": 2,
+      "pattern": "\\bSelect\\b",
+      "rationale": "Select is a named customer segment at L2, not the verb select."
+    },
+    {
+      "segment": "mid-market",
+      "level": 3,
+      "pattern": "\\bMid[\\s‐‑–-]*Market\\b",
+      "rationale": "Mid-Market ownership is the reviewed L3 scope; spelling separators are aliases."
+    },
+    {
+      "segment": "territory",
+      "level": 3,
+      "pattern": "\\bTerritor(?:y|ies)\\b",
+      "rationale": "The named Territory customer segment is L3. A Territory role title qualifies; a generic geographic territory/territory plan is common selling context, not a different customer segment."
+    },
+    {
+      "segment": "enterprise",
+      "level": 4,
+      "pattern": "\\bEnterprise\\b",
+      "rationale": "Enterprise customer ownership is L4, not generic enterprise-software knowledge."
+    },
+    {
+      "segment": "corporate",
+      "level": 4,
+      "pattern": "\\bCorporate\\b",
+      "rationale": "Corporate account ownership is the reviewed L4 segment."
+    },
+    {
+      "segment": "state-enterprise",
+      "level": 4,
+      "pattern": "\\bState[\\s-]+Enterprise\\b",
+      "rationale": "State Enterprise is one compound L4 segment; its contained Enterprise token is not a second signal."
+    },
+    {
+      "segment": "public-sector-named-account",
+      "level": 4,
+      "pattern": "\\bPublic[\\s-]+Sector[\\s-]+Named[\\s-]+Accounts?\\b",
+      "rationale": "The reviewed compound Public Sector named-account scope is L4; the contained Named token does not imply L5."
+    },
+    {
+      "segment": "strategic",
+      "level": 5,
+      "pattern": "\\bStrategic\\b",
+      "rationale": "Strategic customer/account scope is L5; strategic thinking or strategy work alone is not this segment."
+    },
+    {
+      "segment": "named",
+      "level": 5,
+      "pattern": "\\bNamed\\b",
+      "rationale": "Named account/book scope is L5 under the reviewer decision, except the more specific public-sector compound."
+    },
+    {
+      "segment": "global",
+      "level": 5,
+      "pattern": "\\bGlobal\\b",
+      "rationale": "Global account/customer ownership is L5; company-global boilerplate does not qualify."
+    },
+    {
+      "segment": "key",
+      "level": 5,
+      "pattern": "\\bKey\\b",
+      "rationale": "Key account ownership is L5; a key task or key skill is not an account segment."
+    }
+  ]
+}

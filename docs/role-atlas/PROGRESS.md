@@ -1730,3 +1730,292 @@ Offline operator smoke (exit 0, six boards exist, all drafts unreviewed):
 
 M7 is implemented for review with Q1/Q2/Q4 passing and Q3 explicitly stopped at
 the honest result. Commit on `feat/role-atlas`, then stop.
+
+
+## M7 review round 1 replies
+
+Addressed `reviews/M7-r1.md`: **must 1 and both shoulds**. No live retrieval,
+paid/model call, secret access, push, deployment or edits to immutable inputs.
+All projections below use the original read-only Q4 capture and frozen
+70-posting AE cohort, not a new sample.
+
+### Must 1 — discriminating scope, reviewed AE segments and label recheck
+
+Removed the M7 sales-cycle/book/quota/pipeline and complex-selling/GTM heuristics.
+Generic full-cycle selling, quota attainment, pipeline management, CRM hygiene,
+prospecting and generic strategy work cannot assign an AE level. The reviewer
+quote (“Manage the complete sales cycle, from initial contact to close, …
+quarterly sales quotas”) is explicitly tested to assign nothing on its own.
+Only explicit supervised/organization-wide scope remains as a shared AE fallback;
+the generic independent/project/strategy patterns do not vote for AE.
+
+Added `role_atlas_mappings/ae_segments.json` with the reviewed segment-to-level
+bindings, source review and a rationale per row:
+
+| Level | Reviewed segment labels |
+| --- | --- |
+| L2 | SMB, Commercial, Velocity, Select |
+| L3 | Mid-Market, Territory |
+| L4 | Enterprise, Corporate, State Enterprise, Public Sector Named Account |
+| L5 | Strategic, Named, Global, Key |
+
+`role_segments.py` uses those labels from verified native titles or current
+owned-customer duties. It does **not** turn generic geographic territory plans,
+strategic account plans, enterprise software, key decision-makers, past
+experience or qualification statements into customer segments. Senior/Sr./II/Lead
+and years remain weak. Management stays a separate track. Segment scope beats
+generic duties; two distinct segment labels remain conflicting, even if their
+table levels happen to agree. Thus “Territory (Mid-Market)” is conservatively
+unassigned, not silently collapsed into one label; likewise Corporate +
+Enterprise and Named + Strategic. The more specific compounds State Enterprise
+and Public Sector Named Account consume their contained word matches rather
+than inventing a second signal. No analogous title inference was added to
+other roles.
+
+The role's ladder now contains the reviewed policy, rationales, native-title/
+current-duty ownership evidence, and source review in its `scope`/`owns`;
+evidence counts remain actual counts. Audit strong signals record segment,
+matched text, origin, source ID, native board hash and rationale. Native titles
+are checked against board bytes before use, not falsely bound as description
+substrings. Mapping and matcher hashes change comparison identities. Method
+copy now describes the reviewed role-specific exception instead of claiming
+all title text is weak. No contract/floor/budget change was made.
+
+**New AE distribution:** L1=0, **L2=8, L3=11, L4=19, L5=10**, unassigned=22.
+That is **48/70 assigned (68.6%)**, versus 52 postings incorrectly placed at L2
+before review. The 22 unknowns are **15 distinct-segment conflicts** and **7
+without discriminating current scope**.
+
+#### Title-segment × level cross-tab
+
+Rows use segments stated in the native title only; columns use the final
+title + current-duty decision. “none” can therefore receive a level from a
+duty. Different title segments are displayed together, not hidden. Counts
+include all 70 admitted AE postings.
+
+| Native title segment(s) | L1 | L2 | L3 | L4 | L5 | Unassigned | Total |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| commercial | 0 | 4 | 0 | 0 | 0 | 1 | 5 |
+| corporate + enterprise | 0 | 0 | 0 | 0 | 0 | 1 | 1 |
+| enterprise | 0 | 0 | 0 | 16 | 0 | 3 | 19 |
+| mid-market | 0 | 0 | 2 | 0 | 0 | 0 | 2 |
+| mid-market + select | 0 | 0 | 0 | 0 | 0 | 1 | 1 |
+| mid-market + territory | 0 | 0 | 0 | 0 | 0 | 6 | 6 |
+| none | 0 | 1 | 0 | 0 | 1 | 7 | 9 |
+| select | 0 | 1 | 0 | 0 | 0 | 0 | 1 |
+| smb | 0 | 2 | 0 | 0 | 0 | 0 | 2 |
+| state-enterprise | 0 | 0 | 0 | 3 | 0 | 0 | 3 |
+| strategic | 0 | 0 | 0 | 0 | 9 | 1 | 10 |
+| territory | 0 | 0 | 9 | 0 | 0 | 0 | 9 |
+| velocity | 0 | 0 | 0 | 0 | 0 | 2 | 2 |
+| **Total** | **0** | **8** | **11** | **19** | **10** | **22** | **70** |
+
+The exact-title cross-tab is also in the quality JSON. The review's named
+examples now read: Strategic Account Executive **7 L5**; Strategic Account
+Executive (SLED) **2 L5**; Enterprise Account Executive, Growth **7 L4**;
+Senior Enterprise Account Executive, Growth **5 L4**; State Enterprise
+Account Executive **3 L4**. These are total title counts, not only the former
+L2 subset (the review identified 5 and 3 formerly L2 Growth postings).
+
+#### Rechecked 40 labels — every changed label and why
+
+Original `M7-levels.json` is preserved. New `audits/M7-r1-levels.json`
+retains the same 40 IDs/seed, prior levels and prior quote hashes, source board
+hashes, reviewed title/quote, new level and per-case rationale. All 40 were
+rechecked against the reviewer policy **before comparing new predictions**.
+34 levels changed; the six unchanged labels also have rechecked rationales.
+
+**40/40 agreement is conformance to this policy, not independent evidence that
+the policy estimates real career levels correctly.** The reviewer’s independent
+15-posting spot-check remains pending. The original 82.5% self-label agreement
+does not establish validity; I accept the review's criticism.
+
+| Native job ID | Title | Label change | Why |
+| --- | --- | --- | --- |
+| `6230952004` | Account Executive, Federal - State & Local | L3 → L5 | Current duty owns a Named book of State & Local accounts (L5); generic territory planning and strategic account plans are not extra segments. |
+| `5104078` | Account Executive - In-Territory (Los Angeles, CA) | L2 → L3 | Native In-Territory role title states Territory (L3), not a full-cycle-selling L2 inference. |
+| `7155024` | Strategic Account Executive | L2 → L5 | Native Strategic role title states L5; generic geographic territory and commercial negotiation are not different customer segments. |
+| `4134175007` | Account Executive, Territory (Mid-Market) | L2 → unassigned | Native title names both Territory and Mid-Market. Distinct segment labels conflict even though both map to L3; no silent alias decision. |
+| `6430945` | Strategic Account Executive (SLED) | L2 → L5 | Native Strategic title is L5; SLED is not a second named customer segment in the reviewed table. |
+| `5027198007` | Account Executive, Territory (Mid-Market) | L2 → unassigned | Native title names Territory and Mid-Market: distinct segments conflict. |
+| `5156789007` | Enterprise Account Executive (New York City - Muni) | L2 → L4 | Native Enterprise role title states L4; geographic territory planning is not a different customer segment. |
+| `6163246` | Mid Market Account Executive | L2 → L3 | Native Mid Market title states L3; selling activities do not supply an L2 vote. |
+| `7027846` | Enterprise Account Executive, Growth | L2 → L4 | Enterprise title states L4; strategic territory plans do not establish Strategic customer ownership. |
+| `8123027` | Account Executive, Commercial (Grower) | L2 → unassigned | Commercial title states L2 but the current role introduction explicitly expands revenue from existing mid-market customers (L3): conflict. |
+| `7179283` | Senior Account Executive - In-Territory (SF/Bay Area, LA, Orange County, San Diego) | L2 → L3 | In-Territory title states L3; Senior does not change it. |
+| `8178881` | Account Executive - Enterprise, Growth | L3 → unassigned | Enterprise title states L4 while the current duty cross-sells into a list of strategic customers (L5): conflict. |
+| `8238731` | Account Executive, AI Startups - Grower | L2 → unassigned | AI Startups/Grower is not a reviewed segment; contract renewals and commercial negotiations are common selling duties. |
+| `8304836` | Account Executive, Velocity Platforms (Hunter) | L2 → unassigned | Velocity title (L2), Named account list (L5) and Enterprise companies (L4) in current owned-account duties conflict. |
+| `6522713` | Account Executive - In-Territory (Chicago) | L2 → L3 | In-Territory title states L3, independent of generic quota or full-cycle work. |
+| `5152703007` | State Enterprise Account Executive - VA, WV, NC | L2 → L4 | State Enterprise is one compound L4 segment; the contained Enterprise word is not a second segment. |
+| `7687359` | Senior Enterprise Account Executive, Growth | L2 → L4 | Enterprise title states L4; Senior is weak and a strategic territory plan is not Strategic-account ownership. |
+| `6522747` | Strategic Account Executive | L2 → L5 | Strategic title states L5; generic commercial negotiations and geographic territory do not override it. |
+| `7027834` | Enterprise Account Executive, Growth | L2 → L4 | Enterprise title states L4; strategic territory planning is not a second segment. |
+| `7137401` | Account Executive - In-Territory (San Diego, CA) | L2 → L3 | In-Territory title states L3; the old L2 label came from generic selling duties. |
+| `5426468004` | Account Executive, Enterprise | L3 → L4 | Enterprise title and the current duty creating/managing a pipeline of Enterprise accounts establish L4; strategic account plans are not Strategic-customer scope. |
+| `5199808007` | State Enterprise Account Executive - MD, PA | L2 → L4 | State Enterprise title is the reviewed compound L4 segment. |
+| `6318505` | Account Executive - In-Territory (SF/Bay Area, CA) | L2 → L3 | In-Territory title states L3; sales cycle duties are not L2 evidence. |
+| `8190036` | Account Executive, Product - Local Payment Methods | L3 → unassigned | Product/Local Payment Methods is not a reviewed segment; complex commercial work and territorial strategies do not state a customer segment. |
+| `5558737004` | Account Executive, Strategic | L3 → unassigned | Native Strategic title plus a defined list of named strategic accounts supplies distinct Named and Strategic segment labels: conflict under the literal review rule, despite both mapping to L5. |
+| `4248006007` | Account Executive, Select, New York City (Mid-Market) | L2 → unassigned | Select (L2) and Mid-Market (L3) are both explicit in the native title: conflict. |
+| `8232743` | Enterprise Account Executive, Privy | L3 → L4 | Enterprise native title and pipeline of enterprise prospects establish L4; global growth strategy is not Global-customer ownership. |
+| `6522720` | Strategic Account Executive | L2 → L5 | Strategic title states L5; generic geography and commercial negotiations are not different segments. |
+| `4135236007` | Account Executive, Territory (Mid-Market) | L2 → unassigned | Territory and Mid-Market are both explicit in the title: distinct-segment conflict. |
+| `8267841` | Account Executive, Velocity Platforms (Hunter) | L2 → unassigned | Velocity title, current Named account list and Enterprise companies span conflicting customer segments. |
+| `8097302` | Senior Enterprise Account Executive, Growth | L2 → L4 | Enterprise title states L4; Senior and generic strategic territory plans do not alter it. |
+| `5041521007` | Account Executive, Territory, Chicago | L2 → L3 | Territory title states L3; no L2 vote comes from common selling activities. |
+| `7314667` | Strategic Account Executive (SLED) | L2 → L5 | Strategic native title states L5; SLED and geographic territory do not establish another customer segment. |
+| `6755285` | Enterprise Account Executive, Growth | L2 → L4 | Enterprise title states L4; strategic territory plans are common planning context rather than Strategic account scope. |
+
+### Should 1 — fresh held-out section inspection, including the error
+
+Added `audits/M7-r1-sections.json`. Seed **20261107**, frozen before
+inspection; eligible successes sorted by native job ID. Excluded **all 70
+originally admitted postings** (which include the old level/match examples) and
+the original 20-case section audit. Their union is 88 IDs, leaving **317**
+successes. Drew 20 new IDs without rerolling the seed. This is a held-out
+**manual span inspection**, not a claim that the entire capture was unseen
+by development coverage diagnostics.
+
+Reviewed all **129** returned responsibility spans. **19/20 postings had no
+wrong span; one wrong span out of 129**. All 20 still contain genuine duties.
+The wrong case is Growth Manager native job **`5255724007`**, first span:
+“At Verkada, we're known to push traditional boundaries, and our B2B growth
+efforts are no exception.” Its full compound span continues company/team
+positioning and team-member backgrounds, not current responsibility evidence.
+Its saved full-span hash is
+`a2cbaa4f8508b6b17b3975165ed9061a46fa4e5b07b6480a9e396545c3b345ca`.
+The excerpt, wrong-span index, reason and hashes of all 129 spans are pinned.
+The extractor hash is pinned too. **No extraction tuning followed this
+held-out inspection**; the unfavorable result is retained as requested.
+
+### Should 2 — top 25 posting-led gaps, no new grouping rules
+
+The projection still has **284 nodes: 18 backbone-linked / 266 posting-led**.
+No O*NET/phrase grouping rule or derived lookup was changed. The existing
+30-span grouping audit remains **29/30**, not a new independent test.
+These are the most frequent posting-led labels, sorted by share descending,
+then stable skill ID. All use the frozen 70-posting denominator; the
+one-employer concentration is visible. Many are qualifications, preferences
+or generic duties, not automatically suitable new backbone skills. This is
+a gap review queue, not a promotion into semantic equivalence.
+
+| Rank | Posting-led label | Postings | Share | Employers |
+| ---: | --- | ---: | ---: | ---: |
+| 1 | fluent in english | 12/70 | 17.1% | 1 |
+| 2 | databases, develops and open source technology a plus | 12/70 | 17.1% | 1 |
+| 3 | previous sales methodology training (e.g. meddic, spin, challenger sales) | 12/70 | 17.1% | 1 |
+| 4 | passionate about growing your career in the largest market in software (database) | 12/70 | 17.1% | 1 |
+| 5 | a proven track record of overachievement and hitting sales targets | 12/70 | 17.1% | 1 |
+| 6 | act as a trusted advisor and subject matter expert to customers and channel partners | 11/70 | 15.7% | 1 |
+| 7 | aggressively exceed goals consisting of outbound phone calls, emails, online demos, and trials every quarter | 10/70 | 14.3% | 1 |
+| 8 | experienced in working for an innovative tech company (saas, it infrastructure or similar preferred) | 9/70 | 12.9% | 1 |
+| 9 | thrive in a dynamic, competitive, and fast-paced startup environment | 9/70 | 12.9% | 1 |
+| 10 | develop a deep comprehension of customer's business | 9/70 | 12.9% | 1 |
+| 11 | handle existing customer expectations while expanding reach and depth into assigned territory | 9/70 | 12.9% | 1 |
+| 12 | co-selling with cloud service providers (aws, gcp and azure) and large gsis (accenture, kpmg, etc) | 9/70 | 12.9% | 1 |
+| 13 | ensure high forecasting accuracy and consistency | 9/70 | 12.9% | 1 |
+| 14 | demonstrate resourcefulness when faced with challenges that defy easy solution | 9/70 | 12.9% | 1 |
+| 15 | driven and have met/exceeded direct sales goals of 1m+ and operated with an average deal size of $100k+ | 9/70 | 12.9% | 1 |
+| 16 | you enjoy entrepreneurial environments and the opportunity to build something meaningful! | 8/70 | 11.4% | 1 |
+| 17 | bachelors degree preferred but not required | 8/70 | 11.4% | 1 |
+| 18 | excellent interpersonal and communication skills, and demonstrates the ability to listen to gather important information during a sales call and/or meeting | 8/70 | 11.4% | 1 |
+| 19 | must live in territory (flexible work model) | 8/70 | 11.4% | 1 |
+| 20 | tenacity, drive to learn, and self-motivated | 8/70 | 11.4% | 1 |
+| 21 | simplify complicated topics and explain them in terms people can easily understand | 8/70 | 11.4% | 1 |
+| 22 | able to apply creative solutions to a variety of issues in a fast-paced environment | 8/70 | 11.4% | 1 |
+| 23 | identify robust set of business drivers behind all opportunities | 7/70 | 10.0% | 1 |
+| 24 | perform other duties as needed based on department and/or organizational needs | 7/70 | 10.0% | 1 |
+| 25 | be the voice of our future customers - suggest innovative ideas to generate sales, cultivate customer pipeline leads; improve overall customer experience and advocate internally for product development | 7/70 | 10.0% | 1 |
+
+### Exact verification commands and results
+
+Fresh physical projections, including audit files:
+
+```sh
+.venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261023T214312Z/2026-Q4 --output /tmp/role-atlas-m7-r1-release > /tmp/role-atlas-m7-r1-release.json
+.venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261023T214312Z/2026-Q4 --output /tmp/role-atlas-m7-r1-release-rebuild > /tmp/role-atlas-m7-r1-release-rebuild.json
+diff -qr /tmp/role-atlas-m7-r1-release /tmp/role-atlas-m7-r1-release-rebuild
+.venv/bin/python scripts/audit_role_atlas_m7.py --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261023T214312Z/2026-Q4 --output /tmp/role-atlas-m7-r1-quality-final.json > /tmp/role-atlas-m7-r1-quality-final.log
+cmp /tmp/role-atlas-m7-r1-quality.json /tmp/role-atlas-m7-r1-quality-final.json
+```
+
+All exit **0**; both comparisons emit nothing. New research release
+**`role_research_30f84c0343927598`**. Select
+`/tmp/role-atlas-m7-r1-release/roles`. Quality JSON reproduces the segment and
+exact-title cross-tabs, all 34 label changes, held-out selection/span bindings
+and the 25 posting-led labels above. Source hashes in the physical artifact
+were checked against the final producer/matcher/adapter files.
+
+```sh
+.venv/bin/python -m unittest discover -s tests -p test_role_atlas_m7.py > /tmp/role-atlas-m7-r1-focused-reviewed.log 2>&1
+.venv/bin/python -m unittest discover -s tests -p test_posting_volume.py > /tmp/role-atlas-m7-r1-posting-final.log 2>&1
+.venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m7-r1-reviewed-tests.log 2>&1
+```
+
+Focused: **15 tests / 1.221s**, **16 tests / 22.652s**, both OK.
+Final full: **252 tests in 154.131s, OK (skipped=2)**, concurrent with browser
+sweeps; same two existing skips, no new skips. New tests cover positive and
+rejected examples for each segment row, qualification/negation/non-customer
+context, generic duties, weak seniority, other-role isolation, compounds,
+different/same-level segment conflicts, people-management routing, policy
+rationale validation, ladder/hash provenance and retained held-out errors.
+
+One old authored-sample assertion expected 7 unassigned postings and failed
+with 17 under the corrected policy. It now asserts the explicit per-role
+counts: AE=12, FDE=2, Growth=1, HR=2. The sample AE titles/duties lack a
+reviewed segment; the extra 10 unknowns must not be restored by generic rules.
+The other-role counts are unchanged. No production extraction/grouping
+behavior was altered to satisfy this assertion.
+
+```sh
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m7-r1-reviewed-fixtures --role-atlas-fixtures --role-atlas-ledger /tmp/role-atlas-m6-fixture-ledger.json > /tmp/role-atlas-m7-r1-reviewed-fixtures.log 2>&1
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m7-r1-reviewed-research --role-atlas-root /tmp/role-atlas-m7-r1-release/roles > /tmp/role-atlas-m7-r1-reviewed-research.log 2>&1
+UV_OFFLINE=1 uv run --with playwright python /tmp/role-atlas-m7-r1-visual.py > /tmp/role-atlas-m7-r1-visual.log 2>&1
+```
+
+All exit **0**, explicit Chromium
+`~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome`.
+Both selections run **1280 light, 1280 dark, 390 light**, every role/tab/
+Connections and negative probes: fixtures **54** and new research **72**
+screenshots, every `errors: []`. The unchanged M6 temporary fixture ledger
+is selected only for fixtures; the new research projection does not use an
+old-release ledger. Opened desktop-dark and mobile-light level viewport shots:
+revised distribution, actual counts, long title/evidence wrapping and the
+reviewed policy are visible. The final browser reruns include the corrected
+Method wording, not the stale “all title text is weak” text.
+
+```sh
+bash scripts/assemble_vercel.sh
+UV_OFFLINE=1 uv lock --check --offline
+git diff --check
+node --check preview/role-atlas.js
+.venv/bin/python -m compileall -q src/skills_vector scripts/audit_role_atlas_m7.py
+git diff --exit-code -- src/skills_vector/market/posting_sections.py src/skills_vector/market/onet_backbone.py src/skills_vector/market/role_atlas_mappings/dwa_rules.json src/skills_vector/market/role_atlas_mappings/onet31_lookup.json docs/role-atlas/BRIEF.md docs/role-atlas/STANDARDS.md
+```
+
+All exit **0**: 551 assembled files, 61 locked packages; no deployment.
+Final hash/file-set verification against the existing input receipt and
+tracked protected files: **334 read-only input files**, **543 protected tracked
+files**, **533 published files/file set**, all unchanged. The exact Python
+receipt/protected-file integrity command is the M7 integrity block above,
+rerun here; it also rechecked both browser results manifests and the physical
+artifact producer hashes. M4/M5 artifacts, original M7 audits and previous
+scratch projections remain intact. Independent
+posting/model limits and research configurations are unchanged.
+
+### Remaining limitations and stop
+
+All 284 skills remain early in one quarter; zero kept edges, 80 null sector
+profiles, no fabricated forecast probabilities/calibration or primary sectors.
+Other roles retain zero admitted postings in this frozen capture. The starter
+frame remains biased. Generic geography is not a new segment, and compound/
+multi-segment titles are deliberately not resolved by guessing a preferred
+segment or silently adopting unreviewed aliases. The held-out intro-span error
+is still present and recorded; no fix was tuned against that audit. Policy
+conformance is not independent validity. Await the reviewer’s 15-posting
+spot-check and any alias-policy clarification rather than claiming level
+quality approved.
+
+Must 1 and both shoulds are addressed for review. Commit this review fix
+separately on `feat/role-atlas`, then stop. No live retrieval was run.
