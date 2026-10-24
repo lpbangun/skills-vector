@@ -105,7 +105,7 @@ link crawling, search or semantic HTML fallback.
 The fetch layer enforces at least one second between request starts per host
 (and larger declared crawl delays), including redirects/retries; 2,000,000 bytes
 per response; at most 600 job pages/board and five redirect hops. The existing
-**200-request run ceiling remains in force** and can bind before the page cap.
+**600-request run ceiling (raised from 200 for the union roster) remains in force** and can bind before the page cap.
 Incomplete discovery/cap/transport failures do not become complete comparison
 frames. Reports count fetched pages, title/cap skips, expiry, missing JSON-LD,
 organization/geography rejections and robots denials. Every structured capture

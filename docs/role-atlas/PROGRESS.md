@@ -3243,3 +3243,7 @@ to establish an integrity receipt. The checked-in research, preview, config
 and review trees have no diff.
 
 One fix-up commit on `feat/role-atlas`, then stop for review.
+
+## Reviewer change — posting-lane retrieval ceiling 200 → 600
+
+The union roster (71 ATS boards plus the reviewed Workday tenants) needs about 330 requests: robots, sitemaps and title-matched job pages. The lane is free and unmetered, and per-host politeness (1 request per second, 600 pages per board, 2 MB) is unchanged. `POSTING_VOLUME_LIMITS["max_retrievals"]` was raised to 600. The model-backed lane's limits are unchanged.

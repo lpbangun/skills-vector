@@ -25,7 +25,7 @@ POSTING_VOLUME_LIMITS = {
     "max_postings_per_role": 500,
     "max_employer_share": 0.20,
     "max_boards": 100,
-    "max_retrievals": 200,
+    "max_retrievals": 600,
     "max_response_bytes": 16 * 1024 * 1024,
     "retrieval_timeout_seconds": 20,
     "max_retries": 2,
