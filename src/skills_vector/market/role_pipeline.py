@@ -351,10 +351,10 @@ class EvidenceInputs:
                             mentions[key] = set()
             for posting in rows:
                 duty_quotes = [e["source_wording"] for e in posting["expectations"] if e["dimension"] in ("task", "capability")
-                               and (not posting.get("extraction_method", "").startswith("rules/") or e.get("section") == "responsibilities")]
+                               and (not (posting.get("extraction_method", "").startswith("rules/") or posting.get("extraction_method") == "flat-headings/1") or e.get("section") == "responsibilities")]
                 if posting.get("responsibility_evidence", {}).get("quote"):
                     duty_quotes.append(posting["responsibility_evidence"]["quote"])
-                decision = triage(posting, duty_quotes, role_scope_rules=posting.get("extraction_method") == "rules/2", segment_policy=self.skills.get("segment_scope"))
+                decision = triage(posting, duty_quotes, role_scope_rules=posting.get("extraction_method") in ("rules/2", "flat-headings/1"), segment_policy=self.skills.get("segment_scope"))
                 assignments[posting["dedup_key"]] = decision.level
                 linked = []
                 for expected in posting["expectations"]:
@@ -437,7 +437,7 @@ class EvidenceInputs:
                                "windows": [m.to_dict() for m in measurements], "evidence": evidence, "forecast": forecast if derive_status(measurements, [Signal(**s) for s in evidence]) != "core" else None, "disputed": None})
             kept, dropped = cooccurrences(rows, mentions)
             ladder = []
-            segment_policy = self.skills.get("segment_scope") if slug == "account-executive" and (not rows or any(p.get("extraction_method") == "rules/2" for p in rows)) else None
+            segment_policy = self.skills.get("segment_scope") if slug == "account-executive" and (not rows or any(p.get("extraction_method") in ("rules/2", "flat-headings/1") for p in rows)) else None
             for level, name in enumerate(LEVEL_NAMES, 1):
                 selected = level_rows[level]
                 expectations = {}

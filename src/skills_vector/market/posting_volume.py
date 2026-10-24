@@ -138,9 +138,18 @@ def extract_sections_v1(description: str, *, is_html: bool = True) -> dict:
 
 
 def extract_sections(description: str, *, is_html: bool = True, method: str = EXTRACTION,
-                     omit_contacts: bool = True) -> dict:
-    require(method in ("rules/1", "rules/2"), "unsupported extraction method")
-    if method == "rules/1":
+                     omit_contacts: bool = True, flat_headings: bool = True,
+                     employer: str | None = None) -> dict:
+    from .flat_headings import METHOD as FLAT, eligible, extract as extract_flat
+    require(method in ("rules/1", "rules/2", FLAT), "unsupported extraction method")
+    if method == FLAT or method == "rules/2" and flat_headings and eligible(description):
+        result = extract_flat(description, employer=employer)
+        if method != FLAT and not result["section_boundaries"]:
+            from .posting_sections import extract
+            legacy = extract(description, is_html=is_html)
+            if legacy["expectations"]:
+                result = legacy
+    elif method == "rules/1":
         result = extract_sections_v1(description, is_html=is_html)
     else:
         from .posting_sections import extract
@@ -361,7 +370,7 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
                     origin_hash, is_detail = detail.sha256, True
                     require(quarter(detail.retrieved_at) == window, "detail retrieval crossed quarter boundary")
                     stamp = detail.retrieved_at
-            extracted = extract_sections(description, is_html=is_html, method=extraction_method)
+            extracted = extract_sections(description, is_html=is_html, method=extraction_method, employer=employer)
             if len(matches) == 1 and us_location_ok(candidate["location"]):
                 section_checks.append({"posting_id": key, "role": matches[0], "job_id": candidate["job_id"], "employer": employer,
                                        "title": candidate["title"], "has_responsibilities": extracted["has_responsibilities"]})
@@ -385,7 +394,7 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
                              "description_path": text_path, "raw_description_path": raw_path,
                              "raw_description_sha256": hashlib.sha256(description.encode()).hexdigest(),
                              "board_sha256": origin_hash, "board_url": url, "ats": ats, "is_detail": is_detail,
-                             "description_is_html": is_html, "retrieved_at": stamp, "extraction_method": extraction_method,
+                             "description_is_html": is_html, "retrieved_at": stamp, "extraction_method": extracted.get("extraction_method", extraction_method),
                              "has_responsibilities": extracted["has_responsibilities"], "expectations": expectations,
                              "contact_spans_omitted": extracted["contact_spans_omitted"], "contact_omissions": extracted["contact_omissions"],
                              "work_level": "unknown", "advertised_experience": {"value": []},
@@ -419,7 +428,11 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
                          "responsibilities": sum(p["has_responsibilities"] for p in section_checks if p["role"] == slug),
                          "responsibility_failures": [p["posting_id"] for p in section_checks if p["role"] == slug and not p["has_responsibilities"]]}
     public_policy = recorded_policy(policy.value)
-    group = digest({"recipe": extraction_method, "normalization": NORMALIZATION, "implementation_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "policy": {k: v for k, v in public_policy.items() if k != "boards"},
+    flat_recipe = None
+    if extraction_method == "rules/2":
+        flat_recipe = {"method": "flat-headings/1", "sha256": hashlib.sha256(Path(__file__).with_name("flat_headings.py").read_bytes()).hexdigest(),
+                       "sentence_spans_sha256": hashlib.sha256(Path(__file__).with_name("role_quotes.py").read_bytes()).hexdigest()}
+    group = digest({"recipe": extraction_method, "flat_extraction": flat_recipe, "normalization": NORMALIZATION, "implementation_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "policy": {k: v for k, v in public_policy.items() if k != "boards"},
                     "boards": [{k: v for k, v in b.items() if k != "payload"} for b in sorted(policy.value["boards"], key=lambda b: (b["ats"], b["token"]))],
                     "complete_boards": complete})
     manifest = {"schema": SCHEMA, "data_kind": policy.value["data_kind"], "quarter": window, "window_length": "quarterly",
@@ -430,6 +443,8 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
                 "limits": ["Quarterly cross-sectional captured listings, not new-job flows or market prevalence.",
                            "Rules only: visible text is decoded from native HTML; quote offsets/hash refer to the exact saved description text. Original native description and board bytes are separately hashed.",
                            "No employer sector, title-derived level or official skill equivalence is inferred."] }
+    if flat_recipe:
+        manifest["flat_extraction"] = flat_recipe
     data = canonical(sorted(selected, key=lambda p: (p["occupation_slug"], p["dedup_key"]))).encode()
     payloads["postings.json"] = data
     manifest["files"] = {name: hashlib.sha256(data).hexdigest() for name, data in sorted(payloads.items())}

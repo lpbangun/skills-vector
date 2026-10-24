@@ -28,6 +28,9 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
         require(window not in groups, "duplicate quarterly snapshot; releases are not independent windows")
         policy = VolumePolicy.from_value(manifest["policy"], root / "manifest.json").value
         require(manifest["policy_sha256"] == object_digest(policy) and manifest["extraction_method"] in ("rules/1", "rules/2"), "snapshot policy/method mismatch")
+        flat = manifest.get("flat_extraction")
+        require(flat is None or isinstance(flat, dict) and flat.get("method") == "flat-headings/1"
+                and manifest["extraction_method"] == "rules/2", "unknown flat extraction recipe")
         require(policy["data_kind"] == manifest["data_kind"], "snapshot/policy data kind mismatch")
         roles = set(policy["roles"])
         require(roles <= set(base.occupations) and (configured_roles is None or roles == configured_roles), "snapshot roles mismatch")
@@ -44,7 +47,9 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
         rows = read_json(within(root, "postings.json"))
         seen, native_cache, parsed_cache = set(), {}, {}
         for posting in rows:
-            require(posting["extraction_method"] == manifest["extraction_method"] and quarter(posting["retrieved_at"]) == window, "posting method/date mismatch")
+            require((posting["extraction_method"] == manifest["extraction_method"]
+                     or flat is not None and posting["extraction_method"] == "flat-headings/1")
+                    and quarter(posting["retrieved_at"]) == window, "posting method/date mismatch")
             key = (posting["occupation_slug"], posting["dedup_key"])
             require(key not in seen and key[0] in roles, "duplicate/unknown-role posting")
             seen.add(key)
@@ -72,7 +77,8 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
             require(original == raw and is_html == posting["description_is_html"], "description not bound to retrieved board row")
             require(manifest.get("contact_filter") in (None, "sentences/1"), "unknown contact filter")
             replay = extract_sections(raw, is_html=is_html, method=posting["extraction_method"],
-                                      omit_contacts=manifest.get("contact_filter") == "sentences/1")
+                                      omit_contacts=manifest.get("contact_filter") == "sentences/1",
+                                      flat_headings=flat is not None, employer=posting["employer"])
             if manifest.get("contact_filter"):
                 require(posting.get("contact_spans_omitted") == replay["contact_spans_omitted"]
                         and posting.get("contact_omissions") == replay["contact_omissions"], "contact omission replay mismatch")
@@ -153,6 +159,8 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
         posting["contact_spans_omitted"] = posting.get("contact_spans_omitted", 0) + len(omissions)
         posting["contact_omissions"] = posting.get("contact_omissions", []) + omissions
     hashes["role_quotes.py"] = digest(Path(__file__).with_name("role_quotes.py").read_bytes())
+    if any(p["extraction_method"] == "flat-headings/1" for p in postings):
+        hashes["flat_headings.py"] = digest(Path(__file__).with_name("flat_headings.py").read_bytes())
     if canonical:
         from .role_quotes import project as sentence_spans
         for posting in postings:
@@ -190,6 +198,6 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
     for name in ("posting_volume.py", "posting_volume_inputs.py"):
         base.hashes[name] = digest(Path(__file__).with_name(name).read_bytes())
     # Mapping/normalizer changes are sampling-definition changes, never a fabricated trend.
-    suffix = object_digest({"processing_recipe": {name: hashes[name] for name in ("recipe.py", "posting_sections.py", "posting_volume_inputs.py", "role_segments.py", "role_quotes.py") if name in hashes}, "skills": base.skills, "backbone": backbone.fingerprint if backbone else None, "employers": {k: {x: v for x, v in row.items() if x not in ("source_id", "quote")} for k, row in employers.items()}})
+    suffix = object_digest({"processing_recipe": {name: hashes[name] for name in ("recipe.py", "posting_sections.py", "flat_headings.py", "posting_volume_inputs.py", "role_segments.py", "role_quotes.py") if name in hashes}, "skills": base.skills, "backbone": backbone.fingerprint if backbone else None, "employers": {k: {x: v for x, v in row.items() if x not in ("source_id", "quote")} for k, row in employers.items()}})
     base.history_groups = {window: group + ":" + suffix for window, group in groups.items()}
     return base

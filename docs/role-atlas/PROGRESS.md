@@ -3247,3 +3247,257 @@ One fix-up commit on `feat/role-atlas`, then stop for review.
 ## Reviewer change — posting-lane retrieval ceiling 200 → 600
 
 The union roster (71 ATS boards plus the reviewed Workday tenants) needs about 330 requests: robots, sitemaps and title-matched job pages. The lane is free and unmetered, and per-host politeness (1 request per second, 600 pages per board, 2 MB) is unchanged. `POSTING_VOLUME_LIMITS["max_retrievals"]` was raised to 600. The model-backed lane's limits are unchanged.
+
+
+## M9 review round 4 — flattened Workday descriptions
+
+Implemented `reviews/M9-r4.md`. No live retrieval, model/paid call, real capture
+write, sector import or new research publication. Only the **named union
+capture** was read under the operator evidence store; the adjacent roster and
+other evidence directories were not used. The reviewer remains responsible
+for rerunning capture and projection.
+
+### Must 1 — flat-headings/1 and method identity
+
+- Added `flat_headings.py`: literal, case-sensitive heading phrases, beginning
+  with all requested rules/2 variants. Supplemental generic variants come from
+  the saved corpus's heading structure, not employer/posting-id rules.
+- Dispatch is allowed only for nonempty one-line text with no line breaks.
+  All HTML tags (including inline markup) conservatively keep the existing
+  structural path, so marked-up ATS descriptions never take the flat path.
+- A candidate must follow sentence-ending punctuation or an immediately
+  adjacent short title-like run (at most 16 words / 120 characters), and its
+  content must start with a capitalized word after heading/list punctuation.
+  Lower-case prose is not a title-like run. In-sentence responsibilities
+  references and lower-case content do not become headings. Numeric-led
+  qualification content intentionally fails this strict capitalization rule.
+- Company (including literal `About <roster employer>`), benefits, compensation,
+  pay-transparency, EEO and accommodation boundaries terminate evidence.
+  Recognized excluded sections emit no expectations. Existing rules/2
+  boilerplate exclusion applies **per sentence**, followed by the existing
+  contact-sentence filter. A complete generic salary-transparency intro is
+  an exclusion boundary, never a duty.
+- Content uses `role_quotes.ranges` / **sentence-spans/1**. No entity decoding,
+  whitespace normalization, line insertion or original-description rewriting
+  occurs on the flat path. Every quote carries exact original offsets and
+  source hash. When no flat boundary exists, an existing rules/2 current-duty
+  extraction is preserved if it actually emits evidence.
+- Each captured posting records **`flat-headings/1` or `rules/2`**. The
+  manifest remains a rules/2 dispatch recipe with a hash-bound
+  `flat_extraction` method/file/sentence-rule receipt. The comparison-group
+  recipe includes this receipt; projection's processing suffix also includes
+  the flat implementation hash when used.
+- Replay accepts these mixed per-posting methods only with the declared flat
+  recipe. Old snapshots without the marker replay without flat dispatch.
+  Flat postings retain rules/2's responsibility-only scope input and reviewed
+  AE scope policy; qualifiers do not intentionally become scope votes.
+  No floor, sampling cap, level rule or forecast math was relaxed.
+
+### Must 2 — actual readonly capture measurement
+
+Input:
+`/home/logani/.local/share/skills-vector-evidence/role-atlas/capture-union-20261024T103955Z/2026-Q4`.
+
+Read only `skills-vector.jsonld-board/1` collections from `boards/*.json`,
+using the capture manifest for roster employer labels. There are **76 parsed
+US structured postings / 18 employers** in these collections. This is not
+all sitemap URLs, all 166 fetched pages, or a claim of 76 final admissions.
+The existing ATS cohort and the capture's originally excluded postings are
+not rewritten or resampled.
+
+| Measure | Result |
+| --- | ---: |
+| Legacy rules/2 responsibility detection | **0/76** |
+| New flat-headings/1 responsibility detection | **61/76 = 80.26%** |
+| V4 target | **at least 80% — met narrowly** |
+| Flat method selected | **76/76** |
+| Emitted exact, source-hash-bound sentence spans | **1,332** |
+| Native descriptions unchanged by the flat extractor | **76/76** |
+| Capture inventory/bytes unchanged | **1,388 files** |
+
+Capture inventory SHA-256 (sorted relative-path → file-digest JSON):
+`a7797bfa3af7fb5b17c02ce52f34dc35f55d0351bb152197d4ab90c458c173fb`.
+Initial receipts were saved before implementation and checked again afterward;
+the measurement command independently checks the inventory before/after reading.
+
+**All 15 responsibility failures:** Capital One `R1003139`; Capital One `R1000798`; Capital One `R249445`; Capital One `R1001108`; Capital One `R1001889`; Capital One `R999223`; Capital One `R1000518`; Capital One `R1003218`; Capital One `R1001590`; Capital One `R248646`; Humana `R-434963`; McKesson `JR0155792`; PNC `R232143`; Salesforce `JR283068`; U.S. Bank `2026-0021225`.
+
+The strict boundary/capitalization conditions leave real misses. The existing
+boilerplate filter can drop an entire long unpunctuated sentence that combines
+a duty list with an excluded notice. The measured target is **section recovery,
+not 80.26% semantic accuracy**, no independent validation or market coverage
+claim. No threshold was rounded down to manufacture a pass.
+
+### Fixed-seed 15-posting hand check
+
+Seed **20261024**. Sort all 76 by **roster employer, page URL, native id**;
+`Random(seed).sample(range(76), 15)`. The IDs were frozen before editing and
+verified unchanged at the end. This is a **development hand check**, not held-out
+validation: corpus heading contexts and the sampled failures informed the
+implementation, including removing salary text that initially looked like duty
+evidence. No precision score is claimed.
+
+Below are the final recognized sections and first emitted spans, checked
+against the saved descriptions. Offsets are half-open. The first spans below
+are printed in full (at most 294 characters each); the automated JSON report
+uses bounded prefixes, so a separate readonly hand-check command printed the
+complete first spans and bounded tail excerpts for inspection. Excluded
+sections have no emitted first span. Whole descriptions are not copied.
+
+1. **Workday — JR-0110844** (Medium Enterprise Account Executive, Customer Base)
+   - Sections: company / “About the Team” @1166; responsibilities / “About the Role” @1681; legal / “Pay Transparency Statement” @3788; legal / “Pay Transparency” @8826.
+   - First responsibilities `[1696, 1784)`: “Here at Workday, our Account Executives are key players in our Field Sales organization.”.
+   - Hand check: Partial: the first span is role-introduction prose, not a concrete duty. The pay-transparency tail stops, but numeric-led Basic Qualifications and About You do not produce a clean split.
+
+2. **Capital One — R999223** (Sr. Manager, HR Business Partner - Audit & Risk)
+   - Sections: preferred / “Preferred Qualifications” @2925; legal / “The minimum and maximum full-time annual salaries for this role are listed below, by location.” @3377.
+   - First emitted spans: **none**.
+   - Hand check: Miss: no responsibility spans. Preferred Qualifications is detected but its mixed, unpunctuated content is filtered; the salary intro is a legal stop, not evidence.
+
+3. **Broadcom — R027000** (Forward Deployed Engineer (Principal))
+   - Sections: responsibilities / “Key Responsibilities” @1559; requirements / “Key Qualifications” @3893.
+   - First responsibilities `[1580, 1774)`: “Divisional Field to Engineering Leadership: Act as the primary technical authority bridging core engineering, product management executive leadership, and C level enterprise customer architects.”.
+   - First requirements `[3912, 4121)`: “Principal Level Engineering Stature: 10+ years of software engineering experience with 5+ years driving high consequence infrastructure, distributed systems, AI platforms, or Kubernetes architectures at scale.”.
+   - Hand check: First duty and qualification align with their sections. Long unpunctuated spans remain; the later compensation heading lacks the required left boundary and is a tail-spillover risk.
+
+4. **McKesson — JR0155792** (Human Resources Business Partner)
+   - Sections: none.
+   - First emitted spans: **none**.
+   - Hand check: Miss: no qualifying heading boundary, so no invented section or first span. The source does contain HR work, but this rule does not recover it.
+
+5. **Ameriprise Financial — R26_4221** (Manager, HR Business Partner)
+   - Sections: company / “About Our Company” @0; responsibilities / “Key Responsibilities” @1565; requirements / “Required Qualifications” @3536; preferred / “Preferred Qualifications” @4820; benefits / “Base Pay Salary” @6096.
+   - First responsibilities `[1586, 1789)`: “Build trusted relationships with leaders and develop a strong understanding of the priorities, operating environment and talent needs of the HR and Marketing, Strategy &amp; Communications organizations.”.
+   - First requirements `[3560, 3646)`: “Bachelor’s degree or equivalent combination of education and relevant work experience.”.
+   - First preferred `[4845, 4959)`: “Experience supporting corporate functions, professional services organizations, or geographically dispersed teams.”.
+   - Hand check: First duty, required and preferred spans align. Company introduction is excluded and Base Pay Salary terminates evidence.
+
+6. **Capital One — R1003218** (Principal Associate, HR Business Partner - Financial Services Emerging Talent)
+   - Sections: requirements / “Basic Qualifications” @2213; preferred / “Preferred Qualifications” @2445; legal / “The minimum and maximum full-time annual salaries for this role are listed below, by location.” @3016.
+   - First requirements `[2234, 2444)`: “High School Diploma, GED, or equivalent certification At least 2 years of client facing experience OR at least 2 years of consulting experience OR a combination At least 2 years of experience in Human Resources”.
+   - Hand check: Missed duties, captured requirements. The qualification list is a 210-character sentence span, not independent bullet observations. Preferred content is filtered; the salary tail is excluded.
+
+7. **Workday — JR-0111004** (Account Executive, Platform - Healthcare)
+   - Sections: company / “About the Team” @1166; responsibilities / “About the Role” @1867; requirements / “Basic Qualifications” @3987; preferred / “Other Qualifications” @5154; legal / “Pay Transparency Statement” @5934; legal / “Pay Transparency” @10969.
+   - First responsibilities `[1882, 2007)`: “You are an experienced enterprise seller who combines technical fluency, executive presence, and disciplined sales execution.”.
+   - First requirements `[4009, 4303)`: “P4 Account Executive, Platform: +5 years of high-performing enterprise SaaS sales experience +3 years specifically focused on selling complex platform architecture, architecting an enterprise data strategy (privacy, security), or AI/analytics solutions directly to the Office of the CIO or CTO.”.
+   - First preferred `[5175, 5372)`: “Domain &amp; Technical Fluency: Strong technical credibility in modern enterprise IT architectures, cloud data foundations, API orchestration, data privacy/security, and AI/ML platform integration.”.
+   - Hand check: Partial: the first span is seller-profile prose under About the Role. Basic and Other Qualifications split correctly here; pay transparency stops evidence. This is not independent duty-validity evidence.
+
+8. **BlackRock — R266617** (Account Executive, Preqin Sales, Vice President)
+   - Sections: responsibilities / “About this role” @0; responsibilities / “Key responsibilities” @2335; company / “About BlackRock” @6389.
+   - First responsibilities `[16, 250)`: “Aladdin Client Business, Preqin – Vice President BlackRock Overview: BlackRock is one of the world’s preeminent asset management firms and an outstanding provider of global investment management, risk management and advisory services.”.
+   - Hand check: False-positive first span: About this role includes corporate overview. The later Key responsibilities is real duty content, but the qualifications boundary is missed; About BlackRock stops the company tail.
+
+9. **Capital One — R1003139** (Lead Account Executive- PULSE)
+   - Sections: responsibilities / “Responsibilities” @820; legal / “The minimum and maximum full-time annual salaries for this role are listed below, by location.” @2432.
+   - First emitted spans: **none**.
+   - Hand check: Miss despite a detected Responsibilities heading: a mixed unpunctuated span hits the existing exclusion filter, so no duty quote survives. The salary introduction is correctly excluded rather than counted as a duty.
+
+10. **Salesforce — JR347125** (SMB Account Executive – Data Foundation (MuleSoft + Informatica) AE or Informatica Specialist AE (San Francisco))
+   - Sections: company / “About Salesforce” @179; company / “About Salesforce” @809; responsibilities / “Key Responsibilities” @4217; legal / “Accommodations” @7397.
+   - First responsibilities `[4238, 4384)`: “Relationship Building: Establish executive presence and trusted-advisor relationships with C-suite decision-makers and key technical stakeholders.”.
+   - Hand check: First duty aligns. Numeric-led Required Qualifications is not a confirmed boundary and can remain in the duty section. Accommodations stops the legal tail.
+
+11. **Unum — 836136** (Director, HR Business Partner)
+   - Sections: responsibilities / “Principal Duties and Responsibilities” @1891; requirements / “Job Specifications” @3417.
+   - First responsibilities `[1929, 2078)`: “Develop in some cases, and implement in other cases, HR strategies and action plans that are aligned to and drive achievement of business objectives.”.
+   - First requirements `[3436, 3552)`: “Strong experience (5-7 years) in the field of HR, with a solid knowledge of all HR functions as key business levers.”.
+   - Hand check: First duty and Job Specifications span align. This checks the displayed first spans, not every later sentence's semantic validity.
+
+12. **Unum — 836385** (VP, HR Business Partner)
+   - Sections: responsibilities / “Principal Duties and Responsibilities” @2889; requirements / “Job Specifications” @5520.
+   - First responsibilities `[2927, 3066)`: “Serve as a trusted advisor and strategic thought partner to executive leaders on organizational, talent, leadership, and workforce matters.”.
+   - First requirements `[5539, 5668)`: “Bachelor’s degree required; Master’s degree in Human Resources, Business, Organizational Development, or related field preferred.”.
+   - Hand check: First duty and Job Specifications span align; no scope or level is inferred from that observation alone.
+
+13. **Salesforce — JR359224** (Commercial Account Executive – Data Foundation (MuleSoft + Informatica) or Commercial Account Executive - Informatica Specialist)
+   - Sections: company / “About Salesforce” @179; responsibilities / “Key Responsibilities” @3590; legal / “Accommodations” @6731.
+   - First responsibilities `[3611, 3757)`: “Relationship Building: Establish executive presence and trusted-advisor relationships with C-suite decision-makers and key technical stakeholders.”.
+   - Hand check: First duty aligns. Numeric-led qualifications are unsplit; Accommodations stops the legal tail. Same retained limitation as case 10.
+
+14. **Capital One — R1001590** (Senior Manager, HR Business Partner- Card)
+   - Sections: legal / “The minimum and maximum full-time annual salaries for this role are listed below, by location.” @4020.
+   - First emitted spans: **none**.
+   - Hand check: Miss: Your Responsibilities follows lower-case unpunctuated prose, failing the clause-start rule. Only the salary/legal stop is recognized; no duty is fabricated.
+
+15. **HP — JET0097** (Account Executive (AE) - Corporate)
+   - Sections: responsibilities / “Key Responsibilities” @951; company / “About HP” @4435; benefits / “Benefits” @5791; legal / “Equal Opportunity” @6540.
+   - First responsibilities `[972, 1103)`: “Own and execute comprehensive account strategies across a portfolio of accounts to achieve business growth and client satisfaction.”.
+   - Hand check: First duty aligns. About HP, Benefits and Equal Opportunity are exclusion boundaries. No employer sector is inferred from the description.
+
+**Hand-check conclusion:** 10/15 sampled postings emit a responsibility span;
+five do not. Several first spans are good duty/qualification evidence, but
+cases 1/7 contain role introductions, case 8 includes corporate overview,
+and strict numeric/unpunctuated boundaries leave qualification/tail spillover.
+These errors/limits are retained, not relabeled as clean extraction. This
+does not approve every one of the 1,332 spans for meaning, level or grouping.
+Tail inspection also found recruiter/social text under Broadcom requirements,
+visa-sponsorship prose before Ameriprise's salary stop, a leftover Workday brand
+fragment before a pay heading, hiring/AI-use guidance under BlackRock duties,
+Salesforce promotional prose and unheaded Unum accommodation prose. Recognized
+excluded sections are dropped, but these **unrecognized or unpunctuated tails
+can still leak**. No claim of complete company/legal cleanup is made.
+
+### Existing ATS output and tests
+
+Before edits, captured the authored ATS sample output at starting HEAD
+`82dc5a3` into `/tmp/role-atlas-m9-r4-ats-before.json`. Afterward reran the
+same six-board policy for 2026-Q1 at 2026-01-15T00:00:00Z:
+**all 103 payload files, including postings, descriptions and board bytes,
+remain byte-identical**. The new manifest/comparison recipe deliberately differs;
+it is not part of the unchanged-payload claim.
+
+Payload-tree SHA-256 (sorted filename → decoded synthetic payload JSON):
+`529a5f6c201804a55dfa70e833709c861d69596734496f7ecad50103ac98aa5f`.
+
+Six new tests cover the synthetic inline real shape, the in-sentence decoy,
+all requested literal variants, title/clause/capitalization negatives,
+salary/EEO/company/benefit stops, HTML and multiline rejection, existing
+current-duty fallback, mixed per-posting method receipts, exact offsets,
+immutable authored capture replay and byte-identical double projection.
+Tests use only authored descriptions and block network access in the
+capture/replay integration.
+
+### Exact commands and results
+
+```sh
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python /tmp/role-atlas-m9-r4-inspect.py > /tmp/role-atlas-m9-r4-inspect.log 2>&1
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python -m unittest discover -s tests -p test_flat_headings.py > /tmp/role-atlas-m9-r4-focused-tests.log 2>&1
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m9-r4-full-tests.log 2>&1
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python -m unittest discover -s tests -p test_flat_headings.py > /tmp/role-atlas-m9-r4-focused-final.log 2>&1
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m9-r4-handoff-tests.log 2>&1
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python scripts/measure_flat_headings.py /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-union-20261024T103955Z/2026-Q4 --seed 20261024 > /tmp/role-atlas-m9-r4-measurement.json
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python /tmp/role-atlas-m9-r4-hand-check.py > /tmp/role-atlas-m9-r4-hand-check.log
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python /tmp/role-atlas-m9-r4-final-integrity.py
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m9-r4-final-tests.log 2>&1
+```
+
+All listed commands exit **0**. Initial focused **5 tests / 0.325s**; after
+the salary-stop regression, **6 / 0.378s**. Full suite first
+**300 / 92.684s**, then **301 / 92.802s**, finally **301 / 96.094s,
+OK (skipped=2)** after adding inline-markup rejection. No newly skipped tests.
+HOME remains isolated under `/tmp` so optional unrelated operator-audit lookups
+do not read other evidence stores. The two skips are existing; optional
+external-audit assertions remain unavailable in this isolated HOME.
+
+Development failures: an initial tuple-expression compile typo was corrected
+before tests. The first measurement assertion failed because an empty legacy
+fallback decoded entities in a flat description. Dispatch now preserves raw
+flat text unless that fallback actually has legacy duty evidence. The final
+measurement checks raw equality for all 76. Early diagnostic counts included
+salary/intro contamination; the final **61**, not the higher prototype
+counts, is the reported result.
+
+```sh
+.venv/bin/python -m compileall -q src/skills_vector/market/flat_headings.py src/skills_vector/market/posting_volume.py src/skills_vector/market/posting_volume_inputs.py src/skills_vector/market/role_pipeline.py tests/test_flat_headings.py scripts/measure_flat_headings.py
+git diff --check
+git diff --exit-code -- research preview config docs/role-atlas/reviews
+```
+
+All exit **0**. No frontend/read-surface change, so no new W3/browser budget
+claim is made. No deployment, push, ledger rewrite, historical publication
+change or live union recapture. The existing 600-retrieval reviewer change
+and model-backed budgets are untouched.
+
+One fix-up commit on `feat/role-atlas`, then stop for review.
