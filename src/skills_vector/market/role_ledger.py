@@ -74,6 +74,7 @@ def create_ledger(records: list[dict], events: list[dict] | None = None) -> dict
     entries, used = [], set()
     for record in sorted(records, key=lambda r: (r["release_id"], r["id"])):
         RoleRecord.from_dict(record)
+        source_sha256 = digest(record)
         for skill in record["skill_map"]["skills"]:
             if skill["forecast"] is None:
                 continue
@@ -89,7 +90,7 @@ def create_ledger(records: list[dict], events: list[dict] | None = None) -> dict
             current = skill["windows"][-1]
             entries.append({"id": _entry_id(record["id"], skill["id"], record["release_id"], forecast["id"]),
                             "role_id": record["id"], "skill_id": skill["id"], "data_kind": record["data_kind"],
-                            "source_release": record["release_id"], "source_sha256": digest(record),
+                            "source_release": record["release_id"], "source_sha256": source_sha256,
                             "forecast": forecast, "event": deepcopy(spec["event"]) if spec else None,
                             "event_rationale": spec["rationale"] if spec else None,
                             "scope": {"comparison_group": current["comparison_group"], "levels": list(current["levels"]),
@@ -305,9 +306,11 @@ def track_record(records: list[dict], ledger: dict | None) -> dict:
         validate_ledger(ledger)
     selected = {(r["id"], r["release_id"]): r for r in records}
     entries = [e for e in ledger["entries"] if (e["role_id"], e["source_release"]) in selected] if ledger else []
+    source_hashes = {key: digest(selected[key]) for key in {(e["role_id"], e["source_release"]) for e in entries}}
     for entry in entries:
-        record = selected[(entry["role_id"], entry["source_release"])]
-        require(entry["data_kind"] == record["data_kind"] and entry["source_sha256"] == digest(record), "ledger source record mismatch")
+        key = (entry["role_id"], entry["source_release"])
+        record = selected[key]
+        require(entry["data_kind"] == record["data_kind"] and entry["source_sha256"] == source_hashes[key], "ledger source record mismatch")
     scored = [(e["forecast"]["probability"], e["resolution"]["outcome"]) for e in entries
               if e["data_kind"] == "research" and e["forecast"]["basis"] == "backtest" and e["resolution"] is not None]
     receipts = [e for e in entries if e["backtest"]]

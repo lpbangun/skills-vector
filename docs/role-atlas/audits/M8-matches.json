@@ -1,0 +1,2965 @@
+{
+  "judgment_scope": "All new matches per span; any wrong match makes the case wrong. Coding-agent development audit, not independent held-out validation. Earlier C-suite, sales-qualified-lead SQL, and employer-team false matches were repaired before this frozen selection; the final residual errors remain recorded.",
+  "producer_hashes": {
+    "emerging_terms.json": "35b0fc20e9ceac51c7a1f1536e729ee5141f0034ac9ca658e2e39a0c8080bb01",
+    "role_quotes.py": "6562544349f39b5cc8dd17dd34897ee5608ac4950b0f6f7cfd0adb74e3c6c582",
+    "role_terms.py": "c1f5c429b2661f88f23078c9effcf1b5b7886f3ba4b708d8dcac5fa080586ccd",
+    "software_aliases.json": "1cf5f539ed09acbc89653cc5932cde8de9460f5e50b4403637aab0187da6d87e",
+    "software_examples.json": "2ff79987c98be577e0447fae97c9498bac8c3d413b2a3741a7e8a8718ba89207"
+  },
+  "reviewer": "coding agent manual lexical audit; not independent expert ground truth",
+  "selections": {
+    "account-executive": {
+      "cases": [
+        {
+          "end": 1405,
+          "expectation_id": "exp.sentence.84386117a0cc59249a45d64c",
+          "job_id": "7575004",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "1675b39271e7e24712cee8df",
+          "quote": "Leverage Salesforce (our CRM) to manage all sales activities",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 31,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.1675b39271e7e24712cee8df",
+          "source_sha256": "4b778b1250c491878c865c3359c8f9b95490e6151a6b64acfd6b591791cf0749",
+          "start": 1345
+        },
+        {
+          "end": 1419,
+          "expectation_id": "exp.sentence.838b9395b31e9e1511698533",
+          "job_id": "7027846",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "4d9f7d3d5c3c24e59115d3ce",
+          "quote": "Build a sales pipeline in Salesforce and Clari while maximizing prospecting tools such as Sales Navigator, ZoomInfo, Sendoso, and Outreach",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 32,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.4d9f7d3d5c3c24e59115d3ce",
+          "source_sha256": "c9a9716e6df40b353a09ce321de2309d7601bb85d5717d1e10157d88e5ce5cc7",
+          "start": 1281
+        },
+        {
+          "end": 1419,
+          "expectation_id": "exp.sentence.c43bdec3637c809973daff5f",
+          "job_id": "7031396",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "baa552664690f1232e3e4cda",
+          "quote": "Build a sales pipeline in Salesforce and Clari while maximizing prospecting tools such as Sales Navigator, ZoomInfo, Sendoso, and Outreach",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 33,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.baa552664690f1232e3e4cda",
+          "source_sha256": "e13c328925f82dd1bd6922ed340900f8e49bfe132011555fd445e3ae4a90ed46",
+          "start": 1281
+        },
+        {
+          "end": 1771,
+          "expectation_id": "exp.sentence.88aecea3bb08375bb9fc9999",
+          "job_id": "5461663008",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:aws",
+              "kind": "software-example",
+              "label": "Amazon Web Services",
+              "matched_text": "AWS",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:gcp",
+              "kind": "software-example",
+              "label": "Google Cloud",
+              "matched_text": "GCP",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "d711363f8da8d52ebde9dab8",
+          "quote": "Coordinate closely with cloud service providers (AWS, GCP) and system integrators to ensure successful deployment and integration",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 34,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.d711363f8da8d52ebde9dab8",
+          "source_sha256": "96ae03bd9132d41e55da8097fa4a22262a679ab8f5ebcaa8af0ff38ecd54b547",
+          "start": 1642
+        },
+        {
+          "end": 2056,
+          "expectation_id": "exp.sentence.be405728b873cc815671f340",
+          "job_id": "7027834",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:mongodb",
+              "kind": "software-example",
+              "label": "MongoDB",
+              "matched_text": "MongoDB",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "a9b8905b6d292f5f7b1eefa9",
+          "quote": "Manage the full sales cycle for all MongoDB Products & Services",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 35,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.a9b8905b6d292f5f7b1eefa9",
+          "source_sha256": "1deb3078704ca9fcb83c226ab4c42d1030bc405ebe1661b90f42b7d0e3dfb7d2",
+          "start": 1993
+        },
+        {
+          "end": 4500,
+          "expectation_id": "exp.sentence.779881f247b196acda59da00",
+          "job_id": "8114256",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.llm",
+              "kind": "posting-term",
+              "label": "Large language models",
+              "matched_text": "large language models",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "abd8951c1dd0cf4017ab29e4",
+          "quote": "AI & Modern Infrastructure Expertise: Strong understanding of today's AI landscape, including large language models (LLMs), AI infrastructure, developer platforms, cloud-native architectures, modern data platforms, and enterprise AI adoption.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 36,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.abd8951c1dd0cf4017ab29e4",
+          "source_sha256": "3a78bbc5ce46f240db5479283469d42d2d873532421f2ddf8adce3dcc7cbafd8",
+          "start": 4258
+        },
+        {
+          "end": 1170,
+          "expectation_id": "exp.sentence.14c8f0772a8aead3e63cbe15",
+          "job_id": "8170915",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "2e65f0cc9837c91bff2712ea",
+          "quote": "Leverage Salesforce (our CRM) to manage all sales activities",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 4,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.2e65f0cc9837c91bff2712ea",
+          "source_sha256": "e5f4df7a2fa1d0d002bde0cc644deb5677cfb9c71480c49c1ffafb5549539afa",
+          "start": 1110
+        },
+        {
+          "end": 1156,
+          "expectation_id": "exp.sentence.0e6071811d597de1abf3a595",
+          "job_id": "6587328",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:mongodb",
+              "kind": "software-example",
+              "label": "MongoDB",
+              "matched_text": "MongoDB",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "ab1e080bc91a528d1162f204",
+          "quote": "Grow a current base of MongoDB customers by landing new workloads through outbound prospecting",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 37,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.ab1e080bc91a528d1162f204",
+          "source_sha256": "1377f5c8ef4b2615bdfa3dec108bc60cd8040f3c442d3d7e07d807c6a3454b14",
+          "start": 1062
+        },
+        {
+          "end": 1987,
+          "expectation_id": "exp.sentence.0bc636fd2a93015185f24af5",
+          "job_id": "8870716002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:spark",
+              "kind": "software-example",
+              "label": "Apache Spark",
+              "matched_text": "Apache Spark",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.databricks",
+              "kind": "posting-term",
+              "label": "Databricks",
+              "matched_text": "Databricks",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "07d03ec598df3626fbd78464",
+          "quote": "Promote Databricks' enterprise cloud data platform powered by Apache Spark™",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 38,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.07d03ec598df3626fbd78464",
+          "source_sha256": "92e3bf3be84251cd328995deb87c1ab0b55fe9cb23dfc6031ed496c20d4de38f",
+          "start": 1912
+        },
+        {
+          "end": 4456,
+          "expectation_id": "exp.sentence.1a21b577550237f7d3812e88",
+          "job_id": "8871274002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:git",
+              "kind": "software-example",
+              "label": "Git",
+              "matched_text": "Git",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "7f50d24d15b0b275f1d4b2ed",
+          "quote": "A basic understanding of application lifecycle management and its related technologies, and a willingness to learn GitLab and Git.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 39,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.7f50d24d15b0b275f1d4b2ed",
+          "source_sha256": "bd1784af1c2c25de1e1f210dca03e37193101c437e07b0418706cac353bf9aa9",
+          "start": 4326
+        },
+        {
+          "end": 1061,
+          "expectation_id": "exp.sentence.317f57b950c0552be1dbe390",
+          "job_id": "7027846",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:mongodb",
+              "kind": "software-example",
+              "label": "MongoDB",
+              "matched_text": "MongoDB",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "4d9f7d3d5c3c24e59115d3ce",
+          "quote": "Grow a current base of MongoDB customers by landing new workloads through outbound prospecting",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 40,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.4d9f7d3d5c3c24e59115d3ce",
+          "source_sha256": "c9a9716e6df40b353a09ce321de2309d7601bb85d5717d1e10157d88e5ce5cc7",
+          "start": 967
+        },
+        {
+          "end": 1961,
+          "expectation_id": "exp.sentence.9628225453bf64e00e52a50f",
+          "job_id": "8265429",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce CRM",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "7d0cb0e91ac4b7476e08124a",
+          "quote": "Experience with Salesforce CRM",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 41,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.7d0cb0e91ac4b7476e08124a",
+          "source_sha256": "b89f069db555cacf2b97cbc642cf0a15b527fac3f7c5fdc7ce13c2bd4140fe0c",
+          "start": 1931
+        },
+        {
+          "end": 3941,
+          "expectation_id": "exp.sentence.48710f70c2fe20175a5ed688",
+          "job_id": "4689919005",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.agents",
+              "kind": "posting-term",
+              "label": "AI agents",
+              "matched_text": "agentic AI",
+              "method": "reviewed-posting-term-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.llm",
+              "kind": "posting-term",
+              "label": "Large language models",
+              "matched_text": "LLM",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "347397fe1b530e4642fb5c05",
+          "quote": "Experience selling agentic AI, LLM platforms, or automation solutions into healthcare or life sciences",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 42,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.347397fe1b530e4642fb5c05",
+          "source_sha256": "b264e9704a9a8fb59ff69c08397db5352c504781efc26d9c44e81080f5d02108",
+          "start": 3839
+        },
+        {
+          "end": 2701,
+          "expectation_id": "exp.sentence.d3286134be8d065148ab60a1",
+          "job_id": "8870716002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:spark",
+              "kind": "software-example",
+              "label": "Apache Spark",
+              "matched_text": "Spark",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "07d03ec598df3626fbd78464",
+          "quote": "Understanding of Spark and big data preferable",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 43,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.07d03ec598df3626fbd78464",
+          "source_sha256": "92e3bf3be84251cd328995deb87c1ab0b55fe9cb23dfc6031ed496c20d4de38f",
+          "start": 2655
+        },
+        {
+          "end": 1170,
+          "expectation_id": "exp.sentence.2202ef19034f209cbceb3744",
+          "job_id": "8161701",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "7bfe9bb50ce40e029bf99942",
+          "quote": "Leverage Salesforce (our CRM) to manage all sales activities",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 44,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.7bfe9bb50ce40e029bf99942",
+          "source_sha256": "e5f4df7a2fa1d0d002bde0cc644deb5677cfb9c71480c49c1ffafb5549539afa",
+          "start": 1110
+        },
+        {
+          "end": 5163,
+          "expectation_id": "exp.sentence.643ac855a46de9eed9333154",
+          "job_id": "7137456",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "e8bb9989ae89e3ab4c6fbcb9",
+          "quote": "Experience in Lead generation for B2B in a high-velocity setting (i.e., SaaS, PEO, Fintech)Salesforce, SalesLoft, LinkedIn SalesNavigator, and/or ZoomInfo are required.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 45,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.e8bb9989ae89e3ab4c6fbcb9",
+          "source_sha256": "5b50b124f43f13fd5ca3f85ae9cb66a527ccef34bd39542fc525736564dabc64",
+          "start": 4995
+        },
+        {
+          "end": 5244,
+          "expectation_id": "exp.sentence.84bf04eb54b47a6f4243ea26",
+          "job_id": "7156234",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:hubspot",
+              "kind": "software-example",
+              "label": "HubSpot",
+              "matched_text": "Hubspot",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "b5187f076a21ddadb15b1a1a",
+          "quote": "Experience with Outreach.io and/or Hubspot, in addition to 6Sense and/or Hoovers/D&B, is a plus.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 46,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.b5187f076a21ddadb15b1a1a",
+          "source_sha256": "d4398739f0e11169689c1bad3147817198cd8b6e072aa4cbba3b1d062fcbee38",
+          "start": 5148
+        },
+        {
+          "end": 4165,
+          "expectation_id": "exp.sentence.16aa203bfb13310402881194",
+          "job_id": "5074995008",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.genai",
+              "kind": "posting-term",
+              "label": "Generative AI",
+              "matched_text": "generative AI",
+              "method": "reviewed-posting-term-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.llm",
+              "kind": "posting-term",
+              "label": "Large language models",
+              "matched_text": "LLM",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "728f3fbdba1c12a59965be96",
+          "quote": "Experience bringing generative AI or LLM-based products, or other emerging platform technologies, to large pharmaceutical or biotechnology companies",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 47,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.728f3fbdba1c12a59965be96",
+          "source_sha256": "96f69154df1be9c7bc64791f07184c943db3f8cd79692a1e28b562fd7664e58a",
+          "start": 4017
+        },
+        {
+          "end": 3625,
+          "expectation_id": "exp.sentence.2e62c6b685f97e9d569a504a",
+          "job_id": "8895523002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.machine-learning",
+              "kind": "posting-term",
+              "label": "Machine learning",
+              "matched_text": "AI/ML",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "77d338c725d39e82f5a7e58b",
+          "quote": "Build deep, strategic partnerships by mastering your customers' industry landscape, success metrics, and growth trajectories, including a strong point of view on the AI/ML ecosystem, so you can position GitLab as their indispensable technology ally.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 48,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.77d338c725d39e82f5a7e58b",
+          "source_sha256": "af7fb5b820dd0918625177ae0950495065b1e5fb8f63c9efadd28d21e5d8055b",
+          "start": 3376
+        },
+        {
+          "end": 2020,
+          "expectation_id": "exp.sentence.aa48ee941d893201df786d01",
+          "job_id": "8311045",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce CRM",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "56b971d5df1d3f9e1e4e9b09",
+          "quote": "Experience with Salesforce CRM",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 49,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.56b971d5df1d3f9e1e4e9b09",
+          "source_sha256": "5739da4f6c74272af6a00f3d29ef93c13443eae4eac9d613827fc88dab570292",
+          "start": 1990
+        },
+        {
+          "end": 1170,
+          "expectation_id": "exp.sentence.b9b39436084c2cef5bded223",
+          "job_id": "8304318",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "47c9877ba07cc551bb3cf4be",
+          "quote": "Leverage Salesforce (our CRM) to manage all sales activities",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 50,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.47c9877ba07cc551bb3cf4be",
+          "source_sha256": "093e7eb5bf51a0b58590e808904b84436cb62b8540302dd7ba7306f79238d666",
+          "start": 1110
+        },
+        {
+          "end": 1125,
+          "expectation_id": "exp.sentence.e02ab02a048c7cea61832750",
+          "job_id": "7027846",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:mongodb",
+              "kind": "software-example",
+              "label": "MongoDB",
+              "matched_text": "MongoDB",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "4d9f7d3d5c3c24e59115d3ce",
+          "quote": "Manage the full sales cycle for all MongoDB Products & Services",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 51,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.4d9f7d3d5c3c24e59115d3ce",
+          "source_sha256": "c9a9716e6df40b353a09ce321de2309d7601bb85d5717d1e10157d88e5ce5cc7",
+          "start": 1062
+        },
+        {
+          "end": 2598,
+          "expectation_id": "exp.sentence.b683be3a53baac0a771354ab",
+          "job_id": "4087046007",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "82386a169589b569ca44a57d",
+          "quote": "Experience in Salesforce is a plus",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 52,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.82386a169589b569ca44a57d",
+          "source_sha256": "914d1069f58b4c2d001ed295c9b55997dcbeec1da0930f62dfd5ffd0d569a63c",
+          "start": 2564
+        },
+        {
+          "end": 1856,
+          "expectation_id": "exp.sentence.11c783ccb114e6865b51ce99",
+          "job_id": "8893596002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:spark",
+              "kind": "software-example",
+              "label": "Apache Spark",
+              "matched_text": "Spark",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "327a545a9b0959ea29fd5c3f",
+          "quote": "Understanding of Spark and big data preferable",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 53,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.327a545a9b0959ea29fd5c3f",
+          "source_sha256": "391b18aee10c7739d1694a7aa63a93132cc685e439671515dfbf7ef5e780e641",
+          "start": 1810
+        },
+        {
+          "end": 1093,
+          "expectation_id": "exp.sentence.8ec9cb1fa626cfb61cf14b59",
+          "job_id": "8871486002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:spark",
+              "kind": "software-example",
+              "label": "Apache Spark",
+              "matched_text": "Apache Spark",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.databricks",
+              "kind": "posting-term",
+              "label": "Databricks",
+              "matched_text": "Databricks",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "ae5c36f6b29b0e59a44bf15d",
+          "quote": "Promote Databricks enterprise cloud data platform powered by Apache Spark",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 54,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.ae5c36f6b29b0e59a44bf15d",
+          "source_sha256": "cd179be27d0aeb7c06af2ce627e931e6c01d0fcf613f9d3ed5f467ee4f97b424",
+          "start": 1020
+        },
+        {
+          "end": 2072,
+          "expectation_id": "exp.sentence.12821ed48340eb0bb7ae9464",
+          "job_id": "7362626",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:aws",
+              "kind": "software-example",
+              "label": "Amazon Web Services",
+              "matched_text": "AWS",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:azure",
+              "kind": "software-example",
+              "label": "Microsoft Azure",
+              "matched_text": "Azure",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:gcp",
+              "kind": "software-example",
+              "label": "Google Cloud",
+              "matched_text": "GCP",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "bc871a8fbb292a41decfb636",
+          "quote": "Co-selling with cloud service providers (AWS, GCP and Azure) and large GSIs (Accenture, KPMG, etc) is a plus",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 55,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.bc871a8fbb292a41decfb636",
+          "source_sha256": "c8ad2c08b42a6cab1a732bd7c710ee389bdf0e12a5db87c2228e5d7758a65dba",
+          "start": 1964
+        },
+        {
+          "end": 1243,
+          "expectation_id": "exp.sentence.bc8d1e6423c887d7568b34bc",
+          "job_id": "8227426",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "443f5b904fe9db3b2a09c2cd",
+          "quote": "Leverage Salesforce (our CRM) to manage all sales activities",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 56,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.443f5b904fe9db3b2a09c2cd",
+          "source_sha256": "b3680c9841eb03a3787472eb97df2f4ac73880682f8a0eb100a68af86f301706",
+          "start": 1183
+        },
+        {
+          "end": 1957,
+          "expectation_id": "exp.sentence.36e896d22bdbec7795666125",
+          "job_id": "8207785",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce CRM",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "709e8eda0c134085adf67a4d",
+          "quote": "Experience with Salesforce CRM",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 57,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.709e8eda0c134085adf67a4d",
+          "source_sha256": "7f2ced30fd5bdad3ce4fe2476a72ef8c7ca796e1e40476adae5f6322e30f0097",
+          "start": 1927
+        },
+        {
+          "end": 1733,
+          "expectation_id": "exp.sentence.4b3b8f14bdd4d855199a08f8",
+          "job_id": "8902939002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "3c8d2620364c39eb8b7caa2d",
+          "quote": "Track all customer details including use case, purchase time frames, next steps, and forecasting in Salesforce.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 58,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.3c8d2620364c39eb8b7caa2d",
+          "source_sha256": "463c0a16422bcdf440ec615ee19c1f723ae58f2a1a2018682a59f5d71d2e3bc1",
+          "start": 1622
+        },
+        {
+          "end": 3285,
+          "expectation_id": "exp.sentence.f9211df9c92c02d130556256",
+          "job_id": "8165185",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:aws",
+              "kind": "software-example",
+              "label": "Amazon Web Services",
+              "matched_text": "AWS",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "77549cef37c3ef2b689d356d",
+          "quote": "Prior experience navigating SaaS co-selling and purchasing via the AWS Marketplace is a plus.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 59,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.77549cef37c3ef2b689d356d",
+          "source_sha256": "eeaf5564a222e70e20b919db2eca9fe4c40ec5cd16f42b1d19e0f4479c8224b5",
+          "start": 3192
+        }
+      ],
+      "pool_n": 333,
+      "seed": 20261114
+    },
+    "forward-deployed-engineer": {
+      "cases": [
+        {
+          "end": 2088,
+          "expectation_id": "exp.sentence.b27c5e3bce60bd616423e752",
+          "job_id": "8371312002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.databricks",
+              "kind": "posting-term",
+              "label": "Databricks",
+              "matched_text": "Databricks",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "12b8e4ca626d0e2838579986",
+          "quote": "Own the Architecture: Lead architecture and design decisions, ensuring solutions are secure, scalable, and aligned with both customer needs and Databricks best practices.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 60,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.12b8e4ca626d0e2838579986",
+          "source_sha256": "f2985ccf7103ee117593c5196a0255689a13bc27d11103f4b36637be0e21f843",
+          "start": 1918
+        },
+        {
+          "end": 2646,
+          "expectation_id": "exp.sentence.e6ff98f07ab67798ba6434fe",
+          "job_id": "8643895002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.databricks",
+              "kind": "posting-term",
+              "label": "Databricks",
+              "matched_text": "Databricks",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "0845b16e40564b6f18955197",
+          "quote": "Reusable Assets & Scale: Contribute accelerators, frameworks, and best practices that scale impact across accounts and influence the Databricks product roadmap.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 61,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.0845b16e40564b6f18955197",
+          "source_sha256": "3aa90defbac4ab9fed5b8fd6e64dbcc07c640213cf0ca38ca8ad7480dc846eae",
+          "start": 2486
+        },
+        {
+          "end": 3163,
+          "expectation_id": "exp.sentence.3160e92398a5f5c3109eed09",
+          "job_id": "8739458002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.apis",
+              "kind": "posting-term",
+              "label": "APIs",
+              "matched_text": "AI APIs",
+              "method": "reviewed-posting-term-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.machine-learning",
+              "kind": "posting-term",
+              "label": "Machine learning",
+              "matched_text": "ML/AI",
+              "method": "reviewed-posting-term-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.mlops",
+              "kind": "posting-term",
+              "label": "MLOps",
+              "matched_text": "MLOps",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "16805157c17cf329f479de4d",
+          "quote": "Working knowledge of MLOps, ML/AI models and AI APIs",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 62,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.16805157c17cf329f479de4d",
+          "source_sha256": "8cd81f2c5f34863300d3a77303ea87d8b5c25a4d7b4e31e49e3e3b1612d6dcf8",
+          "start": 3111
+        },
+        {
+          "end": 2134,
+          "expectation_id": "exp.sentence.71222efdd8528f3eeb2b9cf4",
+          "job_id": "cbbbee50-3d3b-4873-8ae8-ff4b885b8e54",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:aws",
+              "kind": "software-example",
+              "label": "Amazon Web Services",
+              "matched_text": "AWS",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:azure",
+              "kind": "software-example",
+              "label": "Microsoft Azure",
+              "matched_text": "Azure",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:gcp",
+              "kind": "software-example",
+              "label": "Google Cloud",
+              "matched_text": "GCP",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "55d838d1014367282f9b1fcb",
+          "quote": "Architect migration paths from existing cloud infrastructure (AWS, GCP, Azure) to Modal’s serverless platform",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 63,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.55d838d1014367282f9b1fcb",
+          "source_sha256": "c3388c31135e877da06a15dd1f129bcf9718575dcef9d9009126f4a1c4eeed1d",
+          "start": 2025
+        },
+        {
+          "end": 3724,
+          "expectation_id": "exp.sentence.06ad3ad835c8abf622e2265a",
+          "job_id": "b0bcef37-1d20-414f-aade-c54942d63df9",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.llm",
+              "kind": "posting-term",
+              "label": "Large language models",
+              "matched_text": "LLM",
+              "method": "reviewed-posting-term-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.vector-databases",
+              "kind": "posting-term",
+              "label": "Vector databases",
+              "matched_text": "vector databases",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "5ea21f4b17df4862eb8a1578",
+          "quote": "You're deeply familiar with the LLM stack: frontier models, vector databases, and orchestration frameworks",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 64,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.5ea21f4b17df4862eb8a1578",
+          "source_sha256": "c070773010e32dc94278ebb8188c32af9a3e0f7fbb04368970953b87c0b2c71c",
+          "start": 3618
+        },
+        {
+          "end": 2217,
+          "expectation_id": "exp.sentence.582c3d91919c700cba430921",
+          "job_id": "7996286003",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.evals",
+              "kind": "posting-term",
+              "label": "Model evaluations",
+              "matched_text": "evaluations",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "582385a300afecf9df6899b0",
+          "quote": "One week you may be mapping a complex Finance workflow with domain experts; the next, prototyping an agentic solution, defining its evaluations, and contributing a new capability to the shared platform.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 65,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.582385a300afecf9df6899b0",
+          "source_sha256": "370470fad69233d71736bf1296bb61fd252388811c5fb87217d5b6dfa1568b2d",
+          "start": 2015
+        },
+        {
+          "end": 1077,
+          "expectation_id": "exp.sentence.78aa5237a79d3f622027b4a0",
+          "job_id": "5752684004",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.agents",
+              "kind": "posting-term",
+              "label": "AI agents",
+              "matched_text": "agentic workflows",
+              "method": "reviewed-posting-term-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.mcp",
+              "kind": "posting-term",
+              "label": "Model Context Protocol",
+              "matched_text": "Model Context Protocol",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "54a51c85aa6c40df6ec66846",
+          "quote": "Build production AI agents, Model Context Protocol (MCP) servers, and agentic workflows with the AI SDK and the eve framework inside customer environments",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 66,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.54a51c85aa6c40df6ec66846",
+          "source_sha256": "9f4f92ff83ab6e599d05a3f255a250098f9084be4e2234dc20cd3d7025e88889",
+          "start": 923
+        },
+        {
+          "end": 2566,
+          "expectation_id": "exp.sentence.1f7be871781fdcfbe016e14e",
+          "job_id": "6158162004",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.evals",
+              "kind": "posting-term",
+              "label": "Model evaluations",
+              "matched_text": "evals",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "bf7ed583f9d0873d973f7c59",
+          "quote": "Make an enterprise design system agent-ready so AI tools generate faithful, on-system code: fix tokens, naming, and guidelines, wire up Code Connect, and run evals",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 67,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.bf7ed583f9d0873d973f7c59",
+          "source_sha256": "26a327f31dc0a0d8bd9bcf28a2a83aea3701b1676d94b3e8d56d2adc66162bc5",
+          "start": 2403
+        },
+        {
+          "end": 2221,
+          "expectation_id": "exp.sentence.70fc0539f410a15e3c6e3e8e",
+          "job_id": "a4332746-163e-4506-b62a-90758fb7a950",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.agents",
+              "kind": "posting-term",
+              "label": "AI agents",
+              "matched_text": "agentic systems",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "20ae5c9dae91c77e482920c3",
+          "quote": "Design and implement production AI applications and agentic systems that integrate with customer infrastructure, enterprise APIs, data platforms, electronic health records, claims systems, and operational tools.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 68,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.20ae5c9dae91c77e482920c3",
+          "source_sha256": "fab4f74363aa3b9b46cd172d38987db2de89d0f56ba439dcd16c3c99500822fe",
+          "start": 2010
+        },
+        {
+          "end": 3164,
+          "expectation_id": "exp.sentence.30b57ffbe90a1f6cf637e4ce",
+          "job_id": "8647669002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.apis",
+              "kind": "posting-term",
+              "label": "APIs",
+              "matched_text": "AI APIs",
+              "method": "reviewed-posting-term-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.machine-learning",
+              "kind": "posting-term",
+              "label": "Machine learning",
+              "matched_text": "ML/AI",
+              "method": "reviewed-posting-term-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.mlops",
+              "kind": "posting-term",
+              "label": "MLOps",
+              "matched_text": "MLOps",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "0c2ba9ccd752cd31230437e2",
+          "quote": "Working knowledge of MLOps, ML/AI models and AI APIs",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 69,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.0c2ba9ccd752cd31230437e2",
+          "source_sha256": "3aa90defbac4ab9fed5b8fd6e64dbcc07c640213cf0ca38ca8ad7480dc846eae",
+          "start": 3112
+        },
+        {
+          "end": 3453,
+          "expectation_id": "exp.sentence.01652727fe9da4e49a03f8b5",
+          "job_id": "8371312002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.machine-learning",
+              "kind": "posting-term",
+              "label": "Machine learning",
+              "matched_text": "ML/AI",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "12b8e4ca626d0e2838579986",
+          "quote": "Design and deployment of performant production end-to-end data architectures and applications that combine data pipelines, ML/AI models, and user-facing interfaces.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 70,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.12b8e4ca626d0e2838579986",
+          "source_sha256": "f2985ccf7103ee117593c5196a0255689a13bc27d11103f4b36637be0e21f843",
+          "start": 3289
+        },
+        {
+          "end": 3843,
+          "expectation_id": "exp.sentence.7a2bc8ba90418e38d95dae5f",
+          "job_id": "8647669002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.databricks",
+              "kind": "posting-term",
+              "label": "Databricks",
+              "matched_text": "Databricks",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "0c2ba9ccd752cd31230437e2",
+          "quote": "Build skills in technical areas, and demonstrate curiosity, adaptability, and eagerness to explore new technologies which support the deployment and integration of Databricks-based solutions to complete customer projects.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 71,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.0c2ba9ccd752cd31230437e2",
+          "source_sha256": "3aa90defbac4ab9fed5b8fd6e64dbcc07c640213cf0ca38ca8ad7480dc846eae",
+          "start": 3622
+        },
+        {
+          "end": 2398,
+          "expectation_id": "exp.sentence.4918c857139d993674d66ba6",
+          "job_id": "9fadb51f-ce11-41b1-84d5-470e66cc8ee9",
+          "judged_correct": false,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.machine-learning",
+              "kind": "posting-term",
+              "label": "Machine learning",
+              "matched_text": "ML",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "e95f6108ba8153a18d416427",
+          "quote": "Build trusted relationships with technical leaders (CTOs, VPs of Engineering, ML leads) at companies doing frontier AI work",
+          "rationale": "Wrong/borderline: ML names stakeholder leaders here, not a machine-learning skill expectation. Retained as an unfavorable audit judgment.",
+          "review_index": 72,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.e95f6108ba8153a18d416427",
+          "source_sha256": "d0332dd77de888280f122450edee9086fa797428266b8609131c7cbe8484ae33",
+          "start": 2275
+        },
+        {
+          "end": 2253,
+          "expectation_id": "exp.sentence.5988ef86f9ef42e2a780b795",
+          "job_id": "34cecd0c-c392-4454-8ef5-261310541011",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.agents",
+              "kind": "posting-term",
+              "label": "AI agents",
+              "matched_text": "agents",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "9f6111698d08a914aacc7779",
+          "quote": "Design and ship production agents, AI applications, and coding-agent workflows on Grok and our models, on live business processes and inside the customer’s engineering org",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 73,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.9f6111698d08a914aacc7779",
+          "source_sha256": "e6649542660ef5e69a94d2f133a24541e498d41b2c7cd2d965d433f629ae7265",
+          "start": 2082
+        },
+        {
+          "end": 4350,
+          "expectation_id": "exp.sentence.93b6b1d1e1c2bb7330692b2d",
+          "job_id": "b0bcef37-1d20-414f-aade-c54942d63df9",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.agents",
+              "kind": "posting-term",
+              "label": "AI agents",
+              "matched_text": "agentic systems",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "5ea21f4b17df4862eb8a1578",
+          "quote": "Experience setting architectural standards for AI and agentic systems across distributed teams",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 74,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.5ea21f4b17df4862eb8a1578",
+          "source_sha256": "c070773010e32dc94278ebb8188c32af9a3e0f7fbb04368970953b87c0b2c71c",
+          "start": 4256
+        },
+        {
+          "end": 2957,
+          "expectation_id": "exp.sentence.82cad823ae5f84b8be2ca2ae",
+          "job_id": "8739458002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:aws",
+              "kind": "software-example",
+              "label": "Amazon Web Services",
+              "matched_text": "AWS",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:azure",
+              "kind": "software-example",
+              "label": "Microsoft Azure",
+              "matched_text": "Azure",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:gcp",
+              "kind": "software-example",
+              "label": "Google Cloud",
+              "matched_text": "GCP",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "16805157c17cf329f479de4d",
+          "quote": "Working knowledge of two or more common Cloud ecosystems (AWS, Azure, GCP) with expertise in at least one",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 75,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.16805157c17cf329f479de4d",
+          "source_sha256": "8cd81f2c5f34863300d3a77303ea87d8b5c25a4d7b4e31e49e3e3b1612d6dcf8",
+          "start": 2852
+        },
+        {
+          "end": 2617,
+          "expectation_id": "exp.sentence.aecfcdd880a59c815a5d49ed",
+          "job_id": "2a931dd1-5002-47d1-a367-ec1a19ef7e9e",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.evals",
+              "kind": "posting-term",
+              "label": "Model evaluations",
+              "matched_text": "evaluations",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "29363d0a6ed92f83789ba73d",
+          "quote": "Define and operationalize evaluations, validation evidence, human-review workflows, escalation paths, and launch criteria that measure model and system quality against customer-specific acceptance thresholds.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 76,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.29363d0a6ed92f83789ba73d",
+          "source_sha256": "e5eb53dbb558cfdf8611e7ea69ec2dd18b5ed117eca5f831d647d1645efa02b2",
+          "start": 2409
+        },
+        {
+          "end": 1304,
+          "expectation_id": "exp.sentence.cfc54abb813cb7b21efc445c",
+          "job_id": "8461220002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.machine-learning",
+              "kind": "posting-term",
+              "label": "Machine learning",
+              "matched_text": "ML/AI",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "0da3197405d886e3a548704a",
+          "quote": "Production Solution Delivery: Lead impactful customer technical projects by delivering production-grade systems, designing and building reference architectures, custom applications and data ingestion and ML/AI model integration",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 77,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.0da3197405d886e3a548704a",
+          "source_sha256": "65d4cc8c72c937a5b6a776d87b5048384bca80c8051fcee45db3eb98d2357800",
+          "start": 1077
+        },
+        {
+          "end": 2465,
+          "expectation_id": "exp.sentence.e8817888c92f7e1bef885917",
+          "job_id": "b0bcef37-1d20-414f-aade-c54942d63df9",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.agents",
+              "kind": "posting-term",
+              "label": "AI agents",
+              "matched_text": "agentic workflows",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "5ea21f4b17df4862eb8a1578",
+          "quote": "Work closely with our enterprise customers to translate high-value, ambiguous business problems into well-framed agentic workflows with clear success criteria and evaluation methodologies",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 3,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.5ea21f4b17df4862eb8a1578",
+          "source_sha256": "c070773010e32dc94278ebb8188c32af9a3e0f7fbb04368970953b87c0b2c71c",
+          "start": 2278
+        },
+        {
+          "end": 1300,
+          "expectation_id": "exp.sentence.9239a100b0e7fb0b9516f97f",
+          "job_id": "8647669002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.machine-learning",
+              "kind": "posting-term",
+              "label": "Machine learning",
+              "matched_text": "ML/AI",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "0c2ba9ccd752cd31230437e2",
+          "quote": "Production Solution Delivery: Lead impactful customer technical projects by delivering production-grade systems, designing and building reference architectures, custom applications and data ingestion and ML/AI model integration",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 78,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.0c2ba9ccd752cd31230437e2",
+          "source_sha256": "3aa90defbac4ab9fed5b8fd6e64dbcc07c640213cf0ca38ca8ad7480dc846eae",
+          "start": 1073
+        },
+        {
+          "end": 2958,
+          "expectation_id": "exp.sentence.ca38e47a2198feaae44387c6",
+          "job_id": "8643895002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:aws",
+              "kind": "software-example",
+              "label": "Amazon Web Services",
+              "matched_text": "AWS",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:azure",
+              "kind": "software-example",
+              "label": "Microsoft Azure",
+              "matched_text": "Azure",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:gcp",
+              "kind": "software-example",
+              "label": "Google Cloud",
+              "matched_text": "GCP",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "0845b16e40564b6f18955197",
+          "quote": "Working knowledge of two or more common Cloud ecosystems (AWS, Azure, GCP) with expertise in at least one",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 79,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.0845b16e40564b6f18955197",
+          "source_sha256": "3aa90defbac4ab9fed5b8fd6e64dbcc07c640213cf0ca38ca8ad7480dc846eae",
+          "start": 2853
+        },
+        {
+          "end": 3065,
+          "expectation_id": "exp.sentence.d589cdbc6059351f0a5d8946",
+          "job_id": "8461220002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:spark",
+              "kind": "software-example",
+              "label": "Apache Spark",
+              "matched_text": "Apache Spark",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "0da3197405d886e3a548704a",
+          "quote": "Deep experience with distributed computing with Apache Spark™ and knowledge of Spark runtime internals",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 80,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.0da3197405d886e3a548704a",
+          "source_sha256": "65d4cc8c72c937a5b6a776d87b5048384bca80c8051fcee45db3eb98d2357800",
+          "start": 2963
+        },
+        {
+          "end": 1964,
+          "expectation_id": "exp.sentence.7bdefe545891e881f86d727c",
+          "job_id": "8461243002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.databricks",
+              "kind": "posting-term",
+              "label": "Databricks",
+              "matched_text": "Databricks",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "1704d17d4f49dbc124e2431e",
+          "quote": "Own the Architecture: Lead architecture and design decisions, ensuring solutions are secure, scalable, and aligned with both customer needs and Databricks best practices.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 81,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.1704d17d4f49dbc124e2431e",
+          "source_sha256": "710f52a74d31fe02fe1e4f8f967100ce11f91fb45538048fcae932affc4b2864",
+          "start": 1794
+        },
+        {
+          "end": 2281,
+          "expectation_id": "exp.sentence.f9053999a9881e2af4454cc2",
+          "job_id": "5752684004",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.agents",
+              "kind": "posting-term",
+              "label": "AI agents",
+              "matched_text": "agentic workflows",
+              "method": "reviewed-posting-term-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.mcp",
+              "kind": "posting-term",
+              "label": "Model Context Protocol",
+              "matched_text": "MCP",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "54a51c85aa6c40df6ec66846",
+          "quote": "Built and deployed web applications, backend systems, or agentic workflows using AI coding tools such as harnesses, skills, and MCP servers",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 82,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.54a51c85aa6c40df6ec66846",
+          "source_sha256": "9f4f92ff83ab6e599d05a3f255a250098f9084be4e2234dc20cd3d7025e88889",
+          "start": 2142
+        },
+        {
+          "end": 3904,
+          "expectation_id": "exp.sentence.8590e559c1fade88213e4af5",
+          "job_id": "8647669002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.databricks",
+              "kind": "posting-term",
+              "label": "Databricks",
+              "matched_text": "Databricks",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "0c2ba9ccd752cd31230437e2",
+          "quote": "Databricks Certification",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 83,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.0c2ba9ccd752cd31230437e2",
+          "source_sha256": "3aa90defbac4ab9fed5b8fd6e64dbcc07c640213cf0ca38ca8ad7480dc846eae",
+          "start": 3880
+        },
+        {
+          "end": 3111,
+          "expectation_id": "exp.sentence.9f20a5d9d024f448827bc477",
+          "job_id": "8647669002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.cicd",
+              "kind": "posting-term",
+              "label": "CI/CD",
+              "matched_text": "CI/CD",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "0c2ba9ccd752cd31230437e2",
+          "quote": "Familiarity with CI/CD for production deployments",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 84,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.0c2ba9ccd752cd31230437e2",
+          "source_sha256": "3aa90defbac4ab9fed5b8fd6e64dbcc07c640213cf0ca38ca8ad7480dc846eae",
+          "start": 3062
+        },
+        {
+          "end": 3843,
+          "expectation_id": "exp.sentence.2bbeab6d8df1cfeeadead8f3",
+          "job_id": "8643895002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.databricks",
+              "kind": "posting-term",
+              "label": "Databricks",
+              "matched_text": "Databricks",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "0845b16e40564b6f18955197",
+          "quote": "Build skills in technical areas, and demonstrate curiosity, adaptability, and eagerness to explore new technologies which support the deployment and integration of Databricks-based solutions to complete customer projects.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 85,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.0845b16e40564b6f18955197",
+          "source_sha256": "3aa90defbac4ab9fed5b8fd6e64dbcc07c640213cf0ca38ca8ad7480dc846eae",
+          "start": 3622
+        },
+        {
+          "end": 2958,
+          "expectation_id": "exp.sentence.70a0e4151f5be66dbbab8974",
+          "job_id": "8461243002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:aws",
+              "kind": "software-example",
+              "label": "Amazon Web Services",
+              "matched_text": "AWS",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:azure",
+              "kind": "software-example",
+              "label": "Microsoft Azure",
+              "matched_text": "Azure",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:gcp",
+              "kind": "software-example",
+              "label": "Google Cloud",
+              "matched_text": "GCP",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "1704d17d4f49dbc124e2431e",
+          "quote": "Working knowledge of two or more common Cloud ecosystems (AWS, Azure, GCP) with expertise in at least one",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 86,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.1704d17d4f49dbc124e2431e",
+          "source_sha256": "710f52a74d31fe02fe1e4f8f967100ce11f91fb45538048fcae932affc4b2864",
+          "start": 2853
+        },
+        {
+          "end": 3903,
+          "expectation_id": "exp.sentence.ebe98b728287636e70884513",
+          "job_id": "8739458002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.databricks",
+              "kind": "posting-term",
+              "label": "Databricks",
+              "matched_text": "Databricks",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "16805157c17cf329f479de4d",
+          "quote": "Databricks Certification",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 87,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.16805157c17cf329f479de4d",
+          "source_sha256": "8cd81f2c5f34863300d3a77303ea87d8b5c25a4d7b4e31e49e3e3b1612d6dcf8",
+          "start": 3879
+        },
+        {
+          "end": 4266,
+          "expectation_id": "exp.sentence.f5e7b4c426c93992ced46d73",
+          "job_id": "34cecd0c-c392-4454-8ef5-261310541011",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.agents",
+              "kind": "posting-term",
+              "label": "AI agents",
+              "matched_text": "agents",
+              "method": "reviewed-posting-term-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.cicd",
+              "kind": "posting-term",
+              "label": "CI/CD",
+              "matched_text": "CI/CD",
+              "method": "reviewed-posting-term-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.evals",
+              "kind": "posting-term",
+              "label": "Model evaluations",
+              "matched_text": "eval harnesses",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "9f6111698d08a914aacc7779",
+          "quote": "Hands-on depth in several of: agents and tool-calling, eval harnesses, retrieval and context systems, CI/CD or developer platforms, and AI-native coding workflows in a real repo",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 88,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.9f6111698d08a914aacc7779",
+          "source_sha256": "e6649542660ef5e69a94d2f133a24541e498d41b2c7cd2d965d433f629ae7265",
+          "start": 4089
+        }
+      ],
+      "pool_n": 115,
+      "seed": 20261115
+    },
+    "global": {
+      "cases": [
+        {
+          "end": 1405,
+          "expectation_id": "exp.sentence.ffefa3b48d6c11d92f980e67",
+          "job_id": "7843764",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "3b03b5be59e261371ea37f26",
+          "quote": "Leverage Salesforce (our CRM) to manage all sales activities",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 1,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.3b03b5be59e261371ea37f26",
+          "source_sha256": "aa315ed079bf2cb777558c2d970d6d1cf37f20b07d7ebc7f91e2d4c5e1ded1b7",
+          "start": 1345
+        },
+        {
+          "end": 4097,
+          "expectation_id": "exp.sentence.53db218cc34dbf584f163b00",
+          "job_id": "4986288008",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.genai",
+              "kind": "posting-term",
+              "label": "Generative AI",
+              "matched_text": "generative AI",
+              "method": "reviewed-posting-term-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.llm",
+              "kind": "posting-term",
+              "label": "Large language models",
+              "matched_text": "LLM",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "0748263c832ac6df9974bfc8",
+          "quote": "Experience bringing generative AI or LLM-based products, or other emerging platform technologies, to large insurance carriers or reinsurers",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 2,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.0748263c832ac6df9974bfc8",
+          "source_sha256": "ff424b6df38b3189d35f8bc7d6bac51179d1d8724665ea8362ae1ab040b251c9",
+          "start": 3958
+        },
+        {
+          "end": 2465,
+          "expectation_id": "exp.sentence.e8817888c92f7e1bef885917",
+          "job_id": "b0bcef37-1d20-414f-aade-c54942d63df9",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.agents",
+              "kind": "posting-term",
+              "label": "AI agents",
+              "matched_text": "agentic workflows",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "5ea21f4b17df4862eb8a1578",
+          "quote": "Work closely with our enterprise customers to translate high-value, ambiguous business problems into well-framed agentic workflows with clear success criteria and evaluation methodologies",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 3,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.5ea21f4b17df4862eb8a1578",
+          "source_sha256": "c070773010e32dc94278ebb8188c32af9a3e0f7fbb04368970953b87c0b2c71c",
+          "start": 2278
+        },
+        {
+          "end": 1170,
+          "expectation_id": "exp.sentence.14c8f0772a8aead3e63cbe15",
+          "job_id": "8170915",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "2e65f0cc9837c91bff2712ea",
+          "quote": "Leverage Salesforce (our CRM) to manage all sales activities",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 4,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.2e65f0cc9837c91bff2712ea",
+          "source_sha256": "e5f4df7a2fa1d0d002bde0cc644deb5677cfb9c71480c49c1ffafb5549539afa",
+          "start": 1110
+        },
+        {
+          "end": 1405,
+          "expectation_id": "exp.sentence.e41965b26446b04bc5430fdc",
+          "job_id": "7926519",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "709922d0dc38a175d762bfc5",
+          "quote": "Leverage Salesforce (our CRM) to manage all sales activities",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 5,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.709922d0dc38a175d762bfc5",
+          "source_sha256": "4b778b1250c491878c865c3359c8f9b95490e6151a6b64acfd6b591791cf0749",
+          "start": 1345
+        },
+        {
+          "end": 1602,
+          "expectation_id": "exp.sentence.da3703bef4442d5f28f29091",
+          "job_id": "8780748002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.databricks",
+              "kind": "posting-term",
+              "label": "Databricks",
+              "matched_text": "Databricks",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "f3e312388312d1732a871106",
+          "quote": "Meet with C-Level Executives to Practitioner level to understand how Databricks can make an impact on business outcomes",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 6,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.f3e312388312d1732a871106",
+          "source_sha256": "52ef82b98e72d0157a8ba4eb024280852c1fc3d6e7929f6d6d0ce5b804231d89",
+          "start": 1483
+        },
+        {
+          "end": 2273,
+          "expectation_id": "exp.sentence.5668626844097dea551e1196",
+          "job_id": "8316723",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "04b94c28b362c9d1ffc40a93",
+          "quote": "Experience using Salesforce to keep track of Sales activities",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 7,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.04b94c28b362c9d1ffc40a93",
+          "source_sha256": "af3d3ac87261853f50778e0dff83bdb509aeb04de63d366646a7d78c7766df27",
+          "start": 2212
+        },
+        {
+          "end": 1742,
+          "expectation_id": "exp.sentence.4e592d45852b592505284fca",
+          "job_id": "5196023008",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:aws",
+              "kind": "software-example",
+              "label": "Amazon Web Services",
+              "matched_text": "AWS",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:gcp",
+              "kind": "software-example",
+              "label": "Google Cloud",
+              "matched_text": "GCP",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "85df80bff14428f0362d1614",
+          "quote": "Coordinate closely with cloud service providers (AWS, GCP) and system integrators to ensure successful deployment and integration",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 8,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.85df80bff14428f0362d1614",
+          "source_sha256": "8fc05f476e5463335116f38839d80feda32f43f341a7c6d9128caa7acff7a597",
+          "start": 1613
+        },
+        {
+          "end": 1405,
+          "expectation_id": "exp.sentence.cda7a456ec73facd814911ab",
+          "job_id": "7972553",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "1715f6802a3adc112a9a6789",
+          "quote": "Leverage Salesforce (our CRM) to manage all sales activities",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 9,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.1715f6802a3adc112a9a6789",
+          "source_sha256": "4b778b1250c491878c865c3359c8f9b95490e6151a6b64acfd6b591791cf0749",
+          "start": 1345
+        },
+        {
+          "end": 4053,
+          "expectation_id": "exp.sentence.89626ee911c4a8c403ce05e3",
+          "job_id": "6227264004",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.genai",
+              "kind": "posting-term",
+              "label": "Generative AI",
+              "matched_text": "GenAI",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "ae148b3b3e0dd81a777f4d9e",
+          "quote": "Leverage AI-powered sales technologies, GenAI, and conversational intelligence tools to drive efficiency throughout enterprise sales cycles",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 10,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.ae148b3b3e0dd81a777f4d9e",
+          "source_sha256": "43765017ae4d30d414c6682a1ef744efdec6ec18395cb065f6a1ed3ad2a20bc7",
+          "start": 3914
+        },
+        {
+          "end": 1961,
+          "expectation_id": "exp.sentence.7078241057a38efc617e7670",
+          "job_id": "8170915",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce CRM",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "2e65f0cc9837c91bff2712ea",
+          "quote": "Experience with Salesforce CRM",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 11,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.2e65f0cc9837c91bff2712ea",
+          "source_sha256": "e5f4df7a2fa1d0d002bde0cc644deb5677cfb9c71480c49c1ffafb5549539afa",
+          "start": 1931
+        },
+        {
+          "end": 1966,
+          "expectation_id": "exp.sentence.655b78c79cc64f04eedfd259",
+          "job_id": "8829296002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:spark",
+              "kind": "software-example",
+              "label": "Apache Spark",
+              "matched_text": "Spark",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "1eec288236a660237918f039",
+          "quote": "Understanding of Spark and big data preferable",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 12,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.1eec288236a660237918f039",
+          "source_sha256": "39e892cbb82f950a0a4bc9cfb738bb3555eb2771eac33be107052598923ecfad",
+          "start": 1920
+        },
+        {
+          "end": 1170,
+          "expectation_id": "exp.sentence.58c29d37321930b9e55288da",
+          "job_id": "8248973",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "119cf4fd0e2082b90c7b8bef",
+          "quote": "Leverage Salesforce (our CRM) to manage all sales activities",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 13,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.119cf4fd0e2082b90c7b8bef",
+          "source_sha256": "4825921c9513b421c2c59c9c49429361714ae41f567f93091a3b1ae5d4d147d1",
+          "start": 1110
+        },
+        {
+          "end": 1750,
+          "expectation_id": "exp.sentence.29b7fbfeb1c7650c15aff270",
+          "job_id": "8165185",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.agents",
+              "kind": "posting-term",
+              "label": "AI agents",
+              "matched_text": "agentic AI",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "77549cef37c3ef2b689d356d",
+          "quote": "Generate awareness and early adoption of Asana’s latest innovation portfolio, including AI Teammates, Dash, and agentic AI workflows.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 14,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.77549cef37c3ef2b689d356d",
+          "source_sha256": "eeaf5564a222e70e20b919db2eca9fe4c40ec5cd16f42b1d19e0f4479c8224b5",
+          "start": 1617
+        },
+        {
+          "end": 2202,
+          "expectation_id": "exp.sentence.95288a13b6290afda1c8a467",
+          "job_id": "a808d519-404a-4aee-9189-2b1ad62d0330",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "11c33fb6594dca4e5d26f716",
+          "quote": "Own sales activity and monthly revenue forecasting in Salesforce and Gong",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 15,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.11c33fb6594dca4e5d26f716",
+          "source_sha256": "570b8b38f9d26a48a3839e4afb78915a55e2a0992f8340005039bfaa032ad236",
+          "start": 2129
+        },
+        {
+          "end": 1125,
+          "expectation_id": "exp.sentence.e5d26090596729dab3c37e88",
+          "job_id": "7031396",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:mongodb",
+              "kind": "software-example",
+              "label": "MongoDB",
+              "matched_text": "MongoDB",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "baa552664690f1232e3e4cda",
+          "quote": "Manage the full sales cycle for all MongoDB Products & Services",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 16,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.baa552664690f1232e3e4cda",
+          "source_sha256": "e13c328925f82dd1bd6922ed340900f8e49bfe132011555fd445e3ae4a90ed46",
+          "start": 1062
+        },
+        {
+          "end": 1405,
+          "expectation_id": "exp.sentence.dde561be92cf179ee2631c25",
+          "job_id": "7826532",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "26ebb5ef45b27551b738ad93",
+          "quote": "Leverage Salesforce (our CRM) to manage all sales activities",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 17,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.26ebb5ef45b27551b738ad93",
+          "source_sha256": "4b778b1250c491878c865c3359c8f9b95490e6151a6b64acfd6b591791cf0749",
+          "start": 1345
+        },
+        {
+          "end": 2509,
+          "expectation_id": "exp.sentence.7cd94276998da1651a41c8c7",
+          "job_id": "5415461008",
+          "judged_correct": false,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.evals",
+              "kind": "posting-term",
+              "label": "Model evaluations",
+              "matched_text": "evaluations",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "e3159e70e7f02be6b0c6e4a2",
+          "quote": "Navigate complex commercial conversations — multi-stakeholder deals, evolving usage patterns, and competitive evaluations — in partnership with Applied AI and product teams",
+          "rationale": "Wrong: competitive sales evaluations with an Applied AI team do not establish model evaluations. The broad technical-context guard is imperfect; retained as an audit error, not reclassified as correct.",
+          "review_index": 18,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.e3159e70e7f02be6b0c6e4a2",
+          "source_sha256": "86bc5eaa82c1ec907934061269257cd2d7c8c02bb5a6feb330ce98600dcc3b75",
+          "start": 2337
+        },
+        {
+          "end": 2701,
+          "expectation_id": "exp.sentence.e32284d4cb004e3680b286cf",
+          "job_id": "8829996002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:spark",
+              "kind": "software-example",
+              "label": "Apache Spark",
+              "matched_text": "Spark",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "5f2c186a95adb5e4adc36f60",
+          "quote": "Understanding of Spark and big data preferable",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 19,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.5f2c186a95adb5e4adc36f60",
+          "source_sha256": "5d5dcf1f256d28fe3830c2dc9d1dc5430e65513d72425b374c52b1def52fdde6",
+          "start": 2655
+        },
+        {
+          "end": 4166,
+          "expectation_id": "exp.sentence.c3f0f8a0f3cf5f9f2a3fec37",
+          "job_id": "8241250",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:looker",
+              "kind": "software-example",
+              "label": "Looker",
+              "matched_text": "Looker",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:tableau",
+              "kind": "software-example",
+              "label": "Tableau",
+              "matched_text": "Tableau",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "0a7f87983a3e7c4f4837c891",
+          "quote": "Familiarity with Twilio ecosystem of Tools: Salesforce, Outreach, LinkedIn SalesNav, ZoomInfo, Looker, Tableau, G-Suite, Gong",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 20,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.0a7f87983a3e7c4f4837c891",
+          "source_sha256": "e9939b7aafa9c68993a2cbe3528795fe4fd2c7d49cb533c17b3e2a1747b2683b",
+          "start": 4041
+        },
+        {
+          "end": 1399,
+          "expectation_id": "exp.sentence.06fc45ad6c0e957ae546e076",
+          "job_id": "5077996008",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.agents",
+              "kind": "posting-term",
+              "label": "AI agents",
+              "matched_text": "AI Agents",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "5f29fadff5367da08f02e2e4",
+          "quote": "In addition, the Mid-Market team is pioneering a new scaled sales playbook, where human AEs direct AI Agents to automate key elements of the buyer’s journey, while maintaining human engagement with prospects in the elements of a sales process that can’t be automated.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 21,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.5f29fadff5367da08f02e2e4",
+          "source_sha256": "a97d2a10fa636cbe4362bf8030b48ad1cf596fe04102301d3594fcab76c7bc19",
+          "start": 1132
+        },
+        {
+          "end": 3668,
+          "expectation_id": "exp.sentence.19e634917238fe7bb06c7aa0",
+          "job_id": "8265960",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.llm",
+              "kind": "posting-term",
+              "label": "Large language models",
+              "matched_text": "LLM",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "81b2219e951fafedc86fdeb2",
+          "quote": "Working knowledge of the AI and LLM ecosystem, including how developers build AI applications and use models, APIs, and retrieval technologies, with the ability to quickly develop fluency in new technical concepts and products",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 22,
+          "role": "growth-manager",
+          "source_id": "desc.2026Q4.81b2219e951fafedc86fdeb2",
+          "source_sha256": "1499b8037c3bf966911fd51448228da270a77b43ebdde38d389c15a0e83b1c6b",
+          "start": 3442
+        },
+        {
+          "end": 1220,
+          "expectation_id": "exp.sentence.f5f40e074bd096272d936b6e",
+          "job_id": "6587328",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:mongodb",
+              "kind": "software-example",
+              "label": "MongoDB",
+              "matched_text": "MongoDB",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "ab1e080bc91a528d1162f204",
+          "quote": "Manage the full sales cycle for all MongoDB Products & Services",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 23,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.ab1e080bc91a528d1162f204",
+          "source_sha256": "1377f5c8ef4b2615bdfa3dec108bc60cd8040f3c442d3d7e07d807c6a3454b14",
+          "start": 1157
+        },
+        {
+          "end": 3359,
+          "expectation_id": "exp.sentence.6ab442e6753e7bbed36c564e",
+          "job_id": "4986288008",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.machine-learning",
+              "kind": "posting-term",
+              "label": "Machine learning",
+              "matched_text": "ML",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "0748263c832ac6df9974bfc8",
+          "quote": "A track record of carrying and exceeding quota in enterprise sales of technical, complex products (API-first platforms, cloud infrastructure, data/ML platforms, or enterprise SaaS)",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 24,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.0748263c832ac6df9974bfc8",
+          "source_sha256": "ff424b6df38b3189d35f8bc7d6bac51179d1d8724665ea8362ae1ab040b251c9",
+          "start": 3179
+        },
+        {
+          "end": 1793,
+          "expectation_id": "exp.sentence.0a7cd8bff31a27d85c446027",
+          "job_id": "8643895002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.databricks",
+              "kind": "posting-term",
+              "label": "Databricks",
+              "matched_text": "Databricks",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "0845b16e40564b6f18955197",
+          "quote": "Empower Customers: Guide customers on architecture and design; bootstrap or implement customer projects which leads to a customers' successful understanding, evaluation and adoption of Databricks.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 25,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.0845b16e40564b6f18955197",
+          "source_sha256": "3aa90defbac4ab9fed5b8fd6e64dbcc07c640213cf0ca38ca8ad7480dc846eae",
+          "start": 1597
+        },
+        {
+          "end": 1964,
+          "expectation_id": "exp.sentence.877e5b155b2b6466719eb3b9",
+          "job_id": "8647669002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.databricks",
+              "kind": "posting-term",
+              "label": "Databricks",
+              "matched_text": "Databricks",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "0c2ba9ccd752cd31230437e2",
+          "quote": "Own the Architecture: Lead architecture and design decisions, ensuring solutions are secure, scalable, and aligned with both customer needs and Databricks best practices.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 26,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.0c2ba9ccd752cd31230437e2",
+          "source_sha256": "3aa90defbac4ab9fed5b8fd6e64dbcc07c640213cf0ca38ca8ad7480dc846eae",
+          "start": 1794
+        },
+        {
+          "end": 4028,
+          "expectation_id": "exp.sentence.df9ccd1d746080ad24f022a5",
+          "job_id": "8371312002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.databricks",
+              "kind": "posting-term",
+              "label": "Databricks",
+              "matched_text": "Databricks",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "12b8e4ca626d0e2838579986",
+          "quote": "Databricks Certification",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 27,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.12b8e4ca626d0e2838579986",
+          "source_sha256": "f2985ccf7103ee117593c5196a0255689a13bc27d11103f4b36637be0e21f843",
+          "start": 4004
+        },
+        {
+          "end": 2338,
+          "expectation_id": "exp.sentence.9b861dad140ca41555fdefe5",
+          "job_id": "7230452",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:react",
+              "kind": "software-example",
+              "label": "React",
+              "matched_text": "React",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:typescript",
+              "kind": "software-example",
+              "label": "TypeScript",
+              "matched_text": "TypeScript",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "da58f07367ace66ebfe7e129",
+          "quote": "Design, code, and launch features that improve and innovate on Privy’s core product using tools like TypeScript, React, and Next.js, and own end-to-end development",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 28,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.da58f07367ace66ebfe7e129",
+          "source_sha256": "50d36fd7f384a9ec2e709058099742c3ffe4859f593139d840b1d2bbd58e7950",
+          "start": 2175
+        },
+        {
+          "end": 3061,
+          "expectation_id": "exp.sentence.a35b3504f8c65f356526917d",
+          "job_id": "8647669002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:spark",
+              "kind": "software-example",
+              "label": "Apache Spark",
+              "matched_text": "Apache Spark",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "0c2ba9ccd752cd31230437e2",
+          "quote": "Deep experience with distributed computing with Apache Spark™ and knowledge of Spark runtime internals",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 29,
+          "role": "forward-deployed-engineer",
+          "source_id": "desc.2026Q4.0c2ba9ccd752cd31230437e2",
+          "source_sha256": "3aa90defbac4ab9fed5b8fd6e64dbcc07c640213cf0ca38ca8ad7480dc846eae",
+          "start": 2959
+        },
+        {
+          "end": 1987,
+          "expectation_id": "exp.sentence.b8b1c1f291771a42cd48f90c",
+          "job_id": "8829996002",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:spark",
+              "kind": "software-example",
+              "label": "Apache Spark",
+              "matched_text": "Apache Spark",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.databricks",
+              "kind": "posting-term",
+              "label": "Databricks",
+              "matched_text": "Databricks",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "5f2c186a95adb5e4adc36f60",
+          "quote": "Promote Databricks' enterprise cloud data platform powered by Apache Spark™",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 30,
+          "role": "account-executive",
+          "source_id": "desc.2026Q4.5f2c186a95adb5e4adc36f60",
+          "source_sha256": "5d5dcf1f256d28fe3830c2dc9d1dc5430e65513d72425b374c52b1def52fdde6",
+          "start": 1912
+        }
+      ],
+      "pool_n": 463,
+      "seed": 20261113
+    },
+    "growth-manager": {
+      "cases": [
+        {
+          "end": 2515,
+          "expectation_id": "exp.sentence.843eee9b9459bee6ac6b58cd",
+          "job_id": "98dbc051-5dfc-4760-8c14-bbaf8529256c",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:sql",
+              "kind": "software-example",
+              "label": "SQL",
+              "matched_text": "SQL",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "5a3089cc0d2c0dc251b1c368",
+          "quote": "Data and audiences: Use SQL and product data to size opportunities, build the audiences and triggers behind each program, and prove what actually drove revenue.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 89,
+          "role": "growth-manager",
+          "source_id": "desc.2026Q4.5a3089cc0d2c0dc251b1c368",
+          "source_sha256": "c94a62aa84627a5928de14fc55a3406035dd47551f936196b42fb4b8aa32f5eb",
+          "start": 2355
+        },
+        {
+          "end": 4491,
+          "expectation_id": "exp.sentence.4318d94bd4fe9f561ade3b6e",
+          "job_id": "8139717",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:salesforce",
+              "kind": "software-example",
+              "label": "Salesforce",
+              "matched_text": "Salesforce",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "de2076dda30f7906efb25a09",
+          "quote": "and their integration with CRMs like Salesforce.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 90,
+          "role": "growth-manager",
+          "source_id": "desc.2026Q4.de2076dda30f7906efb25a09",
+          "source_sha256": "dae0a37f8a3ab11efb7b6155f41ebc997e66d44d069ee54cb806a1f04b2a02d9",
+          "start": 4443
+        },
+        {
+          "end": 3173,
+          "expectation_id": "exp.sentence.ec23a7513c807a92c2bec19e",
+          "job_id": "b349ec0e-be02-47b0-8595-8de0dbb074c5",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.agents",
+              "kind": "posting-term",
+              "label": "AI agents",
+              "matched_text": "agentic workflows",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "afeafbeabd76891304066c29",
+          "quote": "Experience and deep interest in building homegrown AI-driven growth engines — programmatic personalization, agentic workflows, and rapid experimentation platforms to scale yourself.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 91,
+          "role": "growth-manager",
+          "source_id": "desc.2026Q4.afeafbeabd76891304066c29",
+          "source_sha256": "1c9531483151c55da91d1e4a9e4dea91f67cd580cd71a0e9b839b7604cb31d3b",
+          "start": 2992
+        },
+        {
+          "end": 4390,
+          "expectation_id": "exp.sentence.d429c8ec45d3d4aede33ea1f",
+          "job_id": "5261383007",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:excel",
+              "kind": "software-example",
+              "label": "Microsoft Excel",
+              "matched_text": "Excel",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:sql",
+              "kind": "software-example",
+              "label": "SQL",
+              "matched_text": "SQL",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "89dcaf937ed043cad672d283",
+          "quote": "Knowledge of SQL and Excel preferred.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 92,
+          "role": "growth-manager",
+          "source_id": "desc.2026Q4.89dcaf937ed043cad672d283",
+          "source_sha256": "24cf9a324756dd6702e6998141b92aaec5680acdebee17480037ae3f6e71db06",
+          "start": 4353
+        },
+        {
+          "end": 3668,
+          "expectation_id": "exp.sentence.19e634917238fe7bb06c7aa0",
+          "job_id": "8265960",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.llm",
+              "kind": "posting-term",
+              "label": "Large language models",
+              "matched_text": "LLM",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "81b2219e951fafedc86fdeb2",
+          "quote": "Working knowledge of the AI and LLM ecosystem, including how developers build AI applications and use models, APIs, and retrieval technologies, with the ability to quickly develop fluency in new technical concepts and products",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 22,
+          "role": "growth-manager",
+          "source_id": "desc.2026Q4.81b2219e951fafedc86fdeb2",
+          "source_sha256": "1499b8037c3bf966911fd51448228da270a77b43ebdde38d389c15a0e83b1c6b",
+          "start": 3442
+        },
+        {
+          "end": 1274,
+          "expectation_id": "exp.sentence.11631a727ac6f375062d9c60",
+          "job_id": "b349ec0e-be02-47b0-8595-8de0dbb074c5",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.agents",
+              "kind": "posting-term",
+              "label": "AI agents",
+              "matched_text": "agents",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "afeafbeabd76891304066c29",
+          "quote": "Build and operate AI-native lifecycle tooling — agents that segment audiences from the warehouse, personalize copy at the account and persona level, choose channel and send time, QA before send, and read out results — replacing manual work in our stack wherever it appears.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 93,
+          "role": "growth-manager",
+          "source_id": "desc.2026Q4.afeafbeabd76891304066c29",
+          "source_sha256": "1c9531483151c55da91d1e4a9e4dea91f67cd580cd71a0e9b839b7604cb31d3b",
+          "start": 1001
+        },
+        {
+          "end": 3520,
+          "expectation_id": "exp.sentence.e972badfaa2a397c2205ca06",
+          "job_id": "b349ec0e-be02-47b0-8595-8de0dbb074c5",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:sql",
+              "kind": "software-example",
+              "label": "SQL",
+              "matched_text": "SQL",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "afeafbeabd76891304066c29",
+          "quote": "Comfortable with SQL.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 94,
+          "role": "growth-manager",
+          "source_id": "desc.2026Q4.afeafbeabd76891304066c29",
+          "source_sha256": "1c9531483151c55da91d1e4a9e4dea91f67cd580cd71a0e9b839b7604cb31d3b",
+          "start": 3499
+        },
+        {
+          "end": 1457,
+          "expectation_id": "exp.sentence.c5a0ff67d473f8d863a17cb4",
+          "job_id": "8180681",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.llm",
+              "kind": "posting-term",
+              "label": "Large language models",
+              "matched_text": "LLM",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "1e514ff91ff91c47eeffa48d",
+          "quote": "Map and optimize Datadog’s presence across the full ecosystem of LLM-ingested content (e.g., YouTube, Reddit, review sites) to improve AI-driven discoverability",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 95,
+          "role": "growth-manager",
+          "source_id": "desc.2026Q4.1e514ff91ff91c47eeffa48d",
+          "source_sha256": "4ea923f6d02d8da71f68e71ce61e7066452b80a5a77beced6a836b506d719fa5",
+          "start": 1297
+        },
+        {
+          "end": 1256,
+          "expectation_id": "exp.sentence.3bb3f32eb8ef64b257fc539b",
+          "job_id": "8265960",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "P",
+              "id": "term.llm",
+              "kind": "posting-term",
+              "label": "Large language models",
+              "matched_text": "LLM",
+              "method": "reviewed-posting-term-alias"
+            }
+          ],
+          "posting_id": "81b2219e951fafedc86fdeb2",
+          "quote": "The ideal candidate is a strategic and hands-on marketer who understands technical audiences, is familiar with the AI and LLM ecosystem, thrives in ambiguity, and can turn customer insights into high-impact programs that accelerate the growth of Voyage AI.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 96,
+          "role": "growth-manager",
+          "source_id": "desc.2026Q4.81b2219e951fafedc86fdeb2",
+          "source_sha256": "1499b8037c3bf966911fd51448228da270a77b43ebdde38d389c15a0e83b1c6b",
+          "start": 1000
+        },
+        {
+          "end": 2427,
+          "expectation_id": "exp.sentence.0c326533c4490e12f7650ca1",
+          "job_id": "8180681",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:sql",
+              "kind": "software-example",
+              "label": "SQL",
+              "matched_text": "SQL",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "1e514ff91ff91c47eeffa48d",
+          "quote": "Highly analytical and comfortable working in large datasets (SQL skills a plus) to identify trends, diagnose performance shifts, and quantify opportunity",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 97,
+          "role": "growth-manager",
+          "source_id": "desc.2026Q4.1e514ff91ff91c47eeffa48d",
+          "source_sha256": "4ea923f6d02d8da71f68e71ce61e7066452b80a5a77beced6a836b506d719fa5",
+          "start": 2274
+        },
+        {
+          "end": 3763,
+          "expectation_id": "exp.sentence.e96adc394101f4cb709392ce",
+          "job_id": "5260590007",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:excel",
+              "kind": "software-example",
+              "label": "Microsoft Excel",
+              "matched_text": "Excel",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:sql",
+              "kind": "software-example",
+              "label": "SQL",
+              "matched_text": "SQL",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "97481e0c1373a0c80b8c4baa",
+          "quote": "Knowledge of SQL and Excel preferred.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 98,
+          "role": "growth-manager",
+          "source_id": "desc.2026Q4.97481e0c1373a0c80b8c4baa",
+          "source_sha256": "e790e6fc8ced0031e4a321808828920479559e8430bd9e0cf99c6970cb53e52b",
+          "start": 3726
+        },
+        {
+          "end": 3756,
+          "expectation_id": "exp.sentence.eafa83f71d1652a441f84268",
+          "job_id": "5255724007",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:excel",
+              "kind": "software-example",
+              "label": "Microsoft Excel",
+              "matched_text": "Excel",
+              "method": "case-aware-software-alias"
+            },
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:sql",
+              "kind": "software-example",
+              "label": "SQL",
+              "matched_text": "SQL",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "2d4ebb03e9e6ed672d77c442",
+          "quote": "Knowledge of SQL and Excel preferred.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 99,
+          "role": "growth-manager",
+          "source_id": "desc.2026Q4.2d4ebb03e9e6ed672d77c442",
+          "source_sha256": "a421a074fbacabd7abca0fdd4a24250fa1a10df040cb1ee6a0c9cb946d11b77f",
+          "start": 3719
+        },
+        {
+          "end": 4442,
+          "expectation_id": "exp.sentence.5fa8cc19f924610a811f0e8d",
+          "job_id": "8139717",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:hubspot",
+              "kind": "software-example",
+              "label": "HubSpot",
+              "matched_text": "HubSpot",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "de2076dda30f7906efb25a09",
+          "quote": "Marketing Automation: Proficiency in marketing automation platforms (e.g., Marketo, HubSpot, Pardot, etc.)",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 100,
+          "role": "growth-manager",
+          "source_id": "desc.2026Q4.de2076dda30f7906efb25a09",
+          "source_sha256": "dae0a37f8a3ab11efb7b6155f41ebc997e66d44d069ee54cb806a1f04b2a02d9",
+          "start": 4336
+        },
+        {
+          "end": 3320,
+          "expectation_id": "exp.sentence.a96354d3b998accd1c9e01f9",
+          "job_id": "b349ec0e-be02-47b0-8595-8de0dbb074c5",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:hubspot",
+              "kind": "software-example",
+              "label": "HubSpot",
+              "matched_text": "HubSpot",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "afeafbeabd76891304066c29",
+          "quote": "You don't just operate the modern growth stack (Omni, HubSpot, Loops, Intercom, or equivalents) — you extend it.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 101,
+          "role": "growth-manager",
+          "source_id": "desc.2026Q4.afeafbeabd76891304066c29",
+          "source_sha256": "1c9531483151c55da91d1e4a9e4dea91f67cd580cd71a0e9b839b7604cb31d3b",
+          "start": 3208
+        },
+        {
+          "end": 1474,
+          "expectation_id": "exp.sentence.10c0b26e8f0561c546ac294c",
+          "job_id": "b349ec0e-be02-47b0-8595-8de0dbb074c5",
+          "judged_correct": true,
+          "matches": [
+            {
+              "confidence": "close",
+              "family": "O",
+              "id": "onet31:example:slack",
+              "kind": "software-example",
+              "label": "Slack",
+              "matched_text": "Slack",
+              "method": "case-aware-software-alias"
+            }
+          ],
+          "posting_id": "afeafbeabd76891304066c29",
+          "quote": "Design and run multi-channel nurture across email, in-product, notifications, Slack, and emerging surfaces, tailored to enterprise personas with content tied to where each account sits in the funnel.",
+          "rationale": "Reviewed all new matches in this span: literal tool/example or technical term references agree with the canonical labels. This does not assert proficiency, novelty, an upward signal, or an official link for posting terms.",
+          "review_index": 102,
+          "role": "growth-manager",
+          "source_id": "desc.2026Q4.afeafbeabd76891304066c29",
+          "source_sha256": "1c9531483151c55da91d1e4a9e4dea91f67cd580cd71a0e9b839b7604cb31d3b",
+          "start": 1275
+        }
+      ],
+      "pool_n": 15,
+      "seed": 20261116
+    },
+    "hr-generalist": {
+      "cases": [],
+      "pool_n": 0,
+      "seed": 20261117
+    }
+  },
+  "source_snapshot_id": "7af74a1a755791214319ad61521d65ce9ae4b0e5977bffd2eb4adaeba60e95fb"
+}

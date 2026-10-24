@@ -24,6 +24,7 @@
       <strong>Fixture data</strong>
       <span id="fixtureNote"></span>
     </div>
+    <p class="callout" id="sampleNotice" role="note"></p>
   </header>
 
   <section class="panel" id="loadStatus" role="status" aria-live="polite">
@@ -65,6 +66,7 @@
           </div>
         </div>
       </div>
+      <p class="rule-note" id="overviewPolicy"></p>
       <div id="mapList" style="display:grid; gap:1rem">
         <div class="topline" id="topLine"></div>
         <div class="map-wrap">
@@ -74,6 +76,7 @@
       </div>
       <div id="connWrap" hidden style="gap:1rem">
         <p class="muted" id="graphIntro">Columns show the first observed assigned level; unresolved assignments stay in Unassigned. Dot size is the share of postings at the chosen level. <span id="graphRole" hidden></span></p>
+        <div id="graphOverview" class="toolbar" aria-label="Graph overview groups"></div>
         <div class="toolbar">
       <div class="field">
         <span class="label" id="lbl-glevel">Sized for level</span>
@@ -156,7 +159,7 @@
       </div>
       <div class="panel">
         <span class="label">Learn next</span>
-        <ol class="next" id="next"></ol>
+        <ol class="next" id="next" tabindex="0" aria-label="All local gap priorities (scrollable)"></ol>
       </div>
     </div>
     </div>

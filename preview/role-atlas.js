@@ -68,7 +68,7 @@
       }
       GRAPH[key] = { mid: raw.skill_map.top_level_adds.core_level, families: families,
         nodes: raw.skill_map.skills.map(function (skill) { return [skill.id, skill.short_label, skill.label, skill.first_level,
-          rows[skill.id], STATUS[skill.status][1], skill.share_by_level, skill.source_links, skill.status, skill.disputed]; }),
+          rows[skill.id], STATUS[skill.status][1], skill.share_by_level, skill.source_links, skill.status, skill.disputed, skill.windows[skill.windows.length - 1].employers]; }),
         co: raw.skill_map.asked_together.map(function (edge) { return [edge.a, edge.b, edge.lift, edge.postings, edge.employers]; }),
         builds: raw.skill_map.builds_on.map(function (edge) { return [edge.a, edge.b]; }) };
       var list = raw.industries.map(function (sector) {
@@ -98,7 +98,7 @@
         sh: skill.share_by_level, src: skill.source_links, status: skill.status,
         sig: skill.evidence.map(function (item) { return [item.source_kind + ":" + item.source, signalReading(item), item.direction, item.family]; }),
         fams: fams, official: hasOfficial(skill), disputed: skill.disputed,
-        call: skill.forecast };
+        call: skill.forecast, employers: skill.windows[skill.windows.length - 1].employers };
     });
   }
 
@@ -108,6 +108,7 @@
     var projection = raw.foundation.sources.find(function (source) { return source.source_kind === "bls_projections"; });
     var experimental = raw.publication === "experimental";
     $("fixtureCallout").hidden = raw.data_kind !== "fixture";
+    $("sampleNotice").textContent = (raw.data_kind === "fixture" ? "Illustrative sample: " : "Sample: ") + r.window.postings + " postings from " + r.window.employers + " employers on public job boards (Greenhouse, Lever, Ashby); tech-heavy, not a market census." + (raw.data_kind === "fixture" ? " Fixture numbers, not observed research." : "");
     $("fixtureNote").textContent = envelope.fixture_caveat ? envelope.fixture_caveat + " " + raw.limits[raw.limits.length - 1] : "";
     $("releaseLabel").textContent = raw.release_id + " · " + raw.data_kind;
     $("dataFooter").textContent = "Skills Vector · Role Atlas · " + raw.data_kind + " data · " + raw.release_id + ".";
@@ -127,7 +128,7 @@
 
   function renderSkillPanel(list) {
     var k = list.find(function (item) { return item.id === state.skill; });
-    if (!k) { $("skillPanel").innerHTML = '<p class="empty">' + (role().window.postings === 0 ? "No admitted postings in this role/window. No skill evidence is available; this is not evidence of no market demand." : "No skills at this level.") + '</p>'; return; }
+    if (!k) { $("skillPanel").innerHTML = '<p class="empty">' + (role().window.postings === 0 ? "No admitted postings in this role/window. No skill evidence is available; this is not evidence of no market demand." : (state.mapLevel && !role().levels.some(function (l) { return l.L === state.mapLevel && l.n > 0; }) ? "No assigned postings at this level. Missing coverage is not zero demand." : overviewFloor() && list.length ? "No rows at the overview employer floor for this filter. Expand a status group to inspect all lower-employer rows." : "No skills at this level.")) + '</p>'; return; }
     var raw = role().raw, original = raw.skill_map.skills.find(function (item) { return item.id === k.id; });
     var st = STATUS[k.status], byId = {}; list.forEach(function (item) { byId[item.id] = item; });
     var pairs = coEdges().filter(function (edge) { return edge[0] === k.id || edge[1] === k.id; }).sort(function (a, b) { return b[2] - a[2]; });
@@ -315,7 +316,7 @@
         '<dt>Evidence</dt><dd class="num">' + l.n + " " + noun(l.n, "posting") + " · " + l.e + " " + noun(l.e, "employer") + " · " + r.window.current + "</dd>" +
       "</dl>" +
       '<div class="stepup"><span class="label">What changes from the level below</span><span>' + esc(l.stepUp) + "</span></div>" +
-      '<div><div class="label" style="margin-bottom:0.3rem">Expectations at this level</div><ul class="exp">' +
+      '<div><div class="label" style="margin-bottom:0.3rem">Expectations at this level</div><ul class="exp evidence-scroll" tabindex="0" aria-label="All recorded expectations at this level">' +
         l.exp.map(function (x) {
           return "<li><span>" + esc(x[0]) + "</span>" + (x[1] === "new" ? '<span class="label tag-new">new at L' + l.L + "</span>" : '<span class="label tag-carry">' + (x[1] === "unknown" ? "introduction not established" : "carried over") + '</span>') + "</li>";
         }).join("") +
@@ -370,7 +371,7 @@
   // ---- Skills graph ----
   function graphNodes() {
     return GRAPH[state.role].nodes.map(function (n) {
-      return { id: n[0], short: n[1], label: n[2], from: n[3], row: n[4], state: n[5], sh: n[6], src: n[7], status: n[8], disputed: n[9] };
+      return { id: n[0], short: n[1], label: n[2], from: n[3], row: n[4], state: n[5], sh: n[6], src: n[7], status: n[8], disputed: n[9], employers: n[10] };
     });
   }
   function coEdges() { return GRAPH[state.role].co.filter(function (e) { return e[2] >= 1.5 && e[3] >= 25; }); }
@@ -406,12 +407,27 @@
 
   function renderGraph() {
     renderGraphControls();
-    var g = GRAPH[state.role], r = role(), nodes = graphNodes(), byId = {};
+    var g = GRAPH[state.role], r = role(), all = graphNodes(), nodes = all.filter(rowVisible), byId = {}, families = g.families;
+    $("graphOverview").innerHTML = overviewFloor() ? ["core", "rising", "early", "fading"].map(function (status) {
+      var n = all.filter(function (item) { return item.status === status && item.employers < overviewFloor(); }).length;
+      return n ? '<button type="button" class="btn" data-overview-status="' + status + '" aria-pressed="' + !!expandedRows[state.role + ":" + status] + '">' + n + " more, asked by fewer than " + overviewFloor() + " employers · " + STATUS[status][0] + "</button>" : "";
+    }).join("") : "";
+    if (overviewFloor()) {
+      families = []; var offset = 0;
+      [true, false].forEach(function (official) {
+        var counts = {};
+        nodes.filter(function (n) { return n.src.some(function (f) { return f !== "P"; }) === official; }).forEach(function (n) {
+          n.row = offset + (counts[n.from] || 0); counts[n.from] = (counts[n.from] || 0) + 1;
+        });
+        var height = Math.max(0, ...Object.values(counts));
+        if (height) { families.push([official ? "Official map" : "Posting-led", offset, offset + height - 1]); offset += height; }
+      });
+    }
     nodes.forEach(function (n) { byId[n.id] = n; });
     var columns = r.levels.slice();
     if (nodes.some(function (n) { return n.from === null; })) columns.push({ L: null, name: "Unassigned" });
     var cols = columns.length, W = 960, left = 150, right = 10, colW = (W - left - right) / cols, topPad = 60, rowH = 62;
-    var nRows = g.families.length ? g.families[g.families.length - 1][2] + 1 : 1, H = topPad + nRows * rowH + 6;
+    var nRows = families.length ? families[families.length - 1][2] + 1 : 1, H = topPad + nRows * rowH + 6;
     var idx = (state.lens === "top" ? topLevel() : state.level) - 1;
     function px(n) { return left + colW * ((n.from === null ? cols : n.from) - 0.5); }
     function py(n) { return topPad + n.row * rowH + 20; }
@@ -421,7 +437,7 @@
     out.push('<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Skills graph for ' + esc(r.label) + ". " + nodes.length + " skills arranged by first observed assigned level, with unresolved assignments kept separate. " +
       (state.lens === "top" ? "Outlined skills separate L" + topLevel() + " from L" + g.mid + "." : "Dot size is the share of L" + state.level + " postings.") + '">');
     out.push('<defs><marker id="g-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="g-arrow" d="M0,0 L8,4 L0,8 z"/></marker></defs>');
-    g.families.forEach(function (f, i) {
+    families.forEach(function (f, i) {
       var y = topPad + f[1] * rowH;
       if (i % 2 === 0) out.push('<rect class="g-band" x="0" y="' + y + '" width="' + W + '" height="' + (f[2] - f[1] + 1) * rowH + '"/>');
       out.push('<text class="g-fam" x="12" y="' + (y + 20) + '">' + esc(f[0]) + "</text>");
@@ -433,7 +449,7 @@
       out.push('<text class="g-lvname' + (on ? " on" : "") + '" x="' + cx + '" y="42" text-anchor="middle">' + esc(l.name) + "</text>");
     });
     if (state.edges === "co") {
-      coEdges().forEach(function (e) {
+      coEdges().filter(function (e) { return byId[e[0]] && byId[e[1]]; }).forEach(function (e) {
         var a = byId[e[0]], b = byId[e[1]], x1 = px(a), y1 = py(a), x2 = px(b), y2 = py(b);
         var mx = (x1 + x2) / 2, my = (y1 + y2) / 2, dx = x2 - x1, dy = y2 - y1, len = Math.sqrt(dx * dx + dy * dy) || 1;
         var bend = x1 === x2 ? 34 : Math.max(16, Math.min(60, len * 0.14)), cx = mx - (dy / len) * bend, cy = my + (dx / len) * bend;
@@ -441,7 +457,7 @@
         out.push('<path class="g-edge' + cls + '" stroke-width="' + (1 + (e[2] - 1) * 2).toFixed(2) + '" d="M' + x1 + "," + y1 + " Q" + cx.toFixed(1) + "," + cy.toFixed(1) + " " + x2 + "," + y2 + '"/>');
       });
     } else {
-      g.builds.forEach(function (e) {
+      g.builds.filter(function (e) { return byId[e[0]] && byId[e[1]]; }).forEach(function (e) {
         var a = byId[e[0]], b = byId[e[1]], x1 = px(a), y1 = py(a), x2 = px(b), y2 = py(b);
         var dx = x2 - x1, dy = y2 - y1, len = Math.sqrt(dx * dx + dy * dy) || 1, ra = rad(a) + 3, rb = rad(b) + 5;
         var cls = sel ? (e[0] === sel || e[1] === sel ? " on" : " off") : "";
@@ -478,7 +494,7 @@
     var n = state.node && byId[state.node];
     if (n) {
       var lvl = state.lens === "top" ? t : state.level;
-      var pairs = coEdges().filter(function (e) { return e[0] === n.id || e[1] === n.id; }).sort(function (a, b) { return b[2] - a[2]; });
+      var pairs = coEdges().filter(function (e) { return byId[e[0]] && byId[e[1]] && (e[0] === n.id || e[1] === n.id); }).sort(function (a, b) { return b[2] - a[2]; });
       var on = g.builds.filter(function (e) { return e[1] === n.id; }).map(function (e) { return byId[e[0]].short; });
       var leads = g.builds.filter(function (e) { return e[0] === n.id; }).map(function (e) { return byId[e[1]].short; });
       html = '<div style="display:grid; gap:0.45rem"><div class="label">Skill</div><h3>' + esc(n.label) + "</h3>" +
@@ -593,37 +609,51 @@
       ". " + esc(role().raw.skill_map.top_level_adds.long_run_bar.reading) + "</span>";
   }
 
+  var expandedRows = {};
+  function overviewFloor() { return role().raw.skill_map.skills.length > 100 ? 3 : 0; }
+  function rowVisible(k) { return !overviewFloor() || k.employers >= overviewFloor() || expandedRows[state.role + ":" + k.status]; }
+  function overviewText() {
+    return overviewFloor() ? "Overview floor: " + overviewFloor() + " employers. Lower-employer rows are expandable per status; this is a display floor, not a status rule. All skills remain in the API and JSON." : "All skills shown; no overview display floor.";
+  }
+  function skillRow(k, st, r) {
+    var pips = r.levels.map(function (l) { return '<i class="' + (neededAt(k, l.L) ? "on" : "") + '">' + (k.sh[l.L - 1] === null ? "?" : l.L) + "</i>"; }).join("");
+    var ev = ["P", "O", "M"].map(function (f) { return '<i class="' + (k.fams[f] ? "on" : "") + '">' + f + "</i>"; }).join("");
+    var call = k.call ? (k.call.basis === "none" ? "No forecast yet" : "<strong>" + percentage(k.call.probability) + "%</strong> · " + esc(k.call.resolves)) : "–";
+    var lvls = r.levels.filter(function (l) { return neededAt(k, l.L); }).map(function (l) { return "L" + l.L; }).join(", ") || (k.sh.some(function (v) { return v === null; }) ? "no measured assigned coverage" : "none above 15%");
+    var evTxt = ["P", "O", "M"].filter(function (f) { return k.fams[f]; }).map(function (f) { return { P: "postings", O: "official map", M: "market trend" }[f]; }).join(", ");
+    return '<button type="button" class="srow" data-skill="' + esc(k.id) + '" aria-pressed="' + (state.skill === k.id) + '" aria-label="' + esc(k.label + ". " + STATUS[st][0] + ". Needed at " + lvls + ". Evidence: " + evTxt + "." + (k.disputed ? " Disputed: " + k.disputed + "." : "") + (k.call ? k.call.basis === "none" ? " No forecast yet." : " Forecast " + percentage(k.call.probability) + "%: " + k.call.claim + "." : "")) + '">' +
+      "<span>" + esc(k.label) + (k.disputed ? '<span class="flag">disputed</span>' : "") + (!k.official && st === "core" ? '<span class="flag gap">not in official maps yet</span>' : "") + "</span>" +
+      '<span class="pips" aria-hidden="true">' + pips + '</span><span class="pips ev" aria-hidden="true">' + ev + '</span><span class="call" aria-hidden="true">' + call + "</span></button>";
+  }
+
   function renderMap() {
-    var r = role(), list = skills(), L = state.mapLevel;
+    var r = role(), list = skills(), L = state.mapLevel, floor = overviewFloor();
     if (L && !r.levels.some(function (l) { return l.L === L; })) { L = state.mapLevel = 0; }
     $("mapLevel").innerHTML = '<button type="button" data-mlevel="0" aria-pressed="' + (L === 0) + '">All</button>' +
       r.levels.map(function (l) { return '<button type="button" data-mlevel="' + l.L + '" aria-pressed="' + (L === l.L) + '">L' + l.L + "</button>"; }).join("");
     Array.prototype.forEach.call($("mapMode").children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.mode === state.mode)); });
     $("mapList").hidden = state.mode !== "list"; $("connWrap").hidden = state.mode !== "conn";
+    $("overviewPolicy").textContent = overviewText();
     renderTopLine(list);
     var shown = list.filter(function (k) { return !L || neededAt(k, L) || (k.status === "fading" && k.sh[L - 1] > 0); });
-    if (state.skill && !shown.some(function (k) { return k.id === state.skill; })) state.skill = null;
-    if (!state.skill && shown.length) state.skill = (shown.filter(function (k) { return k.status === "rising"; })[0] || shown[0]).id;
+    var visible = shown.filter(rowVisible);
+    if (state.skill && !visible.some(function (k) { return k.id === state.skill; })) state.skill = null;
+    if (!state.skill && visible.length) state.skill = (visible.filter(function (k) { return k.status === "rising"; })[0] || visible[0]).id;
     $("map").innerHTML = ["core", "rising", "early", "fading"].map(function (st) {
       var rows = shown.filter(function (k) { return k.status === st; });
       if (!rows.length) return "";
-      if (st === "core") rows.sort(function (a, b) { return a.from - b.from; });
+      if (floor) rows.sort(function (a, b) { return b.employers - a.employers || a.label.localeCompare(b.label); });
+      else if (st === "core") rows.sort(function (a, b) { return a.from - b.from; });
+      var common = floor ? rows.filter(function (k) { return k.employers >= floor; }) : rows;
+      var tail = floor ? rows.filter(function (k) { return k.employers < floor; }) : [];
       return '<div class="lane"><div class="lane-head"><span class="chip st-' + STATUS[st][1] + '">' + STATUS[st][0] + '</span><span class="muted">' + STATUS[st][2] + '</span><span class="mono muted" style="margin-left:auto">' + rows.length + "</span></div>" +
         '<div class="cols" aria-hidden="true"><span>Skill</span><span>Levels</span><span>Evidence</span><span>Forecast</span></div>' +
-        rows.map(function (k) {
-          var pips = r.levels.map(function (l) { return '<i class="' + (neededAt(k, l.L) ? "on" : "") + '">' + (k.sh[l.L - 1] === null ? "?" : l.L) + "</i>"; }).join("");
-          var ev = ["P", "O", "M"].map(function (f) { return '<i class="' + (k.fams[f] ? "on" : "") + '">' + f + "</i>"; }).join("");
-          var call = k.call ? (k.call.basis === "none" ? "No forecast yet" : "<strong>" + percentage(k.call.probability) + "%</strong> · " + esc(k.call.resolves)) : "–";
-          var lvls = r.levels.filter(function (l) { return neededAt(k, l.L); }).map(function (l) { return "L" + l.L; }).join(", ") || (k.sh.some(function (v) { return v === null; }) ? "no measured assigned coverage" : "none above 15%");
-          var evTxt = ["P", "O", "M"].filter(function (f) { return k.fams[f]; }).map(function (f) { return { P: "postings", O: "official map", M: "market trend" }[f]; }).join(", ");
-          return '<button type="button" class="srow" data-skill="' + esc(k.id) + '" aria-pressed="' + (state.skill === k.id) + '" aria-label="' + esc(k.label + ". " + STATUS[st][0] + ". Needed at " + lvls + ". Evidence: " + evTxt + "." + (k.disputed ? " Disputed: " + k.disputed + "." : "") + (k.call ? k.call.basis === "none" ? " No forecast yet." : " Forecast " + percentage(k.call.probability) + "%: " + k.call.claim + "." : "")) + '">' +
-            "<span>" + esc(k.label) + (k.disputed ? '<span class="flag">disputed</span>' : "") + (!k.official && st === "core" ? '<span class="flag gap">not in official maps yet</span>' : "") + "</span>" +
-            '<span class="pips" aria-hidden="true">' + pips + '</span><span class="pips ev" aria-hidden="true">' + ev + '</span><span class="call" aria-hidden="true">' + call + "</span></button>";
-        }).join("") + "</div>";
+        common.map(function (k) { return skillRow(k, st, r); }).join("") +
+        (tail.length ? '<details class="more skill-more" data-status="' + st + '"' + (expandedRows[state.role + ":" + st] ? " open" : "") + '><summary>' + tail.length + " more, asked by fewer than " + floor + " employers · " + STATUS[st][0] + '</summary><div>' + tail.map(function (k) { return skillRow(k, st, r); }).join("") + "</div></details>" : "") + "</div>";
     }).join("") + '<p class="rule-note">Levels: filled where 15%+ of that level\'s postings ask for it. ? means no assigned sample. Evidence: P postings · O official map (O*NET or ESCO) · M market trend (Hiring Lab, Hot Technologies, Economic Index).</p>';
     renderSkillPanel(list);
+    if (state.mode === "conn") renderGraph();
   }
-
 
 
 
@@ -702,6 +732,17 @@
     i = e.key === "Home" ? 0 : e.key === "End" ? bs.length - 1 : (i + (e.key === "ArrowRight" ? 1 : bs.length - 1)) % bs.length;
     e.preventDefault(); state.tab = bs[i].dataset.tab; renderTabs(); bs[i].focus(); persist();
   });
+  $("map").addEventListener("toggle", function (e) {
+    if (!e.target.matches("details.skill-more")) return;
+    var key = state.role + ":" + e.target.dataset.status;
+    if (!!expandedRows[key] === e.target.open) return;
+    expandedRows[key] = e.target.open; if (state.mode === "conn") renderGraph();
+  }, true);
+  $("graphOverview").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-overview-status]"); if (!b) return;
+    var key = state.role + ":" + b.dataset.overviewStatus;
+    expandedRows[key] = !expandedRows[key]; renderMap();
+  });
   $("mapLevel").addEventListener("click", function (e) {
     var b = e.target.closest("button[data-mlevel]"); if (!b) return;
     state.mapLevel = Number(b.dataset.mlevel); renderMap(); persist();
@@ -712,7 +753,8 @@
   });
   $("map").addEventListener("click", function (e) {
     var b = e.target.closest("button[data-skill]"); if (!b) return;
-    state.skill = b.dataset.skill; renderMap();
+    var previous = $("map").querySelector('[aria-pressed="true"]'); if (previous) previous.setAttribute("aria-pressed", "false");
+    state.skill = b.dataset.skill; b.setAttribute("aria-pressed", "true"); renderSkillPanel(skills());
     var again = findData("#map", "skill", state.skill); if (again) again.focus();
   });
   $("checks").addEventListener("change", function (e) {

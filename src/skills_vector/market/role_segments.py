@@ -46,6 +46,8 @@ def segment_signals(posting: dict, quotes: list[str], policy: dict | None = None
                     continue
                 used.append((start, end))
                 if origin == "current_duty":
+                    if row.get("title_only"):
+                        continue
                     prefix = clause[max(0, start - 160):start]
                     suffix = clause[end:end + 80]
                     # Geographic territory and strategic account plans are generic duties,

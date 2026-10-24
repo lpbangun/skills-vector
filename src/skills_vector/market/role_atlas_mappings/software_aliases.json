@@ -1,0 +1,828 @@
+{
+  "schema": "skills-vector.software-aliases/1",
+  "source_note": "Coding-agent reviewed lexical table for M8; pending milestone review. O*NET 31.0 native examples verified offline by the derived software_examples.json bindings. Capitalization is explicit; short ambiguous names need context.",
+  "short_allowlist": [
+    "Go",
+    "R",
+    "C",
+    "C#",
+    "S3"
+  ],
+  "rows": [
+    {
+      "id": "salesforce",
+      "label": "Salesforce",
+      "source_examples": [
+        "Salesforce software",
+        "Salesforce.com Salesforce CRM"
+      ],
+      "aliases": [
+        {
+          "text": "Salesforce",
+          "case_sensitive": true
+        },
+        {
+          "text": "Salesforce.com",
+          "case_sensitive": true
+        },
+        {
+          "text": "Salesforce CRM",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Salesforce product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "python",
+      "label": "Python",
+      "source_examples": [
+        "Python"
+      ],
+      "aliases": [
+        {
+          "text": "Python",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Python product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "sql",
+      "label": "SQL",
+      "source_examples": [
+        "Structured query language SQL",
+        "Structure query language SQL"
+      ],
+      "aliases": [
+        {
+          "text": "SQL",
+          "case_sensitive": true,
+          "forbidden_prefix": "\\bMQL[-\\s]+to[-\\s]+$",
+          "forbidden_suffix": "[-\\s]+qualified[-\\s]+leads?\\b"
+        },
+        {
+          "text": "Structured Query Language",
+          "case_sensitive": true
+        },
+        {
+          "text": "structured query language",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal SQL product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "snowflake",
+      "label": "Snowflake",
+      "source_examples": [
+        "Snowflake"
+      ],
+      "aliases": [
+        {
+          "text": "Snowflake",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Snowflake product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "javascript",
+      "label": "JavaScript",
+      "source_examples": [
+        "JavaScript"
+      ],
+      "aliases": [
+        {
+          "text": "JavaScript",
+          "case_sensitive": true
+        },
+        {
+          "text": "Javascript",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal JavaScript product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "typescript",
+      "label": "TypeScript",
+      "source_examples": [
+        "TypeScript"
+      ],
+      "aliases": [
+        {
+          "text": "TypeScript",
+          "case_sensitive": true
+        },
+        {
+          "text": "Typescript",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal TypeScript product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "java",
+      "label": "Java",
+      "source_examples": [
+        "Oracle Java",
+        "Sun Microsystems Java"
+      ],
+      "aliases": [
+        {
+          "text": "Java",
+          "case_sensitive": true
+        },
+        {
+          "text": "Oracle Java",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Java product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "go",
+      "label": "Go",
+      "source_examples": [
+        "Go"
+      ],
+      "aliases": [
+        {
+          "text": "Go",
+          "case_sensitive": true,
+          "requires_context": "\\b(?:programming|languages?|Python|Java|Rust|coding|code|backend)\\b",
+          "forbidden_suffix": "[-\\s]+to[-\\s]+market\\b"
+        },
+        {
+          "text": "Golang",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Go product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "r",
+      "label": "R",
+      "source_examples": [
+        "R"
+      ],
+      "aliases": [
+        {
+          "text": "R",
+          "case_sensitive": true,
+          "requires_context": "\\b(?:programming|languages?|Python|SQL|coding|code|data|analytics|frameworks?|libraries|stack|software|development|engineering|experience|proficiency|skills)\\b"
+        }
+      ],
+      "rationale": "Literal R product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "c",
+      "label": "C",
+      "source_examples": [
+        "C"
+      ],
+      "aliases": [
+        {
+          "text": "C",
+          "case_sensitive": true,
+          "requires_context": "\\b(?:programming|languages?|Python|SQL|Java|coding|code|libraries)\\b",
+          "forbidden_suffix": "[-\\s]+(?:suite|level)\\b"
+        }
+      ],
+      "rationale": "Literal C product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "cpp",
+      "label": "C++",
+      "source_examples": [
+        "C++"
+      ],
+      "aliases": [
+        {
+          "text": "C++",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal C++ product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "csharp",
+      "label": "C#",
+      "source_examples": [
+        "C#"
+      ],
+      "aliases": [
+        {
+          "text": "C#",
+          "case_sensitive": true,
+          "requires_context": "\\b(?:programming|languages?|Python|SQL|coding|code|data|analytics|frameworks?|libraries|stack|software|development|engineering|experience|proficiency|skills)\\b"
+        }
+      ],
+      "rationale": "Literal C# product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "docker",
+      "label": "Docker",
+      "source_examples": [
+        "Docker"
+      ],
+      "aliases": [
+        {
+          "text": "Docker",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Docker product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "kubernetes",
+      "label": "Kubernetes",
+      "source_examples": [
+        "Kubernetes"
+      ],
+      "aliases": [
+        {
+          "text": "Kubernetes",
+          "case_sensitive": true
+        },
+        {
+          "text": "K8s",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Kubernetes product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "terraform",
+      "label": "Terraform",
+      "source_examples": [
+        "IBM Terraform"
+      ],
+      "aliases": [
+        {
+          "text": "Terraform",
+          "case_sensitive": true
+        },
+        {
+          "text": "IBM Terraform",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Terraform product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "spark",
+      "label": "Apache Spark",
+      "source_examples": [
+        "Apache Spark"
+      ],
+      "aliases": [
+        {
+          "text": "Apache Spark",
+          "case_sensitive": true
+        },
+        {
+          "text": "Spark",
+          "case_sensitive": true,
+          "requires_context": "\\b(?:programming|languages?|Python|SQL|coding|code|data|analytics|frameworks?|libraries|stack|software|development|engineering|experience|proficiency|skills)\\b"
+        }
+      ],
+      "rationale": "Literal Apache Spark product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "aws",
+      "label": "Amazon Web Services",
+      "source_examples": [
+        "Amazon Web Services AWS software"
+      ],
+      "aliases": [
+        {
+          "text": "AWS",
+          "case_sensitive": true
+        },
+        {
+          "text": "Amazon Web Services",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Amazon Web Services product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "azure",
+      "label": "Microsoft Azure",
+      "source_examples": [
+        "Microsoft Azure software"
+      ],
+      "aliases": [
+        {
+          "text": "Azure",
+          "case_sensitive": true
+        },
+        {
+          "text": "Microsoft Azure",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Microsoft Azure product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "gcp",
+      "label": "Google Cloud",
+      "source_examples": [
+        "Google Cloud software"
+      ],
+      "aliases": [
+        {
+          "text": "GCP",
+          "case_sensitive": true
+        },
+        {
+          "text": "Google Cloud",
+          "case_sensitive": true
+        },
+        {
+          "text": "Google Cloud Platform",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Google Cloud product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "excel",
+      "label": "Microsoft Excel",
+      "source_examples": [
+        "Microsoft Excel"
+      ],
+      "aliases": [
+        {
+          "text": "Microsoft Excel",
+          "case_sensitive": true
+        },
+        {
+          "text": "Excel",
+          "case_sensitive": true,
+          "forbidden_suffix": "\\s+(?:in|at)\\b"
+        }
+      ],
+      "rationale": "Literal Microsoft Excel product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "powerpoint",
+      "label": "Microsoft PowerPoint",
+      "source_examples": [
+        "Microsoft PowerPoint"
+      ],
+      "aliases": [
+        {
+          "text": "Microsoft PowerPoint",
+          "case_sensitive": true
+        },
+        {
+          "text": "PowerPoint",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Microsoft PowerPoint product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "word",
+      "label": "Microsoft Word",
+      "source_examples": [
+        "Microsoft Word"
+      ],
+      "aliases": [
+        {
+          "text": "Microsoft Word",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Microsoft Word product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "office",
+      "label": "Microsoft Office",
+      "source_examples": [
+        "Microsoft Office software"
+      ],
+      "aliases": [
+        {
+          "text": "Microsoft Office",
+          "case_sensitive": true
+        },
+        {
+          "text": "MS Office",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Microsoft Office product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "tableau",
+      "label": "Tableau",
+      "source_examples": [
+        "Tableau"
+      ],
+      "aliases": [
+        {
+          "text": "Tableau",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Tableau product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "powerbi",
+      "label": "Microsoft Power BI",
+      "source_examples": [
+        "Microsoft Power BI"
+      ],
+      "aliases": [
+        {
+          "text": "Power BI",
+          "case_sensitive": true
+        },
+        {
+          "text": "PowerBI",
+          "case_sensitive": true
+        },
+        {
+          "text": "Microsoft Power BI",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Microsoft Power BI product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "looker",
+      "label": "Looker",
+      "source_examples": [
+        "Google Looker Analytics"
+      ],
+      "aliases": [
+        {
+          "text": "Looker",
+          "case_sensitive": true
+        },
+        {
+          "text": "Google Looker",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Looker product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "hubspot",
+      "label": "HubSpot",
+      "source_examples": [
+        "HubSpot software"
+      ],
+      "aliases": [
+        {
+          "text": "HubSpot",
+          "case_sensitive": true
+        },
+        {
+          "text": "Hubspot",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal HubSpot product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "workday",
+      "label": "Workday",
+      "source_examples": [
+        "Workday software"
+      ],
+      "aliases": [
+        {
+          "text": "Workday",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Workday product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "slack",
+      "label": "Slack",
+      "source_examples": [
+        "Slack"
+      ],
+      "aliases": [
+        {
+          "text": "Slack",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Slack product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "git",
+      "label": "Git",
+      "source_examples": [
+        "Git"
+      ],
+      "aliases": [
+        {
+          "text": "Git",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Git product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "github",
+      "label": "GitHub",
+      "source_examples": [
+        "GitHub"
+      ],
+      "aliases": [
+        {
+          "text": "GitHub",
+          "case_sensitive": true
+        },
+        {
+          "text": "Github",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal GitHub product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "mongodb",
+      "label": "MongoDB",
+      "source_examples": [
+        "MongoDB"
+      ],
+      "aliases": [
+        {
+          "text": "MongoDB",
+          "case_sensitive": true,
+          "forbidden_prefix": "\\b(?:at|within|join|joining)\\s+$",
+          "forbidden_suffix": "(?:\\s+GTM\\b|[’']s\\s+(?:market|business|culture|team|employees|mission))"
+        }
+      ],
+      "rationale": "Literal MongoDB product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "postgresql",
+      "label": "PostgreSQL",
+      "source_examples": [
+        "PostgreSQL"
+      ],
+      "aliases": [
+        {
+          "text": "PostgreSQL",
+          "case_sensitive": true
+        },
+        {
+          "text": "Postgres",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal PostgreSQL product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "mysql",
+      "label": "MySQL",
+      "source_examples": [
+        "MySQL"
+      ],
+      "aliases": [
+        {
+          "text": "MySQL",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal MySQL product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "sqlserver",
+      "label": "Microsoft SQL Server",
+      "source_examples": [
+        "Microsoft SQL Server"
+      ],
+      "aliases": [
+        {
+          "text": "Microsoft SQL Server",
+          "case_sensitive": true
+        },
+        {
+          "text": "SQL Server",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Microsoft SQL Server product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "tensorflow",
+      "label": "TensorFlow",
+      "source_examples": [
+        "TensorFlow"
+      ],
+      "aliases": [
+        {
+          "text": "TensorFlow",
+          "case_sensitive": true
+        },
+        {
+          "text": "Tensorflow",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal TensorFlow product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "pytorch",
+      "label": "PyTorch",
+      "source_examples": [
+        "PyTorch"
+      ],
+      "aliases": [
+        {
+          "text": "PyTorch",
+          "case_sensitive": true
+        },
+        {
+          "text": "Pytorch",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal PyTorch product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "jupyter",
+      "label": "Jupyter",
+      "source_examples": [
+        "Jupyter software",
+        "Jupyter Notebook"
+      ],
+      "aliases": [
+        {
+          "text": "Jupyter",
+          "case_sensitive": true
+        },
+        {
+          "text": "Jupyter Notebook",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Jupyter product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "pandas",
+      "label": "pandas",
+      "source_examples": [
+        "pandas"
+      ],
+      "aliases": [
+        {
+          "text": "pandas",
+          "case_sensitive": true,
+          "requires_context": "\\b(?:programming|languages?|Python|SQL|coding|code|data|analytics|frameworks?|libraries|stack|software|development|engineering|experience|proficiency|skills)\\b"
+        },
+        {
+          "text": "Pandas",
+          "case_sensitive": true,
+          "requires_context": "\\b(?:programming|languages?|Python|SQL|coding|code|data|analytics|frameworks?|libraries|stack|software|development|engineering|experience|proficiency|skills)\\b"
+        }
+      ],
+      "rationale": "Literal pandas product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "sklearn",
+      "label": "Scikit-learn",
+      "source_examples": [
+        "Scikit-learn"
+      ],
+      "aliases": [
+        {
+          "text": "Scikit-learn",
+          "case_sensitive": true
+        },
+        {
+          "text": "scikit-learn",
+          "case_sensitive": true
+        },
+        {
+          "text": "sklearn",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Scikit-learn product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "react",
+      "label": "React",
+      "source_examples": [
+        "React"
+      ],
+      "aliases": [
+        {
+          "text": "React",
+          "case_sensitive": true,
+          "requires_context": "\\b(?:programming|languages?|Python|SQL|TypeScript|JavaScript|Next\\.js|frontend|applications?|coding|code|frameworks?|libraries|stack|software|development|engineering|experience|proficiency|skills)\\b"
+        },
+        {
+          "text": "React.js",
+          "case_sensitive": true,
+          "requires_context": "\\b(?:programming|languages?|Python|SQL|TypeScript|JavaScript|Next\\.js|frontend|applications?|coding|code|frameworks?|libraries|stack|software|development|engineering|experience|proficiency|skills)\\b"
+        }
+      ],
+      "rationale": "Literal React product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "react-native",
+      "label": "React Native",
+      "source_examples": [
+        "React Native"
+      ],
+      "aliases": [
+        {
+          "text": "React Native",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal React Native product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "linux",
+      "label": "Linux",
+      "source_examples": [
+        "Linux"
+      ],
+      "aliases": [
+        {
+          "text": "Linux",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Linux product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "figma",
+      "label": "Figma",
+      "source_examples": [
+        "Figma"
+      ],
+      "aliases": [
+        {
+          "text": "Figma",
+          "case_sensitive": true,
+          "requires_context": "\\b(?:design|tools?|UI|UX|prototyp\\w*|proficiency|using|experience with)\\b"
+        }
+      ],
+      "rationale": "Literal Figma product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "dynamics",
+      "label": "Microsoft Dynamics",
+      "source_examples": [
+        "Microsoft Dynamics"
+      ],
+      "aliases": [
+        {
+          "text": "Microsoft Dynamics",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Microsoft Dynamics product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "redshift",
+      "label": "Amazon Redshift",
+      "source_examples": [
+        "Amazon Redshift"
+      ],
+      "aliases": [
+        {
+          "text": "Amazon Redshift",
+          "case_sensitive": true
+        },
+        {
+          "text": "Redshift",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Amazon Redshift product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    },
+    {
+      "id": "s3",
+      "label": "Amazon S3",
+      "source_examples": [
+        "Amazon Simple Storage Service S3"
+      ],
+      "aliases": [
+        {
+          "text": "Amazon S3",
+          "case_sensitive": true
+        },
+        {
+          "text": "S3",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Literal Amazon S3 product/language aliases bound to the named native O*NET 31.0 software examples. No capability or proficiency inference; project example identity, not an official element id."
+    }
+  ]
+}

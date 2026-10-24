@@ -1,0 +1,450 @@
+{
+  "schema": "skills-vector.posting-terms/1",
+  "source_note": "Coding-agent reviewed M8 lexical table, pending milestone review. Emerging AI terminology and deployment/platform terms not represented by an official example binding here. Labels identify mentions, not novelty, growth, proficiency, or official endorsement.",
+  "rows": [
+    {
+      "id": "term.llm",
+      "label": "Large language models",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "LLM",
+          "case_sensitive": true
+        },
+        {
+          "text": "LLMs",
+          "case_sensitive": true
+        },
+        {
+          "text": "large language model",
+          "case_sensitive": false
+        },
+        {
+          "text": "large language models",
+          "case_sensitive": false
+        }
+      ],
+      "rationale": "Canonical posting-led literal Large language models terminology. Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.rag",
+      "label": "Retrieval-augmented generation",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "RAG",
+          "case_sensitive": true
+        },
+        {
+          "text": "retrieval-augmented generation",
+          "case_sensitive": false
+        },
+        {
+          "text": "retrieval augmented generation",
+          "case_sensitive": false
+        }
+      ],
+      "rationale": "Canonical posting-led literal Retrieval-augmented generation terminology. Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.agents",
+      "label": "AI agents",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "AI agent",
+          "case_sensitive": false
+        },
+        {
+          "text": "AI agents",
+          "case_sensitive": false
+        },
+        {
+          "text": "LLM agent",
+          "case_sensitive": false
+        },
+        {
+          "text": "LLM agents",
+          "case_sensitive": false
+        },
+        {
+          "text": "agentic AI",
+          "case_sensitive": false
+        },
+        {
+          "text": "agentic workflows",
+          "case_sensitive": false
+        },
+        {
+          "text": "agentic systems",
+          "case_sensitive": false
+        },
+        {
+          "text": "agents",
+          "case_sensitive": false,
+          "requires_context": "\\b(?:AI|LLMs?|RAG|agentic|language models?)\\b"
+        }
+      ],
+      "rationale": "Canonical posting-led literal AI agents terminology. Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.evals",
+      "label": "Model evaluations",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "model evaluations",
+          "case_sensitive": false
+        },
+        {
+          "text": "model evaluation",
+          "case_sensitive": false
+        },
+        {
+          "text": "LLM evaluations",
+          "case_sensitive": false
+        },
+        {
+          "text": "LLM evaluation",
+          "case_sensitive": false
+        },
+        {
+          "text": "AI evaluations",
+          "case_sensitive": false
+        },
+        {
+          "text": "evals",
+          "case_sensitive": false,
+          "requires_context": "\\b(?:AI|LLMs?|RAG|models?|agentic|prompts?)\\b"
+        },
+        {
+          "text": "evaluations",
+          "case_sensitive": false,
+          "requires_context": "\\b(?:AI|LLMs?|models?|ML|language|agentic)\\b"
+        },
+        {
+          "text": "eval harness",
+          "case_sensitive": false,
+          "requires_context": "\\b(?:AI|LLMs?|models?|ML|language|agentic)\\b"
+        },
+        {
+          "text": "eval harnesses",
+          "case_sensitive": false,
+          "requires_context": "\\b(?:AI|LLMs?|models?|ML|language|agentic)\\b"
+        },
+        {
+          "text": "evaluation harness",
+          "case_sensitive": false,
+          "requires_context": "\\b(?:AI|LLMs?|models?|ML|language|agentic)\\b"
+        },
+        {
+          "text": "evaluation harnesses",
+          "case_sensitive": false,
+          "requires_context": "\\b(?:AI|LLMs?|models?|ML|language|agentic)\\b"
+        }
+      ],
+      "rationale": "Canonical posting-led literal Model evaluations terminology. Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.finetuning",
+      "label": "Model fine-tuning",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "fine-tuning",
+          "case_sensitive": false,
+          "requires_context": "\\b(?:AI|LLMs?|models?|ML|neural|language)\\b"
+        },
+        {
+          "text": "fine tuning",
+          "case_sensitive": false,
+          "requires_context": "\\b(?:AI|LLMs?|models?|ML|neural|language)\\b"
+        },
+        {
+          "text": "finetuning",
+          "case_sensitive": false,
+          "requires_context": "\\b(?:AI|LLMs?|models?|ML|neural|language)\\b"
+        }
+      ],
+      "rationale": "Canonical posting-led literal Model fine-tuning terminology. Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.mlops",
+      "label": "MLOps",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "MLOps",
+          "case_sensitive": true
+        },
+        {
+          "text": "MLops",
+          "case_sensitive": true
+        },
+        {
+          "text": "machine learning operations",
+          "case_sensitive": false
+        }
+      ],
+      "rationale": "Canonical posting-led literal MLOps terminology. Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.vector-databases",
+      "label": "Vector databases",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "vector database",
+          "case_sensitive": false
+        },
+        {
+          "text": "vector databases",
+          "case_sensitive": false
+        },
+        {
+          "text": "vector store",
+          "case_sensitive": false
+        },
+        {
+          "text": "vector stores",
+          "case_sensitive": false
+        }
+      ],
+      "rationale": "Canonical posting-led literal Vector databases terminology. Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.vector-search",
+      "label": "Vector search",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "vector search",
+          "case_sensitive": false
+        }
+      ],
+      "rationale": "Canonical posting-led literal Vector search terminology. Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.prompt-engineering",
+      "label": "Prompt engineering",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "prompt engineering",
+          "case_sensitive": false
+        },
+        {
+          "text": "prompt design",
+          "case_sensitive": false,
+          "requires_context": "\\b(?:AI|LLMs?|models?|ML|language)\\b"
+        },
+        {
+          "text": "prompting",
+          "case_sensitive": false,
+          "requires_context": "\\b(?:AI|LLMs?|models?|ML|language)\\b"
+        }
+      ],
+      "rationale": "Canonical posting-led literal Prompt engineering terminology. Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.genai",
+      "label": "Generative AI",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "generative AI",
+          "case_sensitive": false
+        },
+        {
+          "text": "Generative AI",
+          "case_sensitive": false
+        },
+        {
+          "text": "GenAI",
+          "case_sensitive": true
+        },
+        {
+          "text": "Gen AI",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Canonical posting-led literal Generative AI terminology. Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.foundation-models",
+      "label": "Foundation models",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "foundation model",
+          "case_sensitive": false
+        },
+        {
+          "text": "foundation models",
+          "case_sensitive": false
+        }
+      ],
+      "rationale": "Canonical posting-led literal Foundation models terminology. Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.machine-learning",
+      "label": "Machine learning",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "machine learning",
+          "case_sensitive": false
+        },
+        {
+          "text": "Machine Learning",
+          "case_sensitive": false
+        },
+        {
+          "text": "ML",
+          "case_sensitive": true
+        },
+        {
+          "text": "ML/AI",
+          "case_sensitive": true
+        },
+        {
+          "text": "AI/ML",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Canonical posting-led literal Machine learning terminology. Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.model-serving",
+      "label": "Model serving",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "model serving",
+          "case_sensitive": false
+        },
+        {
+          "text": "online model serving",
+          "case_sensitive": false
+        },
+        {
+          "text": "serving models",
+          "case_sensitive": false
+        }
+      ],
+      "rationale": "Canonical posting-led literal Model serving terminology. Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.llm-inference",
+      "label": "LLM inference",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "inference",
+          "case_sensitive": false,
+          "requires_context": "\\b(?:AI|LLMs?|models?|ML|neural|language)\\b"
+        },
+        {
+          "text": "LLM inference",
+          "case_sensitive": false
+        }
+      ],
+      "rationale": "Canonical posting-led literal LLM inference terminology. Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.cicd",
+      "label": "CI/CD",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "CI/CD",
+          "case_sensitive": true
+        },
+        {
+          "text": "continuous integration",
+          "case_sensitive": false
+        },
+        {
+          "text": "continuous delivery",
+          "case_sensitive": false
+        },
+        {
+          "text": "continuous deployment",
+          "case_sensitive": false
+        }
+      ],
+      "rationale": "Canonical posting-led literal CI/CD terminology. Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.databricks",
+      "label": "Databricks",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "Databricks",
+          "case_sensitive": true,
+          "forbidden_prefix": "\\b(?:at|within|join|joining)\\s+$",
+          "forbidden_suffix": "\\s+(?:technical\\s+team|customer\\s+support|support\\s+team|team|employees|culture|workforce|business)\\b"
+        }
+      ],
+      "rationale": "Canonical posting-led literal Databricks terminology. Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.apis",
+      "label": "APIs",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "API integration",
+          "case_sensitive": false
+        },
+        {
+          "text": "API integrations",
+          "case_sensitive": false
+        },
+        {
+          "text": "AI APIs",
+          "case_sensitive": true
+        },
+        {
+          "text": "REST APIs",
+          "case_sensitive": true
+        },
+        {
+          "text": "RESTful APIs",
+          "case_sensitive": true
+        }
+      ],
+      "rationale": "Canonical posting-led literal API terminology (not an inferred integration capability). Aliases are lexical phrase variants with explicit technical-context guards where ambiguous; no O*NET or ESCO equivalence and no O link."
+    },
+    {
+      "id": "term.mcp",
+      "label": "Model Context Protocol",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "Model Context Protocol",
+          "case_sensitive": false
+        },
+        {
+          "text": "MCP",
+          "case_sensitive": true,
+          "requires_context": "\\b(?:AI|LLMs?|agents?|protocol|models?)\\b"
+        }
+      ],
+      "rationale": "Literal Model Context Protocol name or technically disambiguated acronym. Posting-led interoperability term, not an O*NET link; excludes generic Microsoft certification acronyms."
+    },
+    {
+      "id": "term.context-engineering",
+      "label": "Context engineering",
+      "family": "P",
+      "aliases": [
+        {
+          "text": "context engineering",
+          "case_sensitive": false
+        }
+      ],
+      "rationale": "Explicit contemporary AI system-building term, not generic contextual communication. Canonical posting-led phrase only, without an official equivalence."
+    }
+  ]
+}

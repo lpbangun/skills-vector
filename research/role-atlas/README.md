@@ -1,4 +1,35 @@
-# Role Atlas research projection and ledger (M4–M5)
+# Role Atlas research projection and ledger
+
+## Canonical 2026-Q4 (M8)
+
+`2026-Q4/` contains the derived research records, source-bound audit, none-basis
+forecast ledger and explicit no-archive backtest. Its 71-board canonical frame
+supersedes the starter capture; the two captures are never mixed. It is a
+tech-heavy public-board sample, not a market census. No raw board payloads or
+full descriptions are committed. Original inputs remain external/read-only.
+
+```sh
+.venv/bin/skills-vector market serve --role-atlas-root research/role-atlas/2026-Q4/roles --role-atlas-ledger research/role-atlas/2026-Q4/ledger.json
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-q4 --role-atlas-root research/role-atlas/2026-Q4/roles --role-atlas-ledger research/role-atlas/2026-Q4/ledger.json
+```
+
+The release is `role_research_a490fb6c01baaadd`: AE 436/36 postings/employers,
+FDE 31/17, Growth 17/11, HR 5/5. All 2,326 skill nodes remain early in one quarter;
+all 2,326 ledger calls are pending with `basis: none`, null probabilities/base
+rates and no scored/calibrated findings. There are three qualified AE edges;
+all 80 employer-sector profiles remain null without reviewed primary sectors.
+The raw node count increases where multi-sentence input spans are split for
+safe publication; canonical tools/terms do not imply semantic coverage of every
+unmatched phrase. Residual boilerplate and a small lexical-audit error rate are
+reported in `docs/role-atlas/PROGRESS.md` and `audits/M8-matches.json` there.
+
+For more than 100 skills, the default overview shows nodes mentioned by at least
+three employers. Each status retains an expandable lower-employer group; the
+full API/JSON and all rows remain available. This display floor is separate
+from status/edge/profile thresholds. AE segment scope follows the approved
+M7-r2 refinements: same-level labels agree; Named in duties alone is not L5.
+
+## Approved M4–M5 snapshots
 
 Build a new projection offline from a selected, published release and checked-in local mappings.
 The approved `m4/` snapshot is preserved; contract/recipe changes intentionally

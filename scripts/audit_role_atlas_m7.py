@@ -74,9 +74,9 @@ def excerpt(quote: str) -> str:
 
 
 def report(snapshot: Path) -> dict:
-    current = EvidenceInputs.from_snapshots([snapshot], ROOT / "preview/release")
+    current = EvidenceInputs.from_snapshots([snapshot], ROOT / "preview/release", canonical=False)
     records, audit = current.build()
-    legacy = EvidenceInputs.from_snapshots([snapshot], ROOT / "preview/release", upgrade=False, grouping=False)
+    legacy = EvidenceInputs.from_snapshots([snapshot], ROOT / "preview/release", upgrade=False, grouping=False, canonical=False)
     old_records, _ = legacy.build()
     baseline_levels, baseline_reasons, baseline_categories = Counter(), Counter(), Counter()
     for posting in legacy.postings:
@@ -86,7 +86,7 @@ def report(snapshot: Path) -> dict:
         if before.level is None:
             baseline_reasons[before.reason] += 1
             baseline_categories[triage(posting, duties).reason] += 1
-    raw = EvidenceInputs.from_snapshots([snapshot], ROOT / "preview/release", grouping=False)
+    raw = EvidenceInputs.from_snapshots([snapshot], ROOT / "preview/release", grouping=False, canonical=False)
     ungrouped, _ = raw.build()
     snapshot_id = read_json(snapshot / "manifest.json")["snapshot_id"]
     pool = eligible(snapshot)
@@ -98,7 +98,7 @@ def report(snapshot: Path) -> dict:
                          "after": sum(p["after"]["has_responsibilities"] for p in selected),
                          "recovered_failure_structure": dict(Counter(p["recovered_structure"] for p in selected if p["recovered_structure"]))}
     sections = read_json(AUDITS / "M7-sections.json")
-    levels = read_json(AUDITS / "M7-r1-levels.json")
+    levels = read_json(AUDITS / "M8-levels.json")
     heldout = read_json(AUDITS / "M7-r1-sections.json")
     matches = read_json(AUDITS / "M7-matches.json")
     for data in (sections, levels, matches, heldout):

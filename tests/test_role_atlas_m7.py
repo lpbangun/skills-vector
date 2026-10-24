@@ -199,7 +199,7 @@ class ScopeAndRosterTests(unittest.TestCase):
             self.assertEqual(decision.level, row["level"], name)
             self.assertEqual({s["segment"] for s in decision.strong}, {row["segment"]})
             p["title"] = "Senior Account Executive II"
-            self.assertEqual(triage(p, ["Own " + name + " accounts."]).level, row["level"], name)
+            self.assertEqual(triage(p, ["Own " + name + " accounts."]).level, None if row.get("title_only") else row["level"], name)
             for quote in ("Experience managing " + name + " accounts.", "Do not own " + name + " accounts.", "Use " + name + " software."):
                 self.assertIsNone(triage(p, [quote]).level, quote)
             p.update(occupation_slug="forward-deployed-engineer", title=name + " Engineer")
@@ -214,9 +214,10 @@ class ScopeAndRosterTests(unittest.TestCase):
         self.assertEqual(triage(p, ["Create and manage a pipeline of Enterprise accounts.", "Meet quarterly sales quotas."]).level, 4)
         self.assertEqual(triage(p, ["Develop strategic account plans.", "Expand reach within assigned territory."]).level, 4)
         self.assertEqual(triage({**p, "title": "Strategic Account Executive"}, ["Manage the complete sales cycle and meet quota."]).level, 5)
-        for title, duties in (("SMB Account Executive", ["Own Enterprise accounts."]),
-                               ("Enterprise Account Executive", ["Own Named accounts."]),
-                               ("Commercial SMB Account Executive", []), ("Territory (Mid-Market) Account Executive", [])):
+        self.assertEqual(triage({**p, "title": "Enterprise Account Executive"}, ["Own Named accounts."]).level, 4)
+        self.assertEqual(triage({**p, "title": "Commercial SMB Account Executive"}, []).level, 2)
+        self.assertEqual(triage({**p, "title": "Territory (Mid-Market) Account Executive"}, []).level, 3)
+        for title, duties in (("SMB Account Executive", ["Own Enterprise accounts."]), ("Select Mid-Market Account Executive", [])):
             result = triage({**p, "title": title}, duties)
             self.assertIsNone(result.level)
             self.assertEqual(result.reason, "conflicting_customer_segments")

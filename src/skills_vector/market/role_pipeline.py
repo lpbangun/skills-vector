@@ -100,7 +100,7 @@ def triage(posting: dict, quotes: list[str], *, role_scope_rules: bool = True, s
     if segment_role:
         from .role_segments import segment_signals
         segments = segment_signals(posting, current_duties, segment_policy)
-        if len({s["segment"] for s in segments}) > 1:
+        if len({s["level"] for s in segments}) > 1:
             return Triage(None, "conflicting_customer_segments", segments, weak)
         if segments:
             return Triage(segments[0]["level"], "reviewed_customer_segment_scope", segments, weak)
@@ -168,6 +168,11 @@ def sector_profile(rows: list[dict], window: str, mentions: dict[str, set[str]])
 
 def skill_identity(expected: dict, slug: str, nodes: dict, phrase_map: dict, *, rules: bool = False) -> tuple:
     quote = expected["source_wording"]
+    term = expected.get("term_match")
+    if rules and term:
+        require(term["family"] == "P" and term["confidence"] in ("exact", "close"), "posting term cannot acquire an official link")
+        return "skill.posting." + term["id"], {"label": term["label"], "short_label": term["label"][:18], "node": None,
+                "normalized_phrase": normalized(quote), "term_match": term}, None
     match = expected.get("backbone_match")
     if rules and match and match["confidence"] in ("exact", "close"):
         from .posting_volume import normalize_phrase
@@ -213,9 +218,9 @@ class EvidenceInputs:
 
     @classmethod
     def from_snapshots(cls, roots: list[Path], release_root: Path, mapping_root: Path = MAPPING_ROOT,
-                       employer_map: Path | None = None, *, upgrade: bool = True, grouping: bool = True) -> EvidenceInputs:
+                       employer_map: Path | None = None, *, upgrade: bool = True, grouping: bool = True, canonical: bool = True) -> EvidenceInputs:
         from .posting_volume_inputs import read_snapshots
-        return read_snapshots(roots, release_root, mapping_root, employer_map, upgrade=upgrade, grouping=grouping)
+        return read_snapshots(roots, release_root, mapping_root, employer_map, upgrade=upgrade, grouping=grouping, canonical=canonical)
 
     @classmethod
     def read(cls, release_root: Path, mapping_root: Path = MAPPING_ROOT, release_id: str | None = None) -> EvidenceInputs:
@@ -352,10 +357,11 @@ class EvidenceInputs:
                     mentions[key].add(posting["dedup_key"])
                     linked.append({"skill": key, "backbone_id": backbone_id, "proposed_backbone_id": proposed_id,
                                    "mapping_confidence": alignment["confidence"] if alignment else None,
-                                   "mapping_rationale": alignment["rationale"] if alignment else None, "phrase": expected["source_wording"], "normalized_phrase": data["normalized_phrase"], "backbone_match": expected.get("backbone_match"), "backbone_proposals": expected.get("backbone_proposals", []), "source_id": posting["source_id"], "expectation_id": expected["expectation_id"]})
+                                   "mapping_rationale": alignment["rationale"] if alignment else None, "phrase": expected["source_wording"], "normalized_phrase": data["normalized_phrase"], "backbone_match": expected.get("backbone_match"), "term_match": expected.get("term_match"),
+                                   "start": expected.get("start"), "end": expected.get("end"), "source_sha256": expected.get("source_sha256"), "projection_extraction": expected.get("projection_extraction"), "backbone_proposals": expected.get("backbone_proposals", []), "source_id": posting["source_id"], "expectation_id": expected["expectation_id"]})
                 posting_audit.append({"posting_id": posting["dedup_key"], "source_id": posting["source_id"], "employer": posting["employer"],
                                       "level": decision.level, "reason": decision.reason, "strong_signals": decision.strong,
-                                      "weak_signals": decision.weak, "skill_links": sorted(linked, key=lambda x: (x["skill"], x["phrase"]))})
+                                      "weak_signals": decision.weak, "excluded_projection_spans": posting.get("projection_exclusions", []), "skill_links": sorted(linked, key=lambda x: (x["skill"], x["phrase"]))})
             level_rows = {level: [p for p in rows if assignments[p["dedup_key"]] == level] for level in range(1, 6)}
             strata = sorted({value for value in assignments.values() if value is not None})
             if None in assignments.values():
@@ -394,6 +400,9 @@ class EvidenceInputs:
                 historical_note = "Quarterly rules captures; only identical sampling groups support a comparison." if self.history_groups else "No comparable historical window is asserted."
                 employer_word = "employer" if len(employer_counts) == 1 else "employers"
                 evidence = [signal("postings", "Captured public job postings" if self.history_groups else "Published job postings", f"{len(hits)}/{len(rows)} admitted role postings record this node in their published expectation excerpts; {len(employer_counts)} {employer_word}. Role-wide scope includes unassigned postings. {historical_note}")]
+                if data.get("term_match"):
+                    term = data["term_match"]
+                    evidence[0]["reading"] += f" Canonical posting-led lexicon term {term['id']}; {term['method']}; literal match: {term['matched_text']}; family P only, no official equivalence."
                 if data["node"]:
                     node = data["node"]
                     if node.get("match_source"):
@@ -456,9 +465,10 @@ class EvidenceInputs:
                     "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand and is not a future probability.",
                     "Quarterly rules snapshots; only identical sampling definitions are comparable. Repeated releases within a quarter are not independent windows." if self.history_groups else "One selected snapshot only. Retrieval dates bin observed mentions; repeated releases are not independent windows. No comparable temporal history is asserted, so all current statuses are early.",
                     "Null first_level means no observed assigned level; null share_by_level means no assigned denominator, not zero demand. Measurement strata explicitly include unassigned postings.",
-                    ("AE customer segments in verified native titles or current owned-customer duties are strong scope under reviews/M7-r1.md; distinct segments conflict. Generic selling duties, seniority and years never assign. Mapping and rationales: ae_segments.json. Missing level expectations remain empty; progression is not established." if segment_policy else "Level names are a declared algorithmic scope rubric, not observed role progression. Titles and tenure never assign levels. Missing level expectations remain empty; no carry-over or first-introduction claim is inferred."),
+                    ("AE customer segments in verified native titles or current owned-customer duties are strong scope under reviews/M7-r1.md and M7-r2.md; only different levels conflict; Named is title-only. Generic selling duties, seniority and years never assign. Mapping and rationales: ae_segments.json. Missing level expectations remain empty; progression is not established." if segment_policy else "Level names are a declared algorithmic scope rubric, not observed role progression. Titles and tenure never assign levels. Missing level expectations remain empty; no carry-over or first-introduction claim is inferred."),
                     "O*NET task excerpts are attributed to O*NET OnLine, U.S. Department of Labor, CC BY 4.0, as recorded in the published sources; agent-authored alignments are not official or human-adjudicated equivalence.",
                     "Backbone local-task keys identify exact O*NET task text within its SOC summary, not official task database element IDs; unmapped phrases remain posting-led literal identities.",
+                    "Software example keys are project identifiers bound to native O*NET 31.0 examples/categories in software_examples.json, not official element IDs or proficiency claims. Posting-term keys are canonical literal P mentions only, never official equivalence. Sentence projection and narrow notice quarantine do not rewrite the source snapshot." if self.history_groups else "Only the explicitly pinned local mappings were used; no software-example or posting-term lexicon is inferred for this legacy release.",
                     "Unverified employer sectors are excluded, not guessed. Sector profiles need 30 postings and 8 employers. Official industry shares, wages and credential catalogs were not imported; any credential/knowledge text is a literal posting mention.",
                     "No numeric forecast is made without a four-quarter historical backtest. Current recorded mention fractions are measurements, not future probabilities. A separately selected M5 ledger can track these claims without scoring missing probabilities.",
                     "Rules/1 sample data: illustrative, not research findings." if self.data_kind == "fixture" else "Research data: local source-bound observations, not population prevalence."]})
@@ -473,6 +483,7 @@ class EvidenceInputs:
                 "edges_kept": len(kept), "edges_dropped": len(dropped),
                 "edge_floor_failures": {floor: sum(floor in e["failed_floors"] for e in dropped) for floor in ("lift", "postings", "employers")},
                 "sectors_with_profiles": sum(i["profile"] is not None for i in industries), "sectors_without_profiles": sum(i["profile"] is None for i in industries),
+                "projection_excluded_spans": sum(len(p.get("projection_exclusions", [])) for p in rows),
                 "postings_with_unverified_sectors": sum(self.employers[normalized(p["employer"])]["status"] != "verified" for p in rows),
                 "postings": posting_audit, "dropped_edges": dropped}
         return records, {"recipe": RECIPE, "release_id": release, "input_release_id": self.release_id, "input_hashes": self.hashes,

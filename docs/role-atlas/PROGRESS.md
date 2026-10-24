@@ -2019,3 +2019,405 @@ quality approved.
 
 Must 1 and both shoulds are addressed for review. Commit this review fix
 separately on `feat/role-atlas`, then stop. No live retrieval was run.
+
+
+## M8 — canonical 2026-Q4 research release
+
+Built the ordered M8 scope in BRIEF after M7 approval. **No live retrieval,
+paid/model call, secret access, push or deployment.** Canonical input:
+`/home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261024T001827Z/2026-Q4`.
+It is the reviewer-run **71-board** frame and is read-only, as is the local
+O*NET 31.0 directory. The starter capture was used only for the explicitly
+separate old 40-label recheck; it was **never mixed into the canonical projection**.
+
+Committed derived output is `research/role-atlas/2026-Q4/`: four M1-valid
+research roles, source-bound audit, forecast ledger and no-archive backtest.
+Release **`role_research_a490fb6c01baaadd`**. Select **`2026-Q4/roles`**,
+not its parent. Existing M4/M5, published releases and previous audit files
+were preserved.
+
+### First: the two M7-r2 refinements
+
+- Distinct segment labels at the same level now agree. Only **different levels**
+  conflict; Territory + Mid-Market assigns L3, Enterprise + Corporate assigns L4.
+- `Named` is strong only in a native title. “Named accounts/book” in a duty
+  does not establish L5. Public Sector Named Account remains its explicit
+  reviewed L4 compound, not an inferred L5.
+- Updated reviewed table/rationales, triage, tests and workflow wording.
+  Other roles still receive no title-scope inference.
+- Original 40 cases are preserved in prior files. `audits/M8-levels.json`
+  records the five affected changes relative to M7-r1:
+  `6230952004` L5→unassigned (duty Named book alone);
+  `4134175007`, `5027198007`, `4135236007` unassigned→L3
+  (same-level Territory/Mid-Market agreement);
+  `5558737004` unassigned→L5 (Strategic title; duty Named is not a conflict).
+  Prior label/quote hashes are retained correctly. The separate starter
+  recheck is **40/40 policy conformance**, with levels 8/17/20/10/15
+  (L2/L3/L4/L5/unassigned), not independent market-level validation.
+
+### Tool/example and posting-term grouping
+
+- Added `role_terms.py`, checked-in `software_aliases.json`,
+  `software_examples.json` and `emerging_terms.json`.
+- **47 canonical software examples / 55 native bindings** derived from the
+  read-only 31.0 Software Skills file. The derived subset carries native file
+  hash, supplied ZIP hash, alias hash and CC BY 4.0 attribution. Native SOC,
+  element/category and example strings are auditable. Project example keys
+  are **not official O*NET element IDs or occupation membership assertions**.
+- Exact case-aware word/phrase matching, explicit aliases, contextual guards
+  for ambiguous words/acronyms, and a short-name allow-list. A span can produce
+  Python + SQL + Snowflake, for example; longest overlapping software products
+  avoid React/React Native double counting. Repeated aliases count once per
+  canonical node/posting. No embeddings, model, fuzzy semantic matcher or
+  unsupported ESCO equivalence was added.
+- **19 reviewed posting-led terms** cover LLMs, RAG, AI agents, model evals,
+  model fine-tuning, MLOps, vector databases/search, prompt engineering,
+  generative AI, foundation models, ML, model serving/inference, CI/CD,
+  Databricks, APIs, MCP and context engineering. Every row has aliases,
+  rationale and **family P**. These nodes have only P evidence/links, never O.
+  Deployment/platform terms are not claimed to be newly invented or growing.
+- Official software examples are standing O / lagging presence, not Hot
+  Technologies M signals, proficiency estimates or upward confirmation.
+  Tables, matcher, publication recipe and scope recipe enter comparison identity.
+
+#### Publication-boundary correction discovered in the real input
+
+BRIEF's assumption that existing spans were already single sentences did not
+hold: the canonical snapshot had **572 multi-sentence spans among 6,421
+expectations**. To avoid copying paragraph/full-description material, M8 adds
+a projection-only, abbreviation-aware `sentence-spans/1` step **after original
+native/hash/extraction replay validation**. It retains exact offsets, source
+hash, parent expectation ID and parent-quote hash; it never rewrites a snapshot.
+It is a deterministic rule-based segmentation, not linguistic adjudication.
+
+A narrow publication quarantine also excludes standalone pay/location/benefit
+notices (98 AE and 11 HR spans), without removing actual compensation/benefits
+duties. Exclusions retain source-bound sentence receipts in the audit. This
+does not claim comprehensive boilerplate removal: some raw company/qualification
+phrasing remains and is not silently promoted into canonical skills.
+
+Because multi-sentence phrases become separate literal identities, **total
+nodes can increase**; no reduction claim is manufactured. The comparable
+sentence-only diagnostic (O*NET31/tool/term grouping disabled, old explicit
+phrase map retained) has **2345/311/228/55** nodes for AE/FDE/Growth/HR;
+canonical grouping yields **1768/281/222/55**. The baseline below is the actual
+M7 paragraph/category route, reproduced by `--legacy-grouping`.
+
+### Per-role results
+
+Counts remain the frozen **489 canonical postings**. No padding, employer/sector
+inference or relaxed floor. All **2,326** skills are early in one quarter.
+Three AE asked-together edges qualify at the unchanged floors; no other role
+has a kept edge. All **80** sector profiles remain null without reviewed
+primary-employer evidence.
+
+| Role | Postings / employers | Nodes before → after | O-linked / canonical P terms | L2/L3/L4/L5/unassigned | Default overview nodes |
+| --- | ---: | ---: | ---: | --- | ---: |
+| Account Executive | 436 / 36 | 1489 → 1768 | 32 / 8 | 40/100/103/78/115 | 21 |
+| Forward Deployed Engineer | 31 / 17 | 233 → 281 | 15 / 15 | 0/0/7/0/24 | 9 |
+| Growth Manager | 17 / 11 | 166 → 222 | 5 / 2 | 0/0/3/0/14 | 1 |
+| HR Generalist | 5 / 5 | 58 → 55 | 0 / 0 | 0/0/0/0/5 | 55 |
+
+FDE top-20 ties prefer canonical nodes, then stable ID; shares/employers are
+unchanged. **16 of its top 20 are canonical**. Applicable LLM/agent/eval/MLOps,
+CI/CD and language/cloud phrases now resolve to canonical nodes. Remaining
+raw top phrases have no applicable tool/term alias; organizational references
+to the Databricks technical/support team are not mistaken for platform-use
+requirements. A test checks this distinction against the actual release.
+
+#### Account Executive — top 20
+
+| Rank | Node | Share | Employers |
+| ---: | --- | ---: | ---: |
+| 1 | Develop business relationships. | 52.8% | 29 |
+| 2 | Execute sales or other financial transactions. | 48.9% | 30 |
+| 3 | Identify potential customers. | 43.1% | 26 |
+| 4 | Salesforce | 38.3% | 15 |
+| 5 | Monitor sales activities. | 36.9% | 19 |
+| 6 | Demonstrate products to consumers. | 30.5% | 8 |
+| 7 | Communicate with other workers to coordinate activities. | 30.3% | 19 |
+| 8 | Monitor market conditions or trends. | 22.5% | 6 |
+| 9 | Study product information to acquire professional knowledge. | 14.7% | 13 |
+| 10 | track record of success in meeting and exceeding goals | 14.2% | 1 |
+| 11 | work in a fast-paced, entrepreneurial and team environment | 14.2% | 1 |
+| 12 | Develop financial or business plans. | 13.1% | 6 |
+| 13 | Negotiate prices or other sales terms. | 11.9% | 12 |
+| 14 | sandler sales training | 10.6% | 1 |
+| 15 | an entrepreneurial and feedback-driven mindset | 9.2% | 1 |
+| 16 | retail operations experience | 9.2% | 1 |
+| 17 | self-motivated, creative, flexible, and willing to navigate ambiguity | 9.2% | 1 |
+| 18 | generate lists of prospective convenience stores, grocery stores, and bottle shops and manage the entire sales cycle from initial call to close | 9.2% | 1 |
+| 19 | strong communication, organizational, and presentation skills with the ability to sell and negotiate at all decision-making levels | 9.2% | 1 |
+| 20 | Coordinate sales campaigns. | 8.0% | 12 |
+
+#### Forward Deployed Engineer — top 20
+
+| Rank | Node | Share | Employers |
+| ---: | --- | ---: | ---: |
+| 1 | Design software applications. | 51.6% | 9 |
+| 2 | CI/CD | 32.3% | 4 |
+| 3 | TypeScript | 29.0% | 4 |
+| 4 | AI agents | 29.0% | 8 |
+| 5 | APIs | 25.8% | 3 |
+| 6 | Machine learning | 25.8% | 2 |
+| 7 | Amazon Web Services | 22.6% | 2 |
+| 8 | Microsoft Azure | 22.6% | 2 |
+| 9 | Google Cloud | 22.6% | 2 |
+| 10 | Python | 22.6% | 2 |
+| 11 | JavaScript | 19.4% | 1 |
+| 12 | Apache Spark | 19.4% | 1 |
+| 13 | Databricks | 19.4% | 1 |
+| 14 | Model evaluations | 19.4% | 5 |
+| 15 | Large language models | 19.4% | 6 |
+| 16 | MLOps | 19.4% | 1 |
+| 17 | work with engineering and databricks customer support to provide product and implementation feedback and to guide rapid resolution for engagement specific product and support issues | 19.4% | 1 |
+| 18 | technical project delivery - managing scope, timelines and measurable outcomes, translating complex concepts into actionable solutions | 19.4% | 1 |
+| 19 | work with the databricks technical team, project manager, architect and customer team to ensure the technical components of the engagement are delivered to meet customer's needs | 19.4% | 1 |
+| 20 | customer immersion: embed with customer teams, engaging with stakeholders from technical ics to executives to deeply understand challenges and deliver impact | 19.4% | 1 |
+
+#### Growth Manager — top 20
+
+| Rank | Node | Share | Employers |
+| ---: | --- | ---: | ---: |
+| 1 | SQL | 35.3% | 4 |
+| 2 | Microsoft Excel | 17.6% | 1 |
+| 3 | strong understanding of conversion signals and measurement, including meta capi, server-side tracking, attribution, conversion-event strategy, and crm/offline conversion data | 17.6% | 1 |
+| 4 | full-funnel growth: build paid social strategies that create demand at the top of the funnel and efficiently convert it through retargeting and lower-funnel programs | 17.6% | 1 |
+| 5 | excellent communicator who can operate autonomously and influence cross-functional partners across brand, pmm, design, analytics, engineering, marketing ops, and sales | 17.6% | 1 |
+| 6 | relentlessly analytical: deep understanding of unit economics (cac, ltv, payback periods), attribution modeling, and how to connect platform metrics directly to down-funnel business impact | 17.6% | 1 |
+| 7 | critically, you know how to build brand through a performance lens, connecting upper-funnel investments to near-term impact and long-term value creation | 17.6% | 1 |
+| 8 | in this role, you will be accountable for down-funnel pipeline, efficient cac, and customer acquisition | 17.6% | 1 |
+| 9 | growth & pipeline ownership: own meta + emerging channel budgets, cac efficiency, conversion, and downstream pipeline/revenue across self-serve and sales-led motions | 17.6% | 1 |
+| 10 | you’ll help accelerate brex’s growth by scaling what works, continuously improving how we operate, and unlocking new opportunities for impact | 17.6% | 1 |
+| 11 | strong creative judgment and experience writing briefs and translating performance data into actionable creative recommendations | 17.6% | 1 |
+| 12 | structured experimentation: build and execute a continuous, hypothesis-driven testing framework across audiences, bidding strategies, optimization events, landing pages, and creative concepts; document learnings to turn paid social into a predictable acquisition channel | 17.6% | 1 |
+| 13 | product-led growth or hybrid demand models | 17.6% | 1 |
+| 14 | you won't just optimize campaigns; you will engineer signal architecture, build scalable audience models, and establish a high-velocity creative testing engine | 17.6% | 1 |
+| 15 | fin-tech marketing or marketing to finance professionals | 17.6% | 1 |
+| 16 | cross-functional partnership: partner with analytics, marketing ops, field / events team, pmm, and sales to connect paid social performance & programs to downstream pipeline and revenue outcomes | 17.6% | 1 |
+| 17 | creative strategy: translate performance data into creative hypotheses and partner with brand and design to test, iterate, and scale winning concepts | 17.6% | 1 |
+| 18 | signal & measurement strategy: partner with data and marketing ops to improve conversion signals, capi, and offline conversion tracking, enabling platforms to optimize toward higher-quality customers | 17.6% | 1 |
+| 19 | we’re reinventing growth here | 17.6% | 1 |
+| 20 | audience strategy: use first-party data, intent signals, modeled audiences, lookalikes, and platform automation to identify and scale high-value audiences | 17.6% | 1 |
+
+#### HR Generalist — top 20
+
+| Rank | Node | Share | Employers |
+| ---: | --- | ---: | ---: |
+| 1 | you'll also establish the frameworks, playbooks, and practices that will become the backbone of our hrbp team as we scale globally | 20.0% | 1 |
+| 2 | bring an analytical lens to your work — using data to shape decisions, measure outcomes, and tell a coherent story to senior stakeholders | 20.0% | 1 |
+| 3 | experience supporting a globally distributed r&d org | 20.0% | 1 |
+| 4 | prior experience supporting marketing or communications organizations | 20.0% | 1 |
+| 5 | drive consistent, high-quality performance calibrations across engineering, pm, and design — building leader capability and ensuring fair, differentiated outcomes | 20.0% | 1 |
+| 6 | lead org design initiatives end-to-end: from diagnosing root causes through to stakeholder alignment, change communication, and implementation | 20.0% | 1 |
+| 7 | experience as a trusted partner to vp- and svp-level leaders; you're known for your ability to influence and coach | 20.0% | 1 |
+| 8 | lead change that matters: drive organizational changes with empathy, clarity, and rigor—finding creative paths forward when playbooks don’t exist | 20.0% | 1 |
+| 9 | serve as the r&d voice in the design and rollout of company-wide people programs — ensuring compensation cycles, leveling frameworks, and engagement initiatives land effectively | 20.0% | 1 |
+| 10 | skilled at balancing employee advocacy with business priorities | 20.0% | 1 |
+| 11 | strong business acumen with the ability to assess downstream impacts of decisions across functions and connect people strategies to company-wide priorities | 20.0% | 1 |
+| 12 | people team centers of excellence are better calibrated to the needs of marketing & communications because you’ve brought business context into their planning — pushing back where needed and ensuring programs land with impact, not just intent | 20.0% | 1 |
+| 13 | use engagement data, pulse surveys, and qualitative signals to surface org health risks and partner with leaders on action planning | 20.0% | 1 |
+| 14 | exceptional written and verbal communication skills, including the ability to craft clear narratives, build change management plans, and influence across all levels of an organization | 20.0% | 1 |
+| 15 | at lucid, we don’t just welcome diversity - we celebrate it! | 20.0% | 1 |
+| 16 | ba/bs degree in a relevant field | 20.0% | 1 |
+| 17 | cultivate an ai "builder" approach by adopting and testing ai solutions to address challenges at scale | 20.0% | 1 |
+| 18 | as decagon grows from 400 to 1,000+ employees, we are seeking a senior hr business partner to serve as a trusted advisor to leaders across our engineering, product and design organizations | 20.0% | 1 |
+| 19 | approaches ambiguous situations with confidence and sound judgment | 20.0% | 1 |
+| 20 | collaborate for a seamless experience: partner with fellow hrbps, coes, and cross-functional leaders to build an employee experience rooted in humanity, humility, and impact | 20.0% | 1 |
+
+### New-match audit — T2
+
+`audits/M8-matches.json` pins the canonical snapshot, matcher/table hashes,
+source quote offsets/hashes, matched words, methods, families, confidence,
+seeds and manual judgments. **Global seed 20261113**, different from M7's 3100:
+**29/30 judged correct (96.7%)**. Additional per-role selections use seeds
+20261114–20261117:
+
+| Selection | Eligible new-match spans | Audited | Judged correct |
+| --- | ---: | ---: | ---: |
+| Global | 463 | 30 | 29 |
+| AE | 333 | 30 | 30 |
+| FDE | 115 | 30 | 29 |
+| Growth | 15 | all 15 | 15 |
+| HR | 0 | 0 | not applicable |
+
+There are **102 unique inspected spans** across these overlapping selections,
+not 105 independent observations. HR has no new matches and is not padded to
+30 cases. These are coding-agent **development lexical judgments**, not
+independent expert/held-out accuracy or proof of proficiency.
+
+Unfavorable judgments remain in the audit:
+- AE `5415461008`: “competitive evaluations” with Applied AI teams was
+  overgrouped as model evaluations.
+- FDE `9fadb51f-ce11-41b1-84d5-470e66cc8ee9`: ML names stakeholder leads,
+  not a machine-learning skill requirement.
+
+Earlier development inspection caught C-suite/C-level→C, MQL-to-SQL→SQL and
+employer/team references. Short-name/context/prefix/suffix guards were tightened
+and negatively tested before the frozen selection. The remaining ambiguity is
+reported, not relabeled to inflate the ≥90% gate.
+
+### Release, ledger and readable UI — T3/T4 and W1–W6
+
+- Seven derived publication files only: four roles plus audit, ledger and
+  backtest. **No raw payloads, descriptions, native board objects or full
+  description strings** were committed. Final integrity verification binds
+  **7,525** published skill links to exact saved text offsets/hashes and checks
+  all 489 posting identities against the canonical capture.
+- Forecast ledger has **2,326 pending none-basis calls**, null probability and
+  base rate, no event inferred from prose, no resolutions or scored calls.
+  Backtest: **`not run: no historical posting archive`**, null Brier, empty bins.
+  Independent ledger rebuild is byte-identical.
+- On every role, next to the existing notice:
+  **“Sample: N postings from M employers on public job boards (Greenhouse, Lever,
+  Ashby); tech-heavy, not a market census.”** Fixture counts are explicitly
+  illustrative, not new research.
+- For catalogs with **more than 100 skills**, default overview floor is **3
+  employers**, stated on the page and explicitly separate from status rules.
+  Each status retains an expandable “N more, asked by fewer than 3 employers”
+  group. AE shows 21 common nodes plus **1,747 expandable**; FDE 9 plus **272**;
+  Growth 1 plus 221. HR's 55 nodes all remain shown.
+- Connections uses the same expandable status groups and reflows the filtered
+  layout; no empty thousands-row band. Every API/JSON skill and qualified edge
+  remains available on expansion. No evidence is deleted or fixture layout
+  supplied to research. The original status lanes, tokens, pips, notices and
+  detail panels are retained.
+- Deep expectations/gap lists scroll internally without losing data. Native
+  summary controls, real checkbox clicks, graph keys/focus, exact JSON/copy,
+  overflow, full labels, all skills/details (including expanded tails), source
+  timing and forecast honesty are checked. Every row is still checked, now in
+  bounded browser-side batches instead of thousands of protocol auto-waits.
+- Opened final AE/FDE viewport shots at desktop light/dark and mobile light;
+  reviewed the stated floor, short common overview, expandable tail, P-only
+  emerging terms, official-example labels and no-forecast panels. This includes
+  the real 1,768-node AE release, not a synthetic substitute.
+
+### Exact verification commands and real results
+
+Local projection and deterministic rebuild, no retrieval:
+
+```sh
+.venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261024T001827Z/2026-Q4 --output /tmp/role-atlas-m8-release-a > /tmp/role-atlas-m8-release-a.json
+.venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261024T001827Z/2026-Q4 --output /tmp/role-atlas-m8-release-b > /tmp/role-atlas-m8-release-b.json
+diff -qr /tmp/role-atlas-m8-release-a /tmp/role-atlas-m8-release-b
+.venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261024T001827Z/2026-Q4 --legacy-grouping --output /tmp/role-atlas-m8-legacy-baseline > /tmp/role-atlas-m8-legacy-baseline.json
+.venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261024T001827Z/2026-Q4 --no-grouping --output /tmp/role-atlas-m8-sentence-only > /tmp/role-atlas-m8-sentence-only.json
+```
+
+All exit **0**; double-projection diff emits nothing (T1). Before-node counts
+reproduce the reviewer's M7 baseline. Only the five derived roles/audit files
+were copied to the new quarter directory after a strict file-name allow-list
+check; published copies remain byte-identical to the scratch projection.
+
+```sh
+.venv/bin/skills-vector market forecast-ledger create --roles-root research/role-atlas/2026-Q4/roles --ledger research/role-atlas/2026-Q4/ledger.json > /tmp/role-atlas-m8-ledger-create.json
+.venv/bin/skills-vector market forecast-ledger backtest --ledger research/role-atlas/2026-Q4/ledger.json --output research/role-atlas/2026-Q4/backtest.json > /tmp/role-atlas-m8-backtest.json
+.venv/bin/skills-vector market forecast-ledger create --roles-root research/role-atlas/2026-Q4/roles --ledger /tmp/role-atlas-m8-ledger-rebuild.json > /tmp/role-atlas-m8-ledger-rebuild-summary.json
+cmp research/role-atlas/2026-Q4/ledger.json /tmp/role-atlas-m8-ledger-rebuild.json
+.venv/bin/python scripts/audit_role_atlas_m8.py --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261024T001827Z/2026-Q4 --projection research/role-atlas/2026-Q4 --baseline /tmp/role-atlas-m8-baseline --output /tmp/role-atlas-m8-quality.json > /tmp/role-atlas-m8-quality.log
+.venv/bin/python scripts/audit_role_atlas_m7.py --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261023T214312Z/2026-Q4 --output /tmp/role-atlas-m8-level-check.json > /tmp/role-atlas-m8-level-check.log
+```
+
+All exit **0**, ledger cmp emits nothing. The last command is **only** the
+separate prior-40-label check; it contributes no starter postings to Q4.
+
+```sh
+.venv/bin/python - <<'PY'
+from pathlib import Path
+from skills_vector.market.role_terms import derive_examples
+print(derive_examples(Path('/home/logani/.local/share/skills-vector-evidence/onet/db_31_0'),
+                      Path('/tmp/role-atlas-m8-lookup-verification.json')))
+PY
+cmp src/skills_vector/market/role_atlas_mappings/software_examples.json /tmp/role-atlas-m8-lookup-verification.json
+```
+
+Exit **0**: 47 examples, 55 bindings, identical lookup content digest
+`2ff79987c98be577e0447fae97c9498bac8c3d413b2a3741a7e8a8718ba89207`.
+Recorded supplied ZIP SHA:
+`6883548adf5fde64cf6f801b35d15519c9225f2732c3cab0e281c652d16b23a9`.
+No wholesale database copy.
+
+```sh
+.venv/bin/python -m unittest discover -s tests -p test_role_atlas_m8.py > /tmp/role-atlas-m8-complete-focused.log 2>&1
+.venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m8-verified-tests.log 2>&1
+.venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m8-handoff-tests.log 2>&1
+```
+
+Focused **13 tests / 12.828s, OK**. Full concurrent final gates:
+**265 tests / 179.178s, OK (skipped=2)**. Final standalone handoff run after
+the prior-quote-hash provenance assertion: **265 tests / 83.109s, OK (skipped=2)**.
+Same two existing skips, no new skips. All tests offline; the existing fresh
+subprocess capture/project/roster import/network guard still passes. New tests
+cover every alias/term's accepted and rejected boundaries, ambiguous contexts,
+case/short allow-lists, several tools per span, P-only lexicon, exact offsets,
+narrow notice quarantine, same-level/Named rules, immutable pinning, actual
+release/ledger, T3 raw-top checks and overview-floor boundaries.
+
+```sh
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m8-verified-fixtures --role-atlas-fixtures --role-atlas-ledger /tmp/role-atlas-m6-fixture-ledger.json > /tmp/role-atlas-m8-verified-fixtures.log 2>&1
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m8-verified-research --role-atlas-root research/role-atlas/2026-Q4/roles --role-atlas-ledger research/role-atlas/2026-Q4/ledger.json > /tmp/role-atlas-m8-verified-research.log 2>&1
+UV_OFFLINE=1 uv run --with playwright python /tmp/role-atlas-m8-visual-final.py > /tmp/role-atlas-m8-visual-final.log 2>&1
+```
+
+All exit **0**, explicit Chromium
+`~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome`. Each selection
+runs **1280 light, 1280 dark, 390 light**, all roles/tabs/Connections and negative
+probes: **54 fixture + 72 canonical research screenshots**, every
+`errors: []`. Final research sweep took 635.7s with all 2,326 row/detail checks
+per case retained. Viewport evidence lives at `/tmp/role-atlas-m8-visual-final`.
+
+```sh
+.venv/bin/python /tmp/role-atlas-m8-integrity.py
+bash scripts/assemble_vercel.sh
+UV_OFFLINE=1 uv lock --check --offline
+node --check preview/role-atlas.js
+.venv/bin/python -m compileall -q src/skills_vector scripts/check_role_atlas.py scripts/audit_role_atlas_m8.py
+git diff --check
+```
+
+All exit **0**. Integrity script compares hash **and file set** to
+`/tmp/role-atlas-m8-input-receipts.json`, rechecks the old starter receipt,
+compares protected tracked bytes to HEAD, checks the seven-file publication
+allow-list and scratch byte identity, verifies every published link offset/hash,
+rejects raw-object keys or any full saved-description string, proves the 489
+IDs are exactly the canonical cohort, and checks all browser result cases/errors.
+Result: **1,408 canonical/O*NET input files**, old **334-file** starter/O*NET
+receipt, **543 protected tracked files**, **533 published files/file set** all
+unchanged. **7,525 source-bound links**, no raw objects/full descriptions.
+Assembly **551 files**; offline lock **61 packages**. No deployment. Model-backed
+limits, independent posting limits, budgets, research configuration, BRIEF and
+STANDARDS were not changed.
+
+### Development failures, fixes, limitations and stop
+
+- Original per-row automation timed out after 1,800s on the large AE release,
+  with no completed research verdict. Bounded browser-side batches retain
+  **every** prior detail/label/evidence/forecast/layout/timing assertion; native
+  expansion, graph keys/focus and real checkbox clicks remain separately gated.
+  The final complete sweep above supersedes the timeout.
+- The first near-complete research sweep then exposed overlapping mobile HR gap
+  labels inside the new bounded scroll grid. The root was 44px implicit tracks
+  containing taller wrapped content. `grid-auto-rows: max-content` fixes labels
+  and scrollable expectation/priority grids. The checker now rejects deliberately
+  overlapping rows, verifies text/input containment and uses real, unforced
+  checkbox interaction. Final fixtures/research pass after the fix.
+- Initial ledger creation timed out hashing the same ~5MB role once per call.
+  `create_ledger` and `track_record` now compute **once per source per operation**,
+  not per entry. Digests and issued-call identities are unchanged; a regression
+  test checks call counts and still rejects changed source records. No global
+  stale-hash cache, scoring change or numeric estimate was introduced.
+- Multi-sentence input and standalone pay/location notices required the narrow,
+  source-bound publication step described above. The total node increase is
+  disclosed rather than attributed to improved grouping.
+- Residual template/company fragments and the two unfavorable lexical audit
+  judgments remain visible. Small non-AE volumes, low assigned coverage, vendor
+  ambiguity and the tech-heavy frame limit conclusions. The tiny HR pool has
+  no new audited tool/term matches; no coverage or 30-case audit was invented.
+- P3 applies with the approved AE-only M7-r2 refinements. No other role's level
+  is inferred from seniority titles or years. All status/edge/sector floors stay
+  exact; no archive, sector evidence, forecast probability or calibration is
+  fabricated.
+
+M8 meets the requested implemented/verified G/P/V/W and T1–T4 gates, with the
+limitations above. Commit this milestone on `feat/role-atlas`, then stop for
+review. No live retrieval was run.

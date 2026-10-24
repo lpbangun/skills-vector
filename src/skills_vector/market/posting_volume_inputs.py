@@ -12,14 +12,14 @@ from .role_artifacts import digest as object_digest, read_json
 from .role_pipeline import EvidenceInputs, digest, normalized, require, within
 
 
-def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, employer_map: Path | None = None, *, upgrade: bool = True, grouping: bool = True) -> EvidenceInputs:
+def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, employer_map: Path | None = None, *, upgrade: bool = True, grouping: bool = True, canonical: bool = True) -> EvidenceInputs:
     base = EvidenceInputs.read(release_root, mapping_root)
     postings, sources, extracts, hashes, groups = [], dict(base.sources), dict(base.extracts), dict(base.hashes), {}
     manifests = []
     configured_roles = None
     from .onet_backbone import Backbone, LOOKUP, RULES
     from .posting_volume import capture
-    backbone = Backbone() if grouping else None
+    backbone = Backbone(canonical=canonical, mapping_root=mapping_root) if grouping else None
     for root in sorted((p.resolve() for p in roots)):
         manifest = read_json(within(root, "manifest.json"))
         require(manifest["schema"] == SCHEMA and manifest["window_length"] == "quarterly", "unsupported snapshot schema/cadence")
@@ -130,7 +130,16 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
             else:
                 require(row["naics"] is None, "unverified employer cannot have sector")
             employers[key] = row
+    if canonical:
+        from .role_quotes import project as sentence_spans
+        for posting in postings:
+            posting["expectations"] = sentence_spans(posting, extracts[posting["source_id"]])
+        hashes["role_quotes.py"] = digest(Path(__file__).with_name("role_quotes.py").read_bytes())
     if backbone:
+        if canonical:
+            for name in ("software_aliases.json", "software_examples.json", "emerging_terms.json"):
+                hashes[name] = digest((mapping_root / name).read_bytes())
+            hashes["role_terms.py"] = digest(Path(__file__).with_name("role_terms.py").read_bytes())
         for posting in postings:
             posting["expectations"] = backbone.expand(posting["occupation_slug"], posting["expectations"])
         hashes["onet31_lookup.json"] = digest(LOOKUP.read_bytes())
@@ -155,6 +164,6 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
     for name in ("posting_volume.py", "posting_volume_inputs.py"):
         base.hashes[name] = digest(Path(__file__).with_name(name).read_bytes())
     # Mapping/normalizer changes are sampling-definition changes, never a fabricated trend.
-    suffix = object_digest({"processing_recipe": {name: hashes[name] for name in ("recipe.py", "posting_sections.py", "posting_volume_inputs.py", "role_segments.py")}, "skills": base.skills, "backbone": backbone.fingerprint if backbone else None, "employers": {k: {x: v for x, v in row.items() if x not in ("source_id", "quote")} for k, row in employers.items()}})
+    suffix = object_digest({"processing_recipe": {name: hashes[name] for name in ("recipe.py", "posting_sections.py", "posting_volume_inputs.py", "role_segments.py", "role_quotes.py") if name in hashes}, "skills": base.skills, "backbone": backbone.fingerprint if backbone else None, "employers": {k: {x: v for x, v in row.items() if x not in ("source_id", "quote")} for k, row in employers.items()}})
     base.history_groups = {window: group + ":" + suffix for window, group in groups.items()}
     return base

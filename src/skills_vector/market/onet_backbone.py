@@ -77,10 +77,15 @@ def derive(database: Path, mappings: Path, output: Path) -> dict:
 
 
 class Backbone:
-    def __init__(self, lookup: Path = LOOKUP, rules: Path = RULES):
+    def __init__(self, lookup: Path = LOOKUP, rules: Path = RULES, *, canonical: bool = False, mapping_root: Path = ROOT):
         self.data, self.rules = read_json(lookup), read_json(rules)
         require(self.data["schema"] == "skills-vector.onet-backbone/1" and self.data["source_zip_sha256"] == ZIP_SHA256, "unsupported O*NET lookup provenance")
         self.fingerprint = digest({"lookup": self.data, "rules": self.rules, "implementation_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()})
+        self.tool_terms = None
+        if canonical:
+            from .role_terms import ToolTerms
+            self.tool_terms = ToolTerms(mapping_root / "software_aliases.json", mapping_root / "software_examples.json", mapping_root / "emerging_terms.json")
+            self.fingerprint = digest({"legacy": self.fingerprint, "canonical": self.tool_terms.fingerprint})
         self._cache = {}
         self.dwas = {(r["role"], r["id"]): r for r in self.data["dwas"]}
         for row in self.rules:
@@ -114,6 +119,8 @@ class Backbone:
         if found:
             found.sort(key=lambda m: (m["confidence"] != "exact", -len(m["matched_text"]), m["id"]))
             found = found[:1]
+        if self.tool_terms is not None:
+            return found + self.tool_terms.match(text)
         for category in self.data["software"]:
             alternatives = []
             for example in category["examples"].get(role, []):
@@ -151,7 +158,8 @@ class Backbone:
             matches = self.match(role, expected["source_wording"])
             grouped = [m for m in matches if m["confidence"] in ("exact", "close")]
             if grouped:
-                output.extend({**expected, "backbone_match": m} for m in grouped)
+                output.extend({**expected, ("term_match" if m.get("family") == "P" else "backbone_match"): m,
+                               "backbone_proposals": [p for p in matches if p["confidence"] == "loose"]} for m in grouped)
             else:
                 output.append({**expected, "backbone_proposals": matches})
         return output

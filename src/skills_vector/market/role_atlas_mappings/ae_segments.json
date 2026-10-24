@@ -1,8 +1,8 @@
 {
   "schema": "skills-vector.role-segment-scope/1",
   "role": "account-executive",
-  "source_note": "Reviewer decision: docs/role-atlas/reviews/M7-r1.md, must 1. Refines P3 only for Account Executive; no inferred scope policy for other roles.",
-  "policy": "Named customer segment in a verified native title or current owned-customer duty is strong scope. Seniority and years remain weak; common selling duties never assign. Any two distinct segments conflict, even when mapped to the same level. Longest overlapping compound consumes contained aliases.",
+  "source_note": "Reviewer decisions: docs/role-atlas/reviews/M7-r1.md must 1 and reviews/M7-r2.md refinements (same-level agreement; Named title-only). Refines P3 only for Account Executive; no inferred scope policy for other roles.",
+  "policy": "Named customer segment in a verified native title or current owned-customer duty is strong scope. Seniority and years remain weak; common selling duties never assign. Different segment labels at the same level agree; only different levels conflict (M7-r2). Named is strong only in a native title, never alone in a current-duty named account/book. Longest overlapping compound consumes contained aliases.",
   "rows": [
     {
       "segment": "smb",
@@ -74,7 +74,8 @@
       "segment": "named",
       "level": 5,
       "pattern": "\\bNamed\\b",
-      "rationale": "Named account/book scope is L5 under the reviewer decision, except the more specific public-sector compound."
+      "rationale": "M7-r2: Named / Named Account(s) in a title is L5; named accounts/books in duties are common at L3–L5 and do not establish L5.",
+      "title_only": true
     },
     {
       "segment": "global",
