@@ -101,6 +101,354 @@
       "token": "justworks",
       "employer": "Justworks",
       "source_note": "Employer and public board token recorded in local published rel_20261002_cbdc6e8d5c4f postings/sources. Starter roster, not a representative market frame. Primary employer sector unverified."
+    },
+    {
+      "ats": "ashby",
+      "token": "cohere",
+      "employer": "Cohere",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 116 postings listed; matched titles AE 11, FDE 9, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "ashby",
+      "token": "cursor",
+      "employer": "Anysphere",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 126 postings listed; matched titles AE 25, FDE 5, GM 1, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "ashby",
+      "token": "decagon",
+      "employer": "Decagon",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 134 postings listed; matched titles AE 5, FDE 0, GM 1, HR 1 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "ashby",
+      "token": "deel",
+      "employer": "Deel",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 0 postings listed; matched titles AE 0, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "ashby",
+      "token": "harvey",
+      "employer": "Harvey",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 355 postings listed; matched titles AE 32, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "ashby",
+      "token": "linear",
+      "employer": "Linear",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 34 postings listed; matched titles AE 3, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "ashby",
+      "token": "mercury",
+      "employer": "Mercury",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 0 postings listed; matched titles AE 0, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "ashby",
+      "token": "modal",
+      "employer": "Modal",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 43 postings listed; matched titles AE 1, FDE 2, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "ashby",
+      "token": "notion",
+      "employer": "Notion",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 140 postings listed; matched titles AE 0, FDE 4, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "ashby",
+      "token": "openai",
+      "employer": "OpenAI",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 793 postings listed; matched titles AE 0, FDE 20, GM 2, HR 2 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "ashby",
+      "token": "perplexity",
+      "employer": "Perplexity",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 131 postings listed; matched titles AE 3, FDE 0, GM 1, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "ashby",
+      "token": "ramp",
+      "employer": "Ramp",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 167 postings listed; matched titles AE 10, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "ashby",
+      "token": "replit",
+      "employer": "Replit",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 40 postings listed; matched titles AE 1, FDE 1, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "ashby",
+      "token": "sierra",
+      "employer": "Sierra",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 210 postings listed; matched titles AE 1, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "ashby",
+      "token": "vanta",
+      "employer": "Vanta",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 83 postings listed; matched titles AE 19, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "ashby",
+      "token": "writer",
+      "employer": "Writer",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 46 postings listed; matched titles AE 7, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "affirm",
+      "employer": "Affirm",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 225 postings listed; matched titles AE 1, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "airbnb",
+      "employer": "Airbnb",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 194 postings listed; matched titles AE 0, FDE 0, GM 1, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "andurilindustries",
+      "employer": "Anduril",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 951 postings listed; matched titles AE 0, FDE 1, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "anthropic",
+      "employer": "Anthropic",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 677 postings listed; matched titles AE 53, FDE 4, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "betterment",
+      "employer": "Betterment",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 25 postings listed; matched titles AE 0, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "brex",
+      "employer": "Brex",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 254 postings listed; matched titles AE 11, FDE 0, GM 6, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "calendly",
+      "employer": "Calendly",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 9 postings listed; matched titles AE 0, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "carvana",
+      "employer": "Carvana",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 1575 postings listed; matched titles AE 0, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "cloudflare",
+      "employer": "Cloudflare",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 454 postings listed; matched titles AE 104, FDE 9, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "coinbase",
+      "employer": "Coinbase",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 227 postings listed; matched titles AE 0, FDE 2, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "coursera",
+      "employer": "Coursera",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 31 postings listed; matched titles AE 5, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "doordashusa",
+      "employer": "DoorDash",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 461 postings listed; matched titles AE 7, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "dropbox",
+      "employer": "Dropbox",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 23 postings listed; matched titles AE 3, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "elastic",
+      "employer": "Elastic",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 402 postings listed; matched titles AE 49, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "flexport",
+      "employer": "Flexport",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 190 postings listed; matched titles AE 21, FDE 0, GM 0, HR 1 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "gitlab",
+      "employer": "GitLab",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 239 postings listed; matched titles AE 37, FDE 2, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "glossier",
+      "employer": "Glossier",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 19 postings listed; matched titles AE 0, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "gusto",
+      "employer": "Gusto",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 101 postings listed; matched titles AE 3, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "lucidmotors",
+      "employer": "Lucid Motors",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 442 postings listed; matched titles AE 0, FDE 0, GM 0, HR 3 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "lyft",
+      "employer": "Lyft",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 181 postings listed; matched titles AE 1, FDE 0, GM 2, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "nuro",
+      "employer": "Nuro",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 98 postings listed; matched titles AE 0, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "okta",
+      "employer": "Okta",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 389 postings listed; matched titles AE 51, FDE 0, GM 1, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "oscar",
+      "employer": "Oscar Health",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 232 postings listed; matched titles AE 0, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "peloton",
+      "employer": "Peloton",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 59 postings listed; matched titles AE 0, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "pinterest",
+      "employer": "Pinterest",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 161 postings listed; matched titles AE 0, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "robinhood",
+      "employer": "Robinhood",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 157 postings listed; matched titles AE 0, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "samsara",
+      "employer": "Samsara",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 282 postings listed; matched titles AE 52, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "scaleai",
+      "employer": "Scale AI",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 171 postings listed; matched titles AE 3, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "sofi",
+      "employer": "SoFi",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 57 postings listed; matched titles AE 0, FDE 1, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "squarespace",
+      "employer": "Squarespace",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 27 postings listed; matched titles AE 0, FDE 0, GM 1, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "sweetgreen",
+      "employer": "Sweetgreen",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 63 postings listed; matched titles AE 0, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "twilio",
+      "employer": "Twilio",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 134 postings listed; matched titles AE 16, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "vercel",
+      "employer": "Vercel",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 95 postings listed; matched titles AE 12, FDE 2, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "waymo",
+      "employer": "Waymo",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 364 postings listed; matched titles AE 0, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "greenhouse",
+      "token": "zocdoc",
+      "employer": "Zocdoc",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 59 postings listed; matched titles AE 4, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "lever",
+      "token": "highspot",
+      "employer": "Highspot",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 0 postings listed; matched titles AE 0, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "lever",
+      "token": "outreach",
+      "employer": "Outreach",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 23 postings listed; matched titles AE 2, FDE 1, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "lever",
+      "token": "palantir",
+      "employer": "Palantir",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 309 postings listed; matched titles AE 0, FDE 1, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "lever",
+      "token": "shieldai",
+      "employer": "Shield AI",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 664 postings listed; matched titles AE 4, FDE 6, GM 1, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "lever",
+      "token": "spotify",
+      "employer": "Spotify",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 90 postings listed; matched titles AE 4, FDE 0, GM 1, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "lever",
+      "token": "whoop",
+      "employer": "WHOOP",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 0 postings listed; matched titles AE 0, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
+    },
+    {
+      "ats": "lever",
+      "token": "zoox",
+      "employer": "Zoox",
+      "source_note": "Added after reviewer roster probe on 2026-10-23 (board exists, 235 postings listed; matched titles AE 0, FDE 0, GM 0, HR 0 before US filtering). Reviewed by Claude as reviewer: token resolves to the named employer's public board. Not a representative market frame; primary employer sector unverified."
     }
   ]
 }
