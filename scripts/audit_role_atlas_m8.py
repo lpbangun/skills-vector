@@ -10,6 +10,7 @@ from pathlib import Path
 
 from skills_vector.market.role_artifacts import read_json, require, write_json
 from skills_vector.market.role_pipeline import EvidenceInputs
+from skills_vector.market.role_publication import read_audit
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -47,9 +48,11 @@ def top_nodes(record: dict) -> list[dict]:
 
 
 def report(snapshot: Path, projection: Path, baseline: Path, cases: Path) -> dict:
+    actual, audit_status = read_audit(projection)
+    if actual is None:
+        return {"release_id": read_json(projection / "release.json")["release_id"], "audit_status": audit_status}
     inputs = EvidenceInputs.from_snapshots([snapshot], ROOT / "preview/release")
     records, replay = inputs.build()
-    actual = read_json(projection / "audit.json")
     require(replay == actual, "projection no longer matches current inputs/producer")
     selection = selections(match_pool(actual, read_json(snapshot / "postings.json")), list(actual["roles"]))
     judged = read_json(cases)
@@ -79,7 +82,7 @@ def report(snapshot: Path, projection: Path, baseline: Path, cases: Path) -> dic
             "canonical_posting_terms": sum(s["id"].startswith("skill.posting.term.") for s in current["skill_map"]["skills"]),
             "publication_notice_exclusions": a["projection_excluded_spans"], "top20": top_nodes(current),
             "overview_visible": sum(s["windows"][-1]["employers"] >= 3 for s in current["skill_map"]["skills"]) if len(current["skill_map"]["skills"]) > 100 else len(current["skill_map"]["skills"])}
-    return {"source_snapshot_id": judged["source_snapshot_id"], "release_id": actual["release_id"], "roles": summaries, "audit": checks,
+    return {"audit_status": audit_status, "source_snapshot_id": judged["source_snapshot_id"], "release_id": actual["release_id"], "roles": summaries, "audit": checks,
             "limits": ["Coding-agent manual lexical audit, not independent expert adjudication or a population accuracy estimate.",
                        "Thirty cases per role where available; all available Growth cases and no padded HR cases. Global 30 is the T2 gate.",
                        "Top-20 ties prefer canonical nodes, then stable id; no share/employer adjustment.",

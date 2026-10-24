@@ -328,6 +328,11 @@ class RoleAtlasMcpTests(unittest.TestCase):
         pairs = [
             ("/v1/roles", "list_roles", {}),
             ("/v1/roles/account-executive", "get_role", {"role": "account-executive"}),
+            ("/v1/roles/account-executive?view=overview", "get_role", {"role": "account-executive", "view": "overview"}),
+            ("/v1/roles/account-executive?view=full", "get_role", {"role": "account-executive", "view": "full"}),
+            ("/v1/roles/account-executive/skills/skill.aires", "get_role_skill", {"role": "account-executive", "skill_id": "skill.aires"}),
+            ("/v1/roles/account-executive/skills/missing", "get_role_skill", {"role": "account-executive", "skill_id": "missing"}),
+            ("/v1/roles/account-executive?view=invalid", "get_role", {"role": "account-executive", "view": "invalid"}),
             ("/v1/roles/account-executive/levels/L3", "get_role_level", {"role": "account-executive", "level": "L3"}),
             ("/v1/roles/account-executive/graph", "get_role_graph", {"role": "account-executive"}),
             ("/v1/roles/account-executive/industries/31-33", "get_role_industry", {"role": "account-executive", "naics": "31-33"}),

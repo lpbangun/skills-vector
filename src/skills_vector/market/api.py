@@ -82,7 +82,7 @@ def _flag(params: dict[str, list[str]], key: str) -> bool:
 
 
 def _role_request(path: str, params: dict[str, list[str]], catalog: RoleAtlasReads) -> ApiResponse:
-    if any(len(params.get(key, [])) > 1 for key in ("release", "since", "role")):
+    if any(len(params.get(key, [])) > 1 for key in ("release", "since", "role", "view")):
         return _error(400, "invalid_request", "release, since and role must each have at most one value")
     release_id = _one(params, "release")
     if path == "/v1/roles":
@@ -96,16 +96,18 @@ def _role_request(path: str, params: dict[str, list[str]], catalog: RoleAtlasRea
         if not separator or (release_id is not None and release_id != pin):
             return _error(400, "invalid_request", "expectation citations require id@release and a matching release query, if supplied")
         payload = catalog.expectation(expectation_id, pin)
-    elif match := re.fullmatch(r"/v1/roles/([^/]+)(?:/(levels|industries)/([^/]+)|/(graph))?", path):
+    elif match := re.fullmatch(r"/v1/roles/([^/]+)(?:/(levels|industries|skills)/([^/]+)|/(graph))?", path):
         role = unquote(match[1])
         if match[2] == "levels":
             payload = catalog.level(role, unquote(match[3]), release_id)
+        elif match[2] == "skills":
+            payload = catalog.skill(role, unquote(match[3]), release_id)
         elif match[2] == "industries":
             payload = catalog.industry(role, unquote(match[3]), release_id)
         elif match[4] == "graph":
             payload = catalog.graph(role, release_id)
         else:
-            payload = catalog.role(role, release_id)
+            payload = catalog.role(role, release_id, _one(params, "view") or "full")
     else:
         return _error(404, "not_found", f"no API route for {path!r}")
     return _json(HTTP_STATUS.get(payload.get("status"), 200), payload)

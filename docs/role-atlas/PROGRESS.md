@@ -2421,3 +2421,222 @@ STANDARDS were not changed.
 M8 meets the requested implemented/verified G/P/V/W and T1–T4 gates, with the
 limitations above. Commit this milestone on `feat/role-atlas`, then stop for
 review. No live retrieval was run.
+
+
+## M8 review round 1 replies
+
+### Must 1 — release and page weight: addressed
+
+No live retrieval, model/paid call, deployment, push or history rewrite. The
+research identity stays **`role_research_a490fb6c01baaadd`**; none of its role
+values, level/alias policies, source evidence, status/edge/sector floors or
+issued forecast identities changed.
+
+**Audit out of tree / manifest.**
+- `git rm research/role-atlas/2026-Q4/audit.json`. The identical **19,069,877**
+  bytes now live at
+  `~/.local/share/skills-vector-evidence/role-atlas/releases/role_research_a490fb6c01baaadd/audit.json`.
+  SHA-256 **`bfaee6140726380ae1345a1fbe219432d52ef0d91d60bcbd753509543e311f00`**.
+  This is a lossless move of derived audit, not a new capture or raw corpus.
+- Committed **14,850-byte** `release.json` records the release/input ids,
+  complete capture-tree and capture-manifest hashes, audit hash/size,
+  inference recipe/contract/mapping hashes, foundation digest, per-role
+  counts/levels/statuses, full-record canonical and file-byte hashes, light-view
+  hashes and index metadata.
+- `role_publication.read_audit` verifies byte hash, size and release when the
+  audit exists; otherwise returns **“audit not available locally”**. Missing
+  local evidence is not a successful replay or invented audit. The M8 replay
+  script reports that state explicitly; corrupt local audits fail.
+- The research posting-volume CLI now publishes this layout by default.
+  `--evidence-root` selects another out-of-tree store; repository/capture overlap
+  is rejected. `--inline-audit` is an explicit **diagnostic scratch-only** mode,
+  never a publication instruction. Existing low-level scratch projection tests
+  and approved M4/M5 outputs remain untouched.
+- Vercel's broad `research/role-atlas/**` include is replaced by explicit
+  runtime role/view/manifest/ledger patterns. Neither full audits nor their
+  operator evidence store are bundled.
+
+**Compact ledger, unchanged calls/math.**
+- Disk schema `forecast-ledger/2`: four shared role/source/scope/none-forecast
+  groups, and per-call columns **id, skill_id, created, resolves, status**.
+  No per-entry repeated claim, reason or full source digest.
+- Stored size **230,102 bytes**, below **300,000**. The codec expands to the
+  original `/1` model before math/validation. Non-pending or scored/event-bound
+  calls retain their full data/receipts. Append, backtest, resolve, source
+  pinning and track-record output stay equivalent.
+- The expanded ledger's original canonical SHA is still
+  `1cd8855c212fb4e969d754c4b3ccd449dbc6e58ceac0332b2f93d56247f5e692`.
+  A golden-digest test guards every issued field, not just counts.
+- Ledger validation validates identical forecast shapes once **per operation**,
+  while still validating every id, call identity, source, scope, event and
+  receipt. Reads no longer validate the same decoded ledger twice. No stale
+  global digest cache or relaxed math/validation rule was added.
+- All **2,326** calls remain pending `basis: none`, with null probability/base
+  rate. No resolutions, scores or empirical history were manufactured.
+
+**Overview + skill API/MCP parity.**
+- `GET /v1/roles/{role}?view=overview` and `get_role(..., view="overview")`
+  return full common skills (at the existing three-employer display floor for
+  >100-node catalogs); every status tail supplies **count + id/label only**.
+- Large overview levels explicitly defer their expectation lists; complete
+  expectations remain in the existing level endpoint and full view. This
+  partial envelope is **not** claimed to be a full M1 record.
+- `GET /v1/roles/{role}/skills/{skill_id}?release=...` /
+  **`get_role_skill(role, skill_id, release_id?)`** return the complete original
+  skill with evidence/shares/forecast and normal role/release pins and errors.
+- Small materialized light views avoid cold decoding/schema-validation of every
+  unrelated full role. Publication validates the full models, then binds view
+  and original source bytes in the manifest; runtime edits fail closed. Full
+  agent reads still use the original M1 validator. Response caching is bounded,
+  file-version-bound and returns fresh copies.
+- **Default full and explicit `view=full` body bytes are unchanged** against all
+  eight saved pre-fix responses: four research roles, three fixture roles, and
+  the fixture unknown-role error. Existing REST/MCP parity remains green; new
+  fixture and actual-research SDK tests cover overview, skill and error pins.
+
+**Lazy page and preserved access.**
+- Initial page requests only the index and the selected role's overview, not
+  four full roles. Only common map rows are built initially; no hidden graph,
+  JSON highlighter, full ladder expectations or gap list is eagerly rendered.
+- A tail expands into native id/label buttons. “Select for detail” means
+  evidence/level/forecast cells are **not loaded**, not zero/missing evidence.
+  Selection fetches the release-pinned per-skill endpoint and restores the
+  complete row/panel. No full-record request is needed to expand labels.
+- Other roles, complete level/gap/Connections data and full Agent JSON load on
+  demand. Copy/JSON remain complete, never the partial overview. Full graph
+  labels/edges, native focus/keyboard navigation, local-only gap interaction,
+  thin samples and sample framing all remain covered.
+- Viewed final AE/FDE initial overviews, expanded lazy tails and fetched details
+  at desktop light/dark and mobile light under `/tmp/role-atlas-m8-r1-visual`.
+  Explicit deferred-comparison text replaces any inference from unloaded rows.
+
+### Enforced budgets — real AE, not a synthetic catalog
+
+`check_role_atlas.py` exits nonzero for **>400,000 overview bytes**, **>2,000 ms
+navigation-to-interactive map**, or **>1,000 ms status-tail expansion**. It prints
+measurements before assertions and includes them in `results.json`.
+The checker installs its own navigation-ready observer and trusted-click /
+two-animation-frame expansion timer, before any full-record test fetch or tab
+visit. It checks exactly one initial overview request, no other/full role fetch,
+no hidden JSON/graph, exact tail ids/labels, and pinned lazy-detail retrieval.
+There is no retry, averaging, threshold override, percentile substitution or
+role warm-up in the checker.
+
+Final research sweep (decimal bytes, timings in ms):
+
+| Case | Overview bytes | First interactive map | Largest AE status tail |
+| --- | ---: | ---: | ---: |
+| 1280 light | 393,814 | 1,183.0 | 194.7 |
+| 1280 dark | 393,814 | 885.5 | 342.0 |
+| 390 light | 393,814 | 760.2 | 301.8 |
+| Limit | **400,000** | **2,000** | **1,000** |
+
+AE has one nonempty status tail (all skills are early); all **1,747** lower-
+employer ids/labels are checked, and a real tail detail is fetched before the
+comprehensive full-view checks. The first case starts a fresh local server;
+each case uses a fresh browser context. Subsequent cases reuse server caches.
+An additional mobile-first fresh-server visual run records the app's ready
+mark at **1,010.6 ms** (supplemental, not substituted for checker measurements).
+
+Final fixture sweep also passes the same strict budgets: **47,553 bytes**;
+interactive **689.6 / 469.4 / 539.7 ms** for 1280 light / dark / 390 light.
+Fixtures have no >100-node tail.
+
+One preceding fixture attempt exited **1**, correctly, for a **2,108.2 ms**
+mobile ready time; it produced no completed verdict. Its log is
+`/tmp/role-atlas-m8-r1-verified-fixtures.log`. The same code and unchanged
+thresholds passed the separate full retry below. No overrun was silently
+accepted or removed from the evidence. The real research final sweep passed
+on its first final attempt. Timing remains a measurement on this localhost,
+not a guarantee across machines or future network conditions.
+
+### Repo size after the change
+
+**Current quarter tree: 5,207,443 bytes (5.207 MB / 4.966 MiB), 11 files**,
+below the **6,000,000-byte** target, including all four full records **and**
+materialized views:
+
+| Stored component | Bytes |
+| --- | ---: |
+| Four minified full role records | 4,350,643 |
+| Four hash-bound light views | 611,575 |
+| Release manifest | 14,850 |
+| Compact ledger | 230,102 |
+| No-archive backtest | 273 |
+| **Total** | **5,207,443** |
+
+Original quarter tree at `08108e7`: **28,555,364 bytes**. The current-tree
+reduction is **23,347,921 bytes (81.8%)**. This reports **logical checked-in
+release content**, not reclaimed physical git storage: the original large
+audit/ledger blobs remain in history, deliberately, and no history was rewritten.
+
+### Exact commands and results
+
+```sh
+.venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261024T001827Z/2026-Q4 --output /tmp/role-atlas-m8-r1-projection-a > /tmp/role-atlas-m8-r1-projection-a.json
+.venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261024T001827Z/2026-Q4 --output /tmp/role-atlas-m8-r1-projection-b > /tmp/role-atlas-m8-r1-projection-b.json
+diff -qr /tmp/role-atlas-m8-r1-projection-a /tmp/role-atlas-m8-r1-projection-b
+.venv/bin/skills-vector market forecast-ledger create --roles-root research/role-atlas/2026-Q4/roles --ledger /tmp/role-atlas-m8-r1-ledger-rebuild.json > /tmp/role-atlas-m8-r1-ledger-rebuild.log
+cmp research/role-atlas/2026-Q4/ledger.json /tmp/role-atlas-m8-r1-ledger-rebuild.json
+.venv/bin/python scripts/audit_role_atlas_m8.py --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261024T001827Z/2026-Q4 --projection research/role-atlas/2026-Q4 --baseline /tmp/role-atlas-m8-baseline --output /tmp/role-atlas-m8-r1-quality.json > /tmp/role-atlas-m8-r1-quality.log
+```
+
+All exit **0**; diff/cmp emit nothing. Double publication includes manifest,
+four full records and four views; the audit is written outside both trees.
+Recipe/release and original inference outputs remain unchanged. Full audit
+replay passes; previous lexical judgments and the reviewer's **28/30 (93%)**
+finding are not relabeled or treated as a new independent audit.
+
+```sh
+.venv/bin/python -m unittest discover -s tests -p test_role_atlas_weight.py > /tmp/role-atlas-m8-r1-weight-tests.log 2>&1
+.venv/bin/python -m unittest discover -s tests -p test_role_atlas_ledger.py > /tmp/role-atlas-m8-r1-ledger-tests.log 2>&1
+.venv/bin/python -m unittest discover -s tests -p test_role_atlas_api_mcp.py > /tmp/role-atlas-m8-r1-api-tests.log 2>&1
+.venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m8-r1-verified-tests.log 2>&1
+```
+
+All exit **0**. Focused weight **6 tests / 16.611s**; unchanged ledger suite
+**11 / 11.354s**; API/MCP suite **18 / 3.760s**. Final full suite:
+**271 tests / 99.544s, OK (skipped=2)**, same existing skips. New guards cover
+ledger losslessness/math/id/source errors, compact limits, every common/tail
+identity, partial-view honesty, field freshness, malformed/mismatched source,
+local audit present/missing/corrupt states, deterministic publication,
+research SDK parity and budget equality/overrun/NaN/missing/negative rejection.
+
+```sh
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m8-r1-verified-fixtures --role-atlas-fixtures --role-atlas-ledger /tmp/role-atlas-m6-fixture-ledger.json > /tmp/role-atlas-m8-r1-verified-fixtures.log 2>&1
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m8-r1-verified-fixtures-retry --role-atlas-fixtures --role-atlas-ledger /tmp/role-atlas-m6-fixture-ledger.json > /tmp/role-atlas-m8-r1-verified-fixtures-retry.log 2>&1
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m8-r1-verified-research --role-atlas-root research/role-atlas/2026-Q4/roles --role-atlas-ledger research/role-atlas/2026-Q4/ledger.json > /tmp/role-atlas-m8-r1-verified-research.log 2>&1
+UV_OFFLINE=1 uv run --with playwright python /tmp/role-atlas-m8-r1-visual.py > /tmp/role-atlas-m8-r1-visual.log 2>&1
+```
+
+First command exit **1** for the disclosed fixture overrun; remaining commands
+exit **0**. Final fixture **54** and research **72** screenshots, **1280 light,
+1280 dark, 390 light**, all roles/tabs/Connections and negative probes, every
+`errors: []`. Explicit local Chromium
+`~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome`. Comprehensive checker
+coverage is retained: after the initial lazy-path budget tests, the existing
+full-row/detail, overflow, timing, graph, gap/privacy, JSON/copy and error probes
+still run.
+
+```sh
+.venv/bin/python /tmp/role-atlas-m8-r1-integrity.py
+bash scripts/assemble_vercel.sh
+UV_OFFLINE=1 uv lock --check --offline
+node --check preview/role-atlas.js
+.venv/bin/python -m compileall -q src/skills_vector scripts tests/test_role_atlas_weight.py
+git diff --check
+git ls-tree -lr 08108e7 -- research/role-atlas/2026-Q4
+```
+
+All exit **0**. Integrity rechecks **1,408** canonical/O*NET input files and exact
+file set, the **334-file** starter/O*NET receipt, **543** protected tracked files
+and **533** published files/file set: all unchanged. It verifies the out-of-tree
+audit hash, eleven-file publication allow-list, original role values and saved
+default/explicit-full REST bytes. Assembly **551 files**; offline lock **61
+packages**. Research configuration, model/posting budgets and immutable M4/M5
+artifacts were not changed. The size calculation is the sum of current release
+file bytes; the git tree listing supplies the original blob sizes.
+
+The must is addressed for review. No new inference policy, live data, sector
+classification, historical archive or forecast probability was introduced.
+Commit this review fix separately on `feat/role-atlas`, then stop.

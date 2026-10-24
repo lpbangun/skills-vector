@@ -28,6 +28,8 @@ def add_volume_commands(sub):
     project.add_argument("--mapping-root", type=Path, default=MAPPING_ROOT)
     project.add_argument("--employer-map", type=Path)
     project.add_argument("--output", type=Path, required=True)
+    project.add_argument("--evidence-root", type=Path, help="out-of-tree audit store (default: operator evidence releases)")
+    project.add_argument("--inline-audit", action="store_true", help="diagnostic scratch projection only; never commit full audits")
     project.add_argument("--legacy-grouping", action="store_true", help="diagnostic: M7 paragraph/category grouping without canonical tools/terms or publication spans")
     project.add_argument("--no-upgrade", action="store_true", help="diagnostic: retain original rules/1 extraction")
     project.add_argument("--no-grouping", action="store_true", help="diagnostic: disable O*NET 31 grouping")
@@ -41,6 +43,12 @@ def run_volume(args):
         return write_snapshot(VolumePolicy.read(args.policy), args.output, args.quarter,
                               payload_root=args.payload_root, retrieved_at=args.retrieved_at, live=args.live)
     inputs = EvidenceInputs.from_snapshots(args.snapshot, args.release_root, args.mapping_root, args.employer_map, upgrade=not args.no_upgrade, grouping=not args.no_grouping, canonical=not args.legacy_grouping)
-    audit = inputs.write(args.output)
+    if inputs.data_kind == "research" and not args.inline_audit:
+        from .role_publication import EVIDENCE_ROOT, publish
+        records, audit = inputs.build()
+        publish([r.to_dict() for r in records], audit, inputs.snapshot_roots, args.output,
+                args.evidence_root or EVIDENCE_ROOT, protected=(inputs.release_root, inputs.mapping_root))
+    else:
+        audit = inputs.write(args.output)
     return {"release_id": audit["release_id"], "data_kind": inputs.data_kind,
             "roles": {slug: {k: v for k, v in report.items() if k not in ("postings", "dropped_edges")} for slug, report in audit["roles"].items()}}

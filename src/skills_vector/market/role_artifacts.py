@@ -52,9 +52,9 @@ def guard_output(path: Path, *inputs: Path) -> Path:
     return target
 
 
-def write_json(path: Path, value: Any, *, replace: bool = False, inputs: tuple[Path, ...] = ()) -> None:
+def write_json(path: Path, value: Any, *, replace: bool = False, inputs: tuple[Path, ...] = (), compact: bool = False) -> None:
     target = guard_output(path, *inputs)
-    payload = canonical(value)
+    payload = (json.dumps(value, ensure_ascii=False, allow_nan=False, sort_keys=True, separators=(",", ":")) + "\n") if compact else canonical(value)
     if target.exists() and not replace:
         require(target.read_text(encoding="utf-8") == payload, "refusing to replace a different artifact")
         return

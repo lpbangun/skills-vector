@@ -140,8 +140,62 @@ def reject_graph_fit(page, reason: str) -> None:
         raise AssertionError("graph-fit gate accepted a deliberately clipped graph")
 
 
+def enforce_budget(name: str, value: float, maximum: float) -> None:
+    require(isinstance(value, (int, float)) and 0 <= value <= maximum,
+            f"budget exceeded: {name}={value}, limit={maximum}")
+
+
+def light_budgets(page, base: str, requests: list[str]) -> dict:
+    # Called before any full-record test fetch or tab visit; no server warm-up.
+    ms = page.evaluate("window.__gateInteractive")
+    initial = [u for u in requests if '/v1/roles/' in u]
+    require(len(initial) == 1 and 'view=overview' in initial[0], "initial page eagerly fetched full/other roles")
+    require(page.locator('#json').get_attribute('data-raw') is None and page.locator('#graph [data-node]').count() == 0,
+            "hidden JSON/graph was eagerly rendered")
+    response = page.request.get(initial[0])
+    payload = response.json()
+    measured = {"overview_bytes": len(response.body()), "interactive_ms": ms, "tails": []}
+    print('BUDGET initial ' + json.dumps(measured), flush=True)
+    enforce_budget('overview bytes', measured['overview_bytes'], 400_000)
+    enforce_budget('interactive milliseconds', ms, 2_000)
+    for group in page.locator('#map details.skill-more').all():
+        status = group.get_attribute('data-status')
+        group.evaluate("""group => {
+            window.__gateTailMs=null;
+            group.querySelector('summary').addEventListener('click',()=>window.__gateTailStart=performance.now(),{once:true,capture:true});
+            group.addEventListener('toggle',()=>requestAnimationFrame(()=>requestAnimationFrame(()=>window.__gateTailMs=performance.now()-window.__gateTailStart)),{once:true});
+        }""")
+        group.locator('summary').click()
+        page.wait_for_function('window.__gateTailMs !== null')
+        elapsed = page.evaluate('window.__gateTailMs')
+        measured['tails'].append({"status": status, "mode": "lazy list", "milliseconds": elapsed})
+        print('BUDGET tail ' + json.dumps(measured['tails'][-1]), flush=True)
+        enforce_budget('tail expansion milliseconds', elapsed, 1_000)
+        tail = next(g for g in payload['overview']['tails'] if g['status'] == status)
+        actual = group.locator('.srow').evaluate_all('nodes=>nodes.map(n=>({id:n.dataset.skill,label:n.firstElementChild.textContent}))')
+        require(sorted(actual,key=lambda s:s['id']) == sorted(tail['skills'],key=lambda s:s['id']), 'lazy tail ids/labels lost')
+        require(not any('view=full' in u for u in requests), 'expanding labels fetched full role')
+        pending = group.locator('[data-detail="pending"]')
+        if pending.count():
+            sid = pending.first.get_attribute('data-skill')
+            pending.first.click()
+            page.wait_for_function("id=>!Array.from(document.querySelectorAll('#map [data-skill]')).find(n=>n.dataset.skill===id).hasAttribute('data-detail')", arg=sid)
+            require(any('/skills/' in u and 'release=' in u for u in requests), 'tail detail was not fetched release-pinned')
+            expected = page.request.get(base + '/v1/roles/' + payload['role_id'] + '/skills/' + sid + '?release=' + payload['release_id']).json()['skill']
+            require(page.locator('#skillPanel h3').inner_text() == expected['label'], 'lazy skill detail mismatch')
+            assert_detail_fit(page)
+        group.locator('summary').click()
+    return measured
+
+
 def current_record(page) -> dict:
-    return json.loads(page.locator("#json").get_attribute("data-raw"))
+    previous = page.locator("#tabs [aria-selected=true]").get_attribute("data-tab")
+    page.locator("#t-agent").click()
+    page.wait_for_function("document.querySelector('#app').dataset.tabReady === 'agent'")
+    record = json.loads(page.locator("#json").get_attribute("data-raw"))
+    page.locator("#t-" + previous).click()
+    page.wait_for_function("tab=>document.querySelector('#app').dataset.tabReady === tab", arg=previous)
+    return record
 
 
 def snapshot(page, output: Path, label: str) -> None:
@@ -153,9 +207,10 @@ def snapshot(page, output: Path, label: str) -> None:
 def exercise_map(page, record: dict, output: Path, role: str) -> None:
     skills = {skill["id"]: skill for skill in record["skill_map"]["skills"]}
     rows = page.locator("#map .srow")
-    require(rows.count() == len(skills), "map must show every API skill")
+    # Collapsed tails are not built in the DOM until requested.
     floor = 3 if len(skills) > 100 else 0
     default_ids = {key for key, skill in skills.items() if not floor or skill["windows"][-1]["employers"] >= floor}
+    require(rows.count() == len(default_ids), "collapsed map eagerly built tail rows")
     require(set(page.locator("#map .srow:visible").evaluate_all("nodes => nodes.map(n => n.dataset.skill)")) == default_ids, "wrong overview rows")
     require(("Overview floor: 3 employers" if floor else "All skills shown") in page.locator("#overviewPolicy").inner_text(), "display floor not stated")
     for status in ("core", "rising", "early", "fading"):
@@ -165,6 +220,7 @@ def exercise_map(page, record: dict, output: Path, role: str) -> None:
         if hidden:
             require(f"{len(hidden)} more, asked by fewer than {floor} employers" in group.locator("summary").inner_text(), "wrong collapsed count")
             group.locator("summary").click()
+            page.wait_for_function("status=>document.querySelector('#map details[data-status='+status+']').dataset.loaded==='true'", arg=status)
     require(page.locator("#map .srow:visible").count() == len(skills), "expanded map lost rows")
     page.evaluate("() => { const r=JSON.parse(document.querySelector('#json').dataset.raw); window.__atlasGateSkills=Object.fromEntries(r.skill_map.skills.map(s=>[s.id,s])); }")
     for start in range(0, len(skills), 32):
@@ -321,6 +377,13 @@ def check_case(browser, base: str, out: Path, width: int, scheme: str, reference
     context = browser.new_context(viewport={"width": width, "height": 900 if width == 1280 else 844},
                                   color_scheme=scheme, reduced_motion="reduce", service_workers="block")
     page = context.new_page()
+    page.add_init_script("""
+        const observer=new MutationObserver(()=>{
+            if(document.querySelector('#app')?.dataset.ready==='true'){
+                observer.disconnect(); requestAnimationFrame(()=>requestAnimationFrame(()=>window.__gateInteractive=performance.now()));
+            }
+        }); observer.observe(document,{subtree:true,childList:true,attributes:true,attributeFilter:['data-ready']});
+    """)
     page.on("console", lambda message: errors.append("console: " + message.text) if message.type == "error" else None)
     page.on("pageerror", lambda error: errors.append("page: " + str(error)))
     page.on("request", lambda request: requests.append(request.url))
@@ -354,12 +417,17 @@ def check_case(browser, base: str, out: Path, width: int, scheme: str, reference
         for family in ("IBM Plex Sans", "IBM Plex Mono", "STIX Two Text"):
             require(any(face["family"] == family and face["status"] == "loaded" for face in fonts), "reference typography failed to load: " + family)
         require(not any(face["status"] == "error" for face in fonts), "a local font failed to decode")
+        budgets = None
+        if not reference:
+            page.wait_for_function("window.__gateInteractive !== undefined")
+            budgets = light_budgets(page, base, requests)
         roles = page.locator("#rolePick button").evaluate_all("nodes => nodes.map(node => node.dataset.role)")
         require(bool(roles), "catalog has no role controls")
         screenshots = 0
         for index, role in enumerate(roles):
             page.locator("#rolePick button").nth(index).click()
             if not reference:
+                page.wait_for_function("document.querySelector('#app').dataset.ready === 'true'")
                 record = current_record(page)
                 require(record["id"] == "role." + role, "wrong selected API role")
                 sample = page.locator("#sampleNotice").inner_text()
@@ -388,6 +456,7 @@ def check_case(browser, base: str, out: Path, width: int, scheme: str, reference
                     require(page.locator('#tabs [aria-selected="true"]').count() == 1, "multiple selected tabs")
                     require(page.locator('#tabs [tabindex="0"]').count() == 1, "tabs do not use roving focus")
                     require(page.locator('[role="tabpanel"]:not([hidden])').count() == 1, "multiple visible tab panels")
+                    page.wait_for_function("tab=>document.querySelector('#app').dataset.tabReady===tab", arg=tab)
                     exercise_tab(page, tab, record, requests)
                     assert_view(page, role + " " + tab)
                 snapshot(page, output, role + "-" + tab)
@@ -415,7 +484,7 @@ def check_case(browser, base: str, out: Path, width: int, scheme: str, reference
             page.goto(base + "/", wait_until="networkidle")
             require(page.title(), "existing preview failed to load")
         require(not errors, "\n".join(errors))
-        return {"width": width, "scheme": scheme, "reference": reference, "roles": roles, "screenshots": screenshots, "errors": errors}
+        return {"width": width, "scheme": scheme, "reference": reference, "roles": roles, "screenshots": screenshots, "errors": errors, "budgets": budgets}
     finally:
         context.close()
 
@@ -437,6 +506,7 @@ def check_failure_states(browser, base: str) -> None:
         page.wait_for_function("document.querySelector('#app').dataset.ready === 'true'")
 
         page.locator("#t-gap").click()
+        page.wait_for_function("document.querySelector('#app').dataset.tabReady==='gap'")
         assert_gap_rows_fit(page)
         style = page.add_style_tag(content="#checks { grid-auto-rows: 1px; gap: 0; }")
         try:

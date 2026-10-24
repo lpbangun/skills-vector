@@ -65,9 +65,14 @@ def create_mcp_server(store: CatalogStore, *, role_catalog: RoleAtlasReads | Non
         return role_catalog.list_roles(release_id)
 
     @server.tool(annotations=READ_ONLY)
-    def get_role(role: str, release_id: str | None = None) -> dict[str, Any]:
-        """Read a full role/2 record, preserving fixture and experimental caveats."""
-        return role_catalog.role(role, release_id)
+    def get_role(role: str, release_id: str | None = None, view: str = "full") -> dict[str, Any]:
+        """Read full (default) or light overview with explicit status-tail summaries."""
+        return role_catalog.role(role, release_id, view)
+
+    @server.tool(annotations=READ_ONLY)
+    def get_role_skill(role: str, skill_id: str, release_id: str | None = None) -> dict[str, Any]:
+        """Read complete evidence, shares and forecast for one release-pinned role skill."""
+        return role_catalog.skill(role, skill_id, release_id)
 
     @server.tool(annotations=READ_ONLY)
     def get_role_level(role: str, level: str, release_id: str | None = None) -> dict[str, Any]:

@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import argparse
+from copy import deepcopy
+import hashlib
 import json
 import os
 import re
@@ -22,6 +24,7 @@ HTTP_STATUS = {
     "unknown_level": 404,
     "unknown_industry": 404,
     "unknown_expectation": 404,
+    "unknown_skill": 404,
     "role_catalog_unavailable": 503,
 }
 RELEASE_PATTERN = r"[A-Za-z0-9][A-Za-z0-9._-]{0,79}"
@@ -79,8 +82,11 @@ class RoleAtlasReads:
         return self._read("track_record", release_id=release_id, **({"role": role} if role is not None else {}))
 
     def _track_record(self, records: list[dict]) -> dict:
-        from .role_ledger import read_ledger, track_record
-        ledger = read_ledger(self.ledger_path) if self.ledger_path is not None else None
+        from .role_artifacts import read_json
+        from .role_ledger import track_record
+        from .role_ledger_storage import unpack
+        # track_record validates once, after decoding the storage representation.
+        ledger = unpack(read_json(self.ledger_path)) if self.ledger_path is not None else None
         if ledger is not None and any(e["data_kind"] != ("fixture" if self.fixtures else "research") for e in ledger["entries"]):
             raise ValueError("ledger data kind does not match the catalog selection")
         return track_record(records, ledger)
@@ -88,8 +94,11 @@ class RoleAtlasReads:
     def list_roles(self, release_id: str | None = None) -> dict[str, Any]:
         return self._read("roles", release_id=release_id)
 
-    def role(self, role: str, release_id: str | None = None) -> dict[str, Any]:
-        return self._read("role", role=role, release_id=release_id)
+    def role(self, role: str, release_id: str | None = None, view: str = "full") -> dict[str, Any]:
+        return self._read("role", role=role, release_id=release_id, view=view)
+
+    def skill(self, role: str, skill_id: str, release_id: str | None = None) -> dict[str, Any]:
+        return self._read("skill", role=role, skill_id=skill_id, release_id=release_id)
 
     def level(self, role: str, level: str, release_id: str | None = None) -> dict[str, Any]:
         return self._read("level", role=role, level=level, release_id=release_id)
@@ -107,6 +116,80 @@ class RoleAtlasReads:
         return self._read("expectation", expectation_id=expectation_id, release_id=release_id)
 
     def _read(self, resource: str, *, release_id: str | None, **params: Any) -> dict[str, Any]:
+        # Only file-version-bound responses are cached; each caller gets a fresh value.
+        try:
+            files = sorted(self.catalog.root.glob("*.json")) if self.catalog else []
+            if self.catalog:
+                manifest = self.catalog.root.parent / "release.json"
+                if manifest.is_file():
+                    files.extend([manifest, *sorted((manifest.parent / "views").glob("*.json"))])
+            if self.ledger_path is not None:
+                files.append(self.ledger_path)
+            signature = (self.fixtures, tuple((str(p.resolve()), p.stat().st_mtime_ns, p.stat().st_size) for p in files))
+            if getattr(self, "_signature", None) != signature:
+                self._signature, self._responses = signature, {}
+            key = (resource, release_id, tuple(sorted(params.items())))
+            if key not in self._responses:
+                value = self._light(resource, release_id, params) or self._compute(resource, release_id=release_id, **params)
+                if value["status"] != "ok":
+                    return deepcopy(value)
+                if len(self._responses) >= 4096:
+                    self._responses.clear()
+                self._responses[key] = value
+            return deepcopy(self._responses[key])
+        except RoleReadError as exc:
+            return {"status": exc.code, "detail": str(exc), "data_kind": "fixture" if self.fixtures else "research", "fixture_caveat": FIXTURE_CAVEAT if self.fixtures else None}
+        except (OSError, ValueError, KeyError, TypeError):
+            return {"status": "role_catalog_unavailable", "detail": "The role/2 catalog is unreadable or invalid.",
+                    "data_kind": "fixture" if self.fixtures else "research",
+                    "fixture_caveat": FIXTURE_CAVEAT if self.fixtures else None}
+
+    def _light(self, resource: str, release_id: str | None, params: dict) -> dict | None:
+        """Materialized publication reads avoid decoding/validating unrelated large roles."""
+        if not self.catalog or self.fixtures or not (resource in ("roles", "skill") or (resource == "role" and params["view"] == "overview")):
+            return None
+        from .role_artifacts import read_json, require
+        manifest_path = self.catalog.root.parent / "release.json"
+        if not manifest_path.exists():
+            return None
+        manifest = read_json(manifest_path)
+        require(manifest["schema"] == "skills-vector.role-release/1", "invalid publication manifest")
+        if release_id is not None:
+            _check(bool(re.fullmatch(RELEASE_PATTERN, release_id)), "invalid release id")
+            if release_id != manifest["release_id"]:
+                return None
+        summaries = [r["summary"] for r in manifest["roles"].values()]
+        require(all(r["data_kind"] == "research" and r["release_id"] == manifest["release_id"] for r in summaries), "publication selection mismatch")
+        require({p.name for p in self.catalog.root.glob("*.json")} == {r["id"].removeprefix("role.") + ".json" for r in summaries}, "publication role file set changed")
+        for summary in summaries:
+            path = self.catalog.root / (summary["id"].removeprefix("role.") + ".json")
+            require(hashlib.sha256(path.read_bytes()).hexdigest() == manifest["roles"][summary["id"]]["file_sha256"], "publication source bytes changed")
+        context = {"status": "ok", "data_kind": "research", "fixture_caveat": None, "release_id": manifest["release_id"],
+                   "record_schema": SCHEMA_VERSION, "limits": list(dict.fromkeys(l for r in summaries for l in r["limits"]))}
+        if resource == "roles":
+            return {**context, "roles": summaries}
+        _check(bool(re.fullmatch(ROLE_PATTERN, params["role"])), "invalid role")
+        summary = next((r for r in summaries if params["role"] in (r["id"], r["id"].removeprefix("role."))), None)
+        if summary is None:
+            raise RoleReadError("unknown_role", "Unknown role in the pinned release.")
+        rid = summary["id"]; slug = rid.removeprefix("role.")
+        context.update(role_id=rid, publication=summary["publication"], limits=summary["limits"])
+        if resource == "skill":
+            _check(bool(re.fullmatch(EXPECTATION_PATTERN + r"(?::[A-Za-z0-9._-]+)*", params["skill_id"])), "invalid skill id")
+            record = read_json(self.catalog.root / (slug + ".json"))
+            skill = next((s for s in record["skill_map"]["skills"] if s["id"] == params["skill_id"]), None)
+            if skill is None:
+                raise RoleReadError("unknown_skill", "Unknown skill in the pinned role/release.")
+            return {**context, "skill": skill}
+        path = manifest_path.parent / "views" / (slug + ".json")
+        data = path.read_bytes()
+        require(hashlib.sha256(data).hexdigest() == manifest["roles"][rid]["overview_sha256"], "publication overview bytes changed")
+        light = read_json(path)
+        require(light["role"]["id"] == rid and light["role"]["release_id"] == manifest["release_id"] and light["role"]["data_kind"] == "research", "overview mismatch")
+        record = read_json(self.catalog.root / (slug + ".json"))
+        return {**context, **light, "track_record": self._track_record([record]), "method": method_policy()}
+
+    def _compute(self, resource: str, *, release_id: str | None, **params: Any) -> dict[str, Any]:
         context = {"data_kind": "fixture" if self.fixtures else "research",
                    "fixture_caveat": FIXTURE_CAVEAT if self.fixtures else None}
         try:
@@ -114,6 +197,10 @@ class RoleAtlasReads:
                 _check(bool(re.fullmatch(RELEASE_PATTERN, release_id)), "release must be an immutable release id")
             if "role" in params:
                 _check(bool(re.fullmatch(ROLE_PATTERN, params["role"])), "role must be a lowercase role slug or role id")
+            if resource == "role":
+                _check(params["view"] in ("full", "overview"), "view must be full or overview")
+            if resource == "skill":
+                _check(bool(re.fullmatch(EXPECTATION_PATTERN + r"(?::[A-Za-z0-9._-]+)*", params["skill_id"])), "invalid skill id")
             if resource == "level":
                 _check(bool(re.fullmatch(r"L?[0-9]{1,2}", params["level"])), "level must be L1–L5 (or its number)")
             if resource == "industry":
@@ -125,7 +212,12 @@ class RoleAtlasReads:
                 _check(release_id is not None, "expectations require an explicit release id")
             if self.catalog is None:
                 raise RoleReadError("role_catalog_unavailable", "No role/2 catalog selected. Configure a research catalog or explicitly select fixtures.")
-            all_records = self.catalog.list_roles()
+            models = self.catalog._records(None)
+            model_signature = tuple(id(record) for record in models)
+            if getattr(self, "_model_signature", None) != model_signature:
+                self._model_signature = model_signature
+                self._snapshots = [record.to_dict() for record in models]
+            all_records = self._snapshots
             expected_kind = "fixture" if self.fixtures else "research"
             if any(record["data_kind"] != expected_kind for record in all_records):
                 raise RoleReadError("role_catalog_unavailable", "Catalog data kind does not match the explicit selection; fixtures require fixture mode.")
@@ -179,8 +271,17 @@ class RoleAtlasReads:
                     payload["presentation"] = presentation
             if resource == "track_record":
                 return {**payload, "track_record": self._track_record([record])}
+            if resource == "skill":
+                skill = next((s for s in record["skill_map"]["skills"] if s["id"] == params["skill_id"]), None)
+                if skill is None:
+                    raise RoleReadError("unknown_skill", "Unknown skill in the pinned role/release.")
+                return {**payload, "skill": skill}
             if resource == "role":
-                return {**payload, "role": record, "track_record": self._track_record([record]), "method": method_policy()}
+                result = {**payload, "role": record, "track_record": self._track_record([record]), "method": method_policy()}
+                if params["view"] == "overview":
+                    from .role_overview import overview
+                    result.update(overview(record))
+                return result
             if resource == "graph":
                 return {**payload, "graph": record["skill_map"]}
             if resource == "level":

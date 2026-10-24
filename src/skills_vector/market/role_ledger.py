@@ -11,6 +11,7 @@ from jsonschema import ValidationError
 
 from .role_artifacts import digest, load_roles, read_json, require, write_json
 from .role_atlas import RoleRecord, _period, _validator
+from .role_ledger_storage import pack, unpack
 
 SCHEMA = "skills-vector.forecast-ledger/1"
 NO_ARCHIVE = "not run: no historical posting archive"
@@ -107,6 +108,7 @@ def create_ledger(records: list[dict], events: list[dict] | None = None) -> dict
 
 
 def append_ledger(existing: dict, fresh: dict) -> dict:
+    existing, fresh = unpack(existing), unpack(fresh)
     validate_ledger(existing)
     validate_ledger(fresh)
     result = deepcopy(existing)
@@ -149,6 +151,7 @@ def _measurement(record: dict, entry: dict) -> tuple[dict | None, str | None]:
 
 
 def resolve_ledger(ledger: dict, records: list[dict]) -> dict:
+    ledger = unpack(ledger)
     validate_ledger(ledger)
     for record in records:
         RoleRecord.from_dict(record)
@@ -185,6 +188,7 @@ def _prequential(pairs: list[dict]) -> dict:
 
 
 def backtest_ledger(ledger: dict, archive: Path | None) -> dict:
+    ledger = unpack(ledger)
     validate_ledger(ledger)
     result = deepcopy(ledger)
     require(archive is None or not archive.exists() or archive.is_dir(), "archive must be a directory of role/2 snapshots")
@@ -240,7 +244,7 @@ def backtest_ledger(ledger: dict, archive: Path | None) -> dict:
 
 def validate_ledger(ledger: dict) -> None:
     try:
-        _validate_ledger(ledger)
+        _validate_ledger(unpack(ledger))
     except (KeyError, TypeError, ValidationError) as exc:
         raise ValueError("invalid forecast ledger structure") from exc
 
@@ -259,9 +263,16 @@ def _validate_ledger(ledger: dict) -> None:
     require(len({e["id"] for e in entries}) == len(entries), "duplicate ledger call")
     require(len({(e["role_id"], e["skill_id"], e["forecast"]["id"], e["forecast"]["created"]) for e in entries}) == len(entries), "duplicate issued claim across releases")
     validator = _validator().evolve(schema={"$defs": _validator().schema["$defs"], "$ref": "#/$defs/Forecast"})
+    shapes = set()
     for entry in entries:
         forecast = entry["forecast"]
-        validator.validate(forecast)
+        # Pending calls share all forecast fields except id. Validate each shape once,
+        # but still validate every id and every call identity/source/scope below.
+        require(isinstance(forecast.get("id"), str) and bool(re.search(r"\S", forecast["id"])), "invalid forecast id")
+        shape = tuple(sorted((k, type(v).__name__, v) for k, v in forecast.items() if k != "id"))
+        if shape not in shapes:
+            validator.validate(forecast)
+            shapes.add(shape)
         require(entry["id"] == _entry_id(entry["role_id"], entry["skill_id"], entry["source_release"], forecast["id"]), "call identity mismatch")
         require(entry["data_kind"] in ("research", "fixture"), "invalid ledger data kind")
         require(_period(forecast["resolves"]) - _period(forecast["created"]) == 12 and ("Q" in forecast["resolves"]) == ("Q" in forecast["created"]), "ledger needs exact four-quarter horizon and consistent cadence")
@@ -296,13 +307,14 @@ def _validate_ledger(ledger: dict) -> None:
 
 
 def read_ledger(path: Path) -> dict:
-    ledger = read_json(path)
+    ledger = unpack(read_json(path))
     validate_ledger(ledger)
     return ledger
 
 
 def track_record(records: list[dict], ledger: dict | None) -> dict:
     if ledger is not None:
+        ledger = unpack(ledger)
         validate_ledger(ledger)
     selected = {(r["id"], r["release_id"]): r for r in records}
     entries = [e for e in ledger["entries"] if (e["role_id"], e["source_release"]) in selected] if ledger else []
@@ -337,17 +349,17 @@ def run_ledger(args) -> dict:
         value = create_ledger(records, read_json(args.events) if args.events else None)
         if args.ledger.exists():
             value = append_ledger(read_ledger(args.ledger), value)
-        write_json(args.ledger, value, replace=True, inputs=(args.roles_root,) + ((args.events,) if args.events else ()))
+        write_json(args.ledger, pack(value), compact=True, replace=True, inputs=(args.roles_root,) + ((args.events,) if args.events else ()))
         return track_record(records, value)
     ledger = read_ledger(args.ledger)
     if action in ("show", "score"):
         return track_record(load_roles(args.roles_root, args.release_id), ledger)
     if action == "resolve":
         outcome = resolve_ledger(ledger, load_roles(args.roles_root, args.release_id))
-        write_json(args.ledger, outcome["ledger"], replace=True, inputs=(args.roles_root,))
+        write_json(args.ledger, pack(outcome["ledger"]), compact=True, replace=True, inputs=(args.roles_root,))
         return {"resolved_count": sum(e["resolution"] is not None for e in outcome["ledger"]["entries"]), "deferred": outcome["deferred"]}
     outcome = backtest_ledger(ledger, args.archive)
-    write_json(args.ledger, outcome["ledger"], replace=True, inputs=(args.archive,) if args.archive else ())
+    write_json(args.ledger, pack(outcome["ledger"]), compact=True, replace=True, inputs=(args.archive,) if args.archive else ())
     if args.output:
         write_json(args.output, outcome["report"], inputs=(args.ledger,) + ((args.archive,) if args.archive else ()))
     return outcome["report"]

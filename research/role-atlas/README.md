@@ -2,8 +2,13 @@
 
 ## Canonical 2026-Q4 (M8)
 
-`2026-Q4/` contains the derived research records, source-bound audit, none-basis
-forecast ledger and explicit no-archive backtest. Its 71-board canonical frame
+`2026-Q4/` contains compactly serialized full research records, hash-bound light
+views, a small `release.json` manifest, compact none-basis forecast ledger and
+explicit no-archive backtest. The full source-bound audit is **not in this tree**;
+its byte hash/size are in the manifest and its operator-local location is
+`~/.local/share/skills-vector-evidence/role-atlas/releases/<release_id>/audit.json`.
+`read_audit` verifies it when present or reports **audit not available locally**.
+It is never bundled into the function. Its 71-board canonical frame
 supersedes the starter capture; the two captures are never mixed. It is a
 tech-heavy public-board sample, not a market census. No raw board payloads or
 full descriptions are committed. Original inputs remain external/read-only.
@@ -25,9 +30,45 @@ reported in `docs/role-atlas/PROGRESS.md` and `audits/M8-matches.json` there.
 
 For more than 100 skills, the default overview shows nodes mentioned by at least
 three employers. Each status retains an expandable lower-employer group; the
-full API/JSON and all rows remain available. This display floor is separate
+full API/JSON and all rows remain available. The page fetches only the selected
+role overview first, renders the id/label tail on expansion, and fetches its
+complete skill evidence on selection. Other roles, full JSON, level expectations,
+Connections and gap data are loaded only on demand. This display floor is separate
 from status/edge/profile thresholds. AE segment scope follows the approved
 M7-r2 refinements: same-level labels agree; Named in duties alone is not L5.
+
+### Light and full reads (REST/MCP parity)
+
+- `GET /v1/roles/{role}?view=overview` / `get_role(role, release_id?, view="overview")`:
+  complete skills at the stated employer floor; each status tail has only count
+  and id/label pairs. For large catalogs, level expectations are explicitly
+  deferred; the existing level endpoint or full view supplies them.
+- `GET /v1/roles/{role}/skills/{skill_id}?release=...` /
+  `get_role_skill(role, skill_id, release_id?)`: complete skill, pinned to the
+  role/release, with identical errors/caveats in REST and MCP.
+- Default and `view=full` stay byte-for-byte unchanged. Lazy/overview records
+  are partial views, **not new schema-valid full role records**. The manifest
+  binds each materialized light view and source file by byte hash; edits fail
+  closed. No runtime data/fixture fallback is introduced.
+- Ledger storage `/2` groups shared fields once per role and stores pending none
+  calls as `[id, skill_id, created, resolves, status]` rows. `read_ledger` expands
+  to the existing `/1` math model losslessly. Non-pending/scored calls retain
+  their complete receipts. Issued ids, source pins and track-record JSON do not
+  change.
+
+Research `market posting-volume project` now writes this small publication
+layout by default. `--evidence-root` can select another **out-of-tree** audit
+store. Use a fresh output directory; ledger/backtest are then separate operator
+commands. `--inline-audit` is an explicit diagnostic scratch-only escape hatch,
+not a publication command. Never copy its audit into git. M4/M5 historical
+artifacts are unchanged; git history is not rewritten.
+
+The checker enforces **400,000 overview bytes / 2,000 ms first interactive map /
+1,000 ms status-tail expansion** on the initial AE page in all three cases,
+before any full-record verification fetch. Navigation/click-to-paint timings
+are observed independently in the browser, with no role warm-up. Results include
+measured budgets; overruns exit nonzero. Current release bytes are also tested
+against **6,000,000**, and its ledger against **300,000**.
 
 ## Approved M4–M5 snapshots
 

@@ -3,6 +3,9 @@
   "use strict";
 
   var ROLES = {}, GRAPH = {}, INDUSTRY = {}, KINDS = {}, envelopes = {};
+  var catalogEntries = [], catalogRelease, catalogKind, overviewInfo = {}, detailCache = {}, fullLoads = {}, skillLoads = {}, activation = 0;
+  window.atlasMetrics = { tails: [] };
+  function painted() { return new Promise(function (resolve) { requestAnimationFrame(function () { requestAnimationFrame(resolve); }); }); }
   var STATUS = {
     core: ["core", "established", "Repeated posting demand at these levels."],
     rising: ["rising", "growing", "Demand is up, and an independent source agrees."],
@@ -30,10 +33,11 @@
   }
 
   function buildViews(payloads) {
-    ROLES = {}; GRAPH = {}; INDUSTRY = {}; KINDS = {}; envelopes = {};
     payloads.forEach(function (envelope) {
       var raw = envelope.role, key = raw.id.replace(/^role\./, ""), f = raw.foundation, link = raw.ladder.linked_roles[0];
       envelopes[key] = envelope;
+      if (envelope.overview) overviewInfo[key] = envelope.overview;
+      if (!detailCache[key]) detailCache[key] = {};
       ROLES[key] = {
         raw: raw, label: raw.label, status: raw.status, publication: raw.publication, anchors: raw.anchors,
         foundation: { wage: f.median_pay, wageNote: f.pay_note, employment: f.employment,
@@ -92,7 +96,12 @@
   }
 
   function skills() {
-    return role().raw.skill_map.skills.map(function (skill) {
+    var key = state.role, all = role().raw.skill_map.skills.slice();
+    if (envelopes[key].view === "overview") (overviewInfo[key].tails || []).forEach(function (group) {
+      group.skills.forEach(function (item) { all.push(detailCache[key][item.id] || { id: item.id, label: item.label, status: group.status, stub: true }); });
+    });
+    return all.map(function (skill) {
+      if (skill.stub) return { id: skill.id, label: skill.label, short: skill.label, status: skill.status, stub: true, employers: null };
       var fams = {}; skill.evidence.forEach(function (item) { fams[item.family] = true; });
       return { id: skill.id, short: skill.short_label, label: skill.label, from: skill.first_level,
         sh: skill.share_by_level, src: skill.source_links, status: skill.status,
@@ -129,7 +138,8 @@
   function renderSkillPanel(list) {
     var k = list.find(function (item) { return item.id === state.skill; });
     if (!k) { $("skillPanel").innerHTML = '<p class="empty">' + (role().window.postings === 0 ? "No admitted postings in this role/window. No skill evidence is available; this is not evidence of no market demand." : (state.mapLevel && !role().levels.some(function (l) { return l.L === state.mapLevel && l.n > 0; }) ? "No assigned postings at this level. Missing coverage is not zero demand." : overviewFloor() && list.length ? "No rows at the overview employer floor for this filter. Expand a status group to inspect all lower-employer rows." : "No skills at this level.")) + '</p>'; return; }
-    var raw = role().raw, original = raw.skill_map.skills.find(function (item) { return item.id === k.id; });
+    if (k.stub) { $("skillPanel").innerHTML = '<p class="empty">Loading skill evidence…</p>'; return; }
+    var raw = role().raw, original = raw.skill_map.skills.find(function (item) { return item.id === k.id; }) || detailCache[state.role][k.id];
     var st = STATUS[k.status], byId = {}; list.forEach(function (item) { byId[item.id] = item; });
     var pairs = coEdges().filter(function (edge) { return edge[0] === k.id || edge[1] === k.id; }).sort(function (a, b) { return b[2] - a[2]; });
     var confirming = original.evidence.filter(function (signal) { return (signal.family === "O" || signal.family === "M") && signal.direction === "up"; });
@@ -195,9 +205,9 @@
     var layerRows = [
       ["Foundation", "baseline", "Official-map sources and occupation context.", "Long-run tasks and anchor statistics.", raw.foundation.core_tasks.length + " recorded core tasks."],
       ["Demand", "what employers ask", raw.demand_window.window_length + " windows.", "Posting and employer sample counts.", raw.demand_window.postings + " " + noun(raw.demand_window.postings, "posting") + " / " + raw.demand_window.employers + " " + noun(raw.demand_window.employers, "employer") + "."],
-      ["Shifts", "forward-looking", "Comparable windows and independent signals.", "Core, rising, early and fading; disputes remain flags.", raw.skill_map.skills.filter(function (skill) { return skill.status !== "core"; }).length + " non-core skills with forecasts."],
+      ["Shifts", "forward-looking", "Comparable windows and independent signals.", "Core, rising, early and fading; disputes remain flags.", (raw.skill_map.skills.filter(function (skill) { return skill.status !== "core"; }).length + (envelopes[state.role].view === "overview" ? overviewInfo[state.role].tails.filter(function (g) { return g.status !== "core"; }).reduce(function (n, g) { return n + g.count; }, 0) : 0)) + " non-core skills with forecasts."],
       ["Seniority ladder", "levels of one job", "Scope and ownership first; seniority/years stay weak. Customer segments in titles count only under a reviewed role-specific policy.", "Role-specific names on the shared L1–L5 scale.", raw.ladder.levels.length + " recorded IC levels; management is a separate track."],
-      ["Skills graph", "how skills connect", "Posting shares, map links and qualified co-occurrence edges.", "Level coverage, asked-together pairs and top-level additions.", raw.skill_map.skills.length + " skills / " + raw.skill_map.asked_together.length + " qualified pairs."],
+      ["Skills graph", "how skills connect", "Posting shares, map links and qualified co-occurrence edges.", "Level coverage, asked-together pairs and top-level additions.", (overviewInfo[state.role] ? overviewInfo[state.role].total : raw.skill_map.skills.length) + " skills / " + raw.skill_map.asked_together.length + " qualified pairs."],
       ["Industry view", "same job, different field", "Broad NAICS sectors with explicit sample floors.", "Duties, credentials, domain knowledge and skill shares.", raw.industries.length + " sectors, including visible profile gaps."],
       ["Your gap", "private, local", "Your own checkboxes, in this browser only.", "A local comparison, never a hiring or personal suitability prediction.", "No personal evidence is uploaded or persisted."]
     ];
@@ -221,40 +231,66 @@
     return payload;
   }
 
+  function checkEnvelope(payload, key) {
+    if (!payload.role || payload.role.schema !== "skills-vector.role/2" || payload.role.release_id !== catalogRelease || payload.role.data_kind !== catalogKind || payload.role.id !== "role." + key)
+      throw new Error("Role records do not match the selected catalog release.");
+    return payload;
+  }
+  function roleURL(key) { return "/v1/roles/" + encodeURIComponent(key) + "?release=" + encodeURIComponent(catalogRelease); }
+  async function ensureOverview(key) {
+    if (!envelopes[key]) buildViews([checkEnvelope(await fetchJSON(roleURL(key) + "&view=overview"), key)]);
+  }
+  async function ensureFullRole(key) {
+    if (envelopes[key].view !== "overview" || !envelopes[key].overview.employer_floor) return;
+    if (!fullLoads[key]) fullLoads[key] = fetchJSON(roleURL(key) + "&view=full").then(function (payload) {
+      buildViews([checkEnvelope(payload, key)]);
+    }).catch(function (error) { delete fullLoads[key]; throw error; });
+    await fullLoads[key];
+  }
+  async function ensureSkill(key, id) {
+    if (envelopes[key].role.skill_map.skills.some(function (s) { return s.id === id; }) || detailCache[key][id]) return;
+    var cacheKey = key + ":" + id;
+    if (!skillLoads[cacheKey]) skillLoads[cacheKey] = fetchJSON("/v1/roles/" + encodeURIComponent(key) + "/skills/" + encodeURIComponent(id) + "?release=" + encodeURIComponent(catalogRelease)).then(function (payload) {
+      if (payload.release_id !== catalogRelease || payload.data_kind !== catalogKind || payload.role_id !== "role." + key || !payload.skill || payload.skill.id !== id) throw new Error("Skill does not match the selected role/release.");
+      detailCache[key][id] = payload.skill;
+      payload.skill.evidence.forEach(function (signal) { KINDS[signal.source_kind + ":" + signal.source] = {name: signal.source, fam: signal.family, tm: [timingClasses[signal.timing], signal.timing]}; });
+    }).catch(function (error) { delete skillLoads[cacheKey]; throw error; });
+    await skillLoads[cacheKey];
+  }
+  function loadError(error) {
+    $("atlasContent").hidden = true; $("loadStatus").hidden = false;
+    $("fixtureCallout").hidden = true; $("app").dataset.ready = "error";
+    $("loadTitle").textContent = "Role catalog unavailable";
+    $("loadMessage").textContent = error.message + " Select a research catalog on the server, or explicitly enable its fixture mode. No fallback data is shown.";
+    $("retryLoad").hidden = false;
+  }
   async function loadCatalog() {
     $("atlasContent").hidden = true; $("loadStatus").hidden = false; $("retryLoad").hidden = true;
-    $("app").dataset.ready = "false";
-    $("loadTitle").textContent = "Loading the role catalog";
+    $("app").dataset.ready = "false"; $("loadTitle").textContent = "Loading the role catalog";
+    ROLES = {}; GRAPH = {}; INDUSTRY = {}; KINDS = {}; envelopes = {}; overviewInfo = {}; detailCache = {}; fullLoads = {}; skillLoads = {}; expandedRows = {};
     try {
       var requested = new URLSearchParams(location.search).get("release");
       var index = await fetchJSON("/v1/roles" + (requested === null ? "" : "?release=" + encodeURIComponent(requested)));
       if (!index.roles.length) throw new Error("This release has no role records.");
-      var payloads = await Promise.all(index.roles.map(function (item) {
-        return fetchJSON("/v1/roles/" + encodeURIComponent(item.id) + "?release=" + encodeURIComponent(index.release_id));
-      }));
-      payloads.forEach(function (item) {
-        if (!item.role || item.role.schema !== "skills-vector.role/2" || item.role.release_id !== index.release_id || item.role.data_kind !== index.data_kind)
-          throw new Error("Role records do not match the selected catalog release.");
-      });
-      buildViews(payloads);
+      catalogEntries = index.roles; catalogRelease = index.release_id; catalogKind = index.data_kind;
       var saved = {};
       try { saved = JSON.parse(localStorage.getItem("sv-role-atlas") || "{}"); } catch (_) { /* storage is optional */ }
       if (!saved || typeof saved !== "object") saved = {};
-      state.role = ROLES[saved.role] ? saved.role : Object.keys(ROLES)[0];
+      state.role = catalogEntries.some(function (r) { return r.id === "role." + saved.role; }) ? saved.role : catalogEntries[0].id.replace(/^role\./, "");
+      await ensureOverview(state.role);
       state.level = role().levels.some(function (item) { return item.L === saved.level; }) ? saved.level : role().raw.skill_map.top_level_adds.core_level;
       state.tab = ["map", "levels", "industries", "gap", "agent"].includes(saved.tab) ? saved.tab : "map";
       state.mapLevel = role().levels.some(function (item) { return item.L === saved.mapLevel; }) ? saved.mapLevel : 0;
       state.mode = saved.mode === "conn" ? "conn" : "list";
       state.lens = saved.lens === "top" ? "top" : "level"; state.edges = saved.edges === "builds" ? "builds" : "co";
       state.industry = saved.industry || null; state.skill = null; state.node = null; state.have = defaultHave();
-      renderAll();
-      $("atlasContent").hidden = false; $("loadStatus").hidden = true; $("app").dataset.ready = "true";
-    } catch (error) {
-      $("fixtureCallout").hidden = true; $("app").dataset.ready = "error";
-      $("loadTitle").textContent = "Role catalog unavailable";
-      $("loadMessage").textContent = error.message + " Select a research catalog on the server, or explicitly enable its fixture mode. No fallback data is shown.";
-      $("retryLoad").hidden = false;
-    }
+      if (state.mapLevel || state.mode === "conn") await ensureFullRole(state.role);
+      renderAll(); await activateTab(state.tab);
+      $("atlasContent").hidden = false; $("loadStatus").hidden = true;
+      await document.fonts.ready; await painted();
+      $("app").dataset.ready = "true";
+      window.atlasMetrics.interactive_ms = performance.now();
+    } catch (error) { loadError(error); }
   }
 
   function persist() { try { localStorage.setItem("sv-role-atlas", JSON.stringify({ role: state.role, level: state.level, tab: state.tab, mapLevel: state.mapLevel, mode: state.mode, lens: state.lens, edges: state.edges, industry: state.industry })); } catch (e) {} }
@@ -278,8 +314,9 @@
   }
 
   function renderRolePick() {
-    $("rolePick").innerHTML = Object.keys(ROLES).map(function (k) {
-      return '<button type="button" data-role="' + k + '" aria-pressed="' + (k === state.role) + '">' + esc(ROLES[k].label) + (ROLES[k].publication === "experimental" ? ' <span class="xp">experimental</span>' : "") + "</button>";
+    $("rolePick").innerHTML = catalogEntries.map(function (entry) {
+      var k = entry.id.replace(/^role\./, "");
+      return '<button type="button" data-role="' + k + '" aria-pressed="' + (k === state.role) + '">' + esc(entry.label) + (entry.publication === "experimental" ? ' <span class="xp">experimental</span>' : "") + "</button>";
     }).join("");
   }
 
@@ -602,6 +639,9 @@
       $("topLine").innerHTML = '<span class="label">Top level adds</span><span>' + esc(comparisonReason()) + "</span>";
       return;
     }
+    if (list.some(function (k) { return k.stub; })) {
+      $("topLine").innerHTML = '<span class="label">What the top level adds</span><span>Load Connections or Levels for the full comparison, including lower-employer skills not yet loaded in this overview.</span>'; return;
+    }
     var sep = list.filter(function (k) { return comparableShares(k.sh[t - 1], k.sh[g.mid - 1]) && k.sh[t - 1] - k.sh[g.mid - 1] >= 20 && k.sh[t - 1] >= 40; })
       .sort(function (a, b) { return (b.sh[t - 1] - b.sh[g.mid - 1]) - (a.sh[t - 1] - a.sh[g.mid - 1]); });
     $("topLine").innerHTML = '<span class="label">What the top level adds</span><span>Compared with L' + g.mid + " · " + esc(levelName(g.mid)) + ", postings for L" + t + " · " + esc(levelName(t)) + " add: " +
@@ -610,12 +650,13 @@
   }
 
   var expandedRows = {};
-  function overviewFloor() { return role().raw.skill_map.skills.length > 100 ? 3 : 0; }
+  function overviewFloor() { var info = typeof overviewInfo !== "undefined" && overviewInfo[state.role]; return info ? info.employer_floor : role().raw.skill_map.skills.length > 100 ? 3 : 0; }
   function rowVisible(k) { return !overviewFloor() || k.employers >= overviewFloor() || expandedRows[state.role + ":" + k.status]; }
   function overviewText() {
     return overviewFloor() ? "Overview floor: " + overviewFloor() + " employers. Lower-employer rows are expandable per status; this is a display floor, not a status rule. All skills remain in the API and JSON." : "All skills shown; no overview display floor.";
   }
   function skillRow(k, st, r) {
+    if (k.stub) return '<button type="button" class="srow" data-skill="' + esc(k.id) + '" data-detail="pending" aria-pressed="false" aria-label="' + esc(k.label + ". " + STATUS[st][0] + ". Evidence: not loaded. Select to load full detail.") + '"><span>' + esc(k.label) + '</span><span></span><span></span><span class="call">Select for detail</span></button>';
     var pips = r.levels.map(function (l) { return '<i class="' + (neededAt(k, l.L) ? "on" : "") + '">' + (k.sh[l.L - 1] === null ? "?" : l.L) + "</i>"; }).join("");
     var ev = ["P", "O", "M"].map(function (f) { return '<i class="' + (k.fams[f] ? "on" : "") + '">' + f + "</i>"; }).join("");
     var call = k.call ? (k.call.basis === "none" ? "No forecast yet" : "<strong>" + percentage(k.call.probability) + "%</strong> · " + esc(k.call.resolves)) : "–";
@@ -649,7 +690,7 @@
       return '<div class="lane"><div class="lane-head"><span class="chip st-' + STATUS[st][1] + '">' + STATUS[st][0] + '</span><span class="muted">' + STATUS[st][2] + '</span><span class="mono muted" style="margin-left:auto">' + rows.length + "</span></div>" +
         '<div class="cols" aria-hidden="true"><span>Skill</span><span>Levels</span><span>Evidence</span><span>Forecast</span></div>' +
         common.map(function (k) { return skillRow(k, st, r); }).join("") +
-        (tail.length ? '<details class="more skill-more" data-status="' + st + '"' + (expandedRows[state.role + ":" + st] ? " open" : "") + '><summary>' + tail.length + " more, asked by fewer than " + floor + " employers · " + STATUS[st][0] + '</summary><div>' + tail.map(function (k) { return skillRow(k, st, r); }).join("") + "</div></details>" : "") + "</div>";
+        (tail.length ? '<details class="more skill-more" data-status="' + st + '"' + (expandedRows[state.role + ":" + st] ? " open" : "") + '><summary>' + tail.length + " more, asked by fewer than " + floor + " employers · " + STATUS[st][0] + '</summary><div>' + (expandedRows[state.role + ":" + st] ? tail.map(function (k) { return skillRow(k, st, r); }).join("") : "") + "</div></details>" : "") + "</div>";
     }).join("") + '<p class="rule-note">Levels: filled where 15%+ of that level\'s postings ask for it. ? means no assigned sample. Evidence: P postings · O official map (O*NET or ESCO) · M market trend (Hiring Lab, Hot Technologies, Economic Index).</p>';
     renderSkillPanel(list);
     if (state.mode === "conn") renderGraph();
@@ -672,23 +713,46 @@
     $("shiftsEndpoint").textContent = "GET /v1/shifts?since=" + encodeURIComponent(role().raw.demand_window.compared_to || role().raw.demand_window.id);
   }
 
-  function renderAll() { renderRolePick(); renderHead(); renderTabs(); renderMap(); renderLadder(); renderSheet(); renderGraph(); renderIndustry(); renderGap(); renderAgent(); renderMethod(); persist(); }
+  function renderAll() { renderRolePick(); renderHead(); renderTabs(); renderMap(); renderMethod(); persist(); }
 
-  $("rolePick").addEventListener("click", function (e) {
+  async function activateTab(tab) {
+    var key = state.role;
+    state.tab = tab; renderTabs(); persist(); $("app").dataset.tabReady = "false";
+    try {
+      if (tab !== "map") await ensureFullRole(key);
+      if (key !== state.role || tab !== state.tab) return;
+      if (tab === "map") renderMap();
+      if (tab === "levels") { renderLadder(); renderSheet(); }
+      if (tab === "industries") renderIndustry();
+      if (tab === "gap") renderGap();
+      if (tab === "agent") renderAgent();
+      renderMethod(); $("app").dataset.tabReady = tab;
+    } catch (error) { $("loadMessage").textContent = error.message; $("loadStatus").hidden = false; }
+  }
+
+  $("rolePick").addEventListener("click", async function (e) {
     var b = e.target.closest("button[data-role]"); if (!b) return;
-    state.role = b.dataset.role;
-    var r = role(); state.level = r.levels[Math.min(2, r.levels.length - 1)].L;
-    state.have = defaultHave(); state.node = null; state.industry = null; state.skill = null; state.mapLevel = 0; renderAll();
+    var key = b.dataset.role, token = ++activation;
+    $("app").dataset.ready = "false";
+    try {
+      await ensureOverview(key);
+      if (state.mode === "conn") await ensureFullRole(key);
+      if (token !== activation) return;
+      state.role = key;
+      var r = role(); state.level = r.levels[Math.min(2, r.levels.length - 1)].L;
+      state.have = defaultHave(); state.node = null; state.industry = null; state.skill = null; state.mapLevel = 0;
+      renderAll(); await activateTab(state.tab); $("app").dataset.ready = "true";
+    } catch (error) { loadError(error); }
   });
   $("stairs").addEventListener("click", function (e) {
     var b = e.target.closest("button[data-level]"); if (!b) return;
     state.level = Number(b.dataset.level); state.have = defaultHave();
-    renderLadder(); renderSheet(); renderGraph(); renderGap(); renderMethod(); persist();
+    renderLadder(); renderSheet(); if (state.mode === "conn" && state.tab === "map") renderGraph(); if (state.tab === "gap") renderGap(); renderMethod(); persist();
   });
   $("graphLevel").addEventListener("click", function (e) {
     var b = e.target.closest("button[data-glevel]"); if (!b) return;
     state.level = Number(b.dataset.glevel); state.have = defaultHave();
-    renderLadder(); renderSheet(); renderGraph(); renderGap(); renderMethod(); persist();
+    renderLadder(); renderSheet(); if (state.mode === "conn" && state.tab === "map") renderGraph(); if (state.tab === "gap") renderGap(); renderMethod(); persist();
   });
   $("lensPick").addEventListener("click", function (e) {
     var b = e.target.closest("button[data-lens]"); if (!b) return;
@@ -723,39 +787,62 @@
   $("heat").addEventListener("click", pickIndustry);
   $("tabs").addEventListener("click", function (e) {
     var b = e.target.closest("button[data-tab]"); if (!b) return;
-    state.tab = b.dataset.tab; renderTabs(); persist();
+    activateTab(b.dataset.tab);
   });
   $("tabs").addEventListener("keydown", function (e) {
     if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(e.key)) return;
     if (!e.target.matches('[role="tab"]')) return;
     var bs = Array.from($("tabs").children), i = bs.indexOf(e.target);
     i = e.key === "Home" ? 0 : e.key === "End" ? bs.length - 1 : (i + (e.key === "ArrowRight" ? 1 : bs.length - 1)) % bs.length;
-    e.preventDefault(); state.tab = bs[i].dataset.tab; renderTabs(); bs[i].focus(); persist();
+    e.preventDefault(); activateTab(bs[i].dataset.tab); bs[i].focus();
   });
   $("map").addEventListener("toggle", function (e) {
     if (!e.target.matches("details.skill-more")) return;
     var key = state.role + ":" + e.target.dataset.status;
     if (!!expandedRows[key] === e.target.open) return;
-    expandedRows[key] = e.target.open; if (state.mode === "conn") renderGraph();
+    expandedRows[key] = e.target.open;
+    if (e.target.open) {
+      var started = performance.now(), group = e.target, st = group.dataset.status;
+      group.lastElementChild.innerHTML = skills().filter(function (k) { return k.status === st && k.employers < overviewFloor() && (!state.mapLevel || neededAt(k, state.mapLevel)); }).map(function (k) { return skillRow(k, st, role()); }).join("");
+      painted().then(function () { group.dataset.loaded = "true"; window.atlasMetrics.tails.push({ status: st, mode: "list", milliseconds: performance.now() - started }); });
+    } else { e.target.lastElementChild.innerHTML = ""; delete e.target.dataset.loaded; }
+    if (state.mode === "conn") renderGraph();
   }, true);
-  $("graphOverview").addEventListener("click", function (e) {
+  $("graphOverview").addEventListener("click", async function (e) {
     var b = e.target.closest("[data-overview-status]"); if (!b) return;
     var key = state.role + ":" + b.dataset.overviewStatus;
+    var started = performance.now();
     expandedRows[key] = !expandedRows[key]; renderMap();
+    await painted(); window.atlasMetrics.tails.push({ status: b.dataset.overviewStatus, mode: "connections", milliseconds: performance.now() - started });
   });
-  $("mapLevel").addEventListener("click", function (e) {
+  $("mapLevel").addEventListener("click", async function (e) {
     var b = e.target.closest("button[data-mlevel]"); if (!b) return;
+    var key = state.role;
+    if (Number(b.dataset.mlevel)) await ensureFullRole(key);
+    if (key !== state.role) return;
     state.mapLevel = Number(b.dataset.mlevel); renderMap(); persist();
   });
-  $("mapMode").addEventListener("click", function (e) {
+  $("mapMode").addEventListener("click", async function (e) {
     var b = e.target.closest("button[data-mode]"); if (!b) return;
+    var key = state.role;
+    if (b.dataset.mode === "conn") await ensureFullRole(key);
+    if (key !== state.role) return;
     state.mode = b.dataset.mode; renderMap(); updateGraphScrollCue(); persist();
   });
-  $("map").addEventListener("click", function (e) {
+  $("map").addEventListener("click", async function (e) {
     var b = e.target.closest("button[data-skill]"); if (!b) return;
     var previous = $("map").querySelector('[aria-pressed="true"]'); if (previous) previous.setAttribute("aria-pressed", "false");
     state.skill = b.dataset.skill; b.setAttribute("aria-pressed", "true"); renderSkillPanel(skills());
-    var again = findData("#map", "skill", state.skill); if (again) again.focus();
+    if (b.dataset.detail !== "pending") return;
+    var key = state.role, id = state.skill;
+    try {
+      await ensureSkill(key, id);
+      if (key !== state.role || id !== state.skill) return;
+      var selected = skills().find(function (k) { return k.id === id; });
+      var row = findData("#map", "skill", id); if (row) row.outerHTML = skillRow(selected, selected.status, role());
+      renderSkillPanel(skills());
+      var again = findData("#map", "skill", id); if (again) again.focus();
+    } catch (error) { if (key === state.role && id === state.skill) $("skillPanel").textContent = "Skill unavailable: " + error.message + " Select again to retry."; }
   });
   $("checks").addEventListener("change", function (e) {
     var id = e.target.dataset && e.target.dataset.id; if (!id) return;

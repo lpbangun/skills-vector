@@ -33,7 +33,8 @@ def api_schema(*, base_url: str = "") -> dict[str, Any]:
         "endpoints": [
             {"path": "/v1/track-record", "params": ["role?", "release?"], "returns": "pinned ledger counts, Brier/calibration or null scores, explicit backtest coverage"},
             {"path": "/v1/roles", "params": ["release?"], "returns": "role/2 index with release pin, data kind and fixture caveat"},
-            {"path": "/v1/roles/{role}", "params": ["release?"], "returns": "full schema-valid role/2 record in role envelope"},
+            {"path": "/v1/roles/{role}", "params": ["release?", "view=full|overview?"], "returns": "full (default) or overview: common skills, id/label status tails, deferred level expectations"},
+            {"path": "/v1/roles/{role}/skills/{skill_id}", "params": ["release?"], "returns": "one complete skill, evidence, shares and forecast"},
             {"path": "/v1/roles/{role}/levels/{L}", "params": ["release?"], "returns": "one level and expectations"},
             {"path": "/v1/roles/{role}/graph", "params": ["release?"], "returns": "skill map, evidence, forecasts and edges"},
             {"path": "/v1/roles/{role}/industries/{naics}", "params": ["release?"], "returns": "broad sector, including null thin profiles"},
@@ -61,7 +62,8 @@ def api_schema(*, base_url: str = "") -> dict[str, Any]:
         "mcp_tools": [
             {"name": "get_track_record", "params": ["role?", "release_id?"]},
             {"name": "list_roles", "params": ["release_id?"]},
-            {"name": "get_role", "params": ["role", "release_id?"]},
+            {"name": "get_role", "params": ["role", "release_id?", "view=full|overview?"]},
+            {"name": "get_role_skill", "params": ["role", "skill_id", "release_id?"]},
             {"name": "get_role_level", "params": ["role", "level", "release_id?"]},
             {"name": "get_role_graph", "params": ["role", "release_id?"]},
             {"name": "get_role_industry", "params": ["role", "naics", "release_id?"]},
@@ -281,7 +283,8 @@ of the legacy market releases. REST and MCP return identical JSON envelopes:
 | REST GET | MCP tool |
 | --- | --- |
 | `/v1/roles` | `list_roles(release_id?)` |
-| `/v1/roles/{{role}}` | `get_role(role, release_id?)` |
+| `/v1/roles/{{role}}?view=overview` | `get_role(role, release_id?, view?)` |
+| `/v1/roles/{{role}}/skills/{{skill_id}}` | `get_role_skill(role, skill_id, release_id?)` |
 | `/v1/roles/{{role}}/levels/{{L}}` | `get_role_level(role, level, release_id?)` |
 | `/v1/roles/{{role}}/graph` | `get_role_graph(role, release_id?)` |
 | `/v1/roles/{{role}}/industries/{{naics}}` | `get_role_industry(role, naics, release_id?)` |
