@@ -136,6 +136,50 @@ Acceptance (plus G1–G6, P1–P5, V1–V3):
 - **Q3** The level target as stated, or an honest stop.
 - **Q4** Deterministic: re-projecting the live capture twice is byte-identical.
 
+## M8: Canonical 2026-Q4 research release
+
+Canonical 2026-Q4 capture (reviewer-run, 71 reviewed boards): `~/.local/share/skills-vector-evidence/role-atlas/capture-20261024T001827Z/2026-Q4`. It supersedes the 13-board starter capture as the Q4 frame. The starter stays on disk and is never mixed in.
+
+Reviewer projection with M7 code:
+
+| Role | Admitted | Employers | Max employer | L2/L3/L4/L5/unassigned | Skills (O-linked) |
+| --- | ---: | ---: | ---: | --- | ---: |
+| AE | 436 | 36 | 87 (20%) | 35/87/85/77/152 | 1489 (25) |
+| FDE | 31 | 17 | 6 | 0/0/7/0/24 | 233 (13) |
+| Growth Manager | 17 | 11 | 3 | 0/0/4/0/13 | 166 |
+| HR Generalist | 5 | 5 | 1 | 0/0/0/0/5 | 58 |
+
+1. **Fix first:** the two items in `reviews/M7-r2.md`.
+
+2. **Tool and term grouping.**
+   - Map spans to O*NET 31.0 `Software Skills` *examples* at the token or phrase level (for example "Salesforce", "Python", "SQL", "Snowflake"), so that one span can yield several software nodes. Use exact, case-aware word-boundary matching with an alias table; examples shorter than 3 characters need an explicit allow-list.
+   - Add a checked-in, reviewed **emerging-terms lexicon** for terms that O*NET lags on: LLMs, RAG, agents, evals, fine-tuning, MLOps, vector databases, prompt engineering, and so on. Each row carries:
+     - a canonical id and aliases;
+     - a rationale;
+     - `family: "P"`, because it is posting-led and never official.
+
+     These become canonical posting-led nodes, so the same term counts once across employers. They never gain an O link.
+   - Report per role:
+     - node counts before and after;
+     - the top 20 nodes by share, with employer counts;
+     - a 30-span random audit of the new matches, with a different seed from M7.
+
+3. **Commit the release.**
+   - Commit the projection's role records and audit as `research/role-atlas/2026-Q4/`. Quotes are already single-sentence spans. Do **not** commit raw board payloads or full descriptions.
+   - Make it selectable like M4 (`--role-atlas-root research/role-atlas/2026-Q4/roles`). Create its forecast ledger with every forecast `basis: none`.
+   - Run the checker against it at all three cases.
+   - Review the AE and FDE skill-map screenshots for readability with about 1,000 nodes. If the map has too many rows to read, the page must collapse rows below a stated share or employer floor into an "N more, asked by fewer than K employers" group per status. Nothing is deleted, and the floor is stated on the page.
+
+4. **Honest framing on the page:**
+   - "Sample: N postings from M employers on public job boards (Greenhouse, Lever, Ashby); tech-heavy, not a market census."
+   - Show this on every role, next to the existing fixture or research notice.
+
+Acceptance (plus G1–G6, P1–P5, V1–V3, W1–W6):
+- **T1** Byte-identical double projection.
+- **T2** ≥90% judged correct in the 30-span audit of the new tool and term matches.
+- **T3** The FDE top 20 contains canonical nodes instead of single-employer phrasings wherever a lexicon or software alias applies.
+- **T4** The skill map stays readable at 1280 and 390 with the real AE release.
+
 ## Guardrails (hard)
 
 - Work only in this worktree, on branch `feat/role-atlas`. Commit at the end of each milestone with a clear message. Never push, never touch `main`, and never rewrite history.
