@@ -69,7 +69,12 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
                         and posting.get("identifier") == native["identifier"], "structured page provenance mismatch")
             original, is_html = native_description(posting["ats"], native)
             require(original == raw and is_html == posting["description_is_html"], "description not bound to retrieved board row")
-            replay = extract_sections(raw, is_html=is_html, method=posting["extraction_method"])
+            require(manifest.get("contact_filter") in (None, "sentences/1"), "unknown contact filter")
+            replay = extract_sections(raw, is_html=is_html, method=posting["extraction_method"],
+                                      omit_contacts=manifest.get("contact_filter") == "sentences/1")
+            if manifest.get("contact_filter"):
+                require(posting.get("contact_spans_omitted") == replay["contact_spans_omitted"]
+                        and posting.get("contact_omissions") == replay["contact_omissions"], "contact omission replay mismatch")
             require(replay["description"] == text and replay["has_responsibilities"] == posting["has_responsibilities"], "rules extraction replay mismatch")
             expected_quotes = [{**{k: v for k, v in e.items() if k != "quote"}, "source_wording": e["quote"]} for e in replay["expectations"]]
             actual_quotes = [{k: v for k, v in e.items() if k not in ("expectation_id", "source_id")} for e in posting["expectations"]]
@@ -141,6 +146,12 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
             else:
                 require(row["naics"] is None, "unverified employer cannot have sector")
             employers[key] = row
+    from .role_quotes import omit_contact_sentences
+    for posting in postings:
+        posting["expectations"], omissions = omit_contact_sentences(posting["expectations"], extracts[posting["source_id"]])
+        posting["contact_spans_omitted"] = posting.get("contact_spans_omitted", 0) + len(omissions)
+        posting["contact_omissions"] = posting.get("contact_omissions", []) + omissions
+    hashes["role_quotes.py"] = digest(Path(__file__).with_name("role_quotes.py").read_bytes())
     if canonical:
         from .role_quotes import project as sentence_spans
         for posting in postings:

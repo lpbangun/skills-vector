@@ -75,7 +75,9 @@
           rows[skill.id], STATUS[skill.status][1], skill.share_by_level, skill.source_links, skill.status, skill.disputed, skill.windows[skill.windows.length - 1].employers]; }),
         co: raw.skill_map.asked_together.map(function (edge) { return [edge.a, edge.b, edge.lift, edge.postings, edge.employers]; }),
         builds: raw.skill_map.builds_on.map(function (edge) { return [edge.a, edge.b]; }) };
-      var list = raw.industries.map(function (sector) {
+      var observed = raw.industries.filter(function (sector) { return sector.evidence.postings > 0; })
+        .sort(function (a, b) { return b.evidence.postings - a.evidence.postings || a.naics.localeCompare(b.naics); });
+      var list = observed.map(function (sector) {
         var p = sector.profile;
         return { key: sector.naics, label: sector.label, naics: sector.naics, naicsTitle: sector.naics_title,
           sub: sector.sub_industries, postings: sector.evidence.postings, employers: sector.evidence.employers,
@@ -83,8 +85,11 @@
           sources: p ? p.sources : [], differs: p ? p.how_it_differs : "", duties: p ? p.distinct_duties : [], know: p ? p.domain_knowledge : [],
           certs: p ? p.certifications.map(function (cert) { return [cert.name, cert.issuer, cert.asked_as, percentage(cert.posting_share)]; }) : [] };
       });
-      var heatIds = [...new Set(raw.industries.flatMap(function (sector) { return sector.profile ? sector.profile.skill_shares.map(function (item) { return item.skill; }) : []; }))];
-      INDUSTRY[key] = { list: list, heat: heatIds.map(function (id) { return [id, raw.industries.map(function (sector) {
+      var heatIds = [...new Set(observed.flatMap(function (sector) { return sector.profile ? sector.profile.skill_shares.map(function (item) { return item.skill; }) : []; }))];
+      INDUSTRY[key] = { list: list,
+        unseen: raw.industries.filter(function (sector) { return sector.evidence.postings === 0; })
+          .sort(function (a, b) { return a.naics.localeCompare(b.naics); }).map(function (sector) { return sector.label; }),
+        heat: heatIds.map(function (id) { return [id, observed.map(function (sector) {
         var item = sector.profile && sector.profile.skill_shares.find(function (share) { return share.skill === id; });
         return item ? percentage(item.share) : null;
       })]; }) };
@@ -586,13 +591,21 @@
     var r = role(), list = industries(), ind = industry(), byId = {};
     var unverified = r.raw.observations.find(function (o) { return o.id === "sector.unverified"; });
     $("unverifiedSectors").textContent = unverified ? "Unverified employers: " + unverified.windows[0].mentions + " postings from " + unverified.windows[0].employers + " employers" : "Unverified employer counts not recorded in this release.";
-    if (!list.length) { $("industryPick").innerHTML = ""; $("indSheet").innerHTML = '<p class="empty">No sector profiles supplied in this release.</p>'; $("heat").innerHTML = ""; return; }
-    graphNodes().forEach(function (n) { byId[n.id] = n; });
-    state.industry = ind.key;
+    var unseen = INDUSTRY[state.role].unseen;
+    $("noVerifiedSectors").textContent = unseen.length ? "No verified postings: " + unseen.join(", ") : "";
+    $("noVerifiedSectors").hidden = !unseen.length;
     $("indRole").textContent = r.label;
     $("industrySourceNote").textContent = r.raw.data_kind === "fixture"
       ? "Duties come from each sector\'s postings, certifications from CareerOneStop, and the share of jobs from the BLS occupation-by-industry matrix."
       : "Only verified employer-sector mappings contribute. Other employers are excluded, not assigned from customer industry. Official industry shares and credential catalogs are not assumed.";
+    if (!list.length) {
+      $("industryPick").innerHTML = "";
+      $("indSheet").innerHTML = '<p class="empty">No verified sector postings in this role/window.</p>';
+      $("heat").innerHTML = '<p class="empty">No observed sectors to compare.</p>';
+      return;
+    }
+    graphNodes().forEach(function (n) { byId[n.id] = n; });
+    state.industry = ind.key;
     $("industryPick").innerHTML = list.map(function (x) {
       return '<button type="button" data-ind="' + x.key + '" aria-pressed="' + (x.key === ind.key) + '">' + esc(x.label) + "</button>";
     }).join("");
@@ -783,7 +796,7 @@
   });
   function pickIndustry(e) {
     var b = e.target.closest("button[data-ind]"); if (!b) return;
-    state.industry = b.dataset.ind; renderIndustry(); renderAgent(); persist();
+    state.industry = b.dataset.ind; renderIndustry(); persist();
   }
   $("industryPick").addEventListener("click", pickIndustry);
   $("heat").addEventListener("click", pickIndustry);

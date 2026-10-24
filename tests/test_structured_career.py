@@ -53,7 +53,7 @@ class StructuredTests(unittest.TestCase):
         r=Robots('User-agent: *\nDisallow: /\nAllow: /careers/\nDisallow: /careers/private/*\nAllow: /careers/private/public$','RoleAtlasSynthetic')
         self.assertFalse(r.allows(ORIGIN+'/anything'));self.assertTrue(r.allows(ORIGIN+'/careers/job'))
         self.assertFalse(r.allows(ORIGIN+'/careers/private/job'));self.assertTrue(r.allows(ORIGIN+'/careers/private/public'))
-        r=Robots('User-agent: *\nAllow: /\nUser-agent: RoleAtlasSynthetic\nDisallow: /careers/','RoleAtlasSynthetic/1')
+        r=Robots('User-agent: *\nAllow: /\nUser-agent: RoleAtlasSynthetic\nDisallow: /careers/','RoleAtlasSynthetic')
         self.assertFalse(r.allows(ORIGIN+'/careers/job'));self.assertTrue(r.allows(ORIGIN+'/jobs'))
         calls=[];session=Session('RoleAtlasSynthetic',transport=lambda u:(calls.append(u) or (200,{},b'ok')),local=True)
         with self.assertRaisesRegex(ValueError,'robots'):session.fetch(ORIGIN+'/careers/job',ORIGIN,r)
@@ -121,7 +121,43 @@ class StructuredTests(unittest.TestCase):
         remote={**NODE,'jobLocation':{},'jobLocationType':'TELECOMMUTE','applicantLocationRequirements':{'@type':'Country','name':'United States'}}
         self.assertIsNotNone(normalize_node(remote,ORIGIN+'/careers/HR-Generalist',BOARD,STAMP)[0])
         private={**NODE,'description':'Reach '+ 'synthetic'+chr(64)+'example.invalid'}
-        self.assertEqual(normalize_node(private,ORIGIN+'/careers/HR-Generalist',BOARD,STAMP)[1],'non_data_content_omitted')
+        admitted, reason = normalize_node(private,ORIGIN+'/careers/HR-Generalist',BOARD,STAMP)
+        self.assertIsNone(reason)
+        self.assertEqual(admitted['description'], private['description'])
+
+    def test_legal_organization_codes_suffixes_aliases_and_mismatch(self):
+        from skills_vector.market.structured_career import organization_name
+        for name in ('100 Example, Inc.', 'Example LLC', 'Example Ltd.', 'Example Corp.',
+                     'Example Co.', 'Example N.V.', 'Example S.A.', 'Example PBC', 'Example plc'):
+            self.assertEqual(organization_name(name), 'example')
+            admitted, reason = normalize_node({**NODE, 'hiringOrganization': {'name': name}},
+                ORIGIN+'/careers/HR-Generalist', {**BOARD, 'employer': 'Example'}, STAMP)
+            self.assertIsNone(reason)
+            self.assertEqual(admitted['hiringOrganization']['name'], name)
+        fixture = (SAMPLES/'legal-name.sample.html').read_text()
+        admitted, reason = normalize_node(job_nodes(fixture)[0], ORIGIN+'/careers/HR-Generalist',
+                                           {**BOARD, 'employer': 'Example'}, STAMP)
+        self.assertIsNone(reason)
+        self.assertEqual(admitted['hiringOrganization']['name'], '100 Example, Inc.')
+        self.assertEqual(normalize_node({**NODE, 'hiringOrganization': {'name': '100 Another, Inc.'}},
+            ORIGIN+'/careers/HR-Generalist', {**BOARD, 'employer': 'Example'}, STAMP)[1], 'organization_mismatch')
+        self.assertIsNotNone(normalize_node({**NODE, 'hiringOrganization': {'name': '100 Alternate, Inc.'}},
+            ORIGIN+'/careers/HR-Generalist', {**BOARD, 'employer_aliases': ['Alternate']}, STAMP)[0])
+
+    def test_configured_robots_product_not_browser_header_and_wildcard(self):
+        text = 'User-agent: Mozilla\nDisallow: /\nUser-agent: ExampleCrawler\nAllow: /careers\nDisallow: /private\nUser-agent: *\nDisallow: /careers\nAllow: /private'
+        session = Session('Mozilla/5.0 ExampleCrawler/1', robots_agent='ExampleCrawler')
+        configured = Robots(text, session.robots_agent)
+        self.assertTrue(configured.allows(ORIGIN+'/careers/job'))
+        self.assertFalse(configured.allows(ORIGIN+'/private'))
+        fallback = Robots(text, Session('Mozilla/5.0 ExampleCrawler/1').robots_agent)
+        self.assertFalse(fallback.allows(ORIGIN+'/careers/job'))
+        self.assertTrue(fallback.allows(ORIGIN+'/private'))
+        for token in ('', 'bad token', 'ExampleCrawler/1'):
+            with self.assertRaises(ValueError):Session('Browser', robots_agent=token)
+        value = read_json(SAMPLES/'policy.sample.json')
+        value['robots_agent'] = 'ExampleCrawler'
+        self.assertEqual(VolumePolicy.from_value(value,SAMPLES/'policy.sample.json').value['robots_agent'], 'ExampleCrawler')
 
     def crawler(self, maps, maximum=600):
         requests=[]
@@ -154,7 +190,8 @@ class StructuredTests(unittest.TestCase):
         a={'ats':'greenhouse','employer':'Authored','title':'HR Generalist','location':'Boston, MA, US','job_id':'REQ1','dedup_key':'a'}
         b={**a,'ats':'jsonld','location':'Boston, MA','identifier':'REQ1','dedup_key':'b'}
         rows,excluded=cross_kind_dedup([b,a]);self.assertEqual(rows,[a]);self.assertEqual(excluded[0]['reason'],'cross_board_duplicate')
-        self.assertEqual(len(cross_kind_dedup([a,{**b,'identifier':'REQ2'}])[0]),2)
+        self.assertEqual(len(cross_kind_dedup([a,{**b,'identifier':'JR-DIFFERENT','job_id':'jsonld-key'}])[0]),1)
+        self.assertEqual(len(cross_kind_dedup([a,{**a,'job_id':'REQ2','dedup_key':'same-kind'}])[0]),2)
         self.assertEqual(len(cross_kind_dedup([a,{**b,'location':'Austin, TX'}])[0]),2)
         self.assertEqual(len(cross_kind_dedup([a,{**b,'employer':'Another'}])[0]),2)
 
@@ -190,7 +227,7 @@ class StructuredTests(unittest.TestCase):
             value=read_json(samples/'policy.sample.json')
             value['boards'].append({'ats':'greenhouse','token':'authored','employer':'Authored Employer 0',
                 'source_note':'Authored board, duplicate of structured requirement.','payload':'greenhouse.sample.json'})
-            (samples/'greenhouse.sample.json').write_text(json.dumps({'jobs':[{'id':'REQ1','title':'HR Generalist',
+            (samples/'greenhouse.sample.json').write_text(json.dumps({'jobs':[{'id':'GREEN-DIFFERENT','title':'HR Generalist',
                 'absolute_url':'https://boards.greenhouse.io/authored/jobs/REQ1','location':{'name':'Boston, MA, US'},
                 'content':NODE['description']}],'meta':{'total':1}}))
             policy=VolumePolicy.from_value(value,samples/'policy.sample.json')
@@ -198,8 +235,8 @@ class StructuredTests(unittest.TestCase):
             self.assertEqual(sum(r['admitted'] for r in manifest['roles'].values()),10)
             self.assertEqual(sum(r['reason']=='cross_board_duplicate' for r in manifest['exclusions']),1)
             value['unrelated_metadata']='synthetic'+chr(64)+'example.invalid'
-            policy=VolumePolicy.from_value(value,samples/'policy.sample.json')
-            with self.assertRaisesRegex(ValueError,'non-data content'):write_snapshot(policy,root/'not-written','2026-Q4',payload_root=samples,retrieved_at=STAMP)
+            with self.assertRaisesRegex(ValueError,'non-data policy metadata'):
+                VolumePolicy.from_value(value,samples/'policy.sample.json')
             self.assertFalse((root/'not-written').exists())
 
     def test_fresh_cli_has_no_model_or_extra_http_client(self):

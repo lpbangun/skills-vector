@@ -26,9 +26,38 @@ def ranges(text: str) -> list[tuple[int, int]]:
     return spans
 
 
+def omit_contact_sentences(expectations: list[dict], description: str) -> tuple[list[dict], list[dict]]:
+    """Omit unsafe sentences, never whole descriptions or surrounding clean duties."""
+    from .structured_career import CONTACT
+
+    output, omitted = [], []
+    for expected in expectations:
+        key = "source_wording" if "source_wording" in expected else "quote"
+        original = expected[key]
+        if description[expected["start"]:expected["end"]] != original:
+            raise ValueError("contact filter input is not a source-bound span")
+        spans = ranges(original)
+        if not any(CONTACT.search(original[a:b]) for a, b in spans):
+            output.append(expected)
+            continue
+        for a, b in spans:
+            quote = original[a:b]
+            start = expected["start"] + a
+            if CONTACT.search(quote):
+                omitted.append({"start": start, "end": start + len(quote),
+                                "source_sha256": expected["source_sha256"],
+                                "quote_sha256": hashlib.sha256(quote.encode()).hexdigest()})
+            else:
+                output.append({**expected, key: quote, "start": start, "end": start + len(quote)})
+    return output, omitted
+
+
 def project(posting: dict, description: str) -> list[dict]:
     output, excluded = [], []
-    for expected in posting["expectations"]:
+    expectations, contact_omissions = omit_contact_sentences(posting["expectations"], description)
+    posting["contact_spans_omitted"] = posting.get("contact_spans_omitted", 0) + len(contact_omissions)
+    posting["contact_omissions"] = posting.get("contact_omissions", []) + contact_omissions
+    for expected in expectations:
         original = expected["source_wording"]
         if description[expected["start"]:expected["end"]] != original:
             raise ValueError("sentence projection input is not a source-bound span")

@@ -52,7 +52,10 @@ The existing policy schema, data-kind label, role title hints, quarterly cadence
 identifier in the policy's top-level `user_agent`; it is not a code default or
 CLI argument. Only its hash enters the saved policy, never the header value.
 Use a token without personal details. `employer_aliases` is an optional reviewed
-list of exact legal hiring-organization names; there is no fuzzy/name inference.
+list of additional hiring-organization names. Comparison strips a leading numeric
+company code, listed legal suffixes and punctuation, then casefolds. The roster
+origin plus its ownership note remains the employer identity; unrelated names
+are still rejected and counted. There is no fuzzy match.
 
 Origins must be public HTTPS DNS hosts with an ownership note. The checked-in
 aggregator denylist applies to subdomains/country suffixes as well. Scope is
@@ -60,8 +63,11 @@ aggregator denylist applies to subdomains/country suffixes as well. Scope is
 ATS tenants or following cross-site redirects is forbidden. Sitemap URLs and
 all redirects are rechecked, with robots enforced at each redirected path.
 
-Robots is fetched first; own-agent groups take precedence over wildcard groups,
-with longest-path and Allow-on-tie semantics. Discovery uses only configured or
+Robots is fetched first. Set top-level `robots_agent` (or a per-board override)
+to the operator-selected product token, e.g. `RoleAtlasOperator`. Matching uses
+that token, never the first browser/User-Agent header token. If omitted or
+unmatched, only wildcard groups apply. Named groups take precedence, with
+longest-path and Allow-on-tie semantics. Discovery uses only configured or
 robots-advertised sitemaps, at depth at most 2 and at most 64 sitemap documents.
 Only matching role-title URL slugs are fetched as job pages. There is no HTML
 link crawling, search or semantic HTML fallback.
@@ -81,14 +87,22 @@ capture's timestamp inside its declared quarter, never the machine clock during
 reprojection. Explicit country fields disambiguate Canada from the US state
 abbreviation; US admission still uses the existing geography rule.
 
-Native selected fields retain the unchanged description, its normal ATS-style
-visible-text extraction, page URL, original response hash and identifier. Raw
-HTML/robots/transport documents are not saved by this lane. Selected records with
-non-data communication content are omitted, rather than modifying quote text;
-publication/snapshot privacy guards fail before writing unsafe output. This is
-not a claim of a complete raw-page archive. Cross-board dedup uses employer,
-normalized title/location and identifiers where present. All sampling, sections,
-quote offsets/hashes, levels, skills and projection then reuse the existing lane.
+Native selected fields retain the **full unchanged description** in the
+out-of-tree capture, its normal ATS-style visible text, page URL, original
+response hash and identifier. Employer recruiting/accommodation details do not
+reject postings or rewrite descriptions. At quote emission, every board kind
+omits only contact-bearing sentences and records `contact_spans_omitted` plus
+hash/offset receipts (without copying the omitted text). Contact-only postings
+remain admitted; their empty expectation lists do not fabricate skill evidence.
+Config, URL and repository-publication metadata guards still apply. The
+configured header value is never stored. Raw HTML/robots/transport documents
+are not saved by the structured lane; this is not a complete raw-page archive.
+
+Across board kinds, dedup uses employer + normalized title + normalized location,
+ignoring incompatible cross-system identifier namespaces and retaining the ATS
+row over its structured duplicate. Within one kind, identifiers remain distinct.
+All fair sampling, exact quote offsets/hashes, levels, skills and projection
+still reuse the existing lane.
 
 ## Offline commands — executed with authored samples
 

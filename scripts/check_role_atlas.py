@@ -337,8 +337,23 @@ def exercise_tab(page, tab: str, record: dict, requests: list[str]) -> None:
         if unverified:
             w = unverified["windows"][0]
             require(f"Unverified employers: {w['mentions']} postings from {w['employers']} employers" == page.locator("#unverifiedSectors").inner_text(), "unverified sector coverage missing")
-        require(page.locator("#industryPick button").count() == len(record["industries"]), "below-floor sectors were hidden")
-        for index, sector in enumerate(record["industries"]):
+        observed = sorted((s for s in record["industries"] if s["evidence"]["postings"] > 0),
+                          key=lambda s: (-s["evidence"]["postings"], s["naics"]))
+        unseen = sorted((s for s in record["industries"] if s["evidence"]["postings"] == 0), key=lambda s: s["naics"])
+        require(page.locator("#industryPick button").count() == len(observed), "unobserved sectors were not collapsed")
+        ids = page.locator("#industryPick button").evaluate_all("nodes=>nodes.map(n=>n.dataset.ind)")
+        require(ids == [s["naics"] for s in observed], "sectors not ordered by verified postings")
+        if unseen:
+            require(page.locator("#noVerifiedSectors").inner_text() == "No verified postings: " + ", ".join(s["label"] for s in unseen),
+                    "zero-posting sector summary missing")
+        if observed:
+            require(page.locator("#industryPick [aria-pressed=true]").get_attribute("data-ind") == observed[0]["naics"],
+                    "industries did not default to highest verified count")
+            require(page.locator("#heat thead [data-ind]").evaluate_all("nodes=>nodes.map(n=>n.dataset.ind)") == ids,
+                    "heatmap includes unobserved sectors or mismatched order")
+        else:
+            require("No verified sector postings" in page.locator("#indSheet").inner_text(), "empty observed sectors misrepresented")
+        for index, sector in enumerate(observed):
             page.locator("#industryPick button").nth(index).click()
             require(page.locator("#indSheet h3").inner_text() == sector["label"], "sector title mismatch")
             if sector["profile"] is None:
@@ -346,12 +361,8 @@ def exercise_tab(page, tab: str, record: dict, requests: list[str]) -> None:
                 expected = f"Evidence: {n} posting{'s' if n != 1 else ''} from {m} employer{'s' if m != 1 else ''}"
                 require(expected in page.locator("#indSheet").inner_text(), "thin sector counts missing")
                 require(sector["reason"] in page.locator("#indSheet").inner_text(), "thin sector caveat missing")
-        if record["industries"]:
-            chosen = 0
-            if record['data_kind'] == 'research':
-                chosen = next((i for i,s in enumerate(record['industries']) if s['profile'] is not None),
-                              next((i for i,s in enumerate(record['industries']) if s['evidence']['postings']),0))
-            page.locator("#industryPick button").nth(chosen).click()
+        if observed:
+            page.locator("#industryPick button").first.click()
     elif tab == "gap":
         assert_gap_rows_fit(page)
         before_requests = len(requests)

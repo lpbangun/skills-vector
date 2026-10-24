@@ -4,6 +4,7 @@
   "window_length": "quarterly",
   "max_postings_per_role": 500,
   "user_agent": "RoleAtlasSynthetic",
+  "robots_agent": "RoleAtlasSynthetic",
   "roles": {
     "hr-generalist": [
       "HR Generalist"

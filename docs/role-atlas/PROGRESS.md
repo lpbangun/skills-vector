@@ -2930,3 +2930,197 @@ independent observations.
 
 M9 is implemented and verified with these limits. Commit **once** on
 `feat/role-atlas`, then stop for review. No live retrieval was run.
+
+
+## M9 review round 1 replies
+
+All four musts, the should and the formatting note are addressed. No live
+retrieval, paid/model call, push, deployment or history rewrite. SEC, saved
+JSON-LD samples and the Q4 capture remain read-only. The operator's own header
+value is still never copied into output; the review's clarification distinguishes
+that value from native employer recruiting/accommodation text.
+
+### Must 1 — retain postings; omit contact-bearing sentences only
+
+- Removed whole-posting `no_contacts(selected)` rejection and the native
+  collection/snapshot-body blanket guards. Full native descriptions and their
+  visible-text forms are retained **unchanged in out-of-tree captures**.
+  `no_contacts` remains for config, URLs and repository publication metadata.
+- Shared quote-emission filtering applies to **all six supported board kinds**
+  (Greenhouse, Lever, Ashby, SmartRecruiters, Workable, JSON-LD), in both rules
+  versions. A contact-bearing multi-sentence expectation loses only those
+  sentences; neighboring clean duties retain exact source substrings/offsets
+  and the unchanged description hash. Publication also filters legacy
+  expectations before normalization/grouping.
+- `contact_spans_omitted` is counted per extraction/posting, admitted role,
+  snapshot total and projection audit. Omission receipts contain offsets and
+  source/sentence hashes, **not the excluded sentence**.
+- New snapshots identify `contact_filter: sentences/1`; native replay checks
+  the count/receipts. Existing snapshots without the marker replay under their
+  original extraction first, then pass through the publication filter. This
+  does not rewrite or invalidate the readonly original capture.
+- Contact-only postings are not rejected for empty post-filter expectations.
+  The integration test admits all **10** authored HR/Growth postings, including
+  **5 contact-only HR postings**, counts **5 omitted sentences**, preserves
+  the full descriptions in the temporary out-of-tree capture, and produces no
+  contact-bearing projected quote. Empty skill evidence stays empty, not padded.
+- Regression cases exercise both an accommodation address and phone pattern,
+  keep neighboring duties and verify exact offsets/hashes for every board kind.
+
+Readonly real-text verification reproduced the review's count: **647 .raw +
+647 .txt = 1,294 description files**, with **283 + 281 = 564** contact-bearing
+files. These are two representations of 647 descriptions, not 1,294 independent
+postings. No native text or matched address was printed.
+
+The frozen canonical **admitted** expectation spans already exclude those
+legal/other paragraphs: replay retains **436/31/17/5 postings** and
+**1768/281/222/55 skills**, with **0 additional contact spans** removed from
+this particular admitted projection. That does not mean its full descriptions
+contain no contacts, nor substitute for the positive contact-bearing capture
+tests above.
+
+### Must 2 — Workday organization normalization
+
+- The reviewed roster host/ownership note remains the employer identity.
+  Organization comparison strips a leading numeric company code, listed legal
+  suffixes (Inc., LLC, Ltd., Corp., Co., N.V., S.A., PBC, plc), punctuation, then
+  casefolds. Explicit aliases receive the same normalization.
+- The authored `legal-name.sample.html` contains **100 Example, Inc.** and passes;
+  a different company is rejected as `organization_mismatch`. Tests cover every
+  listed suffix and an explicit alias. The original legal name is retained in
+  native provenance; it is not overwritten with a guessed employer.
+- The real saved Salesforce Workday node now **passes** without an alias:
+  normalized organization matches the roster employer, and its **10,039-character
+  description is unchanged**. It remains a readonly format check, not a new
+  admitted research posting.
+
+### Must 3 — cross-kind dedup
+
+- Across kinds, dedup is now **employer + normalized title + normalized
+  location**, without comparing incompatible system ids. ATS rows retain
+  precedence over JSON-LD duplicates.
+- The mixed capture test uses a Greenhouse id different from the structured
+  requirement id, removes exactly one cross-kind duplicate and still admits
+  10 unique authored postings. Unit boundaries keep different employers and
+  locations distinct; same-kind different ids remain distinct.
+
+### Must 4 — Industries default, ordering and comparison
+
+- Only sectors with **positive verified posting counts** become tabs, sorted
+  descending by count (stable NAICS tie-break). The default is the first.
+  AE now naturally selects **Information (205/12)**, followed by Professional
+  Services **42/1**, then Finance **1/1**. FDE defaults to Information **5/4**;
+  HR to Information **1/1**.
+- Zero-count sectors collapse into the single **“No verified postings: …”**
+  summary instead of 20 code-ordered tabs. The comparison table contains only
+  observed sectors in the same order. Full API records retain every sector;
+  no evidence is removed from the catalog.
+- Below-floor reasons/counts and the unverified-employer line are unchanged.
+  All-zero roles have an explicit empty observed-sector state.
+- W3 now asserts the **natural initial selection before clicking anything**,
+  exact sorted observed tabs, zero-sector summary, and matching observed-only
+  heatmap headers. It no longer hides a bad default by selecting a profile for
+  the screenshot.
+- Saved and opened all six requested research screenshots:
+  `/tmp/role-atlas-m9-r1-research/app/{1280,390}-light/{account-executive,forward-deployed-engineer,hr-generalist}-industries.png`.
+
+### Should — explicit robots product token
+
+- Added `robots_agent` in policy config, with optional per-board override.
+  It is independent of the transport's `user_agent` header. No first-browser-
+  token heuristic remains.
+- Configured matching uses the named product group; omitted/unmatched products
+  fall back to `*`. Invalid tokens are rejected, and the safe token remains in
+  sealed snapshot policy while the header value remains hashed only.
+- Tests cover named groups and wildcard fallback with a browser-prefixed header,
+  plus contradictory wildcard/named rules through **both capture and probe**.
+  The sample policy and operator workflow document the field.
+
+### Note — G4 formatting
+
+Reformatted `structured_career.py` into normal multiline branches/functions
+without semicolon chains or one-line control-flow bodies. Existing parsing,
+geography, robots precedence, rate/size/redirect/page/depth bounds and fixed-error
+diagnostics are retained except for the explicitly reviewed fixes above. No
+formatter dependency, HTTP client or provider was added.
+
+### Exact verification commands and results
+
+```sh
+.venv/bin/python /tmp/role-atlas-m9-r1-real-text.py > /tmp/role-atlas-m9-r1-real-text.log
+.venv/bin/python -m unittest discover -s tests -p test_role_atlas_m9_review.py > /tmp/role-atlas-m9-r1-contact-final-tests.log 2>&1
+.venv/bin/python -m unittest discover -s tests -p test_structured_career.py > /tmp/role-atlas-m9-r1-structured-final-tests.log 2>&1
+.venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m9-r1-verified-tests.log 2>&1
+.venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m9-r1-handoff-tests.log 2>&1
+```
+
+All exit **0**. Focused review tests **3 / 0.355s**; structured tests
+**13 / 1.020s**. Full suite **291 tests / 95.382s**, then **291 / 93.985s**
+after adding the phone-sentence case: **OK (skipped=2)**, unchanged existing
+skips. No network access in the tests. The readonly script counts file suffixes
+and pattern presence, parses the saved node, calls `normalize_node`, and asserts
+description equality; it emits only counts/booleans/length, never matched text.
+
+```sh
+.venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261024T001827Z/2026-Q4 --output /tmp/role-atlas-m9-r1-projection-a > /tmp/role-atlas-m9-r1-projection-a.json 2> /tmp/role-atlas-m9-r1-projection-a.err
+.venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261024T001827Z/2026-Q4 --output /tmp/role-atlas-m9-r1-projection-b > /tmp/role-atlas-m9-r1-projection-b.json 2> /tmp/role-atlas-m9-r1-projection-b.err
+diff -qr /tmp/role-atlas-m9-r1-projection-a /tmp/role-atlas-m9-r1-projection-b
+```
+
+All exit **0**, diff empty. Scratch recipe identity
+**`role_research_7e951e2a0dd4b394`** reflects the implementation change; the
+cohort, skills and verified-sector counts remain the same. The contact-bearing
+synthetic capture test also double-projects byte-identically.
+
+The existing committed M9 publication was already contact-free, so it is
+preserved byte-for-byte as **`role_research_71d6040270516002`**, not relabeled
+with a new producer or duplicated as another 5 MB research dataset. W3 uses that
+published evidence with the corrected renderer; new captures/projections use
+the corrected pipeline. Repeated same-quarter builds are not new observations.
+
+```sh
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m9-r1-fixtures --role-atlas-fixtures --role-atlas-ledger /tmp/role-atlas-m6-fixture-ledger.json > /tmp/role-atlas-m9-r1-fixtures.log 2>&1
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m9-r1-research --role-atlas-root research/role-atlas/2026-Q4-sectors/roles --role-atlas-ledger research/role-atlas/2026-Q4-sectors/ledger.json > /tmp/role-atlas-m9-r1-research.log 2>&1
+```
+
+Both exit **0**: **54 fixture / 72 research screenshots**, every role/tab/
+Connections, **1280 light, 1280 dark, 390 light**, every `errors: []`, no
+horizontal page overflow. Explicit Chromium
+`~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome`. All prior keyboard,
+detail/quote timing, forecast honesty, graph, local-gap, JSON/copy and error
+checks remain. Six requested Industries shots are in the paths above.
+
+Retained M8 budgets, independently observed by W3:
+
+| Research case | Overview bytes | Interactive ms | Expand tail ms |
+| --- | ---: | ---: | ---: |
+| 1280 light | 394,109 | 1,208.6 | 195.8 |
+| 1280 dark | 394,109 | 736.1 | 186.6 |
+| 390 light | 394,109 | 639.4 | 173.0 |
+| Limit | 400,000 | 2,000 | 1,000 |
+
+```sh
+.venv/bin/python /tmp/role-atlas-m9-r1-integrity.py
+bash scripts/assemble_vercel.sh
+UV_OFFLINE=1 uv lock --check --offline
+node --check preview/role-atlas.js
+.venv/bin/python -m compileall -q src/skills_vector scripts/check_role_atlas.py tests/test_role_atlas_m9_review.py tests/test_structured_career.py
+git diff --check
+```
+
+All exit **0**. **38 SEC/reference files**, the **1,408-file canonical/O*NET
+receipt**, **565 protected tracked files** (including M9 and M8 publications),
+and **533 published files/file set** unchanged. All 26 native SEC bindings,
+489 canonical ids and 7,525 source-bound links still verify. Config/repository
+privacy checks pass without printing matched content. Publication remains
+**5,413,959 bytes / 11 files**. Assembly **551 files**, lock **61 packages**.
+
+One development test initially missed the normalized origin's trailing slash
+in its fake transport, yielding zero rows; the fixture routing was corrected
+and the final capture asserts all 10 rows. No production failure, threshold
+relaxation or new skip is hidden by that correction.
+
+The reviewed fixes do not change SEC decisions, scope rules, sampling/floors,
+forecast math or existing immutable releases. Real structured-page volume still
+awaits an operator-reviewed roster and explicitly authorized retrieval. One
+fix-up commit on `feat/role-atlas`, then stop for review.

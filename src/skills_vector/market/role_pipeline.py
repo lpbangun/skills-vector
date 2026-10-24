@@ -374,7 +374,8 @@ class EvidenceInputs:
                                    "start": expected.get("start"), "end": expected.get("end"), "source_sha256": expected.get("source_sha256"), "projection_extraction": expected.get("projection_extraction"), "backbone_proposals": expected.get("backbone_proposals", []), "source_id": posting["source_id"], "expectation_id": expected["expectation_id"]})
                 posting_audit.append({"posting_id": posting["dedup_key"], "source_id": posting["source_id"], "employer": posting["employer"],
                                       "level": decision.level, "reason": decision.reason, "strong_signals": decision.strong,
-                                      "weak_signals": decision.weak, "excluded_projection_spans": posting.get("projection_exclusions", []), "skill_links": sorted(linked, key=lambda x: (x["skill"], x["phrase"]))})
+                                      "weak_signals": decision.weak, "contact_spans_omitted": posting.get("contact_spans_omitted", 0),
+                                      "contact_omissions": posting.get("contact_omissions", []), "excluded_projection_spans": posting.get("projection_exclusions", []), "skill_links": sorted(linked, key=lambda x: (x["skill"], x["phrase"]))})
                 if posting.get("source_kind") == "jsonld":
                     posting_audit[-1].update(source_kind="jsonld", page_url=posting["url"], page_sha256=posting["page_sha256"])
             level_rows = {level: [p for p in rows if assignments[p["dedup_key"]] == level] for level in range(1, 6)}
@@ -501,6 +502,7 @@ class EvidenceInputs:
                 "edges_kept": len(kept), "edges_dropped": len(dropped),
                 "edge_floor_failures": {floor: sum(floor in e["failed_floors"] for e in dropped) for floor in ("lift", "postings", "employers")},
                 "sectors_with_profiles": sum(i["profile"] is not None for i in industries), "sectors_without_profiles": sum(i["profile"] is None for i in industries),
+                "contact_spans_omitted": sum(p.get("contact_spans_omitted", 0) for p in rows),
                 "projection_excluded_spans": sum(len(p.get("projection_exclusions", [])) for p in rows),
                 "postings_with_unverified_sectors": sum(self.employers[normalized(p["employer"])]["status"] != "verified" for p in rows),
                 "postings": posting_audit, "dropped_edges": dropped}

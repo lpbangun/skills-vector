@@ -32,7 +32,8 @@ def probe(candidates: Path, output: Path, *, payload_root: Path | None = None, l
             from .fetch import _now_iso
             try:
                 local = None if live else local_transport(payload_root, board["payload"])
-                session = Session(value["user_agent"], transport=transport or local, reserve=reserve, local=not live)
+                session = Session(value["user_agent"], robots_agent=board.get("robots_agent", value.get("robots_agent")),
+                                  transport=transport or local, reserve=reserve, local=not live)
                 _, summary = crawl(board, value["roles"], session, board.get("retrieved_at") or _now_iso(), probe=True)
                 result = {"ats": "jsonld", "origin": board["origin"], "employer": board["employer"],
                           "exists": summary["sample_parseable"], "reviewed": False, **summary,

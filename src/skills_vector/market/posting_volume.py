@@ -137,12 +137,20 @@ def extract_sections_v1(description: str, *, is_html: bool = True) -> dict:
             "has_responsibilities": bool(sections.get("responsibilities"))}
 
 
-def extract_sections(description: str, *, is_html: bool = True, method: str = EXTRACTION) -> dict:
+def extract_sections(description: str, *, is_html: bool = True, method: str = EXTRACTION,
+                     omit_contacts: bool = True) -> dict:
     require(method in ("rules/1", "rules/2"), "unsupported extraction method")
     if method == "rules/1":
-        return extract_sections_v1(description, is_html=is_html)
-    from .posting_sections import extract
-    return extract(description, is_html=is_html)
+        result = extract_sections_v1(description, is_html=is_html)
+    else:
+        from .posting_sections import extract
+        result = extract(description, is_html=is_html)
+    if omit_contacts:
+        from .role_quotes import omit_contact_sentences
+        result["expectations"], omitted = omit_contact_sentences(result["expectations"], result["description"])
+        result["contact_spans_omitted"] = len(omitted)
+        result["contact_omissions"] = omitted
+    return result
 
 
 def fair_sample(rows: list[dict], maximum: int) -> list[dict]:
@@ -186,6 +194,9 @@ class VolumePolicy:
         require(0 < len(value["boards"]) <= POSTING_VOLUME_LIMITS["max_boards"], "board policy exceeds hard ceiling")
         require(bool(value["roles"]), "no configured roles")
         require(all(re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug) and isinstance(hints, list) and hints and all(isinstance(h, str) and h.strip() for h in hints) for slug, hints in value["roles"].items()), "roles require explicit literal title hints")
+        from .structured_career import validate_robots_agent, no_contacts
+        require(no_contacts(recorded_policy(value)), "non-data policy metadata")
+        validate_robots_agent(value.get("robots_agent"))
         identities = set()
         for board in value["boards"]:
             if board["ats"] == "jsonld":
@@ -291,7 +302,8 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
                     session = structured_session
                 else:
                     local = None if live else local_transport(payload_root, board["payload"])
-                    session = Session(policy.value["user_agent"], transport=transport or local, reserve=reserve, local=not live)
+                    session = Session(policy.value["user_agent"], robots_agent=board.get("robots_agent", policy.value.get("robots_agent")),
+                                      transport=transport or local, reserve=reserve, local=not live)
                 collection, structured_summary = crawl(board, policy.value["roles"], session, stamp)
                 body = canonical(collection).encode()
             except (ValueError, OSError, KeyError, TypeError):
@@ -352,7 +364,7 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
             if len(matches) == 1 and us_location_ok(candidate["location"]):
                 section_checks.append({"posting_id": key, "role": matches[0], "job_id": candidate["job_id"], "employer": employer,
                                        "title": candidate["title"], "has_responsibilities": extracted["has_responsibilities"]})
-            if not extracted["expectations"] and frozen_ids is None:
+            if not extracted["expectations"] and not extracted["contact_spans_omitted"] and frozen_ids is None:
                 reason = reason or "no_recognized_expectation_section"
             if reason:
                 excluded.append({"posting_id": key, "title": candidate["title"], "employer": employer, "reason": reason,
@@ -374,6 +386,7 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
                              "board_sha256": origin_hash, "board_url": url, "ats": ats, "is_detail": is_detail,
                              "description_is_html": is_html, "retrieved_at": stamp, "extraction_method": extraction_method,
                              "has_responsibilities": extracted["has_responsibilities"], "expectations": expectations,
+                             "contact_spans_omitted": extracted["contact_spans_omitted"], "contact_omissions": extracted["contact_omissions"],
                              "work_level": "unknown", "advertised_experience": {"value": []},
                              "employer_source_note": board["source_note"]})
             if ats == "jsonld":
@@ -399,7 +412,7 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
         selected.extend(chosen)
         ids = {p["dedup_key"] for p in chosen}
         excluded.extend({"posting_id": p["dedup_key"], "reason": "fair_employer_cap_or_policy_limit"} for p in candidates if p["dedup_key"] not in ids)
-        reports[slug] = {"candidates": len(candidates), "admitted": len(chosen), "employers": dict(sorted(Counter(p["employer"] for p in chosen).items())),
+        reports[slug] = {"contact_spans_omitted": sum(p.get("contact_spans_omitted", 0) for p in chosen), "candidates": len(candidates), "admitted": len(chosen), "employers": dict(sorted(Counter(p["employer"] for p in chosen).items())),
                          "eligible_postings": sum(p["role"] == slug for p in section_checks),
                          "responsibilities": sum(p["has_responsibilities"] for p in section_checks if p["role"] == slug),
                          "responsibility_failures": [p["posting_id"] for p in section_checks if p["role"] == slug and not p["has_responsibilities"]]}
@@ -408,6 +421,8 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
                     "boards": [{k: v for k, v in b.items() if k != "payload"} for b in sorted(policy.value["boards"], key=lambda b: (b["ats"], b["token"]))],
                     "complete_boards": complete})
     manifest = {"schema": SCHEMA, "data_kind": policy.value["data_kind"], "quarter": window, "window_length": "quarterly",
+                "contact_filter": "sentences/1",
+                "contact_spans_omitted": sum(p.get("contact_spans_omitted", 0) for p in selected),
                 "comparison_group": extraction_method + ":" + group, "normalization": NORMALIZATION, "policy_sha256": digest(public_policy), "extraction_method": extraction_method,
                 "boards": boards, "roles": reports, "exclusions": excluded, "section_checks": section_checks, "policy": public_policy,
                 "limits": ["Quarterly cross-sectional captured listings, not new-job flows or market prevalence.",
@@ -426,7 +441,7 @@ def write_snapshot(policy: VolumePolicy, output: Path, window: str, **kwargs) ->
     manifest, files = capture(policy, window, **kwargs)
     files["manifest.json"] = canonical(manifest).encode()
     from .structured_career import no_contacts
-    require(all(no_contacts(data.decode("utf-8")) for data in files.values()), "snapshot contains non-data content; no files written")
+    require(no_contacts(manifest["policy"]), "snapshot policy contains non-data metadata; no files written")
     existing = {str(p.relative_to(target)) for p in target.rglob("*") if p.is_file()} if target.exists() else set()
     require(not existing - files.keys(), "unrelated snapshot output")
     for name, data in files.items():
