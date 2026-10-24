@@ -1,6 +1,8 @@
 """Allowlisted retrieval with hard bounds and recorded attempts.
 
-Only hosts in :mod:`skills_vector.market.hosts` are retrievable. Redirects are
+By default only hosts in :mod:`skills_vector.market.hosts` are retrievable.
+The structured-career lane supplies an explicit roster-site scope callback;
+this never changes the default research allowlist. Redirects are
 re-checked against the allowlist, response size is capped while streaming, and
 transient network errors get at most two infrastructure retries (the cap is
 fixed in :mod:`skills_vector.market.limits`; semantic failures are never
@@ -63,6 +65,7 @@ class FetchResult:
     error: str | None = None
     truncated: bool = False
     retrieved_at: str = field(default_factory=_now_iso)
+    location: str | None = None
 
     @property
     def ok(self) -> bool:
@@ -90,12 +93,15 @@ def fetch_url(
     max_bytes: int | None = None,
     timeout: float | None = None,
     retries: int | None = None,
+    url_check: Callable[[str], str | None] = url_problem,
+    before_request: Callable[[], None] | None = None,
+    redacted_errors: bool = False,
 ) -> FetchResult:
     """Fetch one allowlisted URL, bounded and with at most two infra retries."""
 
     max_bytes = int(max_bytes if max_bytes is not None else RESEARCH_LIMITS["max_response_bytes"])
     retries = int(retries if retries is not None else RESEARCH_LIMITS["max_retries"])
-    reason = url_problem(url)
+    reason = url_check(url)
     if reason:
         return FetchResult(url=url, status=None, error=f"refused by allowlist: {reason}")
     call: Callable[..., tuple[int, dict[str, str], bytes]] = transport or urllib_transport
@@ -105,6 +111,8 @@ def fetch_url(
     while attempts <= retries:
         attempts += 1
         try:
+            if before_request is not None:
+                before_request()
             if transport is not None:
                 status, headers, body = call(url)
             else:
@@ -121,6 +129,7 @@ def fetch_url(
                 attempts=attempts,
                 elapsed_ms=int((time.monotonic() - started) * 1000),
                 truncated=truncated,
+                location=headers.get("location") if 300 <= int(status) < 400 else None,
             )
             if result.status >= 500 and attempts <= retries:
                 last_error = f"http {result.status}"
@@ -141,12 +150,12 @@ def fetch_url(
                 error=last_error,
             )
         except (urllib.error.URLError, TimeoutError, OSError) as exc:
-            last_error = f"network error: {exc}"
+            last_error = "network error" if redacted_errors else f"network error: {exc}"
             if attempts <= retries:
                 time.sleep(min(2 ** (attempts - 1), 4))
                 continue
         except Exception as exc:  # noqa: BLE001 - transport boundary; record, do not crash the run
-            last_error = f"transport failure: {exc}"
+            last_error = "transport failure" if redacted_errors else f"transport failure: {exc}"
             break
     return FetchResult(
         url=url,
@@ -155,3 +164,26 @@ def fetch_url(
         elapsed_ms=int((time.monotonic() - started) * 1000),
         error=last_error or "unknown transport failure",
     )
+
+
+def scoped_transport(url_check: Callable[[str], str | None], user_agent: str, max_bytes: int, timeout: float) -> Transport:
+    """Existing urllib layer, with an explicit roster scope and manual redirects."""
+    class NoRedirect(urllib.request.HTTPRedirectHandler):
+        def redirect_request(self, req, fp, code, msg, headers, newurl):
+            return None
+
+    def call(url: str) -> tuple[int, dict[str, str], bytes]:
+        if url_check(url):
+            raise ValueError("out-of-scope structured request")
+        request = urllib.request.Request(url, headers={"User-Agent": user_agent, "Accept": "*/*"})
+        opener = urllib.request.build_opener(NoRedirect)
+        try:
+            response = opener.open(request, timeout=timeout)
+        except urllib.error.HTTPError as error:
+            response = error
+        with response:
+            headers = {k.lower(): v for k, v in response.headers.items()}
+            if int(headers.get("content-length", "0")) > max_bytes:
+                raise ValueError("structured response too large")
+            return int(response.status), headers, response.read(max_bytes + 1)
+    return call

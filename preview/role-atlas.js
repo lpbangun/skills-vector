@@ -584,6 +584,8 @@
 
   function renderIndustry() {
     var r = role(), list = industries(), ind = industry(), byId = {};
+    var unverified = r.raw.observations.find(function (o) { return o.id === "sector.unverified"; });
+    $("unverifiedSectors").textContent = unverified ? "Unverified employers: " + unverified.windows[0].mentions + " postings from " + unverified.windows[0].employers + " employers" : "Unverified employer counts not recorded in this release.";
     if (!list.length) { $("industryPick").innerHTML = ""; $("indSheet").innerHTML = '<p class="empty">No sector profiles supplied in this release.</p>'; $("heat").innerHTML = ""; return; }
     graphNodes().forEach(function (n) { byId[n.id] = n; });
     state.industry = ind.key;
@@ -606,7 +608,7 @@
         '<div><span class="v">' + esc(ind.pay) + '</span><span class="label">median pay in this industry</span></div>' +
       "</div>" +
       '<div class="stepup"><span class="label">How it differs here</span><span>' + esc(ind.differs) + "</span></div>" +
-      '<div style="display:grid; gap:0.3rem"><div class="label">Duties specific to this industry</div><ul class="pairs">' +
+      '<div style="display:grid; gap:0.3rem"><div class="label">Duties specific to this industry</div><ul class="pairs evidence-scroll">' +
         ind.duties.map(function (d) { return "<li><span>" + esc(d) + "</span><span></span></li>"; }).join("") + "</ul></div>" +
       '<div style="display:grid; gap:0.3rem"><div class="label">Certifications and licences</div>' +
         (ind.certs.length ? '<div class="certs"><table><thead><tr><th scope="col">Credential</th><th scope="col">Issuer</th><th scope="col">Asked as</th><th scope="col" style="text-align:right">Postings</th></tr></thead><tbody>' +
@@ -615,7 +617,7 @@
         '<span class="rule-note">' + (ind.sources.some(function (source) { return source.source_kind === "careeronestop"; })
           ? "Matched in CareerOneStop Certification Finder by O*NET code and NAICS. The share is postings that name the credential."
           : "Credentials are literal published posting mentions. No official issuer or credential catalog is inferred.") + '</span></div>' +
-      '<div style="display:grid; gap:0.3rem"><div class="label">Domain knowledge</div><div class="know">' + ind.know.map(function (k) { return "<span>" + esc(k) + "</span>"; }).join("") + "</div></div>";
+      '<div style="display:grid; gap:0.3rem"><div class="label">Domain knowledge</div><div class="know evidence-scroll">' + (ind.know.length ? ind.know.map(function (k) { return "<span>" + esc(k) + "</span>"; }).join("") : "<span>No domain knowledge recorded.</span>") + "</div></div>";
 
     var col = list.map(function (x) { return x.key; }).indexOf(ind.key);
     $("heat").innerHTML = '<table><thead><tr><th scope="col" style="text-align:left">Skill</th>' +

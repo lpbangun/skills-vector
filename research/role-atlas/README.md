@@ -1,5 +1,18 @@
 # Role Atlas research projection and ledger
 
+## Verified-sector Q4 publication (M9)
+
+Select `2026-Q4-sectors/roles` with `2026-Q4-sectors/ledger.json`: release
+`role_research_71d6040270516002`. This reuses exactly the 489 canonical postings,
+adds SEC-backed broad employer sectors, and qualifies AE Information at 205
+postings / 12 employers. Every below-floor sector retains counts and a null
+profile. Unverified-employer counts are separate, role-wide API observations.
+There is no new real structured-page volume yet; that lane is offline-tested
+and its future roster/capture remains operator-reviewed. The original M8 Q4
+publication below is unchanged and retained on disk.
+
+[Evidence, JSON-LD policy and exact operator workflow](../../docs/role-atlas/SECTORS_AND_STRUCTURED_CAREERS.md).
+
 ## Canonical 2026-Q4 (M8)
 
 `2026-Q4/` contains compactly serialized full research records, hash-bound light

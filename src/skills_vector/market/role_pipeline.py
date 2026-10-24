@@ -287,21 +287,34 @@ class EvidenceInputs:
             require(any(p["occupation_slug"] == row["role"] and any(normalized(e["source_wording"]) == key[1] for e in p["expectations"]) for p in postings), "phrase not in the published postings")
             seen_phrases.add(key)
         employers = {}
+        sector_path = mapping_root / "sic_sectors.json"
+        sector_table = load(sector_path) if sector_path.exists() else None
         for row in load(within(mapping_root, "employers.json")):
             key = normalized(row["employer"])
             require(key not in employers and row["source_note"].strip(), "duplicate employer/missing source note")
             require(row["status"] in ("verified", "unverified"), "invalid employer verification status")
-            require(any(normalized(p["employer"]) == key and p["source_id"] == row["source_id"] for p in postings), "employer source not tied to an admitted employer posting")
-            if row["status"] == "verified":
-                require(row["naics"] in skills["sectors"] and bool(row["quote"]), "verified employer needs NAICS and evidence")
-                require(row["quote"] in extracts[row["source_id"]], "employer evidence not in local source")
-                require(not any(row["quote"] == p.get("context_dimensions", {}).get("customer_industry", {}).get("quote") for p in postings), "customer industry is not employer industry")
+            if row.get("source") == "sec_edgar":
+                from .role_sectors import validate_sector
+                require(sector_table is not None, "missing SEC sector table")
+                validate_sector(row, sector_table)
+                require(row["naics"] is None or row["naics"].replace("–", "-") in skills["sectors"], "invalid SEC NAICS")
+            elif sector_table is not None and not row.get("source_id"):
+                require(row["status"] == "unverified" and row["naics"] is None, "unverified registry employer cannot have a sector")
             else:
-                require(row["naics"] is None, "unverified employer must not be assigned a sector")
+                require(any(normalized(p["employer"]) == key and p["source_id"] == row["source_id"] for p in postings), "employer source not tied to an admitted employer posting")
+                if row["status"] == "verified":
+                    require(row["naics"] in skills["sectors"] and bool(row["quote"]), "verified employer needs NAICS and evidence")
+                    require(row["quote"] in extracts[row["source_id"]], "employer evidence not in local source")
+                    require(not any(row["quote"] == p.get("context_dimensions", {}).get("customer_industry", {}).get("quote") for p in postings), "customer industry is not employer industry")
+                else:
+                    require(row["naics"] is None, "unverified employer must not be assigned a sector")
             employers[key] = row
-        require({normalized(p["employer"]) for p in postings} == set(employers), "every employer needs a reviewed or unverified mapping row")
+        require({normalized(p["employer"]) for p in postings} <= set(employers), "every employer needs a reviewed or unverified mapping row")
         hashes = {"release/" + str(p.relative_to(root)): digest(within(root, str(p.relative_to(root))).read_bytes()) for p in sorted(root.rglob("*")) if p.is_file()}
         hashes.update({"mappings/" + name: digest(within(mapping_root, name).read_bytes()) for name in ("skills.json", "employers.json")})
+        if sector_table is not None:
+            hashes["sic_sectors.json"] = digest(sector_path.read_bytes())
+            hashes["role_sectors.py"] = digest(Path(__file__).with_name("role_sectors.py").read_bytes())
         hashes["recipe.py"] = digest(Path(__file__).read_bytes())
         hashes["contract.py"] = digest(Path(__file__).with_name("role_atlas.py").read_bytes())
         hashes["schema.json"] = digest(SCHEMA_PATH.read_bytes())
@@ -362,6 +375,8 @@ class EvidenceInputs:
                 posting_audit.append({"posting_id": posting["dedup_key"], "source_id": posting["source_id"], "employer": posting["employer"],
                                       "level": decision.level, "reason": decision.reason, "strong_signals": decision.strong,
                                       "weak_signals": decision.weak, "excluded_projection_spans": posting.get("projection_exclusions", []), "skill_links": sorted(linked, key=lambda x: (x["skill"], x["phrase"]))})
+                if posting.get("source_kind") == "jsonld":
+                    posting_audit[-1].update(source_kind="jsonld", page_url=posting["url"], page_sha256=posting["page_sha256"])
             level_rows = {level: [p for p in rows if assignments[p["dedup_key"]] == level] for level in range(1, 6)}
             strata = sorted({value for value in assignments.values() if value is not None})
             if None in assignments.values():
@@ -441,7 +456,7 @@ class EvidenceInputs:
                                "evidence": counts(selected, current), "expectations": [expectations[k] for k in sorted(expectations)]})
             industries = []
             for naics, label in sorted(self.skills["sectors"].items()):
-                selected = [p for p in rows if self.employers[normalized(p["employer"])]["status"] == "verified" and self.employers[normalized(p["employer"])]["naics"] == naics]
+                selected = [p for p in rows if self.employers[normalized(p["employer"])]["status"] == "verified" and self.employers[normalized(p["employer"])]["naics"].replace("–", "-") == naics.replace("–", "-")]
                 profile = sector_profile(selected, current, mentions)
                 industries.append({"naics": naics, "label": label, "naics_title": label, "sub_industries": "Not verified in local inputs",
                                    "evidence": counts(selected, current), "profile": profile,
@@ -460,7 +475,10 @@ class EvidenceInputs:
                 "ladder": {"scale": "shared L1-L5", "track": "individual_contributor", "linked_roles": [], "levels": ladder},
                 "skill_map": {"skills": skills, "asked_together": kept, "builds_on": [], "top_level_adds": {"top_level": 5, "core_level": 3, "skills": top,
                               "long_run_bar": signal("onet_ratings", "O*NET local task anchor", "Local task alignment is presence only; no numeric proficiency rating or level rating was supplied.")}},
-                "industries": industries, "observations": [], "limits": [
+                "industries": industries, "observations": [{"id": "sector.unverified", "label": "Unverified employers", "levels": [1, 2, 3, 4, 5],
+                    "windows": [{"id": current, "mentions": len([p for p in rows if self.employers[normalized(p["employer"])]["status"] != "verified"]),
+                        "postings": len(rows), "employers": len({normalized(p["employer"]) for p in rows if self.employers[normalized(p["employer"])]["status"] != "verified"}), "timing": "coincident"}],
+                    "note": "Role-wide counts including unassigned scope, not a level-demand measurement. Excluded from sector profiles; no primary-employer sector is inferred."}], "limits": [
                     "Research projection of published release " + self.release_id + "; source counts are a bounded admitted sample, not market prevalence.",
                     "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand and is not a future probability.",
                     "Quarterly rules snapshots; only identical sampling definitions are comparable. Repeated releases within a quarter are not independent windows." if self.history_groups else "One selected snapshot only. Retrieval dates bin observed mentions; repeated releases are not independent windows. No comparable temporal history is asserted, so all current statuses are early.",

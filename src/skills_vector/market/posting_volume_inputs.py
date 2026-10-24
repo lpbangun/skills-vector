@@ -6,7 +6,7 @@ import json
 from copy import deepcopy
 from pathlib import Path
 
-from .posting_volume import BOARDS, SCHEMA, EXTRACTION, VolumePolicy, extract_sections, native_description, quarter, _native_rows
+from .posting_volume import BOARDS, SCHEMA, EXTRACTION, VolumePolicy, extract_sections, native_description, quarter, _native_rows, board_url, parse_volume_board
 from .sources import parse_job_board, us_location_ok, dedup_key
 from .role_artifacts import digest as object_digest, read_json
 from .role_pipeline import EvidenceInputs, digest, normalized, require, within
@@ -55,15 +55,18 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
             if origin not in native_cache:
                 body = within(root, "boards/" + origin + ".json").read_bytes()
                 native_cache[origin] = json.loads(body) if posting["is_detail"] else _native_rows(posting["ats"], body)
-                parsed_cache[origin] = None if posting["is_detail"] else {p["job_id"]: p for p in parse_job_board(posting["board_url"], body)["postings"]}
+                parsed_cache[origin] = None if posting["is_detail"] else {p["job_id"]: p for p in parse_volume_board(posting["ats"], posting["board_url"], body)["postings"]}
             native = native_cache[origin] if posting["is_detail"] else native_cache[origin][posting["job_id"]]
-            board = next((b for b in policy["boards"] if BOARDS[b["ats"]].format(token=b["token"]) == posting["board_url"]), None)
+            board = next((b for b in policy["boards"] if board_url(b) == posting["board_url"]), None)
             require(board is not None and board["employer"] == posting["employer"] and board["source_note"] == posting["employer_source_note"], "posting employer/board identity mismatch")
             parsed = parsed_cache[origin]
             if parsed is not None:
                 candidate = parsed.get(posting["job_id"])
                 require(candidate is not None and all(candidate[k] == posting[k] for k in ("title", "url", "location")), "posting differs from native board row")
                 require(us_location_ok(posting["location"]) and dedup_key(posting["employer"], posting["job_id"], posting["url"]) == posting["dedup_key"], "invalid geography/dedup identity")
+            if posting["ats"] == "jsonld":
+                require(posting.get("source_kind") == "jsonld" and posting.get("page_sha256") == native["page_sha256"]
+                        and posting.get("identifier") == native["identifier"], "structured page provenance mismatch")
             original, is_html = native_description(posting["ats"], native)
             require(original == raw and is_html == posting["description_is_html"], "description not bound to retrieved board row")
             replay = extract_sections(raw, is_html=is_html, method=posting["extraction_method"])
@@ -115,15 +118,23 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
         key = normalized(posting["employer"])
         employers[key] = {"employer": posting["employer"], "status": "unverified", "naics": None,
                           "source_id": posting["source_id"], "source_note": posting["employer_source_note"] + " No verified primary employer sector supplied; excluded."}
-    if employer_map:
-        hashes["volume_employers.json"] = digest(employer_map.read_bytes())
+    selected_map = employer_map or mapping_root / "employers.json"
+    if selected_map:
+        hashes["volume_employers.json"] = digest(selected_map.read_bytes())
         seen = set()
-        for row in read_json(employer_map):
+        sector_table = read_json(mapping_root / "sic_sectors.json") if (mapping_root / "sic_sectors.json").exists() else None
+        for row in read_json(selected_map):
             key = normalized(row["employer"])
+            if key not in employers and (employer_map is None or selected_map.resolve() == (mapping_root / "employers.json").resolve()):
+                continue
             require(key in employers and key not in seen and row.get("source_note", "").strip(), "unknown/duplicate employer or missing source note")
             seen.add(key)
             require(row["status"] in ("verified", "unverified"), "invalid employer status")
-            if row["status"] == "verified":
+            if row.get("source") == "sec_edgar":
+                from .role_sectors import validate_sector
+                require(sector_table is not None, "missing SEC sector proof")
+                validate_sector(row, sector_table)
+            elif row["status"] == "verified":
                 require(row.get("basis") == "primary_employer_sector" and row["naics"] in base.skills["sectors"], "verified sector needs explicit primary-employer basis")
                 require(row["source_id"] in extracts and row["quote"] in extracts[row["source_id"]], "unverified employer-sector source")
                 require(any(normalized(p["employer"]) == key and p["source_id"] == row["source_id"] for p in postings), "sector evidence belongs to a different employer")
@@ -161,6 +172,9 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
     base.history_groups = groups
     base.data_kind = manifests[0]["data_kind"]
     base.snapshot_roots = tuple(roots)
+    if any(b["ats"] == "jsonld" for m in manifests for b in m["policy"]["boards"]):
+        base.hashes["structured_career.py"] = digest(Path(__file__).with_name("structured_career.py").read_bytes())
+        base.hashes["jsonld_denylist.json"] = digest((mapping_root / "jsonld_denylist.json").read_bytes())
     for name in ("posting_volume.py", "posting_volume_inputs.py"):
         base.hashes[name] = digest(Path(__file__).with_name(name).read_bytes())
     # Mapping/normalizer changes are sampling-definition changes, never a fabricated trend.

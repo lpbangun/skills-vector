@@ -12,6 +12,13 @@ from .role_signals import KINDS, import_signals, merge_signals
 def add_operator_commands(sub) -> None:
     from .posting_volume_cli import add_volume_commands
     add_volume_commands(sub)
+    atlas = sub.add_parser("role-atlas", help="offline Role Atlas evidence operations")
+    sectors = atlas.add_subparsers(dest="atlas_action", required=True).add_parser("sectors")
+    importer = sectors.add_subparsers(dest="sectors_action", required=True).add_parser("import")
+    importer.add_argument("--sec", type=Path, required=True)
+    importer.add_argument("--concordance", type=Path, required=True)
+    importer.add_argument("--mapping-root", type=Path, default=Path(__file__).with_name("role_atlas_mappings"))
+    importer.add_argument("--roster", type=Path, default=Path("config/role-atlas-posting-volume.json"))
     signals = sub.add_parser("signals", help="import/merge already-downloaded official files; never downloads")
     actions = signals.add_subparsers(dest="signals_action", required=True)
     importer = actions.add_parser("import", help="read one local upstream table/JSON response")
@@ -46,6 +53,9 @@ def add_operator_commands(sub) -> None:
 
 
 def run_operator_command(args) -> dict:
+    if args.market_command == "role-atlas":
+        from .role_sectors import import_sectors
+        return import_sectors(args.sec, args.concordance, args.mapping_root, args.roster)
     if args.market_command == "posting-volume":
         from .posting_volume_cli import run_volume
         return run_volume(args)

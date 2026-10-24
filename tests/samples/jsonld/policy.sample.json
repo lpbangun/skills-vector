@@ -1,0 +1,62 @@
+{
+  "schema": "skills-vector.posting-policy/1",
+  "data_kind": "fixture",
+  "window_length": "quarterly",
+  "max_postings_per_role": 500,
+  "user_agent": "RoleAtlasSynthetic",
+  "roles": {
+    "hr-generalist": [
+      "HR Generalist"
+    ],
+    "growth-manager": [
+      "Growth Manager"
+    ]
+  },
+  "boards": [
+    {
+      "ats": "jsonld",
+      "employer": "Authored Employer 0",
+      "origin": "https://careers0.example.org",
+      "sitemap": "https://careers0.example.org/sitemap.xml",
+      "note": "Authored fixture: this synthetic career origin belongs to the named synthetic employer.",
+      "payload": "responses-0.sample.json",
+      "retrieved_at": "2026-10-15T00:00:00Z"
+    },
+    {
+      "ats": "jsonld",
+      "employer": "Authored Employer 1",
+      "origin": "https://careers1.example.org",
+      "sitemap": "https://careers1.example.org/sitemap.xml",
+      "note": "Authored fixture: this synthetic career origin belongs to the named synthetic employer.",
+      "payload": "responses-1.sample.json",
+      "retrieved_at": "2026-10-15T00:00:00Z"
+    },
+    {
+      "ats": "jsonld",
+      "employer": "Authored Employer 2",
+      "origin": "https://careers2.example.org",
+      "sitemap": "https://careers2.example.org/sitemap.xml",
+      "note": "Authored fixture: this synthetic career origin belongs to the named synthetic employer.",
+      "payload": "responses-2.sample.json",
+      "retrieved_at": "2026-10-15T00:00:00Z"
+    },
+    {
+      "ats": "jsonld",
+      "employer": "Authored Employer 3",
+      "origin": "https://careers3.example.org",
+      "sitemap": "https://careers3.example.org/sitemap.xml",
+      "note": "Authored fixture: this synthetic career origin belongs to the named synthetic employer.",
+      "payload": "responses-3.sample.json",
+      "retrieved_at": "2026-10-15T00:00:00Z"
+    },
+    {
+      "ats": "jsonld",
+      "employer": "Authored Employer 4",
+      "origin": "https://careers4.example.org",
+      "sitemap": "https://careers4.example.org/sitemap.xml",
+      "note": "Authored fixture: this synthetic career origin belongs to the named synthetic employer.",
+      "payload": "responses-4.sample.json",
+      "retrieved_at": "2026-10-15T00:00:00Z"
+    }
+  ]
+}

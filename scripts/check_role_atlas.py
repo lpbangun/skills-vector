@@ -333,13 +333,25 @@ def exercise_tab(page, tab: str, record: dict, requests: list[str]) -> None:
         target = record["ladder"]["levels"][min(2, len(record["ladder"]["levels"]) - 1)]["level"]
         page.locator(f'#stairs [data-level="{target}"]').click()
     elif tab == "industries":
+        unverified = next((o for o in record["observations"] if o["id"] == "sector.unverified"), None)
+        if unverified:
+            w = unverified["windows"][0]
+            require(f"Unverified employers: {w['mentions']} postings from {w['employers']} employers" == page.locator("#unverifiedSectors").inner_text(), "unverified sector coverage missing")
+        require(page.locator("#industryPick button").count() == len(record["industries"]), "below-floor sectors were hidden")
         for index, sector in enumerate(record["industries"]):
             page.locator("#industryPick button").nth(index).click()
             require(page.locator("#indSheet h3").inner_text() == sector["label"], "sector title mismatch")
             if sector["profile"] is None:
+                n, m = sector['evidence']['postings'], sector['evidence']['employers']
+                expected = f"Evidence: {n} posting{'s' if n != 1 else ''} from {m} employer{'s' if m != 1 else ''}"
+                require(expected in page.locator("#indSheet").inner_text(), "thin sector counts missing")
                 require(sector["reason"] in page.locator("#indSheet").inner_text(), "thin sector caveat missing")
         if record["industries"]:
-            page.locator("#industryPick button").first.click()
+            chosen = 0
+            if record['data_kind'] == 'research':
+                chosen = next((i for i,s in enumerate(record['industries']) if s['profile'] is not None),
+                              next((i for i,s in enumerate(record['industries']) if s['evidence']['postings']),0))
+            page.locator("#industryPick button").nth(chosen).click()
     elif tab == "gap":
         assert_gap_rows_fit(page)
         before_requests = len(requests)

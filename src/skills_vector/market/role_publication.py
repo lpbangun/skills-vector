@@ -18,6 +18,8 @@ def encoded(value: dict) -> bytes:
 
 def publish(records: list[dict], audit: dict, captures: tuple[Path, ...], output: Path,
             evidence_root: Path = EVIDENCE_ROOT, *, protected: tuple[Path, ...] = ()) -> dict:
+    from .structured_career import no_contacts
+    require(no_contacts([records, audit]), "publication contains non-data content; no files written")
     output = guard_output(output, *captures, *protected)
     audit_path = guard_output(evidence_root / audit["release_id"] / "audit.json", output, *captures, *protected)
     require(not audit_path.is_relative_to(ROOT), "full audits must be outside the repository")

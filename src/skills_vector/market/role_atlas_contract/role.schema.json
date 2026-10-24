@@ -1064,7 +1064,7 @@
             "minLength": 1,
             "pattern": "\\S"
           },
-          "minItems": 1
+          "minItems": 0
         },
         "skill_shares": {
           "type": "array",

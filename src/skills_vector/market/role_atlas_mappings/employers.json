@@ -1,106 +1,1856 @@
 [
   {
-    "employer": "Asana",
-    "status": "unverified",
-    "naics": null,
-    "source_id": "src_e35af9278335d5045c77",
-    "quote": null,
-    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+    "basis": "primary_employer_sector",
+    "cik": "0001820953",
+    "employer": "Affirm",
+    "naics": "52",
+    "registrant": "Affirm Holdings, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "concordance_unambiguous",
+      "naics": "52",
+      "note": "Every concordance row for this SIC falls in the same broad sector.",
+      "rows": [
+        {
+          "naics": "522210",
+          "sector": "52",
+          "sic": "6141"
+        },
+        {
+          "naics": "522220",
+          "sector": "52",
+          "sic": "6141"
+        },
+        {
+          "naics": "522291",
+          "sector": "52",
+          "sic": "6141"
+        },
+        {
+          "naics": "522298",
+          "sector": "52",
+          "sic": "6141"
+        }
+      ]
+    },
+    "sic": "6141",
+    "sic_description": "Personal Credit Institutions",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; Every concordance row for this SIC falls in the same broad sector.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001820953.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001820953.json",
+    "submission_sha256": "e49e506698225a118307e5579c5e039921c6e9c595149767ab387b4fd850fd7d"
   },
   {
-    "employer": "Chime",
-    "status": "unverified",
+    "basis": "primary_employer_sector",
+    "cik": "0001559720",
+    "employer": "Airbnb",
     "naics": null,
-    "source_id": "src_faf73f88dbaba0d70efb",
+    "registrant": "Airbnb, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": null,
+      "note": "SIC 7340 is ambiguous across sectors 56 and 53",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": []
+    },
+    "sic": "7340",
+    "sic_description": "Services-To Dwellings & Other Buildings",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; SIC 7340 is ambiguous across sectors 56 and 53",
+    "source_url": "https://data.sec.gov/submissions/CIK0001559720.json",
+    "status": "unverified",
+    "submission_file": "submissions/CIK0001559720.json",
+    "submission_sha256": "1eea5b5dea053818b5bb9240f089095db5d60a8361e64e3378cee8aa2e43ba06"
+  },
+  {
+    "employer": "Anduril",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Anthropic",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Anysphere",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001477720",
+    "employer": "Asana",
+    "naics": "51",
     "quote": null,
-    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+    "registrant": "Asana, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "51",
+      "note": "Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "334611",
+          "sector": "31–33",
+          "sic": "7372"
+        },
+        {
+          "naics": "511210",
+          "sector": "51",
+          "sic": "7372"
+        }
+      ]
+    },
+    "sic": "7372",
+    "sic_description": "Services-Prepackaged Software",
+    "source": "sec_edgar",
+    "source_id": "src_e35af9278335d5045c77",
+    "source_note": "SEC primary-employer SIC; Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001477720.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001477720.json",
+    "submission_sha256": "913acb89e27d20a26b18e18a8b8274ef946c6e5f9bd29bd62d1ee8e995a8f429"
+  },
+  {
+    "employer": "Betterment",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Brex",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Calendly",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001690820",
+    "employer": "Carvana",
+    "naics": "44–45",
+    "registrant": "CARVANA CO.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "44–45",
+      "note": "SEC aggregate for major group 55; children map to 441xxx/447xxx.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": []
+    },
+    "sic": "5500",
+    "sic_description": "Retail-Auto Dealers & Gasoline Stations",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; SEC aggregate for major group 55; children map to 441xxx/447xxx.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001690820.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001690820.json",
+    "submission_sha256": "08cf3c3265f390fa8064fee29830b1fc30d61a08490c2415d0bef588760be594"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001795586",
+    "employer": "Chime",
+    "naics": "52",
+    "quote": null,
+    "registrant": "Chime Financial, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "52",
+      "note": "SEC code absent from the concordance; SIC major group 61 nondepository credit falls in 52.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": []
+    },
+    "sic": "6199",
+    "sic_description": "Finance Services",
+    "source": "sec_edgar",
+    "source_id": "src_faf73f88dbaba0d70efb",
+    "source_note": "SEC primary-employer SIC; SEC code absent from the concordance; SIC major group 61 nondepository credit falls in 52.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001795586.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001795586.json",
+    "submission_sha256": "87c98112af04c3253a230cc24e464099a25e24f5b5b04c5a117d1bea54ef36ee"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001477333",
+    "employer": "Cloudflare",
+    "naics": "51",
+    "registrant": "Cloudflare, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "51",
+      "note": "Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "334611",
+          "sector": "31–33",
+          "sic": "7372"
+        },
+        {
+          "naics": "511210",
+          "sector": "51",
+          "sic": "7372"
+        }
+      ]
+    },
+    "sic": "7372",
+    "sic_description": "Services-Prepackaged Software",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001477333.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001477333.json",
+    "submission_sha256": "625a8bce14a3ae55583a943188675b4ee6cadc438b8cbdc99b7dd25ff93b94fd"
+  },
+  {
+    "employer": "Cohere",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001679788",
+    "employer": "Coinbase",
+    "naics": "52",
+    "registrant": "Coinbase Global, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "52",
+      "note": "SEC code absent from the concordance; SIC major group 61 nondepository credit falls in 52.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": []
+    },
+    "sic": "6199",
+    "sic_description": "Finance Services",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; SEC code absent from the concordance; SIC major group 61 nondepository credit falls in 52.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001679788.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001679788.json",
+    "submission_sha256": "6ebfb2484a3913e6761cbed280e76431ab60bfa894d413cbc1057de92600ee7a"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001651562",
+    "employer": "Coursera",
+    "naics": "51",
+    "registrant": "Coursera, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "51",
+      "note": "Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "334611",
+          "sector": "31–33",
+          "sic": "7372"
+        },
+        {
+          "naics": "511210",
+          "sector": "51",
+          "sic": "7372"
+        }
+      ]
+    },
+    "sic": "7372",
+    "sic_description": "Services-Prepackaged Software",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001651562.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001651562.json",
+    "submission_sha256": "e1d5272eb6f97ab26401fc1f8cd48b4963dfe12602952af7633cdeb5d7688b2a"
   },
   {
     "employer": "Databricks",
-    "status": "unverified",
     "naics": null,
+    "quote": null,
     "source_id": "src_2b15a14ab97190e211f7",
-    "quote": null,
-    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile.",
+    "status": "unverified"
   },
   {
+    "basis": "primary_employer_sector",
+    "cik": "0001561550",
     "employer": "Datadog",
-    "status": "unverified",
-    "naics": null,
+    "naics": "51",
+    "quote": null,
+    "registrant": "Datadog, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "51",
+      "note": "Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "334611",
+          "sector": "31–33",
+          "sic": "7372"
+        },
+        {
+          "naics": "511210",
+          "sector": "51",
+          "sic": "7372"
+        }
+      ]
+    },
+    "sic": "7372",
+    "sic_description": "Services-Prepackaged Software",
+    "source": "sec_edgar",
     "source_id": "src_73b0452f4c687bbded4c",
-    "quote": null,
-    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+    "source_note": "SEC primary-employer SIC; Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001561550.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001561550.json",
+    "submission_sha256": "41b99260bbdc289aac9de0de669a9fd383ed41d080ac790d4cb70e1bde46c682"
   },
   {
+    "employer": "Decagon",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Deel",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001792789",
+    "employer": "DoorDash",
+    "naics": null,
+    "registrant": "DoorDash, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": null,
+      "note": "SIC 7389 is ambiguous across sectors",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "312229",
+          "sector": "31–33",
+          "sic": "7389"
+        },
+        {
+          "naics": "313311",
+          "sector": "31–33",
+          "sic": "7389"
+        },
+        {
+          "naics": "314999",
+          "sector": "31–33",
+          "sic": "7389"
+        },
+        {
+          "naics": "325998",
+          "sector": "31–33",
+          "sic": "7389"
+        },
+        {
+          "naics": "425120",
+          "sector": "42",
+          "sic": "7389"
+        },
+        {
+          "naics": "488490",
+          "sector": "48–49",
+          "sic": "7389"
+        },
+        {
+          "naics": "491110",
+          "sector": "48–49",
+          "sic": "7389"
+        },
+        {
+          "naics": "512240",
+          "sector": "51",
+          "sic": "7389"
+        },
+        {
+          "naics": "512290",
+          "sector": "51",
+          "sic": "7389"
+        },
+        {
+          "naics": "518210",
+          "sector": "51",
+          "sic": "7389"
+        },
+        {
+          "naics": "519190",
+          "sector": "51",
+          "sic": "7389"
+        },
+        {
+          "naics": "522320",
+          "sector": "52",
+          "sic": "7389"
+        },
+        {
+          "naics": "541199",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541340",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541350",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541370",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541410",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541420",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541490",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541870",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541890",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541930",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541990",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "561410",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561421",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561422",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561431",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561439",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561440",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561491",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561499",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561591",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561599",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561790",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561910",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561920",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561990",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "711310",
+          "sector": "71",
+          "sic": "7389"
+        },
+        {
+          "naics": "711320",
+          "sector": "71",
+          "sic": "7389"
+        },
+        {
+          "naics": "711410",
+          "sector": "71",
+          "sic": "7389"
+        },
+        {
+          "naics": "812320",
+          "sector": "81",
+          "sic": "7389"
+        },
+        {
+          "naics": "812990",
+          "sector": "81",
+          "sic": "7389"
+        }
+      ]
+    },
+    "sic": "7389",
+    "sic_description": "Services-Business Services, NEC",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; SIC 7389 is ambiguous across sectors",
+    "source_url": "https://data.sec.gov/submissions/CIK0001792789.json",
+    "status": "unverified",
+    "submission_file": "submissions/CIK0001792789.json",
+    "submission_sha256": "f629a4e0103f9ef0b0d94ed78428612dbbefe51dca5366fc6597a33817c1cfb7"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001467623",
+    "employer": "Dropbox",
+    "naics": "51",
+    "registrant": "DROPBOX, INC.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "51",
+      "note": "Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "334611",
+          "sector": "31–33",
+          "sic": "7372"
+        },
+        {
+          "naics": "511210",
+          "sector": "51",
+          "sic": "7372"
+        }
+      ]
+    },
+    "sic": "7372",
+    "sic_description": "Services-Prepackaged Software",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001467623.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001467623.json",
+    "submission_sha256": "7c75c4ffa7cef457915e64b39fee37a63bbfc3d7a0c2a04ddaed115adda49307"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001562088",
     "employer": "Duolingo",
-    "status": "unverified",
-    "naics": null,
+    "naics": "51",
+    "quote": null,
+    "registrant": "Duolingo, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "51",
+      "note": "Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "334611",
+          "sector": "31–33",
+          "sic": "7372"
+        },
+        {
+          "naics": "511210",
+          "sector": "51",
+          "sic": "7372"
+        }
+      ]
+    },
+    "sic": "7372",
+    "sic_description": "Services-Prepackaged Software",
+    "source": "sec_edgar",
     "source_id": "src_1ed341a8573851cfd6b0",
-    "quote": null,
-    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+    "source_note": "SEC primary-employer SIC; Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001562088.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001562088.json",
+    "submission_sha256": "d3913ca2ba93b66a22148db01571201e553ad4f2ac77b5fb97c9172797dc713c"
   },
   {
+    "basis": "primary_employer_sector",
+    "cik": "0001707753",
+    "employer": "Elastic",
+    "naics": "51",
+    "registrant": "Elastic N.V.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "51",
+      "note": "Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "334611",
+          "sector": "31–33",
+          "sic": "7372"
+        },
+        {
+          "naics": "511210",
+          "sector": "51",
+          "sic": "7372"
+        }
+      ]
+    },
+    "sic": "7372",
+    "sic_description": "Services-Prepackaged Software",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001707753.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001707753.json",
+    "submission_sha256": "504fdf2ea8666ccc81daf315e733ae39cdb241726fefd78d3c6574f408ba1604"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001579878",
     "employer": "Figma",
-    "status": "unverified",
-    "naics": null,
-    "source_id": "src_140307f829bfdb285349",
+    "naics": "51",
     "quote": null,
-    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+    "registrant": "Figma, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "51",
+      "note": "Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "334611",
+          "sector": "31–33",
+          "sic": "7372"
+        },
+        {
+          "naics": "511210",
+          "sector": "51",
+          "sic": "7372"
+        }
+      ]
+    },
+    "sic": "7372",
+    "sic_description": "Services-Prepackaged Software",
+    "source": "sec_edgar",
+    "source_id": "src_140307f829bfdb285349",
+    "source_note": "SEC primary-employer SIC; Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001579878.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001579878.json",
+    "submission_sha256": "717c40ae8d3b1489352a63b30d0ffaa932e03f79a13cd8a1cd604cfa9cccd808"
   },
   {
-    "employer": "Instacart",
-    "status": "unverified",
+    "employer": "Flexport",
     "naics": null,
-    "source_id": "src_6076d691fd591ccffd48",
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001653482",
+    "employer": "GitLab",
+    "naics": "51",
+    "registrant": "Gitlab Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "51",
+      "note": "Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "334611",
+          "sector": "31–33",
+          "sic": "7372"
+        },
+        {
+          "naics": "511210",
+          "sector": "51",
+          "sic": "7372"
+        }
+      ]
+    },
+    "sic": "7372",
+    "sic_description": "Services-Prepackaged Software",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001653482.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001653482.json",
+    "submission_sha256": "07770d4161ff99985833d38b5bb4658f3a079edd03e8fd7f0eece3142938a998"
+  },
+  {
+    "employer": "Glossier",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Gusto",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Harvey",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Highspot",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001579091",
+    "employer": "Instacart",
+    "naics": null,
     "quote": null,
-    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+    "registrant": "Maplebear Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": null,
+      "note": "SIC 7389 is ambiguous across sectors",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "312229",
+          "sector": "31–33",
+          "sic": "7389"
+        },
+        {
+          "naics": "313311",
+          "sector": "31–33",
+          "sic": "7389"
+        },
+        {
+          "naics": "314999",
+          "sector": "31–33",
+          "sic": "7389"
+        },
+        {
+          "naics": "325998",
+          "sector": "31–33",
+          "sic": "7389"
+        },
+        {
+          "naics": "425120",
+          "sector": "42",
+          "sic": "7389"
+        },
+        {
+          "naics": "488490",
+          "sector": "48–49",
+          "sic": "7389"
+        },
+        {
+          "naics": "491110",
+          "sector": "48–49",
+          "sic": "7389"
+        },
+        {
+          "naics": "512240",
+          "sector": "51",
+          "sic": "7389"
+        },
+        {
+          "naics": "512290",
+          "sector": "51",
+          "sic": "7389"
+        },
+        {
+          "naics": "518210",
+          "sector": "51",
+          "sic": "7389"
+        },
+        {
+          "naics": "519190",
+          "sector": "51",
+          "sic": "7389"
+        },
+        {
+          "naics": "522320",
+          "sector": "52",
+          "sic": "7389"
+        },
+        {
+          "naics": "541199",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541340",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541350",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541370",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541410",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541420",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541490",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541870",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541890",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541930",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541990",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "561410",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561421",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561422",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561431",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561439",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561440",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561491",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561499",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561591",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561599",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561790",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561910",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561920",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561990",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "711310",
+          "sector": "71",
+          "sic": "7389"
+        },
+        {
+          "naics": "711320",
+          "sector": "71",
+          "sic": "7389"
+        },
+        {
+          "naics": "711410",
+          "sector": "71",
+          "sic": "7389"
+        },
+        {
+          "naics": "812320",
+          "sector": "81",
+          "sic": "7389"
+        },
+        {
+          "naics": "812990",
+          "sector": "81",
+          "sic": "7389"
+        }
+      ]
+    },
+    "sic": "7389",
+    "sic_description": "Services-Business Services, NEC",
+    "source": "sec_edgar",
+    "source_id": "src_6076d691fd591ccffd48",
+    "source_note": "SEC primary-employer SIC; SIC 7389 is ambiguous across sectors",
+    "source_url": "https://data.sec.gov/submissions/CIK0001579091.json",
+    "status": "unverified",
+    "submission_file": "submissions/CIK0001579091.json",
+    "submission_sha256": "79cec3e88a9eb99139f1f9d0ebbb863f59de4f75e5d1dd0a3c2a75269a284069"
   },
   {
     "employer": "Justworks",
-    "status": "unverified",
     "naics": null,
-    "source_id": "src_446100506f5f4b8c8026",
     "quote": null,
-    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+    "source_id": "src_446100506f5f4b8c8026",
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile.",
+    "status": "unverified"
   },
   {
-    "employer": "MongoDB",
-    "status": "unverified",
+    "employer": "Linear",
     "naics": null,
-    "source_id": "src_3fe01ef9bfa3c8e6402e",
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Lucid Motors",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001759509",
+    "employer": "Lyft",
+    "naics": null,
+    "registrant": "Lyft, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": null,
+      "note": "SIC 7389 is ambiguous across sectors",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "312229",
+          "sector": "31–33",
+          "sic": "7389"
+        },
+        {
+          "naics": "313311",
+          "sector": "31–33",
+          "sic": "7389"
+        },
+        {
+          "naics": "314999",
+          "sector": "31–33",
+          "sic": "7389"
+        },
+        {
+          "naics": "325998",
+          "sector": "31–33",
+          "sic": "7389"
+        },
+        {
+          "naics": "425120",
+          "sector": "42",
+          "sic": "7389"
+        },
+        {
+          "naics": "488490",
+          "sector": "48–49",
+          "sic": "7389"
+        },
+        {
+          "naics": "491110",
+          "sector": "48–49",
+          "sic": "7389"
+        },
+        {
+          "naics": "512240",
+          "sector": "51",
+          "sic": "7389"
+        },
+        {
+          "naics": "512290",
+          "sector": "51",
+          "sic": "7389"
+        },
+        {
+          "naics": "518210",
+          "sector": "51",
+          "sic": "7389"
+        },
+        {
+          "naics": "519190",
+          "sector": "51",
+          "sic": "7389"
+        },
+        {
+          "naics": "522320",
+          "sector": "52",
+          "sic": "7389"
+        },
+        {
+          "naics": "541199",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541340",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541350",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541370",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541410",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541420",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541490",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541870",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541890",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541930",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "541990",
+          "sector": "54",
+          "sic": "7389"
+        },
+        {
+          "naics": "561410",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561421",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561422",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561431",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561439",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561440",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561491",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561499",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561591",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561599",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561790",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561910",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561920",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "561990",
+          "sector": "56",
+          "sic": "7389"
+        },
+        {
+          "naics": "711310",
+          "sector": "71",
+          "sic": "7389"
+        },
+        {
+          "naics": "711320",
+          "sector": "71",
+          "sic": "7389"
+        },
+        {
+          "naics": "711410",
+          "sector": "71",
+          "sic": "7389"
+        },
+        {
+          "naics": "812320",
+          "sector": "81",
+          "sic": "7389"
+        },
+        {
+          "naics": "812990",
+          "sector": "81",
+          "sic": "7389"
+        }
+      ]
+    },
+    "sic": "7389",
+    "sic_description": "Services-Business Services, NEC",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; SIC 7389 is ambiguous across sectors",
+    "source_url": "https://data.sec.gov/submissions/CIK0001759509.json",
+    "status": "unverified",
+    "submission_file": "submissions/CIK0001759509.json",
+    "submission_sha256": "d518d94dd4cd59492a5d797dd787a4f40401a474142db368f54fbc51d7483a5a"
+  },
+  {
+    "employer": "Mercury",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Modal",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001441816",
+    "employer": "MongoDB",
+    "naics": "51",
     "quote": null,
-    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+    "registrant": "MongoDB, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "51",
+      "note": "Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "334611",
+          "sector": "31–33",
+          "sic": "7372"
+        },
+        {
+          "naics": "511210",
+          "sector": "51",
+          "sic": "7372"
+        }
+      ]
+    },
+    "sic": "7372",
+    "sic_description": "Services-Prepackaged Software",
+    "source": "sec_edgar",
+    "source_id": "src_3fe01ef9bfa3c8e6402e",
+    "source_note": "SEC primary-employer SIC; Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001441816.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001441816.json",
+    "submission_sha256": "cb0d69fdda4472335e39775ca29bdc2acdbdd8a06b4199ad702d9a037dd7ac2b"
+  },
+  {
+    "employer": "Notion",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Nuro",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001660134",
+    "employer": "Okta",
+    "naics": "51",
+    "registrant": "Okta, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "51",
+      "note": "Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "334611",
+          "sector": "31–33",
+          "sic": "7372"
+        },
+        {
+          "naics": "511210",
+          "sector": "51",
+          "sic": "7372"
+        }
+      ]
+    },
+    "sic": "7372",
+    "sic_description": "Services-Prepackaged Software",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001660134.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001660134.json",
+    "submission_sha256": "3d0e46e72cbbc4a776b7391c6913b465d05ce32da79003d32f63668d1302c949"
+  },
+  {
+    "employer": "OpenAI",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001568651",
+    "employer": "Oscar Health",
+    "naics": "52",
+    "registrant": "Oscar Health, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "concordance_unambiguous",
+      "naics": "52",
+      "note": "Every concordance row for this SIC falls in the same broad sector.",
+      "rows": [
+        {
+          "naics": "524114",
+          "sector": "52",
+          "sic": "6324"
+        },
+        {
+          "naics": "524130",
+          "sector": "52",
+          "sic": "6324"
+        },
+        {
+          "naics": "525190",
+          "sector": "52",
+          "sic": "6324"
+        }
+      ]
+    },
+    "sic": "6324",
+    "sic_description": "Hospital & Medical Service Plans",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; Every concordance row for this SIC falls in the same broad sector.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001568651.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001568651.json",
+    "submission_sha256": "204a53b236b2afe6d53667578f83dc02ec52cce55ecd348b1f6cecd3ab305298"
+  },
+  {
+    "employer": "Outreach",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001321655",
+    "employer": "Palantir",
+    "naics": "51",
+    "registrant": "Palantir Technologies Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "51",
+      "note": "Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "334611",
+          "sector": "31–33",
+          "sic": "7372"
+        },
+        {
+          "naics": "511210",
+          "sector": "51",
+          "sic": "7372"
+        }
+      ]
+    },
+    "sic": "7372",
+    "sic_description": "Services-Prepackaged Software",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001321655.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001321655.json",
+    "submission_sha256": "32235ba40b30088ac58007f2b881f7b198b850a8361d6ac36ea25e182cad21c9"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001639825",
+    "employer": "Peloton",
+    "naics": "31–33",
+    "registrant": "PELOTON INTERACTIVE, INC.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "concordance_unambiguous",
+      "naics": "31–33",
+      "note": "Every concordance row for this SIC falls in the same broad sector.",
+      "rows": [
+        {
+          "naics": "339920",
+          "sector": "31–33",
+          "sic": "3949"
+        }
+      ]
+    },
+    "sic": "3949",
+    "sic_description": "Sporting & Athletic Goods, NEC",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; Every concordance row for this SIC falls in the same broad sector.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001639825.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001639825.json",
+    "submission_sha256": "c880cd4b91f2d42e23aa6722ba2fa6da9f9a42b18f85bad2a973b43324fab23c"
+  },
+  {
+    "employer": "Perplexity",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001506293",
+    "employer": "Pinterest",
+    "naics": "54",
+    "registrant": "PINTEREST, INC.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "54",
+      "note": "SEC aggregate absent from the 1987 concordance; children 7371/7373 map to 5415xx.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": []
+    },
+    "sic": "7370",
+    "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; SEC aggregate absent from the 1987 concordance; children 7371/7373 map to 5415xx.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001506293.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001506293.json",
+    "submission_sha256": "db075837e2bc4968b9117bb8ed811e475810a82835bbc2c35413f805716963c8"
+  },
+  {
+    "employer": "Ramp",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Replit",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001783879",
+    "employer": "Robinhood",
+    "naics": "52",
+    "registrant": "Robinhood Markets, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "concordance_unambiguous",
+      "naics": "52",
+      "note": "Every concordance row for this SIC falls in the same broad sector.",
+      "rows": [
+        {
+          "naics": "523110",
+          "sector": "52",
+          "sic": "6211"
+        },
+        {
+          "naics": "523120",
+          "sector": "52",
+          "sic": "6211"
+        },
+        {
+          "naics": "523910",
+          "sector": "52",
+          "sic": "6211"
+        },
+        {
+          "naics": "523999",
+          "sector": "52",
+          "sic": "6211"
+        }
+      ]
+    },
+    "sic": "6211",
+    "sic_description": "Security Brokers, Dealers & Flotation Companies",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; Every concordance row for this SIC falls in the same broad sector.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001783879.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001783879.json",
+    "submission_sha256": "6d710fa64ad12859bef81569d7dc36c5b9455cbfe24452043eafae8f4aee3860"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001642896",
+    "employer": "Samsara",
+    "naics": "54",
+    "registrant": "Samsara Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "concordance_unambiguous",
+      "naics": "54",
+      "note": "Every concordance row for this SIC falls in the same broad sector.",
+      "rows": [
+        {
+          "naics": "541512",
+          "sector": "54",
+          "sic": "7373"
+        }
+      ]
+    },
+    "sic": "7373",
+    "sic_description": "Services-Computer Integrated Systems Design",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; Every concordance row for this SIC falls in the same broad sector.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001642896.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001642896.json",
+    "submission_sha256": "98a98ed9c663f048773780471e52c6088838ccb79b3352792fb23917f6253135"
+  },
+  {
+    "employer": "Scale AI",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Shield AI",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Sierra",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001818874",
+    "employer": "SoFi",
+    "naics": "52",
+    "registrant": "SoFi Technologies, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "52",
+      "note": "SEC code absent from the concordance; SIC major group 61 nondepository credit falls in 52.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": []
+    },
+    "sic": "6199",
+    "sic_description": "Finance Services",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; SEC code absent from the concordance; SIC major group 61 nondepository credit falls in 52.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001818874.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001818874.json",
+    "submission_sha256": "fcb1f74ebdc6416eb820a0918ed4e967f463062a6678780ef1f1454547e7a906"
   },
   {
     "employer": "SpaceX",
-    "status": "unverified",
     "naics": null,
-    "source_id": "src_bb83224100d7cd1745fb",
     "quote": null,
-    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+    "source_id": "src_bb83224100d7cd1745fb",
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile.",
+    "status": "unverified"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001639920",
+    "employer": "Spotify",
+    "naics": "51",
+    "registrant": "Spotify Technology S.A.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "concordance_unambiguous",
+      "naics": "51",
+      "note": "Every concordance row for this SIC falls in the same broad sector.",
+      "rows": [
+        {
+          "naics": "515111",
+          "sector": "51",
+          "sic": "4832"
+        },
+        {
+          "naics": "515112",
+          "sector": "51",
+          "sic": "4832"
+        }
+      ]
+    },
+    "sic": "4832",
+    "sic_description": "Radio Broadcasting Stations",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; Every concordance row for this SIC falls in the same broad sector.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001639920.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001639920.json",
+    "submission_sha256": "5c6c8e01c7da461e06a3002427ac0a75116139614e57214ae2dc6a9cf9bfe492"
+  },
+  {
+    "employer": "Squarespace",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
   },
   {
     "employer": "Stripe",
-    "status": "unverified",
     "naics": null,
-    "source_id": "src_6098b7029cbc74dc882c",
     "quote": null,
-    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+    "source_id": "src_6098b7029cbc74dc882c",
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile.",
+    "status": "unverified"
   },
   {
+    "basis": "primary_employer_sector",
+    "cik": "0001477815",
+    "employer": "Sweetgreen",
+    "naics": "72",
+    "registrant": "Sweetgreen, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "72",
+      "note": "Restaurant rows apply to the registrant, not dinner theater 711110.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "711110",
+          "sector": "71",
+          "sic": "5812"
+        },
+        {
+          "naics": "722110",
+          "sector": "72",
+          "sic": "5812"
+        },
+        {
+          "naics": "722211",
+          "sector": "72",
+          "sic": "5812"
+        },
+        {
+          "naics": "722212",
+          "sector": "72",
+          "sic": "5812"
+        },
+        {
+          "naics": "722213",
+          "sector": "72",
+          "sic": "5812"
+        },
+        {
+          "naics": "722310",
+          "sector": "72",
+          "sic": "5812"
+        },
+        {
+          "naics": "722320",
+          "sector": "72",
+          "sic": "5812"
+        }
+      ]
+    },
+    "sic": "5812",
+    "sic_description": "Retail-Eating  Places",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; Restaurant rows apply to the registrant, not dinner theater 711110.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001477815.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001477815.json",
+    "submission_sha256": "30ed862098a920aef991ba044df8508913829008d9fa8cf116d0ca716c4ef5b3"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001650164",
     "employer": "Toast",
-    "status": "unverified",
-    "naics": null,
-    "source_id": "src_2ef617516a5da8524028",
+    "naics": "51",
     "quote": null,
-    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+    "registrant": "Toast, Inc.",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "concordance_unambiguous",
+      "naics": "51",
+      "note": "Every concordance row for this SIC falls in the same broad sector.",
+      "rows": [
+        {
+          "naics": "518210",
+          "sector": "51",
+          "sic": "7374"
+        }
+      ]
+    },
+    "sic": "7374",
+    "sic_description": "Services-Computer Processing & Data Preparation",
+    "source": "sec_edgar",
+    "source_id": "src_2ef617516a5da8524028",
+    "source_note": "SEC primary-employer SIC; Every concordance row for this SIC falls in the same broad sector.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001650164.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001650164.json",
+    "submission_sha256": "a510f46df652f3e10c98579ec16ef2f70d0110e46e49cd7d7b354c6020ea0340"
+  },
+  {
+    "basis": "primary_employer_sector",
+    "cik": "0001447669",
+    "employer": "Twilio",
+    "naics": "51",
+    "registrant": "TWILIO INC",
+    "retrieved_at": "2026-10-24",
+    "rule": {
+      "kind": "reviewed_decision",
+      "naics": "51",
+      "note": "Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+      "review": "docs/role-atlas/BRIEF.md M9 Part A",
+      "rows": [
+        {
+          "naics": "334611",
+          "sector": "31–33",
+          "sic": "7372"
+        },
+        {
+          "naics": "511210",
+          "sector": "51",
+          "sic": "7372"
+        }
+      ]
+    },
+    "sic": "7372",
+    "sic_description": "Services-Prepackaged Software",
+    "source": "sec_edgar",
+    "source_note": "SEC primary-employer SIC; Software publishing, NAICS 511210. Mass reproduction 334611 does not describe these registrants.",
+    "source_url": "https://data.sec.gov/submissions/CIK0001447669.json",
+    "status": "verified",
+    "submission_file": "submissions/CIK0001447669.json",
+    "submission_sha256": "b10544676d3c89184db23980f43a45fc4e3d7c52fab29e0242381203faaeab62"
+  },
+  {
+    "employer": "Vanta",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Vercel",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
   },
   {
     "employer": "Verkada",
-    "status": "unverified",
     "naics": null,
-    "source_id": "src_9474d748372eef14060d",
     "quote": null,
-    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile."
+    "source_id": "src_9474d748372eef14060d",
+    "source_note": "Published employer posting excerpts were inspected locally. No authoritative primary employer NAICS classification is recorded; customer industry, job function, and general company descriptions do not verify a two-digit employer sector. Excluded from every sector profile.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Waymo",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "WHOOP",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Writer",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Zocdoc",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
+  },
+  {
+    "employer": "Zoox",
+    "naics": null,
+    "source_note": "No verified primary-employer sector supplied; excluded.",
+    "status": "unverified"
   }
 ]

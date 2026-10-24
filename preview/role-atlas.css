@@ -158,7 +158,7 @@ section { display: grid; gap: 1.25rem; }
 @media (max-width: 480px) { .kv { grid-template-columns: minmax(0, 1fr); } .kv dd { margin-bottom: 0.4rem; } }
 .stepup { border-top: 1px solid var(--present); background: var(--present-soft); color: var(--ink-mid); padding: 0.65rem 0.8rem; display: grid; gap: 0.2rem; }
 .stepup .label { color: var(--present-ink); }
-.evidence-scroll, .checks, .next { max-height: 36rem; overflow: auto; scrollbar-gutter: stable; grid-auto-rows: max-content; align-content: start; }
+.evidence-scroll, .checks, .next, .heat { max-height: 36rem; overflow: auto; scrollbar-gutter: stable; grid-auto-rows: max-content; align-content: start; }
 details.more.skill-more > div { margin: 0; }
 .exp { list-style: none; margin: 0; padding: 0; display: grid; }
 .exp li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.6rem; padding: 0.45rem 0; border-top: 1px solid var(--rule-soft); align-items: baseline; }

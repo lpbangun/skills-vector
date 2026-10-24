@@ -1,0 +1,13 @@
+{
+  "responses": {
+    "https://careers4.example.org/robots.txt": "robots.sample.txt",
+    "https://careers4.example.org/sitemap.xml": {
+      "path": "index-4.sample.xml"
+    },
+    "https://careers4.example.org/jobs.xml": {
+      "path": "jobs-4.sample.xml"
+    },
+    "https://careers4.example.org/careers/HR-Generalist_REQ1": "hr-4.sample.html",
+    "https://careers4.example.org/careers/Growth-Manager_REQ2": "growth-4.sample.html"
+  }
+}

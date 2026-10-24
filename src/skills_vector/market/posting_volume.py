@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import hashlib
+from copy import deepcopy
 import html
 import json
 import re
@@ -27,6 +28,7 @@ BOARDS = {
     "ashby": "https://api.ashbyhq.com/posting-api/job-board/{token}",
     "smartrecruiters": "https://api.smartrecruiters.com/v1/companies/{token}/postings",
     "workable": "https://apply.workable.com/api/v1/widget/accounts/{token}/",
+    "jsonld": "{token}",
 }
 HEADINGS = {
     "preferred": r"^(?:preferred(?: qualifications| skills)?|nice to have|bonus(?: points)?|it.s a plus)",
@@ -175,6 +177,7 @@ class VolumePolicy:
 
     @classmethod
     def from_value(cls, value: dict, path: Path):
+        value = deepcopy(value)
         require(value.get("schema") == "skills-vector.posting-policy/1", "unsupported posting policy")
         require(value.get("window_length") == "quarterly", "posting lane uses settled quarterly windows")
         require(value.get("data_kind") in ("fixture", "research"), "posting policy must label data kind")
@@ -185,13 +188,39 @@ class VolumePolicy:
         require(all(re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug) and isinstance(hints, list) and hints and all(isinstance(h, str) and h.strip() for h in hints) for slug, hints in value["roles"].items()), "roles require explicit literal title hints")
         identities = set()
         for board in value["boards"]:
+            if board["ats"] == "jsonld":
+                from .structured_career import validate_board, safe_url
+                validate_board(board)
+                board["origin"] = safe_url(board["origin"])
+                require(isinstance(value.get("user_agent"), str) and value["user_agent"].strip() or bool(re.fullmatch(r"[a-f0-9]{64}", value.get("user_agent_sha256", ""))), "structured lane requires operator User-Agent")
+                board["token"] = hashlib.sha256(board["origin"].encode()).hexdigest()[:16]
+                board["source_note"] = board.get("note", board.get("source_note"))
             require(board["ats"] in BOARDS and bool(re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,63}", board["token"])), "unsupported board/token")
             require(isinstance(board["employer"], str) and board["employer"].strip() and isinstance(board.get("source_note"), str) and board["source_note"].strip(), "board needs employer and source note")
             key = (board["ats"], board["token"])
             require(key not in identities, "duplicate board")
             identities.add(key)
-            require(url_problem(BOARDS[board["ats"]].format(token=board["token"])) is None, "board is not allowlisted")
+            if board["ats"] != "jsonld":
+                require(url_problem(board_url(board)) is None, "board is not allowlisted")
         return cls(value, path.resolve())
+
+
+def board_url(board: dict) -> str:
+    return board["origin"] if board["ats"] == "jsonld" else BOARDS[board["ats"]].format(token=board["token"])
+
+
+def recorded_policy(value: dict) -> dict:
+    result = deepcopy(value)
+    if "user_agent" in result:
+        result["user_agent_sha256"] = hashlib.sha256(result.pop("user_agent").encode()).hexdigest()
+    return result
+
+
+def parse_volume_board(ats: str, url: str, body: bytes) -> dict:
+    if ats == "jsonld":
+        from .structured_career import parse_collection
+        return parse_collection(body)
+    return parse_job_board(url, body)
 
 
 def _native_rows(ats: str, payload: bytes) -> dict[str, dict]:
@@ -201,6 +230,8 @@ def _native_rows(ats: str, payload: bytes) -> dict[str, dict]:
 
 
 def native_description(ats: str, native: dict) -> tuple[str, bool]:
+    if ats == "jsonld":
+        return native["description"], True
     if ats == "greenhouse":
         return html.unescape(native.get("content") or native.get("description") or ""), True
     if ats == "lever":
@@ -228,7 +259,7 @@ def _transport(url: str):
 
 
 def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = None,
-            retrieved_at: str | None = None, live: bool = False, transport=None, saved_boards: dict | None = None, frozen_ids: set[str] | None = None, extraction_method: str = EXTRACTION) -> tuple[dict, dict[str, bytes]]:
+            retrieved_at: str | None = None, live: bool = False, transport=None, saved_boards: dict | None = None, frozen_ids: set[str] | None = None, extraction_method: str = EXTRACTION, structured_session=None) -> tuple[dict, dict[str, bytes]]:
     require(extraction_method in ("rules/1", "rules/2"), "unsupported extraction method")
     require(bool(re.fullmatch(r"[0-9]{4}-Q[1-4]", window)), "quarter must be YYYY-Qn")
     require(sum((bool(live), payload_root is not None, saved_boards is not None)) == 1, "select local payloads OR saved capture OR explicit live mode")
@@ -238,16 +269,35 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
         require(quarter(retrieved_at) == window, "retrieval timestamp is outside requested quarter")
     payloads, postings, excluded, boards, complete, section_checks = {}, [], [], [], [], []
     retrievals = 0
-    def retrieve(url):
+    def reserve():
         nonlocal retrievals
         require(retrievals < POSTING_VOLUME_LIMITS["max_retrievals"], "posting lane retrieval ceiling exhausted")
         retrievals += 1
+    def retrieve(url):
+        reserve()
         return fetch_url(url, transport=transport or _transport, max_bytes=POSTING_VOLUME_LIMITS["max_response_bytes"], retries=POSTING_VOLUME_LIMITS["max_retries"])
     for board in sorted(policy.value["boards"], key=lambda b: (b["ats"], b["token"])):
         ats, token, employer = board["ats"], board["token"], board["employer"]
-        url = BOARDS[ats].format(token=token)
+        url = board_url(board)
         stamp = retrieved_at
-        if live:
+        structured_summary = None
+        if ats == "jsonld" and saved_boards is None:
+            from .structured_career import Session, crawl, local_transport
+            from .fetch import _now_iso
+            require(not live or policy.value.get("user_agent"), "live structured requests require the operator User-Agent")
+            stamp = stamp or _now_iso()
+            try:
+                if structured_session is not None:
+                    session = structured_session
+                else:
+                    local = None if live else local_transport(payload_root, board["payload"])
+                    session = Session(policy.value["user_agent"], transport=transport or local, reserve=reserve, local=not live)
+                collection, structured_summary = crawl(board, policy.value["roles"], session, stamp)
+                body = canonical(collection).encode()
+            except (ValueError, OSError, KeyError, TypeError):
+                boards.append({"url": url, "error": "structured discovery unavailable or rejected by policy"})
+                continue
+        elif live:
             result = retrieve(url)
             stamp = result.retrieved_at
             if not result.ok:
@@ -266,12 +316,14 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
             body = source.read_bytes()
         require(quarter(stamp) == window, "retrieved board is outside requested quarter")
         require(len(body) <= POSTING_VOLUME_LIMITS["max_response_bytes"], "board exceeds hard byte ceiling")
-        parsed = parse_job_board(url, body)
+        parsed = parse_volume_board(ats, url, body)
         board_hash = hashlib.sha256(body).hexdigest()
         name = "boards/" + board_hash + ".json"
         payloads[name] = body
         boards.append({"url": url, "employer": employer, "retrieved_at": stamp, "sha256": board_hash,
                        "path": name, "listing_complete": parsed["listing_complete"], "problems": parsed["problems"]})
+        if structured_summary is not None:
+            boards[-1]["structured"] = structured_summary
         if not parsed["listing_complete"] or parsed["problems"] or (parsed["board_total"] is not None and parsed["board_total"] > len(parsed["postings"])):
             boards[-1]["coverage_error"] = "incomplete or paginated listing; excluded from comparison"
 
@@ -324,6 +376,13 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
                              "has_responsibilities": extracted["has_responsibilities"], "expectations": expectations,
                              "work_level": "unknown", "advertised_experience": {"value": []},
                              "employer_source_note": board["source_note"]})
+            if ats == "jsonld":
+                postings[-1].update(source_kind="jsonld", page_sha256=native[candidate["job_id"]]["page_sha256"],
+                                    identifier=native[candidate["job_id"]]["identifier"])
+    if any(p["ats"] == "jsonld" for p in postings):
+        from .structured_career import cross_kind_dedup
+        postings, cross_duplicates = cross_kind_dedup(postings)
+        excluded.extend(cross_duplicates)
     admitted, seen = [], set()
     for row in sorted(postings, key=lambda p: (p["occupation_slug"], p["dedup_key"], p["source_sha256"])):
         identity = (row["occupation_slug"], row["dedup_key"])
@@ -344,12 +403,13 @@ def capture(policy: VolumePolicy, window: str, *, payload_root: Path | None = No
                          "eligible_postings": sum(p["role"] == slug for p in section_checks),
                          "responsibilities": sum(p["has_responsibilities"] for p in section_checks if p["role"] == slug),
                          "responsibility_failures": [p["posting_id"] for p in section_checks if p["role"] == slug and not p["has_responsibilities"]]}
-    group = digest({"recipe": extraction_method, "normalization": NORMALIZATION, "implementation_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "policy": {k: v for k, v in policy.value.items() if k != "boards"},
+    public_policy = recorded_policy(policy.value)
+    group = digest({"recipe": extraction_method, "normalization": NORMALIZATION, "implementation_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "policy": {k: v for k, v in public_policy.items() if k != "boards"},
                     "boards": [{k: v for k, v in b.items() if k != "payload"} for b in sorted(policy.value["boards"], key=lambda b: (b["ats"], b["token"]))],
                     "complete_boards": complete})
     manifest = {"schema": SCHEMA, "data_kind": policy.value["data_kind"], "quarter": window, "window_length": "quarterly",
-                "comparison_group": extraction_method + ":" + group, "normalization": NORMALIZATION, "policy_sha256": digest(policy.value), "extraction_method": extraction_method,
-                "boards": boards, "roles": reports, "exclusions": excluded, "section_checks": section_checks, "policy": policy.value,
+                "comparison_group": extraction_method + ":" + group, "normalization": NORMALIZATION, "policy_sha256": digest(public_policy), "extraction_method": extraction_method,
+                "boards": boards, "roles": reports, "exclusions": excluded, "section_checks": section_checks, "policy": public_policy,
                 "limits": ["Quarterly cross-sectional captured listings, not new-job flows or market prevalence.",
                            "Rules only: visible text is decoded from native HTML; quote offsets/hash refer to the exact saved description text. Original native description and board bytes are separately hashed.",
                            "No employer sector, title-derived level or official skill equivalence is inferred."] }
@@ -365,6 +425,8 @@ def write_snapshot(policy: VolumePolicy, output: Path, window: str, **kwargs) ->
     target = guard_output(output / window, policy.path, *((kwargs["payload_root"],) if kwargs.get("payload_root") else ()))
     manifest, files = capture(policy, window, **kwargs)
     files["manifest.json"] = canonical(manifest).encode()
+    from .structured_career import no_contacts
+    require(all(no_contacts(data.decode("utf-8")) for data in files.values()), "snapshot contains non-data content; no files written")
     existing = {str(p.relative_to(target)) for p in target.rglob("*") if p.is_file()} if target.exists() else set()
     require(not existing - files.keys(), "unrelated snapshot output")
     for name, data in files.items():

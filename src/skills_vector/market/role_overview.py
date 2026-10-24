@@ -14,4 +14,9 @@ def overview(record: dict) -> dict:
         for level in light["ladder"]["levels"]:
             level["expectations"] = []
         info["deferred"] = ["ladder.levels[].expectations"]
+        if any(i["profile"] is not None for i in light["industries"]):
+            for industry in light["industries"]:
+                if industry["profile"] is not None:
+                    industry.update(profile=None, reason="Profile deferred in overview; request the industry endpoint or full view.")
+            info["deferred"].append("industries[].profile")
     return {"role": light, "overview": info, "view": "overview"}

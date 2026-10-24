@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 
 from .fetch import fetch_url
-from .posting_volume import BOARDS, VolumePolicy, _transport
+from .posting_volume import BOARDS, VolumePolicy, _transport, board_url
 from .role_artifacts import guard_output, read_json, require, write_json
 from .sources import parse_job_board
 
@@ -16,11 +16,32 @@ def probe(candidates: Path, output: Path, *, payload_root: Path | None = None, l
     value = read_json(candidates)
     require(live != (payload_root is not None), "select saved probe payloads OR explicit live mode")
     policy = VolumePolicy.from_value(value, candidates)
+    value = policy.value
     require(not live or value["data_kind"] == "research", "sample candidates cannot be probed live")
     draft = []
     from .limits import POSTING_VOLUME_LIMITS
+    requests = 0
+    def reserve():
+        nonlocal requests
+        require(requests < POSTING_VOLUME_LIMITS["max_retrievals"], "probe retrieval budget exhausted")
+        requests += 1
     for board in sorted(value["boards"], key=lambda b: (b["ats"], b["token"])):
-        url = BOARDS[board["ats"]].format(token=board["token"])
+        url = board_url(board)
+        if board["ats"] == "jsonld":
+            from .structured_career import Session, crawl, local_transport
+            from .fetch import _now_iso
+            try:
+                local = None if live else local_transport(payload_root, board["payload"])
+                session = Session(value["user_agent"], transport=transport or local, reserve=reserve, local=not live)
+                _, summary = crawl(board, value["roles"], session, board.get("retrieved_at") or _now_iso(), probe=True)
+                result = {"ats": "jsonld", "origin": board["origin"], "employer": board["employer"],
+                          "exists": summary["sample_parseable"], "reviewed": False, **summary,
+                          "source_note": board["source_note"] + " Read-only sitemap probe; human roster review required."}
+            except (ValueError, OSError, KeyError, TypeError):
+                result = {"ats": "jsonld", "origin": board["origin"], "employer": board["employer"], "exists": None,
+                          "robots_allow": None, "sitemap_found": None, "reviewed": False, "error": "structured probe unavailable or denied"}
+            draft.append(result)
+            continue
         if live:
             response = fetch_url(url, transport=transport or _transport, max_bytes=POSTING_VOLUME_LIMITS["max_response_bytes"],
                                  retries=POSTING_VOLUME_LIMITS["max_retries"])

@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 from skills_vector.market.role_atlas import RoleRecord, RoleValidationError
 from skills_vector.market.role_pipeline import (EvidenceInputs, MAPPING_ROOT, canonical, cooccurrences,
-                                                digest, sector_profile, triage, window_of)
+                                                digest, normalized, sector_profile, triage, window_of)
 from skills_vector.market.role_reads import RoleAtlasReads
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -138,7 +138,13 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(report["skills_by_status"], {"core": 0, "rising": 0, "early": skills, "fading": 0})
             self.assertEqual((report["edges_kept"], report["edges_dropped"]), (0, dropped))
             self.assertEqual((report["sectors_with_profiles"], report["sectors_without_profiles"]), (0, 20))
-            self.assertTrue(all(i.profile is None and i.evidence.postings == 0 for i in record.industries))
+            self.assertTrue(all(i.profile is None for i in record.industries))
+            for industry in record.industries:
+                selected = [p for p in self.inputs.postings if p["occupation_slug"] == key
+                            and self.inputs.employers[normalized(p["employer"])]["status"] == "verified"
+                            and self.inputs.employers[normalized(p["employer"])]["naics"].replace("–", "-") == industry.naics.replace("–", "-")]
+                self.assertEqual(industry.evidence.postings, len(selected))
+                self.assertEqual(industry.evidence.employers, len({normalized(p["employer"]) for p in selected}))
             self.assertEqual(record.data_kind, "research")
             self.assertIsNone(record.demand_window.compared_to)
             self.assertEqual(record.demand_window.id, "2026-Q4")

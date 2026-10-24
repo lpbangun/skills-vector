@@ -7,7 +7,7 @@
   "cleanUrls": true,
   "functions": {
     "api/index.py": {
-      "includeFiles": "{preview/release/**,src/skills_vector/**,research/role-atlas/m4/roles/*.json,research/role-atlas/m5/ledger.json,research/role-atlas/2026-Q4/roles/*.json,research/role-atlas/2026-Q4/ledger.json,research/role-atlas/2026-Q4/views/*.json,research/role-atlas/2026-Q4/release.json}",
+      "includeFiles": "{preview/release/**,src/skills_vector/**,research/role-atlas/m4/roles/*.json,research/role-atlas/m5/ledger.json,research/role-atlas/2026-Q4-sectors/roles/*.json,research/role-atlas/2026-Q4-sectors/ledger.json,research/role-atlas/2026-Q4-sectors/views/*.json,research/role-atlas/2026-Q4-sectors/release.json}",
       "maxDuration": 15
     }
   },

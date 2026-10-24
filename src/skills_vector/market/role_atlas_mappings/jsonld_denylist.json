@@ -1,0 +1,5 @@
+{
+  "schema": "skills-vector.jsonld-denylist/1",
+  "source_note": "BRIEF M9: employer-published career sites only; these aggregator or job-board brand domain labels are denied, including subdomains and country suffixes.",
+  "labels": ["indeed", "linkedin", "glassdoor", "ziprecruiter", "monster", "simplyhired", "talent", "jooble", "adzuna", "careerbuilder", "dice", "builtin", "wellfound", "google"]
+}

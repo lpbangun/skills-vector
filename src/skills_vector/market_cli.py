@@ -245,7 +245,7 @@ def build_parser() -> argparse.ArgumentParser:
 def run(argv: list[str]) -> int:
     args = build_parser().parse_args(argv)
     command = args.market_command
-    if command in ("signals", "forecast-ledger", "posting-volume"):
+    if command in ("signals", "forecast-ledger", "posting-volume", "role-atlas"):
         from .market.role_operations import run_operator_command
         try:
             _print(run_operator_command(args))

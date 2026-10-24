@@ -2640,3 +2640,293 @@ file bytes; the git tree listing supplies the original blob sizes.
 The must is addressed for review. No new inference policy, live data, sector
 classification, historical archive or forecast probability was introduced.
 Commit this review fix separately on `feat/role-atlas`, then stop.
+
+
+## M9 — Verified sectors and the structured career-page lane
+
+Completed **Part A first**, including the sector importer, focused tests and a
+real offline sector projection, before implementing Part B. **No live network
+retrieval, model/paid call, deployment or push.** All work is on
+`feat/role-atlas`. Supplied SEC/format-reference/prior-art inputs were read only.
+No address/header value or other communication detail was copied into code,
+fixtures, publications or diagnostic output.
+
+### Part A — verified primary-employer sectors (I1–I3)
+
+- Added local-only **`market role-atlas sectors import --sec ... --concordance ...`**.
+  It checks the reviewed employer/registrant match against each native submission's
+  CIK, SIC, description and legal name, and binds the submission byte hash/path.
+  Only classification fields are exported; unrelated submission/index metadata
+  never leaves the importer. The supplied XLS hash is verified when the XLS is
+  present, and the CSV byte hash is recorded.
+- Checked-in `sic_sectors.json` contains the actual concordance row sets,
+  reviewed decision notes and sanitized employer proofs. All concordance rows
+  must agree for an automatic sector. SIC 7372/7370/6199/5812/5500 decisions are
+  explicit BRIEF decisions, not company-name or job-text inference. SIC 7389
+  and 7340 are explicitly unresolved. Broad 31–33 / 44–45 / 48–49 stay combined;
+  API hyphen/en-dash spellings remain equivalent.
+- The 71-row employer registry now has **26 verified / 45 unverified**. All 26
+  verified rows trace to native submission files and a valid rule; tests reject
+  missing/tampered CIK, SIC, source, digest, sector or rule. **Waymo, Zoox,
+  Linear, Mercury, Sierra and Vanta have no assigned sector.** DoorDash, Lyft,
+  Instacart (7389) and Airbnb (7340) stay unverified with the explicit ambiguity
+  reason. Private-employer notes are retained.
+- Snapshot projection now consumes this reviewed registry by default; legacy
+  source-quoted employer maps retain their existing validation. Registry/table
+  and implementation hashes enter the new recipe/comparison identity.
+- Role-wide **`sector.unverified` observations** carry excluded posting/employer
+  counts, explicitly including unassigned scope, not a level-demand claim.
+  The Industries tab renders those API counts, every sector (including below
+  floor), and honest profile/null states. The W3 checker verifies both counts
+  and missing-profile reasons and saves representative populated/observed-sector
+  screenshots rather than resetting the screenshot to an empty sector.
+
+**New publication:** `research/role-atlas/2026-Q4-sectors/`,
+**`role_research_71d6040270516002`**, selected using its **roles/** subdirectory
+and its own ledger. Original `2026-Q4/` / M8 release is unchanged on disk.
+Vercel's explicit runtime include selects the new publication and excludes
+historical audits/the superseded Q4 bundle; no deployment or implicit catalog
+fallback was enabled.
+
+The same **489 canonical postings** are retained; no starter-capture mixture or
+new real JSON-LD volume was added:
+
+| Role | Observed verified sectors: postings / employers | Published profiles | Unverified postings / employers |
+| --- | --- | --- | ---: |
+| AE | 51: **205/12**; 52: **1/1**; 54: **42/1** | **51 only** | **188/22** |
+| FDE | 51: **5/4**; 52: **3/2** | none | **23/11** |
+| Growth | 51: **3/3** | none | **14/8** |
+| HR | 51: **1/1** | none | **4/4** |
+
+All other sectors remain listed with zero verified counts and null profiles.
+Sector 54's 42 AE postings do **not** qualify with only one employer. The
+30-posting/eight-employer floor is unchanged. All **2,326** skill statuses remain
+early; all forecasts/ledger calls remain pending `basis: none`, with no
+probability/base rate/score/history manufactured.
+
+A real profile exposed a contract assumption: `domain_knowledge` required at
+least one item, but the captured rules lane records no knowledge dimension.
+The schema now permits an empty knowledge list (nonempty items are still
+required), and the page says **No domain knowledge recorded**. This is a
+backward-compatible absence representation, not fabricated knowledge or a
+weakened sector floor. Long duties/heatmaps use the existing bounded internal
+scroll pattern. Large light views explicitly defer full industry profiles,
+just as they defer full expectation lists, avoiding a first-load regression.
+
+### Part B — structured employer career pages (J1–J3, V1–V3)
+
+- Added board kind **`jsonld`** to the existing capture and roster probe, with
+  the same role hints, quarterly admission, ≤500 postings/role, employer ≤20%,
+  sections/rules extraction, quote hashes, scope triage and projection.
+- `structured_career.py` attributes the three specified prior-art modules
+  (general-jobs-index's two modules and jobsss's `jobPostingJsonLd`) as MIT /
+  Copyright (c) 2026 Logani Paguh Bangun, including the upstream oh-shi credit.
+  It uses stdlib parsing and the **existing fetch layer**, no new HTTP SDK,
+  search, embedding, model or provider.
+- Only roster-named HTTPS career origins with employer ownership notes are
+  eligible; optional sitemap/explicit legal-name aliases are reviewed config.
+  The checked-in denylist rejects every requested aggregator brand, including
+  subdomains/country suffixes. Exact-host scope is deliberately stricter than
+  the prior art's related-domain test, avoiding cross-tenant ATS escapes.
+- Robots is fetched first. Own-agent groups, wildcard fallback, longest rule,
+  Allow-on-tie and larger declared crawl delays are handled. Every page,
+  sitemap and redirected path is checked; unknown robots failures fail closed.
+- Sitemap-only discovery: configured or robots-advertised roots, namespaced XML
+  URL sets/indexes, **depth ≤2**, **≤64 sitemap documents**. No HTML link crawl
+  or semantic HTML fallback.
+- The fetch layer rechecks HTTPS/roster scope on every redirect, caps a response
+  at **2,000,000 bytes**, limits redirect hops to five, and paces request starts
+  by **≥1 second per host**, including redirects/retries. The User-Agent comes
+  from config; only its hash, never its value, enters a saved policy.
+- URL-title prefilter runs **before job-page requests**. **≤600 pages per board**
+  is a hard cap; fetched/skipped/cap/expiry/robots/organization/geography counts
+  are reported. The existing **200-request run ceiling remains stricter** and
+  can bind first; it was not quietly increased. Incomplete discovery/cap or
+  transport failures do not masquerade as complete comparison frames.
+- Parses arrays, nested `@graph` and list-valued/qualified `@type`.
+  Missing descriptions, expired/invalid expiry, different hiring organizations
+  and non-US geography are rejected. Expiry uses the capture timestamp in its
+  actual quarter, not the current clock during projection. Explicit country
+  fields avoid interpreting Canada as California; US eligibility otherwise
+  reuses the existing rule, including applicant-location requirements.
+- Native selected fields retain the unchanged clean description, raw identifier,
+  original page URL/hash and a stable title/location/id key. Capture and
+  projection audits record **source_kind: jsonld** and page provenance.
+  Normal ATS-style visible text, offsets and extraction-method hashes are
+  replay-checked. Raw HTML/robots/header documents are **not** persisted by the
+  new lane; this is not a claim of a complete raw-page archive.
+- Selected records containing communication details are omitted, never rewritten
+  into altered quotations. Snapshot/publication privacy guards reject unsafe
+  output **before writing files**. Diagnostics use fixed errors, not source
+  documents or transport exception text.
+- Dedup across kinds uses employer + normalized title/location + identifier
+  where present; conflicting identifiers/locations/employers remain distinct.
+  The mixed ATS/JSON-LD capture test proves one duplicate is removed before
+  fair admission.
+- JSON-LD probe reports robots allow/deny, sitemap discovery, URL/title counts,
+  and whether a sampled matching page has a parseable node. It fetches at most
+  one matching page and every draft remains **reviewed: false**.
+
+The supplied Workday page was inspected **as format reference only**: one
+parseable node and a 10,039-character description. It was not copied to fixtures
+or admitted. Checked-in fixtures are entirely authored/reserved-domain: five
+employers × HR/Growth pages, plus one unrelated URL each. The offline capture
+admits **10 fixture postings**, fetches **10 pages**, and prefilters **5 unrelated
+URLs** without requests. Probe samples five pages total. Neither result is
+research volume or evidence of a representative market.
+
+No real origin was added to the active 71-board roster. The next reviewer step
+is to propose/review HR/Growth-weighted Workday/iCIMS candidates. The workflow
+uses a **single union roster/capture** containing old ATS and new structured
+boards; two captures from the same quarter must not be passed as independent
+windows. Host redirects requiring a different canonical origin remain rejected
+until that origin is explicitly reviewed/configured.
+
+### Exact executed commands and results
+
+Part A, before Part B implementation:
+
+```sh
+.venv/bin/skills-vector market role-atlas sectors import --sec /home/logani/.local/share/skills-vector-evidence/sec --concordance /home/logani/.local/share/skills-vector-evidence/sec/census/1987_SIC_to_2002_NAICS.csv > /tmp/role-atlas-m9-sector-import.json
+.venv/bin/python -m unittest discover -s tests -p test_role_sectors.py > /tmp/role-atlas-m9-part-a-tests.log 2>&1
+.venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261024T001827Z/2026-Q4 --output /tmp/role-atlas-m9-part-a > /tmp/role-atlas-m9-part-a.json
+```
+
+Final import and double real publication, after both parts:
+
+```sh
+.venv/bin/skills-vector market role-atlas sectors import --sec /home/logani/.local/share/skills-vector-evidence/sec --concordance /home/logani/.local/share/skills-vector-evidence/sec/census/1987_SIC_to_2002_NAICS.csv > /tmp/role-atlas-m9-sector-import-final.json
+.venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261024T001827Z/2026-Q4 --output /tmp/role-atlas-m9-release-a > /tmp/role-atlas-m9-release-a.json 2> /tmp/role-atlas-m9-release-a.err
+.venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-20261024T001827Z/2026-Q4 --output /tmp/role-atlas-m9-release-b > /tmp/role-atlas-m9-release-b.json 2> /tmp/role-atlas-m9-release-b.err
+diff -qr /tmp/role-atlas-m9-release-a /tmp/role-atlas-m9-release-b
+.venv/bin/skills-vector market forecast-ledger create --roles-root research/role-atlas/2026-Q4-sectors/roles --ledger research/role-atlas/2026-Q4-sectors/ledger.json > /tmp/role-atlas-m9-ledger-create.json
+.venv/bin/skills-vector market forecast-ledger backtest --ledger research/role-atlas/2026-Q4-sectors/ledger.json --output research/role-atlas/2026-Q4-sectors/backtest.json > /tmp/role-atlas-m9-backtest.json
+```
+
+Final commands exit **0**, real double-publication diff empty; only derived
+role/view/manifest files were copied from the scratch projection. Audit remains
+out of tree, **19,070,157 bytes**, SHA
+`92ab88990c040c738efd12b1e4ad57ae031492d71c22d0882587cab88f6dce3b`.
+Current publication: **11 files / 5,413,959 bytes**, ledger **230,102 bytes**,
+manifest **15,112 bytes**. The M8 weight ceilings remain met.
+
+Final J2 capture/probe and double projection, with structured boards included:
+
+```sh
+.venv/bin/skills-vector market posting-volume capture --policy tests/samples/jsonld/policy.sample.json --quarter 2026-Q4 --payload-root tests/samples/jsonld --retrieved-at 2026-10-15T00:00:00Z --output /tmp/role-atlas-m9-jsonld-final-capture > /tmp/role-atlas-m9-jsonld-final-capture.json
+.venv/bin/skills-vector market posting-volume roster-probe --candidates tests/samples/jsonld/policy.sample.json --payload-root tests/samples/jsonld --output /tmp/role-atlas-m9-jsonld-final-probe.json > /tmp/role-atlas-m9-jsonld-final-probe-summary.json
+.venv/bin/skills-vector market posting-volume project --snapshot /tmp/role-atlas-m9-jsonld-final-capture/2026-Q4 --output /tmp/role-atlas-m9-jsonld-final-a > /tmp/role-atlas-m9-jsonld-final-a.json
+.venv/bin/skills-vector market posting-volume project --snapshot /tmp/role-atlas-m9-jsonld-final-capture/2026-Q4 --output /tmp/role-atlas-m9-jsonld-final-b > /tmp/role-atlas-m9-jsonld-final-b.json
+diff -qr /tmp/role-atlas-m9-jsonld-final-a /tmp/role-atlas-m9-jsonld-final-b
+```
+
+All exit **0**; diff empty. Data kind is **fixture**, not merged into research.
+Exact spans, source/page hashes, US rule, five-employer admission, sealed policy,
+probe sampling and duplicate boundary tests pass.
+
+```sh
+.venv/bin/python -m unittest discover -s tests -p test_structured_career.py > /tmp/role-atlas-m9-jsonld-final-tests.log 2>&1
+.venv/bin/python -m unittest discover -s tests -p test_role_sectors.py > /tmp/role-atlas-m9-sectors-final-tests.log 2>&1
+.venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m9-verified-tests.log 2>&1
+.venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m9-handoff-tests.log 2>&1
+```
+
+All exit **0**. Structured focused **11 tests / 0.936s**; initial focused sector
+suite **3 / 0.014s**, subsequently expanded to include the actual publication.
+Final full suite **286 tests / 95.809s**, then **286 / 103.410s** after adding
+namespaces to all synthetic sitemap fixtures: **OK (skipped=2)**, same existing
+skips. G2 covers each new allowed/rejected rule, exact SEC trace and exclusions,
+size/redirect/request/rate/depth/page bounds, original fetch-layer User-Agent
+handling, graph/array types, expired/missing/foreign postings, mixed dedup,
+privacy preflight and fresh-process no-provider/no-extra-HTTP/no-network guards.
+Existing 300-posting-per-role scale/fairness tests still pass.
+
+```sh
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m9-verified-fixtures --role-atlas-fixtures --role-atlas-ledger /tmp/role-atlas-m6-fixture-ledger.json > /tmp/role-atlas-m9-verified-fixtures.log 2>&1
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m9-verified-research --role-atlas-root research/role-atlas/2026-Q4-sectors/roles --role-atlas-ledger research/role-atlas/2026-Q4-sectors/ledger.json > /tmp/role-atlas-m9-verified-research.log 2>&1
+```
+
+Both exit **0**, explicit Chromium
+`~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome`. Fixtures **54**
+and new research **72** screenshots, every role/tab/Connections, **1280 light,
+1280 dark, 390 light**, all `errors: []`, no horizontal page overflow.
+Viewed AE qualified-sector desktop-dark/mobile-light and FDE observed-below-floor
+mobile screenshots. The checker visits every sector, verifies exact singular/
+plural posting/employer counts and the unverified summary, and saves the
+representative Information profile/caveat.
+
+M8 budgets remain enforced (bytes / milliseconds):
+
+| Research case | Overview bytes | Interactive | Expand AE tail |
+| --- | ---: | ---: | ---: |
+| 1280 light | 394,109 | 1,144.4 | 219.7 |
+| 1280 dark | 394,109 | 581.1 | 178.9 |
+| 390 light | 394,109 | 694.3 | 307.2 |
+| Limit | 400,000 | 2,000 | 1,000 |
+
+```sh
+.venv/bin/python /tmp/role-atlas-m9-integrity.py
+bash scripts/assemble_vercel.sh
+UV_OFFLINE=1 uv lock --check --offline
+node --check preview/role-atlas.js
+.venv/bin/python -m compileall -q src/skills_vector scripts/check_role_atlas.py tests/test_structured_career.py tests/test_role_sectors.py
+git diff --check
+```
+
+All exit **0**. Hash + exact-file-set checks preserve **38 SEC/format-reference
+files**, the prior **1,408-file canonical/O*NET receipt**, **554 protected tracked
+files** (including original M8 publication), and **533 published files/file set**.
+All **26** native SEC proof bindings, **489** canonical posting identities and
+**7,525** exact source-bound links verify. New/modified files and exported data
+pass privacy checks without printing matches. Assembly **551 files**; offline
+lock **61 packages**. Prior-art code was only read; no source project was edited.
+
+### J3 — exact operator-only commands (NOT executed)
+
+The full policy schema, offline examples and limitations are in
+`docs/role-atlas/SECTORS_AND_STRUCTURED_CAREERS.md`. After reviewing employer
+origins and supplying a local candidates policy:
+
+```sh
+EVIDENCE="$HOME/.local/share/skills-vector-evidence/role-atlas"
+.venv/bin/skills-vector market posting-volume roster-probe --candidates "$EVIDENCE/jsonld-candidates.reviewed.json" --live --output "$EVIDENCE/jsonld-roster-draft.json"
+QUARTER=$(.venv/bin/python -c 'from datetime import datetime,UTC; d=datetime.now(UTC); print(f"{d.year}-Q{(d.month-1)//3+1}")')
+CAPTURE="$EVIDENCE/capture-jsonld-$(date -u +%Y%m%dT%H%M%SZ)"
+.venv/bin/skills-vector market posting-volume capture --policy "$EVIDENCE/roster-jsonld-reviewed.json" --quarter "$QUARTER" --live --output "$CAPTURE"
+.venv/bin/skills-vector market posting-volume project --snapshot "$CAPTURE/$QUARTER" --output /tmp/role-atlas-expanded-new
+.venv/bin/skills-vector market forecast-ledger create --roles-root /tmp/role-atlas-expanded-new/roles --ledger /tmp/role-atlas-expanded-new/ledger.json
+```
+
+The union roster must contain approved existing ATS and new JSON-LD boards,
+with the User-Agent supplied in external config (never shown in commands or
+saved policy). Review the draft before capture; select the new roles/ledger
+explicitly afterward. Do not backdate or combine same-quarter releases as
+independent observations.
+
+### Development findings, limits and stop
+
+- The concordance has a blank footer; it is ignored, not converted into SIC
+  0000. Every nonblank numeric SIC row is retained.
+- Initial real projection rejected empty domain knowledge and an empty
+  observation applicability list. The former is represented honestly by the
+  narrow schema change; the role-wide observation now enumerates applicable
+  ladder levels with an explicit including-unassigned/non-level-demand note.
+  No values or floors were invented.
+- Development tests caught explicit country CA being misread as a US state,
+  an over-escaped dedup regex collapsing distinct locations, and a test
+  confusing the snapshot summary with its manifest. These were corrected
+  before the final green suite; regression tests assert the values.
+- Broader HR/Growth volume still requires reviewer-run retrieval; it was not
+  simulated as research. The frame remains tech-heavy, exact organization-name
+  aliases need review, strict same-host redirects may reject legitimate tenant
+  migrations, and the 200-request ceiling can exclude a large/incomplete board.
+- Existing extraction/lexical-audit limitations persist: employer-sector
+  verification does not adjudicate every duty/skill meaning. Snapshot privacy
+  preflight also fails closed for unsafe legacy ATS content rather than saving it.
+- Sector data is SIC-based and uses the supplied historical broad-sector
+  concordance plus the listed decisions. No verified sub-industry, wage,
+  credential issuer, knowledge item, forecast probability or historical score
+  is inferred.
+
+M9 is implemented and verified with these limits. Commit **once** on
+`feat/role-atlas`, then stop for review. No live retrieval was run.
