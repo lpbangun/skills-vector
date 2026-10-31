@@ -455,6 +455,8 @@ def check_case(browser, base: str, out: Path, width: int, scheme: str, reference
                 require(record["id"] == "role." + role, "wrong selected API role")
                 sample = page.locator("#sampleNotice").inner_text()
                 require(f"{record['demand_window']['postings']} postings from {record['demand_window']['employers']} employers" in sample and "tech-heavy, not a market census" in sample, "sample framing/counts missing")
+                source_note = next((note.removeprefix("Posting sources: ") for note in record["limits"] if note.startswith("Posting sources: ")), None)
+                require((source_note if source_note else "source coverage not recorded") in sample, "sample sources not derived from data")
                 require(page.locator("#fixtureCallout").is_visible() == (record["data_kind"] == "fixture"), "fixture caveat visibility mismatch")
                 require(page.locator("#experimentalCaveat").count() == (1 if record["publication"] == "experimental" else 0), "experimental caveat mismatch")
                 head_sources = [source for kind in ("onet_ratings", "bls_projections")
@@ -462,7 +464,10 @@ def check_case(browser, base: str, out: Path, width: int, scheme: str, reference
                 if record["data_kind"] == "research":
                     response = page.request.get(base + "/v1/roles/" + role + "?release=" + record["release_id"]).json()
                     require("presentation" not in response, "research selection received fixture layout")
-                    require(not record["skill_map"]["skills"] or "level unassigned" in page.locator("#skillPanel").inner_text() or any(s["first_level"] is not None for s in record["skill_map"]["skills"]), "unknown levels were promoted")
+                    require(not record["skill_map"]["skills"] or "level unassigned" in page.locator("#skillPanel").inner_text()
+                            or "No rows at the overview employer floor" in page.locator("#skillPanel").inner_text()
+                            and page.locator("#map .srow:visible").count() == 0
+                            or any(s["first_level"] is not None for s in record["skill_map"]["skills"]), "unknown levels were promoted")
                 tags = page.locator("#roleHead .tm").all_inner_texts()
                 require([tag.casefold() for tag in tags] == [timing_label(source) for source in head_sources] + [record["demand_window"]["timing"]], "role head lost the source rating year")
                 assert_track_record(page, base, role, record)

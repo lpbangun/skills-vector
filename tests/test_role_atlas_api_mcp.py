@@ -417,15 +417,17 @@ class RoleAtlasConfigTests(unittest.TestCase):
         self.assertEqual(reads.list_roles()["status"], "role_catalog_unavailable")
 
     def test_deployed_entrypoint_and_rewrites_select_the_same_catalog(self) -> None:
-        for env, expected in (({}, 503), ({"SKILLS_VECTOR_ROLE_ATLAS_FIXTURES": "1"}, 200)):
+        for env, fixture in (({}, False), ({"SKILLS_VECTOR_ROLE_ATLAS_FIXTURES": "1"}, True)):
             with patch("skills_vector.market.role_reads.os.environ", env), patch.object(sys, "path", list(sys.path)):
                 spec = importlib.util.spec_from_file_location("role_atlas_entrypoint", ROOT / "api" / "index.py")
                 module = importlib.util.module_from_spec(spec)
                 spec.loader.exec_module(module)
                 with TestClient(module.app) as client:
                     response = client.get("/v1/roles")
-                    self.assertEqual(response.status_code, expected)
-                    self.assertEqual(response.json()["fixture_caveat"], FIXTURE_CAVEAT if expected == 200 else None)
+                    self.assertEqual(response.status_code, 200)
+                    self.assertEqual(response.json()["fixture_caveat"], FIXTURE_CAVEAT if fixture else None)
+                    if not fixture:
+                        self.assertEqual(response.json()["release_id"], "role_research_7333966260cf6538")
         rewrites = json.loads((ROOT / "vercel.json").read_text())["rewrites"]
         self.assertIn({"source": "/v1/(.*)", "destination": "/api/index"}, rewrites)
 

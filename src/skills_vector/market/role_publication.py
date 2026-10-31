@@ -17,7 +17,8 @@ def encoded(value: dict) -> bytes:
 
 
 def publish(records: list[dict], audit: dict, captures: tuple[Path, ...], output: Path,
-            evidence_root: Path = EVIDENCE_ROOT, *, protected: tuple[Path, ...] = ()) -> dict:
+            evidence_root: Path = EVIDENCE_ROOT, *, protected: tuple[Path, ...] = (),
+            tail_label_limit: int | None = None) -> dict:
     from .structured_career import no_contacts
     require(no_contacts([records, audit]), "publication contains non-data content; no files written")
     output = guard_output(output, *captures, *protected)
@@ -46,10 +47,10 @@ def publish(records: list[dict], audit: dict, captures: tuple[Path, ...], output
                            "edges": len(r["skill_map"]["asked_together"]),
                            "record_sha256": digest(r),
                            "file_sha256": hashlib.sha256(encoded(r)).hexdigest(),
-                           "overview_sha256": hashlib.sha256(encoded(overview(r))).hexdigest(),
+                           "overview_sha256": hashlib.sha256(encoded(overview(r, tail_label_limit=tail_label_limit))).hexdigest(),
                            "summary": {k: r[k] for k in ("id", "label", "status", "publication", "data_kind", "release_id", "anchors", "demand_window", "limits")}} for r in records}}
     payloads = {output / "roles" / (r["id"].removeprefix("role.") + ".json"): r for r in records}
-    payloads.update({output / "views" / (r["id"].removeprefix("role.") + ".json"): overview(r) for r in records})
+    payloads.update({output / "views" / (r["id"].removeprefix("role.") + ".json"): overview(r, tail_label_limit=tail_label_limit) for r in records})
     payloads[output / "release.json"] = receipt
     require(not output.exists() or {p for p in output.rglob("*") if p.is_file()} <= set(payloads), "unrelated publication files")
     # Preflight before any write. Never replace a different release or audit.

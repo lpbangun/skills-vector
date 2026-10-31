@@ -47,7 +47,7 @@ def run_volume(args):
         from .role_publication import EVIDENCE_ROOT, publish
         records, audit = inputs.build()
         publish([r.to_dict() for r in records], audit, inputs.snapshot_roots, args.output,
-                args.evidence_root or EVIDENCE_ROOT, protected=(inputs.release_root, inputs.mapping_root))
+                args.evidence_root or EVIDENCE_ROOT, protected=(inputs.release_root, inputs.mapping_root), tail_label_limit=80)
     else:
         audit = inputs.write(args.output)
     return {"release_id": audit["release_id"], "data_kind": inputs.data_kind,

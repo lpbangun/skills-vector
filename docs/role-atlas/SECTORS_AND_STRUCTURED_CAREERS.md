@@ -16,25 +16,32 @@ Private employers retain their note. Rejected collisions and subsidiaries are
 never mapped; 7389/7340 remain unresolved. Broad 31–33, 44–45 and 48–49 are not
 split. ASCII-hyphen and en-dash sector spellings resolve equivalently in the API.
 
-The new publication is `research/role-atlas/2026-Q4-sectors/`, release
-`role_research_71d6040270516002`. The original Q4 publication is unchanged on disk.
+The selected publication is now `research/role-atlas/2026-Q4-union/`, release
+`role_research_7333966260cf6538` (M9-r5): 495 AE, 37 FDE, 20 Growth and 12 HR
+postings from the reviewer-run union capture. The earlier sector-only release
+`role_research_71d6040270516002` stays on disk, unselected, with only a manifest
+supersession pointer added. Its role/view/ledger bytes and the original M8 Q4
+publication remain unchanged.
 
 ```sh
 .venv/bin/skills-vector market serve \
-  --role-atlas-root research/role-atlas/2026-Q4-sectors/roles \
-  --role-atlas-ledger research/role-atlas/2026-Q4-sectors/ledger.json
+  --role-atlas-root research/role-atlas/2026-Q4-union/roles \
+  --role-atlas-ledger research/role-atlas/2026-Q4-union/ledger.json
 ```
 
 Deployment remains operator-explicit (the same paths can be selected with
 `SKILLS_VECTOR_ROLE_ATLAS_ROOT` / `SKILLS_VECTOR_ROLE_ATLAS_LEDGER`). Vercel bundles
 the new runtime publication, not historical audits or the superseded Q4 tree.
-No deployment or default-catalog fallback is enabled by this milestone.
+No deployment is performed. The deployed API explicitly defaults to this reviewed
+publication; any operator selector overrides it, including invalid selectors,
+which fail closed rather than falling back. CLI/library selection stays explicit.
 
 ## Structured roster policy
 
-No real career origin was added to the active 71-board roster. The supplied
-Workday page is format reference only. The reviewer first proposes and reviews
-employer-owned origins, weighted toward HR and Growth. A `jsonld` board accepts:
+The checked-in roster is not silently expanded. The reviewer supplied an external
+reviewed union of 71 ATS boards and 28 Workday tenants and ran the selected capture.
+The earlier saved single Workday page remains format reference only. Future origin
+additions still require employer-ownership and roster review. A `jsonld` board accepts:
 
 ```json
 {

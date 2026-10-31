@@ -50,6 +50,27 @@ def normalized(value: str) -> str:
     return " ".join(value.casefold().split())
 
 
+def posting_source_note(rows: list[dict]) -> str:
+    """Coverage of admitted rows, not the roster or the global Method policy."""
+    from urllib.parse import urlsplit
+    boards, sites = set(), set()
+    names = {"greenhouse": "Greenhouse", "lever": "Lever", "ashby": "Ashby",
+             "smartrecruiters": "SmartRecruiters", "workable": "Workable"}
+    for row in rows:
+        kind = row.get("ats")
+        if kind in names:
+            boards.add(names[kind])
+        elif kind == "jsonld":
+            host = urlsplit(row.get("board_url", "")).hostname or ""
+            sites.add("Workday" if host.endswith(".myworkdayjobs.com") else "structured JSON-LD")
+    parts = []
+    if boards:
+        parts.append("public job boards (" + ", ".join(sorted(boards)) + ")")
+    if sites:
+        parts.append("employer career sites (" + ", ".join(sorted(sites)) + ")")
+    return "Posting sources: " + (" and ".join(parts) if parts else "published posting excerpts; source coverage not recorded")
+
+
 def validate_alignment(row: dict) -> None:
     require(row.get("confidence") in ("exact", "close", "loose"), "mapping confidence must be exact, close or loose")
     require(isinstance(row.get("rationale"), str) and bool(row["rationale"].strip()), "mapping needs a nonempty rationale")
@@ -413,9 +434,8 @@ class EvidenceInputs:
                             self.history_groups[window], strata, "coincident"))
                 else:
                     measurements = [measurement]
-                historical_note = "Quarterly rules captures; only identical sampling groups support a comparison." if self.history_groups else "No comparable historical window is asserted."
                 employer_word = "employer" if len(employer_counts) == 1 else "employers"
-                evidence = [signal("postings", "Captured public job postings" if self.history_groups else "Published job postings", f"{len(hits)}/{len(rows)} admitted role postings record this node in their published expectation excerpts; {len(employer_counts)} {employer_word}. Role-wide scope includes unassigned postings. {historical_note}")]
+                evidence = [signal("postings", "Captured public job postings" if self.history_groups else "Published job postings", f"{len(hits)}/{len(rows)} admitted postings: published expectation excerpts record this node; {len(employer_counts)} {employer_word}. Includes unassigned scope.")]
                 if data.get("term_match"):
                     term = data["term_match"]
                     evidence[0]["reading"] += f" Canonical posting-led lexicon term {term['id']}; {term['method']}; literal match: {term['matched_text']}; family P only, no official equivalence."
@@ -428,10 +448,10 @@ class EvidenceInputs:
                         evidence.append(signal("onet_ratings", "O*NET local task anchor", f"{node['id']}; local natural key, not an official task database ID. {self.sources[node['source_id']]['url']}; published source {node['source_id']}. {node['quote']}"))
                 shares = [100 * sum(p["dedup_key"] in ids for p in level_rows[level]) / len(level_rows[level]) if level_rows[level] else None for level in range(1, 6)]
                 observed = [level for level in range(1, 6) if shares[level - 1] is not None and shares[level - 1] > 0]
-                forecast = {"id": "forecast." + slug + "." + key, "claim": "A future admitted posting records this skill in its published expectation excerpts, including unassigned scope",
-                            "basis": "none", "reason": "No four-quarter historical base-rate backtest is available." if self.history_groups else "One observed window; no historical base rate or backtest archive.",
+                forecast = {"id": "forecast." + slug + "." + key, "claim": "Future published expectation excerpts record this skill; includes unassigned scope",
+                            "basis": "none", "reason": "No four-quarter backtest archive." if self.history_groups else "One observed window; no historical base rate or backtest archive.",
                             "probability": None, "base_rate": None, "horizon_quarters": 4, "created": current,
-                            "resolves": str(int(current[:4]) + 1) + current[4:], "scored_against": "A future same-admission-and-excerpt-selection sample four quarters later; no ledger or holdout score exists"}
+                            "resolves": str(int(current[:4]) + 1) + current[4:], "scored_against": "Same-admission/excerpt sample in four quarters; no scores yet"}
                 skills.append({"id": key, "label": data["label"], "short_label": data["short_label"], "status": derive_status(measurements, [Signal(**s) for s in evidence]),
                                "first_level": min(observed) if observed else None, "share_by_level": shares, "source_links": ["P", "O"] if data["node"] else ["P"],
                                "windows": [m.to_dict() for m in measurements], "evidence": evidence, "forecast": forecast if derive_status(measurements, [Signal(**s) for s in evidence]) != "core" else None, "disputed": None})
@@ -481,6 +501,7 @@ class EvidenceInputs:
                         "postings": len(rows), "employers": len({normalized(p["employer"]) for p in rows if self.employers[normalized(p["employer"])]["status"] != "verified"}), "timing": "coincident"}],
                     "note": "Role-wide counts including unassigned scope, not a level-demand measurement. Excluded from sector profiles; no primary-employer sector is inferred."}], "limits": [
                     "Research projection of published release " + self.release_id + "; source counts are a bounded admitted sample, not market prevalence.",
+                    posting_source_note(rows),
                     "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand and is not a future probability.",
                     "Quarterly rules snapshots; only identical sampling definitions are comparable. Repeated releases within a quarter are not independent windows." if self.history_groups else "One selected snapshot only. Retrieval dates bin observed mentions; repeated releases are not independent windows. No comparable temporal history is asserted, so all current statuses are early.",
                     "Null first_level means no observed assigned level; null share_by_level means no assigned denominator, not zero demand. Measurement strata explicitly include unassigned postings.",

@@ -110,6 +110,9 @@ class RoleAtlasWebTests(unittest.TestCase):
             for filename in ("index.html", "role-atlas.html", "role-atlas.css", "role-atlas.js"):
                 shutil.copy2(ROOT / "preview" / filename, root / "preview" / filename)
             shutil.copytree(ROOT / "preview/role-atlas-assets", root / "preview/role-atlas-assets")
+            atlas = root / "research/role-atlas/2026-Q4-union"
+            shutil.copytree(ROOT / "research/role-atlas/2026-Q4-union", atlas)
+            (atlas / "audit.json").write_text("not public")
             result = subprocess.run(["bash", str(root / "scripts/assemble_vercel.sh")], cwd=root, capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
             out = root / ".vercel-out"
@@ -119,6 +122,10 @@ class RoleAtlasWebTests(unittest.TestCase):
             self.assertEqual((root / "preview/release/current.json").read_text(), pointer)
             self.assertFalse((out / "release/.staging").exists())
             self.assertFalse((out / "role-atlas-fixtures").exists())
+            self.assertFalse((out / "role-atlas/audit.json").exists())
+            self.assertEqual((out / "role-atlas/release.json").read_bytes(), (atlas / "release.json").read_bytes())
+            self.assertEqual((out / "role-atlas/roles/account-executive.json").read_bytes(),
+                             (atlas / "roles/account-executive.json").read_bytes())
             for source in (ROOT / "preview/role-atlas-assets").iterdir():
                 self.assertEqual((out / "role-atlas-assets" / source.name).read_bytes(), source.read_bytes())
             self.assertIn("assembled", result.stdout)

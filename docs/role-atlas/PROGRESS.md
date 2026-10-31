@@ -3501,3 +3501,298 @@ change or live union recapture. The existing 600-retrieval reviewer change
 and model-backed budgets are untouched.
 
 One fix-up commit on `feat/role-atlas`, then stop for review.
+
+
+## M9 review round 5 — publish and select the union capture
+
+Implemented `reviews/M9-r5.md`. New selected publication:
+**`research/role-atlas/2026-Q4-union/`**, release
+**`role_research_7333966260cf6538`**. No deployment, push, live posting
+retrieval or model/paid call.
+
+Input, read-only:
+`/home/logani/.local/share/skills-vector-evidence/role-atlas/capture-union-20261024T112557Z/2026-Q4`.
+This is the reviewer's one union capture (71 ATS boards + 28 Workday tenants),
+not a merge of separate same-quarter releases. All **1,522 capture files**
+and their inventory remain unchanged. Admitted totals reproduce the request:
+**495/47 AE, 37/19 FDE, 20/12 Growth, 12/10 HR** postings/employers — **564**
+postings total.
+
+### Publication, selection and preservation
+
+- Two final projections into `/tmp/role-atlas-m9-r5-verified-{a,b}` are
+  byte-identical: same four full role records, four materialized overviews
+  and manifest. The new tree uses the sector release's layout; ledger and
+  explicit no-archive backtest were then created for the final source pins.
+- The full audit stays external:
+  `~/.local/share/skills-vector-evidence/role-atlas/releases/role_research_7333966260cf6538/audit.json`,
+  **25,562,056 bytes**, SHA-256
+  `3f5ed757592bb2751b25a35b40d84fb3b3a144e2aac829cb6fff2da4a21c37a5`.
+  The small release manifest pins that hash/size, capture receipts, source/
+  recipe hashes, records and views. No raw boards, descriptions or detailed
+  full audit are committed.
+- `api/index.py` explicitly selects the reviewed union by default; any
+  operator root/fixture/ledger selector still wins, including invalid ones
+  which fail closed. The generic environment helper and CLI still require
+  explicit selection; no research-to-fixture or bad-catalog fallback.
+- Vercel `includeFiles` now includes union roles/views/manifest/ledger,
+  not the sector-only tree. Assembly copies only the selected compact public
+  roles, views, manifest, ledger and backtest to `.vercel-out/role-atlas/`.
+  Its test injects a fake audit in a temporary input and verifies it is
+  **not** copied.
+- The old sector release stays on disk, unselected and explicitly readable.
+  **G3 exception requested by r5:** only its `release.json` gets
+  `selection: {status: superseded, superseded_by: role_research_7333966260cf6538,
+  replacement: 2026-Q4-union}`. Removing that field reproduces the original
+  manifest object exactly. All its role/view/ledger/backtest bytes remain
+  unchanged. The other **572 protected publication/foundation/mapping files**
+  remain byte-identical; the research README is an intentionally updated
+  document, not an immutable data receipt.
+- Research README and the sectors/structured-career workflow now name the
+  selected publication and the explicit operator-override behavior.
+
+### Sources and weight gates
+
+The page no longer hard-codes three board providers. The pipeline derives
+`Posting sources: ...` per role from **admitted row kinds and origin hosts**,
+stores it in the role limits, and the page reads it from the record.
+Workday is recognized by its tenant host, never an employer-name guess.
+AE/FDE/Growth say public boards **Ashby, Greenhouse, Lever** plus employer
+career sites **Workday**. HR correctly says **Ashby, Greenhouse + Workday**,
+not Lever. Legacy/fixture records without coverage metadata explicitly say
+coverage is not recorded. Method remains policy, not import coverage.
+
+The first weight probe exceeded both gates: AE overview **475,401 bytes**
+(without its selected ledger), publication core **6,473,563 bytes** before
+ledger/backtest. No budget was raised:
+
+1. New research publications may abbreviate **only overview tail labels** to
+   80 characters, still id/label pairs, with an explicit `tail_label_limit`
+   and UI explanation. Full labels/details remain at the pinned skill endpoint
+   and in full/agent JSON. Every node remains accessible. Existing materialized
+   views and default `overview(record)` behavior are unchanged.
+2. Repeated evidence/none-forecast prose is shorter but still explicitly says
+   **published expectation excerpts**, unassigned scope, no four-quarter
+   backtest and no score. Comparison caveats remain in role limits. This is a
+   narrowly scoped copy/storage fix, not changed forecast math or evidence.
+   An integrity comparison against the initial untrimmed projection verifies
+   unchanged skill ids/labels, statuses, shares, first levels, level records,
+   sector records, edges and numeric/null forecast fields. Only recipe
+   comparison identities/source pins and explanatory prose differ.
+
+The display employer floor remains **3** for roles over 100 nodes. Core,
+edge, sector and sampling floors, scope rules and the existing free-lane
+600-request ceiling are unchanged. No label truncation occurs in full records.
+
+| Final gate | Measured | Limit |
+| --- | ---: | ---: |
+| Publication tree, 11 files | **5,982,575 bytes** | 6,000,000 |
+| Ledger | **297,377 bytes** | 300,000 |
+| AE overview REST response | **373,799 bytes** | 400,000 |
+| FDE overview REST response | 88,281 bytes | 400,000 |
+| Growth overview REST response | 59,763 bytes | 400,000 |
+| HR overview REST response | 49,483 bytes | 400,000 |
+
+**Headroom is small:** 17,425 tree bytes and 2,623 ledger bytes. Future volume
+needs further lossless storage work or display trimming, not larger budgets.
+
+### Per-role report
+
+All **3,024** recorded nodes remain **early**. Rank below is descending recorded
+posting share, then employer count, then stable id; ties do not imply a market
+ranking. Counts include unassigned scope. The source-bound labels are retained,
+including known bad extraction — they are not silently relabeled as validated
+skills.
+
+**Important quality limit:** HR's top ten contain company/pay/benefit/legal
+boilerplate from one employer's two postings. All HR nodes are below the
+three-employer display floor; all 12 HR postings are unassigned. More volume
+does **not** establish valid HR skills or levels. Growth also has many top
+nodes from one employer. R4's flat-heading misses, introductory prose,
+unpunctuated qualification/tail spillover and earlier lexical errors persist.
+This publication does not claim those issues have been fixed or independently
+validated.
+
+#### Account Executive
+
+**495 postings / 47 employers; 2178 nodes.**
+Levels: L1 **0**; L2 **47**; L3 **109**; L4 **108**; L5 **80**; unassigned **151**.
+Sector profiles: 51 Information — **217 postings / 12 employers**.
+
+| Rank | Recorded node | Postings | Employers |
+| --- | --- | ---: | ---: |
+| 1 | Develop business relationships. | 280 | 38 |
+| 2 | Execute sales or other financial transactions. | 226 | 34 |
+| 3 | Identify potential customers. | 201 | 30 |
+| 4 | Salesforce | 192 | 18 |
+| 5 | Monitor sales activities. | 185 | 23 |
+| 6 | Communicate with other workers to coordinate activities. | 159 | 23 |
+| 7 | Demonstrate products to consumers. | 147 | 10 |
+| 8 | Monitor market conditions or trends. | 110 | 6 |
+| 9 | Study product information to acquire professional knowledge. | 79 | 18 |
+| 10 | track record of success in meeting and exceeding goals | 73 | 1 |
+
+#### Forward Deployed Engineer
+
+**37 postings / 19 employers; 351 nodes.**
+Levels: L1 **0**; L2 **0**; L3 **0**; L4 **8**; L5 **0**; unassigned **29**.
+Sector profiles: **none**; every sector retains a below-floor/null profile.
+
+| Rank | Recorded node | Postings | Employers |
+| --- | --- | ---: | ---: |
+| 1 | Design software applications. | 17 | 9 |
+| 2 | CI/CD | 12 | 5 |
+| 3 | Python | 11 | 4 |
+| 4 | Machine learning | 11 | 3 |
+| 5 | AI agents | 10 | 9 |
+| 6 | TypeScript | 10 | 4 |
+| 7 | APIs | 10 | 4 |
+| 8 | Large language models | 9 | 8 |
+| 9 | Amazon Web Services | 9 | 3 |
+| 10 | Microsoft Azure | 9 | 3 |
+
+#### Growth Manager
+
+**20 postings / 12 employers; 283 nodes.**
+Levels: L1 **1**; L2 **0**; L3 **0**; L4 **4**; L5 **0**; unassigned **15**.
+Sector profiles: **none**; every sector retains a below-floor/null profile.
+
+| Rank | Recorded node | Postings | Employers |
+| --- | --- | ---: | ---: |
+| 1 | SQL | 7 | 4 |
+| 2 | Microsoft Excel | 4 | 1 |
+| 3 | strong understanding of conversion signals and measurement, including meta capi, server-side tracking, attribution, conversion-event strategy, and crm/offline conversion data | 4 | 1 |
+| 4 | full-funnel growth: build paid social strategies that create demand at the top of the funnel and efficiently convert it through retargeting and lower-funnel programs | 4 | 1 |
+| 5 | excellent communicator who can operate autonomously and influence cross-functional partners across brand, pmm, design, analytics, engineering, marketing ops, and sales | 4 | 1 |
+| 6 | relentlessly analytical: deep understanding of unit economics (cac, ltv, payback periods), attribution modeling, and how to connect platform metrics directly to down-funnel business impact | 4 | 1 |
+| 7 | critically, you know how to build brand through a performance lens, connecting upper-funnel investments to near-term impact and long-term value creation | 4 | 1 |
+| 8 | in this role, you will be accountable for down-funnel pipeline, efficient cac, and customer acquisition | 4 | 1 |
+| 9 | growth & pipeline ownership: own meta + emerging channel budgets, cac efficiency, conversion, and downstream pipeline/revenue across self-serve and sales-led motions | 4 | 1 |
+| 10 | you’ll help accelerate brex’s growth by scaling what works, continuously improving how we operate, and unlocking new opportunities for impact | 4 | 1 |
+
+#### HR Generalist
+
+**12 postings / 10 employers; 212 nodes.**
+Levels: L1 **0**; L2 **0**; L3 **0**; L4 **0**; L5 **0**; unassigned **12**.
+Sector profiles: **none**; every sector retains a below-floor/null profile.
+
+| Rank | Recorded node | Postings | Employers |
+| --- | --- | ---: | ---: |
+| 1 | high school diploma, ged, or equivalent certification at least 7 years of client facing experience or at least 7 years of consulting experience or a combination at least 7 years of experience in human resources | 2 | 1 |
+| 2 | company: unum at unum group, we’re a fortune 500 company and leading international provider of workplace benefits and services, helping workers and their families thrive for more than 175 years | 2 | 1 |
+| 3 | unless actual salary is indicated above in the job description, actual pay will be based on skill, geographical location and experience | 2 | 1 |
+| 4 | our 10,000+ employees work across operations in the us, uk and poland, as well as our dedicated technology centre in ireland | 2 | 1 |
+| 5 | through our unum and colonial life brands, our company offers disability, life, accident, critical illness, dental and vision insurance; leave and absence management support; and behavioral health services | 2 | 1 |
+| 6 | colonial life is headquartered in columbia, sc, with over 40 field offices nationwide | 2 | 1 |
+| 7 | all benefits are subject to the terms and conditions of individual plans | 2 | 1 |
+| 8 | headquartered in chattanooga, tn, with international offices in ireland, poland and the uk, unum also has significant operations in portland, me, and baton rouge, la - plus over 35 us field offices | 2 | 1 |
+| 9 | may perform other duties as assigned | 2 | 1 |
+| 10 | unum group is committed to working with and providing reasonable accommodations for any applicant with a disability | 2 | 1 |
+
+### Ledger and source integrity
+
+The new compact ledger has **3,024 pending none-basis calls**, no numeric
+probability or base rate, no resolved/scored call, null Brier and empty
+calibration bins. Backtest says **not run: no historical posting archive**.
+Old ledgers are untouched. Another release in the same quarter is not a
+second independent window or causal training archive.
+
+The integrity check verifies the final audit against its manifest, all **564**
+posting ids against the capture, and **9,134** audit skill links against exact
+saved text offsets and source hashes. Repository/publication metadata privacy
+guards pass. Its semantic comparison ignores only the intentionally changed
+recipe comparison-group identity, not any measurement value.
+
+### Tests and W3 — real commands/results
+
+Final producer and publication commands (all exit **0**):
+
+```sh
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-union-20261024T112557Z/2026-Q4 --output /tmp/role-atlas-m9-r5-verified-a --evidence-root /home/logani/.local/share/skills-vector-evidence/role-atlas/releases > /tmp/role-atlas-m9-r5-verified-a.json 2> /tmp/role-atlas-m9-r5-verified-a.err
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-union-20261024T112557Z/2026-Q4 --output /tmp/role-atlas-m9-r5-verified-b --evidence-root /tmp/role-atlas-m9-r5-verified-b-evidence > /tmp/role-atlas-m9-r5-verified-b.json 2> /tmp/role-atlas-m9-r5-verified-b.err
+diff -qr /tmp/role-atlas-m9-r5-verified-a /tmp/role-atlas-m9-r5-verified-b
+mkdir -p research/role-atlas/2026-Q4-union
+cp -R /tmp/role-atlas-m9-r5-verified-a/. research/role-atlas/2026-Q4-union/
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/skills-vector market forecast-ledger create --roles-root research/role-atlas/2026-Q4-union/roles --ledger research/role-atlas/2026-Q4-union/ledger.json > /tmp/role-atlas-m9-r5-ledger-verified.json
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/skills-vector market forecast-ledger backtest --ledger research/role-atlas/2026-Q4-union/ledger.json --output research/role-atlas/2026-Q4-union/backtest.json > /tmp/role-atlas-m9-r5-backtest-verified.json
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m9-r5-final-tests.log 2>&1
+```
+
+Full suite: **306 tests / 236.204s, OK (skipped=2)**. Five new publication tests
+cover actual counts/gates, pinned full-detail preservation under abbreviated
+tails, data-derived source notes (including rejecting employer-name guessing),
+superseded/selected release behavior and operator-selector errors. Existing
+deployment-default and assembly tests were updated for the explicitly requested
+selection. No new skip or heavy dependency.
+
+```sh
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m9-r5-fixtures --role-atlas-fixtures --role-atlas-ledger /tmp/role-atlas-m6-fixture-ledger.json > /tmp/role-atlas-m9-r5-fixtures.log 2>&1
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m9-r5-research --role-atlas-root research/role-atlas/2026-Q4-union/roles --role-atlas-ledger research/role-atlas/2026-Q4-union/ledger.json > /tmp/role-atlas-m9-r5-research.log 2>&1
+```
+
+Both exit **0**, first attempts: **54 fixture / 72 research screenshots**,
+all roles, tabs and Connections at **1280 light, 1280 dark, 390 light**;
+every `errors: []`, no page overflow. Explicit local Chromium:
+`~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome`.
+
+The checker additionally asserts the source note matches record data. Its
+unknown-level gate now accepts the honest **zero displayed rows at the overview
+floor** state only when that message is shown and there are zero visible rows;
+it does not force a placeholder assigned level. All keyboard, graph, quote,
+detail/forecast, full JSON/copy, sector and error probes remain. No timing
+threshold, retry, warm-up or averaging was added.
+
+| Case | AE overview bytes | Initial interactive ms | Tail expand ms |
+| --- | ---: | ---: | ---: |
+| 1280 light | 373,799 | **1,781.5** | 301.1 |
+| 1280 dark | 373,799 | **742.3** | 163.1 |
+| 390 light | 373,799 | **979.3** | 200.3 |
+| Limit | 400,000 | 2,000 | 1,000 |
+
+Fixtures: 47,553 bytes; interactive **1042.8 / 968.4 / 651.2ms** in the same
+case order. Opened the AE desktop-light/mobile maps, HR desktop-dark map and
+HR mobile Industries screenshots in one inspection batch; source copy,
+zero-common-skill state, unknown levels and below-floor industry state are
+visible. Screenshot roots are the two paths above.
+
+```sh
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python /tmp/role-atlas-m9-r5-integrity.py > /tmp/role-atlas-m9-r5-integrity.json 2> /tmp/role-atlas-m9-r5-integrity.err
+node .agents/skills/impeccable/scripts/detect.mjs --json preview/role-atlas.js > /tmp/role-atlas-m9-r5-design-detector.json 2> /tmp/role-atlas-m9-r5-design-detector.err
+bash scripts/assemble_vercel.sh
+UV_OFFLINE=1 uv lock --check --offline
+node --check preview/role-atlas.js
+.venv/bin/python -m compileall -q api/index.py src/skills_vector tests/test_role_atlas_union.py scripts/check_role_atlas.py
+git diff --check
+```
+
+All exit **0**. Integrity measurements are above; detector output **[]**;
+assembly **562 files** (no audit/store); lock **61 packages**, no dependency
+change. HOME is isolated for unit/CLI tests so unrelated optional local-audit
+lookups remain unavailable, not fabricated as verified. W3 uses the offline
+Playwright cache and explicit selected catalog/ledger.
+
+### Development failures and scope notes
+
+- The new test initially imported unavailable FastAPI rather than this repo's
+  Starlette client, then used `id` instead of `window` on a Measurement.
+  Both test mistakes were corrected; focused publication tests then passed
+  **5 / 37.601s** on the preliminary candidate.
+- The first full-suite attempt hit the tool's 240-second timeout; it was not
+  called a pass. The next complete run was **306 / 173.122s**, with one failure
+  because compact claim prose lost the explicit “published expectation
+  excerpts” wording. After restoring that, **306 / 235.141s** caught the same
+  omission in evidence prose. Both fields now explicitly preserve that scope;
+  the final **306 / 236.204s** passes without weakening the semantic test.
+  Focused pipeline tests also passed **14 / 9.091s**.
+- Preliminary uncommitted candidates/ledgers were discarded before issuance or
+  deployment; the final selected tree is only `role_research_7333966260cf6538`.
+  Diagnostic audit receipts outside the repo are not additional quarterly
+  history. No issued historical call or approved research record was rewritten.
+- An initial integrity comparison incorrectly treated recipe comparison-group
+  ids as measurement values; it was corrected to compare every numeric/null
+  value while allowing the required new recipe identity.
+- R5 expressly authorizes the sector manifest's supersession metadata;
+  everything else in approved releases is preserved. No live recapture was
+  run, and the adjacent external roster was not needed or modified.
+
+One fix-up commit on `feat/role-atlas`, then stop for review.

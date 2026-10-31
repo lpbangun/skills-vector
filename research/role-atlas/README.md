@@ -1,14 +1,46 @@
 # Role Atlas research projection and ledger
 
-## Verified-sector Q4 publication (M9)
+## Selected union Q4 publication (M9-r5)
 
-Select `2026-Q4-sectors/roles` with `2026-Q4-sectors/ledger.json`: release
-`role_research_71d6040270516002`. This reuses exactly the 489 canonical postings,
+The deployed API default, Vercel runtime bundle and assembled static export select
+`2026-Q4-union/`, release **`role_research_7333966260cf6538`**. Explicit operator
+environment selectors still win and fail closed if invalid; the CLI/library still
+requires explicit selection. This is configuration/build output, not a deployment.
+
+The reviewer-run 71-ATS-board + 28-Workday-tenant union capture admits **564**
+postings: AE **495/47** postings/employers, FDE **37/19**, Growth **20/12**, HR
+**12/10**. It is one quarterly stock, not hiring flow or a second history window.
+Source coverage is derived per role from admitted rows, not the global Method
+table. All 3,024 nodes remain early, with 3,024 pending none-basis calls and no scores or probabilities.
+Only AE Information has a sector profile (**217 postings / 12 employers**).
+
+The compact tree is **5,982,575 bytes / 11 files**, ledger **297,377 bytes**.
+Its **25,562,056-byte** audit is external and hash-pinned by `release.json`.
+The 400 KB overview gate is unchanged: lower-employer tail labels may be
+abbreviated to 80 characters; selection retrieves full labels and evidence.
+Full records and agent JSON retain every node. No status or employer floor changed.
+
+**Extraction remains provisional.** Flat-heading misses, corporate/benefits/
+legal tails and lexical errors remain. HR's posting-ranked top nodes in particular
+contain company/pay boilerplate from a single employer, not a validated HR skill
+ranking. See the exact per-role top tens and limitations in
+[PROGRESS.md](../../docs/role-atlas/PROGRESS.md).
+
+```sh
+.venv/bin/skills-vector market serve --role-atlas-root research/role-atlas/2026-Q4-union/roles --role-atlas-ledger research/role-atlas/2026-Q4-union/ledger.json
+```
+
+## Superseded verified-sector Q4 publication (M9)
+
+Retained, unselected: `2026-Q4-sectors/roles` with `2026-Q4-sectors/ledger.json`,
+release `role_research_71d6040270516002`. Its manifest alone now carries a
+supersession pointer; its records, views and ledger are unchanged. It reused
+exactly the 489 canonical postings,
 adds SEC-backed broad employer sectors, and qualifies AE Information at 205
 postings / 12 employers. Every below-floor sector retains counts and a null
 profile. Unverified-employer counts are separate, role-wide API observations.
-There is no new real structured-page volume yet; that lane is offline-tested
-and its future roster/capture remains operator-reviewed. The original M8 Q4
+That historical sector-only publication contains no real structured-page
+volume; the selected union publication above adds the reviewer-captured volume. The original M8 Q4
 publication below is unchanged and retained on disk.
 
 [Evidence, JSON-LD policy and exact operator workflow](../../docs/role-atlas/SECTORS_AND_STRUCTURED_CAREERS.md).

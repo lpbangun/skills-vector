@@ -13,7 +13,7 @@ if src_root.is_dir():
 
 from skills_vector.market.core import CatalogStore
 from skills_vector.market.remote import RemoteCatalogStore
-from skills_vector.market.role_reads import role_atlas_from_environment
+from skills_vector.market.role_reads import RoleAtlasReads, role_atlas_from_environment
 from skills_vector.market.web import create_market_app
 
 
@@ -35,5 +35,10 @@ def _catalog_store() -> CatalogStore:
 
 # One catalog object backs REST and MCP for this function instance.
 CATALOG = _catalog_store()
-ROLE_ATLAS = role_atlas_from_environment()
+# This deployment explicitly selects the reviewed union publication. Operator
+# selectors still win, including invalid/empty ones; never fall back on error.
+ROLE_ATLAS = (role_atlas_from_environment() if any(name in os.environ for name in (
+    "SKILLS_VECTOR_ROLE_ATLAS_ROOT", "SKILLS_VECTOR_ROLE_ATLAS_FIXTURES", "SKILLS_VECTOR_ROLE_ATLAS_LEDGER"))
+    else RoleAtlasReads.configured(ROOT / "research/role-atlas/2026-Q4-union/roles",
+                                   ledger_path=ROOT / "research/role-atlas/2026-Q4-union/ledger.json"))
 app = create_market_app(CATALOG, role_catalog=ROLE_ATLAS, release_root=ROOT / "preview" / "release", public_host=True)

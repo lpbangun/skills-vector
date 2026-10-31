@@ -122,7 +122,9 @@
     var projection = raw.foundation.sources.find(function (source) { return source.source_kind === "bls_projections"; });
     var experimental = raw.publication === "experimental";
     $("fixtureCallout").hidden = raw.data_kind !== "fixture";
-    $("sampleNotice").textContent = (raw.data_kind === "fixture" ? "Illustrative sample: " : "Sample: ") + r.window.postings + " postings from " + r.window.employers + " employers on public job boards (Greenhouse, Lever, Ashby); tech-heavy, not a market census." + (raw.data_kind === "fixture" ? " Fixture numbers, not observed research." : "");
+    var sourceNote = raw.limits.find(function (note) { return note.indexOf("Posting sources: ") === 0; });
+    var sources = sourceNote ? sourceNote.slice("Posting sources: ".length) : "published posting excerpts; source coverage not recorded";
+    $("sampleNotice").textContent = (raw.data_kind === "fixture" ? "Illustrative sample: " : "Sample: ") + r.window.postings + " postings from " + r.window.employers + " employers; " + sources + "; tech-heavy, not a market census." + (raw.data_kind === "fixture" ? " Fixture numbers, not observed research." : "");
     $("fixtureNote").textContent = envelope.fixture_caveat ? envelope.fixture_caveat + " " + raw.limits[raw.limits.length - 1] : "";
     $("releaseLabel").textContent = raw.release_id + " · " + raw.data_kind;
     $("dataFooter").textContent = "Skills Vector · Role Atlas · " + raw.data_kind + " data · " + raw.release_id + ".";
@@ -668,7 +670,9 @@
   function overviewFloor() { var info = typeof overviewInfo !== "undefined" && overviewInfo[state.role]; return info ? info.employer_floor : role().raw.skill_map.skills.length > 100 ? 3 : 0; }
   function rowVisible(k) { return !overviewFloor() || k.employers >= overviewFloor() || expandedRows[state.role + ":" + k.status]; }
   function overviewText() {
-    return overviewFloor() ? "Overview floor: " + overviewFloor() + " employers. Lower-employer rows are expandable per status; this is a display floor, not a status rule. All skills remain in the API and JSON." : "All skills shown; no overview display floor.";
+    var info = overviewInfo[state.role];
+    var tailNote = info && info.tail_label_limit ? " Some lower-employer labels are shortened; select a row for its full label and evidence." : "";
+    return overviewFloor() ? "Overview floor: " + overviewFloor() + " employers. Lower-employer rows are expandable per status; this is a display floor, not a status rule. All skills remain in the API and JSON." + tailNote : "All skills shown; no overview display floor.";
   }
   function skillRow(k, st, r) {
     if (k.stub) return '<button type="button" class="srow" data-skill="' + esc(k.id) + '" data-detail="pending" aria-pressed="false" aria-label="' + esc(k.label + ". " + STATUS[st][0] + ". Evidence: not loaded. Select to load full detail.") + '"><span>' + esc(k.label) + '</span><span></span><span></span><span class="call">Select for detail</span></button>';
