@@ -272,3 +272,27 @@ At the end of each milestone, append to `docs/role-atlas/PROGRESS.md`:
 - open risks.
 
 Then stop and wait for review. When a review file exists for your milestone, fix every finding marked `must`, reply to each finding in PROGRESS.md, and stop again.
+
+## M10: Extraction that lists skills, not company text
+
+Why: on the union release, HR's top ten nodes are Unum company history, pay disclaimers and "may perform other duties as assigned". Growth's top ten are sentences from one Brex posting pair. AE ranks 10–19 are single-employer sentences. The map must list what employers ask a person to do or know.
+
+Build, offline and deterministic (no model, no new hosts):
+
+1. **Non-skill filter (`rules/3`).** Drop a candidate bullet or sentence before it becomes a node when it is:
+   - about the company (founding, headcount, offices, headquarters, brands, "we are", "our mission", "at <employer>");
+   - pay, benefits, plan terms, bonus or equity disclaimers;
+   - EEO, accommodation, background-check, visa or legal text;
+   - catch-alls ("other duties as assigned", "this list is not exhaustive");
+   - a heading echo or a label line ("company:", "location:").
+   Use a versioned, reviewed phrase table in `role_atlas_mappings/`, not inline regexes. Count every drop by reason per role, and keep the dropped text in the out-of-tree audit only.
+2. **Split compound requirements.** A requirements line with several clauses ("high school diploma, ged … at least 7 years of …") becomes separate candidates for education, years of experience and domain. Years and education become structured fields on the posting (`min_years`, `education`), not skill nodes.
+3. **Employer-weighted ranking.** Rank and overview order use the number of distinct employers first, then the employer-weighted share (each employer counts once, split across its postings). Posting share stays visible as a second number. Status thresholds and floors do not change.
+4. **Derived sample note.** The sample descriptor comes from the admitted employers' verified sectors (e.g. "mostly Information and Finance"). Without verified sectors, it says "sector mix unverified". Drop the fixed "tech-heavy".
+
+Acceptance:
+- **X1** On the union capture, no HR, Growth or AE top-20 node (by the new rank) matches the non-skill table. The report lists each role's new top 20.
+- **X2** The drop counts by reason are reported per role. No admitted posting loses all its expectations to the filter without being counted.
+- **X3** Golden tests from real shapes: the Unum HR lines are dropped; the compound education line splits; a real duty ("Interpret and explain HR policies") survives.
+- **X4** Re-publish as a new release `2026-Q4-union-r3`, selected, with double projection byte-identical, budgets held and W3 passing. The previous releases are not edited (supersession goes in the README).
+- G1–G6 and P1–P5 still hold. One commit per milestone part is fine; PROGRESS.md updated; stop and report.
