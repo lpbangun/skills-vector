@@ -296,3 +296,19 @@ Acceptance:
 - **X3** Golden tests from real shapes: the Unum HR lines are dropped; the compound education line splits; a real duty ("Interpret and explain HR policies") survives.
 - **X4** Re-publish as a new release `2026-Q4-union-r3`, selected, with double projection byte-identical, budgets held and W3 passing. The previous releases are not edited (supersession goes in the README).
 - G1–G6 and P1–P5 still hold. One commit per milestone part is fine; PROGRESS.md updated; stop and report.
+
+## M11: Group HR and Growth sentences into shared skills
+
+Why: after M10, HR and Growth nodes are single-employer sentences, so the map shows nothing even where employers ask for the same work in different words (performance management, org design, employee relations; lifecycle, experimentation, attribution). AE works because its sentences map to O*NET DWAs.
+
+Build, offline and deterministic:
+1. Extend the reviewed DWA rule table to HR Generalist (O*NET 13-1071.00 and 11-3121.00 DWAs) and Growth Manager (11-2021.00, 13-1161.00 DWAs), with the same lexical-rule, provenance and fit rules used for AE. Every rule cites the DWA id and O*NET 31.0.
+2. Add a small reviewed `emerging_terms` set for Growth and HR terms with no DWA (e.g. experimentation / A/B testing, lifecycle marketing, attribution, HRIS, people analytics). Same contract as the existing emerging terms.
+3. Fix the `ba` leak: bare degree tokens (BA, BS, MBA, bachelor's, master's) become `education`, never nodes. Test it.
+4. Re-publish as `2026-Q4-union-r4`, selected; earlier releases untouched; double projection identical; budgets and W3 hold.
+
+Acceptance:
+- **Y1** HR and Growth each have at least 8 grouped nodes with ≥ 3 employers, or the report shows, per candidate group, why not (list the matched sentences and employers).
+- **Y2** Every grouped node links to its exact source quotes; no rule matches company, pay or legal text (the M10 table still runs first).
+- **Y3** AE and FDE top 20 do not regress (report both before/after).
+- **Y4** Report each role's new top 20.
