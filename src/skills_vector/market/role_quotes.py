@@ -52,7 +52,7 @@ def omit_contact_sentences(expectations: list[dict], description: str) -> tuple[
     return output, omitted
 
 
-def project(posting: dict, description: str) -> list[dict]:
+def project(posting: dict, description: str, *, quarantine_notices: bool = True) -> list[dict]:
     output, excluded = [], []
     expectations, contact_omissions = omit_contact_sentences(posting["expectations"], description)
     posting["contact_spans_omitted"] = posting.get("contact_spans_omitted", 0) + len(contact_omissions)
@@ -66,7 +66,7 @@ def project(posting: dict, description: str) -> list[dict]:
             start = expected["start"] + a
             if description[start:start + len(quote)] != quote:
                 raise ValueError("sentence quote is not an exact source substring")
-            if notice(quote):
+            if quarantine_notices and notice(quote):
                 excluded.append({"quote": quote, "start": start, "end": start + len(quote), "source_sha256": expected["source_sha256"], "reason": "standalone pay/location/benefit notice, not an expectation"})
                 continue
             identity = posting["source_id"] + "|" + str(start) + "|" + quote

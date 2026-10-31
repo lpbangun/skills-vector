@@ -74,9 +74,9 @@ def excerpt(quote: str) -> str:
 
 
 def report(snapshot: Path) -> dict:
-    current = EvidenceInputs.from_snapshots([snapshot], ROOT / "preview/release", canonical=False)
+    current = EvidenceInputs.from_snapshots([snapshot], ROOT / "preview/release", canonical=False, skills_only=False)
     records, audit = current.build()
-    legacy = EvidenceInputs.from_snapshots([snapshot], ROOT / "preview/release", upgrade=False, grouping=False, canonical=False)
+    legacy = EvidenceInputs.from_snapshots([snapshot], ROOT / "preview/release", upgrade=False, grouping=False, canonical=False, skills_only=False)
     old_records, _ = legacy.build()
     baseline_levels, baseline_reasons, baseline_categories = Counter(), Counter(), Counter()
     for posting in legacy.postings:
@@ -86,7 +86,7 @@ def report(snapshot: Path) -> dict:
         if before.level is None:
             baseline_reasons[before.reason] += 1
             baseline_categories[triage(posting, duties).reason] += 1
-    raw = EvidenceInputs.from_snapshots([snapshot], ROOT / "preview/release", grouping=False, canonical=False)
+    raw = EvidenceInputs.from_snapshots([snapshot], ROOT / "preview/release", grouping=False, canonical=False, skills_only=False)
     ungrouped, _ = raw.build()
     snapshot_id = read_json(snapshot / "manifest.json")["snapshot_id"]
     pool = eligible(snapshot)

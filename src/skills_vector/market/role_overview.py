@@ -9,6 +9,8 @@ def overview(record: dict, *, tail_label_limit: int | None = None) -> dict:
         if type(tail_label_limit) is not int or tail_label_limit < 18:
             raise ValueError("tail label limit must be an integer of at least 18")
         info["tail_label_limit"] = tail_label_limit
+    if any("employer_weighted_share" in s["windows"][-1] for s in skills):
+        info["ranking"] = "employers_then_employer_weighted_share"
     light = deepcopy(record)
     if info["employer_floor"]:
         light["skill_map"]["skills"] = [s for s in light["skill_map"]["skills"] if s["windows"][-1]["employers"] >= 3]

@@ -427,7 +427,7 @@ class RoleAtlasConfigTests(unittest.TestCase):
                     self.assertEqual(response.status_code, 200)
                     self.assertEqual(response.json()["fixture_caveat"], FIXTURE_CAVEAT if fixture else None)
                     if not fixture:
-                        self.assertEqual(response.json()["release_id"], "role_research_7333966260cf6538")
+                        self.assertEqual(response.json()["release_id"], json.loads((ROOT / "research/role-atlas/2026-Q4-union-r3/release.json").read_text())["release_id"])
         rewrites = json.loads((ROOT / "vercel.json").read_text())["rewrites"]
         self.assertIn({"source": "/v1/(.*)", "destination": "/api/index"}, rewrites)
 

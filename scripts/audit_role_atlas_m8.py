@@ -51,7 +51,7 @@ def report(snapshot: Path, projection: Path, baseline: Path, cases: Path) -> dic
     actual, audit_status = read_audit(projection)
     if actual is None:
         return {"release_id": read_json(projection / "release.json")["release_id"], "audit_status": audit_status}
-    inputs = EvidenceInputs.from_snapshots([snapshot], ROOT / "preview/release")
+    inputs = EvidenceInputs.from_snapshots([snapshot], ROOT / "preview/release", skills_only=False)
     records, replay = inputs.build()
     require(replay == actual, "projection no longer matches current inputs/producer")
     selection = selections(match_pool(actual, read_json(snapshot / "postings.json")), list(actual["roles"]))

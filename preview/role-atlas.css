@@ -281,6 +281,7 @@ footer { border-top: 1px solid var(--rule); padding-top: 1rem; color: var(--grap
 .g-sel { fill: none; stroke: transparent; stroke-width: 2; }
 .g-n[aria-pressed="true"] .g-sel { stroke: var(--ink); }
 .g-n.dim { opacity: 0.3; }
+.rank-metrics { display: block; color: var(--graphite); font-size: 0.76rem; line-height: 1.45; margin-top: 0.25rem; }
 .bars { display: grid; gap: 0.3rem; }
 .bars .win { grid-template-columns: 2.2rem minmax(0, 1fr) 2.8rem; }
 .pairs { list-style: none; margin: 0; padding: 0; display: grid; }

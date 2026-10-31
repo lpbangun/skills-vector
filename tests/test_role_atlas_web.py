@@ -110,8 +110,8 @@ class RoleAtlasWebTests(unittest.TestCase):
             for filename in ("index.html", "role-atlas.html", "role-atlas.css", "role-atlas.js"):
                 shutil.copy2(ROOT / "preview" / filename, root / "preview" / filename)
             shutil.copytree(ROOT / "preview/role-atlas-assets", root / "preview/role-atlas-assets")
-            atlas = root / "research/role-atlas/2026-Q4-union"
-            shutil.copytree(ROOT / "research/role-atlas/2026-Q4-union", atlas)
+            atlas = root / "research/role-atlas/2026-Q4-union-r3"
+            shutil.copytree(ROOT / "research/role-atlas/2026-Q4-union-r3", atlas)
             (atlas / "audit.json").write_text("not public")
             result = subprocess.run(["bash", str(root / "scripts/assemble_vercel.sh")], cwd=root, capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)

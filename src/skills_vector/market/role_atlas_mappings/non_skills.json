@@ -1,0 +1,185 @@
+{
+  "schema": "role-atlas.non-skills/1",
+  "method": "rules/3",
+  "review": "Development-reviewed against M9-r6 failure shapes; not independent validation.",
+  "source_note": "M10 BRIEF and read-only union-capture sentence shapes. No employer sector or level is inferred.",
+  "rows": [
+    {
+      "id": "company_profile",
+      "reason": "company",
+      "pattern": "^(?:company\\s*:|headquartered\\b|(?:\\w[\\w .,&’'-]{0,80})\\bis headquartered\\b|through our\\b.*\\bbrands\\b|our\\s+[\\d,]+\\+?\\s+employees\\b|our (?:mission|goal|vision|values|company|brands|offices)\\b)",
+      "rationale": "Employer identity, history and footprint, not an applicant capability."
+    },
+    {
+      "id": "company_voice",
+      "reason": "company",
+      "pattern": "^(?:we (?:are (?!looking|seeking|hiring)|have (?:been|over|more than)|offer|believe|serve|strive|foster)|join (?:us|our team)|for (?:more than|over) \\d+ years|(?:our|the) company (?:is|has|offers))\\b",
+      "rationale": "Company narrative; looking/seeking/hiring constructions are not swept in."
+    },
+    {
+      "id": "employer_profile",
+      "reason": "company",
+      "pattern": "^(?:at\\s+)?{employer}(?:\\s+(?:group|inc\\.?|corporation))?\\s*(?:,?\\s*(?:we(?:'re|’re| are)|is (?:a|an|one|the)|has (?:more|over)|offers|provides|was founded|is headquartered))\\b",
+      "rationale": "Reviewed roster identity is only a template for detecting company prose, never sector inference."
+    },
+    {
+      "id": "company_marketing",
+      "reason": "company",
+      "pattern": "^(?:apply today\\b|learn more about (?:us|our company)|follow us on\\b|discover how you can have a career|you(?:'ll|’ll) help accelerate {employer}(?:'s|’s) growth|our promise\\b|about (?:us|our company)\\b)",
+      "rationale": "Recruiting/company marketing does not establish a skill."
+    },
+    {
+      "id": "pay_terms",
+      "reason": "pay",
+      "pattern": "^(?:unless actual salary\\b|(?:the )?(?:actual (?:salary|pay)|base (?:salary|pay)|salary range|pay range|compensation (?:range|overview)|the (?:minimum|maximum|annualized|expected).*(?:salary|pay))\\b)",
+      "rationale": "Pay ranges and disclaimers, not HR compensation work."
+    },
+    {
+      "id": "pay_eligibility",
+      "reason": "pay",
+      "pattern": "^(?:this (?:role|position|job) is (?:also )?eligible.*(?:bonus|equity|incentive)|(?:the )?(?:annual|base) salary\\b|(?:additionally,? )?(?:employees|you) (?:are|may be) eligible.*(?:bonus|equity|incentive)|(?:for|in) (?:ny|ca|us|united states).*\\b(?:salary|base pay)\\b)",
+      "rationale": "Employee remuneration and eligibility language."
+    },
+    {
+      "id": "benefit_terms",
+      "reason": "benefits",
+      "pattern": "^(?:(?:all )?benefits (?:are|include|will|vary)|(?:health|dental|vision|life|disability) insurance (?:is|coverage|benefits)|(?:our|the|a comprehensive) benefits (?:package|program|plan)|(?:we|{employer}) offer.*\\b(?:benefits package|paid time off|retirement plan)|(?:please|to) (?:review|learn|read).*benefits|employees.*(?:eligible family|paid time off))\\b",
+      "rationale": "Plan terms and benefit marketing; managing benefits is a real duty and survives."
+    },
+    {
+      "id": "eeo_policy",
+      "reason": "legal",
+      "pattern": "^(?:(?:we|{employer}(?: group)?|the company) (?:are|is) (?:an? )?equal|(?:we|{employer}(?: group)?) (?:do(?:es)? not|will not) discriminate|equal (?:employment )?opportunity\\b|(?:all )?qualified applicants (?:will|are)|(?:we|{employer}).*\\b(?:committed|providing)\\b.*reasonable accommodations?\\b.*applicant)",
+      "rationale": "Employer EEO/access policy, not knowledge of EEO rules or doing accommodation casework."
+    },
+    {
+      "id": "application_legal",
+      "reason": "legal",
+      "pattern": "^(?:(?:if you|applicants|candidates|this position|employment|offers? of employment).*\\b(?:background checks?|drug screen|accommodations?|criminal history|work authorization|authorized to work|visa|sponsorship)\\b|(?:visa sponsorship|work authorization|background checks?|reasonable accommodations?)\\b|{employer}.*\\b(?:sponsor|visa|work authorization|criminal|background checks?)\\b)",
+      "rationale": "Application eligibility and hiring legal notices."
+    },
+    {
+      "id": "catch_all",
+      "reason": "catch_all",
+      "pattern": "^(?:(?:may |will |shall )?(?:perform |undertake |carry out )?(?:other|additional) duties(?: and responsibilities)?(?: as assigned| as required| may be assigned)|this (?:list|description) is not exhaustive|(?:the )?(?:above|this) (?:list|description).*(?:not exhaustive|not intended)|(?:your )?(?:job )?duties and responsibilities may change)",
+      "rationale": "Catch-alls and non-exhaustive-list disclaimers."
+    },
+    {
+      "id": "heading_label",
+      "reason": "heading",
+      "pattern": "^(?:(?:company|location|job category|job title|job type|employment type|scheduled weekly hours|time type|department|primary location)\\s*:|(?:responsibilities|key responsibilities|qualifications|basic qualifications|preferred qualifications|requirements|about you|about the role|job description|benefits|compensation)\\s*:?\\s*$)",
+      "rationale": "Heading echoes and label lines are not skill nodes."
+    },
+    {
+      "id": "generic_fragment",
+      "reason": "heading",
+      "pattern": "^(?:not (?:recorded|applicable)|n/?a|a|or|and|equivalent|certification|degree|years|of|or equivalent(?: combination of (?:education|experience) and relevant work experience)?|a combination|experience|preferred|required|other duties|#\\w+)\\s*[.!:;]?$",
+      "rationale": "Residual label fragments, not a capability."
+    },
+    {
+      "id": "employer_pay_fragment",
+      "reason": "heading",
+      "pattern": "^{employer}\\s*[.!:;]?$",
+      "rationale": "A stranded company name immediately before its pay-transparency heading only.",
+      "after": "^\\s+Pay Transparency"
+    },
+    {
+      "id": "pay_literal",
+      "reason": "pay",
+      "pattern": "^[$£€]\\s*[\\d,]+(?:\\.\\d+)?(?:[–—-][$£€]?[\\d,]+(?:\\.\\d+)?)?(?:\\s+(?:USD|CAD))?$",
+      "rationale": "A standalone remuneration amount is not a skill."
+    },
+    {
+      "id": "location_literal",
+      "reason": "heading",
+      "pattern": "^(?:WA|CA|NY|TX|US|USA)$",
+      "rationale": "Standalone location codes are label debris, not capabilities."
+    },
+    {
+      "id": "hiring_guidance",
+      "reason": "legal",
+      "pattern": "^(?:to support you.*guidance.*hiring process|we encourage candidates.*(?:during|interview|hiring)|please note.*(?:artificial intelligence|hiring|sponsorship)|please (?:review|read).*(?:benefits|remote work policy|flex.first)|(?:for us based candidates|this role is remote).*base pay|additionally.*new hire equity)\\b",
+      "rationale": "Candidate-process guidance and stand-alone remuneration notices, not employee duties."
+    },
+    {
+      "id": "empty_fragment",
+      "reason": "heading",
+      "pattern": "^[\\W_]+$",
+      "rationale": "Punctuation-only remainders of split qualifications cannot name a skill."
+    },
+    {
+      "id": "company_culture",
+      "reason": "company",
+      "pattern": "^(?:by fostering a culture.*we deliver for|built on a .*foundation.*{employer}|our employees work in the office|(?:our|the) (?:headquarters|headcount|global offices)\\b)",
+      "rationale": "Employer culture, footprint and work-arrangement narrative; an imperative HR culture duty is not matched."
+    },
+    {
+      "id": "pay_update",
+      "reason": "pay",
+      "pattern": "^should the (?:level|location).*hiring process.*base pay range\\b",
+      "rationale": "A range-update disclaimer is not capability evidence."
+    },
+    {
+      "id": "hiring_status",
+      "reason": "legal",
+      "pattern": "^(?:the position will be posted until|(?:this|the) (?:position|requisition) (?:will remain|is) open until)\\b",
+      "rationale": "Requisition availability, not an applicant skill."
+    },
+    {
+      "id": "logistics_label",
+      "reason": "heading",
+      "pattern": "^(?:location (?:we|the|you|this)\\b|(?:ability to )?travel,? occasionally overnight.*preferred qualifications|the requirements listed below.*representative|following is a summary of the essential functions)",
+      "rationale": "Flattened location/travel labels and list-introduction echoes, not HR policy work."
+    },
+    {
+      "id": "education_residual",
+      "reason": "education",
+      "pattern": "^(?:or )?equivalent (?:combination of )?(?:education|experience).*$",
+      "rationale": "A residual degree-equivalence clause belongs to qualification metadata, not a skill."
+    },
+    {
+      "id": "experience_residual",
+      "reason": "heading",
+      "pattern": "^(?:(?:strong|demonstrated|relevant|prior|previous|proven)\\s+)?experience\\s*[\\W_]*$",
+      "rationale": "An experience prefix left by a years split has no domain and cannot be a skill."
+    },
+    {
+      "id": "office_logistics",
+      "reason": "company",
+      "pattern": "^(?:some roles may require additional in-office|flexible to work across multiple time zones|learn more about life at|the (?:role|position) (?:is based|is located|requires residence))\\b",
+      "rationale": "Office/location logistics and recruiting links are not skills; planning workforce locations remains a duty."
+    }
+  ],
+  "qualification": {
+    "education": [
+      {
+        "value": "high_school_or_equivalent",
+        "pattern": "\\b(?:high school diploma(?:,\\s*ged)?(?:\\s*,?\\s*or equivalent certification)?|ged(?:\\s+or equivalent)?)\\b"
+      },
+      {
+        "value": "bachelors",
+        "pattern": "\\bbachelor(?:'s|’s|s)?(?:\\s+degree)?\\b|(?<!\\w)(?:B\\.S\\.|B\\.A\\.)(?=\\s|$)|\\b(?:BS|BA)(?=\\s+(?:degree|in)\\b)"
+      },
+      {
+        "value": "masters",
+        "pattern": "\\b(?:master(?:'s|’s|s)?(?:\\s+degree)?|MBA)\\b|(?<!\\w)M\\.S\\.(?=\\s|$)|\\bMS(?=\\s+degree\\b)"
+      },
+      {
+        "value": "doctorate",
+        "pattern": "\\b(?:ph\\.?d\\.?|doctorate|doctoral degree)\\b"
+      },
+      {
+        "value": "associate",
+        "pattern": "\\bassociate(?:'s|’s|s)? degree\\b"
+      },
+      {
+        "value": "equivalent_education_or_training",
+        "pattern": "\\bor equivalent education and related training(?:\\s+\\d{1,2})?\\b"
+      }
+    ],
+    "years": "(?<!\\w)(?:(?:at least|minimum(?: of)?|more than)\\s+)?(?P<years>\\d{1,2})(?:\\s*[-–]\\s*\\d{1,2})?\\s*\\+?\\s*years?(?![-–])(?:\\s+of)?(?:\\s+(?:relevant |related |professional )?experience)?(?:\\s+(?:in|with|of))?\\b",
+    "start": "^\\s*(?:high school|ged\\b|bachelor|master|associate|ph\\.?d|doctorate|(?:at least|minimum(?: of)?|more than)?\\s*\\d{1,2}\\s*[-–+]?\\s*(?:\\d{1,2})?\\s*years?)",
+    "domain_prefix": "^[\\s,;:/–—-]*(?:(?:in|with|of)\\s+)?",
+    "domain_suffix": "(?:\\s+(?:or equivalent education and related training|or related field, or equivalent education and related training)\\s*\\d*|[\\s,;:/–—-]+|(?<!\\w)(?:or|and|a combination|preferred|required)|\\s+\\d{1,2})+$"
+  }
+}

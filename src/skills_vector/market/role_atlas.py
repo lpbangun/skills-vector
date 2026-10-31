@@ -200,6 +200,7 @@ class Measurement(Model):
     comparison_group: str
     levels: list[int | Literal["unassigned"]]
     timing: Timing
+    employer_weighted_share: float | None = field(default=None, metadata={"omit_none": True})
 
 
 @dataclass
@@ -377,6 +378,8 @@ def _validate_measurements(windows: list[Measurement]) -> None:
         _require(0 <= window.share <= 1, "measurement share outside 0–1")
         _require(type(window.employers) is int and window.employers >= 0, "invalid measurement employers")
         _require(0 <= window.max_employer_share <= 1, "invalid employer share")
+        _require(window.employer_weighted_share is None or 0 <= window.employer_weighted_share <= 1,
+                 "employer-weighted share outside 0–1")
         _require(bool(window.comparison_group.strip()), "missing comparison group")
         _require(bool(window.levels) and len(set(window.levels)) == len(window.levels)
                  and all(level == "unassigned" or (type(level) is int and 1 <= level <= 5) for level in window.levels), "invalid measurement levels")

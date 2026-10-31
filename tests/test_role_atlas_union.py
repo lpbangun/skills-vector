@@ -96,7 +96,8 @@ class UnionTests(unittest.TestCase):
         self.assertEqual(old.role("account-executive")["role"]["demand_window"]["postings"], 436)
         self.assertEqual(self.reads.role("account-executive", receipt["release_id"])["status"], "unknown_release")
         config = read_json(ROOT / "vercel.json")["functions"]["api/index.py"]["includeFiles"]
-        self.assertIn("2026-Q4-union/roles/*.json", config)
+        self.assertIn("2026-Q4-union-r3/roles/*.json", config)
+        self.assertNotIn("2026-Q4-union/roles/", config)
         self.assertNotIn("2026-Q4-sectors", config)
         self.assertNotIn("audit.json", config)
 

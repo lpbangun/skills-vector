@@ -36,6 +36,12 @@ Skill `share_by_level` preserves the prototype's **0–100 percentages**. Window
 measurements, industry skill/certification shares, employer concentration,
 numeric probabilities and base rates use **0–1 fractions**.
 
+M10 adds optional `Measurement.employer_weighted_share` (0–1), omitted when
+unknown so historical records round-trip unchanged. It is the mean of each
+admitted employer\'s within-employer posting fraction. Rank uses distinct
+employers first, then this value, then stable id. `share` remains the raw posting
+fraction; status, edge, sector and level thresholds do not use the ranking field.
+
 Every forecast declares `basis`: `fixture` (illustrative) or `backtest` (historical
 archive) requires both numeric probability and base_rate. `none` requires both to
 be null and a nonempty `reason`. A non-core skill still needs the dated forecast

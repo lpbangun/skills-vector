@@ -32,6 +32,7 @@ def add_volume_commands(sub):
     project.add_argument("--inline-audit", action="store_true", help="diagnostic scratch projection only; never commit full audits")
     project.add_argument("--legacy-grouping", action="store_true", help="diagnostic: M7 paragraph/category grouping without canonical tools/terms or publication spans")
     project.add_argument("--no-upgrade", action="store_true", help="diagnostic: retain original rules/1 extraction")
+    project.add_argument("--legacy-skills", action="store_true", help="diagnostic: replay pre-rules/3 skill selection and ranking")
     project.add_argument("--no-grouping", action="store_true", help="diagnostic: disable O*NET 31 grouping")
 
 
@@ -42,7 +43,7 @@ def run_volume(args):
     if args.volume_action == "capture":
         return write_snapshot(VolumePolicy.read(args.policy), args.output, args.quarter,
                               payload_root=args.payload_root, retrieved_at=args.retrieved_at, live=args.live)
-    inputs = EvidenceInputs.from_snapshots(args.snapshot, args.release_root, args.mapping_root, args.employer_map, upgrade=not args.no_upgrade, grouping=not args.no_grouping, canonical=not args.legacy_grouping)
+    inputs = EvidenceInputs.from_snapshots(args.snapshot, args.release_root, args.mapping_root, args.employer_map, upgrade=not args.no_upgrade, grouping=not args.no_grouping, canonical=not args.legacy_grouping, skills_only=not args.legacy_skills)
     if inputs.data_kind == "research" and not args.inline_audit:
         from .role_publication import EVIDENCE_ROOT, publish
         records, audit = inputs.build()

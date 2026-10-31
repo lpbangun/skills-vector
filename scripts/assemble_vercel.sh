@@ -13,7 +13,7 @@ cp "$root/design-concepts/design-system/"*.css "$out/design-system/"
 cp -R "$root/preview/release/." "$out/release/"
 rm -rf "$out/release/.market-staging" "$out/release/.staging"
 # Public, compact selected Role Atlas export only; never copy an audit/store.
-atlas="$root/research/role-atlas/2026-Q4-union"
+atlas="$root/research/role-atlas/2026-Q4-union-r3"
 mkdir -p "$out/role-atlas/roles" "$out/role-atlas/views"
 cp "$atlas"/roles/*.json "$out/role-atlas/roles/"
 cp "$atlas"/views/*.json "$out/role-atlas/views/"

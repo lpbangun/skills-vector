@@ -1,9 +1,42 @@
 # Role Atlas research projection and ledger
 
-## Selected union Q4 publication (M9-r5)
+## Selected skill-only union publication (M10)
 
-The deployed API default, Vercel runtime bundle and assembled static export select
-`2026-Q4-union/`, release **`role_research_7333966260cf6538`**. Explicit operator
+Selected: `2026-Q4-union-r3/`, **`role_research_bad1fb3f89ffda0e`**.
+It reprojects the same read-only union capture: **495/47 AE, 37/19 FDE,
+20/12 Growth, 12/10 HR** postings/employers. No new retrieval or independent
+history window. All previous release files are unchanged; supersession is
+documented here, not added to those manifests.
+
+`rules/3` filters candidates through the versioned
+`role_atlas_mappings/non_skills.json` table before grouping. The external audit
+retains all 727 dropped spans with reasons and exact source receipts. It also
+records processed-posting `min_years` and `education`; these are weak
+qualification facts, not skill nodes or level assignments. Experience is the
+smallest explicit non-preferred lower bound, not an inferred overall AND/OR
+career requirement. Every admitted posting remains in its denominator.
+
+Rank uses **distinct employers first, then mean within-employer posting share**.
+Raw posting share stays separate and still drives the unchanged status rules.
+The sample descriptor uses only verified sectors of distinct admitted employers;
+partial coverage is explicitly labeled, never extrapolated as “mostly”.
+
+The release contains **2,944 early nodes / pending none-basis calls**,
+a **289,617-byte** ledger and a **5,981,704-byte / 11-file** tree. No scores,
+probabilities or historical base rates are invented. Top-20 nodes pass the
+non-skill-table check; that is not independent semantic validation. HR's nodes
+still have only one employer each and remain below the default display floor.
+See [PROGRESS.md](../../docs/role-atlas/PROGRESS.md) for all top twenties,
+drop counts, limits and W3 measurements.
+
+```sh
+.venv/bin/skills-vector market serve --role-atlas-root research/role-atlas/2026-Q4-union-r3/roles --role-atlas-ledger research/role-atlas/2026-Q4-union-r3/ledger.json
+```
+
+## Superseded union Q4 publication (M9-r5)
+
+Former selection, retained unchanged: `2026-Q4-union/`, release
+**`role_research_7333966260cf6538`**. It is superseded by M10 above. Explicit operator
 environment selectors still win and fail closed if invalid; the CLI/library still
 requires explicit selection. This is configuration/build output, not a deployment.
 

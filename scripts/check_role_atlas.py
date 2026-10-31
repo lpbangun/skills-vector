@@ -213,6 +213,13 @@ def exercise_map(page, record: dict, output: Path, role: str) -> None:
     require(rows.count() == len(default_ids), "collapsed map eagerly built tail rows")
     require(set(page.locator("#map .srow:visible").evaluate_all("nodes => nodes.map(n => n.dataset.skill)")) == default_ids, "wrong overview rows")
     require(("Overview floor: 3 employers" if floor else "All skills shown") in page.locator("#overviewPolicy").inner_text(), "display floor not stated")
+    if any("employer_weighted_share" in s["windows"][-1] for s in skills.values()):
+        for status in ("core", "rising", "early", "fading"):
+            ranked = sorted((s for s in skills.values() if s["status"] == status and s["id"] in default_ids),
+                            key=lambda s: (-s["windows"][-1]["employers"], -s["windows"][-1]["employer_weighted_share"], s["id"]))
+            actual = page.locator(f'#map .lane .srow[data-skill]').evaluate_all("nodes => nodes.map(n => n.dataset.skill)")
+            require([sid for sid in actual if skills[sid]["status"] == status] == [s["id"] for s in ranked], "employer-weighted overview order wrong")
+        require(page.locator("#map .rank-metrics").count() == len(default_ids), "rank measurements missing")
     for status in ("core", "rising", "early", "fading"):
         hidden = [skill for skill in skills.values() if floor and skill["status"] == status and skill["windows"][-1]["employers"] < floor]
         group = page.locator(f'#map details[data-status="{status}"]')
@@ -454,7 +461,9 @@ def check_case(browser, base: str, out: Path, width: int, scheme: str, reference
                 record = current_record(page)
                 require(record["id"] == "role." + role, "wrong selected API role")
                 sample = page.locator("#sampleNotice").inner_text()
-                require(f"{record['demand_window']['postings']} postings from {record['demand_window']['employers']} employers" in sample and "tech-heavy, not a market census" in sample, "sample framing/counts missing")
+                require(f"{record['demand_window']['postings']} postings from {record['demand_window']['employers']} employers" in sample and "not a market census" in sample, "sample framing/counts missing")
+                sector_note = next((note.removeprefix("Sample sectors: ") for note in record["limits"] if note.startswith("Sample sectors: ")), "sector mix unverified")
+                require(sector_note in sample and "tech-heavy" not in sample, "sector descriptor not derived")
                 source_note = next((note.removeprefix("Posting sources: ") for note in record["limits"] if note.startswith("Posting sources: ")), None)
                 require((source_note if source_note else "source coverage not recorded") in sample, "sample sources not derived from data")
                 require(page.locator("#fixtureCallout").is_visible() == (record["data_kind"] == "fixture"), "fixture caveat visibility mismatch")

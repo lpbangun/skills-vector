@@ -12,6 +12,7 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import datetime
 from itertools import combinations
+from fractions import Fraction
 from pathlib import Path
 from typing import Any
 
@@ -69,6 +70,24 @@ def posting_source_note(rows: list[dict]) -> str:
     if sites:
         parts.append("employer career sites (" + ", ".join(sorted(sites)) + ")")
     return "Posting sources: " + (" and ".join(parts) if parts else "published posting excerpts; source coverage not recorded")
+
+
+def employer_weighted_share(rows: list[dict], hits: set[str]) -> float:
+    totals = Counter(normalized(p["employer"]) for p in rows)
+    mentions = Counter(normalized(p["employer"]) for p in rows if p["dedup_key"] in hits)
+    return float(sum((Fraction(mentions[e], n) for e, n in sorted(totals.items())), Fraction()) / len(totals)) if totals else 0.0
+
+
+def sector_sample_note(rows: list[dict], employers: dict, sectors: dict) -> str:
+    names = {normalized(p["employer"]) for p in rows}
+    verified = Counter(employers[e]["naics"] for e in names if employers[e]["status"] == "verified")
+    count = sum(verified.values())
+    if not count:
+        return "Sample sectors: sector mix unverified"
+    top = sorted(verified, key=lambda k: (-verified[k], k))[:2]
+    labels = ", ".join(sectors.get(k.replace("–", "-"), sectors.get(k, k)) for k in top)
+    other = "; other verified sectors also present" if len(verified) > 2 else ""
+    return f"Sample sectors: verified subset: {labels} ({count}/{len(names)} employers verified{other}); " + ("remaining sectors unverified" if count < len(names) else "all admitted employers verified")
 
 
 def validate_alignment(row: dict) -> None:
@@ -239,9 +258,9 @@ class EvidenceInputs:
 
     @classmethod
     def from_snapshots(cls, roots: list[Path], release_root: Path, mapping_root: Path = MAPPING_ROOT,
-                       employer_map: Path | None = None, *, upgrade: bool = True, grouping: bool = True, canonical: bool = True) -> EvidenceInputs:
+                       employer_map: Path | None = None, *, upgrade: bool = True, grouping: bool = True, canonical: bool = True, skills_only: bool = True) -> EvidenceInputs:
         from .posting_volume_inputs import read_snapshots
-        return read_snapshots(roots, release_root, mapping_root, employer_map, upgrade=upgrade, grouping=grouping, canonical=canonical)
+        return read_snapshots(roots, release_root, mapping_root, employer_map, upgrade=upgrade, grouping=grouping, canonical=canonical, skills_only=skills_only)
 
     @classmethod
     def read(cls, release_root: Path, mapping_root: Path = MAPPING_ROOT, release_id: str | None = None) -> EvidenceInputs:
@@ -375,7 +394,7 @@ class EvidenceInputs:
                                and (not (posting.get("extraction_method", "").startswith("rules/") or posting.get("extraction_method") == "flat-headings/1") or e.get("section") == "responsibilities")]
                 if posting.get("responsibility_evidence", {}).get("quote"):
                     duty_quotes.append(posting["responsibility_evidence"]["quote"])
-                decision = triage(posting, duty_quotes, role_scope_rules=posting.get("extraction_method") in ("rules/2", "flat-headings/1"), segment_policy=self.skills.get("segment_scope"))
+                decision = triage(posting, duty_quotes, role_scope_rules=posting.get("extraction_method") in ("rules/2", "rules/3", "flat-headings/1"), segment_policy=self.skills.get("segment_scope"))
                 assignments[posting["dedup_key"]] = decision.level
                 linked = []
                 for expected in posting["expectations"]:
@@ -397,6 +416,10 @@ class EvidenceInputs:
                                       "level": decision.level, "reason": decision.reason, "strong_signals": decision.strong,
                                       "weak_signals": decision.weak, "contact_spans_omitted": posting.get("contact_spans_omitted", 0),
                                       "contact_omissions": posting.get("contact_omissions", []), "excluded_projection_spans": posting.get("projection_exclusions", []), "skill_links": sorted(linked, key=lambda x: (x["skill"], x["phrase"]))})
+                if posting.get("extraction_method") == "rules/3":
+                    posting_audit[-1].update(extraction_method="rules/3", native_extraction_method=posting["native_extraction_method"],
+                        min_years=posting["min_years"], education=posting["education"],
+                        qualification_evidence=posting["qualification_evidence"], skill_filter=posting["skill_filter"])
                 if posting.get("source_kind") == "jsonld":
                     posting_audit[-1].update(source_kind="jsonld", page_url=posting["url"], page_sha256=posting["page_sha256"])
             level_rows = {level: [p for p in rows if assignments[p["dedup_key"]] == level] for level in range(1, 6)}
@@ -414,6 +437,7 @@ class EvidenceInputs:
                                 past_key, _, _ = skill_identity(expected, slug, node_by_id, phrase_map, rules=True)
                                 per_skill[past_key].add(posting["dedup_key"])
                     historical_mentions[window] = per_skill
+            ranked = any(p.get("extraction_method") == "rules/3" for p in rows)
             skills = []
             for key, ids in sorted(mentions.items()):
                 data = skill_data[key]
@@ -434,6 +458,10 @@ class EvidenceInputs:
                             self.history_groups[window], strata, "coincident"))
                 else:
                     measurements = [measurement]
+                if ranked:
+                    for m in measurements:
+                        window_hits = historical_mentions[m.window][key] if self.history_groups else ids
+                        m.employer_weighted_share = employer_weighted_share(by_window[m.window], window_hits)
                 employer_word = "employer" if len(employer_counts) == 1 else "employers"
                 evidence = [signal("postings", "Captured public job postings" if self.history_groups else "Published job postings", f"{len(hits)}/{len(rows)} admitted postings: published expectation excerpts record this node; {len(employer_counts)} {employer_word}. Includes unassigned scope.")]
                 if data.get("term_match"):
@@ -455,9 +483,11 @@ class EvidenceInputs:
                 skills.append({"id": key, "label": data["label"], "short_label": data["short_label"], "status": derive_status(measurements, [Signal(**s) for s in evidence]),
                                "first_level": min(observed) if observed else None, "share_by_level": shares, "source_links": ["P", "O"] if data["node"] else ["P"],
                                "windows": [m.to_dict() for m in measurements], "evidence": evidence, "forecast": forecast if derive_status(measurements, [Signal(**s) for s in evidence]) != "core" else None, "disputed": None})
+            if ranked:
+                skills.sort(key=lambda s: (-s["windows"][-1]["employers"], -s["windows"][-1]["employer_weighted_share"], s["id"]))
             kept, dropped = cooccurrences(rows, mentions)
             ladder = []
-            segment_policy = self.skills.get("segment_scope") if slug == "account-executive" and (not rows or any(p.get("extraction_method") in ("rules/2", "flat-headings/1") for p in rows)) else None
+            segment_policy = self.skills.get("segment_scope") if slug == "account-executive" and (not rows or any(p.get("extraction_method") in ("rules/2", "rules/3", "flat-headings/1") for p in rows)) else None
             for level, name in enumerate(LEVEL_NAMES, 1):
                 selected = level_rows[level]
                 expectations = {}
@@ -502,6 +532,7 @@ class EvidenceInputs:
                     "note": "Role-wide counts including unassigned scope, not a level-demand measurement. Excluded from sector profiles; no primary-employer sector is inferred."}], "limits": [
                     "Research projection of published release " + self.release_id + "; source counts are a bounded admitted sample, not market prevalence.",
                     posting_source_note(rows),
+                    sector_sample_note(rows, self.employers, self.skills["sectors"]),
                     "Mention fractions count only recorded published expectation excerpts, not exhaustive full posting text. A missing recorded mention is not verified absence of demand and is not a future probability.",
                     "Quarterly rules snapshots; only identical sampling definitions are comparable. Repeated releases within a quarter are not independent windows." if self.history_groups else "One selected snapshot only. Retrieval dates bin observed mentions; repeated releases are not independent windows. No comparable temporal history is asserted, so all current statuses are early.",
                     "Null first_level means no observed assigned level; null share_by_level means no assigned denominator, not zero demand. Measurement strata explicitly include unassigned postings.",
@@ -511,7 +542,9 @@ class EvidenceInputs:
                     "Software example keys are project identifiers bound to native O*NET 31.0 examples/categories in software_examples.json, not official element IDs or proficiency claims. Posting-term keys are canonical literal P mentions only, never official equivalence. Sentence projection and narrow notice quarantine do not rewrite the source snapshot." if self.history_groups else "Only the explicitly pinned local mappings were used; no software-example or posting-term lexicon is inferred for this legacy release.",
                     "Unverified employer sectors are excluded, not guessed. Sector profiles need 30 postings and 8 employers. Official industry shares, wages and credential catalogs were not imported; any credential/knowledge text is a literal posting mention.",
                     "No numeric forecast is made without a four-quarter historical backtest. Current recorded mention fractions are measurements, not future probabilities. A separately selected M5 ledger can track these claims without scoring missing probabilities.",
-                    "Rules/1 sample data: illustrative, not research findings." if self.data_kind == "fixture" else "Research data: local source-bound observations, not population prevalence."]})
+                    "Rules/1 sample data: illustrative, not research findings." if self.data_kind == "fixture" else "Research data: local source-bound observations, not population prevalence."] + ([
+                    "Extraction: rules/3; non-skill drops and structured education/experience receipts are in the external audit. No admitted posting is removed. min_years is the smallest explicit non-preferred lower bound, not an inferred total-career requirement or level.",
+                    "Ranking counts distinct employers first, then the mean within-employer posting share. Each employer has equal total weight. Raw posting shares and all status/edge/sector thresholds are unchanged."] if ranked else [])})
             records.append(record)
             role_reports[slug] = {"postings_in": len(all_rows), "current_postings": len(rows), "window": current,
                 "other_window_postings_not_compared": sum(len(v) for w, v in by_window.items() if w != current and w not in comparable_prior) if self.history_groups else len(all_rows) - len(rows),
@@ -527,6 +560,13 @@ class EvidenceInputs:
                 "projection_excluded_spans": sum(len(p.get("projection_exclusions", [])) for p in rows),
                 "postings_with_unverified_sectors": sum(self.employers[normalized(p["employer"])]["status"] != "verified" for p in rows),
                 "postings": posting_audit, "dropped_edges": dropped}
+            if ranked:
+                role_reports[slug]["rules3"] = {
+                    "drops_by_reason": dict(sorted(sum((Counter(p["skill_filter"]["drops_by_reason"]) for p in rows), Counter()).items())),
+                    "postings_emptied": sum(p["skill_filter"]["emptied"] for p in rows),
+                    "postings_empty_before": sum(p["skill_filter"]["empty_before"] for p in rows),
+                    "candidates_before": sum(p["skill_filter"]["candidates_before"] for p in rows),
+                    "candidates_after": sum(p["skill_filter"]["candidates_after"] for p in rows)}
         return records, {"recipe": RECIPE, "release_id": release, "input_release_id": self.release_id, "input_hashes": self.hashes,
                          "window_length": cadence, "roles": role_reports}
 

@@ -65,7 +65,8 @@ class SectionsV2Tests(unittest.TestCase):
             self.assertTrue(any("SMB customer scope" in level.scope for level in ae.ladder.levels))
             self.assertIn("ae_segments.json", inputs.hashes)
             self.assertIn("role_segments.py", inputs.hashes)
-            self.assertEqual({p["extraction_method"] for p in inputs.postings}, {"rules/2"})
+            self.assertEqual({p["extraction_method"] for p in inputs.postings}, {"rules/3"})
+            self.assertEqual({p["native_extraction_method"] for p in inputs.postings}, {"rules/2"})
             self.assertEqual(before, {str(p.relative_to(snapshot)): p.read_bytes() for p in snapshot.rglob("*") if p.is_file()})
             original_read = Path.read_bytes
             def changed_recipe(path):

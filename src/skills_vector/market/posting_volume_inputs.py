@@ -12,7 +12,7 @@ from .role_artifacts import digest as object_digest, read_json
 from .role_pipeline import EvidenceInputs, digest, normalized, require, within
 
 
-def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, employer_map: Path | None = None, *, upgrade: bool = True, grouping: bool = True, canonical: bool = True) -> EvidenceInputs:
+def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, employer_map: Path | None = None, *, upgrade: bool = True, grouping: bool = True, canonical: bool = True, skills_only: bool = True) -> EvidenceInputs:
     base = EvidenceInputs.read(release_root, mapping_root)
     postings, sources, extracts, hashes, groups = [], dict(base.sources), dict(base.extracts), dict(base.hashes), {}
     manifests = []
@@ -164,8 +164,16 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
     if canonical:
         from .role_quotes import project as sentence_spans
         for posting in postings:
-            posting["expectations"] = sentence_spans(posting, extracts[posting["source_id"]])
+            posting["expectations"] = sentence_spans(posting, extracts[posting["source_id"]], quarantine_notices=not skills_only)
         hashes["role_quotes.py"] = digest(Path(__file__).with_name("role_quotes.py").read_bytes())
+    if skills_only:
+        from .skill_rules import SkillRules, TABLE
+        require(canonical, "rules/3 requires canonical source-bound sentence spans")
+        skill_rules = SkillRules(mapping_root / TABLE.name)
+        for posting in postings:
+            skill_rules.process(posting, extracts[posting["source_id"]])
+        hashes["non_skills.json"] = digest((mapping_root / TABLE.name).read_bytes())
+        hashes["skill_rules.py"] = digest(Path(__file__).with_name("skill_rules.py").read_bytes())
     if backbone:
         if canonical:
             for name in ("software_aliases.json", "software_examples.json", "emerging_terms.json"):
@@ -198,6 +206,6 @@ def read_snapshots(roots: list[Path], release_root: Path, mapping_root: Path, em
     for name in ("posting_volume.py", "posting_volume_inputs.py"):
         base.hashes[name] = digest(Path(__file__).with_name(name).read_bytes())
     # Mapping/normalizer changes are sampling-definition changes, never a fabricated trend.
-    suffix = object_digest({"processing_recipe": {name: hashes[name] for name in ("recipe.py", "posting_sections.py", "flat_headings.py", "posting_volume_inputs.py", "role_segments.py", "role_quotes.py") if name in hashes}, "skills": base.skills, "backbone": backbone.fingerprint if backbone else None, "employers": {k: {x: v for x, v in row.items() if x not in ("source_id", "quote")} for k, row in employers.items()}})
+    suffix = object_digest({"processing_recipe": {name: hashes[name] for name in ("recipe.py", "posting_sections.py", "flat_headings.py", "skill_rules.py", "non_skills.json", "posting_volume_inputs.py", "role_segments.py", "role_quotes.py") if name in hashes}, "skills": base.skills, "backbone": backbone.fingerprint if backbone else None, "employers": {k: {x: v for x, v in row.items() if x not in ("source_id", "quote")} for k, row in employers.items()}})
     base.history_groups = {window: group + ":" + suffix for window, group in groups.items()}
     return base

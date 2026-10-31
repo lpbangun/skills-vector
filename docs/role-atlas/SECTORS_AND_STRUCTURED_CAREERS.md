@@ -16,17 +16,18 @@ Private employers retain their note. Rejected collisions and subsidiaries are
 never mapped; 7389/7340 remain unresolved. Broad 31–33, 44–45 and 48–49 are not
 split. ASCII-hyphen and en-dash sector spellings resolve equivalently in the API.
 
-The selected publication is now `research/role-atlas/2026-Q4-union/`, release
-`role_research_7333966260cf6538` (M9-r5): 495 AE, 37 FDE, 20 Growth and 12 HR
-postings from the reviewer-run union capture. The earlier sector-only release
-`role_research_71d6040270516002` stays on disk, unselected, with only a manifest
-supersession pointer added. Its role/view/ledger bytes and the original M8 Q4
-publication remain unchanged.
+The selected publication is now `research/role-atlas/2026-Q4-union-r3/`, release
+`role_research_bad1fb3f89ffda0e` (M10): 495 AE, 37 FDE, 20 Growth and 12 HR
+postings from the reviewer-run union capture. The M9 union release `role_research_7333966260cf6538` is retained unselected.
+The older sector-only `role_research_71d6040270516002` retains its previously
+approved historical pointer; it is not advanced for M10. No published release
+file is edited: supersession now lives in the research README. Earlier role,
+view, ledger and M8 Q4 bytes remain unchanged.
 
 ```sh
 .venv/bin/skills-vector market serve \
-  --role-atlas-root research/role-atlas/2026-Q4-union/roles \
-  --role-atlas-ledger research/role-atlas/2026-Q4-union/ledger.json
+  --role-atlas-root research/role-atlas/2026-Q4-union-r3/roles \
+  --role-atlas-ledger research/role-atlas/2026-Q4-union-r3/ledger.json
 ```
 
 Deployment remains operator-explicit (the same paths can be selected with
@@ -148,6 +149,22 @@ ignoring incompatible cross-system identifier namespaces and retaining the ATS
 row over its structured duplicate. Within one kind, identifiers remain distinct.
 All fair sampling, exact quote offsets/hashes, levels, skills and projection
 still reuse the existing lane.
+
+## Skill-only projection (M10)
+
+Projection now defaults to `rules/3` in both CLI and Python snapshot adapters.
+It validates native extraction first, then filters exact sentence candidates
+through the reviewed phrase table, splits education/experience into processed
+posting fields and only then groups retained domains/duties/tools. The external
+audit alone holds dropped text and qualification receipts; the public manifest
+contains reason counts and empty-posting counts. Native capture files never change.
+`--legacy-skills` (or Python `skills_only=False`) is an explicit historical
+projection diagnostic; combine it with `--legacy-grouping` when replaying M7.
+
+Rank is distinct employers, then the average of each admitted employer\'s
+within-employer posting fraction. Posting fractions and all thresholds remain
+unchanged. The sample descriptor is a verified-sector subset, with the verified
+employer denominator printed; missing sector evidence is not guessed.
 
 ## Offline commands — executed with authored samples
 

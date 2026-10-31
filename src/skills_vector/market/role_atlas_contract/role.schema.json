@@ -598,6 +598,12 @@
           "minimum": 0,
           "maximum": 1
         },
+        "employer_weighted_share": {
+          "description": "Ranking measurement only: mean of within-employer posting shares; not a status threshold or probability.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
         "comparison_group": {
           "type": "string",
           "minLength": 1,

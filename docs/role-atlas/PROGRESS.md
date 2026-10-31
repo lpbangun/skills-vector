@@ -3796,3 +3796,411 @@ Playwright cache and explicit selected catalog/ledger.
   run, and the adjacent external roster was not needed or modified.
 
 One fix-up commit on `feat/role-atlas`, then stop for review.
+
+
+## M10 — skill-only extraction and employer-weighted rank
+
+Built M10 against the approved M9 union, including the three carried items in
+`reviews/M9-r6.md`. New selected publication:
+**`research/role-atlas/2026-Q4-union-r3/`**,
+**`role_research_bad1fb3f89ffda0e`**.
+
+No live retrieval, model/paid call, push or deployment. Input remains the same
+read-only `capture-union-20261024T112557Z/2026-Q4` under the operator evidence
+directory. All **1,522 capture files** and all **281 previously published JSON
+files** (including every prior release manifest) remain byte-identical.
+Supersession is recorded in the research README only, as r6 requires.
+
+### Rules/3 and structured requirements
+
+- Added a versioned development-reviewed **24-rule phrase table**:
+  `role_atlas_mappings/non_skills.json`. It contains the company/profile,
+  remuneration/benefit, EEO/application/legal, catch-all and heading/fragment
+  patterns, rationales and qualification parsers. The implementation does not
+  hide a second inline-regex non-skill filter. Employer templates use the
+  admitted roster identity, never sector inference.
+- Native snapshot hashes and original rules/2 or flat-headings/1 extraction are
+  validated **before** processing. Rules/3 runs over exact sentence candidates,
+  before DWA/software/emerging-term grouping. New projection uses the table
+  instead of the earlier narrow inline notice quarantine; old replay remains
+  available explicitly.
+- Every rejected span gets its source id/hash, exact offsets, original
+  expectation id, rule and reason. **Dropped text remains only in the
+  out-of-tree audit**; the public manifest carries counts, not dropped text.
+- Compound requirement spans split into education/experience facts and retained
+  source-bound domains. The example High School/GED + three 7-year clauses
+  yields **client facing experience**, **consulting experience**, and
+  **Human Resources** as exact substrings, with
+  `education: ["high_school_or_equivalent"]` and `min_years: 7`.
+- These fields live on **processed posting dictionaries and audit posting
+  records**, not by modifying the native capture and not as skill nodes.
+  Qualification evidence retains original text/offsets outside the repo.
+  `min_years` means the smallest explicit lower bound in candidates not labeled
+  preferred; it is **not** a full AND/OR requirement interpreter, total-career
+  requirement or level signal. Preferred clauses do not supply this field.
+  Education names are weak structured tags, not inferred credentials.
+- Genuine HR work survives, including interpreting/explaining policies,
+  benefits enrollment, compensation analysis, accommodation casework and
+  background-check duties. Employer EEO/remuneration policy is distinguished
+  from those employee duties by anchored context.
+- The native extraction method is retained alongside
+  `extraction_method: "rules/3"` in processed posting audit records. All 564
+  admitted ids and their denominators remain; no empty posting is resampled out.
+  Existing AE scope/ownership rules still use responsibilities only; education
+  and years never assign a level.
+- CLI **and Python snapshot adapters default to rules/3**.
+  `--legacy-skills` / `skills_only=False` explicitly requests older projection
+  semantics. The M7/M8 audit scripts now explicitly request that historical
+  mode, rather than silently applying a new filter to their old comparisons.
+  M7's frozen-native replay test now checks native rules/2 plus processed
+  rules/3; its hash-before-upgrade and frozen-cohort checks remain.
+
+### X2 — exact drop accounting
+
+These are **candidate/drop spans**, not postings or independent observations.
+One compound candidate may produce multiple qualification receipts and several
+retained domains, so before/after candidate differences are not the sum of
+drop spans. Native section exclusions preceding this milestone are not
+misreported as new rules/3 drops.
+
+| Role | Company | Pay | Benefits | Legal | Catch-all | Heading | Education | Years |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| AE | 68 | 108 | 0 | 13 | 6 | 39 | 107 | 243 |
+| FDE | 10 | 1 | 0 | 1 | 0 | 2 | 3 | 17 |
+| Growth | 10 | 0 | 0 | 1 | 0 | 5 | 2 | 12 |
+| HR | 22 | 11 | 3 | 9 | 2 | 6 | 10 | 16 |
+
+Total: **727 unique source-bound drop spans**, of which 122 are education and
+288 experience-prefix spans moved into structured qualification evidence.
+
+| Role | Postings/employers | Nodes before → after | Candidates before → after | Empty before / emptied | min_years / education postings |
+| --- | --- | ---: | ---: | --- | --- |
+| AE | 495/47 | 2178 → 2137 | 7641 → 7511 | 0 / 0 | 197 / 100 |
+| FDE | 37/19 | 351 → 345 | 601 → 593 | 0 / 0 | 13 / 3 |
+| Growth | 20/12 | 283 → 273 | 396 → 381 | 0 / 0 | 12 / 1 |
+| HR | 12/10 | 212 → 189 | 235 → 193 | 0 / 0 | 8 / 6 |
+
+No real admitted posting is entirely emptied here (**0 in every role**).
+The flag/counter is still tested positively with an all-company/catch-all
+authored posting, and the audit verifies the iff condition for every posting.
+An already-empty posting is tracked separately. No loss can be hidden by
+quietly removing its denominator.
+
+### Employer-weighted rank and schema
+
+For employer `e`, let `n_e` be its admitted postings and `m_e` the postings
+mentioning the node. Ranking uses:
+
+1. distinct mentioning employers, descending;
+2. **`(1/E) × sum_e(m_e/n_e)`**, descending, over **all** admitted employers;
+3. stable skill id, not posting volume.
+
+Each employer has equal total mass; its postings split that mass. Integer/
+Fraction arithmetic makes the computed float independent of row order.
+Posting shares remain `mentions / admitted postings` and stay visible as a
+separate measurement. Status, pips, edges and sectors keep their original
+posting-based thresholds and floors; no probability is inferred.
+
+Added optional typed/schema-validated
+`Measurement.employer_weighted_share`, omitted when absent. Existing
+role/2 records round-trip without new null fields. The schema range is 0–1;
+non-finite values fail validation. A test with a tiny weighted share and
+qualifying raw shares still derives **core**, proving rank does not replace
+status thresholds.
+
+Full record order and the map overview follow this rank. Common rows display
+employer count, employer-weighted percentage and raw posting percentage in
+both visible and accessible text. Collapsed-tail ids preserve native ranked
+order even before their details are loaded; full labels/details remain
+pinned/on-demand. The display floor remains **3 employers**; it is not a
+status rule.
+
+### Sector-derived descriptor and current selection
+
+The fixed “tech-heavy” claim is removed. The descriptor counts **distinct
+admitted employers with reviewed primary sectors**, not their duplicated
+posting volume. It labels the **verified subset**, prints verified/total
+employers, and explicitly leaves the remainder unverified. With none verified
+it says **sector mix unverified**. Thus HR does not get an unsupported
+Information/finance-majority claim from one verified employer out of ten.
+
+The new root is selected by the API default, Vercel includeFiles and assembly.
+Explicit operator selectors still win and fail closed. The README and existing
+workflow/contract docs explain the new selection, rank and qualification units.
+No old release file or issued ledger was edited; archived releases remain
+explicitly readable.
+
+### X1 — top twenties by the new rank
+
+The audit checks every top-20 label against the phrase table using **every
+admitted employer identity** in that role: **zero matches** for AE, Growth,
+HR (and FDE). It also independently reconstructs every node's raw and
+employer-weighted share from audit links and the fixed admitted cohort.
+
+Below are all four roles, not just a chosen clean subset. These are retained
+source-backed nodes, **not independently validated market rankings**.
+Tie order for one-employer nodes is stable id. HR remains thin: its top nodes
+each have one employer, so none exceeds the default display floor. Growth's
+single-employer capability sentences still have weak generalizability; the
+new rank does not pretend that one employer's phrasing is consensus.
+
+#### AE — retained top 20
+
+Levels: L1=0, L2=47, L3=109, L4=108, L5=80, unassigned=151.
+Sample sectors: verified subset: Information, Finance and insurance (14/47 employers verified; other verified sectors also present); remaining sectors unverified.
+
+| Rank | Node | Employers | Employer-weighted % | Posting % |
+| --- | --- | ---: | ---: | ---: |
+| 1 | Develop business relationships. | 38 | 56.5 | 56.6 |
+| 2 | Execute sales or other financial transactions. | 34 | 47.0 | 45.7 |
+| 3 | Identify potential customers. | 30 | 39.9 | 40.6 |
+| 4 | Monitor sales activities. | 23 | 26.0 | 37.4 |
+| 5 | Communicate with other workers to coordinate activities. | 23 | 24.6 | 32.1 |
+| 6 | Salesforce | 18 | 24.5 | 38.8 |
+| 7 | Study product information to acquire professional knowledge. | 18 | 14.9 | 16.0 |
+| 8 | Negotiate prices or other sales terms. | 16 | 19.2 | 11.9 |
+| 9 | Coordinate sales campaigns. | 13 | 12.3 | 7.3 |
+| 10 | Demonstrate products to consumers. | 10 | 11.3 | 29.7 |
+| 11 | Gather customer or product information to determine customer needs. | 9 | 7.4 | 3.6 |
+| 12 | Monitor market conditions or trends. | 6 | 7.2 | 22.2 |
+| 13 | Develop financial or business plans. | 6 | 6.1 | 11.5 |
+| 14 | Explain technical product or service information to customers. | 6 | 5.9 | 5.5 |
+| 15 | Develop proposals for current or prospective customers. | 6 | 4.2 | 4.0 |
+| 16 | AI agents | 5 | 4.3 | 3.4 |
+| 17 | Machine learning | 4 | 3.7 | 2.2 |
+| 18 | Contact current or potential customers to promote products or services. | 4 | 3.3 | 0.8 |
+| 19 | Large language models | 4 | 2.9 | 2.4 |
+| 20 | Amazon Web Services | 4 | 2.8 | 4.4 |
+
+#### FDE — retained top 20
+
+Levels: L1=0, L2=0, L3=0, L4=8, L5=0, unassigned=29.
+Sample sectors: verified subset: Information, Finance and insurance (6/19 employers verified); remaining sectors unverified.
+
+| Rank | Node | Employers | Employer-weighted % | Posting % |
+| --- | --- | ---: | ---: | ---: |
+| 1 | AI agents | 9 | 41.0 | 27.0 |
+| 2 | Design software applications. | 9 | 38.3 | 45.9 |
+| 3 | Large language models | 8 | 36.8 | 24.3 |
+| 4 | CI/CD | 5 | 23.7 | 32.4 |
+| 5 | Model Context Protocol | 5 | 23.7 | 13.5 |
+| 6 | Model evaluations | 5 | 22.6 | 16.2 |
+| 7 | TypeScript | 4 | 21.1 | 27.0 |
+| 8 | Retrieval-augmented generation | 4 | 21.1 | 16.2 |
+| 9 | Python | 4 | 18.4 | 29.7 |
+| 10 | Prompt engineering | 4 | 18.4 | 10.8 |
+| 11 | APIs | 4 | 13.2 | 27.0 |
+| 12 | Machine learning | 3 | 15.8 | 29.7 |
+| 13 | Vector databases | 3 | 15.8 | 13.5 |
+| 14 | Amazon Web Services | 3 | 10.5 | 24.3 |
+| 15 | Microsoft Azure | 3 | 10.5 | 24.3 |
+| 16 | Kubernetes | 2 | 10.5 | 8.1 |
+| 17 | React | 2 | 10.5 | 5.4 |
+| 18 | Apache Spark | 2 | 10.5 | 24.3 |
+| 19 | Google Cloud | 2 | 7.9 | 21.6 |
+| 20 | MLOps | 2 | 7.9 | 21.6 |
+
+#### Growth — retained top 20
+
+Levels: L1=1, L2=0, L3=0, L4=4, L5=0, unassigned=15.
+Sample sectors: verified subset: Information (3/12 employers verified); remaining sectors unverified.
+
+| Rank | Node | Employers | Employer-weighted % | Posting % |
+| --- | --- | ---: | ---: | ---: |
+| 1 | SQL | 4 | 33.3 | 35.0 |
+| 2 | HubSpot | 2 | 16.7 | 10.0 |
+| 3 | Salesforce | 2 | 16.7 | 10.0 |
+| 4 | Large language models | 2 | 16.7 | 10.0 |
+| 5 | Microsoft Excel | 1 | 8.3 | 20.0 |
+| 6 | Microsoft Office | 1 | 8.3 | 5.0 |
+| 7 | Slack | 1 | 8.3 | 5.0 |
+| 8 | you'll figure out where the biggest opportunity is, design the program, build it and show whether it actually moved the number | 1 | 8.3 | 5.0 |
+| 9 | passion to objectively measure your efforts and only make decisions based on data | 1 | 8.3 | 5.0 |
+| 10 | run every program as an experiment | 1 | 8.3 | 5.0 |
+| 11 | you've built growth loops and lifecycle programs that turn signups into engaged users and engaged users into revenue | 1 | 8.3 | 5.0 |
+| 12 | kill what doesn't work, double down on what does | 1 | 8.3 | 5.0 |
+| 13 | great taste | 1 | 8.3 | 5.0 |
+| 14 | be responsible for building measurable growth strategies, segmenting audiences, testing messaging and experiences, and using data to improve performance against key business and product adoption goals | 1 | 8.3 | 5.0 |
+| 15 | hands-on experience using enterprise seo tools such as conductor and profound to drive strategy | 1 | 8.3 | 5.0 |
+| 16 | strong understanding of conversion signals and measurement, including meta capi, server-side tracking, attribution, conversion-event strategy, and crm/offline conversion data | 1 | 8.3 | 20.0 |
+| 17 | experience owning growth end-to-end across the full user journey — from first touch and activation through expansion, monetization, and win-back | 1 | 8.3 | 5.0 |
+| 18 | programmatic partner acquisition (top-of-funnel): design and execute multi-channel growth programs targeting product, engineering and partnerships leaders to drive adoption of identity standards and pipeline into the okta integration network (oin) | 1 | 8.3 | 5.0 |
+| 19 | deep understanding of audience segmentation | 1 | 8.3 | 5.0 |
+| 20 | in-product: own in-product messaging and experiments, from onboarding and upgrade prompts to post-purchase plan tours, and partner with product and engineering to improve our in-app comms systems | 1 | 8.3 | 5.0 |
+
+#### HR — retained top 20
+
+Levels: L1=0, L2=0, L3=0, L4=0, L5=0, unassigned=12.
+Sample sectors: verified subset: Information (1/10 employers verified); remaining sectors unverified.
+
+| Rank | Node | Employers | Employer-weighted % | Posting % |
+| --- | --- | ---: | ---: | ---: |
+| 1 | data & ai fluency - effectively combines workforce data, business insights and ai-enabled capabilities to improve analysis, decision-making and hr effectiveness; demonstrates curiosity and willingness to experiment with new technologies and ways of working | 1 | 10.0 | 8.3 |
+| 2 | you'll also establish the frameworks, playbooks, and practices that will become the backbone of our hrbp team as we scale globally | 1 | 10.0 | 8.3 |
+| 3 | bring an analytical lens to your work — using data to shape decisions, measure outcomes, and tell a coherent story to senior stakeholders | 1 | 10.0 | 8.3 |
+| 4 | success partnering with senior leaders in complex, highly skilled organizations; experience supporting scientific, technical, software, data/ai, bioinformatics, clinical or life sciences organizations | 1 | 10.0 | 8.3 |
+| 5 | experience supporting senior leaders and executive-level stakeholders | 1 | 10.0 | 8.3 |
+| 6 | experience supporting a globally distributed r&d org | 1 | 10.0 | 8.3 |
+| 7 | serve as a trusted advisor and thought partner to leadership teams, bringing a strong point of view on organizational effectiveness, talent, leadership, culture and the workforce implications of business decisions | 1 | 10.0 | 8.3 |
+| 8 | strategic & systems thinking - connects business, organization, talent, technology and workforce considerations and anticipates broader implications | 1 | 10.0 | 8.3 |
+| 9 | ba | 1 | 10.0 | 8.3 |
+| 10 | prior experience supporting marketing or communications organizations | 1 | 10.0 | 8.3 |
+| 11 | lead and coordinate key talent processes for the supported organizations, including goal and development planning, talent assessment, succession planning, performance management, employee development and year-end compensation activities | 1 | 10.0 | 8.3 |
+| 12 | support organizations as they evolve and scale, identifying the organizational capabilities, skills and workforce requirements needed to deliver current and future business priorities | 1 | 10.0 | 8.3 |
+| 13 | strong critical-thinking, problem-solving, and judgment skills, with the ability to synthesize information from multiple sources, develop practical recommendations, and influence decision-making | 1 | 10.0 | 8.3 |
+| 14 | partner with senior leaders to understand business strategy, organizational priorities and key capabilities, translating them into actionable organization, workforce and talent strategies | 1 | 10.0 | 8.3 |
+| 15 | collaborate closely with hr centers of excellence, including talent acquisition, compensation, talent management, learning and development, and employee relations, to develop and deliver coordinated solutions | 1 | 10.0 | 8.3 |
+| 16 | drive consistent, high-quality performance calibrations across engineering, pm, and design — building leader capability and ensuring fair, differentiated outcomes | 1 | 10.0 | 8.3 |
+| 17 | lead org design initiatives end-to-end: from diagnosing root causes through to stakeholder alignment, change communication, and implementation | 1 | 10.0 | 8.3 |
+| 18 | experience as a trusted partner to vp- and svp-level leaders; you're known for your ability to influence and coach | 1 | 10.0 | 8.3 |
+| 19 | lead change that matters: drive organizational changes with empathy, clarity, and rigor—finding creative paths forward when playbooks don’t exist | 1 | 10.0 | 8.3 |
+| 20 | serve as the r&d voice in the design and rollout of company-wide people programs — ensuring compensation cycles, leveling frameworks, and engagement initiatives land effectively | 1 | 10.0 | 8.3 |
+
+### X4 — publication, ledger and immutable evidence
+
+Final **11-file** tree: **5,981,704 bytes** (limit 6,000,000).
+Ledger: **289,617 bytes** (limit 300,000). It contains **2,944 pending
+none-basis calls**, no probability/base rate, no resolved/scored call,
+null Brier and empty calibration bins. Backtest remains
+**not run: no historical posting archive**.
+
+The external full audit is **25,291,526 bytes**, SHA-256
+`9ca4dc660b070f9c0d2d8bf97f0248260e6aab7b5223c7db1ffbcaa8e157d2b0`,
+at `~/.local/share/skills-vector-evidence/role-atlas/releases/role_research_bad1fb3f89ffda0e/audit.json`.
+The manifest pins its bytes/hash, source/recipe/capture hashes and view hashes,
+and publishes compact per-role quality counts. No raw boards/full descriptions
+or detailed audit are committed.
+
+Double projection is byte-identical. Generating the ledgers/backtests in both
+scratch trees also yields **all 11 files byte-identical**, matching the committed
+candidate tree. The independent read-only audit verifies all **564 ids**,
+**9,048 retained skill links**, **727 dropped spans** and every qualification
+receipt against exact saved text and source hashes. All prior JSON/capture
+receipts and metadata privacy guards pass.
+
+The same quarter remains **one** cross-sectional listing stock. Filtered
+mentions and ranking do not manufacture temporal history or forecast scores.
+New recipe/table hashes change comparison identity; old measurements are not
+retroactively relabeled.
+
+### Exact verification commands and results
+
+```sh
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python -m unittest discover -s tests -p test_role_atlas_rules3.py > /tmp/role-atlas-m10-unit-verified.log 2>&1
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python -m unittest discover -s tests -p test_posting_volume.py > /tmp/role-atlas-m10-volume.log 2>&1
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python -m unittest discover -s tests -p test_role_atlas_m7.py > /tmp/role-atlas-m10-m7-compat.log 2>&1
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python -m unittest discover -s tests -p test_role_atlas_weight.py > /tmp/role-atlas-m10-weight-compat.log 2>&1
+```
+
+All exit **0**: rules/3 **7 / 0.494s**, posting volume **16 / 19.691s**,
+M7 replay **15 / 1.276s**, M8 storage/read/weight compatibility
+**6 / 27.505s**. Goldens cover every phrase-table row with a positive and
+a genuine-duty negative, Unum shapes, compound splitting, exact source offsets,
+preferred/required distinction, MS Office not becoming a master's degree,
+duplicate-heavy employer weighting, status invariance, bad table versions,
+source corruption and empty-posting accounting. A fresh-process guard rejects
+provider/model/extra-HTTP imports and any network connection.
+
+```sh
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-union-20261024T112557Z/2026-Q4 --output /tmp/role-atlas-m10-verified-a --evidence-root /home/logani/.local/share/skills-vector-evidence/role-atlas/releases > /tmp/role-atlas-m10-verified-a.json 2> /tmp/role-atlas-m10-verified-a.err
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/skills-vector market posting-volume project --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-union-20261024T112557Z/2026-Q4 --output /tmp/role-atlas-m10-verified-b --evidence-root /tmp/role-atlas-m10-verified-b-evidence > /tmp/role-atlas-m10-verified-b.json 2> /tmp/role-atlas-m10-verified-b.err
+diff -qr /tmp/role-atlas-m10-verified-a /tmp/role-atlas-m10-verified-b
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/skills-vector market forecast-ledger create --roles-root research/role-atlas/2026-Q4-union-r3/roles --ledger research/role-atlas/2026-Q4-union-r3/ledger.json > /tmp/role-atlas-m10-ledger.json
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/skills-vector market forecast-ledger backtest --ledger research/role-atlas/2026-Q4-union-r3/ledger.json --output research/role-atlas/2026-Q4-union-r3/backtest.json > /tmp/role-atlas-m10-backtest.json
+for label in a b; do HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/skills-vector market forecast-ledger create --roles-root /tmp/role-atlas-m10-verified-$label/roles --ledger /tmp/role-atlas-m10-verified-$label/ledger.json > /tmp/role-atlas-m10-ledger-$label.json && HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/skills-vector market forecast-ledger backtest --ledger /tmp/role-atlas-m10-verified-$label/ledger.json --output /tmp/role-atlas-m10-verified-$label/backtest.json > /tmp/role-atlas-m10-backtest-$label.json || exit $?; done
+diff -qr /tmp/role-atlas-m10-verified-a /tmp/role-atlas-m10-verified-b
+diff -qr /tmp/role-atlas-m10-verified-a research/role-atlas/2026-Q4-union-r3
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python -m unittest discover -s tests > /tmp/role-atlas-m10-full-tests.log 2>&1
+```
+
+All exit **0**. Scratch projections were copied to the new, previously absent
+publication root; only its uncommitted manifest was refreshed when compact
+quality counts were added. Repeating these commands needs fresh scratch output
+paths, not overwriting an approved release.
+
+Full suite: **316 tests / 138.022s, OK (skipped=2)**. Ten new tests (seven
+rule/metadata/rank tests plus three publication gates) and no new skip.
+The publication tests check X1, ranked full/common/tail order, fixed admitted
+counts, compact drop counts, budgets and unchanged historical JSON roundtrips.
+Existing deployment/assembly tests now select the new root; archived M9 tests
+still read its old, unchanged data.
+
+```sh
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m10-fixtures --role-atlas-fixtures --role-atlas-ledger /tmp/role-atlas-m6-fixture-ledger.json > /tmp/role-atlas-m10-fixtures.log 2>&1
+UV_OFFLINE=1 uv run --with playwright python scripts/check_role_atlas.py /tmp/role-atlas-m10-research --role-atlas-root research/role-atlas/2026-Q4-union-r3/roles --role-atlas-ledger research/role-atlas/2026-Q4-union-r3/ledger.json > /tmp/role-atlas-m10-research.log 2>&1
+```
+
+Both exit **0**, first attempts: **54 fixture / 72 research screenshots**,
+all roles/tabs/Connections at **1280 light, 1280 dark, 390 light**;
+every `errors: []`, no page overflow. Explicit local Chromium
+`~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome`.
+
+The checker asserts actual employer-weighted overview order and displayed
+measurement rows, and exact data-derived sector/source notes. Existing
+full-detail, unknown-level, forecast, graph, accessibility, JSON/copy, industry
+and budget probes remain. No threshold, retry, warm-up or averaging changed.
+
+| Research case | Overview bytes | Initial interactive ms | Tail expansion ms |
+| --- | ---: | ---: | ---: |
+| 1280 light | 370085 | 1890.3 | 255.2 |
+| 1280 dark | 370085 | 978.2 | 599.8 |
+| 390 light | 370085 | 1812.2 | 572.3 |
+| Limits | 400,000 | 2,000 | 1,000 |
+
+Fixtures: 47,553 bytes, interactive **1315.9 / 631.0 / 692.0ms**.
+Opened AE desktop-light/mobile, FDE desktop-dark and HR mobile maps in one
+batched inspection. The primary/secondary shares, changed FDE order, verified
+sector subset and honest HR no-common-rows state are visible. No styling
+micro-iteration or new asset/dependency.
+
+```sh
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python scripts/audit_role_atlas_m10.py --snapshot /home/logani/.local/share/skills-vector-evidence/role-atlas/capture-union-20261024T112557Z/2026-Q4 --publication research/role-atlas/2026-Q4-union-r3 --evidence-root /home/logani/.local/share/skills-vector-evidence/role-atlas/releases > /tmp/role-atlas-m10-audit.json 2> /tmp/role-atlas-m10-audit.err
+HOME=/tmp/role-atlas-m9-r3-suite-home.CNDaPl .venv/bin/python /tmp/role-atlas-m10-integrity.py > /tmp/role-atlas-m10-integrity.json 2> /tmp/role-atlas-m10-integrity.err
+bash scripts/assemble_vercel.sh
+UV_OFFLINE=1 uv lock --check --offline
+node --check preview/role-atlas.js
+.venv/bin/python -m compileall -q src/skills_vector api/index.py scripts/audit_role_atlas_m10.py scripts/check_role_atlas.py tests/test_role_atlas_rules3.py tests/test_role_atlas_m10.py
+git diff --check
+```
+
+All exit **0**. Assembly **562 files**, lock **61 packages**, no dependency
+change. Unit/CLI HOME is isolated under `/tmp`; optional unrelated local
+audits stay unavailable rather than fabricated as verified.
+
+The scoped design detector was also run once:
+`node .agents/skills/impeccable/scripts/detect.mjs --json preview/role-atlas.js preview/role-atlas.css`
+→ **exit 2**, saved in `/tmp/role-atlas-m10-design-detector.json`.
+It reports **1 existing width-animation warning and 45 type-ramp advisories**.
+One advisory is the new 0.76rem subordinate metric text, intentionally matching
+the approved reference/incumbent data-caption scale; the others pre-exist.
+The pinned visual reference takes precedence over the generic type-ramp
+detector. No unrelated design-system rewrite was done; W3/runtime checks pass.
+
+### Development findings and remaining risks
+
+- The first real-capture probe caught punctuation-only remnants producing an
+  empty normalized label. A reviewed heading/fragment rule now drops/counts
+  those instead of inventing a node.
+- Development top twenties exposed further literal company/pay/recruiting and
+  degree-equivalence shapes. They were added to the versioned table, with the
+  original input fixed; no new retrieval was used. Plural background-check
+  language and MS Office/degree ambiguity received explicit handling/tests.
+- This table was developed on the union corpus. X1 is a **table-conformance
+  gate**, not a held-out precision estimate. Anchored rules can still
+  over/under-filter unseen language; broad semantic validation is not claimed.
+  Vague single-employer capabilities, imperfect compound/heading boundaries,
+  unrecognized qualification forms and earlier tool/term lexical errors remain.
+- Low HR/Growth employer breadth still limits generalization. No official
+  occupation membership, employer sector, proficiency rating or career level
+  is inferred from these retained phrases. No “mostly” sector descriptor is
+  extrapolated from partial verification.
+- Experience metadata is a conservative stated-bound summary, not a Boolean
+  parser for complex AND/OR qualifications. It is weak and never enters scope
+  assignment. Preferred status depends on the recognized native section;
+  unresolved heading ambiguity remains visible in the source/audit.
+- The tree has **18,296 bytes** and ledger **10,383 bytes** of headroom.
+  Future growth must reduce storage/display weight, not relax budgets.
+- No prior publication, old ledger or immutable source was edited; no push or
+  deployment. Stop here for reviewer evaluation of the M10 candidate.
+
+One M10 commit on `feat/role-atlas`, then stop for review.

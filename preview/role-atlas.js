@@ -105,14 +105,16 @@
     if (envelopes[key].view === "overview") (overviewInfo[key].tails || []).forEach(function (group) {
       group.skills.forEach(function (item) { all.push(detailCache[key][item.id] || { id: item.id, label: item.label, status: group.status, stub: true }); });
     });
-    return all.map(function (skill) {
-      if (skill.stub) return { id: skill.id, label: skill.label, short: skill.label, status: skill.status, stub: true, employers: null };
+    return all.map(function (skill, index) {
+      if (skill.stub) return { id: skill.id, label: skill.label, short: skill.label, status: skill.status, stub: true, employers: null, rank: index };
       var fams = {}; skill.evidence.forEach(function (item) { fams[item.family] = true; });
-      return { id: skill.id, short: skill.short_label, label: skill.label, from: skill.first_level,
+      return { id: skill.id, short: skill.short_label, label: skill.label, rank: index, from: skill.first_level,
         sh: skill.share_by_level, src: skill.source_links, status: skill.status,
         sig: skill.evidence.map(function (item) { return [item.source_kind + ":" + item.source, signalReading(item), item.direction, item.family]; }),
         fams: fams, official: hasOfficial(skill), disputed: skill.disputed,
-        call: skill.forecast, employers: skill.windows[skill.windows.length - 1].employers };
+        call: skill.forecast, employers: skill.windows[skill.windows.length - 1].employers,
+        weighted: skill.windows[skill.windows.length - 1].employer_weighted_share,
+        postingShare: skill.windows[skill.windows.length - 1].share };
     });
   }
 
@@ -124,7 +126,9 @@
     $("fixtureCallout").hidden = raw.data_kind !== "fixture";
     var sourceNote = raw.limits.find(function (note) { return note.indexOf("Posting sources: ") === 0; });
     var sources = sourceNote ? sourceNote.slice("Posting sources: ".length) : "published posting excerpts; source coverage not recorded";
-    $("sampleNotice").textContent = (raw.data_kind === "fixture" ? "Illustrative sample: " : "Sample: ") + r.window.postings + " postings from " + r.window.employers + " employers; " + sources + "; tech-heavy, not a market census." + (raw.data_kind === "fixture" ? " Fixture numbers, not observed research." : "");
+    var sectorNote = raw.limits.find(function (note) { return note.indexOf("Sample sectors: ") === 0; });
+    var sectorMix = sectorNote ? sectorNote.slice("Sample sectors: ".length) : "sector mix unverified";
+    $("sampleNotice").textContent = (raw.data_kind === "fixture" ? "Illustrative sample: " : "Sample: ") + r.window.postings + " postings from " + r.window.employers + " employers; " + sources + "; " + sectorMix + "; not a market census." + (raw.data_kind === "fixture" ? " Fixture numbers, not observed research." : "");
     $("fixtureNote").textContent = envelope.fixture_caveat ? envelope.fixture_caveat + " " + raw.limits[raw.limits.length - 1] : "";
     $("releaseLabel").textContent = raw.release_id + " · " + raw.data_kind;
     $("dataFooter").textContent = "Skills Vector · Role Atlas · " + raw.data_kind + " data · " + raw.release_id + ".";
@@ -159,6 +163,7 @@
     var forecast = original.forecast;
     $("skillPanel").innerHTML = '<div style="display:grid; gap:0.4rem"><div class="label">Skill</div><h3>' + esc(k.label) + '</h3>' +
       '<div class="chips"><span class="chip st-' + st[1] + '">' + st[0] + '</span><span class="chip src">' + levelLabel(k.from) + '</span></div>' +
+      (rankMetrics(k) ? '<p class="rank-metrics">' + esc(rankMetrics(k)) + "</p>" : "") +
       '<p style="font-size:0.9rem">' + esc(why) + '</p>' + (k.disputed ? '<p class="caveat"><strong>Disputed.</strong> ' + esc(k.disputed) + '</p>' : '') + '</div>' +
       '<div><div class="label">Evidence</div><ul class="sig">' + original.evidence.map(function (signal) {
         return '<li><span class="src">' + esc(signal.source) + timingTag(signal.timing, signal.as_of) + '</span><span>' + esc(signalReading(signal)) + ' <span class="mono">' + esc(signal.family + " · " + signal.direction) + '</span></span></li>';
@@ -672,7 +677,12 @@
   function overviewText() {
     var info = overviewInfo[state.role];
     var tailNote = info && info.tail_label_limit ? " Some lower-employer labels are shortened; select a row for its full label and evidence." : "";
+    if (info && info.ranking) tailNote += " Rank: distinct employers, then mean within-employer posting share. Posting share is shown separately; status thresholds are unchanged.";
     return overviewFloor() ? "Overview floor: " + overviewFloor() + " employers. Lower-employer rows are expandable per status; this is a display floor, not a status rule. All skills remain in the API and JSON." + tailNote : "All skills shown; no overview display floor.";
+  }
+  function rankMetrics(k) {
+    return k.weighted === undefined || k.weighted === null ? "" :
+      k.employers + " " + noun(k.employers, "employer") + " · " + percentage(k.weighted) + "% employer-weighted · " + percentage(k.postingShare) + "% postings";
   }
   function skillRow(k, st, r) {
     if (k.stub) return '<button type="button" class="srow" data-skill="' + esc(k.id) + '" data-detail="pending" aria-pressed="false" aria-label="' + esc(k.label + ". " + STATUS[st][0] + ". Evidence: not loaded. Select to load full detail.") + '"><span>' + esc(k.label) + '</span><span></span><span></span><span class="call">Select for detail</span></button>';
@@ -681,8 +691,8 @@
     var call = k.call ? (k.call.basis === "none" ? "No forecast yet" : "<strong>" + percentage(k.call.probability) + "%</strong> · " + esc(k.call.resolves)) : "–";
     var lvls = r.levels.filter(function (l) { return neededAt(k, l.L); }).map(function (l) { return "L" + l.L; }).join(", ") || (k.sh.some(function (v) { return v === null; }) ? "no measured assigned coverage" : "none above 15%");
     var evTxt = ["P", "O", "M"].filter(function (f) { return k.fams[f]; }).map(function (f) { return { P: "postings", O: "official map", M: "market trend" }[f]; }).join(", ");
-    return '<button type="button" class="srow" data-skill="' + esc(k.id) + '" aria-pressed="' + (state.skill === k.id) + '" aria-label="' + esc(k.label + ". " + STATUS[st][0] + ". Needed at " + lvls + ". Evidence: " + evTxt + "." + (k.disputed ? " Disputed: " + k.disputed + "." : "") + (k.call ? k.call.basis === "none" ? " No forecast yet." : " Forecast " + percentage(k.call.probability) + "%: " + k.call.claim + "." : "")) + '">' +
-      "<span>" + esc(k.label) + (k.disputed ? '<span class="flag">disputed</span>' : "") + (!k.official && st === "core" ? '<span class="flag gap">not in official maps yet</span>' : "") + "</span>" +
+    return '<button type="button" class="srow" data-skill="' + esc(k.id) + '" aria-pressed="' + (state.skill === k.id) + '" aria-label="' + esc(k.label + ". " + STATUS[st][0] + ". Needed at " + lvls + ". Evidence: " + evTxt + "." + (rankMetrics(k) ? " " + rankMetrics(k) + "." : "") + (k.disputed ? " Disputed: " + k.disputed + "." : "") + (k.call ? k.call.basis === "none" ? " No forecast yet." : " Forecast " + percentage(k.call.probability) + "%: " + k.call.claim + "." : "")) + '">' +
+      "<span>" + esc(k.label) + (rankMetrics(k) ? '<small class="rank-metrics">' + esc(rankMetrics(k)) + "</small>" : "") + (k.disputed ? '<span class="flag">disputed</span>' : "") + (!k.official && st === "core" ? '<span class="flag gap">not in official maps yet</span>' : "") + "</span>" +
       '<span class="pips" aria-hidden="true">' + pips + '</span><span class="pips ev" aria-hidden="true">' + ev + '</span><span class="call" aria-hidden="true">' + call + "</span></button>";
   }
 
@@ -702,7 +712,12 @@
     $("map").innerHTML = ["core", "rising", "early", "fading"].map(function (st) {
       var rows = shown.filter(function (k) { return k.status === st; });
       if (!rows.length) return "";
-      if (floor) rows.sort(function (a, b) { return b.employers - a.employers || a.label.localeCompare(b.label); });
+      if (overviewInfo[state.role] && overviewInfo[state.role].ranking && rows.some(function (k) { return k.stub; })) rows.sort(function (a, b) { return a.rank - b.rank; });
+      else if (floor) rows.sort(function (a, b) { return b.employers - a.employers ||
+        (a.weighted !== undefined && b.weighted !== undefined ? b.weighted - a.weighted || a.id.localeCompare(b.id) : a.label.localeCompare(b.label)); });
+      else if (rows.some(function (k) { return k.weighted !== undefined; })) rows.sort(function (a, b) {
+        return b.employers - a.employers || b.weighted - a.weighted || a.id.localeCompare(b.id);
+      });
       else if (st === "core") rows.sort(function (a, b) { return a.from - b.from; });
       var common = floor ? rows.filter(function (k) { return k.employers >= floor; }) : rows;
       var tail = floor ? rows.filter(function (k) { return k.employers < floor; }) : [];

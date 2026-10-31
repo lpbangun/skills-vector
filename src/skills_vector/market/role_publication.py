@@ -49,6 +49,10 @@ def publish(records: list[dict], audit: dict, captures: tuple[Path, ...], output
                            "file_sha256": hashlib.sha256(encoded(r)).hexdigest(),
                            "overview_sha256": hashlib.sha256(encoded(overview(r, tail_label_limit=tail_label_limit))).hexdigest(),
                            "summary": {k: r[k] for k in ("id", "label", "status", "publication", "data_kind", "release_id", "anchors", "demand_window", "limits")}} for r in records}}
+    for record in records:
+        quality = audit.get("roles", {}).get(record["id"].removeprefix("role."), {}).get("rules3")
+        if quality is not None:
+            receipt["roles"][record["id"]]["skill_filter"] = quality
     payloads = {output / "roles" / (r["id"].removeprefix("role.") + ".json"): r for r in records}
     payloads.update({output / "views" / (r["id"].removeprefix("role.") + ".json"): overview(r, tail_label_limit=tail_label_limit) for r in records})
     payloads[output / "release.json"] = receipt
